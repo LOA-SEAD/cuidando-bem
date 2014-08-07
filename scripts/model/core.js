@@ -1,5 +1,8 @@
-/*
-    The core will be a module responsible to handle all the game variables and its mechanics.
+define([], function()
+{
 
-    
-*/
+
+	function changeScene(){}
+	function openModalScreen(){}
+	function startDialog(){}
+});

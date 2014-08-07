@@ -10,15 +10,18 @@ require.config({
     paths: {        
         jquery: 'libs/jquery-min',
         text: 'libs/text',
+
+        less: 'libs/less',
         
     }
 });
 //Init the app when everything is ready
-require( ["jquery"], function($) 
+require( ["jquery",  "text!../html/container.html", "less"], function($, container) 
 {
     $('document').ready(function()
     {
     //When everything is loaded ...
+        $('#game_cuidando_bem').append(container);
  
     });   
 });

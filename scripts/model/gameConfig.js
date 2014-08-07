@@ -3,3 +3,15 @@
 	New levels can easily be made by adding new game levels.
 	
 */
+
+define([], function()
+{
+	function startWorld()
+	{
+		//Declare game scenes
+		//Declare game modalScenes
+		//Declare game interactive Objects
+	}
+	function level1 (){}
+
+}):
