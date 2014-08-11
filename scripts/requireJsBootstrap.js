@@ -24,7 +24,7 @@ require.config({
         stage: 'controller/stage',
 
         core: 'controller/core',
-        mainMenu: 'controller/mainMenu',
+       
         
     }
 });

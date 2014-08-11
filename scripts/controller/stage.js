@@ -28,12 +28,14 @@ define(['text!../html/container.html'], function(container)
 	}
 
 	var screens = [];
-	var path = '../html/';
+	var htmlPath;
+	var controllerPath;
 
 
 
 	function addScreen (_name, _htmlPage, _controller)
 	{
+		console.log('Adding Screen: ', _name, _htmlPage, _controller);
 		screens.push(new Screen(_name, _htmlPage, _controller));
 	}
 
@@ -41,11 +43,11 @@ define(['text!../html/container.html'], function(container)
 	{
 		var nextScreen = screens[nextScreenId];
 
-		console.log('text!'+path+nextScreen.getHtmlPage());
+		//console.log('text!'+htmlPath+nextScreen.getHtmlPage());
 
 		
 
-		require(['text!'+path+nextScreen.getHtmlPage(), nextScreen.getControllerName()], function (page, controller)
+		require(['text!'+htmlPath+nextScreen.getHtmlPage(), controllerPath+nextScreen.getControllerName()], function (page, controller)
 		{			
 			console.log(nextScreen.getControllerName());
 			$('#stage').empty();
@@ -54,10 +56,23 @@ define(['text!../html/container.html'], function(container)
 		});	
 	}
 
+	function setHtmlPath(path)
+	{
+		htmlPath = path;
+	}
+
+	function setControllersPath(path)
+	{
+		controllerPath = path;
+	}
+
 	return {
 
 		start: start,
 		addScreen: addScreen,
 		changeScreen: changeScreen,
+
+		setHtmlPath: setHtmlPath,
+		setControllersPath: setControllersPath,
 	}
 });
