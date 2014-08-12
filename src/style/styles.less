@@ -1,0 +1,28 @@
+/*
+	This css file will import other css files, so the files are all organized and there is only 
+one link on the main html
+
+	Date: 30/06/2014
+	Author: Otho - Marcelo Lopes Lotufo;
+
+	Last Revision: (date)
+    Last Revisor: (name)
+
+*/
+
+/*Example: @import "css/normalize.css";*/
+
+
+@import "css/bootstrap.min.css";
+@import "css/normalize.css";
+@import "less/common.less";
+
+@import "gameConfig/main.less";
+@import "gameConfig/gameConfig.less";
+@import "gameConfig/scenesBackgroundImages.less";
+
+
+@import url("css/smallDevices.less") (min-width: @screen-sm-min);
+@import url("css/MediumDevices.less") (min-width: @screen-md-min);
+@import url("css/largeDevices.less") (min-width: @screen-lg-min);
+

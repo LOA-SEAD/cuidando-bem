@@ -1,0 +1,1 @@
+define(["stage"],function(e){function t(){$($(".menuButton")[0]).click(function(){e.changeScreen(1)}),$($(".menuButton")[1]).click(function(){e.changeScreen(2)}),$($(".menuButton")[2]).click(function(){e.changeScreen(3)}),$($(".menuButton")[3]).click(function(){e.changeScreen(2)})}function n(){}return{load:t,unload:n}});
