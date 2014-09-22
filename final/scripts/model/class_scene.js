@@ -1,1 +1,1 @@
-define([],function(){return function(t,n){function r(){}function i(){}function s(){return t}function o(){return n}var t=t,n=n;return{getName:s,getCssClass:o}}});
+define([],function(){return function(t,n){function o(){i()}function u(){s()}function a(){return t}function f(){return n}function l(e){i=e}function c(e){s=e}var t=t,n=n,r,i,s;return{getName:a,getCssClass:f,load:o,unload:u,setLoaderFunction:l,setUnloaderFunction:c}}});

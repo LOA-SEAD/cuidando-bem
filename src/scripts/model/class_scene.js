@@ -5,16 +5,27 @@ Each scene may have more than one interactive Object that will be declared later
 
 Each scene has a background image
 */
-
 define([], function()
 {
 	return function Scene(name, cssClass)
 	{
 		var name = name;
 		var cssClass = cssClass;
+		var commandBarThumbnailCssClass;
 
-		function onLoad(){}
-		function onUnload(){}
+		var loaderFunction;
+		var unloaderFunction;
+
+		function onLoad()
+		{
+			console.log("Scene "+name+" loader function");
+			loaderFunction();
+		}
+		function onUnload()
+		{
+			console.log("Scene "+name+" unloader function");
+			unloaderFunction();
+		}
 
 		function getName()
 		{
@@ -26,9 +37,22 @@ define([], function()
 			return cssClass;
 		}
 
+		function setLoaderFunction(_function)
+		{
+			loaderFunction = _function;
+		}
+		function setUnloaderFunction(_function)
+		{
+			unloaderFunction = _function;
+		}
+
 		return {			
 			getName: getName,
 			getCssClass: getCssClass,
+			load: onLoad,
+			unload: onUnload,
+			setLoaderFunction: setLoaderFunction,
+			setUnloaderFunction: setUnloaderFunction,
 
 		}
 		

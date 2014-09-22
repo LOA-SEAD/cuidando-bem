@@ -4,7 +4,7 @@
 	
 */
 
-define(['stateMachine', 'Scene'], function(game, Scene)
+define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'ModalScene'], function(game, Scene, Action, Level, Dialog, InteractiveObject, ModalScene)
 {
 	//Declare game Scenes
 	console.log("Declaring game Scenes:")
@@ -18,27 +18,25 @@ define(['stateMachine', 'Scene'], function(game, Scene)
 	game.addScene(new Scene("Recepcao", "scene-recepcao"));
 
 	
-	
 	//Declare game Modal Scenes
 	console.log("\nDeclaring game Modal Scenes:");
-	
-	
+
 	//Declare game Interactive Objects
 	console.log("\nDeclaring game Interactive Objects:");
 
+	//Declare game Actions
+	console.log("\nDeclaring game Actions:");		
+
 	//Declare game levels functions
-	game.addLevel(level1);
-	game.setCurrentLevel(0);
-	game.startCurrentLevel();
-		
+	console.log("\nDeclaring game Levels:");
+
+	var level = new Level("level0", 6, 7);
+
+	level.addAction(new Action("irParaCorredor", "corredor", function(){console.log(game.getText());}), 6);
+
+
+	game.addLevel(level);
 	
-	function level1 ()
-	{
-		var nome = "bla";
-		game.setCurrentScene("Recepcao");
-
-
-	}
 
 	
 })

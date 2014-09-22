@@ -1,4 +1,4 @@
-define(['stage'], function(stage){
+define(['stage', 'core'], function(stage, core){
 	function load()
 	{
 		;
@@ -6,6 +6,7 @@ define(['stage'], function(stage){
 		{
 			;
 			stage.changeScreen(1);
+			core.start();
 		});
 
 		$($('.menuButton')[1]).click(function()
@@ -17,13 +18,13 @@ define(['stage'], function(stage){
 		$($('.menuButton')[2]).click(function()
 		{
 			;
-			stage.changeScreen(3);
+			stage.changeScreen(4);
 		});
 
 		$($('.menuButton')[3]).click(function()
 		{
 			;
-			stage.changeScreen(2);
+			stage.changeScreen(3);
 		});
 	}
 

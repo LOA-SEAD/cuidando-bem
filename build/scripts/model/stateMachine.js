@@ -4,10 +4,13 @@
     
 */
 
-define(['core'], function(core)
+define([], function()
 {
 
 //Variables
+	var auxText = "Esse texto precisa ser retornado";
+
+	
 	var scenes = [];
 	var auxScenes = [];
 	var currentScene;
@@ -18,7 +21,7 @@ define(['core'], function(core)
 	var interactiveObjects = [];
 
 	var levels = [];
-	var currentLevel;
+	var currentLevel = 0;
 
 
 //functions
@@ -30,6 +33,11 @@ define(['core'], function(core)
 
 		//Log
 		;
+	}
+
+	function setNumberOfScenes(number)
+	{
+		numberOfScenes = number;
 	}
 
 	function setCurrentScene (scene)
@@ -76,7 +84,10 @@ define(['core'], function(core)
 	function startCurrentLevel()
 	{
 		;
-		currentLevel();
+		
+		;
+		;
+		levels[currentLevel].getActions()[6][0].doAction();
 	}
 
 	function nextLevel()
@@ -95,10 +106,13 @@ define(['core'], function(core)
 		getScenes: function (){return scenes},
 		getScene: getScene,
 		setCurrentScene: setCurrentScene,
+		setNumberOfScenes: setNumberOfScenes,
 
 		addLevel: addLevel,
 		setCurrentLevel: setCurrentLevel,
 		startCurrentLevel: startCurrentLevel,
 		nextLevel: nextLevel,
+
+		getText: function (){return auxText},
 	}
 });
