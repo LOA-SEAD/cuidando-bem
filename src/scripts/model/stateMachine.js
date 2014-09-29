@@ -1,7 +1,5 @@
 /*
-    The stateMachine will be a module responsible to handle all the game variables and its mechanics.
-
-    
+    The stateMachine will be a module responsible to handle all the game variables and its mechanics.    
 */
 
 define([], function()

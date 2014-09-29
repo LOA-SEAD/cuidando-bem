@@ -23,7 +23,7 @@ define(['text!../html/container.html'], function(container)
 
 		return {
 			getHtmlPage: getHtmlPage,
-			getControllerName: getControllerName,
+			getControllerName: getControllerName
 		}
 	}
 

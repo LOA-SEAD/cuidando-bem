@@ -39,7 +39,7 @@ define([], function ()
 			getActions: getActions,
 
 			addInteractiveObject: addInteractiveObject,
-			getObjects: getObjects,
+			getObjects: getObjects
 
 		}
 
