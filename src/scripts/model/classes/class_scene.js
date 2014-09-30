@@ -7,14 +7,17 @@ Each scene has a background image
 */
 define([], function()
 {
-	return function Scene(name, cssClass)
+	return function Scene(name, cssClass, load, unload)
 	{
-		var name = name;
-		var cssClass = cssClass;
-		var commandBarThumbnailCssClass;
+		//Attributes
 
-		var loaderFunction;
-		var unloaderFunction;
+		var name = name;
+		var cssClass = cssClass;		
+
+		var loaderFunction = load;
+		var unloaderFunction = unload;
+		
+		//Methods
 
 		function onLoad()
 		{
@@ -26,6 +29,8 @@ define([], function()
 			console.log("Scene "+name+" unloader function");
 			unloaderFunction();
 		}
+		
+		//Getters
 
 		function getName()
 		{
@@ -36,24 +41,15 @@ define([], function()
 		{
 			return cssClass;
 		}
-
-		function setLoaderFunction(_function)
-		{
-			loaderFunction = _function;
-		}
-		function setUnloaderFunction(_function)
-		{
-			unloaderFunction = _function;
-		}
-
+		
+		//Setters
+		
+		//Public interface
 		return {			
 			getName: getName,
 			getCssClass: getCssClass,
-			load: onLoad,
-			unload: onUnload,
-			setLoaderFunction: setLoaderFunction,
-			setUnloaderFunction: setUnloaderFunction,
-
+			onLoad: onLoad,
+			onUnLoad: onUnload			
 		}
 		
 	}
