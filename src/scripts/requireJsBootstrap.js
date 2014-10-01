@@ -17,7 +17,7 @@ require.config({
         stageConfig: 'config/stageConfig',
 
         Scene: 'model/classes/class_scene',
-        ModalScene: 'model/classes/class_modalScene',
+        Flag: 'model/classes/class_flag',
         Action: 'model/classes/class_action',
         Level: 'model/classes/class_level',
         Dialog: 'model/classes/class_dialog',

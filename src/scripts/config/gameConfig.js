@@ -4,19 +4,11 @@
 	
 */
 
-define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'ModalScene'], function(game, Scene, Action, Level, Dialog, InteractiveObject, ModalScene)
+define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag'], function(game, Scene, Action, Level, Dialog, InteractiveObject, Flag)
 {
+	/*
 	//Declare game Scenes
 	console.log("Declaring game Scenes:")
-
-	game.addScene(new Scene("Ala Masculina", "scene-ala_masculina"));
-	game.addScene(new Scene("Ala Feminina", "scene-ala_feminina"));
-	game.addScene(new Scene("Centro Cirurgico", "scene-centro_cirurgico"));
-	game.addScene(new Scene("Corredor", "scene-corredor"));
-	game.addScene(new Scene("Enfermaria", "scene-enfermaria"));
-	game.addScene(new Scene("Posto de Enfermagem", "scene-posto_de_enfermagem"));
-	game.addScene(new Scene("Recepcao", "scene-recepcao"));
-
 	
 	//Declare game Modal Scenes
 	console.log("\nDeclaring game Modal Scenes:");
@@ -29,10 +21,24 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
 
 	//Declare game levels functions
 	console.log("\nDeclaring game Levels:");
+*/
+	var level1 = new Level("Level 1", isEndOfLevel1, getNextLevel1);
 
-	var level = new Level("level0", 6, 7);
+	function isEndOfLevel1(){}
+	function getNextLevel1(){}
 
-	level.addAction(new Action("irParaCorredor", "corredor", function(){console.log(game.getText());}), 6);
+	//Registering Scenes of level 1
+	level1.registerScene(new Scene("Recepção", "scene-recepcao", function(){console.log("primeira fase carregada");}));
+	level1.registerScene(new Scene("Corredro", "scene-corredor"));
+	level1.registerScene(new Scene("Sala de leitos", "scene-sala_de_leitos"));
+	level1.registerScene(new Scene("Leito 1", "scene-leito"));
+	level1.registerScene(new Scene("Posto de Enfermagem", "scene-posto_de_enfermagem"));
+	
+	level1.setInitialScene(0);
+
+	level1.regiterDialog(new Dialog("Rose", "char-speak-recepcionista", "Fala numero 1. Testando o dialog"), 0);
+
+
 
 
 	game.addLevel(level);
