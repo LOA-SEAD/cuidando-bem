@@ -28,6 +28,7 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
 
 
 
+
 	game.registerLevel(level1);
 	
 
