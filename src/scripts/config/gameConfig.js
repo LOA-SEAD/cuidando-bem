@@ -1,3 +1,4 @@
+
 /*
 	This module has every wrold variable from each game level so it can be easily loaded inside the game.
 	New levels can easily be made by adding new game levels.
@@ -6,22 +7,8 @@
 
 define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag'], function(game, Scene, Action, Level, Dialog, InteractiveObject, Flag)
 {
-	/*
-	//Declare game Scenes
-	console.log("Declaring game Scenes:")
-	
-	//Declare game Modal Scenes
-	console.log("\nDeclaring game Modal Scenes:");
+	console.log("gameConfig Module Loaded");
 
-	//Declare game Interactive Objects
-	console.log("\nDeclaring game Interactive Objects:");
-
-	//Declare game Actions
-	console.log("\nDeclaring game Actions:");		
-
-	//Declare game levels functions
-	console.log("\nDeclaring game Levels:");
-*/
 	var level1 = new Level("Level 1", isEndOfLevel1, getNextLevel1);
 
 	function isEndOfLevel1(){}
@@ -36,12 +23,12 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
 	
 	level1.setInitialScene(0);
 
-	level1.regiterDialog(new Dialog("Rose", "char-speak-recepcionista", "Fala numero 1. Testando o dialog"), 0);
+	level1.registerDialog(new Dialog("Rose", "char-speak-recepcionista", "Fala numero 1. Testando o dialog"), 0);
 
 
 
 
-	game.addLevel(level);
+	game.registerLevel(level1);
 	
 
 	

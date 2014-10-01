@@ -10,21 +10,13 @@ define([], function()
 	var levels = [];
 	var currentLevel = 0;
 
-//functions
-//Scene
-	
-
 	function getCurrentLevel()
 	{
-		return currentScene;
+		return levels[currentLevel];
 	}
-
 	
 
-//modalScene
-//interactiveObjects
-//levels
-	function addLevel(level)
+	function registerLevel(level)
 	{
 		levels.push(level);
 
@@ -34,32 +26,11 @@ define([], function()
 
 	function setCurrentLevel(level)
 	{
-		currentLevel = levels[level];
+		currentLevel = level;
 	}
 
-//This should be a core funciton
-	// function startCurrentLevel()
-	// {
-	// 	console.log("Starting Level: " + levels[currentLevel].getName());
-		
-	// 	console.log(levels[currentLevel].getActions());
-	// 	console.log(levels[currentLevel].getActions()[6][0]);
-	// 	levels[currentLevel].getActions()[6][0].doAction();
-	// }
-
 	return {
-
-		addScene: addScene,
-		getScenes: function (){return scenes},
-		getScene: getScene,
-		setCurrentScene: setCurrentScene,
-		setNumberOfScenes: setNumberOfScenes,
-
-		addLevel: addLevel,
-		setCurrentLevel: setCurrentLevel,
-		startCurrentLevel: startCurrentLevel,
-		nextLevel: nextLevel,
-
-		getText: function (){return auxText},
+		getCurrentLevel: getCurrentLevel,
+		registerLevel: registerLevel
 	}
 });

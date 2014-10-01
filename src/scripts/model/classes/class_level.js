@@ -73,6 +73,11 @@ define([], function ()
 		{
 			scenes.push(_scene);
 			console.log("registering scene: ", _scene);
+
+			dialogs.push([]);
+			actions.push([]);
+			flags.push([]);
+			interactiveObjects.push([]);
 		}
 
 		function registerAction(_action, _scene)
@@ -112,6 +117,7 @@ define([], function ()
 			getNextLevel: getNextLevel,
 
 			setInitialScene: setInitialScene,
+			registerScene: registerScene,
 			registerAction: registerAction,
 			registerDialog: registerDialog,
 			registerFlag: registerFlag,
