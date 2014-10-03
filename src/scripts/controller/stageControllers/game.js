@@ -1,10 +1,12 @@
-define(['stage'], function(stage){
+define(['stage', 'core'], function(stage, core){
 	function load()
 	{
 		$('.backButton').click(function()
 		{
 			stage.changeScreen(0);
 		});
+
+        core.start();
 	}
 
 	function unload()

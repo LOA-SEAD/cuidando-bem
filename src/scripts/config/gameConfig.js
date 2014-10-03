@@ -15,7 +15,9 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
 	function getNextLevel1(){}
 
 	//Registering Scenes of level 1
-	level1.registerScene(new Scene("Recepção", "scene-recepcao", function(){console.log("primeira fase carregada");}));
+	level1.registerScene(new Scene("Recepção", "scene-recepcao", function(){
+        console.log("primeira fase carregada");
+    }));
 	level1.registerScene(new Scene("Corredro", "scene-corredor"));
 	level1.registerScene(new Scene("Sala de leitos", "scene-sala_de_leitos"));
 	level1.registerScene(new Scene("Leito 1", "scene-leito"));
@@ -33,4 +35,4 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
 	
 
 	
-})
+});

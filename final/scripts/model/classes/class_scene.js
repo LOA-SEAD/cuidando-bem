@@ -1,0 +1,1 @@
+define([],function(){return function(t,n,r,i){function u(){s()}function a(){o()}function f(){return t}function l(){return n}var t=t,n=n,s=r,o=i;return{getName:f,getCssClass:l,onLoad:u,onUnLoad:a}}});

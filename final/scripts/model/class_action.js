@@ -1,1 +1,0 @@
-define([],function(){return function(t,n,r){function u(){o()}var i=t,s=n,o=r;return{doAction:u}}});

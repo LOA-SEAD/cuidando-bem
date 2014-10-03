@@ -11,7 +11,7 @@ define([], function ()
 		var currentScene = 0;
 		var initialScene = 0;
 		var isEndOfLevelFunction = _isEndOfLevelFunction;
-		var nextLevelFunction = _nextLevelFunciton;
+		var nextLevelFunciton = _nextLevelFunciton;
 		var flags = [];
 		var dialogs = [];
 
@@ -48,13 +48,8 @@ define([], function ()
 
 		function getInitialScene()
 		{
-			return scenes[initialScene];
+			return initialScene;
 		}
-
-        function getCurrentScene()
-        {
-            return scenes[currentScene];
-        }
 
 		function isEndOfLevel()
 		{
@@ -77,7 +72,7 @@ define([], function ()
 		function registerScene(_scene)
 		{
 			scenes.push(_scene);
-			console.log("registering scene: ", _scene);
+			;
 
 			dialogs.push([]);
 			actions.push([]);
@@ -88,25 +83,25 @@ define([], function ()
 		function registerAction(_action, _scene)
 		{
 			actions[_scene].push(_action);
-			console.log(actions);
+			;
 		}
 
 		function registerDialog(_dialog, _scene)
 		{
 			dialogs[_scene].push(_dialog);
-			console.log(dialogs);
+			;
 		}
 
 		function registerFlag(_flag, _scene)
 		{
 			flags[_scene].push(_flag);
-			console.log(flags);
+			;
 		}
 
 		function registerInteractiveObject(_interactiveObject, _scene)
 		{
 			interactiveObjects[_scene].push(_interactiveObject);
-			console.log(interactiveObjects);
+			;
 		}		
 
 
@@ -118,7 +113,6 @@ define([], function ()
 			getFlags: getFlags,
 			getInteractiveObjects: getInteractiveObjects,
 			getInitialScene: getInitialScene,
-            getCurrentScene: getCurrentScene,
 			isEndOfLevel: isEndOfLevel,
 			getNextLevel: getNextLevel,
 

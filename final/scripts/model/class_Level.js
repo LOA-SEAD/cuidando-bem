@@ -1,1 +1,0 @@
-define([],function(){return function(t,n,r){function a(e,t){o[t].push(e)}function f(e,t){}function l(){return o}function c(){return u}var s=t,o=[],u=[];for(i=0;i<r;i++)o.push([]),u.push([]);return{getName:function(){return s},addAction:a,getActions:l,addInteractiveObject:f,getObjects:c}}});

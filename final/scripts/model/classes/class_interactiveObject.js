@@ -1,0 +1,1 @@
+define([],function(){return function(t,n,r){function f(){a()}function l(){return i}function c(){return s}function h(){return u}function p(){return o}function d(e){u=e}function v(e){o=e}var i=t,s=n,o=!0,u=!0,a=r;return{execute:f,getName:l,getCssClass:c,isEnabled:h,isVisible:p,setEnable:d,setVisible:v}}});

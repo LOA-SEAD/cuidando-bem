@@ -1,1 +1,1 @@
-define(["stateMachine"],function(e){return{addScene:e.addScene,addLevel:e.addLevel,setCurrentLevel:e.setCurrentLevel,getText:e.getText}});
+define(["stateMachine"],function(e){return{registerLevel:e.registerLevel}});

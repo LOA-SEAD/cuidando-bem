@@ -16,12 +16,13 @@ require.config({
         gameConfig: 'config/gameConfig',
         stageConfig: 'config/stageConfig',
 
-        Scene: 'model/class_scene',
-        ModalScene: 'model/class_modalScene',
-        Action: 'model/class_action',
-        Level: 'model/class_level',
-        Dialog: 'model/class_dialog',
-        InteractiveObject: 'model/class_interactiveObject',
+        Scene: 'model/classes/class_scene',
+        Flag: 'model/classes/class_flag',
+        Action: 'model/classes/class_action',
+        Level: 'model/classes/class_level',
+        Dialog: 'model/classes/class_dialog',
+        InteractiveObject: 'model/classes/class_interactiveObject',
+        
         stateMachine: 'model/stateMachine',
 
         stateMachineInterface: 'controller/stateMachineInterface',

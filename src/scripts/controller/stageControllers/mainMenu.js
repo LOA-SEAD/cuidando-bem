@@ -6,7 +6,7 @@ define(['stage', 'core'], function(stage, core){
 		{
 			console.log(this);
 			stage.changeScreen(1);
-			core.start();
+			//core.start();
 		});
 
 		$($('.menuButton')[1]).click(function()
