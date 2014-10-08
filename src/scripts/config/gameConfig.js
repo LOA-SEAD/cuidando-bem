@@ -55,7 +55,8 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
     level1.registerDialog(new Dialog("paciente", "char-paciente", "Paciente: Fala numero 1"), 3);
 
     // interactiveObjects
-    // # 9 - Ver pulseira do paciente
+    // # 9 - Ver pulseira do paciente]
+    /*
     level1.registerInteractiveObject("pulseira_paciente", "object-pulseira_paciente",
                                         new Action("pulseira_paciente", "action-pulseira_paciente",
                                             function(){
@@ -63,7 +64,7 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
                                                 // altera flag pulseira_paciente
                                                 level1.getFlags()[1] = true;
                                             }), 3);
-
+*/
     // Actions
         // # 4 # 13 # 20 - Ir para corredor
     level1.registerAction(new Action("ir_corredor", "action-ir_corredor",
