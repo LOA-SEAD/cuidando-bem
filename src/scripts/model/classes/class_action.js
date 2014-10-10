@@ -14,10 +14,15 @@ define([], function()
 
 		function execute()
 		{
-			action();
+            actionFunction();
 		}
 
 		//Getters
+
+        function getFunction()
+        {
+            return actionFunction;
+        }
 
 		function getName()
 		{
@@ -56,6 +61,7 @@ define([], function()
 		return {
 			execute: execute,
 
+            getFunction: getFunction,
 			getName: getName,
 			getCssClass: getCssClass,
 			isEnabled: isEnabled,

@@ -5,8 +5,8 @@
 	
 */
 
-define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag'],
-        function(game, Scene, Action, Level, Dialog, InteractiveObject, Flag){
+define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'core'],
+        function(game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core){
 
     console.log("gameConfig Module Loaded");
 
@@ -70,6 +70,7 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
     level1.registerAction(new Action("ir_corredor", "action-ir_corredor",
                             function(){
                                 console.log("Action: ir_corredor #4");
+                                core.changeScene(1);
                             }), 0); // recepcao
     level1.registerAction(new Action("ir_corredor", "action-ir_corredor",
                             function(){

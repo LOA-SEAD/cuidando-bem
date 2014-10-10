@@ -29,6 +29,9 @@ require.config({
         stage: 'controller/stage',
 
         core: 'controller/core',
+
+        commandBar: 'controller/gameControllers/commandBarController',
+        dialogModal: 'controller/gameControllers/dialogController'
        
         
     }

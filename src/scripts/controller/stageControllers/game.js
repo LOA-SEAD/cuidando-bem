@@ -16,7 +16,7 @@ define(['stage', 'core'], function(stage, core){
 
 	return {
 		load: load,
-		unload: unload,
+		unload: unload
 	}
 
 });

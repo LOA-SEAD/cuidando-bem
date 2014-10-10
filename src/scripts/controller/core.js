@@ -1,23 +1,47 @@
-define(['stateMachine'], function(game)
+define(['stateMachine', 'commandBar', 'dialogModal'], function(game, commandBar, dialogModal)
 {
-	var currentLevel;
 
+//Attributes
+
+
+	var Level;
+
+//Methods
 	function start(){
 		console.log("Starting Game");
-		
-		currentLevel = game.getCurrentLevel();
+        Level = game.getCurrentLevel();
 		startLevel();
-		
 	}
+
+    function getCurrentLevel()
+    {
+        return Level;
+    }
+
 	function changeLevel(){}
 
 	function startLevel(){
-        changeScene(currentLevel.getCurrentScene());
+        changeScene(Level.getCurrentSceneId());
+        var actions = Level.getActions();
+
+        console.log(Level.getCurrentSceneId());
+
+        commandBar.addAllActionButton(actions[Level.getCurrentSceneId()]);
 	}
 
-	function changeScene(_newScene){
-        console.log(_newScene.getCssClass());
-        $('#backgroundScene').attr('class', _newScene.getCssClass());
+	function changeScene(_newSceneId)
+    {
+        Level.setCurrentSceneById(_newSceneId);
+
+        var newScene = Level.getCurrentScene();
+
+        console.log("New scnee: "+ newScene.getCssClass());
+
+        $('#backgroundScene').attr('class', newScene.getCssClass());
+
+        var actions = Level.getActions();
+        var sceneActions = actions[Level.getCurrentSceneId()];
+        commandBar.changeToActionsButtons(sceneActions);
     }
 
 	function openModalScreen(){}
@@ -26,9 +50,16 @@ define(['stateMachine'], function(game)
 	
 	function closeDialog(){}
 
+//Getters
 	function getSceneActions(){}
 
+//Setters
+//Public Interface
+
 	return {
-		start: start,
+		start : start,
+        getCurrentLevel : getCurrentLevel,
+
+        changeScene: changeScene
 	}
 });

@@ -5,17 +5,12 @@
 define([], function()
 {
 
-//Variables
+//Attributes
 	var auxText = "Esse texto precisa ser retornado";
 	var levels = [];
 	var currentLevel = 0;
 
-	function getCurrentLevel()
-	{
-		return levels[currentLevel];
-	}
-	
-
+//Methods
 	function registerLevel(level)
 	{
 		levels.push(level);
@@ -24,11 +19,19 @@ define([], function()
 		console.log('\tAdding new Level:', level.name);
 	}
 
+//Getters
+	function getCurrentLevel()
+	{
+		return levels[currentLevel];
+	}
+
+//Setters	
 	function setCurrentLevel(level)
 	{
 		currentLevel = level;
 	}
-
+	
+//Public Interface
 	return {
 		getCurrentLevel: getCurrentLevel,
 		registerLevel: registerLevel

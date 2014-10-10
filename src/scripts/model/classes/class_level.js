@@ -14,9 +14,6 @@ define([], function ()
 		var nextLevelFunction = _nextLevelFunciton;
 		var flags = [];
 		var dialogs = [];
-
-		
-	
 		//Methods
 
 		//Getters
@@ -56,6 +53,11 @@ define([], function ()
             return scenes[currentScene];
         }
 
+        function getCurrentSceneId()
+        {
+            return currentScene;
+        }
+
 		function isEndOfLevel()
 		{
 			return isEndOfLevelFunction();
@@ -73,6 +75,11 @@ define([], function ()
 			initialScene = _initialScene;
 			currentScene = _initialScene;
 		}
+
+        function setCurrentSceneById(_newScene)
+        {
+            currentScene = _newScene;
+        }
 
 		function registerScene(_scene)
 		{
@@ -119,10 +126,14 @@ define([], function ()
 			getInteractiveObjects: getInteractiveObjects,
 			getInitialScene: getInitialScene,
             getCurrentScene: getCurrentScene,
+            getCurrentSceneId: getCurrentSceneId,
 			isEndOfLevel: isEndOfLevel,
 			getNextLevel: getNextLevel,
 
 			setInitialScene: setInitialScene,
+            setCurrentSceneById: setCurrentSceneById,
+
+
 			registerScene: registerScene,
 			registerAction: registerAction,
 			registerDialog: registerDialog,
