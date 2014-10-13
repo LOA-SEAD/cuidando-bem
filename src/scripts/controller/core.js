@@ -31,7 +31,7 @@ define(['stateMachine', 'commandBar', 'dialogModal'], function(game, CommandBar,
 	function startLevel(){
         changeScene(Level.getCurrentSceneId());
         console.log(Level.getCurrentSceneId());
-        commandBar.addAllActionButton(Actions[Level.getCurrentSceneId()]);
+        CommandBar.addAllActionButton(Actions[Level.getCurrentSceneId()]);
 	}
 
     //Scene
