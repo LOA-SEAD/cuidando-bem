@@ -119,7 +119,6 @@ define([], function ()
 
 		//Public interface
 		return {
-
 			getName: getName,
 			getActions: getActions,
 			getFlags: getFlags,

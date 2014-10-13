@@ -1,8 +1,7 @@
 define(['stage', 'core'], function(stage, core){
 	function load()
 	{
-		$('.backButton').click(function()
-		{
+		$('.backButton').click(function(){
 			stage.changeScreen(0);
 		});
 

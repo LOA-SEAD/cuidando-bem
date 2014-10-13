@@ -6,13 +6,11 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
 
 //Methods
     //Init
-    function init()
-    {
+    function init(){
         //bind event listeners to UI
     }
 
-    function addAllActionButtons(_actions)
-    {
+    function addAllActionButtons(_actions){
         console.log(_actions);
         for(i=0;i<_actions.length;i++)
         {

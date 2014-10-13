@@ -4,8 +4,7 @@ define(['core'], function(core){
 
 //Methods
     //Init
-    function init()
-    {
+    function init(){
         //bind event listeners to UI
     }
 

@@ -49,7 +49,7 @@ define(['text!../html/container.html'], function(container)
 
 		require(['text!'+htmlPath+nextScreen.getHtmlPage(), controllerPath+nextScreen.getControllerName()], function (page, controller)
 		{			
-			console.log("Actual Screen Name:"+nextScreen.getControllerName());
+			console.log("Actual Screen Name: "+nextScreen.getControllerName());
 			$('#stage').empty();
 			$('#stage').append(page);
 			controller.load();
