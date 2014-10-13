@@ -20,52 +20,64 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
         }
     }
 
-    function changeToActionsButtons(_actions)
-    {
+    function changeToActionsButtons(_actions){
         removeAllActionButtons();
         addAllActionButtons(_actions);
     }
 
-    //This function if called should remove all the listeners and extra interface
-    function close(){}
+    //This function, if called should remove all the listeners and extra interface
+    function close(){
+        var action_buttons = $(actionButtonSelector);
+
+        for(button in action_buttons)
+        {
+            var action_button = $(action_buttons[button]);
+            action_button.removeAllListeners();
+        }
+    }
 
     //Add a button into the UI
-    function addActionButton(_action)
-    {
+    function addActionButton(_action){
         $(barSelector).append(actionButtonTemplate);
         var action_buttons = $(actionButtonSelector);
 
-        var action_button = $(action_buttons[action_buttons.length-1])
+        var action_button = $(action_buttons[action_buttons.length-1]);
         action_button.click(_action.getFunction());
         action_button.attr('title', _action.getName());
     }
     //Remove all buttons
-    function removeAllActionButtons()
-    {
+    function removeAllActionButtons(){
         $(barSelector).empty();
     }
     //Remove Button
-    function removeActionButton(){}
+    function removeActionButton(){
+
+    }
     //Deactivate Button
-    function deactivateActionButton(){}
+    function deactivateActionButton(){
+
+    }
     //Activate button
-    function activateActionButton(){}
+    function activateActionButton(){
+
+    }
 
     //Roll bar to the left
-    function rollLeft(){}
+    function rollLeft(){
+
+    }
     //Roll bar to the
-    function rollRight(){}
+    function rollRight(){
+
+    }
 //Getters
 
 //Setters
 
-
-
-
-
 //Public Interface
     return {
         init: init,
+        close: close,
         addActionButton: addActionButton,
         addAllActionButton: addAllActionButtons,
         changeToActionsButtons: changeToActionsButtons,

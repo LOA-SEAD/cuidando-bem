@@ -1,4 +1,4 @@
-define(['stateMachine', 'commandBar', 'dialogModal'], function(game, commandBar, dialogModal)
+define(['stateMachine', 'commandBar', 'dialogModal'], function(game, CommandBar, Dialog)
 {
 
 //Attributes
@@ -8,38 +8,33 @@ define(['stateMachine', 'commandBar', 'dialogModal'], function(game, commandBar,
     var InteractiveObjects;
     var Flags;
 
-    //Screen Controllers
-    var CommandBar = commandBar;
-    var Dialog = dialogModal;
-
 //Methods
 	function start(){
 		console.log("Starting Game");
-        Level = $.extend(true, {}, game.getCurrentLevel());
-        Actions = Level.getActions();
-        InteractiveObjects = Level.getInteractiveObjects();
-        Flags = Level.getFlags();
 
-		startLevel();
+        changeLevel(game.getCurrentLevel());
+        startLevel();
 	}
 
+    //Level
     function getCurrentLevel(){
         return Level;
     }
 
-	function changeLevel(){
-
+    function changeLevel (_newLevel){
+        Level = $.extend(true, {}, _newLevel);
+        Actions = Level.getActions();
+        InteractiveObjects = Level.getInteractiveObjects();
+        Flags = Level.getFlags();
     }
 
 	function startLevel(){
         changeScene(Level.getCurrentSceneId());
-        var actions = Level.getActions();
-
         console.log(Level.getCurrentSceneId());
-
-        commandBar.addAllActionButton(actions[Level.getCurrentSceneId()]);
+        commandBar.addAllActionButton(Actions[Level.getCurrentSceneId()]);
 	}
 
+    //Scene
 	function changeScene(_newSceneId){
         Level.setCurrentSceneById(_newSceneId);
 
@@ -51,13 +46,15 @@ define(['stateMachine', 'commandBar', 'dialogModal'], function(game, commandBar,
 
         var actions = Level.getActions();
         var sceneActions = actions[Level.getCurrentSceneId()];
-        commandBar.changeToActionsButtons(sceneActions);
+        CommandBar.changeToActionsButtons(sceneActions);
     }
 
-	function openModalScreen(){
+    //ModalScene
+	function openModalScene(){
 
     }
 
+    //Dialog
 	function startDialog(_dialog){
 
     }
@@ -72,8 +69,8 @@ define(['stateMachine', 'commandBar', 'dialogModal'], function(game, commandBar,
     }
 
 //Setters
-//Public Interface
 
+//Public Interface
 	return {
 		start : start,
         getCurrentLevel : getCurrentLevel,
