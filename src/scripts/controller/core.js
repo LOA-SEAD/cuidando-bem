@@ -56,11 +56,11 @@ define(['stateMachine', 'commandBar', 'dialogModal'], function(game, CommandBar,
 
     //Dialog
 	function startDialog(_dialog){
-
+        Dialog.openDialog(_dialog);
     }
 	
 	function closeDialog(){
-
+        Dialog.close();
     }
 
 //Getters
