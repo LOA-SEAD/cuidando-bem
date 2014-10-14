@@ -75,17 +75,18 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
     level1.registerAction(new Action("ir_corredor", "action-ir_corredor",
                             function(){
                                 console.log("Action: ir_corredor #13");
+                                //core.changeScene()
                             }), 3); // leito
     level1.registerAction(new Action("ir_corredor", "action-ir_corredor",
                             function(){
                                 console.log("Action: ir_corredor #20");
                             }), 4); // posto de enfermagem
 
-
         // # 6 # 21 - Ir para sala de leitos
     level1.registerAction(new Action("ir_sala_de_leitos", "action-ir_sala_de_leitos",
                             function(){
                                 console.log("Action: ir_sala_de_leitos");
+                                core.changeScene(2);
                             }), 1); // corredor
         // # 7 # 22 - Ir para leito
     level1.registerAction(new Action("ir_leito", "action-ir_leito",

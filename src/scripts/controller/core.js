@@ -1,4 +1,4 @@
-define(['stateMachine', 'commandBar', 'dialogModal'], function(game, CommandBar, Dialog)
+define(['stateMachine', 'commandBar', 'dialogModal'], function(game, commandBar, Dialog)
 {
 
 //Attributes
@@ -40,13 +40,13 @@ define(['stateMachine', 'commandBar', 'dialogModal'], function(game, CommandBar,
 
         var newScene = Level.getCurrentScene();
 
-        console.log("New scnee: "+ newScene.getCssClass());
+        console.log("New scene: "+ newScene.getCssClass());
 
-        $('#backgroundScene').attr('class', newScene.getCssClass());
+            $('#backgroundScene').attr('class', newScene.getCssClass());
 
         var actions = Level.getActions();
         var sceneActions = actions[Level.getCurrentSceneId()];
-        CommandBar.changeToActionsButtons(sceneActions);
+        commandBar.changeToActionsButtons(sceneActions);
     }
 
     //ModalScene
