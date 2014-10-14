@@ -18,71 +18,58 @@ define([], function ()
 
 		//Getters
 
-		function getName()
-		{
+		function getName(){
 			return name;
 		}
 
-		function getActions()
-		{
+		function getActions(){
 			return actions;
 		}
 
-		function getFlags()
-		{
+		function getFlags(){
 			return flags;
 		}
 
-		function getDialogs()
-		{
+		function getDialogs(){
 			return dialogs;
 		}
 
-		function getInteractiveObjects()
-		{
+		function getInteractiveObjects(){
 			return interactiveObjects;
 		}
 
-		function getInitialScene()
-		{
+		function getInitialScene(){
 			return scenes[initialScene];
 		}
 
-        function getCurrentScene()
-        {
+        function getCurrentScene(){
             return scenes[currentScene];
         }
 
-        function getCurrentSceneId()
-        {
+        function getCurrentSceneId(){
             return currentScene;
         }
 
-		function isEndOfLevel()
-		{
+		function isEndOfLevel(){
 			return isEndOfLevelFunction();
 		}
 
-		function getNextLevel()
-		{
+		function getNextLevel(){
 			return nextLevelFunciton();
 		}	
 
 		//Setters
 
-		function setInitialScene(_initialScene)
-		{
+		function setInitialScene(_initialScene){
 			initialScene = _initialScene;
 			currentScene = _initialScene;
 		}
 
-        function setCurrentSceneById(_newScene)
-        {
+        function setCurrentSceneById(_newScene){
             currentScene = _newScene;
         }
 
-		function registerScene(_scene)
-		{
+		function registerScene(_scene){
 			scenes.push(_scene);
 			console.log("registering scene: ", _scene);
 
@@ -92,26 +79,22 @@ define([], function ()
 			interactiveObjects.push([]);
 		}
 
-		function registerAction(_action, _scene)
-		{
+		function registerAction(_action, _scene){
 			actions[_scene].push(_action);
 			console.log(actions);
 		}
 
-		function registerDialog(_dialog, _scene)
-		{
+		function registerDialog(_dialog, _scene){
 			dialogs[_scene].push(_dialog);
 			console.log(dialogs);
 		}
 
-		function registerFlag(_flag, _scene)
-		{
+		function registerFlag(_flag, _scene){
 			flags[_scene].push(_flag);
 			console.log(flags);
 		}
 
-		function registerInteractiveObject(_interactiveObject, _scene)
-		{
+		function registerInteractiveObject(_interactiveObject, _scene){
 			interactiveObjects[_scene].push(_interactiveObject);
 			console.log(interactiveObjects);
 		}		

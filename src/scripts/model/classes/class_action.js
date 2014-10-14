@@ -1,7 +1,6 @@
 define([], function()
 {
-	return function Action(_name, _cssClass, _actionFunction)
-	{
+	return function Action(_name, _cssClass, _actionFunction){
 		//Attributes
 
 		var name = _name;
@@ -71,6 +70,4 @@ define([], function()
 			setVisible: setVisible
 		}
 	}
-
-	
 });

@@ -50,12 +50,16 @@ define(['stateMachine', 'commandBar', 'dialogModal'], function(game, commandBar,
     }
 
     //ModalScene
-	function openModalScene(){
+	function openModalScene(_modalSceneId){
+
+    }
+
+    function closeModalScene(){
 
     }
 
     //Dialog
-	function startDialog(_dialog){
+	function openDialog(_dialog){
         Dialog.openDialog(_dialog);
     }
 	
@@ -63,18 +67,41 @@ define(['stateMachine', 'commandBar', 'dialogModal'], function(game, commandBar,
         Dialog.close();
     }
 
-//Getters
-	function getSceneActions(){
+    //End Level
+    function openEndLevel(){
 
+    }
+
+    function closeEndLevel(){
+
+    }
+
+//Getters
+
+    function getFlag(_sceneId, _actionId){
+        return Flags[_sceneId][_actionId];
     }
 
 //Setters
 
+    function setFlag(_sceneId, _actionId, _value){
+        Flags[_sceneId][_actionId] = _value;
+    }
+
 //Public Interface
 	return {
 		start : start,
-        getCurrentLevel : getCurrentLevel,
+        changeScene: changeScene,
+        openDialog: openDialog,
+        closeDialog: closeDialog,
+        openModalScene: openModalScene,
+        closeModalScene: closeModalScene,
+        openEndLevel: openEndLevel,
+        closeEndLevel: closeEndLevel,
 
-        changeScene: changeScene
+        getCurrentLevel : getCurrentLevel,
+        getFlag: getFlag,
+
+        setFlag: setFlag
 	}
 });
