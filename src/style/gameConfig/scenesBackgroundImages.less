@@ -11,43 +11,48 @@ Scene list:
 	7. Recepção
 	
 */
+@default-bgcolor: #f5f5f5;
+
+.scene {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: @default-bgcolor;
+}
 
 .scene-ala_masculina {
-	background-image: url('./images/scenes/corredor2.jpg');
-	background-color: white;
+  background-image: url('');
+  &:extend(.scene);
 }
 
 .scene-ala_feminina {
-	background-image: url('');
-	background-color: white;
+  background-image: url('');
+  &:extend(.scene);
 }
 
 .scene-centro_cirurgico {
-	background-image: url('');
-	background-color: white;
+  background-image: url('');
+  &:extend(.scene);
 }
 
 .scene-corredor {
-	background-image: url('');
-	background-color: yellowgreen;
+  background-image: url('./images/scenes/corredor.jpg');
+  &:extend(.scene);
 }
 
 .scene-enfermaria {
-	background-image: url('');
-	background-color: white;
+  background-image: url('');
+  &:extend(.scene);
 }
 
 .scene-posto_de_enfermagem {
-	background-image: url('');
-	background-color: white;
+  background-image: url('');
+  &:extend(.scene);
 }
 
 .scene-recepcao {
-    background-image: url('./images/scenes/recepcao.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-	background-color: #ffffff;
+  background-image: url('./images/scenes/recepcao.jpg');
+  &:extend(.scene);
 }
 
 /*.
