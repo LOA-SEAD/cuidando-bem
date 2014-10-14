@@ -67,17 +67,17 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
 */
     // Actions
         // # 4 # 13 # 20 - Ir para corredor
-    level1.registerAction(new Action("ir_corredor", "action-ir_corredor",
+    level1.registerAction(new Action("Ir ao corredor", "action-ir_corredor",
                             function(){
                                 console.log("Action: ir_corredor #4");
                                 core.changeScene(1);
                             }), 0); // recepcao
-    level1.registerAction(new Action("ir_corredor", "action-ir_corredor",
+    level1.registerAction(new Action("Ir ao corredor", "action-ir_corredor",
                             function(){
                                 console.log("Action: ir_corredor #13");
                                 //core.changeScene()
                             }), 3); // leito
-    level1.registerAction(new Action("ir_corredor", "action-ir_corredor",
+    level1.registerAction(new Action("Ir ao corredor", "action-ir_corredor",
                             function(){
                                 console.log("Action: ir_corredor #20");
                             }), 4); // posto de enfermagem
@@ -143,9 +143,9 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
                             }), 3); // leito
 
         // # 14 - Ir para posto de enfermagem
-    level1.registerAction(new Action("ir_posto_de_enfermagem", "action-posto_de_enfermagem",
+    level1.registerAction(new Action("ir_posto_de_enfermagem", "action-ir_posto_de_enfermagem",
                             function(){
-                                console.log("Action: ir_porto_de_enfermagem");
+                                console.log("Action: ir_posto_de_enfermagem");
                             }), 1); // leito
         // # 15 - Abrir gaveta
     level1.registerAction(new Action("abrir_gaveta", "action-abrir_gaveta",
