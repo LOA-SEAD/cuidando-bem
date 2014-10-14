@@ -44,6 +44,7 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
         var action_button = $(action_buttons[action_buttons.length-1]);
         action_button.click(_action.getFunction());
         action_button.attr('title', _action.getName());
+        action_button.addClass(_action.getCssClass());
     }
     //Remove all buttons
     function removeAllActionButtons(){

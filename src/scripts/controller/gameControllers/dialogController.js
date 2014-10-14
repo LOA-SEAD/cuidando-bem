@@ -4,8 +4,7 @@ define(['core'], function(core){
 
 //Methods
     //Init
-    function init()
-    {
+    function init(){
         //bind event listeners to UI
     }
 
@@ -21,12 +20,15 @@ define(['core'], function(core){
     function printText(){
 
     }
+
     function onDialogButtonClick(){
 
     }
+
     function addDialogButton(){
 
     }
+
     function removeDialogButton(){
 
     }
