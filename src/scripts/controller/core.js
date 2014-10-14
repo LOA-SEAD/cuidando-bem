@@ -42,7 +42,7 @@ define(['stateMachine', 'commandBar', 'dialogModal'], function(game, commandBar,
 
         console.log("New scene: "+ newScene.getCssClass());
 
-        $('#backgroundScene').attr('class', newScene.getCssClass());
+            $('#backgroundScene').attr('class', newScene.getCssClass());
 
         var actions = Level.getActions();
         var sceneActions = actions[Level.getCurrentSceneId()];
