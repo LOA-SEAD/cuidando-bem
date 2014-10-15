@@ -15,7 +15,7 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
         for(i=0;i<_actions.length;i++)
         {
             console.log("Action to be added " + i +": "+ _actions[i].getName());
-            action = _actions[i];
+            var action = _actions[i];
             addActionButton(action);
         }
     }
@@ -63,14 +63,6 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
 
     }
 
-    //Roll bar to the left
-    function rollLeft(){
-
-    }
-    //Roll bar to the
-    function rollRight(){
-
-    }
 //Getters
 
 //Setters

@@ -1,4 +1,4 @@
-define(['stateMachine', 'commandBar', 'dialogModal'], function(game, commandBar, Dialog)
+define(['stateMachine', 'commandBar', 'dialogModal', 'interactiveObjects'], function(game, CommandBar, Dialog, InteractiveObject)
 {
 
 //Attributes
@@ -7,6 +7,7 @@ define(['stateMachine', 'commandBar', 'dialogModal'], function(game, commandBar,
     var Actions;
     var InteractiveObjects;
     var Flags;
+    var cur_scene;
 
 //Methods
 	function start(){
@@ -26,12 +27,14 @@ define(['stateMachine', 'commandBar', 'dialogModal'], function(game, commandBar,
         Actions = Level.getActions();
         InteractiveObjects = Level.getInteractiveObjects();
         Flags = Level.getFlags();
+        cur_scene = Level.getCurrentSceneId();
     }
 
 	function startLevel(){
         changeScene(Level.getCurrentSceneId());
         console.log(Level.getCurrentSceneId());
-        CommandBar.addAllActionButton(Actions[Level.getCurrentSceneId()]);
+        CommandBar.addAllActionButton(Actions[cur_scene]);
+        InteractiveObject.addAllInteractiveObjects(InteractiveObjects[cur_scene])
 	}
 
     //Scene
@@ -46,7 +49,7 @@ define(['stateMachine', 'commandBar', 'dialogModal'], function(game, commandBar,
 
         var actions = Level.getActions();
         var sceneActions = actions[Level.getCurrentSceneId()];
-        commandBar.changeToActionsButtons(sceneActions);
+        CommandBar.changeToActionsButtons(sceneActions);
     }
 
     //ModalScene
