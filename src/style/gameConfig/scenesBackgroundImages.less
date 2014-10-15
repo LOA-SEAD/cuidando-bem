@@ -11,7 +11,18 @@ Scene list:
 	7. Recepção
 	
 */
+
+// Path for all background images
 @default-bgcolor: #f5f5f5;
+@bg-recepcao: url('./images/scenes/recepcao.jpg');
+@bg-posto_de_enfermagem: url('./images/scenes/posto_de_enfermagem.jpg');
+@bg-ala_masculina: url('./images/scenes/ala_masculina.jpg');
+@bg-ala_feminina: url('./images/scenes/ala_feminina.jpg');
+@bg-sala_de_leitos: url('./images/scenes/sala_de_leitos.jpg');
+@bg-leito: url('./images/scenes/leito.jpg');
+@bg-centro_cirurgico: url('./images/scenes/centro-cirurgico.jpg');
+@bg-corredor: url('./images/scenes/corredor.jpg');
+@bg-enfermaria: url('./images/scenes/enfermaria.jpg');
 
 .scene {
   background-size: cover;
@@ -21,37 +32,47 @@ Scene list:
 }
 
 .scene-ala_masculina {
-  background-image: url('');
+  background-image: @bg-ala_masculina;
   &:extend(.scene);
 }
 
 .scene-ala_feminina {
-  background-image: url('');
+  background-image: @bg-ala_feminina;
+  &:extend(.scene);
+}
+
+.scene-sala_de_leitos {
+  background-image: @bg-sala_de_leitos;
+  &:extend(.scene);
+}
+
+.scene-leito {
+  background-image: @bg-leito;
   &:extend(.scene);
 }
 
 .scene-centro_cirurgico {
-  background-image: url('');
+  background-image: @bg-centro_cirurgico;
   &:extend(.scene);
 }
 
 .scene-corredor {
-  background-image: url('./images/scenes/corredor.jpg');
+  background-image: @bg-corredor;
   &:extend(.scene);
 }
 
 .scene-enfermaria {
-  background-image: url('');
+  background-image: @bg-enfermaria;
   &:extend(.scene);
 }
 
 .scene-posto_de_enfermagem {
-  background-image: url('');
+  background-image: @bg-posto_de_enfermagem;
   &:extend(.scene);
 }
 
 .scene-recepcao {
-  background-image: url('./images/scenes/recepcao.jpg');
+  background-image: @bg-recepcao;
   &:extend(.scene);
 }
 

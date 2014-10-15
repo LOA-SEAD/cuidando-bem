@@ -1,10 +1,8 @@
-
 .action_button
 {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  float: left;
   position: relative;
   width: 10%;
   height: 80%;
@@ -12,15 +10,82 @@
   margin-top: 1%;
   margin-left: 1%;
 }
+
+@sem_imagem: url('./images/action_buttons/sem-imagem.jpg');
+
+@ir_corredor: url('./images/action_buttons/ir_corredor.jpg');
+@ir_posto_de_enfermagem: url('./images/action_buttons/ir_posto_de_enfermagem.jpg');
+@ir_sala_de_leitos: url('./images/action_buttons/ir_sala_de_leitos.jpg');
+@ir_leito: @sem_imagem;
+@conversar_paciente: @sem_imagem;
+@pulseira_paciente: @sem_imagem;
+@confirmar_paciente: @sem_imagem;
+@fechar_pulseira: @sem_imagem;
+@conversar_mentor: @sem_imagem;
+@lavar_maos: @sem_imagem;
+@medir_temperatura: @sem_imagem;
+@medir_pulso: @sem_imagem;
+@medir_freq_respiratoria: @sem_imagem;
+@abrir_gaveta: @sem_imagem;
+@pegar_termometro: @sem_imagem;
+@pegar_medidor_pressao: @sem_imagem;
+@pegar_oximetro: @sem_imagem;
+@fechar_gaveta: @sem_imagem
+;
 .action-ir_corredor {
-  background-image: url('./images/action_buttons/ir_corredor.jpg');
+  background-image: @ir_corredor;
 }
 .action-ir_posto_de_enfermagem {
-  background-image: url('./images/action_buttons/ir_posto_de_enfermagem.jpg');
+  background-image: @ir_posto_de_enfermagem;
 }
 .action-ir_sala_de_leitos {
-  background-image: url('./images/action_buttons/ir_sala_de_leitos.jpg');
+  background-image: @ir_sala_de_leitos;
 }
 .action-ir_leito {
-  background-image: url('./images/action_buttons/ir_leito.jpg');
+  background-image: @ir_leito;
+}
+.action-ir_leito {
+  background-image: @ir_leito;
+}
+.action-conversar_paciente {
+  background-image: @conversar_paciente;
+}
+.action-pulseira_paciente {
+  background-image: @pulseira_paciente;
+}
+.action-confirmar_paciente {
+  background-image: @confirmar_paciente;
+}
+.action-fechar_pulseira {
+  background-image: @fechar_pulseira;
+}
+.action-conversar_mentor {
+  background-image: @conversar_mentor;
+}
+.action-lavar_maos {
+  background-image: @lavar_maos;
+}
+.action-medir_temperatura {
+  background-image: @medir_temperatura;
+}
+.action-medir_pulso {
+  background-image: @medir_pulso;
+}
+.action-medir_freq_respiratoria {
+  background-image: @medir_freq_respiratoria;
+}
+.action-abrir_gaveta {
+  background-image: @abrir_gaveta;
+}
+.action-pegar_termometro {
+  background-image: @pegar_termometro;
+}
+.action-pegar_medidor_pressao {
+  background-image: @pegar_medidor_pressao;
+}
+.action-pegar_oximetro {
+  background-image: @pegar_oximetro;
+}
+.action-fechar_gaveta {
+  background-image: @fechar_gaveta;
 }
