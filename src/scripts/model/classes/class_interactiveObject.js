@@ -5,7 +5,7 @@ represents one object that will be "clickable" inside a scene
 
 define([], function()
 {
-	return function interactiveObject(_name, _cssClass, _action)
+	return function interactiveObject(_name, _cssClass, _actionFunction)
 	{
 		//Attributes
 
@@ -13,46 +13,43 @@ define([], function()
 		var cssClass = _cssClass;		
 		var visible = true;
 		var enable = true;		
-		var action = _action;
+		var actionFunction = _actionFunction;
 
 		//Methods
 
-		function execute()
-		{
+		function execute(){
 			action();
 		}
 
 		//Getters
 
-		function getName()
-		{
+        function getFunction(){
+            return actionFunction;
+        }
+
+		function getName(){
 			return name;
 		}
 
-		function getCssClass()
-		{
+		function getCssClass(){
 			return cssClass;
 		}
 
-		function isEnabled()
-		{
+		function isEnabled(){
 			return enable;
 		}
 
-		function isVisible()
-		{
+		function isVisible(){
 			return visible;
 		}
 		
 		//Setters
 
-		function setEnable(_enable)
-		{
+		function setEnable(_enable){
 			enable = _enable;
 		}
 
-		function setVisible(_visible)
-		{
+		function setVisible(_visible){
 			visible = _visible;
 		}
 		//Public Interface
@@ -60,6 +57,7 @@ define([], function()
 		return {
 			execute: execute,
 
+            getFunction: getFunction,
 			getName: getName,
 			getCssClass: getCssClass,
 			isEnabled: isEnabled,

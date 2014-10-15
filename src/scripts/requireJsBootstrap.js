@@ -31,7 +31,8 @@ require.config({
         core: 'controller/core',
 
         commandBar: 'controller/gameControllers/commandBarController',
-        dialogModal: 'controller/gameControllers/dialogController'
+        dialogModal: 'controller/gameControllers/dialogController',
+        interactiveObjects: "controller/gameControllers/interactiveObjectsController"
        
         
     }
