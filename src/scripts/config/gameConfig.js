@@ -224,9 +224,16 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
                             }), 3); // leito
 
 
-    level1.registerInteractiveObject(new InteractiveObject("Objeto teste", "objeto_teste", function(){
-        console.log("First interactive object working");
-    }), 0);
+    level1.registerInteractiveObject(new InteractiveObject("Objeto teste", "objeto_teste",
+                            function(){
+                                console.log("First interactive object working");
+                            }), 0);
+    level1.registerInteractiveObject(new InteractiveObject("Objeto teste", "objeto_teste2",
+                            function(){
+                                console.log("Second interactive object working");
+                            }), 1);
+
+
     game.registerLevel(level1);
 
 
