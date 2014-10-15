@@ -75,11 +75,12 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
     level1.registerAction(new Action("Ir ao corredor", "action-ir_corredor",
                             function(){
                                 console.log("Action: ir_corredor #13");
-                                //core.changeScene()
+                                core.changeScene(1)
                             }), 3); // leito
     level1.registerAction(new Action("Ir ao corredor", "action-ir_corredor",
                             function(){
                                 console.log("Action: ir_corredor #20");
+                                core.changeScene(1);
                             }), 4); // posto de enfermagem
 
         // # 6 # 21 - Ir para sala de leitos
@@ -92,6 +93,7 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
     level1.registerAction(new Action("ir_leito", "action-ir_leito",
                             function(){
                                 console.log("Action: ir_leito");
+                                core.changeScene(3);
                             }), 2); // sala de leitos
         // # 8 - Conversar paciente
     level1.registerAction(new Action("conversar_paciente", "action-conversar_paciente",
@@ -146,6 +148,7 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
     level1.registerAction(new Action("ir_posto_de_enfermagem", "action-ir_posto_de_enfermagem",
                             function(){
                                 console.log("Action: ir_posto_de_enfermagem");
+                                core.changeScene(4);
                             }), 1); // leito
         // # 15 - Abrir gaveta
     level1.registerAction(new Action("abrir_gaveta", "action-abrir_gaveta",
