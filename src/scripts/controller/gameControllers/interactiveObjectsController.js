@@ -21,6 +21,11 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
         }
     }
 
+    function changeToInteractiveObjects(_interactiveObjects){
+        removeAllInteractiveObjects();
+        addAllInteractiveObjects(_interactiveObjects);
+    }
+
     function addInteractiveObject(_interactiveObject){
         console.log(_interactiveObject);
 
@@ -51,6 +56,8 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
 
         addInteractiveObject: addInteractiveObject,
         addAllInteractiveObjects: addAllInteractiveObjects,
+
+        changeToInteractiveObjects: changeToInteractiveObjects,
 
         removeAllInteractiveObjects: removeAllInteractiveObjects,
         removeInteractiveObject: removeInteractiveObject

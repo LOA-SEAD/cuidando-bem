@@ -33,8 +33,6 @@ define(['stateMachine', 'commandBar', 'dialogModal', 'interactiveObjects'], func
 	function startLevel(){
         changeScene(Level.getCurrentSceneId());
         console.log(Level.getCurrentSceneId());
-        CommandBar.addAllActionButton(Actions[cur_scene]);
-        InteractiveObject.addAllInteractiveObjects(InteractiveObjects[cur_scene])
 	}
 
     //Scene
@@ -47,9 +45,8 @@ define(['stateMachine', 'commandBar', 'dialogModal', 'interactiveObjects'], func
 
             $('#backgroundScene').attr('class', newScene.getCssClass());
 
-        var actions = Level.getActions();
-        var sceneActions = actions[Level.getCurrentSceneId()];
-        CommandBar.changeToActionsButtons(sceneActions);
+        CommandBar.changeToActionsButtons(Actions[cur_scene]);
+        InteractiveObject.changeToInteractiveObjects(InteractiveObjects[cur_scene]);
     }
 
     //ModalScene
