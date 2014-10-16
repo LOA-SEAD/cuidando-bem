@@ -72,6 +72,13 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
                                 console.log("Action: ir_corredor #4");
                                 core.changeScene(1);
                             }), 0); // recepcao
+
+    level1.registerAction(new Action("Ir ao corredor", "action-abrir_dialogo",
+        function(){
+            console.log("Abrir dialogo");
+            core.openDialog(level1.getDialog);
+        }), 0); // recepcao
+
     level1.registerAction(new Action("Ir ao corredor", "action-ir_corredor",
                             function(){
                                 console.log("Action: ir_corredor #13");
