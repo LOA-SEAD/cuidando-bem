@@ -106,7 +106,10 @@ define([], function ()
 			getActions: getActions,
 			getFlags: getFlags,
 			getInteractiveObjects: getInteractiveObjects,
-			getInitialScene: getInitialScene,
+			getDialogs: getDialogs,
+
+            getInitialScene: getInitialScene,
+
             getCurrentScene: getCurrentScene,
             getCurrentSceneId: getCurrentSceneId,
 			isEndOfLevel: isEndOfLevel,
