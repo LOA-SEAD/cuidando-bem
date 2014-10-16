@@ -1,4 +1,4 @@
-define(['stateMachine', 'commandBar', 'dialogModal', 'interactiveObjects'], function(game, CommandBar, Dialog, InteractiveObject)
+define(['stateMachine', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene'], function(game, CommandBar, Dialog, InteractiveObject, ModalScene)
 {
 
 //Attributes
@@ -61,7 +61,7 @@ define(['stateMachine', 'commandBar', 'dialogModal', 'interactiveObjects'], func
 
     //Dialog
 	function openDialog(_dialog){
-        Dialog.openDialog(_dialog);
+        Dialog.show(_dialog);
     }
 	
 	function closeDialog(){

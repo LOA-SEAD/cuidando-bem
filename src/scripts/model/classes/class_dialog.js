@@ -34,6 +34,10 @@ define([], function()
 		
 		//Getters
 
+        function getOptions(){
+            return options;
+        }
+
 		function getSpeakerName(){
 			return speakerName;
 		}
@@ -63,6 +67,7 @@ define([], function()
 			getSpeakerName: getSpeakerName,
 			getSpeakerCssClass: getSpeakerCssClass,
 			getText: getText,
+            getOptions: getOptions,
 			getOptionText: getOptionText,
 
 			registerOption: registerOption			

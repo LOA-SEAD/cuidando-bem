@@ -9,12 +9,25 @@ define(['core'], function(core){
     }
 
     //This function if called should remove all the listeners and extra interface
-    function close(){}
+    function close(){
 
-    function printText(){}
-    function onDialogButtonClick(){}
-    function addDialogButton(){}
-    function removeDialogButton(){}
+    }
+
+    function printText(){
+
+    }
+
+    function onDialogButtonClick(){
+
+    }
+
+    function addDialogButton(){
+
+    }
+    
+    function removeDialogButton(){
+
+    }
 
 //Getters
 //Setters
