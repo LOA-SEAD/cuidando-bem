@@ -14,8 +14,7 @@ define([], function()
 	return function Dialog(_speakerName, _speakerCssClass, _text)
 	{
 		//Inner Class
-		function DialogOption(_text, _actionFunction)
-		{
+		function DialogOption(_text, _actionFunction){
 			this.text = _text;
 			this.actionFunction = _actionFunction;
 		}
@@ -29,36 +28,30 @@ define([], function()
 
 		//Methods
 
-		function executeOption(_optionIndex)
-		{
+		function executeOption(_optionIndex){
 			options[_optionIndex].actionFunction();
 		}
 		
 		//Getters
 
-		function getSpeakerName()
-		{
+		function getSpeakerName(){
 			return speakerName;
 		}
 
-		function getSpeakerCssClass()
-		{
+		function getSpeakerCssClass(){
 			return getSpeakerCssClass();
 		}
 
-		function getText()
-		{
+		function getText(){
 			return text;
 		}
 
-		function getOptionText(_optionIndex)
-		{
+		function getOptionText(_optionIndex){
 			return options[_optionIndex].text;
 		}
 		
 		//Setters
-		function registerOption(_option)
-		{
+		function registerOption(_option){
 			options.push(_option);
 		}
 	
