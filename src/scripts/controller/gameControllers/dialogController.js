@@ -25,8 +25,10 @@ define(['core'], function(core){
     }
 
     function openDialog(_dialog){
-        $(dialogModalSelector).css("display", "normal");
+        $(dialogModalSelector).css("display");
         changeDialogTo(_dialog);
+
+        isDialogOpen = true;
     }
 
     function changeDialogTo(_dialog){
@@ -38,6 +40,8 @@ define(['core'], function(core){
 
     function close(){
         $(dialogModalSelector).css("display", "none");
+
+        isDialogOpen = false;
     }
 
     function hide(){
