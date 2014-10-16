@@ -38,6 +38,7 @@ define(['stateMachine', 'commandBar', 'dialogModal', 'interactiveObjects'], func
     //Scene
 	function changeScene(_newSceneId){
         Level.setCurrentSceneById(_newSceneId);
+        cur_scene = _newSceneId;
 
         var newScene = Level.getCurrentScene();
 
