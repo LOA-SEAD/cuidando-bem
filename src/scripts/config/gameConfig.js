@@ -42,7 +42,11 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
     // Dialogs
 	    // Recepcionista
 	// # 3 - Falar com recepcionista
-    level1.registerDialog(new Dialog("recepcionista", "char-recepcionista", "Recepcionista: Fala numero 1"), 0);
+
+    var fala_recepcionista = new Dialog("recepcionista", "char-recepcionista", "Recepcionista: Fala numero 1");
+            fala_recepcionista.registerOption({text: "Testando dialogo", actionFunction: function(){console.log("uhul");}});
+
+            level1.registerDialog(fala_recepcionista, 0);
 
         // Mentor
     // # 5 - Falar com Mentor
@@ -75,8 +79,8 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
 
     level1.registerAction(new Action("Ir ao corredor", "action-abrir_dialogo",
         function(){
-            console.log("Abrir dialogo");
-            core.openDialog(level1.getDialog);
+            console.log("Abrir dialogo", level1.getDialogs()[0][0]);
+            core.openDialog(0,0);
         }), 0); // recepcao
 
     level1.registerAction(new Action("Ir ao corredor", "action-ir_corredor",

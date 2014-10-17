@@ -1,4 +1,4 @@
-define(['core'], function(core){
+define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function(core, dilogButtonTemplate){
 
 //Attributes
     var dialogModalSelector = "#dialogBar";
@@ -25,7 +25,7 @@ define(['core'], function(core){
     }
 
     function openDialog(_dialog){
-        $(dialogModalSelector).css("display");
+        $(dialogModalSelector).css("display", "block");
         changeDialogTo(_dialog);
 
         isDialogOpen = true;
@@ -34,7 +34,7 @@ define(['core'], function(core){
     function changeDialogTo(_dialog){
         $(dialogTextSelector).text(_dialog.getText());
         $(dialogCharImgSelector).addClass(_dialog.getSpeakerCssClass());
-        addAllDialogButtons(_dialog.getOptions);
+        addAllDialogButtons(_dialog.getOptions());
 
     }
 
@@ -54,6 +54,11 @@ define(['core'], function(core){
 
     function addDialogButton(_option){
         console.log(_option);
+
+        var element = $(dilogButtonTemplate);
+        $('.text', element).text(_option.text);
+
+        $(dialogOptionsSelector).append(element);
     }
 
     function addAllDialogButtons(_options){

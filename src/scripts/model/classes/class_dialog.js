@@ -43,7 +43,7 @@ define([], function()
 		}
 
 		function getSpeakerCssClass(){
-			return getSpeakerCssClass();
+			return speakerCssClass;
 		}
 
 		function getText(){
