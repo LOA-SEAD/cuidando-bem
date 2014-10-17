@@ -1,4 +1,4 @@
-define(['stateMachine', 'commandBar', 'dialogModal', 'interactiveObjects'], function(game, CommandBar, Dialog, InteractiveObject)
+define(['stateMachine', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene'], function(game, CommandBar, Dialog, InteractiveObject, ModalScene)
 {
 
 //Attributes
@@ -6,6 +6,7 @@ define(['stateMachine', 'commandBar', 'dialogModal', 'interactiveObjects'], func
 	var Level;
     var Actions;
     var InteractiveObjects;
+    var Dialogs;
     var Flags;
     var cur_scene;
 
@@ -25,6 +26,7 @@ define(['stateMachine', 'commandBar', 'dialogModal', 'interactiveObjects'], func
     function changeLevel (_newLevel){
         Level = $.extend(true, {}, _newLevel);
         Actions = Level.getActions();
+        Dialogs = Level.getDialogs();
         InteractiveObjects = Level.getInteractiveObjects();
         Flags = Level.getFlags();
         cur_scene = Level.getCurrentSceneId();
@@ -60,8 +62,9 @@ define(['stateMachine', 'commandBar', 'dialogModal', 'interactiveObjects'], func
     }
 
     //Dialog
-	function openDialog(_dialog){
-        Dialog.openDialog(_dialog);
+	function openDialog(_sceneId, _dialogId){
+        var dialog = Dialogs[_sceneId][_dialogId];
+        Dialog.show(dialog);
     }
 	
 	function closeDialog(){

@@ -15,7 +15,7 @@ define([], function()
 		var cssClass = cssClass;		
 
 		var loaderFunction = load;
-		var unloaderFunction = unload;
+		var unloadFunction = unload;
 		
 		//Methods
 
@@ -26,8 +26,8 @@ define([], function()
 		}
 		function onUnload()
 		{
-			console.log("Scene "+name+" unloader function");
-			unloaderFunction();
+			console.log("Scene "+name+" unload function");
+			unloadFunction();
 		}
 		
 		//Getters
