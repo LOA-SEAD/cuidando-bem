@@ -62,9 +62,14 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
             "elementum iaculis. Sed placerat feugiat eros at tempor. Donec suscipit orci quam, non mattis turpis " +
             "feugiat id. Ut fringilla interdum enim ac porta.");
         fala_recepcionista.registerOption({
-            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum porttitor.",
+            text: "Essa será a primeira opção do dialogo",
             actionFunction: function () {
                 console.log("uhul");
+            }});
+        fala_recepcionista.registerOption({
+            text: "Fechar diálogo",
+            actionFunction: function () {
+                core.closeDialog();
             }});
         level1.registerDialog(fala_recepcionista, 0);
 
@@ -100,8 +105,8 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
 
         level1.registerAction(new Action("Fechar dialogo", "action-fechar_dialogo",
             function () {
-                console.log("Fechar dialogo");
-                core.closeDialog(0, 0);
+                console.log("Abrir dialogo");
+                core.openDialog(0, 0);
             }), 0); // recepcao
 
 

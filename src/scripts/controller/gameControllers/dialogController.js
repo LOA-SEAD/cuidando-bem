@@ -3,7 +3,7 @@ define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function(co
 //Attributes
     var dialogModalSelector = "#dialogBar";
 
-    var dialogTextSelector = ".text";
+    var dialogTextSelector = ".dialog_mainText";
     var dialogCharImgSelector = ".char_img";
     var dialogOptionsSelector = ".dialog_options";
 
@@ -34,10 +34,12 @@ define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function(co
     function changeDialogTo(_dialog){
         $(dialogTextSelector).text(_dialog.getText());
         $(dialogCharImgSelector).addClass(_dialog.getSpeakerCssClass());
-        addAllDialogButtons(_dialog.getOptions());
-
+        changeDialogOptionsTo(_dialog.getOptions());
     }
-
+    function  changeDialogOptionsTo(_options){
+        removeAllDialogButtons();
+        addAllDialogButtons(_options);
+    }
     function close(){
         $(dialogModalSelector).css("display", "none");
 
@@ -56,7 +58,10 @@ define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function(co
         console.log(_option);
 
         var element = $(dilogButtonTemplate);
+
+        element.click(_option.actionFunction);
         $('.text', element).text(_option.text);
+
 
         $(dialogOptionsSelector).append(element);
     }
@@ -70,12 +75,12 @@ define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function(co
         }
     }
 
-    function removeDialogButton(){
-
+    function removeDialogButton(_option){
+        $('.'+_option.getCssClass(), element).remove();
     }
 
     function removeAllDialogButtons(){
-
+        $(dialogOptionsSelector).empty();
     }
     
 //Getters

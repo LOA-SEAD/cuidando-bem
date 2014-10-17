@@ -43,7 +43,7 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
     }
 
     function removeInteractiveObject(_interactiveObject){
-        $(_interactiveObject.getCssClass()).remove();
+        $('.'+_interactiveObject.getCssClass()).remove();
     }
 
 //Getters
