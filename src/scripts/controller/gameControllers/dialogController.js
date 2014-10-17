@@ -25,7 +25,7 @@ define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function(co
     }
 
     function openDialog(_dialog){
-        $(dialogModalSelector).css("display", "block");
+        $(dialogModalSelector).css("display", "table");
         changeDialogTo(_dialog);
 
         isDialogOpen = true;
