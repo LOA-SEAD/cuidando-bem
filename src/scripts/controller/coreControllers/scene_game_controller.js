@@ -5,7 +5,6 @@ define(['core'], function(core){
 //Methods
 
     function changeScreen(css_class){
-        //
         $('#backgroundScene').attr('class', css_class);
     }
 
