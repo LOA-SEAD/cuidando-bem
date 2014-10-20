@@ -12,6 +12,8 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
 
     function addAllActionButtons(_actions){
         console.log(_actions);
+        var i;
+
         for(i=0;i<_actions.length;i++)
         {
             console.log("Action to be added " + i +": "+ _actions[i].getName());
@@ -72,7 +74,7 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
         init: init,
         close: close,
         addActionButton: addActionButton,
-        addAllActionButton: addAllActionButtons,
+        addAllActionButtons: addAllActionButtons,
         changeToActionsButtons: changeToActionsButtons,
 
         removeActionButton: removeActionButton,

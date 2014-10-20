@@ -1,1 +1,0 @@
-require(["stage","core","gameConfig","stageConfig"],function(e,t){$("document").ready(function(){e.start("game"),e.changeScreen(0)})});

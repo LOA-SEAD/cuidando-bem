@@ -11,7 +11,7 @@ module.exports = function(grunt) {
       },
 
       css: {
-        src: [ 'build/style/css', 'build/scripts/libs/less.js'],
+        src: [ 'build/styles/css', 'build/scripts/libs/less.js'],
 
       },
 
@@ -23,7 +23,7 @@ module.exports = function(grunt) {
     copy: {
       build: {
         cwd: 'src',
-        src: ['**', '!**/*.less', '!style/less', '!style/gameConfig'],
+        src: ['**', '!**/*.less', '!styles/less', '!styles/gameConfig'],
         dest: 'build',
         expand: true,
       },
@@ -60,10 +60,10 @@ module.exports = function(grunt) {
     less : {
       build: {
            options: {
-               paths: ["src/style/less/"]
+               paths: ["src/styles/less/"]
            },
-           files: {"build/style/styles.css": "src/style/styles.less"}
-       },       
+           files: {"build/style/styles.css": "src/styles/styles.less"}
+       },
     },
 
     cssmin: {
@@ -72,8 +72,8 @@ module.exports = function(grunt) {
           keepSpecialComments : 0
         },
 
-        src: 'build/style/**/*.css',
-        dest: 'build/style/styles.css'
+        src: 'build/styles/**/*.css',
+        dest: 'build/styles/styles.css'
 
       }
 
@@ -84,8 +84,8 @@ module.exports = function(grunt) {
         src: ['build/index.html'],             // source files array (supports minimatch)
         dest: 'build/index.html',             // destination directory or file
         replacements: [{
-          from: '<link rel="stylesheet/less" type="text/css" href="./style/styles.less">',                   // string replacement
-          to: '<link rel="stylesheet" type="text/css" href="./style/styles.css">'
+          from: '<link rel="stylesheet/less" type="text/css" href="./styles/styles.less">',                   // string replacement
+          to: '<link rel="stylesheet" type="text/css" href="./styles/styles.css">'
         }]
       },
 
@@ -106,7 +106,7 @@ module.exports = function(grunt) {
           from: /(console.log)(.)*\)/g,                   // string replacement
           to: ''
         }]        
-      },           
+      },
 
     },
 
@@ -116,12 +116,39 @@ module.exports = function(grunt) {
             appDir: "build/",
             baseUrl: ".",    
             dir: "final/", 
-            optimize: 'uglify',       
-            mainConfigFile: "build/scripts/requireJsBootstrap.js",            
-            
+            optimize: 'uglify',
+            mainConfigFile: "build/scripts/requireJsBootstrap.js",
+
             findNestedDependencies: true,
           }
+        },
+
+        inline: {
+            options: {
+                appDir: "build/",
+                baseUrl: "./",
+                dir: "final/",
+                optimize: 'none',
+                mainConfigFile: "build/scripts/requireJsBootstrap.js",
+                inlineText: true,
+                stubModules: ['text'],
+                paths: {
+
+                    "text" : "text"
+
+                }
+
+
+            }
         }
+      },
+
+      rename: {
+          main: {
+              files: [
+                  {src: ['final'], dest: 'build'},
+              ]
+          }
       }
 
     
@@ -139,8 +166,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-text-replace');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
+  grunt.loadNpmTasks('grunt-contrib-rename');
 
   // Default task(s).
-  grunt.registerTask('default', ['clean:build', 'copy', 'replace', 'htmlmin', 'less:build', 'cssmin', 'clean:css', 'clean:final', 'requirejs']);
+  grunt.registerTask('default', ['clean:build', 'copy', 'replace', 'htmlmin', 'less:build', 'cssmin', 'clean:css', 'clean:final', 'requirejs:inline', 'clean:build', 'rename']);
 
 };

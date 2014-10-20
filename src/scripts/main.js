@@ -7,5 +7,5 @@ require( ["stage", "core", "gameConfig", "stageConfig"], function(stage, core){
 
         stage.start('game');
         stage.changeScreen(0);
-    });   
+    });
 });

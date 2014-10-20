@@ -1,1 +1,0 @@
-define(["core"],function(e){function t(){}return{}});

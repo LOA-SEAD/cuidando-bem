@@ -1,1 +1,0 @@
-define(["stateMachine"],function(e){function n(){t=e.getCurrentLevel(),i()}function r(){}function i(){}function s(e){}function o(){}function u(e){}function a(){}function f(){}var t;return{start:n}});
