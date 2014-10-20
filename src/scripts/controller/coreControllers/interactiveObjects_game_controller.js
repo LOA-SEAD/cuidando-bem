@@ -11,11 +11,11 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
     }
 
     function addAllInteractiveObjects(_interactiveObjects){
-        console.log("Adding Interactive Objects:");
+        L.log("Adding Interactive Objects:");
 
         for(i=0;i<_interactiveObjects.length;i++)
         {
-            console.log("Adding interactive object #"+i+": "+_interactiveObjects[i].getName());
+            L.log("Adding interactive object #"+i+": "+_interactiveObjects[i].getName());
             var interactiveObject = _interactiveObjects[i];
             addInteractiveObject(interactiveObject);
         }
@@ -27,7 +27,7 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
     }
 
     function addInteractiveObject(_interactiveObject){
-        console.log(_interactiveObject);
+        L.log(_interactiveObject);
 
         var element = $($(interactiveObjectTemplate)[0]);
 

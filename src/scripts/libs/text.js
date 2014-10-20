@@ -285,7 +285,7 @@ define(['module'], function (module) {
             xhr.onreadystatechange = function (evt) {
                 var status, err;
                 //Do not explicitly handle errors, those should be
-                //visible via console output in the browser.
+                //visible via L output in the browser.
                 if (xhr.readyState === 4) {
                     status = xhr.status || 0;
                     if (status > 399 && status < 600) {

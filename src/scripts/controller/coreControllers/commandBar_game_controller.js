@@ -11,12 +11,12 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
     }
 
     function addAllActionButtons(_actions){
-        console.log(_actions);
+        L.log(_actions);
         var i;
 
         for(i=0;i<_actions.length;i++)
         {
-            console.log("Action to be added " + i +": "+ _actions[i].getName());
+            L.log("Action to be added " + i +": "+ _actions[i].getName());
             var action = _actions[i];
             addActionButton(action);
         }

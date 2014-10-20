@@ -12,7 +12,7 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
 
 //Methods
 	function start(){
-		console.log("Starting Game");
+		L.log("Starting Game");
 
         changeLevel(game.getCurrentLevel());
         startLevel();
@@ -34,7 +34,7 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
 
 	function startLevel(){
         changeScene(Level.getCurrentSceneId());
-        console.log(Level.getCurrentSceneId());
+        L.log(Level.getCurrentSceneId());
 	}
 
     //Scene
@@ -44,7 +44,7 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
 
         var newScene = Level.getCurrentScene();
 
-        console.log("New scene: "+ newScene.getCssClass());
+        L.log("New scene: "+ newScene.getCssClass());
 
 
         Scene.changeScene(newScene.getCssClass());

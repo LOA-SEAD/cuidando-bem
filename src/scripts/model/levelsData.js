@@ -16,7 +16,7 @@ define([], function()
 		levels.push(level);
 
 		//Log
-		console.log('\tAdding new Level:', level.name);
+		L.log('\tAdding new Level:', level.name);
 	}
 
 //Getters

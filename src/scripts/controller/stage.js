@@ -35,7 +35,7 @@ define(['text!../html/container.html'], function(container)
 
 	function addScreen (_name, _htmlPage, _controller)
 	{
-		console.log('Adding Screen: ', _name, _htmlPage, _controller);
+		L.log('Adding Screen: ', _name, _htmlPage, _controller);
 		screens.push(new Screen(_name, _htmlPage, _controller));
 	}
 
@@ -43,13 +43,13 @@ define(['text!../html/container.html'], function(container)
 	{
 		var nextScreen = screens[nextScreenId];
 
-		//console.log('text!'+htmlPath+nextScreen.getHtmlPage());
+		//L.log('text!'+htmlPath+nextScreen.getHtmlPage());
 
 		
 
 		require(['text!'+htmlPath+nextScreen.getHtmlPage(), controllerPath+nextScreen.getControllerName()], function (page, controller)
 		{			
-			console.log("Actual Screen Name: "+nextScreen.getControllerName());
+			L.log("Actual Screen Name: "+nextScreen.getControllerName());
 			$('#stage').empty();
 			$('#stage').append(page);
 			controller.load();
