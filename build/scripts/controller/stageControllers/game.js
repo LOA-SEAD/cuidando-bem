@@ -1,1 +1,0 @@
-define(["stage","core"],function(e,t){function n(){$(".backButton").click(function(){e.changeScreen(0)}),t.start()}function r(){}return{load:n,unload:r}});

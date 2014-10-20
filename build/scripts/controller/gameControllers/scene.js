@@ -1,1 +1,0 @@
-define(["core"],function(e){function t(e){$("#backgroundScene").attr("class",e)}return{changeScreen:t}});
