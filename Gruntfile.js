@@ -11,7 +11,7 @@ module.exports = function(grunt) {
       },
 
       css: {
-        src: [ 'build/style/css', 'build/scripts/libs/less.js'],
+        src: [ 'build/styles/css', 'build/scripts/libs/less.js'],
 
       },
 
@@ -23,7 +23,7 @@ module.exports = function(grunt) {
     copy: {
       build: {
         cwd: 'src',
-        src: ['**', '!**/*.less', '!style/less', '!style/gameConfig'],
+        src: ['**', '!**/*.less', '!styles/less', '!styles/gameConfig'],
         dest: 'build',
         expand: true,
       },
@@ -60,9 +60,9 @@ module.exports = function(grunt) {
     less : {
       build: {
            options: {
-               paths: ["src/style/less/"]
+               paths: ["src/styles/less/"]
            },
-           files: {"build/style/styles.css": "src/style/styles.less"}
+           files: {"build/style/styles.css": "src/styles/styles.less"}
        },       
     },
 
@@ -72,8 +72,8 @@ module.exports = function(grunt) {
           keepSpecialComments : 0
         },
 
-        src: 'build/style/**/*.css',
-        dest: 'build/style/styles.css'
+        src: 'build/styles/**/*.css',
+        dest: 'build/styles/styles.css'
 
       }
 
@@ -84,8 +84,8 @@ module.exports = function(grunt) {
         src: ['build/index.html'],             // source files array (supports minimatch)
         dest: 'build/index.html',             // destination directory or file
         replacements: [{
-          from: '<link rel="stylesheet/less" type="text/css" href="./style/styles.less">',                   // string replacement
-          to: '<link rel="stylesheet" type="text/css" href="./style/styles.css">'
+          from: '<link rel="stylesheet/less" type="text/css" href="./styles/styles.less">',                   // string replacement
+          to: '<link rel="stylesheet" type="text/css" href="./styles/styles.css">'
         }]
       },
 
