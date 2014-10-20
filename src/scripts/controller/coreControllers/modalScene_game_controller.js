@@ -5,33 +5,10 @@ define(['core'], function(core){
 //Methods
     //Init
     function init(){
-        //bind event listeners to UI
-    }
-
-    //This function if called should remove all the listeners and extra interface
-    function close(){
 
     }
-
-    function printText(){
-
-    }
-
-    function onDialogButtonClick(){
-
-    }
-
-    function addDialogButton(){
-
-    }
-    
-    function removeDialogButton(){
-
-    }
-
 //Getters
 //Setters
-
 //Public Interface
     return {
 

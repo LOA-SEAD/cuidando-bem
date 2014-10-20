@@ -1,4 +1,4 @@
-define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene'], function(game, CommandBar, Dialog, InteractiveObject, ModalScene)
+define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene', 'scene'], function(game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene)
 {
 
 //Attributes
@@ -46,8 +46,8 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
 
         console.log("New scene: "+ newScene.getCssClass());
 
-            $('#backgroundScene').attr('class', newScene.getCssClass());
 
+        Scene.changeScene(newScene.getCssClass());
         CommandBar.changeToActionsButtons(Actions[cur_scene]);
         InteractiveObject.changeToInteractiveObjects(InteractiveObjects[cur_scene]);
     }
