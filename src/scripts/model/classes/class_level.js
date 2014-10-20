@@ -1,5 +1,4 @@
-define([], function ()
-{
+define([], function (){
 	return function Level(_name, _isEndOfLevelFunction, _nextLevelFunciton)
 	{
 		//Attributes

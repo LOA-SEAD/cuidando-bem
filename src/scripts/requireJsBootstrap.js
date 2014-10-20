@@ -33,9 +33,9 @@ require.config({
         commandBar: 'controller/coreControllers/commandBar_game_controller',
         dialogModal: 'controller/coreControllers/dialogModal_game_controller',
         endOfLevel: 'controller/coreControllers/endOfLevel_game_controller',
-        interactiveObjects: "controller/coreControllers/interactiveObjectsController",
-        modalScene: "controller/coreControllers/modalScene",
-        scene: 'controller/coreControllers/scene_game_controller',
+        interactiveObjects: "controller/coreControllers/interactiveObjects_game_controller",
+        modalScene: "controller/coreControllers/modalScene_game_controller",
+        scene: 'controller/coreControllers/scene_game_controller'
        
         
     }

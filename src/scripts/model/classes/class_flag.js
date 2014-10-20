@@ -1,5 +1,4 @@
-define([], function()
-{
+define([], function(){
 	return function Flag(name, value)
 	{
 		//Attributes

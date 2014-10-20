@@ -9,8 +9,7 @@
 
 */
 
-define([], function()
-{
+define([], function(){
 	return function Dialog(_speakerName, _speakerCssClass, _text)
 	{
 		//Inner Class

@@ -1,4 +1,4 @@
-define(['../model/levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'coreControllers/modalScene_controller'], function(game, CommandBar, Dialog, InteractiveObject, ModalScene)
+define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene'], function(game, CommandBar, Dialog, InteractiveObject, ModalScene)
 {
 
 //Attributes

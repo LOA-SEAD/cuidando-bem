@@ -1,5 +1,4 @@
-define([], function()
-{
+define([], function(){
 	return function Action(_name, _cssClass, _actionFunction){
 		//Attributes
 
