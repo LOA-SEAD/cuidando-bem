@@ -13,3 +13,9 @@ npm install
 grunt
 
 ```
+
+## Running
+
+To run this project you will need a http server
+
+This project includes a server.bat that runs a python command that makes a simple http server from the folder it is executed.
