@@ -1,7 +1,1 @@
-define (['stateMachine'], function(game)
-{
-	return {
-		registerLevel: game.registerLevel
-	}
-	
-});
+define(["stateMachine"],function(e){return{registerLevel:e.registerLevel}});

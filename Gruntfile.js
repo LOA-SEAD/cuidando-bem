@@ -122,6 +122,14 @@ module.exports = function(grunt) {
             findNestedDependencies: true,
           }
         }
+      },
+
+      rename: {
+          main: {
+              files: [
+                  {src: ['final'], dest: 'build'},
+              ]
+          }
       }
 
     
@@ -139,8 +147,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-text-replace');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
+  grunt.loadNpmTasks('grunt-contrib-rename');
 
   // Default task(s).
-  grunt.registerTask('default', ['clean:build', 'copy', 'replace', 'htmlmin', 'less:build', 'cssmin', 'clean:css', 'clean:final', 'requirejs']);
+  grunt.registerTask('default', ['clean:build', 'copy', 'replace', 'htmlmin', 'less:build', 'cssmin', 'clean:css', 'clean:final', 'requirejs', 'clean:build', 'rename']);
 
 };
