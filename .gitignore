@@ -3,6 +3,7 @@ ideia
 .idea/
 build/
 
+*.example
 
 *.bat
 *.~vsd
