@@ -63,7 +63,7 @@ module.exports = function(grunt) {
                paths: ["src/styles/less/"]
            },
            files: {"build/style/styles.css": "src/styles/styles.less"}
-       },       
+       },
     },
 
     cssmin: {
@@ -106,7 +106,7 @@ module.exports = function(grunt) {
           from: /(console.log)(.)*\)/g,                   // string replacement
           to: ''
         }]        
-      },           
+      },
 
     },
 
@@ -116,11 +116,30 @@ module.exports = function(grunt) {
             appDir: "build/",
             baseUrl: ".",    
             dir: "final/", 
-            optimize: 'uglify',       
-            mainConfigFile: "build/scripts/requireJsBootstrap.js",            
-            
+            optimize: 'uglify',
+            mainConfigFile: "build/scripts/requireJsBootstrap.js",
+
             findNestedDependencies: true,
           }
+        },
+
+        inline: {
+            options: {
+                appDir: "build/",
+                baseUrl: "./",
+                dir: "final/",
+                optimize: 'none',
+                mainConfigFile: "build/scripts/requireJsBootstrap.js",
+                inlineText: true,
+                stubModules: ['text'],
+                paths: {
+
+                    "text" : "text"
+
+                }
+
+
+            }
         }
       },
 
@@ -150,6 +169,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-rename');
 
   // Default task(s).
-  grunt.registerTask('default', ['clean:build', 'copy', 'replace', 'htmlmin', 'less:build', 'cssmin', 'clean:css', 'clean:final', 'requirejs', 'clean:build', 'rename']);
+  grunt.registerTask('default', ['clean:build', 'copy', 'replace', 'htmlmin', 'less:build', 'cssmin', 'clean:css', 'clean:final', 'requirejs:inline', 'clean:build', 'rename']);
 
 };

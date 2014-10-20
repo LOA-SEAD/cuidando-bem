@@ -1,6 +1,6 @@
 define(['stage'], function(stage)
 {
-	stage.setHtmlPath('../html/');
+	stage.setHtmlPath('../html/screens/');
 	stage.setControllersPath('../scripts/controller/stageControllers/');
 
 	stage.addScreen('mainMenu', 'mainMenu.html', 'mainMenu');
