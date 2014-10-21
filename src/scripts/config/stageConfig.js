@@ -1,4 +1,6 @@
 define(['stage'], function(stage){
+    L.group("Stage Config:", true);
+
 	stage.setHtmlPath('../html/screens/');
 	stage.setControllersPath('../scripts/controller/stageControllers/');
 
@@ -8,4 +10,5 @@ define(['stage'], function(stage){
 	stage.addScreen('credits', 'credits.html', 'credits_screen_controller');
 	stage.addScreen('configuration', 'configuration.html', 'configuration_screen_controller');
 
+    L.groupEnd();
 });

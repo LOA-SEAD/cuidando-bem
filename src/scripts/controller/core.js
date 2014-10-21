@@ -12,7 +12,7 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
 
 //Methods
 	function start(){
-		L.log("Starting Game");
+		L.group("Game Running:");
 
         changeLevel(game.getCurrentLevel());
         startLevel();

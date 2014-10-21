@@ -43,10 +43,11 @@ require.config({
 });
 //Init the app when everything is ready
 
-require(["logger"]);
-require(["jquery", "libs/less"]);
+require(["logger", "jquery", "libs/less"], function(){
+    L.group(" 'Cuidando Bem' Log:");
+    require(["main"]);
+});
 
-require(["main"]);
 
 
 

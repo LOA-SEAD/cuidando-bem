@@ -7,7 +7,7 @@
 define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'core'],
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core) {
 
-        L.log("gameConfig Module Loaded");
+        L.group("Game Config:", true);
 
         var level1 = new Level("Level 1", isEndOfLevel1, getNextLevel1);
 
@@ -342,5 +342,5 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         game.registerLevel(level1);
 
-
+        L.groupEnd();
     });
