@@ -1,32 +1,28 @@
-@bg-grad_esq: url('./images/interactiveObjects/bg_lateral_esq.png');
-@bg-grad_dir: url('./images/interactiveObjects/bg_lateral_dir.png');
-@width-laterais: 10%;
-
-
 .interactiveObject {
   position: absolute;
   border-radius: 20px;
   //border: 2px  gray;
 }
+
 .interactiveObject:hover {
   box-shadow: 1px 1px 10px black;
 }
 
 .intObj-falar_com_recepcionista {
-  top: 25%;
-  left: 45%;
-  width: 12%;
-  height: 22%;
+  top: @intObj-falar_com_recepcionista-top;
+  left: @intObj-falar_com_recepcionista-left;
+  width: @intObj-falar_com_recepcionista-width;
+  height: @intObj-falar_com_recepcionista-height;
 }
-
 
 .intObj-ir_corredor_esq {
   border-radius: 0;
   left: 0%;
   top: 0%;
   height: 100%;
-  width: @width-laterais;
+  width: @intObj-ir_corredor_width;
 }
+
 .intObj-ir_corredor_esq:hover {
   box-shadow: none;
   background-image: @bg-grad_esq;
@@ -36,10 +32,11 @@
 
 .intObj-ir_corredor_dir {
   border-radius: 0;
-  left: (100% - @width-laterais);
+  left: (100% - @intObj-ir_corredor_width);
   height: 100%;
-  width: @width-laterais;
+  width: @intObj-ir_corredor_width;
 }
+
 .intObj-ir_corredor_dir:hover {
   box-shadow: none;
   background-size: contain;
@@ -48,15 +45,15 @@
 }
 
 .intObj-ir_posto_de_enfermagem {
-  top: 38%;
-  left: 40%;
-  height: 12%;
-  width: 10%;
+  top: @intObj-ir_posto_de_enfermagem-top;
+  left: @intObj-ir_posto_de_enfermagem-left;
+  height: @intObj-ir_posto_de_enfermagem-height;
+  width: @intObj-ir_corredor_width;
 }
 
 .intObj-ir_sala_de_leitos {
-  top: 27%;
-  left: 69%;
-  height: 14%;
-  width: 12%;
+  top: @intObj-ir_sala_de_leitos-top;
+  left: @intObj-ir_sala_de_leitos-left;
+  height: @intObj-ir_sala_de_leitos-height;
+  width: @intObj-ir_sala_de_leitos-width;
 }

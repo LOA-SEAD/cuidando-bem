@@ -1,29 +1,3 @@
-/*
-
-Scene list:
-
-	1. Sala de leitos Masculinos (ala masculina)
-	2. Sala de leitos femininos (ala feminina)
-	3. Centro Cirúrgico
-	4. Corredor
-	5. Enfermaria
-	6. Posto de Enfermagem
-	7. Recepção
-	
-*/
-
-// Path for all background images
-@default-bgcolor: #f5f5f5;
-@bg-recepcao: url('./images/scenes/recepcao.jpg');
-@bg-posto_de_enfermagem: url('./images/scenes/posto_de_enfermagem.jpg');
-@bg-ala_masculina: url('./images/scenes/ala_masculina.jpg');
-@bg-ala_feminina: url('./images/scenes/ala_feminina.jpg');
-@bg-sala_de_leitos: url('./images/scenes/sala_de_leitos.jpg');
-@bg-leito: url('./images/scenes/leito.jpg');
-@bg-centro_cirurgico: url('./images/scenes/centro-cirurgico.jpg');
-@bg-corredor: url('./images/scenes/corredor.jpg');
-@bg-enfermaria: url('./images/scenes/enfermaria.jpg');
-
 .scene {
   background-size: cover;
   background-repeat: no-repeat;
@@ -75,10 +49,3 @@ Scene list:
   background-image: @bg-recepcao;
   &:extend(.scene);
 }
-
-/*.
-scene- {
-	background-image: url('');
-	background-color: white;
-}
-*/

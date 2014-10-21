@@ -17,15 +17,17 @@ one link on the main html
 @import "css/normalize.css";
 @import "less/common.less";
 
+//@import url("less/smallDevices.less") (min-width: @screen-sm-min);
+//@import url("less/mediumDevices.less") (min-width: @screen-md-min);
+@import "less/largeDevices.less";
+@import "less/largeDevices.less" (min-width: @screen-lg-min);
+
 @import "gameConfig/main.less";
+@import "gameConfig/scenesBackgroundImages.less";
 @import "gameConfig/gameConfig.less";
 @import "gameConfig/actionsThumbnails.less";
 @import "gameConfig/interactiveObjects.less";
-@import "gameConfig/scenesBackgroundImages.less";
 @import "gameConfig/dialogModal.less";
 
 
-//@import url("less/smallDevices.less") (min-width: @screen-sm-min);
-//@import url("less/mediumDevices.less") (min-width: @screen-md-min);
-@import url("less/largeDevices.less") (min-width: @screen-lg-min);
 

@@ -1,3 +1,4 @@
+// Disable the selection function on the website
 html, body {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -6,3 +7,55 @@ html, body {
   -ms-user-select: none;
   user-select: none;
 }
+// Generic variables
+@default-bgcolor: gray;
+@sem_imagem: url('./images/action_buttons/sem-imagem.jpg');
+
+// Path for all background images - variables used on scenesBackgroundImages.less
+/*
+Scene list:
+
+	1. Sala de leitos Masculinos (ala masculina)
+	2. Sala de leitos femininos (ala feminina)
+	3. Centro Cirúrgico
+	4. Corredor
+	5. Enfermaria
+	6. Posto de Enfermagem
+	7. Recepção
+*/
+@bg-recepcao: url('./images/scenes/recepcao.jpg');
+@bg-posto_de_enfermagem: url('./images/scenes/posto_de_enfermagem.jpg');
+@bg-ala_masculina: url('./images/scenes/ala_masculina.jpg');
+@bg-ala_feminina: url('./images/scenes/ala_feminina.jpg');
+@bg-sala_de_leitos: url('./images/scenes/sala_de_leitos.jpg');
+@bg-leito: url('./images/scenes/leito.jpg');
+@bg-centro_cirurgico: url('./images/scenes/centro-cirurgico.jpg');
+@bg-corredor: url('./images/scenes/corredor.jpg');
+@bg-enfermaria: url('./images/scenes/enfermaria.jpg');
+
+// variables used on interactiveObjects.less
+@bg-grad_esq: url('./images/interactiveObjects/bg_lateral_esq.png');
+@bg-grad_dir: url('./images/interactiveObjects/bg_lateral_dir.png');
+
+// Variables for actionsThumbnails.less
+@ir_corredor: url('./images/action_buttons/ir_corredor.jpg');
+@ir_posto_de_enfermagem: url('./images/action_buttons/ir_posto_de_enfermagem.jpg');
+@ir_sala_de_leitos: url('./images/action_buttons/ir_sala_de_leitos.jpg');
+@ir_leito: @sem_imagem;
+@conversar_paciente: @sem_imagem;
+@pulseira_paciente: @sem_imagem;
+@confirmar_paciente: @sem_imagem;
+@fechar_pulseira: @sem_imagem;
+@conversar_mentor: @sem_imagem;
+@lavar_maos: @sem_imagem;
+@medir_temperatura: @sem_imagem;
+@medir_pulso: @sem_imagem;
+@medir_freq_respiratoria: @sem_imagem;
+@abrir_gaveta: @sem_imagem;
+@pegar_termometro: @sem_imagem;
+@pegar_medidor_pressao: @sem_imagem;
+@pegar_oximetro: @sem_imagem;
+@fechar_gaveta: @sem_imagem;
+
+// Variables for dialogModal.less
+@char-recepcionista: @sem_imagem;
