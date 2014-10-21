@@ -69,7 +69,7 @@ define([], function (){
 
 		function registerScene(_scene){
 			scenes.push(_scene);
-			console.log("registering scene: ", _scene);
+			L.log("registering scene: ", _scene);
 
 			dialogs.push([]);
 			actions.push([]);
@@ -79,22 +79,22 @@ define([], function (){
 
 		function registerAction(_action, _scene){
 			actions[_scene].push(_action);
-			console.log(actions);
+			L.log(actions);
 		}
 
 		function registerDialog(_dialog, _scene){
 			dialogs[_scene].push(_dialog);
-			console.log(dialogs);
+			L.log(dialogs);
 		}
 
 		function registerFlag(_flag, _scene){
 			flags[_scene].push(_flag);
-			console.log(flags);
+			L.log(flags);
 		}
 
 		function registerInteractiveObject(_interactiveObject, _scene){
 			interactiveObjects[_scene].push(_interactiveObject);
-			console.log(interactiveObjects);
+			L.log(interactiveObjects);
 		}		
 
 

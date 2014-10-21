@@ -1,7 +1,7 @@
 require( ["stage", "core", "gameConfig", "stageConfig"], function(stage, core){
-    console.log("\n");
-    console.log("APP: 'Cuidando Bem' Log:");
-    console.log("\n");
+    L.log("\n");
+    L.log("APP: 'Cuidando Bem' Log:");
+    L.log("\n");
     $('document').ready(function(){
     //When everything is loaded ...
 

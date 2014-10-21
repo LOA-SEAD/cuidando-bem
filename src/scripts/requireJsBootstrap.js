@@ -11,7 +11,8 @@ require.config({
     baseUrl: 'scripts/',
     paths: {        
         jquery: 'libs/jquery-min',
-        text: 'libs/text',   
+        text: 'libs/text',
+        logger: 'libs/Logger',
 
         gameConfig: 'config/gameConfig',
         stageConfig: 'config/stageConfig',
@@ -42,6 +43,7 @@ require.config({
 });
 //Init the app when everything is ready
 
+require(["logger"]);
 require(["jquery", "libs/less"]);
 
 require(["main"]);

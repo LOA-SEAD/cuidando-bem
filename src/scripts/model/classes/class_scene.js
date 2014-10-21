@@ -19,12 +19,12 @@ define([], function(){
 
 		function onLoad()
 		{
-			console.log("Scene "+name+" loader function");
+			L.log("Scene "+name+" loader function");
 			loaderFunction();
 		}
 		function onUnload()
 		{
-			console.log("Scene "+name+" unload function");
+			L.log("Scene "+name+" unload function");
 			unloadFunction();
 		}
 		

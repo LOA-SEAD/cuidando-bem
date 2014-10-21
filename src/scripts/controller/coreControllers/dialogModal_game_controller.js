@@ -55,7 +55,7 @@ define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function(co
     }
 
     function addDialogButton(_option){
-        console.log(_option);
+        L.log(_option);
 
         var element = $(dialogButtonTemplate);
 
