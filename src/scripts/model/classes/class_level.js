@@ -1,17 +1,19 @@
 define([], function (){
-	return function Level(_name, _isEndOfLevelFunction, _nextLevelFunciton){
+	return function Level(_name, _isEndOfLevelFunction, _nextLevelFunction){
 		//Attributes
 
 		var name = _name;
-		var actions = [];
-		var interactiveObjects = [];
-		var scenes = [];
+        var isEndOfLevelFunction = _isEndOfLevelFunction;
+        var nextLevelFunction = _nextLevelFunction;
+
+        var scenes = [];
+        var modalScenes = [];
+
+        var flags = [];
+
 		var currentScene = 0;
 		var initialScene = 0;
-		var isEndOfLevelFunction = _isEndOfLevelFunction;
-		var nextLevelFunction = _nextLevelFunciton;
-		var flags = [];
-		var dialogs = [];
+
 		//Methods
 
 		//Getters
@@ -20,21 +22,27 @@ define([], function (){
 			return name;
 		}
 
-		function getActions(){
-			return actions;
+		function getActions(_sceneId){
+			return scenes[_sceneId].getActions();
 		}
 
-		function getFlags(){
-			return flags;
+		function getDialogs(_sceneId){
+			return scenes[_sceneId].getDialogs();
 		}
 
-		function getDialogs(){
-			return dialogs;
+		function getInteractiveObjects(_sceneId){
+			return scenes[_sceneId].getInteractiveObjects();
 		}
 
-		function getInteractiveObjects(){
-			return interactiveObjects;
-		}
+        function getScene(_sceneId){
+            return scenes[_sceneId];
+        }
+        function getFlags(){
+            return flags;
+        }
+        function getFlag(_flagId){
+            return flags[_flagId];
+        }
 
 		function getInitialScene(){
 			return scenes[initialScene];
@@ -70,38 +78,30 @@ define([], function (){
 		function registerScene(_scene){
 			scenes.push(_scene);
 			L.log("registering scene: ", _scene);
-
-			dialogs.push([]);
-			actions.push([]);
-			flags.push([]);
-			interactiveObjects.push([]);
 		}
 
-		function registerAction(_action, _scene){
-			actions[_scene].push(_action);
-			L.log(actions);
+		function registerAction(_action, _sceneId){
+			scenes[_sceneId].registerAction(_action);
 		}
 
-		function registerDialog(_dialog, _scene){
-			dialogs[_scene].push(_dialog);
-			L.log(dialogs);
+        function registerInteractiveObject(_interactiveObject, _sceneId){
+            scenes[_sceneId].registerInteractiveObject(_interactiveObject);
+        }
+
+		function registerDialog(_dialog, _sceneId){
+            scenes[_sceneId].registerDialog(_dialog);
 		}
 
-		function registerFlag(_flag, _scene){
-			flags[_scene].push(_flag);
-			L.log(flags);
+		function registerFlag(_flag){
+			flags.push(_flag);
 		}
-
-		function registerInteractiveObject(_interactiveObject, _scene){
-			interactiveObjects[_scene].push(_interactiveObject);
-			L.log(interactiveObjects);
-		}		
 
 
 		//Public interface
 		return {
 			getName: getName,
 			getActions: getActions,
+            getFlag: getFlag,
 			getFlags: getFlags,
 			getInteractiveObjects: getInteractiveObjects,
 			getDialogs: getDialogs,
@@ -110,6 +110,8 @@ define([], function (){
 
             getCurrentScene: getCurrentScene,
             getCurrentSceneId: getCurrentSceneId,
+            getScene: getScene,
+
 			isEndOfLevel: isEndOfLevel,
 			getNextLevel: getNextLevel,
 

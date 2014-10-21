@@ -303,7 +303,6 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         level1.registerInteractiveObject(new InteractiveObject("Falar com recepcionista", "intObj-falar_com_recepcionista",
             function () {
                 L.log("intObj: falar com recepcionista");
-                L.log("Abrir dialogo", level1.getDialogs()[0][0]);
                 core.openDialog(0, 0);
             }), 0); // recepcao
 

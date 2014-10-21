@@ -14,40 +14,76 @@ define([], function(){
 
 		var loaderFunction = _load;
 		var unloadFunction = _unload;
+
+        var dialogs = [];
+        var interactiveObjects = [];
+        var actions = [];
 		
 		//Methods
 
-		function onLoad()
-		{
+		function onLoad(){
 			L.log("Scene "+name+" loader function");
 			loaderFunction();
 		}
-		function onUnload()
-		{
+
+		function onUnload(){
 			L.log("Scene "+name+" unload function");
 			unloadFunction();
 		}
 		
 		//Getters
 
-		function getName()
-		{
+		function getName(){
 			return name;
 		}
 
-		function getCssClass()
-		{
+		function getCssClass(){
 			return cssClass;
 		}
+
+        function getActions(){
+            return actions;
+        }
+
+        function getDialogs(){
+            return dialogs;
+        }
+
+        function getInteractiveObjects(){
+            return interactiveObjects;
+        }
 		
 		//Setters
-		
-		//Public interface
+
+        function registerAction(_action){
+            actions.push(_action);
+            L.log(actions);
+        }
+
+        function registerDialog(_dialog){
+            dialogs.push(_dialog);
+            L.log(dialogs);
+        }
+
+        function registerInteractiveObject(_interactiveObject){
+            interactiveObjects.push(_interactiveObject);
+            L.log(interactiveObjects);
+        }
+
+        //Public interface
 		return {			
 			getName: getName,
 			getCssClass: getCssClass,
 			onLoad: onLoad,
-			onUnLoad: onUnload			
+			onUnLoad: onUnload,
+
+            getActions: getActions,
+            getInteractiveObjects: getInteractiveObjects,
+            getDialogs: getDialogs,
+
+            registerAction: registerAction,
+            registerDialog: registerDialog,
+            registerInteractiveObject: registerInteractiveObject
 		}
 		
 	}

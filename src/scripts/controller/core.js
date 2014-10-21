@@ -25,10 +25,7 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
 
     function changeLevel (_newLevel){
         Level = $.extend(true, {}, _newLevel);
-        Actions = Level.getActions();
-        Dialogs = Level.getDialogs();
-        InteractiveObjects = Level.getInteractiveObjects();
-        Flags = Level.getFlags();
+
         cur_scene = Level.getCurrentSceneId();
     }
 
@@ -42,14 +39,19 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         Level.setCurrentSceneById(_newSceneId);
         cur_scene = _newSceneId;
 
+        Actions = Level.getActions(cur_scene);
+        Dialogs = Level.getDialogs(cur_scene);
+        InteractiveObjects = Level.getInteractiveObjects(cur_scene);
+        Flags = Level.getFlags();
+
         var newScene = Level.getCurrentScene();
 
         L.log("New scene: "+ newScene.getCssClass());
 
 
         Scene.changeScene(newScene.getCssClass());
-        CommandBar.changeToActionsButtons(Actions[cur_scene]);
-        InteractiveObject.changeToInteractiveObjects(InteractiveObjects[cur_scene]);
+        CommandBar.changeToActionsButtons(Actions);
+        InteractiveObject.changeToInteractiveObjects(InteractiveObjects);
     }
 
     //ModalScene
@@ -62,8 +64,8 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
     }
 
     //Dialog
-	function openDialog(_sceneId, _dialogId){
-        var dialog = Dialogs[_sceneId][_dialogId];
+	function openDialog(_dialogId){
+        var dialog = Dialogs[_dialogId];
         Dialog.show(dialog);
     }
 	
