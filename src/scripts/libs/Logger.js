@@ -8,8 +8,6 @@ function Logger(){
 
     var debug_mode = true;
 
-    var timers = {};
-
     function group(id, collapse){
         if(debug_mode) {
             if (collapse === true) {
