@@ -1,5 +1,4 @@
-define (['stateMachine'], function(game)
-{
+define (['levelsData'], function(game){
 	return {
 		registerLevel: game.registerLevel
 	}

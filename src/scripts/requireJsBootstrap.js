@@ -23,17 +23,19 @@ require.config({
         Dialog: 'model/classes/class_dialog',
         InteractiveObject: 'model/classes/class_interactiveObject',
         
-        stateMachine: 'model/stateMachine',
+        levelsData: 'model/levelsData',
 
-        stateMachineInterface: 'controller/stateMachineInterface',
+        levelsData_interface: 'controller/levelsData_interface',
+
         stage: 'controller/stage',
-
         core: 'controller/core',
 
-        commandBar: 'controller/gameControllers/commandBarController',
-        dialogModal: 'controller/gameControllers/dialogController',
-        interactiveObjects: "controller/gameControllers/interactiveObjectsController",
-        modalScene: "controller/gameControllers/modalScene"
+        commandBar: 'controller/coreControllers/commandBar_game_controller',
+        dialogModal: 'controller/coreControllers/dialogModal_game_controller',
+        endOfLevel: 'controller/coreControllers/endOfLevel_game_controller',
+        interactiveObjects: "controller/coreControllers/interactiveObjects_game_controller",
+        modalScene: "controller/coreControllers/modalScene_game_controller",
+        scene: 'controller/coreControllers/scene_game_controller'
        
         
     }

@@ -4,6 +4,7 @@ ideia
 build/
 
 *.example
+
 *.bat
 *.~vsd
 

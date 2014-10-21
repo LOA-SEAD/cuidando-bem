@@ -4,8 +4,7 @@ define(['core'], function(core){
 //Attributes
 //Methods
 
-    function changeScreen(css_class){
-        //
+    function changeScene(css_class){
         $('#backgroundScene').attr('class', css_class);
     }
 
@@ -13,7 +12,7 @@ define(['core'], function(core){
 //Setters
 //Public Interface
     return {
-        changeScreen: changeScreen
+        changeScene: changeScene
     }
 
 });

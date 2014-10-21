@@ -4,7 +4,7 @@
 
  */
 
-define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'core'],
+define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'core'],
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core) {
 
         console.log("gameConfig Module Loaded");

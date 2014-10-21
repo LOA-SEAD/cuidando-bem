@@ -1,7 +1,5 @@
-define([], function()
-{
-	return function Flag(name, value)
-	{
+define([], function(){
+	return function Flag(name, value){
 		//Attributes
 
 		var name = name;
@@ -43,5 +41,4 @@ define([], function()
 		}
 		
 	}
-
 });

@@ -9,10 +9,8 @@
 
 */
 
-define([], function()
-{
-	return function Dialog(_speakerName, _speakerCssClass, _text)
-	{
+define([], function(){
+	return function Dialog(_speakerName, _speakerCssClass, _text){
 		//Inner Class
 		function DialogOption(_text, _actionFunction){
 			this.text = _text;
@@ -24,7 +22,7 @@ define([], function()
 		var speakerCssClass = _speakerCssClass;
 		var text = _text;
 
-		var options = new Array();
+		var options = [];
 
 		//Methods
 
@@ -62,6 +60,7 @@ define([], function()
 		//Public interface
 		
 		return {
+            DialogOption: DialogOption,
 			executeOption: executeOption,
 
 			getSpeakerName: getSpeakerName,
@@ -73,6 +72,4 @@ define([], function()
 			registerOption: registerOption			
 		}
 	}
-
-	
 });
