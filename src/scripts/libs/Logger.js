@@ -81,7 +81,7 @@ function Logger(){
 
     function makeIdentation(level){
 
-        if(!level instanceof Number)
+        if(typeof level != "number")
             level = 0;
 
         var ident = "";
