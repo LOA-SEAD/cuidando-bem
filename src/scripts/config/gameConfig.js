@@ -28,6 +28,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         level1.registerScene(new Scene("posto_de_enfermagem", "scene-posto_de_enfermagem"));// 4    - Posto de Enferm
         level1.setInitialScene(0);
 
+        // Scene novaCena; --> declarar as tretas aqui dentro
+
         /*
          Flags for level 1
          */
@@ -54,21 +56,9 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
          */
 
         // # 3 - Falar com recepcionista
-        var fala_recepcionista = new Dialog("recepcionista", "char-recepcionista", "Lorem ipsum dolor sit amet, " +
-            "consectetur adipiscing elit. Nullam metus dui, dapibus in faucibus in, congue id erat. In sit amet " +
-            "mi facilisis, cursus urna interdum, dapibus felis. Aliquam dapibus libero lacus, in sollicitudin leo " +
-            "fermentum vitae. Duis purus augue, feugiat ut felis quis, lobortis auctor tellus. Sed lobortis ante " +
-            "malesuada, iaculis justo vel, tristique dolor. Praesent nec molestie odio. Nunc efficitur nisl sed leo " +
-            "elementum iaculis. Sed placerat feugiat eros at tempor. Donec suscipit orci quam, non mattis turpis " +
-            "feugiat id. Ut fringilla interdum enim ac porta. " + "Lorem ipsum dolor sit amet, " +
-            "consectetur adipiscing elit. Nullam metus dui, dapibus in faucibus in, congue id erat. In sit amet " +
-            "mi facilisis, cursus urna interdum, dapibus felis. Aliquam dapibus libero lacus, in sollicitudin leo " +
-            "fermentum vitae. Duis purus augue, feugiat ut felis quis, lobortis auctor tellus. Sed lobortis ante " +
-            "malesuada, iaculis justo vel, tristique dolor. Praesent nec molestie odio. Nunc efficitur nisl sed leo " +
-            "elementum iaculis. Sed placerat feugiat eros at tempor. Donec suscipit orci quam, non mattis turpis " +
-            "feugiat id. Ut fringilla interdum enim ac porta. ");
+        var fala_recepcionista = new Dialog("recepcionista", "char-recepcionista", "Bom dia, você parece novo por aqui. Como posso ajudá-lo?");
         fala_recepcionista.registerOption({
-            text: "Essa será a primeira opção do dialogo",
+            text: "Bom dia, sou o novo técnico de enfermagem contratado.",
             actionFunction: function () {
                 L.log("uhul");
             }});
@@ -79,6 +69,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             }});
         level1.registerDialog(fala_recepcionista, 0);
 
+
         /*
          Character:  Mentor
          */
@@ -87,6 +78,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         level1.registerDialog(new Dialog("mentor", "char-mentor", "Mentor: Fala numero 1"), 1);
         // # 12 - Conversar com o Mentor
         level1.registerDialog(new Dialog("mentor", "char-mentor", "Mentor: Fala numero 2"), 3);
+
 
         /*
          Character:  Paciente
