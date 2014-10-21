@@ -1,3 +1,5 @@
+@char_img-width: 10%;
+
 #dialogBar{
   position: relative;
   display: none;
@@ -9,25 +11,36 @@
 }
 
 .char_img {
-  float: left;
-  width: 200px;
-  min-height: 200px;
-  background-color: white;
-  margin: 0 20px 10px 0;
+  display: table-cell;
+  width: @char_img-width;
 }
 
 .dialog_mainText {
+  float: left;
+  width: 100% - @char_img-width;
+  padding-left: 2%;
+  padding-bottom: 3%;
   color: #ffffff;
-  font-size: 16px;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: bold;
 }
 .dialog_options {
+  float: left;
+  padding-left: 2%;
   color: #ffffff;
-  font-size: 20px;
-  margin-top: 2%;
-  text-align: right;
+  font-size: 16px;
+  text-align: left;
 }
 .dialog_button {
-  margin-bottom: 0.5%;
+  background-image: @arrow_dialog_button;
+  background-repeat: no-repeat;
+  background-position: left;
+  paddin-left: 100px;
+  margin-bottom: 1.2%;
+}
+.text {
+  margin-left: 30px;
 }
 .text:hover {
   cursor: pointer;
@@ -37,4 +50,6 @@
 .char-recepcionista {
   background-image: @char-recepcionista;
   background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
