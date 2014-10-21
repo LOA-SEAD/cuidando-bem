@@ -1,4 +1,4 @@
-define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function(core, dilogButtonTemplate){
+define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function(core, dialogButtonTemplate){
 
 //Attributes
     var dialogModalSelector = "#dialogBar";
@@ -57,7 +57,7 @@ define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function(co
     function addDialogButton(_option){
         console.log(_option);
 
-        var element = $(dilogButtonTemplate);
+        var element = $(dialogButtonTemplate);
 
         element.click(_option.actionFunction);
         $('.text', element).text(_option.text);

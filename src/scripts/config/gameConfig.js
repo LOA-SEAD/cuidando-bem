@@ -60,7 +60,13 @@ define(['stateMachineInterface', 'Scene', 'Action', 'Level', 'Dialog', 'Interact
             "fermentum vitae. Duis purus augue, feugiat ut felis quis, lobortis auctor tellus. Sed lobortis ante " +
             "malesuada, iaculis justo vel, tristique dolor. Praesent nec molestie odio. Nunc efficitur nisl sed leo " +
             "elementum iaculis. Sed placerat feugiat eros at tempor. Donec suscipit orci quam, non mattis turpis " +
-            "feugiat id. Ut fringilla interdum enim ac porta.");
+            "feugiat id. Ut fringilla interdum enim ac porta. " + "Lorem ipsum dolor sit amet, " +
+            "consectetur adipiscing elit. Nullam metus dui, dapibus in faucibus in, congue id erat. In sit amet " +
+            "mi facilisis, cursus urna interdum, dapibus felis. Aliquam dapibus libero lacus, in sollicitudin leo " +
+            "fermentum vitae. Duis purus augue, feugiat ut felis quis, lobortis auctor tellus. Sed lobortis ante " +
+            "malesuada, iaculis justo vel, tristique dolor. Praesent nec molestie odio. Nunc efficitur nisl sed leo " +
+            "elementum iaculis. Sed placerat feugiat eros at tempor. Donec suscipit orci quam, non mattis turpis " +
+            "feugiat id. Ut fringilla interdum enim ac porta. ");
         fala_recepcionista.registerOption({
             text: "Essa será a primeira opção do dialogo",
             actionFunction: function () {
