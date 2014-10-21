@@ -6,15 +6,14 @@ Each scene may have more than one interactive Object that will be declared later
 Each scene has a background image
 */
 define([], function(){
-	return function Scene(name, cssClass, load, unload)
-	{
+	return function Scene(_name, _cssClass, _load, _unload){
 		//Attributes
 
-		var name = name;
-		var cssClass = cssClass;		
+		var name = _name;
+		var cssClass = _cssClass;
 
-		var loaderFunction = load;
-		var unloadFunction = unload;
+		var loaderFunction = _load;
+		var unloadFunction = _unload;
 		
 		//Methods
 
@@ -52,5 +51,4 @@ define([], function(){
 		}
 		
 	}
-
 });

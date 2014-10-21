@@ -1,6 +1,5 @@
 define([], function(){
-	return function Flag(name, value)
-	{
+	return function Flag(name, value){
 		//Attributes
 
 		var name = name;
@@ -42,5 +41,4 @@ define([], function(){
 		}
 		
 	}
-
 });

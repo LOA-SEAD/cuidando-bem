@@ -1,6 +1,5 @@
 define([], function (){
-	return function Level(_name, _isEndOfLevelFunction, _nextLevelFunciton)
-	{
+	return function Level(_name, _isEndOfLevelFunction, _nextLevelFunciton){
 		//Attributes
 
 		var name = _name;

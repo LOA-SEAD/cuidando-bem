@@ -4,8 +4,7 @@ represents one object that will be "clickable" inside a scene
 */
 
 define([], function(){
-	return function interactiveObject(_name, _cssClass, _actionFunction)
-	{
+	return function interactiveObject(_name, _cssClass, _actionFunction){
 		//Attributes
 
 		var name = _name;
@@ -66,5 +65,4 @@ define([], function(){
 			setVisible: setVisible
 		}
 	}
-
 });
