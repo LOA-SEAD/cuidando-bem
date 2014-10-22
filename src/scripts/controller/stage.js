@@ -35,7 +35,7 @@ define(['text!../html/container.html'], function(container)
 
 	function addScreen (_name, _htmlPage, _controller)
 	{
-		L.log('Adding Screen: ', _name, _htmlPage, _controller);
+		L.log(['Adding Screen: ', _name, _htmlPage, _controller], 1);
 		screens.push(new Screen(_name, _htmlPage, _controller));
 	}
 

@@ -7,9 +7,13 @@ define([], function (){
         var nextLevelFunction = _nextLevelFunction;
 
         var scenes = [];
+        var scenes_aux = {};
+
         var modalScenes = [];
+        var modalScenes_aux = {};
 
         var flags = [];
+        var flags_aux = {};
 
 		var currentScene = 0;
 		var initialScene = 0;
@@ -23,19 +27,23 @@ define([], function (){
 		}
 
 		function getActions(_sceneId){
-			return scenes[_sceneId].getActions();
+			return getScene(_sceneId).getActions();
 		}
 
 		function getDialogs(_sceneId){
-			return scenes[_sceneId].getDialogs();
+			return getScene(_sceneId).getDialogs();
 		}
 
 		function getInteractiveObjects(_sceneId){
-			return scenes[_sceneId].getInteractiveObjects();
+			return getScene(_sceneId).getInteractiveObjects();
 		}
 
         function getScene(_sceneId){
-            return scenes[_sceneId];
+            if(typeof _sceneId == "string"){
+                return scenes[scenes_aux[_sceneId]];
+            }else{
+                return scenes[_sceneId];
+            }
         }
         function getFlags(){
             return flags;
@@ -76,8 +84,9 @@ define([], function (){
         }
 
 		function registerScene(_scene){
-			scenes.push(_scene);
-			L.log("registering scene: ", _scene);
+            scenes_aux[_scene.getName()] = scenes.length;
+            scenes.push(_scene);
+			L.log(["Registering scene: ", _scene.getName()]);
 		}
 
 		function registerAction(_action, _sceneId){

@@ -1,5 +1,3 @@
-console.log("This is the start point of the app: 'Cuidando Bem'.\nIf this is being displayed on a publish version, please report to us.")
-
 /*
     This file is required by require.js to work properly. It configures all file paths so it is easier
 to import them inside each module.
@@ -43,10 +41,11 @@ require.config({
 });
 //Init the app when everything is ready
 
-require(["logger"]);
-require(["jquery", "libs/less"]);
+require(["logger", "jquery", "libs/less"], function(){
+    L.group(" 'Cuidando Bem' Log:");
+    require(["main"]);
+});
 
-require(["main"]);
 
 
 

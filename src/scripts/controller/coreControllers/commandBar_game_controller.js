@@ -11,7 +11,7 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
     }
 
     function addAllActionButtons(_actions){
-        L.log(_actions);
+        L.group("Adding action Buttons", true);
         var i;
 
         for(i=0;i<_actions.length;i++)
@@ -20,6 +20,7 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
             var action = _actions[i];
             addActionButton(action);
         }
+        L.groupEnd();
     }
 
     function changeToActionsButtons(_actions){

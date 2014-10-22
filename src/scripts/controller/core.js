@@ -12,7 +12,7 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
 
 //Methods
 	function start(){
-		L.log("Starting Game");
+		L.group("Game Running:");
 
         changeLevel(game.getCurrentLevel());
         startLevel();
@@ -30,28 +30,31 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
     }
 
 	function startLevel(){
+        L.log('Starting level:' + Level.getName());
         changeScene(Level.getCurrentSceneId());
-        L.log(Level.getCurrentSceneId());
 	}
 
     //Scene
 	function changeScene(_newSceneId){
-        Level.setCurrentSceneById(_newSceneId);
-        cur_scene = _newSceneId;
+        L.group("Change Scene to: "+ Level.getCurrentScene().getName());
 
+        Level.setCurrentSceneById(_newSceneId);
+
+        cur_scene = _newSceneId;
         Actions = Level.getActions(cur_scene);
         Dialogs = Level.getDialogs(cur_scene);
         InteractiveObjects = Level.getInteractiveObjects(cur_scene);
+
         Flags = Level.getFlags();
 
         var newScene = Level.getCurrentScene();
-
-        L.log("New scene: "+ newScene.getCssClass());
 
 
         Scene.changeScene(newScene.getCssClass());
         CommandBar.changeToActionsButtons(Actions);
         InteractiveObject.changeToInteractiveObjects(InteractiveObjects);
+
+        L.groupEnd();
     }
 
     //ModalScene
