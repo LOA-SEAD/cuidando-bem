@@ -16,7 +16,7 @@ define([], function()
 		levels.push(level);
 
 		//Log
-		L.log('\tAdding new Level:', level.name);
+		L.log(['\nAdding new Level:', level.getName()]);
 	}
 
 //Getters

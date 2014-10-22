@@ -1,5 +1,3 @@
-console.log("This is the start point of the app: 'Cuidando Bem'.\nIf this is being displayed on a publish version, please report to us.")
-
 /*
     This file is required by require.js to work properly. It configures all file paths so it is easier
 to import them inside each module.

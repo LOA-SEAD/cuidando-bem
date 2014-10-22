@@ -8,6 +8,14 @@ function Logger(){
 
     var debug_mode = true;
 
+    function debug(){
+        if(debug_mode) {
+            return function () {
+                debugger;
+            }
+        }
+    }
+
     function group(id, collapse){
         if(debug_mode) {
             if (collapse === true) {
@@ -38,32 +46,32 @@ function Logger(){
 
     function error(msg, ident){
         if(debug_mode) {
-            console.error(makeIdentation(ident), msg);
+            exec(msg, ident, 'error');
         }
     }
 
     function info(msg, ident){
         if(debug_mode){
-            console.info(makeIdentation(ident), msg);
+            exec(msg, ident, 'info');
         }
     }
 
     function log(msg, ident){
         if(debug_mode){
-            console.log(makeIdentation(ident), msg);
+            exec(msg, ident, 'log');
         }
 
     }
 
     function warn(msg, ident){
         if(debug_mode){
-            console.warn(makeIdentation(ident), msg);
+            exec(msg, ident, 'warn');
         }
     }
 
     function table(msg, ident){
         if(debug_mode){
-            console.table(makeIdentation(ident), msg);
+            exec(msg, ident, 'table');
         }
     }
 
@@ -97,7 +105,36 @@ function Logger(){
             return ident;
     }
 
+    function exec(msg, ident, command){
+        var loggerCounter;
+        var iden = makeIdentation(ident);
+        var arg = "";
+
+        if(iden != "") {
+            arg += '"' + iden + '"';
+            if(typeof msg == "string")
+                arg+= '+';
+        }
+
+
+
+        if(typeof msg == 'object'){
+            for (loggerCounter = 0; loggerCounter < msg.length; loggerCounter++) {
+                if (loggerCounter == 0 && arg == "")
+                    arg += "msg["+loggerCounter+"]";
+                else
+                    arg += ", " + "msg["+loggerCounter+"]";
+            }
+        }else{
+            arg += '"'+msg+'"';
+        }
+
+        var fullCommand  ='console.'+command+'('+arg+');';
+        eval(fullCommand);
+    }
+
     return {
+        debug: debug,
         group: group,
         groupEnd: groupEnd,
         count: count,

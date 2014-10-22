@@ -86,7 +86,7 @@ define([], function (){
 		function registerScene(_scene){
             scenes_aux[_scene.getName()] = scenes.length;
             scenes.push(_scene);
-			L.log("registering scene: ", _scene);
+			L.log(["Registering scene: ", _scene.getName()]);
 		}
 
 		function registerAction(_action, _sceneId){

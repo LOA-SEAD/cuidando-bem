@@ -10,6 +10,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         L.group("Game Config:", true);
 
         var level1 = new Level("Level 1", isEndOfLevel1, getNextLevel1);
+        L.group(level1.getName(), true);
 
         function isEndOfLevel1() {
         }
@@ -341,6 +342,6 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
          */
 
         game.registerLevel(level1);
-
+        L.groupEnd();
         L.groupEnd();
     });

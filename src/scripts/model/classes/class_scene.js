@@ -57,17 +57,18 @@ define([], function(){
 
         function registerAction(_action){
             actions.push(_action);
-            L.log(actions);
+
+            L.log(["Registering Action: ", _action.getName(), "on Scene:" + name]);
         }
 
         function registerDialog(_dialog){
             dialogs.push(_dialog);
-            L.log(dialogs);
+            L.log(["Registering Dialog: ", _dialog.getSpeakerName(), "on Scene:" + name]);
         }
 
         function registerInteractiveObject(_interactiveObject){
             interactiveObjects.push(_interactiveObject);
-            L.log(interactiveObjects);
+            L.log(["Registering Interactive Object: ", _interactiveObject.getName(), "on Scene:" + name]);
         }
 
         //Public interface
