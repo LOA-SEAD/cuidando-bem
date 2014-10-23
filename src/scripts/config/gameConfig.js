@@ -46,7 +46,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         /*
          Scene:  Recepcao
          */
-        var recepcao = new Scene("recepcao", "scene-recepcao", function(){L.log("Função de load da cena funcionando");}, function(){L.log("Função de unload da cena funcionando");});
+        var recepcao = new Scene("recepcao", "scene-recepcao",
+            recepcaoOnLoad, recepcaoOnUnload);
 
         // Dialogs
         var fala_recepcionista = [];
@@ -79,22 +80,29 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         recepcao.registerDialogs(fala_recepcionista);
 
         // Functions
+        function recepcaoOnLoad(){
+            core.openDialog(0)
+        }
         function recepcaoIrCorredor() {
             L.log("Funcao: recepcao_ir_corredor");
             if(!flags_on){  // wont check for flags
-                core.changeScene(1);
                 core.closeDialog();
+                core.changeScene(1);
                 L.log("Ir para o corredor");
             }
             else{
                 if(level1.getFlag("conversar_recepcionista").getValue() == true){
-                    core.changeScene(1);
                     core.closeDialog();
+                    core.changeScene(1);
                     L.log("Ir para o corredor");
                 }
                 else
                     L.log("Necessita ação: conversar com a recepcionista");
             }
+        }
+
+        function recepcaoOnUnload() {
+            core.closeDialog();
         }
 
         function conversarRecepcionista() {
@@ -126,7 +134,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         /*
         Scene:  Corredor
          */
-        var corredor = new Scene("corredor", "scene-corredor");
+        var corredor = new Scene("corredor", "scene-corredor", corredorOnLoad);
 
         // Dialogs
         var fala_mentor = [];
@@ -161,6 +169,9 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         corredor.registerDialogs(fala_mentor);
 
         // Functions
+        function corredorOnLoad() {
+            core.openDialog(0);
+        }
         function ir_sala_de_leitos() {
             if(!flags_on){
                 L.log("Action: ir_sala_de_leitos");
