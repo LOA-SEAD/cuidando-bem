@@ -80,7 +80,6 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         // Functions
         function recepcaoIrCorredor() {
-            console.log("entrou");
             L.log("Funcao: recepcao_ir_corredor");
             if(!flags_on){  // wont check for flags
                 core.changeScene(1);
@@ -126,6 +125,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
          */
         var corredor = new Scene("corredor", "scene-corredor");
 
+        // Dialogs
         var fala_mentor = [];
         fala_mentor[0] = new Dialog("mentor", "char-mentor",
             "Bom dia! Seja bem vindo ao Hospital xxx é um prazer tê-lo como parte integrante de nossa equipe. " +
@@ -134,7 +134,9 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         fala_mentor[0].registerOption({
             text: "Obrigado",
             actionFunction: function() {
-
+                level1.getFlag("conversar_mentor").setValue(true);
+                core.closeDialog();
+                core.openDialog(1);
             }
         });
         fala_mentor[0].registerOption({
@@ -155,33 +157,39 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         corredor.registerDialogs(fala_mentor);
 
-        // # 6 # 21 - Ir para sala de leitos
-        corredor.registerAction(new Action("ir_sala_de_leitos", "action-ir_sala_de_leitos",
-            function () {
+        // Functions
+        function ir_sala_de_leitos() {
+            if(!flags_on){
                 L.log("Action: ir_sala_de_leitos");
                 core.changeScene(2);
-            })); // corredor
-        // # 14 - Ir para posto de enfermagem
-        corredor.registerAction(new Action("ir_posto_de_enfermagem", "action-ir_posto_de_enfermagem",
-            function () {
+            } else {
+                if(level1.getFlag("conversar_mentor").getValue() == true) {
+                    core.changeScene(2);
+                    L.log("Action: ir_sala_de_leitos");
+                } else{
+                    L.log("Necessita ação: falar com mentor");
+                }
+            }
+        }
+
+        function ir_posto_de_enfermagem() {
+            if(!flags_on){
                 L.log("Action: ir_posto_de_enfermagem");
                 core.changeScene(4);
-            })); // corredor
+            }
+        }
 
-        // # 5 - Falar com Mentor
-        corredor.registerDialog(new Dialog("mentor", "char-mentor", "Mentor: Fala numero 1"));
+        // # 6 # 21 - Ir para sala de leitos
+        corredor.registerAction(new Action("ir_sala_de_leitos", "action-ir_sala_de_leitos", ir_sala_de_leitos));
 
-        corredor.registerInteractiveObject(new InteractiveObject("Ir para o posto de enfermagem", "intObj-ir_posto_de_enfermagem",
-            function () {
-                L.log("intObj: Ir para o posto de enfermagem");
-                core.changeScene(4);
-            })); // corredor
+        // # 14 - Ir para posto de enfermagem
+        corredor.registerAction(new Action("ir_posto_de_enfermagem", "action-ir_posto_de_enfermagem", ir_posto_de_enfermagem));
 
-        corredor.registerInteractiveObject(new InteractiveObject("Ir para a sala de leitos", "intObj-ir_sala_de_leitos",
-            function () {
-                L.log("intObj: Ir para a sala de leitos");
-                core.changeScene(2);
-            })); // corredor
+        corredor.registerInteractiveObject(
+            new InteractiveObject("Ir para o posto de enfermagem", "intObj-ir_posto_de_enfermagem", ir_posto_de_enfermagem));
+
+        corredor.registerInteractiveObject(
+            new InteractiveObject("Ir para a sala de leitos", "intObj-ir_sala_de_leitos", ir_sala_de_leitos));
 
         /*
         Scene:  Sala de Leitos
