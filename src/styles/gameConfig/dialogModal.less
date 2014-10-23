@@ -1,13 +1,11 @@
-@char_img-width: 10%;
-
 #dialogBar{
   position: relative;
   display: none;
   margin: 2% auto;
-  width: 90%;
-  padding: 2%;
-  background-color: rgba(0, 0, 0, 0.75);
-  border-radius: 20px;
+  width: @dialogBar-width;
+  padding: @dialogBar-padding;
+  background-color: @dialogBar-bg-color;
+  border-radius: @dialogBar-border-radius;
 }
 
 .char_img {
@@ -18,30 +16,27 @@
 .dialog_mainText {
   float: left;
   width: 100% - @char_img-width;
-  padding-left: 2%;
-  padding-bottom: 3%;
-  color: #ffffff;
-  font-size: 22px;
+  padding-left: @dialogMainText-padding-left;
+  padding-bottom: @dialogMainText-padding-bottom;
+  color: @dialogMainText-color;
+  font-size: @dialogMainText-font-size;
   font-style: italic;
   font-weight: bold;
 }
+
 .dialog_options {
   float: left;
-  padding-left: 2%;
-  color: #ffffff;
-  font-size: 16px;
+  padding-left: @dialogOptions-padding-left;
+  color: @dialogOptions-color;
+  font-size: @dialogOptions-font-size;
   text-align: left;
 }
 .dialog_button {
-  background-image: @arrow_dialog_button;
-  background-repeat: no-repeat;
-  background-position: left;
-  paddin-left: 100px;
+  background: @arrow_dialog_button no-repeat left;
+  padding-left: @dialogButton-padding-left;
   margin-bottom: 1.2%;
 }
-.text {
-  margin-left: 30px;
-}
+
 .text:hover {
   cursor: pointer;
   color: #4cae4c;
