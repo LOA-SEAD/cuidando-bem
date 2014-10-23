@@ -1,10 +1,14 @@
 define([], function(){
-	return function Action(_name, _cssClass, _actionFunction){
+	return function Action(_name, _cssClass, _actionFunction, _visible){
 		//Attributes
 
 		var name = _name;
-		var cssClass = _cssClass;		
-		var visible = true;
+		var cssClass = _cssClass;
+		if (_visible == null){
+			var visible = true;
+		} else {
+			var visible = _visible;
+		}
 		var enable = true;
 		var actionFunction = _actionFunction;
 
