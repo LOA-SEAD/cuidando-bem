@@ -60,7 +60,9 @@ module.exports = function(grunt) {
     less : {
       build: {
            options: {
-               paths: ["src/styles/less/"]
+               paths: [
+                   "src/styles/gameConfig/"
+               ]
            },
            files: {"build/style/styles.css": "src/styles/styles.less"}
        },
