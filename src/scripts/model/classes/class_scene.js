@@ -77,6 +77,13 @@ define([], function(){
             L.log(["Registering Dialog: ", _dialog.getSpeakerName(), "on Scene:" + name]);
         }
 
+        function registerDialogs(_dialogs){
+            for(i = 0; i < _dialogs.length; i++){
+                dialogs.push(_dialogs[i]);
+                L.log(["Registering Dialog: ", _dialogs[i].getSpeakerName(), "on Scene:" + name]);
+            }
+        }
+
         function registerInteractiveObject(_interactiveObject){
             interactiveObjects.push(_interactiveObject);
             L.log(["Registering Interactive Object: ", _interactiveObject.getName(), "on Scene:" + name]);
@@ -96,6 +103,7 @@ define([], function(){
 
             registerAction: registerAction,
             registerDialog: registerDialog,
+            registerDialogs: registerDialogs,
             registerInteractiveObject: registerInteractiveObject
 		}
 		
