@@ -4,10 +4,8 @@ define(['core'], function(core){
 //Attributes
 //Methods
 
-    function changeScene(_old, _new) {
-
-        setScene(_new);
-
+    function changeScene(_newScene) {
+        setScene(_newScene);
     }
 
     function setScene(_scene){

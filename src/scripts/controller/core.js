@@ -67,7 +67,7 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         Flags = Level.getFlags();
 
         oldScene.unload();
-        Scene.changeScene(oldScene, newScene);
+        Scene.changeScene(newScene);
         newScene.load();
 
         CommandBar.changeToActionsButtons(Actions);
