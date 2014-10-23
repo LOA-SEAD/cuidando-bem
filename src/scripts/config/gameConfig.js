@@ -58,14 +58,14 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             actionFunction: function () {
                 level1.getFlag("conversar_recepcionista").setValue(true);
                 L.log("Selecionado 1a opção diálogo: " + level1.getFlag("conversar_recepcionista").getValue());
-                core.closeDialog();
+                core.closeDialog(0);
                 core.openDialog(1);
             }});
         fala_recepcionista[0].registerOption({
             text: "Encerrar diálogo",
             actionFunction: function () {
                 L.log("Encerrar o diálogo");
-                core.closeDialog();
+                core.closeDialog(1);
             }});
 
         fala_recepcionista[1] = new Dialog("recepcionista", "char-recepcionista",
@@ -74,7 +74,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             text: "Encerrar diálogo",
             actionFunction: function () {
                 L.log("Encerrar o diálogo");
-                core.closeDialog();
+                core.closeDialog(1);
             }});
 
         recepcao.registerDialogs(fala_recepcionista);
@@ -86,13 +86,15 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         function recepcaoIrCorredor() {
             L.log("Funcao: recepcao_ir_corredor");
             if(!flags_on){  // wont check for flags
-                core.closeDialog();
+                core.closeDialog(0);
+                core.closeDialog(1);
                 core.changeScene(1);
                 L.log("Ir para o corredor");
             }
             else{
                 if(level1.getFlag("conversar_recepcionista").getValue() == true){
-                    core.closeDialog();
+                    core.closeDialog(0);
+                    core.closeDialog(1);
                     core.changeScene(1);
                     L.log("Ir para o corredor");
                 }
@@ -102,7 +104,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         }
 
         function recepcaoOnUnload() {
-            core.closeDialog();
+            core.closeDialog(0);
+            core.closeDialog(1);
         }
 
         function conversarRecepcionista() {
@@ -170,7 +173,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         // Functions
         function corredorOnLoad() {
-            core.openDialog(0);
+            L.log("Olha eu aqui! ");
+            //core.openDialog(0);
         }
         function ir_sala_de_leitos() {
             if(!flags_on){
