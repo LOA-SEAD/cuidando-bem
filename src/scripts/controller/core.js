@@ -105,10 +105,44 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         return Level.getFlag(_flagId);
     }
 
+
+
 //Setters
 
     function setFlag(_flagId, _value){
         Level.setFlag(_flagId, _value)
+    }
+
+    function setActionVisible(_actionId, _value){
+        var action = Level.getAction(_actionId);
+        action.setVisible(_value);
+        CommandBar.setActionVisible(action, _value);
+    }
+
+    function toggleActionVisible(_actionId){
+        var action = Level.getAction(_actionId);
+        if(action.isVisible())
+            action.setVisible(false);
+        else
+            action.setVisible(true);
+
+        CommandBar.setActionVisible(action, action.isVisible());
+    }
+
+    function setInteractiveObjectVisible(_interactiveObjectId, _value){
+        var interactiveObject = Level.getAction(_interactiveObjectId);
+        interactiveObject.setVisible(_value);
+        InteractiveObject.setInteractiveObjectVisible(interactiveObject, _value);
+    }
+
+    function toggleInteractiveObjectVisible(_interactiveObjectId){
+        var interactiveObject = Level.getAction(_interactiveObjectId);
+        if(interactiveObject.isVisible())
+            interactiveObject.setVisible(false);
+        else
+            interactiveObject.setVisible(true);
+
+        InteractiveObject.setInteractiveObjectVisible(interactiveObject, interactiveObject.isVisible());
     }
 
 //Public Interface
@@ -125,6 +159,11 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         getCurrentLevel : getCurrentLevel,
         getFlag: getFlag,
 
-        setFlag: setFlag
+        setFlag: setFlag,
+
+        setActionVisible: setActionVisible,
+        toggleActionVisible: toggleActionVisible,
+        setInteractiveObjectVisible: setInteractiveObjectVisible,
+        toggleInteractiveObjectVisible: toggleInteractiveObjectVisible
 	}
 });

@@ -69,6 +69,14 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
 //Getters
 
 //Setters
+    function setActionVisible(_action, _value){
+        var actionClass = _action.getCssClass();
+
+        if(_value)
+            $("."+actionClass).show();
+        else
+            $("."+actionClass).hide();
+    }
 
 //Public Interface
     return {
@@ -80,7 +88,9 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
 
         removeActionButton: removeActionButton,
         activateActionButton: activateActionButton,
-        deactivateActionButton: deactivateActionButton
+        deactivateActionButton: deactivateActionButton,
+
+        setActionVisible: setActionVisible
     }
 
 });

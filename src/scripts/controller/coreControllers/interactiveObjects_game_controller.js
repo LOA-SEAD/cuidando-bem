@@ -50,6 +50,14 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
 //Getters
 
 //Setters
+    function setInteractiveObjectVisible(_action, _value){
+        var actionClass = _action.getCssClass();
+
+        if(_value)
+            $("."+actionClass).show();
+        else
+            $("."+actionClass).hide();
+    }
 
 //Public Interface
     return {
@@ -61,7 +69,9 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
         changeToInteractiveObjects: changeToInteractiveObjects,
 
         removeAllInteractiveObjects: removeAllInteractiveObjects,
-        removeInteractiveObject: removeInteractiveObject
+        removeInteractiveObject: removeInteractiveObject,
+
+        setInteractiveObjectVisible: setInteractiveObjectVisible
     }
 
 });
