@@ -30,7 +30,7 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
     }
 
 	function startLevel(){
-        L.group('Starting level:' + Level.getName());
+        L.group('Starting level:' + Level.getName(), true);
 
         Level.setCurrentSceneById(cur_scene);
         var newScene = Level.getCurrentScene();
@@ -51,7 +51,7 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
 
     //Scene
 	function changeScene(_newSceneId){
-        L.group("Change Scene to: "+ Level.getCurrentScene().getName());
+        L.group("Change Scene to: "+ Level.getCurrentScene().getName(), true);
 
         var oldScene = Level.getCurrentScene();
         Level.setCurrentSceneById(_newSceneId);

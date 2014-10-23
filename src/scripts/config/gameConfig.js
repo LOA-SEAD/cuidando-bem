@@ -46,7 +46,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         /*
          Scene:  Recepcao
          */
-        var recepcao = new Scene("recepcao", "scene-recepcao");
+        var recepcao = new Scene("recepcao", "scene-recepcao", function(){L.log("Função de load da cena funcionando");}, function(){L.log("Função de unload da cena funcionando");});
 
         // Dialogs
         var fala_recepcionista = [];

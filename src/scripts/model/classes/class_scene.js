@@ -30,12 +30,12 @@ define([], function(){
 		//Methods
 
 		function load(){
-			L.log("Scene "+name+" loader function");
+			L.info("Scene "+name+" loader function");
 			loaderFunction();
 		}
 
 		function unload(){
-			L.log("Scene "+name+" unload function");
+			L.info("Scene "+name+" unload function");
 			unloadFunction();
 		}
 		
