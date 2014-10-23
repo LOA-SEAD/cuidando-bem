@@ -37,7 +37,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         level1.registerFlag(new Flag("medir_freq_respiratoria", false));             // 10   - Medir freq. resp.
         level1.registerFlag(new Flag("mentor_finaliza", false));                     // 11   - Mentor finaliza
 
-        var flags_on = true;    // if false it wont check for flags -- tests purpose
+        var flags_on = false;    // if false it wont check for flags -- tests purpose
 
         /*
          Scenes for level 1
@@ -105,6 +105,9 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         // Actions
         recepcao.registerAction(
             new Action("Ir ao corredor", "action-ir_corredor", recepcaoIrCorredor));
+
+        recepcao.registerAction(
+            new Action("Fechar modal", "action-fechar_modal", function(){core.openModalScene(0);}));
 
         recepcao.registerAction(
             new Action("Conversar com a recepcionista", "action-abrir_dialogo", conversarRecepcionista));

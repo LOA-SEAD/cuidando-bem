@@ -73,11 +73,18 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
 
     //ModalScene
 	function openModalScene(_modalSceneId){
+        var modalScene = Level.getModalScene(_modalSceneId);
 
+        ModalScene.changeScene(modalScene);
+        CommandBar.changeToActionsButtons(modalScene.getActions());
+        InteractiveObject.changeToInteractiveObjects(modalScene.getInteractiveObjects());
     }
 
     function closeModalScene(){
+        ModalScene.hide();
 
+        CommandBar.changeToActionsButtons(Actions);
+        InteractiveObject.changeToInteractiveObjects(InteractiveObjects);
     }
 
     //Dialog

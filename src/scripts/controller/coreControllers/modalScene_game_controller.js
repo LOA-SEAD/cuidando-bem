@@ -2,8 +2,8 @@ define(['core'], function(core){
 
 //Attributes
 
-    var divSelector = "modalScene";
-    var isShowing = false;
+    var divSelector = "#modalScene";
+    var showing = false;
 
     var lastSceneClass = "";
 //Methods
@@ -13,30 +13,34 @@ define(['core'], function(core){
     }
 
     function show(){
-        isShowing = true;
+        L.info("Show Modal Scene");
+        showing = true;
         $(divSelector).show();
     }
 
-    function changeScene(newSceneClass){
+    function changeScene(modalScene){
         if(lastSceneClass != ""){
-            $(divSelector).addClass(newSceneClass);
+            $(divSelector).addClass(modalScene.getCssClass());
         }else
         {
             $(divSelector).removeClass(lastSceneClass);
-            $(divSelector).addClass(newSceneClass);
+            $(divSelector).addClass(modalScene.getCssClass());
 
-            lastSceneClass = newSceneClass;
+            lastSceneClass = modalScene.getCssClass();
         }
+
+        show();
     }
 
     function hide(){
-        isShowing = false;
+        L.info("Hide modal Scene");
+        showing = false;
         $(divSelector).hide();
     }
 
 //Getters
-    function getIsShowing(){
-        return isShowing;
+    function isShowing(){
+        return showing;
     }
 
 //Setters
@@ -44,6 +48,13 @@ define(['core'], function(core){
 
 //Public Interface
     return {
+        init: init,
+
+        show: show,
+        hide: hide,
+        changeScene: changeScene,
+
+        isShowing: isShowing
 
     }
 

@@ -30,7 +30,7 @@ define([], function(){
 		//Methods
 
 		function load(){
-			L.info("Scene "+name+" loader function");
+			L.info("Scene "+name+" load function");
 			loaderFunction();
 		}
 

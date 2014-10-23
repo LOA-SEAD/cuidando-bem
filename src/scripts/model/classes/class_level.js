@@ -45,9 +45,19 @@ define([], function (){
                 return scenes[_sceneId];
             }
         }
+
+        function getModalScene(_modalSceneId){
+            if(typeof _modalSceneId == "string"){
+                return modalScenes[modalScenes_aux[_modalSceneId]];
+            }else{
+                return modalScenes[_modalSceneId];
+            }
+        }
+
         function getFlags(){
             return flags;
         }
+
         function getFlag(_flagId){
             if (typeof _flagId == "string"){
                 return flags[flags_aux[_flagId]];
@@ -93,6 +103,12 @@ define([], function (){
 			L.log(["Registering scene: ", _scene.getName()]);
 		}
 
+        function registerModalScene(_modalScene){
+            modalScenes_aux[_modalScene.getName()] = modalScenes.length;
+            modalScenes.push(_modalScene);
+            L.log(["Registering modalScene: ", _modalScene.getName()]);
+        }
+
 		function registerAction(_action, _sceneId){
 			scenes[_sceneId].registerAction(_action);
 		}
@@ -126,6 +142,7 @@ define([], function (){
             getCurrentScene: getCurrentScene,
             getCurrentSceneId: getCurrentSceneId,
             getScene: getScene,
+            getModalScene: getModalScene,
 
 			isEndOfLevel: isEndOfLevel,
 			getNextLevel: getNextLevel,
@@ -135,6 +152,7 @@ define([], function (){
 
 
 			registerScene: registerScene,
+            registerModalScene: registerModalScene,
 			registerAction: registerAction,
 			registerDialog: registerDialog,
 			registerFlag: registerFlag,
