@@ -174,7 +174,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         // Functions
         function corredorOnLoad() {
             L.log("Olha eu aqui! ");
-            //core.openDialog(0);
+            core.openDialog(0);
         }
         function ir_sala_de_leitos() {
             if(!flags_on){

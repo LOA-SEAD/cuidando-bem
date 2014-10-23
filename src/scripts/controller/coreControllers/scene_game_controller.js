@@ -5,9 +5,9 @@ define(['core'], function(core){
 //Methods
 
     function changeScene(_old, _new) {
-        _old.unload();
+
         setScene(_new);
-        _new.load();
+
     }
 
     function setScene(_scene){

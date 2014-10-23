@@ -51,11 +51,13 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
 
     //Scene
 	function changeScene(_newSceneId){
-        L.group("Change Scene to: "+ Level.getCurrentScene().getName(), true);
+
 
         var oldScene = Level.getCurrentScene();
         Level.setCurrentSceneById(_newSceneId);
         var newScene = Level.getCurrentScene();
+
+        L.group("Change Scene to: "+ Level.getCurrentScene().getName(), true);
 
         cur_scene = _newSceneId;
         Actions = Level.getActions(cur_scene);
@@ -64,7 +66,10 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
 
         Flags = Level.getFlags();
 
+        oldScene.unload();
         Scene.changeScene(oldScene, newScene);
+        newScene.load();
+
         CommandBar.changeToActionsButtons(Actions);
         InteractiveObject.changeToInteractiveObjects(InteractiveObjects);
 
