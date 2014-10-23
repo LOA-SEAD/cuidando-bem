@@ -7,10 +7,12 @@
 define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'core'],
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core) {
 
-        L.group("Game Config:", true);
+        var debug_mode = true;
+
+        L.group("Game Config:", debug_mode);
 
         var level1 = new Level("Level 1", isEndOfLevel1, getNextLevel1);
-        L.group(level1.getName(), true);
+        L.group(level1.getName(), debug_mode);
 
         function isEndOfLevel1() {
         }
@@ -35,6 +37,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         level1.registerFlag(new Flag("medir_freq_respiratoria", false));             // 10   - Medir freq. resp.
         level1.registerFlag(new Flag("mentor_finaliza", false));                     // 11   - Mentor finaliza
 
+        var flags_on = true;    // if false it wont check for flags -- tests purpose
+
         /*
          Scenes for level 1
          */
@@ -45,47 +49,73 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         var recepcao = new Scene("recepcao", "scene-recepcao");
 
         // Dialogs
-        var fala_recepcionista = new Dialog("recepcionista", "char-recepcionista", "Bom dia, você parece novo por aqui. Como posso ajudá-lo?");
-        fala_recepcionista.registerOption({
+        var fala_recepcionista = [];
+        fala_recepcionista[0] = new Dialog("recepcionista", "char-recepcionista", "Bom dia, você parece novo por aqui. Como posso ajudá-lo?");
+        fala_recepcionista[0].registerOption({
             text: "Bom dia, sou o novo técnico de enfermagem contratado.",
             actionFunction: function () {
                 level1.getFlag("conversar_recepcionista").setValue(true);
                 L.log("Selecionado 1a opção diálogo: " + level1.getFlag("conversar_recepcionista").getValue());
-                core.closeDialog(0, 0);
+                core.closeDialog();
+                core.openDialog(1);
             }});
-        fala_recepcionista.registerOption({
-            text: "Fechar diálogo",
+        fala_recepcionista[0].registerOption({
+            text: "Encerrar diálogo",
             actionFunction: function () {
-                L.log("Fechar o diálogo");
-                core.closeDialog(0, 0);
+                L.log("Encerrar o diálogo");
+                core.closeDialog();
             }});
 
-        recepcao.registerDialog(fala_recepcionista);
+        fala_recepcionista[1] = new Dialog("recepcionista", "char-recepcionista", "A sim o funcionário novo! O Enfermeiro mentor está lhe esperando no corredor.");
+        fala_recepcionista[1].registerOption({
+            text: "Encerrar diálogo",
+            actionFunction: function () {
+                L.log("Encerrar o diálogo");
+                core.closeDialog();
+            }});
+
+        recepcao.registerDialog(fala_recepcionista[0]);
+        recepcao.registerDialog(fala_recepcionista[1]);
 
         // Functions
         function recepcaoIrCorredor() {
             console.log("entrou");
             L.log("Funcao: recepcao_ir_corredor");
-            if(level1.getFlag("conversar_recepcionista").getValue() == true){
+            if(!flags_on){  // wont check for flags
                 core.changeScene(1);
-                core.closeDialog(0, 0);
+                core.closeDialog();
                 L.log("Ir para o corredor");
             }
-            else
-                L.log("Necessita ação: conversar com a recepcionista");
+            else{
+                if(level1.getFlag("conversar_recepcionista").getValue() == true){
+                    core.changeScene(1);
+                    core.closeDialog();
+                    L.log("Ir para o corredor");
+                }
+                else
+                    L.log("Necessita ação: conversar com a recepcionista");
+            }
         }
 
         function conversarRecepcionista() {
             L.log("action: Conversar com a recepcionista");
-            core.openDialog(0, 0);
+            core.openDialog(0);
         }
 
         // Actions
         recepcao.registerAction(
             new Action("Ir ao corredor", "action-ir_corredor", recepcaoIrCorredor));
 
+        recepcao.getAction("Ir ao corredor").setVisible(false);
+
         recepcao.registerAction(
             new Action("Conversar com a recepcionista", "action-abrir_dialogo", conversarRecepcionista));
+
+        recepcao.registerAction(
+            new Action("teste", "teste",
+            function () {
+                L.log("CAPIROTO!!!" + recepcao.getAction("Ir ao corredor").isVisible());
+            }));
 
         // Interactive Objects
         // # 3 - Falar com recepcionista
