@@ -2,13 +2,12 @@ define([], function(){
 	return function Action(_name, _cssClass, _actionFunction, _visible){
 		//Attributes
 
+        if (_visible == null)
+            _visible = true;
+
 		var name = _name;
 		var cssClass = _cssClass;
-		if (_visible == null){
-			var visible = true;
-		} else {
-			var visible = _visible;
-		}
+        var visible = _visible;
 		var enable = true;
 		var actionFunction = _actionFunction;
 
@@ -39,7 +38,7 @@ define([], function(){
 		function isVisible(){
 			return visible;
 		}
-		
+
 		//Setters
 
 		function setEnable(_enable){
@@ -51,7 +50,7 @@ define([], function(){
 		}
 
 		//Public interface
-		
+
 		return {
 			execute: execute,
 

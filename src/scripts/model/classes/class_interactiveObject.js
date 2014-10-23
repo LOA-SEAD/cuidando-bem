@@ -4,12 +4,15 @@ represents one object that will be "clickable" inside a scene
 */
 
 define([], function(){
-	return function interactiveObject(_name, _cssClass, _actionFunction){
+	return function interactiveObject(_name, _cssClass, _actionFunction, _visible){
 		//Attributes
+
+        if (_visible == null)
+            _visible = true;
 
 		var name = _name;
 		var cssClass = _cssClass;		
-		var visible = true;
+		var visible = _visible;
 		var enable = true;		
 		var actionFunction = _actionFunction;
 

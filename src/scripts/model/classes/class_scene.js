@@ -9,6 +9,12 @@ define([], function(){
 	return function Scene(_name, _cssClass, _load, _unload){
 		//Attributes
 
+        if(_load == null)
+            _load = function (){};
+
+        if(_unload == null)
+            _unload = function (){};
+
 		var name = _name;
 		var cssClass = _cssClass;
 
@@ -23,12 +29,12 @@ define([], function(){
 
 		//Methods
 
-		function onLoad(){
+		function load(){
 			L.log("Scene "+name+" loader function");
 			loaderFunction();
 		}
 
-		function onUnload(){
+		function unload(){
 			L.log("Scene "+name+" unload function");
 			unloadFunction();
 		}
@@ -93,8 +99,8 @@ define([], function(){
 		return {			
 			getName: getName,
 			getCssClass: getCssClass,
-			onLoad: onLoad,
-			onUnLoad: onUnload,
+			load: load,
+			unload: unload,
 
             getActions: getActions,
             getAction: getAction,
