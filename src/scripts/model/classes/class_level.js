@@ -49,7 +49,11 @@ define([], function (){
             return flags;
         }
         function getFlag(_flagId){
-            return flags[_flagId];
+            if (typeof _flagId == "string"){
+                return flags[flags_aux[_flagId]];
+            }else{
+                return flags[_flagId];
+            }
         }
 
 		function getInitialScene(){
@@ -102,7 +106,9 @@ define([], function (){
 		}
 
 		function registerFlag(_flag){
+            flags_aux[_flag.getName()] = flags.length;
 			flags.push(_flag);
+            L.log(["Registering flag: ", _flag.getName()]);
 		}
 
 

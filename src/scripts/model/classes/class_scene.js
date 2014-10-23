@@ -17,8 +17,10 @@ define([], function(){
 
         var dialogs = [];
         var interactiveObjects = [];
+
         var actions = [];
-		
+        var actions_aux = {};
+
 		//Methods
 
 		function onLoad(){
@@ -45,6 +47,14 @@ define([], function(){
             return actions;
         }
 
+        function getAction(_actionId){
+            if(typeof _actionId == "string"){
+                return actions[actions_aux[_actionId]];
+            }else {
+                return actions[_actionId];
+            }
+        }
+
         function getDialogs(){
             return dialogs;
         }
@@ -56,6 +66,7 @@ define([], function(){
 		//Setters
 
         function registerAction(_action){
+            actions_aux[_action.getName()] = actions.length;
             actions.push(_action);
 
             L.log(["Registering Action: ", _action.getName(), "on Scene:" + name]);
@@ -79,6 +90,7 @@ define([], function(){
 			onUnLoad: onUnload,
 
             getActions: getActions,
+            getAction: getAction,
             getInteractiveObjects: getInteractiveObjects,
             getDialogs: getDialogs,
 
