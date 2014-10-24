@@ -2,6 +2,9 @@ node_modules
 ideia
 .idea/
 build/
+documentation/
+docs/
+
 
 *.example
 

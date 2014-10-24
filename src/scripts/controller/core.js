@@ -126,6 +126,18 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         CommandBar.updateAllActionButtons(Actions);
     }
 
+    function disableActionButton(_actionId){
+        var action = Scene.getAction(_actionId);
+        action.setEnable(false);
+        CommandBar.deactivateActionButton(action, _value);
+    }
+
+    function enableActionButton(_actionId){
+        var action = Scene.getAction(_actionId);
+        action.setEnable(true);
+        CommandBar.activateActionButton(action);
+    }
+
 //Getters
 
     function getFlag(_flagId){
@@ -136,6 +148,14 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
 
     function setFlag(_flagId, _value){
         Level.setFlag(_flagId, _value)
+    }
+
+    function setActionEnable(_actionId, _value){
+        var action = Scene.getAction(_actionId);
+        if(_value)
+            enableActionButton(action);
+        else
+            disableActionButton(action);
     }
 
     function setActionVisible(_actionId, _value){
@@ -182,6 +202,11 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         closeModalScene: closeModalScene,
         openEndLevel: openEndLevel,
         closeEndLevel: closeEndLevel,
+
+        enableActionButton: enableActionButton,
+        disableActionButton: disableActionButton,
+
+        setActionEnable: setActionEnable,
 
         getCurrentLevel : getCurrentLevel,
         getFlag: getFlag,

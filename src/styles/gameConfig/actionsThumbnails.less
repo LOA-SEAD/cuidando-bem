@@ -12,9 +12,13 @@
   margin: @actionButton-margin;
   background-image: @sem_imagem;
 }
-.action_button:hover {
+.action_button.enabled:hover {
   border-color: #4cae4c;
 }
+.action_button.disabled{
+  border-color: red;
+}
+
 .action-ir_corredor {
   background-image: @ir_corredor;
 }
