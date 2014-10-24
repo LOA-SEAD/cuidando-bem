@@ -12,8 +12,8 @@ require.config({
         text: 'libs/text',
         logger: 'libs/Logger',
 
-        gameConfig: 'config/gameConfig',
-        stageConfig: 'config/stageConfig',
+        gameConfig: 'controller/gameConfig',
+        stageConfig: 'stageConfig/stageConfig',
 
         Scene: 'model/classes/class_scene',
         Flag: 'model/classes/class_flag',
