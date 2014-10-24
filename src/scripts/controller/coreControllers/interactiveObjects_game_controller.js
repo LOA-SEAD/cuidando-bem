@@ -36,7 +36,10 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
         element.attr('title', _interactiveObject.getName());
         element.addClass(_interactiveObject.getCssClass());
 
+
         $(divSelector).append(element);
+        if(!_interactiveObject.isVisible())
+            element.hide();
     }
 
     function removeAllInteractiveObjects(){

@@ -41,13 +41,17 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
 
     //Add a button into the UI
     function addActionButton(_action){
-        $(barSelector).append(actionButtonTemplate);
-        var action_buttons = $(actionButtonSelector);
+        var element = $($(actionButtonTemplate)[0]);
 
-        var action_button = $(action_buttons[action_buttons.length-1]);
-        action_button.click(_action.getFunction());
-        action_button.attr('title', _action.getName());
-        action_button.addClass(_action.getCssClass());
+
+        element.click(_action.getFunction());
+        element.attr('title', _action.getName());
+        element.addClass(_action.getCssClass());
+
+
+        $(barSelector).append(element);
+        if(!_action.isVisible())
+            element.hide();
     }
     //Remove all buttons
     function removeAllActionButtons(){
