@@ -4,6 +4,7 @@ ideia
 build/
 documentation/
 docs/
+doc_src/
 
 
 *.example

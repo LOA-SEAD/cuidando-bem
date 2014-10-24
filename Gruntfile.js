@@ -12,6 +12,15 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
 
+        jsdoc : {
+            dist : {
+                src: [src_path+'scripts/**/*.js'],
+                options: {
+                    destination: documentation_path
+                }
+            }
+        },
+
         yuidoc: {
             all: {
                 name: '<%= pkg.name %>',
@@ -41,7 +50,7 @@ module.exports = function(grunt) {
             },
 
             docs: {
-                src: [ documentation_src_path ]
+                src: [ documentation_src_path, documentation_path]
             }
         },
 
@@ -55,7 +64,7 @@ module.exports = function(grunt) {
 
             docs: {
                 cwd: src_path,
-                src: ['**', '!**/*.less', '!styles/less', '!styles/gameConfig'],
+                src: ['**/*.js'],
                 dest: documentation_src_path,
                 expand: true
             }
@@ -178,7 +187,7 @@ module.exports = function(grunt) {
         },
 
         rename: {
-            main: {
+            build: {
                 files: [
                     {
                         src: [build_step_1_path],
@@ -200,10 +209,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-rename');
     grunt.loadNpmTasks('grunt-contrib-yuidoc');
+    grunt.loadNpmTasks('grunt-jsdoc');
 
     // Registering tasks
-    grunt.registerTask('default', ['clean:build', 'copy', 'replace', 'htmlmin', 'less:build', 'cssmin', 'clean:css', 'clean:final', 'requirejs:inline', 'clean:build', 'rename']);
+    grunt.registerTask('default', ['clean:build', 'copy:build', 'replace', 'htmlmin:build', 'less:build', 'cssmin:build', 'clean:css', 'clean:final', 'requirejs:compile', 'clean:build', 'rename:build']);
     grunt.registerTask('docs', ['clean:docs', 'copy:docs']);
     grunt.registerTask('yuidocs', ['yuidoc']);
+    grunt.registerTask('jsdocs', ['clean:docs', 'jsdoc']);
 
 };
