@@ -1,9 +1,10 @@
-define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene', 'scene'], function(game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene)
+define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene', 'scene'], function(game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene_con)
 {
 
 //Attributes
 
 	var Level;
+    var Scene;
     var Actions;
     var InteractiveObjects;
     var Dialogs;
@@ -11,7 +12,7 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
     var cur_scene;
 
 //Methods
-	function start(){
+	function start(_gameState){
 		L.group("Game Running:");
 
         changeLevel(game.getCurrentLevel());
@@ -33,7 +34,7 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         L.group('Starting level:' + Level.getName(), true);
 
         Level.setCurrentSceneById(cur_scene);
-        var newScene = Level.getCurrentScene();
+        Scene = Level.getCurrentScene();
 
         Actions = Level.getActions(cur_scene);
         Dialogs = Level.getDialogs(cur_scene);
@@ -41,11 +42,11 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
 
         Flags = Level.getFlags();
 
-        Scene.setScene(newScene);
+        Scene_con.setScene(Scene);
         CommandBar.changeToActionsButtons(Actions);
         InteractiveObject.changeToInteractiveObjects(InteractiveObjects);
 
-        newScene.load();
+        Scene.load();
         L.groupEnd();
 	}
 
@@ -53,11 +54,11 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
 	function changeScene(_newSceneId){
 
 
-        var oldScene = Level.getCurrentScene();
+        var oldScene = Scene;
         Level.setCurrentSceneById(_newSceneId);
-        var newScene = Level.getCurrentScene();
+        Scene = Level.getCurrentScene();
 
-        L.group("Change Scene to: "+ Level.getCurrentScene().getName(), true);
+        L.group("Change Scene to: "+ Scene.getName(), true);
 
         cur_scene = _newSceneId;
         Actions = Level.getActions(cur_scene);
@@ -67,8 +68,8 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         Flags = Level.getFlags();
 
         oldScene.unload();
-        Scene.changeScene(newScene);
-        newScene.load();
+        Scene_con.changeScene(Scene);
+        Scene.load();
 
         CommandBar.changeToActionsButtons(Actions);
         InteractiveObject.changeToInteractiveObjects(InteractiveObjects);
@@ -79,17 +80,19 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
     //ModalScene
 	function openModalScene(_modalSceneId){
         var modalScene = Level.getModalScene(_modalSceneId);
+        Scene = modalScene;
 
-        ModalScene.changeScene(modalScene);
+        ModalScene.open(modalScene);
         CommandBar.changeToActionsButtons(modalScene.getActions());
         InteractiveObject.changeToInteractiveObjects(modalScene.getInteractiveObjects());
     }
 
     function closeModalScene(){
-        ModalScene.hide();
+        ModalScene.close();
 
         CommandBar.changeToActionsButtons(Actions);
         InteractiveObject.changeToInteractiveObjects(InteractiveObjects);
+        Scene =  Level.getCurrentScene();
     }
 
     //Dialog
@@ -117,8 +120,6 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         return Level.getFlag(_flagId);
     }
 
-
-
 //Setters
 
     function setFlag(_flagId, _value){
@@ -126,13 +127,13 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
     }
 
     function setActionVisible(_actionId, _value){
-        var action = Level.getAction(_actionId);
+        var action = Scene.getAction(_actionId);
         action.setVisible(_value);
         CommandBar.setActionVisible(action, _value);
     }
 
     function toggleActionVisible(_actionId){
-        var action = Level.getAction(_actionId);
+        var action = Scene.getAction(_actionId);
         if(action.isVisible())
             action.setVisible(false);
         else
@@ -142,13 +143,13 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
     }
 
     function setInteractiveObjectVisible(_interactiveObjectId, _value){
-        var interactiveObject = Level.getAction(_interactiveObjectId);
+        var interactiveObject = Scene.getInteractiveObject(_interactiveObjectId);
         interactiveObject.setVisible(_value);
         InteractiveObject.setInteractiveObjectVisible(interactiveObject, _value);
     }
 
     function toggleInteractiveObjectVisible(_interactiveObjectId){
-        var interactiveObject = Level.getAction(_interactiveObjectId);
+        var interactiveObject = Scene.getInteractiveObject(_interactiveObjectId);
         if(interactiveObject.isVisible())
             interactiveObject.setVisible(false);
         else

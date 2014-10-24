@@ -18,22 +18,22 @@ define(['core'], function(core){
         $(divSelector).show();
     }
 
-    function changeScene(modalScene){
+    function open(_modalScene){
         if(lastSceneClass != ""){
-            $(divSelector).addClass(modalScene.getCssClass());
+            $(divSelector).addClass(_modalScene.getCssClass());
         }else
         {
             $(divSelector).removeClass(lastSceneClass);
-            $(divSelector).addClass(modalScene.getCssClass());
+            $(divSelector).addClass(_modalScene.getCssClass());
 
-            lastSceneClass = modalScene.getCssClass();
+            lastSceneClass = _modalScene.getCssClass();
         }
 
         show();
     }
 
-    function hide(){
-        L.info("Hide modal Scene");
+    function close(){
+        L.info("Close modal Scene");
         showing = false;
         $(divSelector).hide();
     }
@@ -50,9 +50,8 @@ define(['core'], function(core){
     return {
         init: init,
 
-        show: show,
-        hide: hide,
-        changeScene: changeScene,
+        close: close,
+        open: open,
 
         isShowing: isShowing
 

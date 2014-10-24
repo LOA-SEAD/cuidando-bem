@@ -22,7 +22,9 @@ define([], function(){
 		var unloadFunction = _unload;
 
         var dialogs = [];
+
         var interactiveObjects = [];
+        var interactiveObjects_aux = {};
 
         var actions = [];
         var actions_aux = {};
@@ -68,6 +70,14 @@ define([], function(){
         function getInteractiveObjects(){
             return interactiveObjects;
         }
+
+        function getInteractiveObject(_intObjId){
+            if(typeof _intObjId == "string"){
+                return interactiveObjects[interactiveObjects_aux[_intObjId]];
+            }else {
+                return interactiveObjects[_intObjId];
+            }
+        }
 		
 		//Setters
 
@@ -91,7 +101,9 @@ define([], function(){
         }
 
         function registerInteractiveObject(_interactiveObject){
+            interactiveObjects_aux[_interactiveObject.getName()] = interactiveObjects.length;
             interactiveObjects.push(_interactiveObject);
+
             L.log(["Registering Interactive Object: ", _interactiveObject.getName(), "on Scene:" + name]);
         }
 
@@ -105,6 +117,7 @@ define([], function(){
             getActions: getActions,
             getAction: getAction,
             getInteractiveObjects: getInteractiveObjects,
+            getInteractiveObject: getInteractiveObject,
             getDialogs: getDialogs,
 
             registerAction: registerAction,

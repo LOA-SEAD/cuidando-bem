@@ -373,6 +373,21 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 // fechar janela de objeto
             })); // posto de enfermagem
 
+        var gaveta_teste = new Scene("Gaveta", "modalScene-gavetaTeste");
+
+        gaveta_teste.registerAction(new Action("Fechar Gaveta", "action-fechar_gaveta",
+            function(){
+                core.closeModalScene();
+            }
+        ));
+
+        gaveta_teste.registerInteractiveObject(new InteractiveObject("Objeto", "intObj-objeto",
+            function (){
+                L.log("O objeto foi clicado");
+                core.setInteractiveObjectVisible(0, false);
+            }
+        ));
+
         level1.registerScene(recepcao);
         level1.registerScene(corredor);
         level1.registerScene(sala_de_leitos);
@@ -380,6 +395,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         level1.registerScene(posto_de_enfermagem);
 
         level1.setInitialScene(0);
+
+        level1.registerModalScene(gaveta_teste);
 
         game.registerLevel(level1);
         L.groupEnd();
