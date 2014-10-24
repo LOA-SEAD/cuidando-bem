@@ -43,10 +43,13 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
     function addActionButton(_action){
         var element = $($(actionButtonTemplate)[0]);
 
-
         element.click(_action.getFunction());
         element.attr('title', _action.getName());
         element.addClass(_action.getCssClass());
+        if(_action.isEnabled())
+            element.addClass("enabled");
+        else
+            element.addClass("disabled");
 
 
         $(barSelector).append(element);
@@ -62,12 +65,62 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
 
     }
     //Deactivate Button
-    function deactivateActionButton(){
-
+    function deactivateActionButton(_action){
+        var selector = _action.getCssClass();
+        var element = $('.' + selector);
+        element.removeClass("enabled");
+        element.addClass("disabled");
+        element.unbind("click");
     }
     //Activate button
-    function activateActionButton(){
+    function activateActionButton(_action){
+        var selector = _action.getCssClass();
+        var element = $('.' + selector);
+        element.removeClass("disabled");
+        element.addClass("enabled");
+        element.click(_action.getFunction());
+    }
 
+    function activeAllActionButtons(_actions){
+        L.group("Enabling action Buttons", true);
+        var i;
+
+        for(i=0;i<_actions.length;i++)
+        {
+            L.log("Action to be enabled " + i +": "+ _actions[i].getName());
+            var action = _actions[i];
+            activateActionButton(action);
+        }
+        L.groupEnd();
+    }
+
+    function deactivateAllActionButtons(){
+        L.group("Disabling action Buttons", true);
+        var i;
+
+        for(i=0;i<_actions.length;i++)
+        {
+            L.log("Action to be disabled " + i +": "+ _actions[i].getName());
+            var action = _actions[i];
+            deactivateActionButton(action);
+        }
+        L.groupEnd();
+    }
+
+    function updateAllActionButtons(){
+        L.group("Updating action Buttons", true);
+        var i;
+
+        for(i=0;i<_actions.length;i++)
+        {
+            L.log("Action to be updated " + i +": "+ _actions[i].getName());
+            var action = _actions[i];
+            if(action.isEnabled())
+                activateActionButton(action);
+            else
+                deactivateActionButton(action);
+        }
+        L.groupEnd();
     }
 
 //Getters
@@ -93,6 +146,10 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
         removeActionButton: removeActionButton,
         activateActionButton: activateActionButton,
         deactivateActionButton: deactivateActionButton,
+
+        activeAllActionButtons: activeAllActionButtons,
+        deactivateAllActionButtons: deactivateAllActionButtons,
+        updateAllActionButtons: updateAllActionButtons,
 
         setActionVisible: setActionVisible
     }

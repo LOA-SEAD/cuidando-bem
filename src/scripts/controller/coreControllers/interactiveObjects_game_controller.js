@@ -35,7 +35,10 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
         element.click(_interactiveObject.getFunction());
         element.attr('title', _interactiveObject.getName());
         element.addClass(_interactiveObject.getCssClass());
-
+        if(_interactiveObject.isEnabled())
+            element.addClass("enabled");
+        else
+            element.addClass("disabled");
 
         $(divSelector).append(element);
         if(!_interactiveObject.isVisible())
