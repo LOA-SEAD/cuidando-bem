@@ -99,10 +99,14 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
 	function openDialog(_dialogId){
         var dialog = Dialogs[_dialogId];
         Dialog.show(dialog);
+
+        deactivateAllActionButtons(Actions);
     }
 	
 	function closeDialog(){
         Dialog.close();
+
+        updateAllActionButtons();
     }
 
     //End Level
@@ -112,6 +116,14 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
 
     function closeEndLevel(){
 
+    }
+
+    function deactivateAllActionButtons(){
+        CommandBar.deactivateAllActionButtons(Actions);
+    }
+
+    function updateAllActionButtons(){
+        CommandBar.updateAllActionButtons(Actions);
     }
 
 //Getters
@@ -158,6 +170,8 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         InteractiveObject.setInteractiveObjectVisible(interactiveObject, interactiveObject.isVisible());
     }
 
+
+
 //Public Interface
 	return {
 		start : start,
@@ -177,6 +191,9 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         setActionVisible: setActionVisible,
         toggleActionVisible: toggleActionVisible,
         setInteractiveObjectVisible: setInteractiveObjectVisible,
-        toggleInteractiveObjectVisible: toggleInteractiveObjectVisible
+        toggleInteractiveObjectVisible: toggleInteractiveObjectVisible,
+
+        deactivateAllActionButtons: deactivateAllActionButtons,
+        updateAllActionButtons: updateAllActionButtons
 	}
 });

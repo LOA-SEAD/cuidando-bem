@@ -94,7 +94,7 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
         L.groupEnd();
     }
 
-    function deactivateAllActionButtons(){
+    function deactivateAllActionButtons(_actions){
         L.group("Disabling action Buttons", true);
         var i;
 
@@ -107,7 +107,7 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
         L.groupEnd();
     }
 
-    function updateAllActionButtons(){
+    function updateAllActionButtons(_actions){
         L.group("Updating action Buttons", true);
         var i;
 
