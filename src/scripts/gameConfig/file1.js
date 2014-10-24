@@ -1,7 +1,6 @@
 /*
  This module has every wrold variable from each game level so it can be easily loaded inside the game.
  New levels can easily be made by adding new game levels.
-
  */
 
 define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'core'],
@@ -21,20 +20,20 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
          Flags for level 1
          */
         level1.registerFlag(new Flag("conversar_recepcionista"), false);
-        level1.registerFlag(new Flag("conversar_paciente", false));                  // 0    - Convers. Pacient
-        level1.registerFlag(new Flag("pulseira_paciente", false));                   // 1    - Pulseira Pacient
-        level1.registerFlag(new Flag("confirmar_paciente", false));                  // 2    - Confirm. Pacient
-        level1.registerFlag(new Flag("conversar_mentor", false));                    // 3    - Convers. Mentor
-        level1.registerFlag(new Flag("termometro", false));                          // 4    - Termometro
-        level1.registerFlag(new Flag("medidor_pressao", false));                     // 5    - Med. Pressao
-        level1.registerFlag(new Flag("oximetro", false));                            // 6    - Oximetro
-        level1.registerFlag(new Flag("lavar_maos", false));                          // 7    - Lavar maos
-        level1.registerFlag(new Flag("medir_temperatura", false));                   // 8    - Medir temp.
-        level1.registerFlag(new Flag("medir_pulso", false));                         // 9    - Medir pulso
-        level1.registerFlag(new Flag("medir_freq_respiratoria", false));             // 10   - Medir freq. resp.
-        level1.registerFlag(new Flag("mentor_finaliza", false));                     // 11   - Mentor finaliza
-
-        var flags_on = false;    // if false it wont check for flags -- tests purpose
+        level1.registerFlag(new Flag("conversar_paciente", false));
+        level1.registerFlag(new Flag("pulseira_paciente", false));
+        level1.registerFlag(new Flag("confirmar_paciente", false));
+        level1.registerFlag(new Flag("conversar_mentor", false));
+        level1.registerFlag(new Flag("termometro", false));
+        level1.registerFlag(new Flag("medidor_pressao", false));
+        level1.registerFlag(new Flag("oximetro", false));
+        level1.registerFlag(new Flag("lavar_maos", false));
+        level1.registerFlag(new Flag("medir_temperatura", false));
+        level1.registerFlag(new Flag("medir_pulso", false));
+        level1.registerFlag(new Flag("medir_freq_respiratoria", false));
+        level1.registerFlag(new Flag("mentor_finaliza", false));
+        
+        var flags_on = true;    // if false it wont check for flags -- tests purpose
 
         /*
          Scenes for level 1
@@ -51,27 +50,22 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         fala_recepcionista[0] = new Dialog("recepcionista", "char-recepcionista",
             "Bom dia, você parece novo por aqui. Como posso ajudá-lo?");
         fala_recepcionista[0].registerOption({
-            text: "Bom dia, sou o novo técnico de enfermagem contratado.",
+            text: "Bom dia, sou o novo técnico de enfermagem contratado",
             actionFunction: function () {
                 level1.getFlag("conversar_recepcionista").setValue(true);
                 L.log("Selecionado 1a opção diálogo: " + level1.getFlag("conversar_recepcionista").getValue());
                 core.closeDialog(0);
                 core.openDialog(1);
             }});
-        fala_recepcionista[0].registerOption({
-            text: "Encerrar diálogo",
-            actionFunction: function () {
-                L.log("Encerrar o diálogo");
-                core.closeDialog(1);
-            }});
 
         fala_recepcionista[1] = new Dialog("recepcionista", "char-recepcionista",
-            "A sim o funcionário novo! O Enfermeiro mentor está lhe esperando no corredor.");
+            "A sim o funcionário novo! O Enfermeiro mentor está lhe esperando no corredor");
         fala_recepcionista[1].registerOption({
-            text: "Encerrar diálogo",
+            text: "Obrigado",
             actionFunction: function () {
                 L.log("Encerrar o diálogo");
                 core.closeDialog(1);
+                core.setActionVisible("Ir ao corredor", true);
             }});
 
         recepcao.registerDialogs(fala_recepcionista);
@@ -111,11 +105,13 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         }
 
         // Actions
-        recepcao.registerAction(
-            new Action("Ir ao corredor", "action-ir_corredor", recepcaoIrCorredor));
+        if(flags_on)
+            var visibility = false;
+        else
+            var visibility = true;
 
         recepcao.registerAction(
-            new Action("Fechar modal", "action-fechar_modal", function(){core.openModalScene(0);}));
+            new Action("Ir ao corredor", "action-ir_corredor", recepcaoIrCorredor, visibility));
 
         recepcao.registerAction(
             new Action("Conversar com a recepcionista", "action-abrir_dialogo", conversarRecepcionista));
@@ -373,20 +369,6 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 // fechar janela de objeto
             })); // posto de enfermagem
 
-        var gaveta_teste = new Scene("Gaveta", "modalScene-gavetaTeste");
-
-        gaveta_teste.registerAction(new Action("Fechar Gaveta", "action-fechar_gaveta",
-            function(){
-                core.closeModalScene();
-            }
-        ));
-
-        gaveta_teste.registerInteractiveObject(new InteractiveObject("Objeto", "intObj-objeto",
-            function (){
-                L.log("O objeto foi clicado");
-                core.setInteractiveObjectVisible(0, false);
-            }
-        ));
 
         level1.registerScene(recepcao);
         level1.registerScene(corredor);
@@ -396,7 +378,28 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         level1.setInitialScene(0);
 
-        level1.registerModalScene(gaveta_teste);
+        /*
+         EXEMPLO DE COMO UTILIZAR MODAL
+         var gaveta_teste = new Scene("Gaveta", "modalScene-gavetaTeste");
+
+         gaveta_teste.registerAction(new Action("Fechar Gaveta", "action-fechar_gaveta",
+         function(){
+         core.closeModalScene();
+         }
+         ));
+
+         gaveta_teste.registerInteractiveObject(new InteractiveObject("Objeto", "intObj-objeto",
+         function (){
+         L.log("O objeto foi clicado");
+         core.setInteractiveObjectVisible(0, false);
+         }
+         ));
+         level1.registerModalScene(gaveta_teste);
+
+         recepcao.registerAction(
+         new Action("Fechar modal", "action-fechar_modal", function(){core.openModalScene(0);}));
+
+         */
 
         game.registerLevel(level1);
         L.groupEnd();
