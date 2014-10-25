@@ -211,6 +211,6 @@ module.exports = function(grunt) {
     // Registering tasks
     grunt.registerTask('default', ['clean:build', 'copy:build', 'replace', 'htmlmin:build', 'less:build', 'cssmin:build', 'clean:css', 'clean:final', 'requirejs:compile', 'clean:build', 'rename:build']);
     grunt.registerTask('docs', ['clean:docs', 'copy:docs']);
-    grunt.registerTask('jsdocs', ['clean:docs', 'jsdoc']);
+    grunt.registerTask('jsdocs', ['clean:docs', 'copy:docs', 'jsdoc']);
 
 };

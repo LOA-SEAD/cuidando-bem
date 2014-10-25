@@ -1,6 +1,6 @@
 /**
  *
- * @name core
+ * @name Core Controller
  * @module
  */
 define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene', 'scene'], function(game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene_con)
