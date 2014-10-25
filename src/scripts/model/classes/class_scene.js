@@ -6,8 +6,13 @@ Each scene may have more than one interactive Object that will be declared later
 Each scene has a background image
 */
 define([], function(){
-	return function Scene(_name, _cssClass, _load, _unload){
-		//Attributes
+    /**
+     *
+     * @name Scene
+     * @class
+     */
+    function Scene(_name, _cssClass, _load, _unload){
+        //Attributes
 
         if(_load == null)
             _load = function (){};
@@ -15,11 +20,11 @@ define([], function(){
         if(_unload == null)
             _unload = function (){};
 
-		var name = _name;
-		var cssClass = _cssClass;
+        var name = _name;
+        var cssClass = _cssClass;
 
-		var loaderFunction = _load;
-		var unloadFunction = _unload;
+        var loaderFunction = _load;
+        var unloadFunction = _unload;
 
         var dialogs = [];
 
@@ -29,27 +34,27 @@ define([], function(){
         var actions = [];
         var actions_aux = {};
 
-		//Methods
+        //Methods
 
-		function load(){
-			L.info("Scene "+name+" load function");
-			loaderFunction();
-		}
+        function load(){
+            L.info("Scene "+name+" load function");
+            loaderFunction();
+        }
 
-		function unload(){
-			L.info("Scene "+name+" unload function");
-			unloadFunction();
-		}
-		
-		//Getters
+        function unload(){
+            L.info("Scene "+name+" unload function");
+            unloadFunction();
+        }
 
-		function getName(){
-			return name;
-		}
+        //Getters
 
-		function getCssClass(){
-			return cssClass;
-		}
+        function getName(){
+            return name;
+        }
+
+        function getCssClass(){
+            return cssClass;
+        }
 
         function getActions(){
             return actions;
@@ -78,8 +83,8 @@ define([], function(){
                 return interactiveObjects[_intObjId];
             }
         }
-		
-		//Setters
+
+        //Setters
 
         function registerAction(_action){
             actions_aux[_action.getName()] = actions.length;
@@ -108,11 +113,11 @@ define([], function(){
         }
 
         //Public interface
-		return {			
-			getName: getName,
-			getCssClass: getCssClass,
-			load: load,
-			unload: unload,
+        return {
+            getName: getName,
+            getCssClass: getCssClass,
+            load: load,
+            unload: unload,
 
             getActions: getActions,
             getAction: getAction,
@@ -124,7 +129,9 @@ define([], function(){
             registerDialog: registerDialog,
             registerDialogs: registerDialogs,
             registerInteractiveObject: registerInteractiveObject
-		}
-		
-	}
+        }
+
+    }
+
+	return Scene;
 });

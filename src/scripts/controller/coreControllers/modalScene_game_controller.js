@@ -1,3 +1,8 @@
+/**
+ *
+ * @name Modal Scene Game Controller
+ * @module
+ */
 define(['core'], function(core){
 
 //Attributes

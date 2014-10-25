@@ -1,3 +1,8 @@
+/**
+ *
+ * @name Stage Controller
+ * @module
+ */
 define(['text!../html/container.html'], function(container)
 {
 	function start(id)

@@ -1,3 +1,8 @@
+/**
+ *
+ * @name Load Game Screen Controller
+ * @module
+ */
 define(['stage'], function(stage){
 	function load()
 	{

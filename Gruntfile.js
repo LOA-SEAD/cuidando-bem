@@ -14,23 +14,12 @@ module.exports = function(grunt) {
 
         jsdoc : {
             dist : {
-                src: [src_path+'scripts/**/*.js'],
+                dest: documentation_path,
+                src: [documentation_src_path+'/**/*.js'],
                 options: {
-                    destination: documentation_path
-                }
-            }
-        },
-
-        yuidoc: {
-            all: {
-                name: '<%= pkg.name %>',
-                description: '<%= pkg.description %>',
-                version: '<%= pkg.version %>',
-                url: '<%= pkg.homepage %>',
-                options: {
-                    cwd: documentation_src_path,
-                    paths: ['./'],
-                    outdir: documentation_path
+                    destination: documentation_path,
+                    template : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
+                    configure : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template/jsdoc.conf.json"
                 }
             }
         },
@@ -64,7 +53,15 @@ module.exports = function(grunt) {
 
             docs: {
                 cwd: src_path,
-                src: ['**/*.js'],
+                src: [
+                    '**/*.js',
+                    '!scripts/libs/*.js',
+                    '!scripts/gameConfig/*.js',
+                    '!scripts/stageConfig/*.js',
+                    '!scripts/controller/levelsData_interface.js',
+                    '!scripts/main.js',
+                    '!scripts/requireJsBootstrap.js'
+                ],
                 dest: documentation_src_path,
                 expand: true
             }
@@ -214,7 +211,6 @@ module.exports = function(grunt) {
     // Registering tasks
     grunt.registerTask('default', ['clean:build', 'copy:build', 'replace', 'htmlmin:build', 'less:build', 'cssmin:build', 'clean:css', 'clean:final', 'requirejs:compile', 'clean:build', 'rename:build']);
     grunt.registerTask('docs', ['clean:docs', 'copy:docs']);
-    grunt.registerTask('yuidocs', ['yuidoc']);
     grunt.registerTask('jsdocs', ['clean:docs', 'jsdoc']);
 
 };

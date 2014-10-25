@@ -1,67 +1,76 @@
 define([], function(){
-	return function Action(_name, _cssClass, _actionFunction, _visible){
-		//Attributes
+
+    /**
+     *
+     * @name Action
+     * @class
+     */
+    function Action(_name, _cssClass, _actionFunction, _visible){
+        //Attributes
 
         if (_visible == null)
             _visible = true;
 
-		var name = _name;
-		var cssClass = _cssClass;
+        var name = _name;
+        var cssClass = _cssClass;
         var visible = _visible;
-		var enable = true;
-		var actionFunction = _actionFunction;
+        var enable = true;
+        var actionFunction = _actionFunction;
 
-		//Methods
+        //Methods
 
-		function execute(){
+        function execute(){
             actionFunction();
-		}
+        }
 
-		//Getters
+        //Getters
 
         function getFunction(){
             return actionFunction;
         }
 
-		function getName(){
-			return name;
-		}
+        function getName(){
+            return name;
+        }
 
-		function getCssClass(){
-			return cssClass;
-		}
+        function getCssClass(){
+            return cssClass;
+        }
 
-		function isEnabled(){
-			return enable;
-		}
+        function isEnabled(){
+            return enable;
+        }
 
-		function isVisible(){
-			return visible;
-		}
+        function isVisible(){
+            return visible;
+        }
 
-		//Setters
+        //Setters
 
-		function setEnable(_enable){
-			enable = _enable;
-		}
+        function setEnable(_enable){
+            enable = _enable;
+        }
 
-		function setVisible(_visible){
-			visible = _visible;
-		}
+        function setVisible(_visible){
+            visible = _visible;
+        }
 
-		//Public interface
+        //Public interface
 
-		return {
-			execute: execute,
+        return {
+            execute: execute,
 
             getFunction: getFunction,
-			getName: getName,
-			getCssClass: getCssClass,
-			isEnabled: isEnabled,
-			isVisible: isVisible,
+            getName: getName,
+            getCssClass: getCssClass,
+            isEnabled: isEnabled,
+            isVisible: isVisible,
 
-			setEnable: setEnable,
-			setVisible: setVisible
-		}
-	}
+            setEnable: setEnable,
+            setVisible: setVisible
+        }
+    }
+
+
+	return Action;
 });

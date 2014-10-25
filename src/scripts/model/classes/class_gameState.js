@@ -1,23 +1,29 @@
 define([], function(){
 
-   return function GameState ()
-   {
-       var currentLevel = 0;
+    /**
+     *
+     * @name GameState
+     * @class
+     */
+    function GameState (){
+        var currentLevel = 0;
 
-       function getCurrentLevel(){
-           return this.currentLevel;
-       }
+        function getCurrentLevel(){
+            return this.currentLevel;
+        }
 
-       function setCurrentLevel(_level){
-           this.currentLevel = _level;
-       }
+        function setCurrentLevel(_level){
+            this.currentLevel = _level;
+        }
 
-       return {
-           currentLevel: currentLevel,
+        return {
+            currentLevel: currentLevel,
 
-           setCurrentLevel: setCurrentLevel,
-           getCurrentLevel: getCurrentLevel
-       }
-   }
+            setCurrentLevel: setCurrentLevel,
+            getCurrentLevel: getCurrentLevel
+        }
+    }
+
+   return GameState;
 
 });

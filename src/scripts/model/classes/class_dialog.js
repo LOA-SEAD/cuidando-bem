@@ -10,66 +10,74 @@
 */
 
 define([], function(){
-	return function Dialog(_speakerName, _speakerCssClass, _text){
-		//Inner Class
-		function DialogOption(_text, _actionFunction){
-			this.text = _text;
-			this.actionFunction = _actionFunction;
-		}
 
-		//Attributes
-		var speakerName = _speakerName;
-		var speakerCssClass = _speakerCssClass;
-		var text = _text;
+    /**
+     *
+     * @name Dialog
+     * @class
+     */
+    function Dialog(_speakerName, _speakerCssClass, _text){
+        //Inner Class
+        function DialogOption(_text, _actionFunction){
+            this.text = _text;
+            this.actionFunction = _actionFunction;
+        }
 
-		var options = [];
+        //Attributes
+        var speakerName = _speakerName;
+        var speakerCssClass = _speakerCssClass;
+        var text = _text;
 
-		//Methods
+        var options = [];
 
-		function executeOption(_optionIndex){
-			options[_optionIndex].actionFunction();
-		}
-		
-		//Getters
+        //Methods
+
+        function executeOption(_optionIndex){
+            options[_optionIndex].actionFunction();
+        }
+
+        //Getters
 
         function getOptions(){
             return options;
         }
 
-		function getSpeakerName(){
-			return speakerName;
-		}
+        function getSpeakerName(){
+            return speakerName;
+        }
 
-		function getSpeakerCssClass(){
-			return speakerCssClass;
-		}
+        function getSpeakerCssClass(){
+            return speakerCssClass;
+        }
 
-		function getText(){
-			return text;
-		}
+        function getText(){
+            return text;
+        }
 
-		function getOptionText(_optionIndex){
-			return options[_optionIndex].text;
-		}
-		
-		//Setters
-		function registerOption(_option){
-			options.push(_option);
-		}
-	
-		//Public interface
-		
-		return {
+        function getOptionText(_optionIndex){
+            return options[_optionIndex].text;
+        }
+
+        //Setters
+        function registerOption(_option){
+            options.push(_option);
+        }
+
+        //Public interface
+
+        return {
             DialogOption: DialogOption,
-			executeOption: executeOption,
+            executeOption: executeOption,
 
-			getSpeakerName: getSpeakerName,
-			getSpeakerCssClass: getSpeakerCssClass,
-			getText: getText,
+            getSpeakerName: getSpeakerName,
+            getSpeakerCssClass: getSpeakerCssClass,
+            getText: getText,
             getOptions: getOptions,
-			getOptionText: getOptionText,
+            getOptionText: getOptionText,
 
-			registerOption: registerOption			
-		}
-	}
+            registerOption: registerOption
+        }
+    }
+
+	return Dialog;
 });

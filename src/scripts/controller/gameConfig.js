@@ -1,6 +1,7 @@
-/*
-
-
+/**
+ *
+ * @name gameConfig
+ * @module
  */
 
 define([], function () {

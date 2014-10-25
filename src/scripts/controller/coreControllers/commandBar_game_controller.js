@@ -1,3 +1,8 @@
+/**
+ *
+ * @name Command Bar Game Controller
+ * @module
+ */
 define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(core, actionButtonTemplate){
 
 //Attributes

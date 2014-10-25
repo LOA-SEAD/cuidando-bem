@@ -1,7 +1,11 @@
 /*
     The stateMachine will be a module responsible to handle all the game variables and its mechanics.    
 */
-
+/**
+ *
+ * @name Levels Data
+ * @module
+ */
 define([], function()
 {
 

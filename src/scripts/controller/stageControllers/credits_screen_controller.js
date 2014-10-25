@@ -1,3 +1,8 @@
+/**
+ *
+ * @name Credits Screen Controller
+ * @module
+ */
 define(['stage'], function(stage){
 	function load()
 	{

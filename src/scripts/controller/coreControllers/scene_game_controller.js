@@ -1,3 +1,8 @@
+/**
+ *
+ * @name Scene Game Controller
+ * @module
+ */
 define(['core'], function(core){
 
 

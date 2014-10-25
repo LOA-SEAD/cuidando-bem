@@ -1,44 +1,51 @@
 define([], function(){
-	return function Flag(name, value){
-		//Attributes
+    /**
+     *
+     * @name Flag
+     * @class
+     */
+    function Flag(name, value){
+        //Attributes
 
-		var name = name;
-		var value = value;	
-		
-		//Methods
-		
-		//Getters
+        var name = name;
+        var value = value;
 
-		function getName()
-		{
-			return name;
-		}		
+        //Methods
 
-		function getValue()
-		{
-			return value;
-		}
-		
-		//Setters
+        //Getters
 
-		function setName(_name)
-		{
-			name = _name;
-		}
+        function getName()
+        {
+            return name;
+        }
 
-		function setValue(_value)
-		{
-			value = _value;
-		}
-		
-		//Public interface
-		return {			
-			getName: getName,
-			getValue: getValue,
+        function getValue()
+        {
+            return value;
+        }
 
-			setName: setName,
-			setValue: setValue			
-		}
-		
-	}
+        //Setters
+
+        function setName(_name)
+        {
+            name = _name;
+        }
+
+        function setValue(_value)
+        {
+            value = _value;
+        }
+
+        //Public interface
+        return {
+            getName: getName,
+            getValue: getValue,
+
+            setName: setName,
+            setValue: setValue
+        }
+
+    }
+
+	return Flag;
 });

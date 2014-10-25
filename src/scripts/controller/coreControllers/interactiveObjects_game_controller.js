@@ -1,3 +1,8 @@
+/**
+ *
+ * @name InteractiveObjects Game Controller
+ * @module
+ */
 define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], function(core, interactiveObjectTemplate){
 
 //Attributes

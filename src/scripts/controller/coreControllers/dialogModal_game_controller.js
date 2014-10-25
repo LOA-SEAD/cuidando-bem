@@ -1,3 +1,8 @@
+/**
+ *
+ * @name Dialog Modal Game Controller
+ * @module
+ */
 define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function(core, dialogButtonTemplate){
 
 //Attributes
