@@ -11,7 +11,7 @@ define([], function () {
         "file1"
     ];
 
-    for(i = 0; i< filePaths.length; i++){
-        require([generalPath+ filePaths[i]]);
+    for (i = 0; i < filePaths.length; i++) {
+        require([generalPath + filePaths[i]]);
     }
 });

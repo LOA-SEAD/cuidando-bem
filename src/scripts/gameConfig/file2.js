@@ -78,19 +78,20 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         recepcao.registerDialogs(fala_recepcionista);
 
         // Functions
-        function recepcaoOnLoad(){
+        function recepcaoOnLoad() {
             core.openDialog(0)
         }
+
         function recepcaoIrCorredor() {
             L.log("Funcao: recepcao_ir_corredor");
-            if(!flags_on){  // wont check for flags
+            if (!flags_on) {  // wont check for flags
                 core.closeDialog(0);
                 core.closeDialog(1);
                 core.changeScene(1);
                 L.log("Ir para o corredor");
             }
-            else{
-                if(level1.getFlag("conversar_recepcionista").getValue() == true){
+            else {
+                if (level1.getFlag("conversar_recepcionista").getValue() == true) {
                     core.closeDialog(0);
                     core.closeDialog(1);
                     core.changeScene(1);
@@ -116,7 +117,9 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             new Action("Ir ao corredor", "action-ir_corredor", recepcaoIrCorredor));
 
         recepcao.registerAction(
-            new Action("Fechar modal", "action-fechar_modal", function(){core.openModalScene(0);}));
+            new Action("Fechar modal", "action-fechar_modal", function () {
+                core.openModalScene(0);
+            }));
 
         recepcao.registerAction(
             new Action("Conversar com a recepcionista", "action-abrir_dialogo", conversarRecepcionista));
@@ -145,7 +148,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 "de nossos clientes, utilizando os protocolos de segurança do paciente.");
         fala_mentor[0].registerOption({
             text: "Obrigado",
-            actionFunction: function() {
+            actionFunction: function () {
                 level1.getFlag("conversar_mentor").setValue(true);
                 core.closeDialog();
                 core.openDialog(1);
@@ -153,7 +156,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         });
         fala_mentor[0].registerOption({
             text: "Encerrar diálogo",
-            actionFunction: function() {
+            actionFunction: function () {
                 core.closeDialog();
             }
         });
@@ -162,7 +165,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             "Agora por aqui, me acompanhe até a enfermaria masculina");
         fala_mentor[1].registerOption({
             text: "Encerrar diálogo",
-            actionFunction: function() {
+            actionFunction: function () {
                 core.closeDialog();
             }
         });
@@ -174,22 +177,23 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             L.log("Olha eu aqui! ");
             core.openDialog(0);
         }
+
         function ir_sala_de_leitos() {
-            if(!flags_on){
+            if (!flags_on) {
                 L.log("Action: ir_sala_de_leitos");
                 core.changeScene(2);
             } else {
-                if(level1.getFlag("conversar_mentor").getValue() == true) {
+                if (level1.getFlag("conversar_mentor").getValue() == true) {
                     core.changeScene(2);
                     L.log("Action: ir_sala_de_leitos");
-                } else{
+                } else {
                     L.log("Necessita ação: falar com mentor");
                 }
             }
         }
 
         function ir_posto_de_enfermagem() {
-            if(!flags_on){
+            if (!flags_on) {
                 L.log("Action: ir_posto_de_enfermagem");
                 core.changeScene(4);
             }

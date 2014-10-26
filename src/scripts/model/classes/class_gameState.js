@@ -1,11 +1,11 @@
-define([], function(){
+define([], function () {
 
     /**
      * @class
      * @name GameState
      * @return ObjectExpression
-*/
-    function GameState (){
+     */
+    function GameState() {
         var currentLevel = 0;
 
         /**
@@ -13,8 +13,8 @@ define([], function(){
          * @method getCurrentLevel
          * @return MemberExpression
          * @memberOf GameState
-*/
-        function getCurrentLevel(){
+         */
+        function getCurrentLevel() {
             return this.currentLevel;
         }
 
@@ -23,8 +23,8 @@ define([], function(){
          * @method setCurrentLevel
          * @param {} _level
          * @memberOf GameState
-*/
-        function setCurrentLevel(_level){
+         */
+        function setCurrentLevel(_level) {
             this.currentLevel = _level;
         }
 
@@ -36,6 +36,6 @@ define([], function(){
         }
     }
 
-   return GameState;
+    return GameState;
 
 });

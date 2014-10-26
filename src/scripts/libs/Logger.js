@@ -4,20 +4,20 @@
 
  */
 
-function Logger(){
+function Logger() {
 
     var debug_mode = true;
 
-    function debug(){
-        if(debug_mode) {
+    function debug() {
+        if (debug_mode) {
             return function () {
                 debugger;
             }
         }
     }
 
-    function group(id, collapse){
-        if(debug_mode) {
+    function group(id, collapse) {
+        if (debug_mode) {
             if (collapse === true) {
                 console.groupCollapsed(id);
             } else {
@@ -26,110 +26,109 @@ function Logger(){
         }
     }
 
-    function groupEnd(){
-        if(debug_mode){
+    function groupEnd() {
+        if (debug_mode) {
             console.groupEnd();
         }
     }
 
-    function count(id){
-        if(debug_mode) {
+    function count(id) {
+        if (debug_mode) {
             console.count(id);
         }
     }
 
     function dir(obj) {
-        if (debug_mode){
+        if (debug_mode) {
             console.dir(obj);
         }
     }
 
-    function error(msg, ident){
-        if(debug_mode) {
+    function error(msg, ident) {
+        if (debug_mode) {
             exec(msg, ident, 'error');
         }
     }
 
-    function info(msg, ident){
-        if(debug_mode){
+    function info(msg, ident) {
+        if (debug_mode) {
             exec(msg, ident, 'info');
         }
     }
 
-    function log(msg, ident){
-        if(debug_mode){
+    function log(msg, ident) {
+        if (debug_mode) {
             exec(msg, ident, 'log');
         }
 
     }
 
-    function warn(msg, ident){
-        if(debug_mode){
+    function warn(msg, ident) {
+        if (debug_mode) {
             exec(msg, ident, 'warn');
         }
     }
 
-    function table(msg, ident){
-        if(debug_mode){
+    function table(msg, ident) {
+        if (debug_mode) {
             exec(msg, ident, 'table');
         }
     }
 
-    function time(id){
-        if(debug_mode){
+    function time(id) {
+        if (debug_mode) {
             console.time(id);
         }
     }
 
-    function timeEnd(id, ident){
-        if(debug_mode){
+    function timeEnd(id, ident) {
+        if (debug_mode) {
             console.timeEnd(id);
         }
     }
 
-    function makeIdentation(level){
+    function makeIdentation(level) {
 
-        if(typeof level != "number")
+        if (typeof level != "number")
             level = 0;
 
         var ident = "";
         var i;
 
-        for(i = 0; i< level; i++){
+        for (i = 0; i < level; i++) {
             ident += "  ";
         }
 
-        if(ident == "")
+        if (ident == "")
             return "";
         else
             return ident;
     }
 
-    function exec(msg, ident, command){
+    function exec(msg, ident, command) {
         var loggerCounter;
         var iden = makeIdentation(ident);
         var arg = "";
 
-        if(iden != "") {
+        if (iden != "") {
             arg += '"' + iden + '"';
-            if(typeof msg == "string")
-                arg+= '+';
+            if (typeof msg == "string")
+                arg += '+';
         }
 
 
-
-        if(typeof msg == 'object'){
+        if (typeof msg == 'object') {
             for (loggerCounter = 0; loggerCounter < msg.length; loggerCounter++) {
                 if (loggerCounter == 0 && arg == "")
-                    arg += "msg["+loggerCounter+"]";
+                    arg += "msg[" + loggerCounter + "]";
                 else
-                    arg += ", " + "msg["+loggerCounter+"]";
+                    arg += ", " + "msg[" + loggerCounter + "]";
             }
-        }else{
-            arg += '"'+msg+'"';
+        } else {
+            arg += '"' + msg + '"';
         }
 
-        var fullCommand  ='console.'+command+'('+arg+');';
+        var fullCommand = 'console.' + command + '(' + arg + ');';
         eval(fullCommand);
     }
 

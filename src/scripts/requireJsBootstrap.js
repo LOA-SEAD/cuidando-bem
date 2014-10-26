@@ -1,13 +1,13 @@
 /*
-    This file is required by require.js to work properly. It configures all file paths so it is easier
-to import them inside each module.
+ This file is required by require.js to work properly. It configures all file paths so it is easier
+ to import them inside each module.
 
-*/
+ */
 
 //Configure all files paths, so inside each module the files address are shorter
 require.config({
     baseUrl: 'scripts/',
-    paths: {        
+    paths: {
         jquery: 'libs/jquery-min',
         text: 'libs/text',
         logger: 'libs/Logger',
@@ -21,7 +21,7 @@ require.config({
         Level: 'model/classes/class_level',
         Dialog: 'model/classes/class_dialog',
         InteractiveObject: 'model/classes/class_interactiveObject',
-        
+
         levelsData: 'model/levelsData',
 
         levelsData_interface: 'controller/levelsData_interface',
@@ -35,13 +35,13 @@ require.config({
         interactiveObjects: "controller/coreControllers/interactiveObjects_game_controller",
         modalScene: "controller/coreControllers/modalScene_game_controller",
         scene: 'controller/coreControllers/scene_game_controller'
-       
-        
+
+
     }
 });
 //Init the app when everything is ready
 
-require(["logger", "jquery", "libs/less"], function(){
+require(["logger", "jquery", "libs/less"], function () {
     L.group(" 'Cuidando Bem' Log:");
     require(["main"]);
 });

@@ -1,12 +1,12 @@
 /* 
-This module declares the object type scene that represents one of the rooms inside the game.
+ This module declares the object type scene that represents one of the rooms inside the game.
 
-Each scene may have more than one interactive Object that will be declared later.
+ Each scene may have more than one interactive Object that will be declared later.
 
-Each scene has a background image
-* @memberOf Scene
-*/
-define([], function(){
+ Each scene has a background image
+ * @memberOf Scene
+ */
+define([], function () {
     /**
      * @class
      * @name Scene
@@ -15,23 +15,25 @@ define([], function(){
      * @param {} _load
      * @param {} _unload
      * @return ObjectExpression
-*/
-    function Scene(_name, _cssClass, _load, _unload){
+     */
+    function Scene(_name, _cssClass, _load, _unload) {
         //Attributes
 
-        if(_load == null)
+        if (_load == null)
             /**
              * Description
              * @memberOf Scene
-*/
-            _load = function (){};
+             */
+            _load = function () {
+            };
 
-        if(_unload == null)
+        if (_unload == null)
             /**
              * Description
              * @memberOf Scene
-*/
-            _unload = function (){};
+             */
+            _unload = function () {
+            };
 
         var name = _name;
         var cssClass = _cssClass;
@@ -53,9 +55,9 @@ define([], function(){
          * Description
          * @method load
          * @memberOf Scene
-*/
-        function load(){
-            L.info("Scene "+name+" load function");
+         */
+        function load() {
+            L.info("Scene " + name + " load function");
             loaderFunction();
         }
 
@@ -63,9 +65,9 @@ define([], function(){
          * Description
          * @method unload
          * @memberOf Scene
-*/
-        function unload(){
-            L.info("Scene "+name+" unload function");
+         */
+        function unload() {
+            L.info("Scene " + name + " unload function");
             unloadFunction();
         }
 
@@ -76,8 +78,8 @@ define([], function(){
          * @method getName
          * @return name
          * @memberOf Scene
-*/
-        function getName(){
+         */
+        function getName() {
             return name;
         }
 
@@ -86,8 +88,8 @@ define([], function(){
          * @method getCssClass
          * @return cssClass
          * @memberOf Scene
-*/
-        function getCssClass(){
+         */
+        function getCssClass() {
             return cssClass;
         }
 
@@ -96,8 +98,8 @@ define([], function(){
          * @method getActions
          * @return actions
          * @memberOf Scene
-*/
-        function getActions(){
+         */
+        function getActions() {
             return actions;
         }
 
@@ -106,11 +108,11 @@ define([], function(){
          * @method getAction
          * @param {} _actionId
          * @memberOf Scene
-*/
-        function getAction(_actionId){
-            if(typeof _actionId == "string"){
+         */
+        function getAction(_actionId) {
+            if (typeof _actionId == "string") {
                 return actions[actions_aux[_actionId]];
-            }else {
+            } else {
                 return actions[_actionId];
             }
         }
@@ -120,8 +122,8 @@ define([], function(){
          * @method getDialogs
          * @return dialogs
          * @memberOf Scene
-*/
-        function getDialogs(){
+         */
+        function getDialogs() {
             return dialogs;
         }
 
@@ -130,8 +132,8 @@ define([], function(){
          * @method getInteractiveObjects
          * @return interactiveObjects
          * @memberOf Scene
-*/
-        function getInteractiveObjects(){
+         */
+        function getInteractiveObjects() {
             return interactiveObjects;
         }
 
@@ -140,11 +142,11 @@ define([], function(){
          * @method getInteractiveObject
          * @param {} _intObjId
          * @memberOf Scene
-*/
-        function getInteractiveObject(_intObjId){
-            if(typeof _intObjId == "string"){
+         */
+        function getInteractiveObject(_intObjId) {
+            if (typeof _intObjId == "string") {
                 return interactiveObjects[interactiveObjects_aux[_intObjId]];
-            }else {
+            } else {
                 return interactiveObjects[_intObjId];
             }
         }
@@ -156,8 +158,8 @@ define([], function(){
          * @method registerAction
          * @param {} _action
          * @memberOf Scene
-*/
-        function registerAction(_action){
+         */
+        function registerAction(_action) {
             actions_aux[_action.getName()] = actions.length;
             actions.push(_action);
 
@@ -169,8 +171,8 @@ define([], function(){
          * @method registerDialog
          * @param {} _dialog
          * @memberOf Scene
-*/
-        function registerDialog(_dialog){
+         */
+        function registerDialog(_dialog) {
             dialogs.push(_dialog);
             L.log(["Registering Dialog: ", _dialog.getSpeakerName(), "on Scene:" + name]);
         }
@@ -180,9 +182,9 @@ define([], function(){
          * @method registerDialogs
          * @param {} _dialogs
          * @memberOf Scene
-*/
-        function registerDialogs(_dialogs){
-            for(i = 0; i < _dialogs.length; i++){
+         */
+        function registerDialogs(_dialogs) {
+            for (i = 0; i < _dialogs.length; i++) {
                 dialogs.push(_dialogs[i]);
                 L.log(["Registering Dialog: ", _dialogs[i].getSpeakerName(), "on Scene:" + name]);
             }
@@ -193,8 +195,8 @@ define([], function(){
          * @method registerInteractiveObject
          * @param {} _interactiveObject
          * @memberOf Scene
-*/
-        function registerInteractiveObject(_interactiveObject){
+         */
+        function registerInteractiveObject(_interactiveObject) {
             interactiveObjects_aux[_interactiveObject.getName()] = interactiveObjects.length;
             interactiveObjects.push(_interactiveObject);
 
@@ -222,5 +224,5 @@ define([], function(){
 
     }
 
-	return Scene;
+    return Scene;
 });

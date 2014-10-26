@@ -1,9 +1,9 @@
 /* 
-This module declares the object interactive Object that 
-represents one object that will be "clickable" inside a scene
-*/
+ This module declares the object interactive Object that
+ represents one object that will be "clickable" inside a scene
+ */
 
-define([], function(){
+define([], function () {
     /**
      * @class
      * @name InteractiveObject
@@ -12,8 +12,8 @@ define([], function(){
      * @param {} _actionFunction
      * @param {} _visible
      * @return ObjectExpression
-*/
-    function interactiveObject(_name, _cssClass, _actionFunction, _visible){
+     */
+    function interactiveObject(_name, _cssClass, _actionFunction, _visible) {
         //Attributes
 
         if (_visible == null)
@@ -31,8 +31,8 @@ define([], function(){
          * Description
          * @method execute
          * @memberOf InteractiveObject
-*/
-        function execute(){
+         */
+        function execute() {
             action();
         }
 
@@ -43,8 +43,8 @@ define([], function(){
          * @method getFunction
          * @return actionFunction
          * @memberOf InteractiveObject
-*/
-        function getFunction(){
+         */
+        function getFunction() {
             return actionFunction;
         }
 
@@ -53,8 +53,8 @@ define([], function(){
          * @method getName
          * @return name
          * @memberOf InteractiveObject
-*/
-        function getName(){
+         */
+        function getName() {
             return name;
         }
 
@@ -63,8 +63,8 @@ define([], function(){
          * @method getCssClass
          * @return cssClass
          * @memberOf InteractiveObject
-*/
-        function getCssClass(){
+         */
+        function getCssClass() {
             return cssClass;
         }
 
@@ -73,8 +73,8 @@ define([], function(){
          * @method isEnabled
          * @return enable
          * @memberOf InteractiveObject
-*/
-        function isEnabled(){
+         */
+        function isEnabled() {
             return enable;
         }
 
@@ -83,8 +83,8 @@ define([], function(){
          * @method isVisible
          * @return visible
          * @memberOf InteractiveObject
-*/
-        function isVisible(){
+         */
+        function isVisible() {
             return visible;
         }
 
@@ -95,8 +95,8 @@ define([], function(){
          * @method setEnable
          * @param {} _enable
          * @memberOf InteractiveObject
-*/
-        function setEnable(_enable){
+         */
+        function setEnable(_enable) {
             enable = _enable;
         }
 
@@ -105,10 +105,11 @@ define([], function(){
          * @method setVisible
          * @param {} _visible
          * @memberOf InteractiveObject
-*/
-        function setVisible(_visible){
+         */
+        function setVisible(_visible) {
             visible = _visible;
         }
+
         //Public Interface
 
         return {
@@ -125,5 +126,5 @@ define([], function(){
         }
     }
 
-	return interactiveObject;
+    return interactiveObject;
 });

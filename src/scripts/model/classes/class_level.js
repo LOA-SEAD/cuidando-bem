@@ -1,13 +1,13 @@
-define([], function (){
+define([], function () {
     /**
      * @class
      * @name Level
      * @param {} _name
      * @param {} _isEndOfLevelFunction
      * @param {} _nextLevelFunction
-     * @return ObjectExpression     
-*/
-    function Level(_name, _isEndOfLevelFunction, _nextLevelFunction){
+     * @return ObjectExpression
+     */
+    function Level(_name, _isEndOfLevelFunction, _nextLevelFunction) {
         //Attributes
 
         var name = _name;
@@ -35,8 +35,8 @@ define([], function (){
          * @method getName
          * @return name
          * @memberOf Level
-*/
-        function getName(){
+         */
+        function getName() {
             return name;
         }
 
@@ -46,8 +46,8 @@ define([], function (){
          * @param {} _sceneId
          * @return CallExpression
          * @memberOf Level
-*/
-        function getActions(_sceneId){
+         */
+        function getActions(_sceneId) {
             return getScene(_sceneId).getActions();
         }
 
@@ -57,8 +57,8 @@ define([], function (){
          * @param {} _sceneId
          * @return CallExpression
          * @memberOf Level
-*/
-        function getDialogs(_sceneId){
+         */
+        function getDialogs(_sceneId) {
             return getScene(_sceneId).getDialogs();
         }
 
@@ -68,8 +68,8 @@ define([], function (){
          * @param {} _sceneId
          * @return CallExpression
          * @memberOf Level
-*/
-        function getInteractiveObjects(_sceneId){
+         */
+        function getInteractiveObjects(_sceneId) {
             return getScene(_sceneId).getInteractiveObjects();
         }
 
@@ -78,11 +78,11 @@ define([], function (){
          * @method getScene
          * @param {} _sceneId
          * @memberOf Level
-*/
-        function getScene(_sceneId){
-            if(typeof _sceneId == "string"){
+         */
+        function getScene(_sceneId) {
+            if (typeof _sceneId == "string") {
                 return scenes[scenes_aux[_sceneId]];
-            }else{
+            } else {
                 return scenes[_sceneId];
             }
         }
@@ -92,11 +92,11 @@ define([], function (){
          * @method getModalScene
          * @param {} _modalSceneId
          * @memberOf Level
-*/
-        function getModalScene(_modalSceneId){
-            if(typeof _modalSceneId == "string"){
+         */
+        function getModalScene(_modalSceneId) {
+            if (typeof _modalSceneId == "string") {
                 return modalScenes[modalScenes_aux[_modalSceneId]];
-            }else{
+            } else {
                 return modalScenes[_modalSceneId];
             }
         }
@@ -106,8 +106,8 @@ define([], function (){
          * @method getFlags
          * @return flags
          * @memberOf Level
-*/
-        function getFlags(){
+         */
+        function getFlags() {
             return flags;
         }
 
@@ -116,11 +116,11 @@ define([], function (){
          * @method getFlag
          * @param {} _flagId
          * @memberOf Level
-*/
-        function getFlag(_flagId){
-            if (typeof _flagId == "string"){
+         */
+        function getFlag(_flagId) {
+            if (typeof _flagId == "string") {
                 return flags[flags_aux[_flagId]];
-            }else{
+            } else {
                 return flags[_flagId];
             }
         }
@@ -130,8 +130,8 @@ define([], function (){
          * @method getInitialScene
          * @return MemberExpression
          * @memberOf Level
-*/
-        function getInitialScene(){
+         */
+        function getInitialScene() {
             return scenes[initialScene];
         }
 
@@ -140,8 +140,8 @@ define([], function (){
          * @method getCurrentScene
          * @return MemberExpression
          * @memberOf Level
-*/
-        function getCurrentScene(){
+         */
+        function getCurrentScene() {
             return scenes[currentScene];
         }
 
@@ -150,8 +150,8 @@ define([], function (){
          * @method getCurrentSceneId
          * @return currentScene
          * @memberOf Level
-*/
-        function getCurrentSceneId(){
+         */
+        function getCurrentSceneId() {
             return currentScene;
         }
 
@@ -160,8 +160,8 @@ define([], function (){
          * @method isEndOfLevel
          * @return CallExpression
          * @memberOf Level
-*/
-        function isEndOfLevel(){
+         */
+        function isEndOfLevel() {
             return isEndOfLevelFunction();
         }
 
@@ -170,8 +170,8 @@ define([], function (){
          * @method getNextLevel
          * @return CallExpression
          * @memberOf Level
-*/
-        function getNextLevel(){
+         */
+        function getNextLevel() {
             return nextLevelFunciton();
         }
 
@@ -182,8 +182,8 @@ define([], function (){
          * @method setInitialScene
          * @param {} _initialScene
          * @memberOf Level
-*/
-        function setInitialScene(_initialScene){
+         */
+        function setInitialScene(_initialScene) {
             initialScene = _initialScene;
             currentScene = _initialScene;
         }
@@ -193,8 +193,8 @@ define([], function (){
          * @method setCurrentSceneById
          * @param {} _newScene
          * @memberOf Level
-*/
-        function setCurrentSceneById(_newScene){
+         */
+        function setCurrentSceneById(_newScene) {
             currentScene = _newScene;
         }
 
@@ -203,8 +203,8 @@ define([], function (){
          * @method registerScene
          * @param {} _scene
          * @memberOf Level
-*/
-        function registerScene(_scene){
+         */
+        function registerScene(_scene) {
             scenes_aux[_scene.getName()] = scenes.length;
             scenes.push(_scene);
             L.log(["Registering scene: ", _scene.getName()]);
@@ -215,8 +215,8 @@ define([], function (){
          * @method registerModalScene
          * @param {} _modalScene
          * @memberOf Level
-*/
-        function registerModalScene(_modalScene){
+         */
+        function registerModalScene(_modalScene) {
             modalScenes_aux[_modalScene.getName()] = modalScenes.length;
             modalScenes.push(_modalScene);
             L.log(["Registering modalScene: ", _modalScene.getName()]);
@@ -228,8 +228,8 @@ define([], function (){
          * @param {} _action
          * @param {} _sceneId
          * @memberOf Level
-*/
-        function registerAction(_action, _sceneId){
+         */
+        function registerAction(_action, _sceneId) {
             scenes[_sceneId].registerAction(_action);
         }
 
@@ -239,8 +239,8 @@ define([], function (){
          * @param {} _interactiveObject
          * @param {} _sceneId
          * @memberOf Level
-*/
-        function registerInteractiveObject(_interactiveObject, _sceneId){
+         */
+        function registerInteractiveObject(_interactiveObject, _sceneId) {
             scenes[_sceneId].registerInteractiveObject(_interactiveObject);
         }
 
@@ -250,8 +250,8 @@ define([], function (){
          * @param {} _dialog
          * @param {} _sceneId
          * @memberOf Level
-*/
-        function registerDialog(_dialog, _sceneId){
+         */
+        function registerDialog(_dialog, _sceneId) {
             scenes[_sceneId].registerDialog(_dialog);
         }
 
@@ -260,8 +260,8 @@ define([], function (){
          * @method registerFlag
          * @param {} _flag
          * @memberOf Level
-*/
-        function registerFlag(_flag){
+         */
+        function registerFlag(_flag) {
             flags_aux[_flag.getName()] = flags.length;
             flags.push(_flag);
             L.log(["Registering flag: ", _flag.getName()]);
@@ -300,5 +300,5 @@ define([], function (){
         }
     }
 
-	return Level;
+    return Level;
 });

@@ -2,56 +2,50 @@
  *
  * @name MainMenu_Screen_Controller
  * @module
-*/
-define(['stage', 'core'], function(stage, core){
-	/**
-	 * Description
-	 * @method load
-	 * @memberOf module:MainMenu_Screen_Controller
-*/
-	function load()
-	{
-		L.log("Configuring main menu listeners");
-		$($('.menuButton')[0]).click(function()
-		{
-			L.log(this);
-			stage.changeScreen(1);
-			//core.start();
-		});
+ */
+define(['stage', 'core'], function (stage, core) {
+    /**
+     * Description
+     * @method load
+     * @memberOf module:MainMenu_Screen_Controller
+     */
+    function load() {
+        L.log("Configuring main menu listeners");
+        $($('.menuButton')[0]).click(function () {
+            L.log(this);
+            stage.changeScreen(1);
+            //core.start();
+        });
 
-		$($('.menuButton')[1]).click(function()
-		{
-			L.log(this);
-			stage.changeScreen(2);
-		});
+        $($('.menuButton')[1]).click(function () {
+            L.log(this);
+            stage.changeScreen(2);
+        });
 
-		$($('.menuButton')[2]).click(function()
-		{
-			L.log(this);
-			stage.changeScreen(4);
-		});
+        $($('.menuButton')[2]).click(function () {
+            L.log(this);
+            stage.changeScreen(4);
+        });
 
-		$($('.menuButton')[3]).click(function()
-		{
-			L.log(this);
-			stage.changeScreen(3);
-		});
-	}
+        $($('.menuButton')[3]).click(function () {
+            L.log(this);
+            stage.changeScreen(3);
+        });
+    }
 
-	/**
-	 * Description
-	 * @method unload
-	 * @memberOf module:MainMenu_Screen_Controller
-*/
-	function unload()
-	{
-		//$('.menuButton')
+    /**
+     * Description
+     * @method unload
+     * @memberOf module:MainMenu_Screen_Controller
+     */
+    function unload() {
+        //$('.menuButton')
 
-	}
+    }
 
-	return {
-		load: load,
-		unload: unload,
-	}
+    return {
+        load: load,
+        unload: unload,
+    }
 
 });

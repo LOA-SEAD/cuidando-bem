@@ -2,8 +2,8 @@
  *
  * @name ModalScene_Game_Controller
  * @module
-*/
-define(['core'], function(core){
+ */
+define(['core'], function (core) {
 
 //Attributes
 
@@ -17,8 +17,8 @@ define(['core'], function(core){
      * Description
      * @method init
      * @memberOf module:ModalScene_Game_Controller
-*/
-    function init(){
+     */
+    function init() {
 
     }
 
@@ -26,8 +26,8 @@ define(['core'], function(core){
      * Description
      * @method show
      * @memberOf module:ModalScene_Game_Controller
-*/
-    function show(){
+     */
+    function show() {
         L.info("Show Modal Scene");
         showing = true;
         $(divSelector).show();
@@ -38,12 +38,11 @@ define(['core'], function(core){
      * @method open
      * @param {} _modalScene
      * @memberOf module:ModalScene_Game_Controller
-*/
-    function open(_modalScene){
-        if(lastSceneClass != ""){
+     */
+    function open(_modalScene) {
+        if (lastSceneClass != "") {
             $(divSelector).addClass(_modalScene.getCssClass());
-        }else
-        {
+        } else {
             $(divSelector).removeClass(lastSceneClass);
             $(divSelector).addClass(_modalScene.getCssClass());
 
@@ -57,8 +56,8 @@ define(['core'], function(core){
      * Description
      * @method close
      * @memberOf module:ModalScene_Game_Controller
-*/
-    function close(){
+     */
+    function close() {
         L.info("Close modal Scene");
         showing = false;
         $(divSelector).hide();
@@ -70,8 +69,8 @@ define(['core'], function(core){
      * @method isShowing
      * @return showing
      * @memberOf module:ModalScene_Game_Controller
-*/
-    function isShowing(){
+     */
+    function isShowing() {
         return showing;
     }
 

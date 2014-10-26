@@ -1,16 +1,16 @@
 /*
-	Dialogo
+ Dialogo
 
-	Texto do dialogo
-	Quem esta falando (talvez um texto e class css)
-	Opcoes de resposta com seus respectivos proximos dialogos
-		acao de acordo com a resposta anterior
-	Proximo dialogo
+ Texto do dialogo
+ Quem esta falando (talvez um texto e class css)
+ Opcoes de resposta com seus respectivos proximos dialogos
+ acao de acordo com a resposta anterior
+ Proximo dialogo
 
 
-*/
+ */
 
-define([], function(){
+define([], function () {
 
     /**
      * @class
@@ -19,9 +19,9 @@ define([], function(){
      * @param {} _speakerCssClass
      * @param {} _text
      * @return ObjectExpression
-    
-*/
-    function Dialog(_speakerName, _speakerCssClass, _text){
+
+     */
+    function Dialog(_speakerName, _speakerCssClass, _text) {
         //Inner Class
         /**
          * Description
@@ -29,8 +29,8 @@ define([], function(){
          * @param {} _text
          * @param {} _actionFunction
          * @memberOf Dialog
-*/
-        function DialogOption(_text, _actionFunction){
+         */
+        function DialogOption(_text, _actionFunction) {
             this.text = _text;
             this.actionFunction = _actionFunction;
         }
@@ -49,8 +49,8 @@ define([], function(){
          * @method executeOption
          * @param {} _optionIndex
          * @memberOf Dialog
-*/
-        function executeOption(_optionIndex){
+         */
+        function executeOption(_optionIndex) {
             options[_optionIndex].actionFunction();
         }
 
@@ -61,8 +61,8 @@ define([], function(){
          * @method getOptions
          * @return options
          * @memberOf Dialog
-*/
-        function getOptions(){
+         */
+        function getOptions() {
             return options;
         }
 
@@ -71,8 +71,8 @@ define([], function(){
          * @method getSpeakerName
          * @return speakerName
          * @memberOf Dialog
-*/
-        function getSpeakerName(){
+         */
+        function getSpeakerName() {
             return speakerName;
         }
 
@@ -81,8 +81,8 @@ define([], function(){
          * @method getSpeakerCssClass
          * @return speakerCssClass
          * @memberOf Dialog
-*/
-        function getSpeakerCssClass(){
+         */
+        function getSpeakerCssClass() {
             return speakerCssClass;
         }
 
@@ -91,8 +91,8 @@ define([], function(){
          * @method getText
          * @return text
          * @memberOf Dialog
-*/
-        function getText(){
+         */
+        function getText() {
             return text;
         }
 
@@ -102,8 +102,8 @@ define([], function(){
          * @param {} _optionIndex
          * @return MemberExpression
          * @memberOf Dialog
-*/
-        function getOptionText(_optionIndex){
+         */
+        function getOptionText(_optionIndex) {
             return options[_optionIndex].text;
         }
 
@@ -113,8 +113,8 @@ define([], function(){
          * @method registerOption
          * @param {} _option
          * @memberOf Dialog
-*/
-        function registerOption(_option){
+         */
+        function registerOption(_option) {
             options.push(_option);
         }
 
@@ -134,5 +134,5 @@ define([], function(){
         }
     }
 
-	return Dialog;
+    return Dialog;
 });

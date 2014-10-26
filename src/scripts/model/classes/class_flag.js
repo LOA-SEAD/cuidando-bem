@@ -1,4 +1,4 @@
-define([], function(){
+define([], function () {
     /**
      * @class
      * @name Flag
@@ -6,8 +6,8 @@ define([], function(){
      * @param {} value
      * @return ObjectExpression
 
-*/
-    function Flag(name, value){
+     */
+    function Flag(name, value) {
         //Attributes
 
         var name = name;
@@ -22,9 +22,8 @@ define([], function(){
          * @method getName
          * @return name
          * @memberOf Flag
-*/
-        function getName()
-        {
+         */
+        function getName() {
             return name;
         }
 
@@ -33,9 +32,8 @@ define([], function(){
          * @method getValue
          * @return value
          * @memberOf Flag
-*/
-        function getValue()
-        {
+         */
+        function getValue() {
             return value;
         }
 
@@ -46,9 +44,8 @@ define([], function(){
          * @method setName
          * @param {} _name
          * @memberOf Flag
-*/
-        function setName(_name)
-        {
+         */
+        function setName(_name) {
             name = _name;
         }
 
@@ -57,9 +54,8 @@ define([], function(){
          * @method setValue
          * @param {} _value
          * @memberOf Flag
-*/
-        function setValue(_value)
-        {
+         */
+        function setValue(_value) {
             value = _value;
         }
 
@@ -74,5 +70,5 @@ define([], function(){
 
     }
 
-	return Flag;
+    return Flag;
 });

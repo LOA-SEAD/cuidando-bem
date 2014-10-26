@@ -2,8 +2,8 @@
  *
  * @name Scene_Game_Controller
  * @module
-*/
-define(['core'], function(core){
+ */
+define(['core'], function (core) {
 
 
 //Attributes
@@ -14,7 +14,7 @@ define(['core'], function(core){
      * @method changeScene
      * @param {} _newScene
      * @memberOf module:Scene_Game_Controller
-*/
+     */
     function changeScene(_newScene) {
         setScene(_newScene);
     }
@@ -24,8 +24,8 @@ define(['core'], function(core){
      * @method setScene
      * @param {} _scene
      * @memberOf module:Scene_Game_Controller
-*/
-    function setScene(_scene){
+     */
+    function setScene(_scene) {
         $('#backgroundScene').attr('class', _scene.getCssClass());
     }
 

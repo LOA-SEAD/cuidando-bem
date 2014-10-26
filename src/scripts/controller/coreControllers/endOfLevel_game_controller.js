@@ -2,8 +2,8 @@
  *
  * @name EndOfLevel_Game_Controller
  * @module
-*/
-define(['core'], function(core){
+ */
+define(['core'], function (core) {
 
 //Attributes
 
@@ -13,10 +13,11 @@ define(['core'], function(core){
      * Description
      * @method init
      * @memberOf module:EndOfLevel_Game_Controller
-*/
-    function init(){
+     */
+    function init() {
 
     }
+
 //Getters
 //Setters
 //Public Interface

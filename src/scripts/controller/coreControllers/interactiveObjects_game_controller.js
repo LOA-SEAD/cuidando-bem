@@ -2,8 +2,8 @@
  *
  * @name InteractiveObjects_Game_Controller
  * @module
-*/
-define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], function(core, interactiveObjectTemplate){
+ */
+define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], function (core, interactiveObjectTemplate) {
 
 //Attributes
 
@@ -15,8 +15,8 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      * Description
      * @method init
      * @memberOf module:InteractiveObjects_Game_Controller
-*/
-    function init(){
+     */
+    function init() {
 
     }
 
@@ -25,14 +25,13 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      * @method addAllInteractiveObjects
      * @param {} _interactiveObjects
      * @memberOf module:InteractiveObjects_Game_Controller
-*/
-    function addAllInteractiveObjects(_interactiveObjects){
+     */
+    function addAllInteractiveObjects(_interactiveObjects) {
         L.group("Adding Interactive Objects:", true);
 
         var i;
-        for(i=0;i<_interactiveObjects.length;i++)
-        {
-            L.log("Adding interactive object #"+i+": "+_interactiveObjects[i].getName());
+        for (i = 0; i < _interactiveObjects.length; i++) {
+            L.log("Adding interactive object #" + i + ": " + _interactiveObjects[i].getName());
             var interactiveObject = _interactiveObjects[i];
             addInteractiveObject(interactiveObject);
         }
@@ -45,8 +44,8 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      * @method changeToInteractiveObjects
      * @param {} _interactiveObjects
      * @memberOf module:InteractiveObjects_Game_Controller
-*/
-    function changeToInteractiveObjects(_interactiveObjects){
+     */
+    function changeToInteractiveObjects(_interactiveObjects) {
         removeAllInteractiveObjects();
         addAllInteractiveObjects(_interactiveObjects);
     }
@@ -56,20 +55,20 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      * @method addInteractiveObject
      * @param {} _interactiveObject
      * @memberOf module:InteractiveObjects_Game_Controller
-*/
-    function addInteractiveObject(_interactiveObject){
+     */
+    function addInteractiveObject(_interactiveObject) {
         var element = $($(interactiveObjectTemplate)[0]);
 
         element.click(_interactiveObject.getFunction());
         element.attr('title', _interactiveObject.getName());
         element.addClass(_interactiveObject.getCssClass());
-        if(_interactiveObject.isEnabled())
+        if (_interactiveObject.isEnabled())
             element.addClass("enabled");
         else
             element.addClass("disabled");
 
         $(divSelector).append(element);
-        if(!_interactiveObject.isVisible())
+        if (!_interactiveObject.isVisible())
             element.hide();
     }
 
@@ -77,8 +76,8 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      * Description
      * @method removeAllInteractiveObjects
      * @memberOf module:InteractiveObjects_Game_Controller
-*/
-    function removeAllInteractiveObjects(){
+     */
+    function removeAllInteractiveObjects() {
         $(divSelector).empty();
     }
 
@@ -87,9 +86,9 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      * @method removeInteractiveObject
      * @param {} _interactiveObject
      * @memberOf module:InteractiveObjects_Game_Controller
-*/
-    function removeInteractiveObject(_interactiveObject){
-        $('.'+_interactiveObject.getCssClass()).remove();
+     */
+    function removeInteractiveObject(_interactiveObject) {
+        $('.' + _interactiveObject.getCssClass()).remove();
     }
 
 //Getters
@@ -101,14 +100,14 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      * @param {} _action
      * @param {} _value
      * @memberOf module:InteractiveObjects_Game_Controller
-*/
-    function setInteractiveObjectVisible(_action, _value){
+     */
+    function setInteractiveObjectVisible(_action, _value) {
         var actionClass = _action.getCssClass();
 
-        if(_value)
-            $("."+actionClass).show();
+        if (_value)
+            $("." + actionClass).show();
         else
-            $("."+actionClass).hide();
+            $("." + actionClass).hide();
     }
 
 //Public Interface

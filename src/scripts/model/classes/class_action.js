@@ -1,4 +1,4 @@
-define([], function(){
+define([], function () {
 
     /**
      * @class
@@ -9,7 +9,7 @@ define([], function(){
      * @param {} _visible
      * @return ObjectExpression
      */
-    function Action(_name, _cssClass, _actionFunction, _visible){
+    function Action(_name, _cssClass, _actionFunction, _visible) {
         //Attributes
 
         if (_visible == null)
@@ -27,56 +27,60 @@ define([], function(){
          * @method
          * @method execute
          * @memberOf Action
-*/
-        function execute(){
+         */
+        function execute() {
             actionFunction();
         }
 
         //Getters
-        
+
         /**
-         * @method         
+         * @method
          * @method getFunction
          * @return actionFunction
          * @memberOf Action
-*/
-        function getFunction(){
+         */
+        function getFunction() {
             return actionFunction;
         }
+
         /**
          * @method
          * @method getName
          * @return name
          * @memberOf Action
-*/
-        function getName(){
+         */
+        function getName() {
             return name;
         }
+
         /**
          * @method
          * @method getCssClass
          * @return cssClass
          * @memberOf Action
-*/
-        function getCssClass(){
+         */
+        function getCssClass() {
             return cssClass;
         }
+
         /**
          * @method
          * @method isEnabled
          * @return enable
          * @memberOf Action
-*/
-        function isEnabled(){
+         */
+        function isEnabled() {
             return enable;
         }
+
         /**
          * @method
          * @method isVisible
          * @return visible
          * @memberOf Action
-*/
-        function isVisible(){
+         */
+        function isVisible() {
             return visible;
         }
 
@@ -86,18 +90,19 @@ define([], function(){
          * @method setEnable
          * @param {} _enable
          * @memberOf Action
-*/
-        function setEnable(_enable){
+         */
+        function setEnable(_enable) {
             enable = _enable;
         }
+
         /**
          * @method
          * @memberOf Action
          * @method setVisible
          * @param {} _visible
          * @memberOf Action
-*/
-        function setVisible(_visible){
+         */
+        function setVisible(_visible) {
             visible = _visible;
         }
 
@@ -118,5 +123,5 @@ define([], function(){
     }
 
 
-	return Action;
+    return Action;
 });

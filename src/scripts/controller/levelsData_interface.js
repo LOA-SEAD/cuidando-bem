@@ -1,6 +1,6 @@
-define (['levelsData'], function(game){
-	return {
-		registerLevel: game.registerLevel
-	}
-	
+define(['levelsData'], function (game) {
+    return {
+        registerLevel: game.registerLevel
+    }
+
 });
