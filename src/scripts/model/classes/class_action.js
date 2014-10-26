@@ -1,9 +1,14 @@
 define([], function(){
 
     /**
-     * @name Action
      * @class
-    */
+     * @name Action
+     * @param {} _name
+     * @param {} _cssClass
+     * @param {} _actionFunction
+     * @param {} _visible
+     * @return ObjectExpression
+     */
     function Action(_name, _cssClass, _actionFunction, _visible){
         //Attributes
 
@@ -20,8 +25,9 @@ define([], function(){
 
         /**
          * @method
+         * @method execute
          * @memberOf Action
-        */
+*/
         function execute(){
             actionFunction();
         }
@@ -29,37 +35,47 @@ define([], function(){
         //Getters
         
         /**
-         * @method
+         * @method         
+         * @method getFunction
+         * @return actionFunction
          * @memberOf Action
-        */
+*/
         function getFunction(){
             return actionFunction;
         }
         /**
          * @method
+         * @method getName
+         * @return name
          * @memberOf Action
-        */
+*/
         function getName(){
             return name;
         }
         /**
          * @method
+         * @method getCssClass
+         * @return cssClass
          * @memberOf Action
-        */
+*/
         function getCssClass(){
             return cssClass;
         }
         /**
          * @method
+         * @method isEnabled
+         * @return enable
          * @memberOf Action
-        */
+*/
         function isEnabled(){
             return enable;
         }
         /**
          * @method
+         * @method isVisible
+         * @return visible
          * @memberOf Action
-        */
+*/
         function isVisible(){
             return visible;
         }
@@ -67,15 +83,20 @@ define([], function(){
         //Setters
         /**
          * @method
+         * @method setEnable
+         * @param {} _enable
          * @memberOf Action
-        */
+*/
         function setEnable(_enable){
             enable = _enable;
         }
         /**
          * @method
          * @memberOf Action
-        */
+         * @method setVisible
+         * @param {} _visible
+         * @memberOf Action
+*/
         function setVisible(_visible){
             visible = _visible;
         }

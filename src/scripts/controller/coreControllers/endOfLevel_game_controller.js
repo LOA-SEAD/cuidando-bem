@@ -1,14 +1,19 @@
 /**
  *
- * @name End of Level Game Controller
+ * @name EndOfLevel_Game_Controller
  * @module
- */
+*/
 define(['core'], function(core){
 
 //Attributes
 
 //Methods
     //Init
+    /**
+     * Description
+     * @method init
+     * @memberOf module:EndOfLevel_Game_Controller
+*/
     function init(){
 
     }

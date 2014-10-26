@@ -13,9 +13,17 @@ module.exports = function(grunt) {
 
 
         jsdoc : {
-            dist : {
+            docs : {
                 dest: documentation_path,
-                src: [documentation_src_path+'/**/*.js'],
+                src: [
+                    src_path+'/**/*.js',
+                    '!'+src_path+'/scripts/libs/*.js',
+                    '!'+src_path+'/scripts/gameConfig/*.js',
+                    '!'+src_path+'/scripts/stageConfig/*.js',
+                    '!'+src_path+'/scripts/controller/levelsData_interface.js',
+                    '!'+src_path+'/scripts/main.js',
+                    '!'+src_path+'/scripts/requireJsBootstrap.js'
+                ],
                 options: {
                     destination: documentation_path,
                     template : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
@@ -39,7 +47,7 @@ module.exports = function(grunt) {
             },
 
             docs: {
-                src: [ documentation_src_path, documentation_path]
+                src: [documentation_path]
             }
         },
 
@@ -205,12 +213,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-text-replace');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-rename');
-    grunt.loadNpmTasks('grunt-contrib-yuidoc');
     grunt.loadNpmTasks('grunt-jsdoc');
 
     // Registering tasks
     grunt.registerTask('default', ['clean:build', 'copy:build', 'replace', 'htmlmin:build', 'less:build', 'cssmin:build', 'clean:css', 'clean:final', 'requirejs:compile', 'clean:build', 'rename:build']);
-    grunt.registerTask('docs', ['clean:docs', 'copy:docs']);
-    grunt.registerTask('jsdocs', ['clean:docs', 'copy:docs', 'jsdoc']);
-
+    grunt.registerTask('docs', ['clean:docs', 'jsdoc:docs']);
 };

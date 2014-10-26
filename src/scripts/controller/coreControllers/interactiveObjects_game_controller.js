@@ -1,8 +1,8 @@
 /**
  *
- * @name InteractiveObjects Game Controller
+ * @name InteractiveObjects_Game_Controller
  * @module
- */
+*/
 define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], function(core, interactiveObjectTemplate){
 
 //Attributes
@@ -11,10 +11,21 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
     var interactiveObjectSelector = ".interactiveObject";
 
 //Methods
+    /**
+     * Description
+     * @method init
+     * @memberOf module:InteractiveObjects_Game_Controller
+*/
     function init(){
 
     }
 
+    /**
+     * Description
+     * @method addAllInteractiveObjects
+     * @param {} _interactiveObjects
+     * @memberOf module:InteractiveObjects_Game_Controller
+*/
     function addAllInteractiveObjects(_interactiveObjects){
         L.group("Adding Interactive Objects:", true);
 
@@ -29,11 +40,23 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
         L.groupEnd();
     }
 
+    /**
+     * Description
+     * @method changeToInteractiveObjects
+     * @param {} _interactiveObjects
+     * @memberOf module:InteractiveObjects_Game_Controller
+*/
     function changeToInteractiveObjects(_interactiveObjects){
         removeAllInteractiveObjects();
         addAllInteractiveObjects(_interactiveObjects);
     }
 
+    /**
+     * Description
+     * @method addInteractiveObject
+     * @param {} _interactiveObject
+     * @memberOf module:InteractiveObjects_Game_Controller
+*/
     function addInteractiveObject(_interactiveObject){
         var element = $($(interactiveObjectTemplate)[0]);
 
@@ -50,10 +73,21 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
             element.hide();
     }
 
+    /**
+     * Description
+     * @method removeAllInteractiveObjects
+     * @memberOf module:InteractiveObjects_Game_Controller
+*/
     function removeAllInteractiveObjects(){
         $(divSelector).empty();
     }
 
+    /**
+     * Description
+     * @method removeInteractiveObject
+     * @param {} _interactiveObject
+     * @memberOf module:InteractiveObjects_Game_Controller
+*/
     function removeInteractiveObject(_interactiveObject){
         $('.'+_interactiveObject.getCssClass()).remove();
     }
@@ -61,6 +95,13 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
 //Getters
 
 //Setters
+    /**
+     * Description
+     * @method setInteractiveObjectVisible
+     * @param {} _action
+     * @param {} _value
+     * @memberOf module:InteractiveObjects_Game_Controller
+*/
     function setInteractiveObjectVisible(_action, _value){
         var actionClass = _action.getCssClass();
 

@@ -4,20 +4,33 @@ This module declares the object type scene that represents one of the rooms insi
 Each scene may have more than one interactive Object that will be declared later.
 
 Each scene has a background image
+* @memberOf Scene
 */
 define([], function(){
     /**
-     *
-     * @name Scene
      * @class
-     */
+     * @name Scene
+     * @param {} _name
+     * @param {} _cssClass
+     * @param {} _load
+     * @param {} _unload
+     * @return ObjectExpression
+*/
     function Scene(_name, _cssClass, _load, _unload){
         //Attributes
 
         if(_load == null)
+            /**
+             * Description
+             * @memberOf Scene
+*/
             _load = function (){};
 
         if(_unload == null)
+            /**
+             * Description
+             * @memberOf Scene
+*/
             _unload = function (){};
 
         var name = _name;
@@ -36,11 +49,21 @@ define([], function(){
 
         //Methods
 
+        /**
+         * Description
+         * @method load
+         * @memberOf Scene
+*/
         function load(){
             L.info("Scene "+name+" load function");
             loaderFunction();
         }
 
+        /**
+         * Description
+         * @method unload
+         * @memberOf Scene
+*/
         function unload(){
             L.info("Scene "+name+" unload function");
             unloadFunction();
@@ -48,18 +71,42 @@ define([], function(){
 
         //Getters
 
+        /**
+         * Description
+         * @method getName
+         * @return name
+         * @memberOf Scene
+*/
         function getName(){
             return name;
         }
 
+        /**
+         * Description
+         * @method getCssClass
+         * @return cssClass
+         * @memberOf Scene
+*/
         function getCssClass(){
             return cssClass;
         }
 
+        /**
+         * Description
+         * @method getActions
+         * @return actions
+         * @memberOf Scene
+*/
         function getActions(){
             return actions;
         }
 
+        /**
+         * Description
+         * @method getAction
+         * @param {} _actionId
+         * @memberOf Scene
+*/
         function getAction(_actionId){
             if(typeof _actionId == "string"){
                 return actions[actions_aux[_actionId]];
@@ -68,14 +115,32 @@ define([], function(){
             }
         }
 
+        /**
+         * Description
+         * @method getDialogs
+         * @return dialogs
+         * @memberOf Scene
+*/
         function getDialogs(){
             return dialogs;
         }
 
+        /**
+         * Description
+         * @method getInteractiveObjects
+         * @return interactiveObjects
+         * @memberOf Scene
+*/
         function getInteractiveObjects(){
             return interactiveObjects;
         }
 
+        /**
+         * Description
+         * @method getInteractiveObject
+         * @param {} _intObjId
+         * @memberOf Scene
+*/
         function getInteractiveObject(_intObjId){
             if(typeof _intObjId == "string"){
                 return interactiveObjects[interactiveObjects_aux[_intObjId]];
@@ -86,6 +151,12 @@ define([], function(){
 
         //Setters
 
+        /**
+         * Description
+         * @method registerAction
+         * @param {} _action
+         * @memberOf Scene
+*/
         function registerAction(_action){
             actions_aux[_action.getName()] = actions.length;
             actions.push(_action);
@@ -93,11 +164,23 @@ define([], function(){
             L.log(["Registering Action: ", _action.getName(), "on Scene:" + name]);
         }
 
+        /**
+         * Description
+         * @method registerDialog
+         * @param {} _dialog
+         * @memberOf Scene
+*/
         function registerDialog(_dialog){
             dialogs.push(_dialog);
             L.log(["Registering Dialog: ", _dialog.getSpeakerName(), "on Scene:" + name]);
         }
 
+        /**
+         * Description
+         * @method registerDialogs
+         * @param {} _dialogs
+         * @memberOf Scene
+*/
         function registerDialogs(_dialogs){
             for(i = 0; i < _dialogs.length; i++){
                 dialogs.push(_dialogs[i]);
@@ -105,6 +188,12 @@ define([], function(){
             }
         }
 
+        /**
+         * Description
+         * @method registerInteractiveObject
+         * @param {} _interactiveObject
+         * @memberOf Scene
+*/
         function registerInteractiveObject(_interactiveObject){
             interactiveObjects_aux[_interactiveObject.getName()] = interactiveObjects.length;
             interactiveObjects.push(_interactiveObject);

@@ -19,3 +19,16 @@ grunt
 To run this project you will need a http server
 
 This project includes a server.bat that runs a python command that makes a simple http server from the folder it is executed.
+
+
+## Documentation
+
+We are also documenting our software using JSDOC commentarie style
+To see our documentation you will have to use grunt
+
+```
+
+npm install
+grunt docs
+
+```

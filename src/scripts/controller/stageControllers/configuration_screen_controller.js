@@ -1,9 +1,14 @@
 /**
  *
- * @name Configuration Screen Controller
+ * @name Configuration_Screen_Controller
  * @module
- */
+*/
 define(['stage'], function(stage){
+	/**
+	 * Description
+	 * @method load
+	 * @memberOf module:Configuration_Screen_Controller
+*/
 	function load()
 	{
 		$('.backButton').click(function()
@@ -12,6 +17,11 @@ define(['stage'], function(stage){
 		});
 	}
 
+	/**
+	 * Description
+	 * @method unload
+	 * @memberOf module:Configuration_Screen_Controller
+*/
 	function unload()
 	{
 		

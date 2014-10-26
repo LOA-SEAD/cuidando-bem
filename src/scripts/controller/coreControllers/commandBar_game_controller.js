@@ -1,8 +1,8 @@
 /**
  *
- * @name Command Bar Game Controller
+ * @name CommandBar_Game_Controller
  * @module
- */
+*/
 define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(core, actionButtonTemplate){
 
 //Attributes
@@ -11,10 +11,21 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
 
 //Methods
     //Init
+    /**
+     * Description
+     * @method init
+     * @memberOf module:CommandBar_Game_Controller
+*/
     function init(){
         //bind event listeners to UI
     }
 
+    /**
+     * Description
+     * @method addAllActionButtons
+     * @param {} _actions
+     * @memberOf module:CommandBar_Game_Controller
+*/
     function addAllActionButtons(_actions){
         L.group("Adding action Buttons", true);
         var i;
@@ -28,12 +39,23 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
         L.groupEnd();
     }
 
+    /**
+     * Description
+     * @method changeToActionsButtons
+     * @param {} _actions
+     * @memberOf module:CommandBar_Game_Controller
+*/
     function changeToActionsButtons(_actions){
         removeAllActionButtons();
         addAllActionButtons(_actions);
     }
 
     //This function, if called should remove all the listeners and extra interface
+    /**
+     * Description
+     * @method close
+     * @memberOf module:CommandBar_Game_Controller
+*/
     function close(){
         var action_buttons = $(actionButtonSelector);
 
@@ -45,6 +67,12 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
     }
 
     //Add a button into the UI
+    /**
+     * Description
+     * @method addActionButton
+     * @param {} _action
+     * @memberOf module:CommandBar_Game_Controller
+*/
     function addActionButton(_action){
         var element = $($(actionButtonTemplate)[0]);
 
@@ -62,14 +90,30 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
             element.hide();
     }
     //Remove all buttons
+    /**
+     * Description
+     * @method removeAllActionButtons
+     * @memberOf module:CommandBar_Game_Controller
+*/
     function removeAllActionButtons(){
         $(barSelector).empty();
     }
     //Remove Button
+    /**
+     * Description
+     * @method removeActionButton
+     * @memberOf module:CommandBar_Game_Controller
+*/
     function removeActionButton(){
 
     }
     //Deactivate Button
+    /**
+     * Description
+     * @method deactivateActionButton
+     * @param {} _action
+     * @memberOf module:CommandBar_Game_Controller
+*/
     function deactivateActionButton(_action){
         var selector = _action.getCssClass();
         var element = $('.' + selector);
@@ -78,6 +122,12 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
         element.unbind("click");
     }
     //Activate button
+    /**
+     * Description
+     * @method activateActionButton
+     * @param {} _action
+     * @memberOf module:CommandBar_Game_Controller
+*/
     function activateActionButton(_action){
         var selector = _action.getCssClass();
         var element = $('.' + selector);
@@ -86,6 +136,12 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
         element.click(_action.getFunction());
     }
 
+    /**
+     * Description
+     * @method activeAllActionButtons
+     * @param {} _actions
+     * @memberOf module:CommandBar_Game_Controller
+*/
     function activeAllActionButtons(_actions){
         L.group("Enabling action Buttons", true);
         var i;
@@ -99,6 +155,12 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
         L.groupEnd();
     }
 
+    /**
+     * Description
+     * @method deactivateAllActionButtons
+     * @param {} _actions
+     * @memberOf module:CommandBar_Game_Controller
+*/
     function deactivateAllActionButtons(_actions){
         L.group("Disabling action Buttons", true);
         var i;
@@ -112,6 +174,12 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
         L.groupEnd();
     }
 
+    /**
+     * Description
+     * @method updateAllActionButtons
+     * @param {} _actions
+     * @memberOf module:CommandBar_Game_Controller
+*/
     function updateAllActionButtons(_actions){
         L.group("Updating action Buttons", true);
         var i;
@@ -131,6 +199,13 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function(co
 //Getters
 
 //Setters
+    /**
+     * Description
+     * @method setActionVisible
+     * @param {} _action
+     * @param {} _value
+     * @memberOf module:CommandBar_Game_Controller
+*/
     function setActionVisible(_action, _value){
         var actionClass = _action.getCssClass();
 

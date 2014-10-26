@@ -1,19 +1,19 @@
-/*
-    The stateMachine will be a module responsible to handle all the game variables and its mechanics.    
-*/
-/**
- *
- * @name Levels Data
- * @module
- */
 define([], function()
 {
-
+    /**
+     * @module LevelsData
+*/
 //Attributes
 	var levels = [];
 	var currentLevel = 0;
 
 //Methods
+	/**
+	 * Description     
+	 * @method registerLevel
+	 * @param {} _level
+	 * @memberOf module:LevelsData
+*/
 	function registerLevel(_level){
 		levels.push(_level);
 
@@ -22,11 +22,23 @@ define([], function()
 	}
 
 //Getters
+	/**
+	 * Description
+	 * @method getCurrentLevel
+	 * @return MemberExpression
+	 * @memberOf module:LevelsData
+*/
 	function getCurrentLevel(){
 		return levels[currentLevel];
 	}
 
 //Setters	
+	/**
+	 * Description
+	 * @method setCurrentLevel
+	 * @param {} _level
+	 * @memberOf module:LevelsData
+*/
 	function setCurrentLevel(_level){
 		currentLevel = _level;
 	}

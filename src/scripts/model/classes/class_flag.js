@@ -1,9 +1,12 @@
 define([], function(){
     /**
-     *
-     * @name Flag
      * @class
-     */
+     * @name Flag
+     * @param {} name
+     * @param {} value
+     * @return ObjectExpression
+
+*/
     function Flag(name, value){
         //Attributes
 
@@ -14,11 +17,23 @@ define([], function(){
 
         //Getters
 
+        /**
+         * Description
+         * @method getName
+         * @return name
+         * @memberOf Flag
+*/
         function getName()
         {
             return name;
         }
 
+        /**
+         * Description
+         * @method getValue
+         * @return value
+         * @memberOf Flag
+*/
         function getValue()
         {
             return value;
@@ -26,11 +41,23 @@ define([], function(){
 
         //Setters
 
+        /**
+         * Description
+         * @method setName
+         * @param {} _name
+         * @memberOf Flag
+*/
         function setName(_name)
         {
             name = _name;
         }
 
+        /**
+         * Description
+         * @method setValue
+         * @param {} _value
+         * @memberOf Flag
+*/
         function setValue(_value)
         {
             value = _value;

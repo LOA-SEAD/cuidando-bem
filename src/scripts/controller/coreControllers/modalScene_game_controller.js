@@ -1,8 +1,8 @@
 /**
  *
- * @name Modal Scene Game Controller
+ * @name ModalScene_Game_Controller
  * @module
- */
+*/
 define(['core'], function(core){
 
 //Attributes
@@ -13,16 +13,32 @@ define(['core'], function(core){
     var lastSceneClass = "";
 //Methods
     //Init
+    /**
+     * Description
+     * @method init
+     * @memberOf module:ModalScene_Game_Controller
+*/
     function init(){
 
     }
 
+    /**
+     * Description
+     * @method show
+     * @memberOf module:ModalScene_Game_Controller
+*/
     function show(){
         L.info("Show Modal Scene");
         showing = true;
         $(divSelector).show();
     }
 
+    /**
+     * Description
+     * @method open
+     * @param {} _modalScene
+     * @memberOf module:ModalScene_Game_Controller
+*/
     function open(_modalScene){
         if(lastSceneClass != ""){
             $(divSelector).addClass(_modalScene.getCssClass());
@@ -37,6 +53,11 @@ define(['core'], function(core){
         show();
     }
 
+    /**
+     * Description
+     * @method close
+     * @memberOf module:ModalScene_Game_Controller
+*/
     function close(){
         L.info("Close modal Scene");
         showing = false;
@@ -44,6 +65,12 @@ define(['core'], function(core){
     }
 
 //Getters
+    /**
+     * Description
+     * @method isShowing
+     * @return showing
+     * @memberOf module:ModalScene_Game_Controller
+*/
     function isShowing(){
         return showing;
     }
