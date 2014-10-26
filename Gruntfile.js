@@ -22,7 +22,7 @@ module.exports = function(grunt) {
                     '!'+src_path+'/scripts/controller/levelsData_interface.js',
                     '!'+src_path+'/scripts/main.js',
                     '!'+src_path+'/scripts/requireJsBootstrap.js',
-                    '!README.md'
+                    'README.md'
                 ],
                 options: {
                     destination: documentation_path,
