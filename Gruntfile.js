@@ -14,7 +14,6 @@ module.exports = function(grunt) {
 
         jsdoc : {
             docs : {
-                dest: documentation_path,
                 src: [
                     src_path+'/**/*.js',
                     '!'+src_path+'/scripts/libs/*.js',
@@ -22,10 +21,19 @@ module.exports = function(grunt) {
                     '!'+src_path+'/scripts/stageConfig/*.js',
                     '!'+src_path+'/scripts/controller/levelsData_interface.js',
                     '!'+src_path+'/scripts/main.js',
-                    '!'+src_path+'/scripts/requireJsBootstrap.js'
+                    '!'+src_path+'/scripts/requireJsBootstrap.js',
+                    '!README.md'
                 ],
                 options: {
                     destination: documentation_path,
+                    template : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
+                    configure : "jsdoc.conf.json"
+                }
+            },
+            dist : {
+                src: ['!src/**/*.js', 'README.md'],
+                options: {
+                    destination: 'doc',
                     template : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
                     configure : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template/jsdoc.conf.json"
                 }
