@@ -386,6 +386,6 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         level1.setInitialScene(0);
 
-        game.registerLevel(level1);
+        game.registerLevel(level1, 1);
         L.groupEnd();
     });

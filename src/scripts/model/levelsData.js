@@ -3,18 +3,37 @@ define([], function () {
      * @module LevelsData
      */
 //Attributes
-    var levels = [];
+    /**
+     * @private
+     * @type {object}
+     *
+     * @memberOf module:LevelsData
+     */
+    var levels = {};
+    /**
+     * @private
+     * @type {object}
+     *
+     * @memberOf module:LevelsData
+     */
     var currentLevel = 0;
 
 //Methods
     /**
      * Description
      * @method registerLevel
-     * @param {} _level
+     * @param {Level} _level
+     * @param _id
+     * @public
+     *
      * @memberOf module:LevelsData
      */
-    function registerLevel(_level) {
-        levels.push(_level);
+    function registerLevel(_level, _id) {
+        if(levels[_id] != null){
+            L.warn("O id: " + _id + " já está em uso. O level anterior com esse mesmo id vai ser reescrito.")
+        }
+
+        levels[_id] = _level;
 
         //Log
         L.log(['\nAdding new Level:', _level.getName()]);
@@ -24,7 +43,9 @@ define([], function () {
     /**
      * Description
      * @method getCurrentLevel
-     * @return MemberExpression
+     * @return {Level} MemberExpression
+     * @public
+     *
      * @memberOf module:LevelsData
      */
     function getCurrentLevel() {
@@ -35,7 +56,9 @@ define([], function () {
     /**
      * Description
      * @method setCurrentLevel
-     * @param {} _level
+     * @param {(string|number)} _level
+     * @public
+     *
      * @memberOf module:LevelsData
      */
     function setCurrentLevel(_level) {

@@ -8,6 +8,7 @@ define([], function () {
 
     var generalPath = "../scripts/gameConfig/";
     var filePaths = [
+        "file2",
         "file1"
     ];
 

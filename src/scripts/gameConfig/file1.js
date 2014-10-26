@@ -403,6 +403,6 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
          */
 
-        game.registerLevel(level1);
+        game.registerLevel(level1, 0);
         L.groupEnd();
     });
