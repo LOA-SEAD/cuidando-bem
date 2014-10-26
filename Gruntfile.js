@@ -174,12 +174,18 @@ module.exports = function(grunt) {
             compile: {
                 options: {
                     appDir: build_path,
-                    baseUrl: ".",
+                    baseUrl: "./",
                     dir: build_step_1_path,
                     optimize: 'uglify',
                     mainConfigFile: build_path + "scripts/requireJsBootstrap.js",
 
-                    findNestedDependencies: true
+
+                    inlineText:true,
+                    stubModules: ['text'],
+
+                    paths: {
+                        'text':'scripts/libs/text'
+                    }
                 }
             },
 
