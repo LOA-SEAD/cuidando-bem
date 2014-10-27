@@ -15,19 +15,19 @@ define([], function () {
     /**
      * @class
      * @name Dialog
-     * @param {} _speakerName
-     * @param {} _speakerCssClass
-     * @param {} _text
+     * @param {string} _speakerName
+     * @param {string} _speakerCssClass
+     * @param {string} _text
      * @return ObjectExpression
-
      */
     function Dialog(_speakerName, _speakerCssClass, _text) {
         //Inner Class
         /**
          * Description
-         * @method DialogOption
-         * @param {} _text
-         * @param {} _actionFunction
+         * @class DialogOption
+         * @param {string} _text
+         * @param {function} _actionFunction
+         *
          * @memberOf Dialog
          */
         function DialogOption(_text, _actionFunction) {
@@ -36,19 +36,44 @@ define([], function () {
         }
 
         //Attributes
+        /**
+         * @type {string}
+         * @private
+         *
+         * @memberOf Dialog#
+         */
         var speakerName = _speakerName;
+        /**
+         * @type {string}
+         * @private
+         *
+         * @memberOf Dialog#
+         */
         var speakerCssClass = _speakerCssClass;
+        /**
+         * @type {string}
+         * @private
+         *
+         * @memberOf Dialog#
+         */
         var text = _text;
-
+        /**
+         * @type {array}
+         * @private
+         *
+         * @memberOf Dialog#
+         */
         var options = [];
 
         //Methods
 
         /**
          * Description
+         *
          * @method executeOption
-         * @param {} _optionIndex
-         * @memberOf Dialog
+         * @param {int} _optionIndex
+         *
+         * @memberOf Dialog#
          */
         function executeOption(_optionIndex) {
             options[_optionIndex].actionFunction();
@@ -60,7 +85,8 @@ define([], function () {
          * Description
          * @method getOptions
          * @return options
-         * @memberOf Dialog
+         *
+         * @memberOf Dialog#
          */
         function getOptions() {
             return options;
@@ -70,7 +96,7 @@ define([], function () {
          * Description
          * @method getSpeakerName
          * @return speakerName
-         * @memberOf Dialog
+         * @memberOf Dialog#
          */
         function getSpeakerName() {
             return speakerName;
@@ -80,7 +106,7 @@ define([], function () {
          * Description
          * @method getSpeakerCssClass
          * @return speakerCssClass
-         * @memberOf Dialog
+         * @memberOf Dialog#
          */
         function getSpeakerCssClass() {
             return speakerCssClass;
@@ -90,7 +116,8 @@ define([], function () {
          * Description
          * @method getText
          * @return text
-         * @memberOf Dialog
+         *
+         * @memberOf Dialog#
          */
         function getText() {
             return text;
@@ -99,9 +126,10 @@ define([], function () {
         /**
          * Description
          * @method getOptionText
-         * @param {} _optionIndex
+         * @param {int} _optionIndex
          * @return MemberExpression
-         * @memberOf Dialog
+         *
+         * @memberOf Dialog#
          */
         function getOptionText(_optionIndex) {
             return options[_optionIndex].text;
@@ -111,8 +139,9 @@ define([], function () {
         /**
          * Description
          * @method registerOption
-         * @param {} _option
-         * @memberOf Dialog
+         * @param {DialogOption} _option
+         *
+         * @memberOf Dialog#
          */
         function registerOption(_option) {
             options.push(_option);

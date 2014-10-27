@@ -6,7 +6,7 @@ define([], function () {
      * @param {string} _name
      * @param {string} _cssClass
      * @param {function} _actionFunction
-     * @param {boolean} _visible = true
+     * @param {boolean} [_visible=true]
      * @return ObjectExpression
      */
     function Action(_name, _cssClass, _actionFunction, _visible) {
@@ -15,18 +15,51 @@ define([], function () {
         if (_visible == null)
             _visible = true;
 
+        /**
+         * @type {string}
+         * @private
+         *
+         * @memberOf Action#
+         */
         var name = _name;
+        /**
+         * @type {string}
+         * @private
+         *
+         * @memberOf Action#
+         */
         var cssClass = _cssClass;
+        /**
+         * @type {boolean}
+         * @private
+         *
+         * @memberOf Action#
+         */
         var visible = _visible;
-        var enable = true;
+        /**
+         * @type {function}
+         * @private
+         *
+         * @memberOf Action#
+         */
         var actionFunction = _actionFunction;
+        /**
+         * @type {boolean}
+         * @private
+         *
+         * @memberOf Action#
+         */
+        var enable = true;
 
         //Methods
 
         /**
+         * It runs this class actionFunction
          * @method
          * @method execute
-         * @memberOf Action
+         * @public
+         *
+         * @memberOf Action#
          */
         function execute() {
             actionFunction();
@@ -38,7 +71,9 @@ define([], function () {
          * @method
          * @method getFunction
          * @return actionFunction
-         * @memberOf Action
+         * @public
+         *
+         * @memberOf Action#
          */
         function getFunction() {
             return actionFunction;
@@ -48,7 +83,9 @@ define([], function () {
          * @method
          * @method getName
          * @return name
-         * @memberOf Action
+         * @public
+         *
+         * @memberOf Action#
          */
         function getName() {
             return name;
@@ -58,7 +95,9 @@ define([], function () {
          * @method
          * @method getCssClass
          * @return cssClass
-         * @memberOf Action
+         * @public
+         *
+         * @memberOf Action#
          */
         function getCssClass() {
             return cssClass;
@@ -68,7 +107,9 @@ define([], function () {
          * @method
          * @method isEnabled
          * @return enable
-         * @memberOf Action
+         * @public
+         *
+         * @memberOf Action#
          */
         function isEnabled() {
             return enable;
@@ -78,7 +119,9 @@ define([], function () {
          * @method
          * @method isVisible
          * @return visible
-         * @memberOf Action
+         * @public
+         *
+         * @memberOf Action#
          */
         function isVisible() {
             return visible;
@@ -88,8 +131,10 @@ define([], function () {
         /**
          * @method
          * @method setEnable
-         * @param {} _enable
-         * @memberOf Action
+         * @param {boolean} _enable
+         * @public
+         *
+         * @memberOf Action#
          */
         function setEnable(_enable) {
             enable = _enable;
@@ -99,8 +144,10 @@ define([], function () {
          * @method
          * @memberOf Action
          * @method setVisible
-         * @param {} _visible
-         * @memberOf Action
+         * @param {boolean} _visible
+         * @public
+         *
+         * @memberOf Action#
          */
         function setVisible(_visible) {
             visible = _visible;
