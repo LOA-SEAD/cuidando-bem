@@ -3,10 +3,10 @@ define([], function () {
     /**
      * @class
      * @name Action
-     * @param {} _name
-     * @param {} _cssClass
-     * @param {} _actionFunction
-     * @param {} _visible
+     * @param {string} _name
+     * @param {string} _cssClass
+     * @param {function} _actionFunction
+     * @param {boolean} _visible = true
      * @return ObjectExpression
      */
     function Action(_name, _cssClass, _actionFunction, _visible) {

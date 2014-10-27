@@ -4,6 +4,7 @@ define([], function () {
      */
 //Attributes
     /**
+     * This object stores all Level data for the game
      * @private
      * @type {object}
      *
@@ -11,8 +12,9 @@ define([], function () {
      */
     var levels = {};
     /**
+     * This var stores the current level
      * @private
-     * @type {object}
+     * @type {(string|int)}
      *
      * @memberOf module:LevelsData
      */
@@ -20,7 +22,7 @@ define([], function () {
 
 //Methods
     /**
-     * Description
+     * This function stores a level data in the levels object
      * @method registerLevel
      * @param {Level} _level
      * @param _id
@@ -41,7 +43,6 @@ define([], function () {
 
 //Getters
     /**
-     * Description
      * @method getCurrentLevel
      * @return {Level} MemberExpression
      * @public
@@ -54,7 +55,6 @@ define([], function () {
 
 //Setters	
     /**
-     * Description
      * @method setCurrentLevel
      * @param {(string|number)} _level
      * @public
