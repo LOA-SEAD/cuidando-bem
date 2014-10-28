@@ -2,28 +2,105 @@ define([], function () {
     /**
      * @class
      * @name Level
-     * @param {} _name
-     * @param {} _isEndOfLevelFunction
-     * @param {} _nextLevelFunction
+     * @param {string} _name
+     * @param {function} _isEndOfLevelFunction
+     * @param {function} _nextLevelFunction
      * @return ObjectExpression
      */
     function Level(_name, _isEndOfLevelFunction, _nextLevelFunction) {
         //Attributes
 
+        /**
+         *
+         * @type {string}
+         * @private
+         *
+         * @memberOf Level#
+         */
         var name = _name;
+        /**
+         *
+         * @type {function}
+         * @private
+         *
+         * @memberOf Level#
+         */
         var isEndOfLevelFunction = _isEndOfLevelFunction;
+        /**
+         *
+         * @type {function}
+         * @private
+         *
+         * @memberOf Level#
+         */
         var nextLevelFunction = _nextLevelFunction;
 
+        /**
+         *
+         * @type {array}
+         * @private
+         *
+         * @memberOf Level#
+         */
         var scenes = [];
+        /**
+         *
+         * @type {object}
+         * @private
+         *
+         * @memberOf Level#
+         */
         var scenes_aux = {};
 
+        /**
+         *
+         * @type {array}
+         * @private
+         *
+         * @memberOf Level#
+         */
         var modalScenes = [];
+        /**
+         *
+         * @type {object}
+         * @private
+         *
+         * @memberOf Level#
+         */
         var modalScenes_aux = {};
 
+        /**
+         *
+         * @type {array}
+         * @private
+         *
+         * @memberOf Level#
+         */
         var flags = [];
+        /**
+         *
+         * @type {object}
+         * @private
+         *
+         * @memberOf Level#
+         */
         var flags_aux = {};
 
+        /**
+         *
+         * @type {int}
+         * @private
+         *
+         * @memberOf Level#
+         */
         var currentScene = 0;
+        /**
+         *
+         * @type {int}
+         * @private
+         *
+         * @memberOf Level#
+         */
         var initialScene = 0;
 
         //Methods
@@ -34,7 +111,8 @@ define([], function () {
          * Description
          * @method getName
          * @return name
-         * @memberOf Level
+         *
+         * @memberOf Level#
          */
         function getName() {
             return name;
@@ -43,9 +121,10 @@ define([], function () {
         /**
          * Description
          * @method getActions
-         * @param {} _sceneId
+         * @param {int|string} _sceneId
          * @return CallExpression
-         * @memberOf Level
+         *
+         * @memberOf Level#
          */
         function getActions(_sceneId) {
             return getScene(_sceneId).getActions();
@@ -54,9 +133,10 @@ define([], function () {
         /**
          * Description
          * @method getDialogs
-         * @param {} _sceneId
+         * @param {int|string} _sceneId
          * @return CallExpression
-         * @memberOf Level
+         *
+         * @memberOf Level#
          */
         function getDialogs(_sceneId) {
             return getScene(_sceneId).getDialogs();
@@ -65,9 +145,10 @@ define([], function () {
         /**
          * Description
          * @method getInteractiveObjects
-         * @param {} _sceneId
+         * @param {int|string} _sceneId
          * @return CallExpression
-         * @memberOf Level
+         *
+         * @memberOf Level#
          */
         function getInteractiveObjects(_sceneId) {
             return getScene(_sceneId).getInteractiveObjects();
@@ -76,8 +157,9 @@ define([], function () {
         /**
          * Description
          * @method getScene
-         * @param {} _sceneId
-         * @memberOf Level
+         * @param {int|string} _sceneId
+         *
+         * @memberOf Level#
          */
         function getScene(_sceneId) {
             if (typeof _sceneId == "string") {
@@ -90,8 +172,9 @@ define([], function () {
         /**
          * Description
          * @method getModalScene
-         * @param {} _modalSceneId
-         * @memberOf Level
+         * @param {int|string} _modalSceneId
+         *
+         * @memberOf Level#
          */
         function getModalScene(_modalSceneId) {
             if (typeof _modalSceneId == "string") {
@@ -105,7 +188,8 @@ define([], function () {
          * Description
          * @method getFlags
          * @return flags
-         * @memberOf Level
+         *
+         * @memberOf Level#
          */
         function getFlags() {
             return flags;
@@ -114,8 +198,9 @@ define([], function () {
         /**
          * Description
          * @method getFlag
-         * @param {} _flagId
-         * @memberOf Level
+         * @param {int|string} _flagId
+         *
+         * @memberOf Level#
          */
         function getFlag(_flagId) {
             if (typeof _flagId == "string") {
@@ -129,7 +214,8 @@ define([], function () {
          * Description
          * @method getInitialScene
          * @return MemberExpression
-         * @memberOf Level
+         *
+         * @memberOf Level#
          */
         function getInitialScene() {
             return scenes[initialScene];
@@ -139,7 +225,8 @@ define([], function () {
          * Description
          * @method getCurrentScene
          * @return MemberExpression
-         * @memberOf Level
+         *
+         * @memberOf Level#
          */
         function getCurrentScene() {
             return scenes[currentScene];
@@ -149,7 +236,8 @@ define([], function () {
          * Description
          * @method getCurrentSceneId
          * @return currentScene
-         * @memberOf Level
+         *
+         * @memberOf Level#
          */
         function getCurrentSceneId() {
             return currentScene;
@@ -159,7 +247,8 @@ define([], function () {
          * Description
          * @method isEndOfLevel
          * @return CallExpression
-         * @memberOf Level
+         *
+         * @memberOf Level#
          */
         function isEndOfLevel() {
             return isEndOfLevelFunction();
@@ -169,10 +258,11 @@ define([], function () {
          * Description
          * @method getNextLevel
          * @return CallExpression
-         * @memberOf Level
+         *
+         * @memberOf Level#
          */
         function getNextLevel() {
-            return nextLevelFunciton();
+            return nextLevelFunction();
         }
 
         //Setters
@@ -180,29 +270,32 @@ define([], function () {
         /**
          * Description
          * @method setInitialScene
-         * @param {} _initialScene
-         * @memberOf Level
+         * @param {int} _initialSceneId
+         *
+         * @memberOf Level#
          */
-        function setInitialScene(_initialScene) {
-            initialScene = _initialScene;
-            currentScene = _initialScene;
+        function setInitialScene(_initialSceneId) {
+            initialScene = _initialSceneId;
+            currentScene = _initialSceneId;
         }
 
         /**
          * Description
          * @method setCurrentSceneById
-         * @param {} _newScene
-         * @memberOf Level
+         * @param {int} _newSceneId
+         *
+         * @memberOf Level#
          */
-        function setCurrentSceneById(_newScene) {
-            currentScene = _newScene;
+        function setCurrentSceneById(_newSceneId) {
+            currentScene = _newSceneId;
         }
 
         /**
          * Description
          * @method registerScene
-         * @param {} _scene
-         * @memberOf Level
+         * @param {Scene} _scene
+         *
+         * @memberOf Level#
          */
         function registerScene(_scene) {
             scenes_aux[_scene.getName()] = scenes.length;
@@ -213,8 +306,9 @@ define([], function () {
         /**
          * Description
          * @method registerModalScene
-         * @param {} _modalScene
-         * @memberOf Level
+         * @param {ModalScene} _modalScene
+         *
+         * @memberOf Level#
          */
         function registerModalScene(_modalScene) {
             modalScenes_aux[_modalScene.getName()] = modalScenes.length;
@@ -225,9 +319,10 @@ define([], function () {
         /**
          * Description
          * @method registerAction
-         * @param {} _action
-         * @param {} _sceneId
-         * @memberOf Level
+         * @param {Action} _action
+         * @param {int} _sceneId
+         *
+         * @memberOf Level#
          */
         function registerAction(_action, _sceneId) {
             scenes[_sceneId].registerAction(_action);
@@ -236,9 +331,10 @@ define([], function () {
         /**
          * Description
          * @method registerInteractiveObject
-         * @param {} _interactiveObject
-         * @param {} _sceneId
-         * @memberOf Level
+         * @param {InteractiveObject} _interactiveObject
+         * @param {int} _sceneId
+         *
+         * @memberOf Level#
          */
         function registerInteractiveObject(_interactiveObject, _sceneId) {
             scenes[_sceneId].registerInteractiveObject(_interactiveObject);
@@ -247,9 +343,10 @@ define([], function () {
         /**
          * Description
          * @method registerDialog
-         * @param {} _dialog
-         * @param {} _sceneId
-         * @memberOf Level
+         * @param {Dialog} _dialog
+         * @param {int} _sceneId
+         *
+         * @memberOf Level#
          */
         function registerDialog(_dialog, _sceneId) {
             scenes[_sceneId].registerDialog(_dialog);
@@ -258,8 +355,9 @@ define([], function () {
         /**
          * Description
          * @method registerFlag
-         * @param {} _flag
-         * @memberOf Level
+         * @param {Flag} _flag
+         *
+         * @memberOf Level#
          */
         function registerFlag(_flag) {
             flags_aux[_flag.getName()] = flags.length;

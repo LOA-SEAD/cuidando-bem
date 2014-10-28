@@ -12,7 +12,7 @@ define([], function () {
     function Action(_name, _cssClass, _actionFunction, _visible) {
         //Attributes
 
-        if (_visible == null)
+        if (typeof _visible === 'undefined')
             _visible = true;
 
         /**

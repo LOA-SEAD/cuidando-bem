@@ -24,7 +24,7 @@ define([], function () {
         //Inner Class
         /**
          * Description
-         * @class DialogOption
+         * @class Dialog.DialogOption
          * @param {string} _text
          * @param {function} _actionFunction
          *

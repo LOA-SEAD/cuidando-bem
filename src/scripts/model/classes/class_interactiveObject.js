@@ -7,22 +7,57 @@ define([], function () {
     /**
      * @class
      * @name InteractiveObject
-     * @param {} _name
-     * @param {} _cssClass
-     * @param {} _actionFunction
-     * @param {} _visible
+     * @param {string} _name
+     * @param {string} _cssClass
+     * @param {function} _actionFunction
+     * @param {boolean} [_visible=true]
      * @return ObjectExpression
      */
     function interactiveObject(_name, _cssClass, _actionFunction, _visible) {
         //Attributes
 
-        if (_visible == null)
+        if (typeof _visible === 'undefined')
             _visible = true;
 
+        /**
+         *
+         * @type {string}
+         * @private
+         *
+         * @memberOf InteractiveObject#
+         */
         var name = _name;
+        /**
+         *
+         * @type {string}
+         * @private
+         *
+         * @memberOf InteractiveObject#
+         */
         var cssClass = _cssClass;
+        /**
+         *
+         * @type {boolean}
+         * @private
+         *
+         * @memberOf InteractiveObject#
+         */
         var visible = _visible;
+        /**
+         *
+         * @type {boolean}
+         * @private
+         *
+         * @memberOf InteractiveObject#
+         */
         var enable = true;
+        /**
+         *
+         * @type {function}
+         * @private
+         *
+         * @memberOf InteractiveObject#
+         */
         var actionFunction = _actionFunction;
 
         //Methods
@@ -30,7 +65,8 @@ define([], function () {
         /**
          * Description
          * @method execute
-         * @memberOf InteractiveObject
+         *
+         * @memberOf InteractiveObject#
          */
         function execute() {
             action();
@@ -42,7 +78,8 @@ define([], function () {
          * Description
          * @method getFunction
          * @return actionFunction
-         * @memberOf InteractiveObject
+         *
+         * @memberOf InteractiveObject#
          */
         function getFunction() {
             return actionFunction;
@@ -52,7 +89,8 @@ define([], function () {
          * Description
          * @method getName
          * @return name
-         * @memberOf InteractiveObject
+         *
+         * @memberOf InteractiveObject#
          */
         function getName() {
             return name;
@@ -62,7 +100,8 @@ define([], function () {
          * Description
          * @method getCssClass
          * @return cssClass
-         * @memberOf InteractiveObject
+         *
+         * @memberOf InteractiveObject#
          */
         function getCssClass() {
             return cssClass;
@@ -72,7 +111,8 @@ define([], function () {
          * Description
          * @method isEnabled
          * @return enable
-         * @memberOf InteractiveObject
+         *
+         * @memberOf InteractiveObject#
          */
         function isEnabled() {
             return enable;
@@ -82,7 +122,8 @@ define([], function () {
          * Description
          * @method isVisible
          * @return visible
-         * @memberOf InteractiveObject
+         *
+         * @memberOf InteractiveObject#
          */
         function isVisible() {
             return visible;
@@ -93,8 +134,9 @@ define([], function () {
         /**
          * Description
          * @method setEnable
-         * @param {} _enable
-         * @memberOf InteractiveObject
+         * @param {boolean} _enable
+         *
+         * @memberOf InteractiveObject#
          */
         function setEnable(_enable) {
             enable = _enable;
@@ -103,8 +145,9 @@ define([], function () {
         /**
          * Description
          * @method setVisible
-         * @param {} _visible
-         * @memberOf InteractiveObject
+         * @param {boolean} _visible
+         *
+         * @memberOf InteractiveObject#
          */
         function setVisible(_visible) {
             visible = _visible;
