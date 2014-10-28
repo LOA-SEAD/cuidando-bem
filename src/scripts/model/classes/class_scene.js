@@ -10,30 +10,22 @@ define([], function () {
     /**
      * @class
      * @name Scene
-     * @param {} _name
-     * @param {} _cssClass
-     * @param {} _load
-     * @param {} _unload
+     * @param {string} _name
+     * @param {string} _cssClass
+     * @param {function} _load
+     * @param {function} _unload
      * @return ObjectExpression
      */
     function Scene(_name, _cssClass, _load, _unload) {
         //Attributes
 
-        if (_load == null)
-            /**
-             * Description
-             * @memberOf Scene
-             */
-            _load = function () {
-            };
+        if (typeof _load === 'undefined') {
+            _load = function () {};
+        }
 
-        if (_unload == null)
-            /**
-             * Description
-             * @memberOf Scene
-             */
-            _unload = function () {
-            };
+        if (typeof _unload === 'undefined') {
+            _unload = function () {};
+        }
 
         var name = _name;
         var cssClass = _cssClass;
@@ -54,7 +46,8 @@ define([], function () {
         /**
          * Description
          * @method load
-         * @memberOf Scene
+         *
+         * @memberOf Scene#
          */
         function load() {
             L.info("Scene " + name + " load function");
@@ -64,7 +57,8 @@ define([], function () {
         /**
          * Description
          * @method unload
-         * @memberOf Scene
+         *
+         * @memberOf Scene#
          */
         function unload() {
             L.info("Scene " + name + " unload function");
@@ -77,7 +71,8 @@ define([], function () {
          * Description
          * @method getName
          * @return name
-         * @memberOf Scene
+         *
+         * @memberOf Scene#
          */
         function getName() {
             return name;
@@ -87,7 +82,8 @@ define([], function () {
          * Description
          * @method getCssClass
          * @return cssClass
-         * @memberOf Scene
+         *
+         * @memberOf Scene#
          */
         function getCssClass() {
             return cssClass;
@@ -97,7 +93,8 @@ define([], function () {
          * Description
          * @method getActions
          * @return actions
-         * @memberOf Scene
+         *
+         * @memberOf Scene#
          */
         function getActions() {
             return actions;
@@ -107,7 +104,8 @@ define([], function () {
          * Description
          * @method getAction
          * @param {} _actionId
-         * @memberOf Scene
+         *
+         * @memberOf Scene#
          */
         function getAction(_actionId) {
             if (typeof _actionId == "string") {
@@ -121,7 +119,8 @@ define([], function () {
          * Description
          * @method getDialogs
          * @return dialogs
-         * @memberOf Scene
+         *
+         * @memberOf Scene#
          */
         function getDialogs() {
             return dialogs;
@@ -131,7 +130,8 @@ define([], function () {
          * Description
          * @method getInteractiveObjects
          * @return interactiveObjects
-         * @memberOf Scene
+         *
+         * @memberOf Scene#
          */
         function getInteractiveObjects() {
             return interactiveObjects;
@@ -141,7 +141,8 @@ define([], function () {
          * Description
          * @method getInteractiveObject
          * @param {} _intObjId
-         * @memberOf Scene
+         *
+         * @memberOf Scene#
          */
         function getInteractiveObject(_intObjId) {
             if (typeof _intObjId == "string") {
@@ -157,7 +158,8 @@ define([], function () {
          * Description
          * @method registerAction
          * @param {} _action
-         * @memberOf Scene
+         *
+         * @memberOf Scene#
          */
         function registerAction(_action) {
             actions_aux[_action.getName()] = actions.length;
@@ -170,7 +172,8 @@ define([], function () {
          * Description
          * @method registerDialog
          * @param {} _dialog
-         * @memberOf Scene
+         *
+         * @memberOf Scene#
          */
         function registerDialog(_dialog) {
             dialogs.push(_dialog);
@@ -181,9 +184,11 @@ define([], function () {
          * Description
          * @method registerDialogs
          * @param {} _dialogs
-         * @memberOf Scene
+         *
+         * @memberOf Scene#
          */
         function registerDialogs(_dialogs) {
+            var i;
             for (i = 0; i < _dialogs.length; i++) {
                 dialogs.push(_dialogs[i]);
                 L.log(["Registering Dialog: ", _dialogs[i].getSpeakerName(), "on Scene:" + name]);
@@ -194,7 +199,8 @@ define([], function () {
          * Description
          * @method registerInteractiveObject
          * @param {} _interactiveObject
-         * @memberOf Scene
+         *
+         * @memberOf Scene#
          */
         function registerInteractiveObject(_interactiveObject) {
             interactiveObjects_aux[_interactiveObject.getName()] = interactiveObjects.length;

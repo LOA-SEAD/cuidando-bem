@@ -24,7 +24,7 @@ This project includes a server.bat that runs a python command that makes a simpl
 ## Documentation
 
 We are also documenting our software using JSDOC commentarie style
-To see our documentation you will have to use grunt
+To see our documentation you will have to use grunt or [access](http://loa-sead.github.io/cuidando-bem/) 
 
 ```
 
