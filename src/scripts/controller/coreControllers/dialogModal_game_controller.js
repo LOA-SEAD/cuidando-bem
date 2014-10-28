@@ -61,7 +61,7 @@ define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function (c
      */
     function changeDialogTo(_dialog) {
         $(dialogTextSelector).text(_dialog.getText());
-        $(dialogCharImgSelector).attr('class', dialogCharImgSelector + ' ' + _dialog.getSpeakerCssClass());
+        $(dialogCharImgSelector).attr('class', dialogCharImgSelector.substr(1) + ' ' + _dialog.getSpeakerCssClass());
         changeDialogOptionsTo(_dialog.getOptions());
     }
 
