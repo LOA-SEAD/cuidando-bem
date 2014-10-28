@@ -45,6 +45,8 @@ define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function (c
      * @memberOf module:DialogModal_Game_Controller
      */
     function openDialog(_dialog) {
+        dialog = _dialog;
+
         $(dialogModalSelector).css("display", "table");
         changeDialogTo(_dialog);
 
@@ -59,7 +61,7 @@ define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function (c
      */
     function changeDialogTo(_dialog) {
         $(dialogTextSelector).text(_dialog.getText());
-        $(dialogCharImgSelector).addClass(_dialog.getSpeakerCssClass());
+        $(dialogCharImgSelector).attr('class', dialogCharImgSelector + ' ' + _dialog.getSpeakerCssClass());
         changeDialogOptionsTo(_dialog.getOptions());
     }
 
