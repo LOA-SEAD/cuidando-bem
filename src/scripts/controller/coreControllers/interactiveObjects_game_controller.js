@@ -107,7 +107,7 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
         var element = $(selector);
         element.removeClass("disabled");
         element.addClass("enabled");
-        element.click(_action.getFunction());
+        element.click(_interactiveObject.getFunction());
     }
 
     /**
