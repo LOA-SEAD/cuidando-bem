@@ -16,34 +16,20 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         function getNextLevel1() {
         }
 
-        /*
-         Flags for level 1
-         */
-        level1.registerFlag(new Flag("conversar_recepcionista"), false);
-        level1.registerFlag(new Flag("conversar_paciente", false));
-        level1.registerFlag(new Flag("pulseira_paciente", false));
-        level1.registerFlag(new Flag("confirmar_paciente", false));
-        level1.registerFlag(new Flag("conversar_mentor", false));
-        level1.registerFlag(new Flag("termometro", false));
-        level1.registerFlag(new Flag("medidor_pressao", false));
-        level1.registerFlag(new Flag("oximetro", false));
-        level1.registerFlag(new Flag("lavar_maos", false));
-        level1.registerFlag(new Flag("medir_temperatura", false));
-        level1.registerFlag(new Flag("medir_pulso", false));
-        level1.registerFlag(new Flag("medir_freq_respiratoria", false));
-        level1.registerFlag(new Flag("mentor_finaliza", false));
-
         var flags_on = true;    // if false it wont check for flags -- tests purpose
 
-        /*
-         Scenes for level 1
-         */
+        if (flags_on)
+            var visibility = false;
+        else
+            var visibility = true;
 
         /*
          Scene:  Recepcao
          */
         var recepcao = new Scene("recepcao", "scene-recepcao",
             recepcaoOnLoad, recepcaoOnUnload);
+        // Flags
+        level1.registerFlag(new Flag("conversar_recepcionista"), false);
 
         // Dialogs
         var fala_recepcionista = [];
@@ -110,10 +96,6 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         }
 
         // Actions
-        if (flags_on)
-            var visibility = false;
-        else
-            var visibility = true;
 
         recepcao.registerAction(
             new Action("Ir ao corredor", "action-ir_corredor", recepcaoIrCorredor, visibility));
@@ -136,6 +118,9 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
          Scene:  Corredor
          */
         var corredor = new Scene("corredor", "scene-corredor", corredorOnLoad, corredorOnUnLoad);
+
+        // Flags
+        level1.registerFlag(new Flag("conversar_mentor", false));
 
         // Dialogs
         var fala_mentor = [];
@@ -214,6 +199,9 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
          Scene:  Sala de Leitos
          */
         var sala_de_leitos = new Scene("sala_de_leitos", "scene-sala_de_leitos", salaLeitosOnLoad, salaLeitosOnUnload);
+
+        // Flags
+        level1.registerFlag(new Flag("conversar_paciente", false));
 
         // Dialogs
 
