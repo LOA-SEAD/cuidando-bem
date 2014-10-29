@@ -7,8 +7,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core) {
         var debug_mode = true;
 
-        var level1 = new Level("Level 1", isEndOfLevel1, getNextLevel1);
-        L.group(level1.getName(), debug_mode);
+        var level = new Level("Level 1", isEndOfLevel1, getNextLevel1);
+        L.group(level.getName(), debug_mode);
 
         function isEndOfLevel1() {
         }
@@ -29,7 +29,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         var recepcao = new Scene("recepcao", "scene-recepcao",
             recepcaoOnLoad, recepcaoOnUnload);
         // Flags
-        level1.registerFlag(new Flag("conversar_recepcionista"), false);
+        level.registerFlag(new Flag("conversar_recepcionista"), false);
 
         // Dialogs
         var fala_recepcionista = [];
@@ -38,8 +38,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         fala_recepcionista[0].registerOption({
             text: "Bom dia, sou o novo técnico de enfermagem contratado",
             actionFunction: function () {
-                level1.getFlag("conversar_recepcionista").setValue(true);
-                L.log("Selecionado 1a opção diálogo: " + level1.getFlag("conversar_recepcionista").getValue());
+                level.getFlag("conversar_recepcionista").setValue(true);
+                L.log("Selecionado 1a opção diálogo: " + level.getFlag("conversar_recepcionista").getValue());
                 core.closeDialog(0);
                 core.openDialog(1);
             }});
@@ -79,7 +79,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 L.log("Ir para o corredor");
             }
             else {
-                if (level1.getFlag("conversar_recepcionista").getValue() == true) {
+                if (level.getFlag("conversar_recepcionista").getValue() == true) {
                     core.closeDialog(0);
                     core.closeDialog(1);
                     core.changeScene(1);
@@ -120,7 +120,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         var corredor = new Scene("corredor", "scene-corredor", corredorOnLoad, corredorOnUnLoad);
 
         // Flags
-        level1.registerFlag(new Flag("conversar_mentor", false));
+        level.registerFlag(new Flag("conversar_mentor", false));
+        level.registerFlag(new Flag("passagem_corredor", 0));
 
         // Dialogs
         var fala_mentor = [];
@@ -131,7 +132,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         fala_mentor[0].registerOption({
             text: "Obrigado! Espero conseguir atender suas expectativas",
             actionFunction: function () {
-                level1.getFlag("conversar_mentor").setValue(true);
+                level.getFlag("conversar_mentor").setValue(true);
                 core.closeDialog(0);
                 core.openDialog(1);
             }
@@ -152,11 +153,33 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         // Functions
         function corredorOnLoad() {
-            core.openDialog(0);
+            switch (level.getFlag("passagem_corredor").getValue()){
+                case 0: // first time at 'corredor'
+                    core.openDialog(0);
+                    break;
+                case 1: // second time at 'corredor'
+                    core.setActionVisible("Ir para o posto de enfermagem", true);
+                    core.setActionVisible("Ir para a sala de leitos masculino", false);
+                    break;
+                case 2:
+                    core.setActionVisible("Ir para o posto de enfermagem", false);
+                    core.setActionVisible("Ir para a sala de leitos masculino", true);
+                    break;
+            }
         }
 
         function corredorOnUnLoad(){
-
+            switch (level.getFlag("passagem_corredor").getValue()){
+                case 0:
+                    level.getFlag("passagem_corredor").setValue(1);
+                    break;
+                case 1:
+                    level.getFlag("passagem_corredor").setValue(2);
+                    break;
+                case 2:
+                    level.getFlag("passagem_corredor").setValue(3);
+                    break;
+            }
         }
 
         function corredorIrSalaLeitos() {
@@ -164,7 +187,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 L.log("Action: corredorIrSalaLeitos");
                 core.changeScene(2);
             } else {
-                if (level1.getFlag("conversar_mentor").getValue() == true) {
+                if (level.getFlag("conversar_mentor").getValue() == true) {
                     core.changeScene(2);
                     L.log("Action: corredorIrSalaLeitos");
                 } else {
@@ -174,10 +197,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         }
 
         function corredorIrPostoEnfermagem() {
-            if (!flags_on) {
                 L.log("Action: corredorIrPostoEnfermagem");
                 core.changeScene(4);
-            }
         }
 
         // Actions
@@ -201,16 +222,32 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         var sala_de_leitos = new Scene("sala_de_leitos", "scene-sala_de_leitos", salaLeitosOnLoad, salaLeitosOnUnload);
 
         // Flags
-        level1.registerFlag(new Flag("conversar_paciente", false));
+        level.registerFlag(new Flag("passagem_sala-de-leitos", 0));
 
         // Dialogs
 
         // Functions
         function salaLeitosOnLoad(){
-            core.setActionVisible("Ir ao leito", true);
+            switch (level.getFlag("passagem_sala-de-leitos").getValue()){
+                case 0:
+                    core.setActionVisible("Ir ao leito", true);
+                    core.setActionVisible("Ir ao corredor", false);
+                    break;
+                case 1:
+                    core.setActionVisible("Ir ao leito", false);
+                    core.setActionVisible("Ir ao corredor", true);
+                    break;
+            }
         }
         function salaLeitosOnUnload(){
-
+            switch (level.getFlag("passagem_sala-de-leitos").getValue()){
+                case 0:
+                    level.getFlag("passagem_sala-de-leitos").setValue(1);
+                    break;
+                case 1:
+                    level.getFlag("passagem_sala-de-leitos").setValue(0);
+                    break;
+            }
         }
         function salaLeitosIrCorredor(){
             core.changeScene(1);
@@ -275,6 +312,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             text: "Encerrar dialogo",
             actionFunction: function () {
                 core.closeDialog(3);
+                core.setActionVisible("Ir para sala de leitos", true);
             }
         });
 
@@ -291,18 +329,19 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 L.log("Action: action-ir_sala_de_leitos");
                 core.changeScene(2);
         }
+        /*
         function leitoConversarPaciente(){
             L.log("Action: conversar_paciente");
-            level1.getFlags()[0] = true;
+            level.getFlags()[0] = true;
         }
         function leitoPulseiraPaciente(){
             L.log("Action: pulseira_paciente");
-            level1.getFlags()[1] = true;
+            level.getFlags()[1] = true;
         }
         function leitoConfirmarPaciente(){
             L.log("Action: confirmar_paciente");
-            if (level1.getFlags()[0] == true && level1.getFlags()[1] == true)
-                level1.getFlags()[2] = true;
+            if (level.getFlags()[0] == true && level.getFlags()[1] == true)
+                level.getFlags()[2] = true;
         }
         function leitoFecharPulseira(){
 
@@ -314,50 +353,52 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
             // Acao #12
             // necessita de "confirmar_paciente"
-            if (level1.getFlags()[2] == true) {
-                level1.getFlags()[3] = true; // conversar_mentor
+            if (level.getFlags()[2] == true) {
+                level.getFlags()[3] = true; // conversar_mentor
             }
             // Acao #27
-            if (level1.getFlags()[8] == true &&      // medir_temperatura
-                level1.getFlags()[9] == true &&     // medir_pulso
-                level1.getFlags()[10] == true) {     // medir_freq_respiratoria
-                level1.getFlags()[11] == true;  // mentor_finaliza
+            if (level.getFlags()[8] == true &&      // medir_temperatura
+                level.getFlags()[9] == true &&     // medir_pulso
+                level.getFlags()[10] == true) {     // medir_freq_respiratoria
+                level.getFlags()[11] == true;  // mentor_finaliza
             }
         }
         function leitoLavarMaos(){
             L.log("Action: lavar_maos");
-            level1.getFlags()[7] = true;    // lavar_maos
+            level.getFlags()[7] = true;    // lavar_maos
         }
 
         function leitoMedirTemperatura(){
             L.log("Action: medir_temperatura");
             // precisa de termometro e lavar_maos
-            if (level1.getFlags()[4] == true && level1.getFlags()[7] == true) {
-                level1.getFlags()[8] = true; // medir_temperatura
+            if (level.getFlags()[4] == true && level.getFlags()[7] == true) {
+                level.getFlags()[8] = true; // medir_temperatura
             }
         }
 
         function leitoMedirPulso(){
             L.log("Action: medir_pulso");
             // precisa de medidor pressao e lavar_maos
-            if (level1.getFlags()[5] == true && level1.getFlags()[7] == true) {
-                level1.getFlags()[9] = true; // medir_pulso
+            if (level.getFlags()[5] == true && level.getFlags()[7] == true) {
+                level.getFlags()[9] = true; // medir_pulso
             }
         }
 
         function leitoMedirFreqRespiratoria(){
             L.log("Action: medir_freq_respiratoria");
             // precisa de oximetro e lavar_maos
-            if (level1.getFlags()[6] == true && level1.getFlags()[7] == true) {
-                level1.getFlags()[10] = true; // medir_fred_respiratoria
+            if (level.getFlags()[6] == true && level.getFlags()[7] == true) {
+                level.getFlags()[10] = true; // medir_fred_respiratoria
             }
         }
+        */
 
         // Actions
 
         // # 13.1 - Ir para o corredor --> substituida por ir para sala de leitos
         leito.registerAction(
-            new Action("Ir para sala de leitos", "action-ir_sala_de_leitos", leitoIrCorredor));
+            new Action("Ir para sala de leitos", "action-ir_sala_de_leitos", leitoIrCorredor, visibility));
+        /*
         // # 8 - Conversar paciente
         leito.registerAction(
             new Action("conversar_paciente", "action-conversar_paciente", leitoConversarPaciente));
@@ -385,66 +426,84 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         // # 26 - medir frequencia respiratoria
         leito.registerAction(
             new Action("medir_freq_respiratoria", "action-medir_freq_respiratoria", leitoMedirFreqRespiratoria));
-
+        */
         /*
          Scene: Posto de Enfermagem
          */
-        var posto_de_enfermagem = new Scene("posto_de_enfermagem", "scene-posto_de_enfermagem");
+        var posto_de_enfermagem = new Scene("posto_de_enfermagem", "scene-posto_de_enfermagem",
+            postoEnfermagemOnload, postoEnfermagemOnUnload);
 
-        // # 15 - Abrir gaveta
-        // # 20 - Ir para o corredor
-        posto_de_enfermagem.registerAction(new Action("Ir ao corredor", "action-ir_corredor",
-            function () {
+        // Flags
+
+        // Dialogs
+
+        // Functions
+        function postoEnfermagemOnload(){
+
+        }
+
+        function postoEnfermagemOnUnload(){
+
+        }
+
+        function postoEnfermagemIrCorredor(){
                 L.log("Action: ir_corredor");
                 core.changeScene(1);
-            })); // posto de enfermagem
-        posto_de_enfermagem.registerAction(new Action("abrir_gaveta", "action-abrir_gaveta",
-            function () {
-                L.log("Action: abrir_gaveta");
-                // abrir janela de objeto
-            })); // posto de enfermagem
-        // # 16 - Pegar termometro
-        posto_de_enfermagem.registerAction(new Action("pegar_termometro", "action-pegar_termometro",
-            function () {
-                L.log("Action: pegar_termometro");
-                if (level1.getFlags()[3] == true) {
-                    level1.getFlags()[4] = true;    // termometro
-                    level1.getFlags()[7] = false;   // nega - lavar_maos
-                }
-            })); // posto de enfermagem
-        // # 17 - Pegar Medidor de Pressao
-        posto_de_enfermagem.registerAction(new Action("pegar_medidor_pressao", "action-pegar_medidor_pressao",
-            function () {
-                L.log("Action: pegar_medidor_pressao");
-                if (level1.getFlags()[3] == true) {
-                    level1.getFlags()[5] = true;    // medidor_pressao
-                    level1.getFlags()[7] = false;   // nega - lavar_maos
-                }
-            })); // posto de enfermagem
-        // # 18 - Pegar Oximetro
-        posto_de_enfermagem.registerAction(new Action("pegar_oximetro", "action-pegar_oximetro",
-            function () {
-                L.log("Action: pegar_oximetro");
-                if (level1.getFlags()[3] == true) {
-                    level1.getFlags()[6] = true;    // oximetro
-                    level1.getFlags()[7] = false;   // nega - lavar_maos
-                }
-            })); // posto de enfermagem
-        // # 19 - Fechar gaveta
-        posto_de_enfermagem.registerAction(new Action("fechar_gaveta", "action-fechar_gaveta",
-            function () {
-                L.log("Action: fechar_gaveta");
-                // fechar janela de objeto
-            })); // posto de enfermagem
+        }
+        function postoEnfermagemAbrirGaveta() {
+            L.log("Action: abrir_gaveta");
+            // abrir janela de objeto
+        }
+        function postoEnfermagemPegarTermometro() {
+            L.log("Action: pegar_termometro");
+            if (level.getFlags()[3] == true) {
+                level.getFlags()[4] = true;    // termometro
+                level.getFlags()[7] = false;   // nega - lavar_maos
+            }
+        }
+        function postoEnfermagemPegarMedidorPressao() {
+            L.log("Action: pegar_medidor_pressao");
+            if (level.getFlags()[3] == true) {
+                level.getFlags()[5] = true;    // medidor_pressao
+                level.getFlags()[7] = false;   // nega - lavar_maos
+            }
+        }
+        function postoEnfermagemPegarOximetro() {
+            L.log("Action: pegar_oximetro");
+            if (level.getFlags()[3] == true) {
+                level.getFlags()[6] = true;    // oximetro
+                level.getFlags()[7] = false;   // nega - lavar_maos
+            }
+        }
+        function postoEnfermagemFecharGaveta() {
+            L.log("Action: fechar_gaveta");
+        }
+        // Actions
+        posto_de_enfermagem.registerAction(
+            new Action("Ir ao corredor", "action-ir_corredor",postoEnfermagemIrCorredor, visibility));
 
+        posto_de_enfermagem.registerAction(
+            new Action("Abrir gaveta", "action-abrir_gaveta", postoEnfermagemAbrirGaveta, visibility));
 
-        level1.registerScene(recepcao);
-        level1.registerScene(corredor);
-        level1.registerScene(sala_de_leitos);
-        level1.registerScene(leito);
-        level1.registerScene(posto_de_enfermagem);
+        posto_de_enfermagem.registerAction(
+            new Action("Pegar termometro", "action-pegar_termometro", postoEnfermagemPegarTermometro, visibility));
 
-        level1.setInitialScene(0);
+        posto_de_enfermagem.registerAction(
+            new Action("Pegar medidor pressao", "action-pegar_medidor_pressao", postoEnfermagemPegarMedidorPressao, visibility));
+
+        posto_de_enfermagem.registerAction(
+            new Action("Pegar oximetro", "action-pegar_oximetro", postoEnfermagemPegarOximetro, visibility));
+
+        posto_de_enfermagem.registerAction(
+            new Action("Fechar gaveta", "action-fechar_gaveta", postoEnfermagemFecharGaveta, visibility));
+
+        level.registerScene(recepcao);
+        level.registerScene(corredor);
+        level.registerScene(sala_de_leitos);
+        level.registerScene(leito);
+        level.registerScene(posto_de_enfermagem);
+
+        level.setInitialScene(0);
 
         /*
          EXEMPLO DE COMO UTILIZAR MODAL
@@ -462,13 +521,13 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
          core.setInteractiveObjectVisible(0, false);
          }
          ));
-         level1.registerModalScene(gaveta_teste);
+         level.registerModalScene(gaveta_teste);
 
          recepcao.registerAction(
          new Action("Fechar modal", "action-fechar_modal", function(){core.openModalScene(0);}));
 
          */
 
-        game.registerLevel(level1, 0);
+        game.registerLevel(level, 0);
         L.groupEnd();
     });
