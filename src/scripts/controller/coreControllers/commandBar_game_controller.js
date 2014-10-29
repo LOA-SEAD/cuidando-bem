@@ -103,24 +103,10 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (c
      * Description
      * @method removeActionButton
      * @memberOf module:CommandBar_Game_Controller
+     * @todo function to remove only one action button based on ID
      */
     function removeActionButton() {
 
-    }
-
-    //Deactivate Button
-    /**
-     * Description
-     * @method deactivateActionButton
-     * @param {} _action
-     * @memberOf module:CommandBar_Game_Controller
-     */
-    function deactivateActionButton(_action) {
-        var selector = _action.getCssClass();
-        var element = $('.' + selector);
-        element.removeClass("enabled");
-        element.addClass("disabled");
-        element.unbind("click");
     }
 
     //Activate button
@@ -136,6 +122,21 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (c
         element.removeClass("disabled");
         element.addClass("enabled");
         element.click(_action.getFunction());
+    }
+
+    //Deactivate Button
+    /**
+     * Description
+     * @method deactivateActionButton
+     * @param {} _action
+     * @memberOf module:CommandBar_Game_Controller
+     */
+    function deactivateActionButton(_action) {
+        var selector = '.' + _action.getCssClass();
+        var element = $(selector);
+        element.removeClass("enabled");
+        element.addClass("disabled");
+        element.unbind("click");
     }
 
     /**
@@ -206,12 +207,12 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (c
      * @memberOf module:CommandBar_Game_Controller
      */
     function setActionVisible(_action, _value) {
-        var actionClass = _action.getCssClass();
+        var selector = '.' + _action.getCssClass();
 
         if (_value)
-            $("." + actionClass).show();
+            $(selector).show();
         else
-            $("." + actionClass).hide();
+            $(selector).hide();
     }
 
 //Public Interface

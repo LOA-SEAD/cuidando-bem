@@ -150,7 +150,8 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         var dialog = Dialogs[_dialogId];
         Dialog.show(dialog);
 
-        deactivateAllActionButtons(Actions);
+        deactivateAllActionButtons();
+        deactivateAllInteractiveObjects();
     }
 
     /**
@@ -162,6 +163,7 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         Dialog.close();
 
         updateAllActionButtons();
+        updateAllInteractiveObjects();
     }
 
     //End Level
@@ -190,6 +192,26 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
      */
     function deactivateAllActionButtons() {
         CommandBar.deactivateAllActionButtons(Actions);
+    }
+
+    /**
+     * Description
+     * @method deactivateAllInteractiveObjects
+     *
+     * @memberof module:Core_Controller
+     */
+    function deactivateAllInteractiveObjects(){
+        InteractiveObject.deactivateAllInteractiveObjects(InteractiveObjects);
+    }
+
+    /**
+     * Description
+     * @method updateAllInteractiveObjects
+     *
+     * @memberof module:Core_Controller
+     */
+    function updateAllInteractiveObjects(){
+        InteractiveObject.updateAllInteractiveObjects(InteractiveObjects);
     }
 
     /**

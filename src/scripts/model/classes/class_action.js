@@ -9,11 +9,13 @@ define([], function () {
      * @param {boolean} [_visible=true]
      * @return ObjectExpression
      */
+    "use strict";
     function Action(_name, _cssClass, _actionFunction, _visible) {
         //Attributes
 
-        if (typeof _visible === 'undefined')
+        if (_visible == null) {
             _visible = true;
+        }
 
         /**
          * @type {string}
@@ -166,7 +168,7 @@ define([], function () {
 
             setEnable: setEnable,
             setVisible: setVisible
-        }
+        };
     }
 
 

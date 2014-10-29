@@ -4,9 +4,7 @@
  * @module
  */
 define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], function (core, interactiveObjectTemplate) {
-
 //Attributes
-
     var divSelector = "#interactiveObjects";
     var interactiveObjectSelector = ".interactiveObject";
 
@@ -14,6 +12,7 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
     /**
      * Description
      * @method init
+     *
      * @memberOf module:InteractiveObjects_Game_Controller
      */
     function init() {
@@ -24,6 +23,7 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      * Description
      * @method addAllInteractiveObjects
      * @param {} _interactiveObjects
+     *
      * @memberOf module:InteractiveObjects_Game_Controller
      */
     function addAllInteractiveObjects(_interactiveObjects) {
@@ -43,6 +43,7 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      * Description
      * @method changeToInteractiveObjects
      * @param {} _interactiveObjects
+     *
      * @memberOf module:InteractiveObjects_Game_Controller
      */
     function changeToInteractiveObjects(_interactiveObjects) {
@@ -54,6 +55,7 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      * Description
      * @method addInteractiveObject
      * @param {} _interactiveObject
+     *
      * @memberOf module:InteractiveObjects_Game_Controller
      */
     function addInteractiveObject(_interactiveObject) {
@@ -75,6 +77,7 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
     /**
      * Description
      * @method removeAllInteractiveObjects
+     *
      * @memberOf module:InteractiveObjects_Game_Controller
      */
     function removeAllInteractiveObjects() {
@@ -85,11 +88,105 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      * Description
      * @method removeInteractiveObject
      * @param {} _interactiveObject
+     *
      * @memberOf module:InteractiveObjects_Game_Controller
      */
     function removeInteractiveObject(_interactiveObject) {
         $('.' + _interactiveObject.getCssClass()).remove();
     }
+
+    /**
+     * Description
+     * @method activateInteractiveObject
+     * @param {} _interactiveObject
+     *
+     * @memberOf module:InteractiveObjects_Game_Controller
+     */
+    function activateInteractiveObject(_interactiveObject){
+        var selector = '.' + _interactiveObject.getCssClass();
+        var element = $(selector);
+        element.removeClass("disabled");
+        element.addClass("enabled");
+        element.click(_action.getFunction());
+    }
+
+    /**
+     * Description
+     * @method deactivateInteractiveObject
+     * @param {} _interactiveObject
+     *
+     * @memberOf module:InteractiveObjects_Game_Controller
+     */
+    function deactivateInteractiveObject(_interactiveObject){
+        var selector = _interactiveObject.getCssClass();
+        var element = $('.' + selector);
+        element.removeClass("enabled");
+        element.addClass("disabled");
+        element.unbind("click");
+    }
+
+    /**
+     * Description
+     * @method activateAllInteractiveObjects
+     * @param {} _interactiveObjects
+     *
+     * @memberOf module:InteractiveObjects_Game_Controller
+     */
+    function activateAllInteractiveObjects(_interactiveObjects){
+        L.group("Enabling interactiveObjects", true);
+        var i;
+
+        for (i = 0; i < _interactiveObjects.length; i++) {
+            L.log("InteractiveObject to be enabled " + i + ": " + _interactiveObjects[i].getName());
+            var action = _interactiveObjects[i];
+            activateInteractiveObject(action);
+        }
+        L.groupEnd();
+    }
+
+    /**
+     * Description
+     * @method deactivateAllInteractiveObjects
+     * @param {} _interactiveObjects
+     *
+     * @memberOf module:InteractiveObjects_Game_Controller
+     */
+    function deactivateAllInteractiveObjects(_interactiveObjects){
+        L.group("Disabling interactiveObjects", true);
+        var i;
+
+        for (i = 0; i < _interactiveObjects.length; i++) {
+            L.log("InteractiveObject to be disabled " + i + ": " + _interactiveObjects[i].getName());
+            var action = _interactiveObjects[i];
+            deactivateInteractiveObject(action);
+        }
+        L.groupEnd();
+    }
+
+    /**
+     * Description
+     * @method updateAllActionButtons
+     * @param {} _interactiveObjects
+     *
+     * @memberOf module:InteractiveObjects_Game_Controller
+     */
+    function updateAllInteractiveObjects(_interactiveObjects){
+        L.group("Updating interactiveObjects", true);
+        var i;
+
+        for (i = 0; i < _interactiveObjects.length; i++) {
+            L.log("InteractiveObject to be updated " + i + ": " + _interactiveObjects[i].getName());
+            var action = _interactiveObjects[i];
+            if (action.isEnabled())
+                activateInteractiveObject(action);
+            else
+                deactivateInteractiveObject(action);
+        }
+        L.groupEnd();
+    }
+
+
+
 
 //Getters
 
@@ -97,17 +194,18 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
     /**
      * Description
      * @method setInteractiveObjectVisible
-     * @param {} _action
+     * @param {} _interactiveObject
      * @param {} _value
+     *
      * @memberOf module:InteractiveObjects_Game_Controller
      */
-    function setInteractiveObjectVisible(_action, _value) {
-        var actionClass = _action.getCssClass();
+    function setInteractiveObjectVisible(_interactiveObject, _value) {
+        var selector = '.' + _interactiveObject.getCssClass();
 
         if (_value)
-            $("." + actionClass).show();
+            $(selector).show();
         else
-            $("." + actionClass).hide();
+            $(selector).hide();
     }
 
 //Public Interface
@@ -122,7 +220,13 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
         removeAllInteractiveObjects: removeAllInteractiveObjects,
         removeInteractiveObject: removeInteractiveObject,
 
-        setInteractiveObjectVisible: setInteractiveObjectVisible
-    }
+        setInteractiveObjectVisible: setInteractiveObjectVisible,
+
+        activateInteractiveObject: activateInteractiveObject,
+        deactivateInteractiveObject: deactivateInteractiveObject,
+        activateAllInteractiveObjects: activateAllInteractiveObjects,
+        deactivateAllInteractiveObjects: deactivateAllInteractiveObjects,
+        updateAllInteractiveObjects: updateAllInteractiveObjects
+    };
 
 });
