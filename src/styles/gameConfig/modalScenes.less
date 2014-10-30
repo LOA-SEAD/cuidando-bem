@@ -1,17 +1,14 @@
 #modalScene {
-  position: absolute;
+  position: relative;
   display: none;
 }
 
-.modalScene-gavetaTeste {
-  width: 500px;
-  height: 347px;
-
-  top: 50%;
-  left: 50%;
-
-  margin-left: -250px;
-  margin-top: -170px;
-
+.modalScene-gaveta {
   background-image: @bg-gaveta;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+  width: @modalScene-gaveta-width;
+  height: @modalScene-gaveta-height;
+  margin: @modalScene-gaveta-margin;
 }

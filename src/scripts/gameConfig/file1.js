@@ -16,7 +16,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         function getNextLevel1() {
         }
 
-        var flags_on = true;    // if false it wont check for flags -- tests purpose
+        var flags_on = false;    // if false it wont check for flags -- tests purpose
 
         if (flags_on)
             var visibility = false;
@@ -497,6 +497,41 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         posto_de_enfermagem.registerAction(
             new Action("Fechar gaveta", "action-fechar_gaveta", postoEnfermagemFecharGaveta, visibility));
 
+        var gaveta = new Scene("Gaveta", "modalScene-gaveta");
+
+        gaveta.registerAction(
+            new Action("Fechar Gaveta", "action-fechar_gaveta",
+                function(){
+                    core.closeModalScene();
+                }));
+
+        gaveta.registerInteractiveObject(
+            new InteractiveObject("Termômetro", "intObj-termometro",
+                function () {
+                    L.log("O termometro foi ativado");
+                    core.setInteractiveObjectVisible("Termômetro", false);
+                }));
+
+        gaveta.registerInteractiveObject(
+            new InteractiveObject("Medidor de pressão", "intObj-medidor_pressao",
+                function () {
+                    L.log("O medidor de pressão foi ativado");
+                    core.setInteractiveObjectVisible("Medidor de pressão", false);
+                }));
+
+        gaveta.registerInteractiveObject(
+            new InteractiveObject("Oxímetro", "intObj-oximetro",
+                function () {
+                    L.log("O oxímetro foi ativado");
+                    core.setInteractiveObjectVisible("Oxímetro", false);
+                }));
+
+        level.registerModalScene(gaveta);
+
+        posto_de_enfermagem.registerAction(
+            new Action("Abrir gaveta", "action-abrir_gaveta", function(){core.openModalScene(0);}));
+
+
         level.registerScene(recepcao);
         level.registerScene(corredor);
         level.registerScene(sala_de_leitos);
@@ -504,29 +539,6 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         level.registerScene(posto_de_enfermagem);
 
         level.setInitialScene(0);
-
-        /*
-         EXEMPLO DE COMO UTILIZAR MODAL
-         var gaveta_teste = new Scene("Gaveta", "modalScene-gavetaTeste");
-
-         gaveta_teste.registerAction(new Action("Fechar Gaveta", "action-fechar_gaveta",
-         function(){
-         core.closeModalScene();
-         }
-         ));
-
-         gaveta_teste.registerInteractiveObject(new InteractiveObject("Objeto", "intObj-objeto",
-         function (){
-         L.log("O objeto foi clicado");
-         core.setInteractiveObjectVisible(0, false);
-         }
-         ));
-         level.registerModalScene(gaveta_teste);
-
-         recepcao.registerAction(
-         new Action("Fechar modal", "action-fechar_modal", function(){core.openModalScene(0);}));
-
-         */
 
         game.registerLevel(level, 0);
         L.groupEnd();
