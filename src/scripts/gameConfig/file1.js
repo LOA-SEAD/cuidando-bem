@@ -268,6 +268,10 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
          */
         var leito = new Scene("leito", "scene-leito", leitoOnLoad, leitoOnUnload);
 
+        // Flags
+        level.registerFlag(new Flag("visita-leito", 0));
+        level.registerFlag(new Flag("lavar-maos", 0));
+
         // Dialogs
         var fala_cena3_leito_masculino = [];
         fala_cena3_leito_masculino[0] = new Dialog("mentor", "char-mentor",
@@ -316,24 +320,131 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             }
         });
 
+        var fala_cena4_leito_masculino = [];
+
+        fala_cena4_leito_masculino[0] = new Dialog("jogador", "char-jogador",
+            "");
+        fala_cena4_leito_masculino[0].registerOption({
+            text: "Senhor Antônio, vou identificar você com esta pulseira. Ela é necessária para identificarmos o " +
+            "senhor corretamente, para que ninguém o confunda, é importante também a cada procedimento, você pedir " +
+            "para que o profissional da saúde, confira se realmente é você o paciente, que ele realizará o " +
+            "procedimento. Agora vou precisar ver os sinais vitais seu, que são a pressão arterial, a frequência " +
+            "cardíaca, frequência respiratória, saturação de O2 e temperatura",
+            actionFunction: function () {
+                core.closeDialog(4);
+                core.openDialog(5);
+            }
+        });
+
+        fala_cena4_leito_masculino[1] = new Dialog("paciente", "char-paciente",
+            "Tudo bem, agora o que estiver alterado você já pode ir me avisando");
+        fala_cena4_leito_masculino[1].registerOption({
+            text: "Encerrar Diálogo",
+            actionFunction: function () {
+                core.closeDialog(5);
+                core.setActionVisible("Lavar as mãos", true);
+            }
+        });
+
+
         leito.registerDialogs(fala_cena3_leito_masculino);
+        leito.registerDialogs(fala_cena4_leito_masculino);
 
         // Functions
         function leitoOnLoad() {
-            core.openDialog(0);
+            L.log("Leito: Onload");
+            switch (level.getFlag("visita-leito").getValue()){
+                case 0:
+                    core.openDialog(0);
+                    break;
+                case 1:
+                    core.setActionVisible("Ir para sala de leitos", false);
+                    core.openDialog(4);
+                    core.getFlag("termometro").setValue(false);
+                    core.getFlag("medidor-pressao").setValue(false);
+                    core.getFlag("oximetro").setValue(false);
+                    break;
+            }
         }
         function leitoOnUnload(){
+            L.log("Leito: OnUnload");
+            level.getFlag("visita-leito").setValue(1);
+        }
 
-        }
         function leitoIrCorredor(){
-                L.log("Action: action-ir_sala_de_leitos");
-                core.changeScene(2);
+            L.log("Action: action-ir_sala_de_leitos");
+            core.changeScene(2);
         }
+
+        function leitoLavarMaos(){
+            L.log("Action: lavar_maos");
+            switch (level.getFlag("lavar-maos").getValue()){
+                case 0:
+                    level.getFlag("lavar-maos").setValue(1);
+                    core.setActionVisible("Medir frequência respiratória", true);
+                    core.setActionVisible("Medir pulso", true);
+                    core.setActionVisible("Medir temperatura", true);
+                    core.setActionVisible("Lavar as mãos", false);
+                    break;
+                case 2:
+                    level.getFlag("lavar-maos").setValue(3);
+                    core.setActionVisible("Lavar as mãos", false);
+                    core.setActionVisible("Anotar prontuario", true);
+                    break;
+            }
+        }
+
+        function leitoMedirTemperatura(){
+            L.log("Action: medir_temperatura");
+            if(level.getFlag("lavar-maos").getValue() >= 1){
+
+                level.getFlag("termometro").setValue(true);
+                core.setActionVisible("Medir temperatura", false);
+
+                if(level.getFlag("oximetro").getValue() == true && level.getFlag("medidor-pressao").getValue() == true)
+                {
+                    core.setActionVisible("Lavar as mãos", true);
+                    core.getFlag("lavar-maos").setValue(2);
+                }
+            }
+        }
+
+        function leitoMedirPulso(){
+            L.log("Action: medir_pulso");
+            if(level.getFlag("lavar-maos").getValue() >= 1){
+
+                level.getFlag("medidor-pressao").setValue(true);
+                core.setActionVisible("Medir pulso", false);
+
+                if(level.getFlag("termometro").getValue() == true && level.getFlag("oximetro").getValue() == true)
+                {
+                    core.setActionVisible("Lavar as mãos", true);
+                    core.getFlag("lavar-maos").setValue(2);
+                }
+            }
+        }
+
+        function leitoMedirFreqRespiratoria(){
+            L.log("Action: medir_freq_respiratoria");
+            if(level.getFlag("lavar-maos").getValue() >= 1){
+
+                level.getFlag("oximetro").setValue(true);
+                core.setActionVisible("Medir frequência respiratória", false);
+
+                if(level.getFlag("termometro").getValue() == true && level.getFlag("medidor-pressao").getValue() == true)
+                {
+                    core.setActionVisible("Lavar as mãos", true);
+                    core.getFlag("lavar-maos").setValue(2);
+                }
+            }
+        }
+
+        function anotarProntuario(){
+            L.log("Action: anotar prontuario");
+            core.changeScene(5);
+        }
+
         /*
-        function leitoConversarPaciente(){
-            L.log("Action: conversar_paciente");
-            level.getFlags()[0] = true;
-        }
         function leitoPulseiraPaciente(){
             L.log("Action: pulseira_paciente");
             level.getFlags()[1] = true;
@@ -347,86 +458,39 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         }
 
-        function leitoConversarMentor(){
-            L.log("Action: conversar_mentor");
-            // get dialog conversar_mentor
-
-            // Acao #12
-            // necessita de "confirmar_paciente"
-            if (level.getFlags()[2] == true) {
-                level.getFlags()[3] = true; // conversar_mentor
-            }
-            // Acao #27
-            if (level.getFlags()[8] == true &&      // medir_temperatura
-                level.getFlags()[9] == true &&     // medir_pulso
-                level.getFlags()[10] == true) {     // medir_freq_respiratoria
-                level.getFlags()[11] == true;  // mentor_finaliza
-            }
-        }
-        function leitoLavarMaos(){
-            L.log("Action: lavar_maos");
-            level.getFlags()[7] = true;    // lavar_maos
-        }
-
-        function leitoMedirTemperatura(){
-            L.log("Action: medir_temperatura");
-            // precisa de termometro e lavar_maos
-            if (level.getFlags()[4] == true && level.getFlags()[7] == true) {
-                level.getFlags()[8] = true; // medir_temperatura
-            }
-        }
-
-        function leitoMedirPulso(){
-            L.log("Action: medir_pulso");
-            // precisa de medidor pressao e lavar_maos
-            if (level.getFlags()[5] == true && level.getFlags()[7] == true) {
-                level.getFlags()[9] = true; // medir_pulso
-            }
-        }
-
-        function leitoMedirFreqRespiratoria(){
-            L.log("Action: medir_freq_respiratoria");
-            // precisa de oximetro e lavar_maos
-            if (level.getFlags()[6] == true && level.getFlags()[7] == true) {
-                level.getFlags()[10] = true; // medir_fred_respiratoria
-            }
-        }
         */
 
         // Actions
 
-        // # 13.1 - Ir para o corredor --> substituida por ir para sala de leitos
         leito.registerAction(
             new Action("Ir para sala de leitos", "action-ir_sala_de_leitos", leitoIrCorredor, visibility));
-        /*
-        // # 8 - Conversar paciente
+
         leito.registerAction(
-            new Action("conversar_paciente", "action-conversar_paciente", leitoConversarPaciente));
-        // # 9 - Ver pulseira do paciente (exibe interactiveObject)
+            new Action("Lavar as mãos", "action-lavar_maos", leitoLavarMaos, visibility));
+
+        leito.registerAction(
+            new Action("Medir temperatura", "action-medir_temperatura", leitoMedirTemperatura, visibility));
+
+        leito.registerAction(
+            new Action("Medir pulso", "action-medir_pulso", leitoMedirPulso, visibility));
+
+        leito.registerAction(
+            new Action("Medir frequência respiratória", "action-medir_freq_respiratoria", leitoMedirFreqRespiratoria, visibility));
+
+        leito.registerAction(
+            new Action("Anotar prontuario", "action-anotar_prontuario", anotarProntuario, visibility));
+
+        /*
         leito.registerAction(
             new Action("pulseira_paciente", "action-pulseira_paciente", leitoPulseiraPaciente));
-        // # 10 - Confirmar Paciente
+
         leito.registerAction(
             new Action("confirmar_paciente", "action-confirmar_paciente", leitoConfirmarPaciente));
-        // # 11 - Fechar janela da pulseira
+
         leito.registerAction(
             new Action("fechar_pulseira", "action-fechar_pulseira", leitoFecharPulseira));
-        // # 12 # 27 - Conversar com o Mentor
-        leito.registerAction(
-            new Action("conversar_mentor", "action-conversar_mentor", leitoConversarMentor));
-        // # 23 - Lavar as maos
-        leito.registerAction(
-            new Action("lavar_maos", "action-lavar_maos", leitoLavarMaos));
-        // # 24 - Medir temperatura
-        leito.registerAction(
-            new Action("medir_temperatura", "action-medir_temperatura", leitoMedirTemperatura));
-        // # 25 - Medir pulso
-        leito.registerAction(
-            new Action("medir_pulso", "action-medir_pulso", leitoMedirPulso));
-        // # 26 - medir frequencia respiratoria
-        leito.registerAction(
-            new Action("medir_freq_respiratoria", "action-medir_freq_respiratoria", leitoMedirFreqRespiratoria));
         */
+
         /*
          Scene: Posto de Enfermagem
          */
@@ -528,11 +592,40 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         level.registerModalScene(gaveta);
 
+        /*
+         Scene:  Fim do Tutorial
+         */
+        var fim_tutorial = new Scene("fim_tutorial", "scene-fim_tutorial",
+            fimTutorialOnload, fimTutorialOnUnload);
+
+        // Flags
+
+        // Dialogs
+
+        // Functions
+        function fimTutorialOnload(){
+
+        }
+
+        function fimTutorialOnUnload(){
+
+        }
+
+        function fimTutorialIrCorredor(){
+
+        }
+
+        // Actions
+        fim_tutorial.registerAction(
+            new Action("Ir ao corredor", "action-ir_corredor", fimTutorialIrCorredor, visibility));
+
+
         level.registerScene(recepcao);
         level.registerScene(corredor);
         level.registerScene(sala_de_leitos);
         level.registerScene(leito);
         level.registerScene(posto_de_enfermagem);
+        level.registerScene(fim_tutorial);
 
         level.setInitialScene(0);
 
