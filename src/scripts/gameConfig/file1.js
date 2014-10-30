@@ -16,7 +16,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         function getNextLevel1() {
         }
 
-        var flags_on = false;    // if false it wont check for flags -- tests purpose
+        var flags_on = true;    // if false it wont check for flags -- tests purpose
 
         if (flags_on)
             var visibility = false;
@@ -434,12 +434,14 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             postoEnfermagemOnload, postoEnfermagemOnUnload);
 
         // Flags
-
+        level.registerFlag(new Flag("termometro", false));
+        level.registerFlag(new Flag("medidor-pressao", false));
+        level.registerFlag(new Flag("oximetro", false));
         // Dialogs
 
         // Functions
         function postoEnfermagemOnload(){
-
+            core.setActionVisible("Abrir gaveta", true);
         }
 
         function postoEnfermagemOnUnload(){
@@ -450,34 +452,50 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 L.log("Action: ir_corredor");
                 core.changeScene(1);
         }
+
         function postoEnfermagemAbrirGaveta() {
             L.log("Action: abrir_gaveta");
-            // abrir janela de objeto
+            core.openModalScene(0);
+
+            core.setActionVisible("Fechar gaveta", true);
+            if(core.getFlag("termometro").getValue() != true)
+                core.setActionVisible("Pegar termômetro", true);
+            if(core.getFlag("medidor-pressao").getValue() != true)
+                core.setActionVisible("Pegar medidor pressão", true);
+            if(core.getFlag("oximetro").getValue() != true)
+                core.setActionVisible("Pegar oxímetro", true);
         }
+
         function postoEnfermagemPegarTermometro() {
             L.log("Action: pegar_termometro");
-            if (level.getFlags()[3] == true) {
-                level.getFlags()[4] = true;    // termometro
-                level.getFlags()[7] = false;   // nega - lavar_maos
-            }
+            core.setInteractiveObjectVisible("Termômetro", false);
+            core.setActionVisible("Pegar termômetro", false);
+            core.getFlag("termometro").setValue(true);
         }
+
         function postoEnfermagemPegarMedidorPressao() {
-            L.log("Action: pegar_medidor_pressao");
-            if (level.getFlags()[3] == true) {
-                level.getFlags()[5] = true;    // medidor_pressao
-                level.getFlags()[7] = false;   // nega - lavar_maos
-            }
+            L.log("O medidor de pressão foi ativado");
+            core.setInteractiveObjectVisible("Medidor de pressão", false);
+            core.setActionVisible("Pegar medidor pressão", false);
+            core.getFlag("medidor-pressao").setValue(true);
         }
+
         function postoEnfermagemPegarOximetro() {
             L.log("Action: pegar_oximetro");
-            if (level.getFlags()[3] == true) {
-                level.getFlags()[6] = true;    // oximetro
-                level.getFlags()[7] = false;   // nega - lavar_maos
-            }
+            core.setInteractiveObjectVisible("Oxímetro", false);
+            core.setActionVisible("Pegar oxímetro", false);
+            core.getFlag("oximetro").setValue(true);
         }
+
         function postoEnfermagemFecharGaveta() {
             L.log("Action: fechar_gaveta");
+            core.closeModalScene();
+            if(level.getFlag("termometro").getValue() == true &&
+                level.getFlag("oximetro").getValue() == true &&
+                level.getFlag("medidor-pressao").getValue() == true)
+                core.setActionVisible("Ir ao corredor", true);
         }
+
         // Actions
         posto_de_enfermagem.registerAction(
             new Action("Ir ao corredor", "action-ir_corredor",postoEnfermagemIrCorredor, visibility));
@@ -485,52 +503,30 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         posto_de_enfermagem.registerAction(
             new Action("Abrir gaveta", "action-abrir_gaveta", postoEnfermagemAbrirGaveta, visibility));
 
-        posto_de_enfermagem.registerAction(
-            new Action("Pegar termometro", "action-pegar_termometro", postoEnfermagemPegarTermometro, visibility));
-
-        posto_de_enfermagem.registerAction(
-            new Action("Pegar medidor pressao", "action-pegar_medidor_pressao", postoEnfermagemPegarMedidorPressao, visibility));
-
-        posto_de_enfermagem.registerAction(
-            new Action("Pegar oximetro", "action-pegar_oximetro", postoEnfermagemPegarOximetro, visibility));
-
-        posto_de_enfermagem.registerAction(
-            new Action("Fechar gaveta", "action-fechar_gaveta", postoEnfermagemFecharGaveta, visibility));
-
         var gaveta = new Scene("Gaveta", "modalScene-gaveta");
 
         gaveta.registerAction(
-            new Action("Fechar Gaveta", "action-fechar_gaveta",
-                function(){
-                    core.closeModalScene();
-                }));
+            new Action("Fechar gaveta", "action-fechar_gaveta", postoEnfermagemFecharGaveta, visibility));
+
+        gaveta.registerAction(
+            new Action("Pegar termômetro", "action-pegar_termometro", postoEnfermagemPegarTermometro, visibility));
+
+        gaveta.registerAction(
+            new Action("Pegar medidor pressão", "action-pegar_medidor_pressao", postoEnfermagemPegarMedidorPressao, visibility));
+
+        gaveta.registerAction(
+            new Action("Pegar oxímetro", "action-pegar_oximetro", postoEnfermagemPegarOximetro, visibility));
 
         gaveta.registerInteractiveObject(
-            new InteractiveObject("Termômetro", "intObj-termometro",
-                function () {
-                    L.log("O termometro foi ativado");
-                    core.setInteractiveObjectVisible("Termômetro", false);
-                }));
+            new InteractiveObject("Termômetro", "intObj-termometro", postoEnfermagemPegarTermometro));
 
         gaveta.registerInteractiveObject(
-            new InteractiveObject("Medidor de pressão", "intObj-medidor_pressao",
-                function () {
-                    L.log("O medidor de pressão foi ativado");
-                    core.setInteractiveObjectVisible("Medidor de pressão", false);
-                }));
+            new InteractiveObject("Medidor de pressão", "intObj-medidor_pressao", postoEnfermagemPegarMedidorPressao));
 
         gaveta.registerInteractiveObject(
-            new InteractiveObject("Oxímetro", "intObj-oximetro",
-                function () {
-                    L.log("O oxímetro foi ativado");
-                    core.setInteractiveObjectVisible("Oxímetro", false);
-                }));
+            new InteractiveObject("Oxímetro", "intObj-oximetro", postoEnfermagemPegarOximetro));
 
         level.registerModalScene(gaveta);
-
-        posto_de_enfermagem.registerAction(
-            new Action("Abrir gaveta", "action-abrir_gaveta", function(){core.openModalScene(0);}));
-
 
         level.registerScene(recepcao);
         level.registerScene(corredor);
