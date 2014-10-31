@@ -6,27 +6,83 @@ html, body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  height: 100%;
+  width: 100%;
 }
+
+#game {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#stage {
+  background-image: @bg-menu_inicial;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+}
+
+#menuContainer {
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  width: 50%;
+  height: 50%;
+}
+
+.menuButton {
+  cursor: hand;
+  background-image: @bg-menu_button;
+  position: relative;
+  margin: 0 auto 2%;
+  width: 100%;
+  height: 35px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: larger;
+  padding-top: 15px;
+}
+
+.menuButton:hover {
+  box-shadow: #080808 1px 1px 10px;
+}
+
+#interactiveArea {
+  position: absolute;
+  width: 100%;
+  height: 80%;
+}
+
+#commandBar {
+  width: 100%;
+  height: 20%;
+  background-color: rgba(0, 0, 0, 0.75);
+  position: relative;
+  top: 80%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+#backgroundScene {
+  height: 100%;
+  width: 100%;
+}
+
 
 // Generic variables
 @default-bgcolor: gray;
 @sem_imagem: url('./images/action_buttons/sem-imagem.jpg');
 @arrow_dialog_button: url('./images/arrow-icon_button.png');
-
-// Path for all background images - variables used on scenesBackgroundImages.less
-/*
-Scene list:
-
-	1. Sala de leitos Masculinos (ala masculina)
-	2. Sala de leitos femininos (ala feminina)
-	3. Centro Cirúrgico
-	4. Corredor
-	5. Enfermaria
-	6. Posto de Enfermagem
-	7. Recepção
-*/
+@bg-menu_button: url('./images/button-bg.png');
 
 // scene's background
+@bg-menu_inicial: url('./images/scenes/abertura-provisoria.jpg');
 @bg-recepcao: url('./images/scenes/recepcao.jpg');
 @bg-posto_de_enfermagem: url('./images/scenes/posto_de_enfermagem.jpg');
 @bg-ala_masculina: url('./images/scenes/ala_masculina.jpg');
