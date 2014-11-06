@@ -145,6 +145,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             actionFunction: function () {
                 core.closeDialog(1);
                 core.setActionVisible("Ir para a sala de leitos masculino", true);
+                core.setActionVisible("Conversar com Mentor", true);
                 core.setInteractiveObjectVisible("Ir para a sala de leitos masculino", true);
             }
         });
@@ -155,11 +156,13 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         function corredorOnLoad() {
             switch (level.getFlag("passagem_corredor").getValue()){
                 case 0: // first time at 'corredor'
+                    core.setInteractiveObjectVisible("Conversar com Mentor", true);
                     core.openDialog(0);
                     break;
                 case 1: // second time at 'corredor'
                     core.setActionVisible("Ir para o posto de enfermagem", true);
                     core.setActionVisible("Ir para a sala de leitos masculino", false);
+                    core.setActionVisible("Conversar com Mentor", false);
                     break;
                 case 2:
                     core.setActionVisible("Ir para o posto de enfermagem", false);
@@ -201,12 +204,18 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 core.changeScene(4);
         }
 
+        function dialogarMentor(){
+            L.log("Abrir diálogo com o mentor");
+            core.openDialog(0);
+        }
+
         // Actions
-        // # 6 # 21 - Ir para sala de leitos
+        corredor.registerAction(
+            new Action("Conversar com Mentor", "action-abrir_dialogo", dialogarMentor, visibility));
+
         corredor.registerAction(
             new Action("Ir para a sala de leitos masculino", "action-ir_sala_de_leitos", corredorIrSalaLeitos, visibility));
 
-        // # 14 - Ir para posto de enfermagem
         corredor.registerAction(
             new Action("Ir para o posto de enfermagem", "action-ir_posto_de_enfermagem", corredorIrPostoEnfermagem, visibility));
 
@@ -215,6 +224,9 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         corredor.registerInteractiveObject(
             new InteractiveObject("Ir para o posto de enfermagem", "intObj-ir_posto_de_enfermagem", corredorIrPostoEnfermagem, visibility));
+
+        corredor.registerInteractiveObject(
+            new InteractiveObject("Conversar com Mentor", "intObj-conversar-mentor", dialogarMentor, visibility));
 
         /*
          Scene:  Sala de Leitos
@@ -256,10 +268,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             core.changeScene(3);
         }
         // Actions
-        // # 13.2 - Ir para o corredor
         sala_de_leitos.registerAction(
             new Action("Ir ao corredor", "action-ir_corredor", salaLeitosIrCorredor, visibility));
-        // # 7 # 22 - Ir para leito
         sala_de_leitos.registerAction(
             new Action("Ir ao leito", "action-ir_leito", salaLeitosIrLeito, visibility));
 
@@ -316,7 +326,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             text: "Encerrar dialogo",
             actionFunction: function () {
                 core.closeDialog(3);
-                core.setActionVisible("Ir para sala de leitos", true);
+                core.setActionVisible("Checar pulseira paciente", true);
             }
         });
 
@@ -444,26 +454,20 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             core.changeScene(5);
         }
 
-        /*
         function leitoPulseiraPaciente(){
             L.log("Action: pulseira_paciente");
-            level.getFlags()[1] = true;
+            core.setActionVisible("Checar pulseira paciente", false);
+            core.setActionVisible("Ir para sala de leitos", true);
         }
-        function leitoConfirmarPaciente(){
-            L.log("Action: confirmar_paciente");
-            if (level.getFlags()[0] == true && level.getFlags()[1] == true)
-                level.getFlags()[2] = true;
-        }
-        function leitoFecharPulseira(){
-
-        }
-
-        */
 
         // Actions
 
         leito.registerAction(
             new Action("Ir para sala de leitos", "action-ir_sala_de_leitos", leitoIrCorredor, visibility));
+
+        leito.registerAction(
+            new Action("Checar pulseira paciente", "action-pulseira-paciente", leitoPulseiraPaciente, visibility));
+
 
         leito.registerAction(
             new Action("Lavar as mãos", "action-lavar_maos", leitoLavarMaos, visibility));
