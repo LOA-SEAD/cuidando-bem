@@ -163,6 +163,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                     core.setActionVisible("Ir para o posto de enfermagem", true);
                     core.setActionVisible("Ir para a sala de leitos masculino", false);
                     core.setActionVisible("Conversar com Mentor", false);
+                    core.setInteractiveObjectVisible("Conversar com Mentor", false);
                     break;
                 case 2:
                     core.setActionVisible("Ir para o posto de enfermagem", false);
@@ -456,8 +457,9 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         function leitoPulseiraPaciente(){
             L.log("Action: pulseira_paciente");
-            core.setActionVisible("Checar pulseira paciente", false);
-            core.setActionVisible("Ir para sala de leitos", true);
+            core.openModalScene("Pulseira");
+            core.setActionVisible("Confirmar pulseira", true);
+            core.setInteractiveObjectVisible("Confirmar pulseira", true);
         }
 
         // Actions
@@ -466,8 +468,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             new Action("Ir para sala de leitos", "action-ir_sala_de_leitos", leitoIrCorredor, visibility));
 
         leito.registerAction(
-            new Action("Checar pulseira paciente", "action-pulseira-paciente", leitoPulseiraPaciente, visibility));
-
+            new Action("Checar pulseira paciente", "action-pulseira_paciente", leitoPulseiraPaciente, visibility));
 
         leito.registerAction(
             new Action("Lavar as mãos", "action-lavar_maos", leitoLavarMaos, visibility));
@@ -484,6 +485,36 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         leito.registerAction(
             new Action("Anotar prontuario", "action-anotar_prontuario", anotarProntuario, visibility));
 
+        /*
+            Modal
+         */
+
+        var pulseira = new Scene("Pulseira", "modalScene-pulseira");
+
+        function postoEnfermagemLargarPulseira(){
+            L.log("Ação: Fechar modal pulseira");
+            core.closeModalScene("Pulseira");
+            core.setActionVisible("Ir para sala de leitos", true);
+            core.setActionVisible("Checar pulseira paciente", false);
+        }
+
+        function postoEnfermagemConfirmarPulseira(){
+            L.log("Ação: Confirmar pulseira");
+            core.setActionVisible("Confirmar pulseira", false);
+            core.setInteractiveObjectVisible("Confirmar pulseira", false);
+            core.setActionVisible("Largar pulseira", true);
+        }
+
+        pulseira.registerAction(
+            new Action("Largar pulseira", "action-pulseira_paciente", postoEnfermagemLargarPulseira, visibility));
+
+        pulseira.registerAction(
+            new Action("Confirmar pulseira", "action-confirmar_pulseira", postoEnfermagemConfirmarPulseira, visibility));
+
+        pulseira.registerInteractiveObject(
+            new Action("Confirmar pulseira", "intObj-confirmar_pulseira", postoEnfermagemConfirmarPulseira, visibility));
+
+        level.registerModalScene(pulseira);
         /*
         leito.registerAction(
             new Action("pulseira_paciente", "action-pulseira_paciente", leitoPulseiraPaciente));
@@ -523,7 +554,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         function postoEnfermagemAbrirGaveta() {
             L.log("Action: abrir_gaveta");
-            core.openModalScene(0);
+            core.openModalScene("Gaveta");
 
             core.setActionVisible("Fechar gaveta", true);
             if(core.getFlag("termometro").getValue() != true)
@@ -557,7 +588,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         function postoEnfermagemFecharGaveta() {
             L.log("Action: fechar_gaveta");
-            core.closeModalScene();
+            core.closeModalScene("Gaveta");
             if(level.getFlag("termometro").getValue() == true &&
                 level.getFlag("oximetro").getValue() == true &&
                 level.getFlag("medidor-pressao").getValue() == true)
