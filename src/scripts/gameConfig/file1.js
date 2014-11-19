@@ -62,7 +62,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         // Functions
         function recepcaoOnLoad() {
-            core.openDialog(0)
+            core.openDialog(0);
         }
 
         function recepcaoOnUnload() {
@@ -639,7 +639,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         // Functions
         function fimTutorialOnload(){
-
+            core.setActionVisible("Proxima fase", true);
         }
 
         function fimTutorialOnUnload(){
@@ -649,6 +649,12 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         function fimTutorialIrCorredor(){
 
         }
+
+        fim_tutorial.registerAction(
+            new Action("Proxima fase", "action-proxima-fase", function(){
+
+                }
+        , visibility));
 
         // Actions
         fim_tutorial.registerAction(
