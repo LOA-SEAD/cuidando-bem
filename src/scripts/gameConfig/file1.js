@@ -491,14 +491,14 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         var pulseira = new Scene("Pulseira", "modalScene-pulseira");
 
-        function postoEnfermagemLargarPulseira(){
+        function leitoLargarPulseira(){
             L.log("Ação: Fechar modal pulseira");
             core.closeModalScene("Pulseira");
             core.setActionVisible("Ir para sala de leitos", true);
             core.setActionVisible("Checar pulseira paciente", false);
         }
 
-        function postoEnfermagemConfirmarPulseira(){
+        function leitoConfirmarPulseira(){
             L.log("Ação: Confirmar pulseira");
             core.setActionVisible("Confirmar pulseira", false);
             core.setInteractiveObjectVisible("Confirmar pulseira", false);
@@ -506,13 +506,13 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         }
 
         pulseira.registerAction(
-            new Action("Largar pulseira", "action-pulseira_paciente", postoEnfermagemLargarPulseira, visibility));
+            new Action("Largar pulseira", "action-pulseira_paciente", leitoLargarPulseira, visibility));
 
         pulseira.registerAction(
-            new Action("Confirmar pulseira", "action-confirmar_pulseira", postoEnfermagemConfirmarPulseira, visibility));
+            new Action("Confirmar pulseira", "action-confirmar_pulseira", leitoConfirmarPulseira, visibility));
 
         pulseira.registerInteractiveObject(
-            new Action("Confirmar pulseira", "intObj-confirmar_pulseira", postoEnfermagemConfirmarPulseira, visibility));
+            new Action("Confirmar pulseira", "intObj-confirmar_pulseira", leitoConfirmarPulseira, visibility));
 
         level.registerModalScene(pulseira);
         /*
