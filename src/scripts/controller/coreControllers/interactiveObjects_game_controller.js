@@ -63,6 +63,7 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
 
         element.click(_interactiveObject.getFunction());
         element.attr('title', _interactiveObject.getName());
+        element.attr('id', _interactiveObject.getId());
         element.addClass(_interactiveObject.getCssClass());
         if (_interactiveObject.isEnabled())
             element.addClass("enabled");
@@ -103,7 +104,7 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      * @memberOf module:InteractiveObjects_Game_Controller
      */
     function activateInteractiveObject(_interactiveObject){
-        var selector = '.' + _interactiveObject.getCssClass();
+        var selector = '#' + _interactiveObject.getId();
         var element = $(selector);
         element.removeClass("disabled");
         element.addClass("enabled");
@@ -118,8 +119,8 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      * @memberOf module:InteractiveObjects_Game_Controller
      */
     function deactivateInteractiveObject(_interactiveObject){
-        var selector = _interactiveObject.getCssClass();
-        var element = $('.' + selector);
+        var selector = '#' + _interactiveObject.getId();
+        var element = $(selector);
         element.removeClass("enabled");
         element.addClass("disabled");
         element.unbind("click");
