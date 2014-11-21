@@ -114,8 +114,9 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         });
 
         fala_mentor[0][1] = new Dialog("mentor", "char-mentor",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet gravida ante, " +
-            "a euismod risus. Phasellus blandit enim nec elementum bibendum. In tempus, mauris.");
+            "Mauris nisl justo, venenatis non tellus tincidunt, pellentesque convallis nunc. " +
+            "Vivamus neque diam, venenatis vitae imperdiet at, hendrerit vitae magna. Curabitur " +
+            "mauris magna, viverra sit.");
         fala_mentor[0][1].registerOption({
             text: "Lorem ipsum dolor sit amet.",
             actionFunction: function () {
@@ -127,8 +128,9 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         // segundo dialogo com o mentor
         fala_mentor[1][0] = new Dialog("mentor", "char-mentor",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet gravida ante, " +
-            "a euismod risus. Phasellus blandit enim nec elementum bibendum. In tempus, mauris.");
+            "Sed pulvinar sagittis mi, vel facilisis dolor pulvinar quis. Aenean non velit velit. " +
+            "Pellentesque egestas rutrum odio, vitae convallis tortor gravida ac. " +
+            "Curabitur fringilla libero.");
         fala_mentor[1][0].registerOption({
             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             actionFunction: function () {
