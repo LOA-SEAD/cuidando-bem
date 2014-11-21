@@ -9,7 +9,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         var debug_mode = true;
 
-        var level = new Level("Level 1", isEndOfLevel1, getNextLevel1);
+        var level = new Level("Level 2", isEndOfLevel1, getNextLevel1);
         L.group(level.getName(), debug_mode);
 
         function isEndOfLevel1() {
@@ -259,7 +259,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         // Cena inicial é recepcao
         level.setInitialScene(0);
 
-        game.registerLevel(level, 0);
+        game.registerLevel(level, 1);
 
         L.groupEnd();
     });

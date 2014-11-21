@@ -52,6 +52,13 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         cur_scene = Level.getCurrentSceneId();
     }
 
+    function changeLevelTo(_levelId){
+        game.setCurrentLevel(_levelId);
+        changeLevel(game.getCurrentLevel());
+
+        startLevel();
+    }
+
     /**
      * Description
      * @method startLevel
@@ -351,6 +358,7 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
     return {
         start: start,
         changeScene: changeScene,
+        changeLevelTo: changeLevelTo,
         openDialog: openDialog,
         closeDialog: closeDialog,
         openModalScene: openModalScene,

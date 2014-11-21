@@ -652,7 +652,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         fim_tutorial.registerAction(
             new Action("Proxima fase", "action-proxima-fase", function(){
-
+                    console.log(core);
+                    core.changeLevelTo(1);
                 }
         , visibility));
 

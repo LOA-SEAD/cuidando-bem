@@ -40,15 +40,14 @@ define(['core'], function (core) {
      * @memberOf module:ModalScene_Game_Controller
      */
     function open(_modalScene) {
-        if (lastSceneClass != "") {
+        if (lastSceneClass == "") {
             $(divSelector).addClass(_modalScene.getCssClass());
         } else {
             $(divSelector).removeClass(lastSceneClass);
             $(divSelector).addClass(_modalScene.getCssClass());
-
-            lastSceneClass = _modalScene.getCssClass();
         }
 
+        lastSceneClass = _modalScene.getCssClass();
         show();
     }
 
