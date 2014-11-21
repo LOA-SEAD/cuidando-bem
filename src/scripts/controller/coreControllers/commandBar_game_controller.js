@@ -76,6 +76,7 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (c
 
         element.click(_action.getFunction());
         element.attr('title', _action.getName());
+        element.attr('id', _action.getId());
         element.addClass(_action.getCssClass());
         if (_action.isEnabled())
             element.addClass("enabled");
@@ -117,8 +118,8 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (c
      * @memberOf module:CommandBar_Game_Controller
      */
     function activateActionButton(_action) {
-        var selector = _action.getCssClass();
-        var element = $('.' + selector);
+        var selector = '#' + _action.getId();
+        var element = $(selector);
         element.removeClass("disabled");
         element.addClass("enabled");
         element.click(_action.getFunction());
@@ -132,7 +133,7 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (c
      * @memberOf module:CommandBar_Game_Controller
      */
     function deactivateActionButton(_action) {
-        var selector = '.' + _action.getCssClass();
+        var selector = '#' + _action.getId();
         var element = $(selector);
         element.removeClass("enabled");
         element.addClass("disabled");

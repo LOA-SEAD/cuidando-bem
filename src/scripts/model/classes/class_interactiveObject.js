@@ -13,12 +13,14 @@ define([], function () {
      * @param {boolean} [_visible=true]
      * @return ObjectExpression
      */
-    function interactiveObject(_name, _cssClass, _actionFunction, _visible) {
+    function interactiveObject(_id, _name, _cssClass, _actionFunction, _visible) {
         //Attributes
 
         if ( _visible == null)
             _visible = true;
 
+
+        var id = _id;
         /**
          *
          * @type {string}
@@ -83,6 +85,10 @@ define([], function () {
          */
         function getFunction() {
             return actionFunction;
+        }
+
+        function getId(){
+            return id;
         }
 
         /**
@@ -159,6 +165,7 @@ define([], function () {
             execute: execute,
 
             getFunction: getFunction,
+            getId: getId,
             getName: getName,
             getCssClass: getCssClass,
             isEnabled: isEnabled,

@@ -10,13 +10,14 @@ define([], function () {
      * @return ObjectExpression
      */
     "use strict";
-    function Action(_name, _cssClass, _actionFunction, _visible) {
+    function Action(_id, _name, _cssClass, _actionFunction, _visible) {
         //Attributes
 
         if (_visible == null) {
             _visible = true;
         }
 
+        var id = _id;
         /**
          * @type {string}
          * @private
@@ -79,6 +80,10 @@ define([], function () {
          */
         function getFunction() {
             return actionFunction;
+        }
+
+        function getId(){
+            return id;
         }
 
         /**
@@ -161,6 +166,7 @@ define([], function () {
             execute: execute,
 
             getFunction: getFunction,
+            getId: getId,
             getName: getName,
             getCssClass: getCssClass,
             isEnabled: isEnabled,
