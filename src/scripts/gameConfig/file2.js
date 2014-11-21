@@ -9,7 +9,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         var debug_mode = true;
 
-        var level = new Level("Level 2", isEndOfLevel1, getNextLevel1);
+        var level = new Level("Level 1", isEndOfLevel1, getNextLevel1);
         L.group(level.getName(), debug_mode);
 
         function isEndOfLevel1() {
@@ -54,8 +54,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             actionFunction: function () {
                 L.log("Selecionado 1a opção diálogo");
                 core.closeDialog(0);
-                core.setActionVisible("Ir ao corredor", true);
-                core.setActionVisible("Conversar com a recepcionista", true);
+                core.setActionVisible("btn-ir_corredor", true);
+                core.setActionVisible("btn-conversar_recepcionista", true);
                 //core.openDialog(1);
             }});
 
@@ -67,8 +67,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 core.openDialog(0);
             }
             else{
-                core.setActionVisible("Ir ao corredor", true);
-                core.setActionVisible("Conversar com a recepcionista", true);
+                core.setActionVisible("btn-ir_corredor", true);
+                core.setActionVisible("btn-conversar_recepcionista", true);
             }
         }
         function recepcaoOnUnload(){
@@ -86,12 +86,13 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         // Actions
         recepcao.registerAction(
-            new Action("Ir ao corredor", "action-ir_corredor", recepcaoIrCorredor, visibility));
+            new Action("btn-ir_corredor", "Ir ao corredor",
+                "action-ir_corredor", recepcaoIrCorredor, visibility));
 
         recepcao.registerAction(
-            new Action("Conversar com a recepcionista", "action-abrir_dialogo",
-                conversarRecepcionista, visibility));
-        
+            new Action("btn-conversar_recepcionista", "Conversar com a recepcionista",
+                "action-abrir_dialogo", conversarRecepcionista, visibility));
+
         /*
          Corredor
           */
@@ -121,8 +122,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             text: "Lorem ipsum dolor sit amet.",
             actionFunction: function () {
                 core.closeDialog(1);
-                core.setActionVisible("Falar com mentor", true);
                 corredorLiberaActions();
+                core.setActionVisible("btn-falar_mentor_01", true);
             }
         });
 
@@ -146,7 +147,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             text: "Lorem ipsum dolor sit amet.",
             actionFunction: function () {
                 core.closeDialog(3);
-                core.setActionVisible("Falar com mentor", true);
+                core.setActionVisible("btn-falar_mentor_02", true);
                 corredorLiberaActions();
             }
         });
@@ -164,15 +165,17 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                     level.getFlag("mentor_dialogo").setValue(false);
                     core.openDialog(0);
                 }
-                // ja falou com o paciente
-                else if(level.getFlag("mentor_dialogo").getValue() == true){
+                // ja examinou o paciente
+                else if(level.getFlag("mentor_dialogo").getValue() == true
+                    && level.getFlag("examinou_paciente").getValue() == true){
                     core.openDialog(2);
                 }
             }
             else{
-                core.setActionVisible("Falar com mentor", true);
-                core.setActionVisible("Ir para a ala masculina", true);
-                core.setActionVisible("Ir para o posto de enfermagem", true);
+                core.setActionVisible("btn-falar_mentor_01", true);
+                core.setActionVisible("btn-falar_mentor_02", true);
+                core.setActionVisible("btn-ir_ala_masculina", true);
+                core.setActionVisible("btn-ir_posto_enfermagem", true);
             }
         }
         function corredorOnUnload(){
@@ -205,26 +208,26 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         function corredorLiberaActions(){
             L.log("Libera Actions");
-            core.setActionVisible("Ir para a ala masculina", true);
-            core.setActionVisible("Ir para o posto de enfermagem", true);
+            core.setActionVisible("btn-ir_ala_masculina", true);
+            core.setActionVisible("btn-ir_posto_enfermagem", true);
         }
 
         // Actions
         corredor.registerAction(
-            new Action("Falar com mentor", "action-abrir_dialogo", function(){
-                core.openDialog(0);
-            }, visibility));
+            new Action("btn-falar_mentor_01", "Falar com mentor",
+                "action-abrir_dialogo", function(){core.openDialog(0);}, visibility));
 
         corredor.registerAction(
-            new Action("Falar com mentor", "action-abrir_dialogo", function(){
-                core.openDialog(3);
-            }, visibility));
+            new Action("btn-falar_mentor_02", "Falar com mentor",
+                "action-abrir_dialogo", function(){core.openDialog(3);}, visibility));
 
         corredor.registerAction(
-            new Action("Ir para a ala masculina", "action-ir_sala_de_leitos", corredorAlaMasculina, visibility));
+            new Action("btn-ir_ala_masculina", "Ir para a ala masculina",
+                "action-ir_sala_de_leitos", corredorAlaMasculina, visibility));
 
         corredor.registerAction(
-            new Action("Ir para o posto de enfermagem", "action-ir_posto_de_enfermagem", corredorIrPostoEnfermagem, visibility));
+            new Action("btn-ir_posto_enfermagem", "Ir para o posto de enfermagem",
+                "action-ir_posto_de_enfermagem", corredorIrPostoEnfermagem, visibility));
 
         /*
          Ala Masculina

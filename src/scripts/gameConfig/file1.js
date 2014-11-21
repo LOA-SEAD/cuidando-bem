@@ -7,7 +7,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core) {
         var debug_mode = true;
 
-        var level = new Level("Level 1", isEndOfLevel1, getNextLevel1);
+        var level = new Level("Level Tutorial", isEndOfLevel1, getNextLevel1);
         L.group(level.getName(), debug_mode);
 
         function isEndOfLevel1() {
