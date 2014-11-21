@@ -162,7 +162,7 @@ define([], function () {
          * @memberOf Scene#
          */
         function registerAction(_action) {
-            actions_aux[_action.getName()] = actions.length;
+            actions_aux[_action.getId()] = actions.length;
             actions.push(_action);
 
             L.log(["Registering Action: ", _action.getName(), "on Scene:" + name]);
@@ -203,7 +203,7 @@ define([], function () {
          * @memberOf Scene#
          */
         function registerInteractiveObject(_interactiveObject) {
-            interactiveObjects_aux[_interactiveObject.getName()] = interactiveObjects.length;
+            interactiveObjects_aux[_interactiveObject.getId()] = interactiveObjects.length;
             interactiveObjects.push(_interactiveObject);
 
             L.log(["Registering Interactive Object: ", _interactiveObject.getName(), "on Scene:" + name]);
