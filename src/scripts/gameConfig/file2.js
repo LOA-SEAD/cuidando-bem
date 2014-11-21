@@ -91,13 +91,12 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         recepcao.registerAction(
             new Action("Conversar com a recepcionista", "action-abrir_dialogo",
                 conversarRecepcionista, visibility));
-
         
         /*
          Corredor
           */
         // Flags
-        level.registerFlag(new Flag("conversar_paciente", false));
+        level.registerFlag(new Flag("mentor_dialogo", true));
 
         // Dialogs
         var fala_mentor = [[],[]];
@@ -157,18 +156,19 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         function corredorOnLoad(){
             if(flags_on == true){
                 // primeira vez no corredor - ainda nao falou com o paciente
-                if(level.getFlag("conversar_paciente").getValue() == false) {
+                if(level.getFlag("examinou_paciente").getValue() == false
+                    && level.getFlag("mentor_dialogo").getValue() == true) {
                     L.log("Fala mentor");
+                    level.getFlag("mentor_dialogo").setValue(false);
                     core.openDialog(0);
                 }
                 // ja falou com o paciente
-                else {
-                    //core.openDialog(2);
+                else if(level.getFlag("mentor_dialogo").getValue() == true){
+                    core.openDialog(2);
                 }
             }
             else{
-                core.setActionVisible("Falar com mentor 1", true);
-                core.setActionVisible("Falar com mentor 2", true);
+                core.setActionVisible("Falar com mentor", true);
                 core.setActionVisible("Ir para a ala masculina", true);
                 core.setActionVisible("Ir para o posto de enfermagem", true);
             }
@@ -179,12 +179,26 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         function corredorAlaMasculina() {
             L.log("Action: Ir para a ala masculina");
-            core.changeScene("ala_masculina");
+            core.changeScene(2);
         }
 
         function corredorIrPostoEnfermagem() {
-            L.log("Action: Ir para a ala masculina");
-            core.changeScene("posto_de_enfermagem");
+            L.log("Action: Ir para o posto enfermagem");
+            if(flags_on == true){
+                if(level.getFlag("examinou_paciente").getValue() == false){
+                // Ainda nao pode ir ao posto de enfermagem
+                    L.log("Mentor: Ação incorreta");
+
+                }
+                else{
+                // Ja pode ir ao posto de enfermagem
+                    L.log("Mudar cenário: posto de enfermagem");
+                    core.changeScene(4);
+                }
+            }
+            else {
+                core.changeScene(4);
+            }
         }
 
         function corredorLiberaActions(){
@@ -214,28 +228,152 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
          Ala Masculina
           */
         // Flags
+        level.registerFlag(new Flag("lavar_maos", false));
+        level.registerFlag(new Flag("examinou_paciente", false));
 
         // Dialogs
+
         // Functions
-        // Actions
         function ala_masculinaOnLoad(){
+            if(flags_on == true){
+                core.setActionVisible("Ir ao corredor", true);
+                core.setActionVisible("Ir ao leito", true);
+                core.setActionVisible("Lavar as mãos", true);
+            }
+            else{
+                core.setActionVisible("Ir ao corredor", true);
+                core.setActionVisible("Ir ao leito", true);
+                core.setActionVisible("Lavar as mãos", true);
+            }
         }
         function ala_masculinaOnUnload(){
 
         }
+        function alaMasculinaIrCorredor(){
+            core.getFlag("lavar_maos").setValue(false);
+            core.changeScene(1);
+        }
+        function alaMasculinaIrLeito(){
+            L.log("Action: Ala Masculina - Ir Leito");
+            if(flags_on == true){
+                if(level.getFlag("lavar_maos").getValue() == true){
+                    L.log("Troca cena: leito");
+                    core.changeScene(3);
+                }
+                else{
+                    L.log("Lavar maos necessario");
+                    L.log("Desconta ponto - apenas uma vez");
+                }
+            }
+            else {
+                core.changeScene(3);
+            }
+        }
+        function alaMasculinaLavarMaos(){
+            L.log("Action: lavar as maos");
+            core.getFlag("lavar_maos").setValue(true);
+        }
+
+        // Actions
+        ala_masculina.registerAction(
+            new Action("Ir ao corredor", "action-ir_corredor", alaMasculinaIrCorredor, visibility));
+        ala_masculina.registerAction(
+            new Action("Ir ao leito", "action-ir_leito", alaMasculinaIrLeito, visibility));
+        ala_masculina.registerAction(
+            new Action("Lavar as mãos", "action-lavar_maos", alaMasculinaLavarMaos, visibility));
 
         /*
          Leito
           */
+
         // Flags
+        level.registerFlag(new Flag("conversar_paciente", true));
+        level.registerFlag(new Flag("confirmar_pulseira", false));
+
         // Dialogs
+        var fala_paciente = [];
+
+        fala_paciente[0] = new Dialog("paciente-carlos", "char-carlos",
+            "Vestibulum molestie eros ligula, ut rhoncus ante pellentesque ut. Nunc.");
+        fala_paciente[0].registerOption({
+            text: "Nullam sed metus enim. Etiam.",
+            actionFunction: function() {
+                core.closeDialog(0);
+                core.setActionVisible("Ir para ala masculina", true);
+                core.setActionVisible("Ver pulseira", true);
+                core.setActionVisible("Conversar paciente", true);
+            }
+        })
+
+        leito.registerDialogs(fala_paciente);
+
         // Functions
+
+
         // Actions
         function leitoOnLoad() {
+            if(flags_on == true){
+                if(level.getFlag("conversar_paciente").getValue() == true){
+                    level.getFlag("conversar_paciente").setValue(false);
+                    core.openDialog(0);
+                }
+                else{
+                    core.setActionVisible("Conversar paciente", true);
+                }
+            }
+            else {
+                core.setActionVisible("Ir para a ala masculina", true);
+                core.setActionVisible("Ver pulseira", true);
+                core.setActionVisible("Conversar paciente", true);
+            }
         }
         function leitoOnUnload(){
-
         }
+        function dialogarPaciente(){
+            core.openDialog(0);
+        }
+        function leitoIrAlaMasculina(){
+            L.log("Action: action-ir_ala_masculina");
+            core.changeScene(2);
+        }
+        function leitoPulseiraPaciente(){
+            L.log("Action: Ver pulsiera");
+            core.openModalScene("Pulseira");
+            core.setActionVisible("Largar pulseira", true);
+            core.setActionVisible("Confirmar pulseira", true);
+        }
+
+        leito.registerAction(
+            new Action("Ir para ala masculina", "action-ir_sala_de_leitos", leitoIrAlaMasculina, visibility));
+
+        leito.registerAction(new Action(
+            "Ver pulseira", "action-pulseira_paciente", leitoPulseiraPaciente, visibility));
+
+        leito.registerAction(new Action(
+            "Conversar paciente", "action-abrir_dialogo", dialogarPaciente, visibility));
+
+
+        // Modal Scene
+        var pulseira = new Scene("Pulseira", "modalScene-pulseira");
+
+        function leitoLargarPulseira(){
+            L.log("Ação: Fechar modal pulseira");
+            core.closeModalScene("Pulseira");
+        }
+
+        function leitoConfirmarPulseira(){
+            L.log("Ação: Confirmar pulseira");
+            level.getFlag("confirmar_pulseira").setValue(true);
+        }
+        pulseira.registerAction(
+            new Action("Largar pulseira", "action-pulseira_paciente", leitoLargarPulseira, visibility));
+
+        pulseira.registerAction(
+            new Action("Confirmar pulseira", "action-confirmar_pulseira", leitoConfirmarPulseira, visibility));
+
+        level.registerModalScene(pulseira);
+
+
         /*
          Posto de Enfermagem
          */
