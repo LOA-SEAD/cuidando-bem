@@ -51,11 +51,11 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             actionFunction: function () {
                 L.log("Encerrar o diálogo");
                 core.closeDialog(1);
-                core.setActionVisible("Ir ao corredor", true);
-                core.setActionVisible("Conversar com a recepcionista", true);
-                core.setInteractiveObjectVisible("Ir para o corredor esquerda", true);
-                core.setInteractiveObjectVisible("Ir para o corredor direita", true);
-                core.setInteractiveObjectVisible("Conversar com a recepcionista", true);
+                core.setActionVisible("btn-ir_corredor", true);
+                core.setActionVisible("btn-conversar_recepcionista", true);
+                core.setInteractiveObjectVisible("io-conversar_recepcionista", true);
+                core.setInteractiveObjectVisible("io-corredor_esquerda", true);
+                core.setInteractiveObjectVisible("io-corredor_direita", true);
             }});
 
         recepcao.registerDialogs(fala_recepcionista);
@@ -96,23 +96,25 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         }
 
         // Actions
+        recepcao.registerAction(
+            new Action("btn-ir_corredor","Ir ao corredor", "action-ir_corredor", recepcaoIrCorredor, visibility));
 
         recepcao.registerAction(
-            new Action("Ir ao corredor", "action-ir_corredor", recepcaoIrCorredor, visibility));
-
-        recepcao.registerAction(
-            new Action("Conversar com a recepcionista", "action-abrir_dialogo", conversarRecepcionista, visibility));
+            new Action("btn-conversar_recepcionista","Conversar com a recepcionista", "action-abrir_dialogo", conversarRecepcionista, visibility));
 
         // Interactive Objects
         // # 3 - Falar com recepcionista
         recepcao.registerInteractiveObject(
-            new InteractiveObject("Conversar com a recepcionista", "intObj-falar_com_recepcionista", conversarRecepcionista, visibility));
+            new InteractiveObject("io-conversar_recepcionista","Conversar com a recepcionista",
+                "intObj-falar_com_recepcionista", conversarRecepcionista, visibility));
 
         recepcao.registerInteractiveObject(
-            new InteractiveObject("Ir para o corredor esquerda", "intObj-ir_corredor_esq", recepcaoIrCorredor, visibility));
+            new InteractiveObject("io-corredor_esquerda", "Ir ao corredor",
+                "intObj-ir_corredor_esq", recepcaoIrCorredor, visibility));
 
         recepcao.registerInteractiveObject(
-            new InteractiveObject("Ir para o corredor direita", "intObj-ir_corredor_dir", recepcaoIrCorredor, visibility));
+            new InteractiveObject("io-corredor_direita", "Ir ao corredor",
+                "intObj-ir_corredor_dir", recepcaoIrCorredor, visibility));
 
         /*
          Scene:  Corredor

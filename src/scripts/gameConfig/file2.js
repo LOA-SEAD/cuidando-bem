@@ -37,7 +37,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         var posto_de_enfermagem = new Scene("posto_de_enfermagem", "scene-posto_de_enfermagem",
             postoEnfermagemOnload, postoEnfermagemOnUnload);
 
-
+        
         /*
          Recepcao
           */
@@ -291,6 +291,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         // Flags
         level.registerFlag(new Flag("conversar_paciente", true));
         level.registerFlag(new Flag("confirmar_pulseira", false));
+        level.registerFlag(new Flag("paciente_galaxy", 0));
 
         // Dialogs
         var fala_paciente = [];
@@ -344,6 +345,14 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             core.setActionVisible("Largar pulseira", true);
             core.setActionVisible("Confirmar pulseira", true);
         }
+        function examinarPaciente(){
+            L.log("Action: Examinar paciente");
+            if(core.getFlag("paciente_galaxy").getValue() >= 10)
+            {
+                L.log("Load Galaxy");
+            }
+            core.getFlag("paciente_galaxy").setValue(core.getFlag("paciente_galaxy").getValue() + 1);
+        }
 
         leito.registerAction(
             new Action("Ir para ala masculina", "action-ir_sala_de_leitos", leitoIrAlaMasculina, visibility));
@@ -354,6 +363,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         leito.registerAction(new Action(
             "Conversar paciente", "action-abrir_dialogo", dialogarPaciente, visibility));
 
+        leito.registerAction(new Action(
+            "Examinar paciente", "action-examinar_paciente", examinarPaciente, visibility));
 
         // Modal Scene
         var pulseira = new Scene("Pulseira", "modalScene-pulseira");
@@ -361,6 +372,9 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         function leitoLargarPulseira(){
             L.log("Ação: Fechar modal pulseira");
             core.closeModalScene("Pulseira");
+            if(level.getFlag("confirmar_pulseira").getValue() == true){
+                core.setActionVisible("Examinar paciente", true);
+            }
         }
 
         function leitoConfirmarPulseira(){
