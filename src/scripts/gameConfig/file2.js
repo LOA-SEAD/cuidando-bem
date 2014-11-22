@@ -22,7 +22,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
          Flags for level 1
          */
 
-        var flags_on = false;    // if false it wont check for flags -- tests purpose
+        var flags_on = true;    // if false it wont check for flags -- tests purpose
         var visibility = false;
 
         /*
@@ -98,9 +98,10 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
           */
         // Flags
         level.registerFlag(new Flag("mentor_dialogo", true));
+        level.registerFlag(new Flag("buscar_coxim", false));
 
         // Dialogs
-        var fala_mentor = [[],[]];
+        var fala_mentor = [[],[],[]];
 
         // primeiro dialogo com o mentor
         fala_mentor[0][0] = new Dialog("mentor", "char-mentor",
@@ -122,7 +123,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             text: "Lorem ipsum dolor sit amet.",
             actionFunction: function () {
                 core.closeDialog(1);
-                corredorLiberaActions();
+                corredorActions(true);
                 core.setActionVisible("btn-falar_mentor_01", true);
             }
         });
@@ -141,19 +142,30 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         });
 
         fala_mentor[1][1] = new Dialog("mentor", "char-mentor",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet gravida ante, " +
-            "a euismod risus. Phasellus blandit enim nec elementum bibendum. In tempus, mauris.");
+            "Phasellus placerat accumsan leo, facilisis dapibus nibh rutrum sit amet. " +
+            "Duis non sagittis elit. Praesent.");
         fala_mentor[1][1].registerOption({
             text: "Lorem ipsum dolor sit amet.",
             actionFunction: function () {
                 core.closeDialog(3);
                 core.setActionVisible("btn-falar_mentor_02", true);
-                corredorLiberaActions();
+                level.getFlag("buscar_coxim").setValue(true);
+            }
+        });
+
+        // alerta do mentor
+        fala_mentor[2][0] = new Dialog("mentor", "char-mentor",
+            "Proin laoreet quis nibh at.");
+        fala_mentor[2][0].registerOption({
+            text: "Nunc mollis, nunc in aliquet.",
+            actionFunction: function () {
+                core.closeDialog(4);
             }
         });
 
         corredor.registerDialogs(fala_mentor[0]);
         corredor.registerDialogs(fala_mentor[1]);
+        corredor.registerDialog(fala_mentor[2][0]);
 
         // Functions
         function corredorOnLoad(){
@@ -168,7 +180,12 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 // ja examinou o paciente
                 else if(level.getFlag("mentor_dialogo").getValue() == true
                     && level.getFlag("examinou_paciente").getValue() == true){
+                    L.log("Segunda fala do mentor");
+                    level.getFlag("mentor_dialogo").setValue(false);
                     core.openDialog(2);
+                }
+                else if(level.getFlag("buscar_coxim").getValue() == true){
+                    core.openDialog(4);
                 }
             }
             else{
@@ -183,8 +200,19 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         }
 
         function corredorAlaMasculina() {
-            L.log("Action: Ir para a ala masculina");
-            core.changeScene(2);
+            if (flags_on == true) {
+                L.log("Action: Ir para a ala masculina");
+                if (level.getFlag("buscar_coxim").getValue() == false) {
+                    core.changeScene(2);
+                }
+                else {
+                    core.openDialog(4);
+                }
+            }
+            else {
+                L.log("Action: Ir para a ala masculina");
+                core.changeScene(2);
+            }
         }
 
         function corredorIrPostoEnfermagem() {
@@ -193,7 +221,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 if(level.getFlag("examinou_paciente").getValue() == false){
                 // Ainda nao pode ir ao posto de enfermagem
                     L.log("Mentor: Ação incorreta");
-
+                    core.openDialog(4);
                 }
                 else{
                 // Ja pode ir ao posto de enfermagem
@@ -206,10 +234,10 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             }
         }
 
-        function corredorLiberaActions(){
-            L.log("Libera Actions");
-            core.setActionVisible("btn-ir_ala_masculina", true);
-            core.setActionVisible("btn-ir_posto_enfermagem", true);
+        function corredorActions(_status){
+            L.log("Muda visibilidade de Actions: " + _status);
+            core.setActionVisible("btn-ir_ala_masculina", _status);
+            core.setActionVisible("btn-ir_posto_enfermagem", _status);
         }
 
         // Actions
@@ -237,6 +265,16 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         level.registerFlag(new Flag("examinou_paciente", false));
 
         // Dialogs
+        fala_mentor[2][1] = new Dialog("mentor", "char-mentor",
+            "Proin laoreet quis nibh at.");
+        fala_mentor[2][1].registerOption({
+            text: "Nunc mollis, nunc in aliquet.",
+            actionFunction: function () {
+                core.closeDialog(0);
+            }
+        });
+
+        ala_masculina.registerDialog(fala_mentor[2][1]);
 
         // Functions
         function ala_masculinaOnLoad(){
@@ -268,6 +306,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 else{
                     L.log("Lavar maos necessario");
                     L.log("Desconta ponto - apenas uma vez");
+                    core.openDialog(0);
                 }
             }
             else {
@@ -353,13 +392,16 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         }
         function examinarPaciente(){
             L.log("Action: Examinar paciente");
+            core.getFlag("examinou_paciente").setValue(true);
+            core.getFlag("mentor_dialogo").setValue(true);
             if(core.getFlag("paciente_carlos").getValue() >= 20)
             {
                 L.log("Load Carlos Esme Gouvea");
                 core.openModalScene("Carlos Esme Gouvea");
                 core.getFlag("paciente_carlos").setValue(0);
             }
-            core.getFlag("paciente_carlos").setValue(core.getFlag("paciente_carlos").getValue() + 1);
+            core.getFlag("paciente_carlos").setValue(
+                core.getFlag("paciente_carlos").getValue() + 1);
         }
 
         leito.registerAction(
@@ -411,15 +453,79 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
          Posto de Enfermagem
          */
         // Flags
+        level.registerFlag(new Flag("pegou_coxim", false));
         // Dialogs
-        // Functions
-        // Actions
-        function postoEnfermagemOnload(){
-        }
 
+        // Functions
+        function postoEnfermagemOnload(){
+            core.setActionVisible("btn-abrir_gaveta", true);
+            core.setActionVisible("btn-ir_corredor", true);
+        }
+        function postoEnfermagemIrCorredor(){
+            L.log("Action: ir_corredor");
+            core.changeScene(1);
+        }
         function postoEnfermagemOnUnload(){
 
         }
+        function postoEnfermagemAbrirGaveta() {
+            L.log("Action: abrir_gaveta");
+            core.openModalScene("Gaveta");
+            gavetaActions(true);
+
+        }
+        function postoEnfermagemFecharGaveta() {
+            L.log("Action: fechar_gaveta");
+            core.closeModalScene("Gaveta");
+            gavetaActions(false);
+        }
+        function postoEnfermagemPegarCoxim(){
+            L.log("Action: pegar coxim");
+            level.getFlag("buscar_coxim").setValue(false);
+            level.getFlag("pegou_coxim").setValue(true);
+            core.setActionVisible("btn-coxim", false);
+            core.setInteractiveObjectVisible("io-coxim", false);
+        }
+        function gavetaActions(_status){
+            if(_status == true) {
+                core.setActionVisible("btn-fechar_gaveta", _status);
+                if (level.getFlag("pegou_coxim").getValue() == false) {
+                    core.setActionVisible("btn-coxim", _status);
+                    core.setInteractiveObjectVisible("io-coxim", _status);
+                }
+                else {
+                    core.setActionVisible("btn-coxim", !_status);
+                    core.setInteractiveObjectVisible("io-coxim", !_status);
+                }
+            }
+        }
+        // Actions
+        posto_de_enfermagem.registerAction(
+            new Action("btn-ir_corredor", "Ir ao corredor",
+                "action-ir_corredor",postoEnfermagemIrCorredor, visibility));
+
+        posto_de_enfermagem.registerAction(
+            new Action("btn-abrir_gaveta", "Abrir gaveta",
+                "action-abrir_gaveta", postoEnfermagemAbrirGaveta, visibility));
+
+        // Modal
+        var gaveta = new Scene("Gaveta", "modalScene-gaveta");
+
+        gaveta.registerAction(
+            new Action("btn-fechar_gaveta", "Fechar gaveta",
+                "action-fechar_gaveta", postoEnfermagemFecharGaveta, visibility));
+
+        gaveta.registerAction(
+            new Action("btn-coxim", "Pegar coxim",
+                "action-pegar_coxim", postoEnfermagemPegarCoxim, visibility));
+
+        gaveta.registerInteractiveObject(
+            new InteractiveObject("io-coxim", "Coxim",
+                "intObj-coxim", postoEnfermagemPegarCoxim));
+
+        level.registerModalScene(gaveta);
+
+
 
         level.registerScene(recepcao);
         level.registerScene(corredor);
