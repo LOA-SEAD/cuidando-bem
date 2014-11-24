@@ -18,7 +18,7 @@ define([], function () {
      *
      * @memberOf module:LevelsData
      */
-    var currentLevel = 1;
+    var currentLevel = 0;
 
 //Methods
     /**

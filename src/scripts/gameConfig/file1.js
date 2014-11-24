@@ -369,7 +369,6 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             }
         });
 
-
         leito.registerDialogs(fala_cena3_leito_masculino);
         leito.registerDialogs(fala_cena4_leito_masculino);
 

@@ -56,7 +56,6 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 core.closeDialog(0);
                 core.setActionVisible("btn-ir_corredor", true);
                 core.setActionVisible("btn-conversar_recepcionista", true);
-                //core.openDialog(1);
             }});
 
         recepcao.registerDialogs(fala_recepcionista);
@@ -78,7 +77,6 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             L.log("Action: recepcao_ir_corredor");
             core.changeScene(1);
         }
-
         function conversarRecepcionista() {
             L.log("Action: Conversar com a recepcionista");
             core.openDialog(0);
@@ -114,7 +112,6 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 core.openDialog(1);
             }
         });
-
         fala_mentor[0][1] = new Dialog("mentor", "char-mentor",
             "Mauris nisl justo, venenatis non tellus tincidunt, pellentesque convallis nunc. " +
             "Vivamus neque diam, venenatis vitae imperdiet at, hendrerit vitae magna. Curabitur " +
@@ -150,6 +147,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 core.closeDialog(3);
                 core.setActionVisible("btn-falar_mentor_02", true);
                 level.getFlag("buscar_coxim").setValue(true);
+                corredorActions(true);
             }
         });
 
@@ -182,6 +180,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                     && level.getFlag("examinou_paciente").getValue() == true){
                     L.log("Segunda fala do mentor");
                     level.getFlag("mentor_dialogo").setValue(false);
+                    corredorActions(false);
+                    corredorDialogos(false);
                     core.openDialog(2);
                 }
                 else if(level.getFlag("buscar_coxim").getValue() == true){
@@ -233,13 +233,16 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 core.changeScene(4);
             }
         }
-
         function corredorActions(_status){
             L.log("Muda visibilidade de Actions: " + _status);
             core.setActionVisible("btn-ir_ala_masculina", _status);
             core.setActionVisible("btn-ir_posto_enfermagem", _status);
         }
-
+        function corredorDialogos(_status){
+            L.log("Muda visibilidade dos Dialogos: " + _status);
+            core.setActionVisible("btn-falar_mentor_01", _status);
+            core.setActionVisible("btn-falar_mentor_02", _status);
+        }
         // Actions
         corredor.registerAction(
             new Action("btn-falar_mentor_01", "Falar com mentor",
@@ -277,11 +280,22 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         ala_masculina.registerDialog(fala_mentor[2][1]);
 
         // Functions
+        function ala_masculinaAction(_status){
+            core.setActionVisible("btn-ir_corredor", _status);
+            core.setActionVisible("btn-ir_leito", _status);
+            core.setActionVisible("btn-lavar_maos", _status);
+        }
         function ala_masculinaOnLoad(){
             if(flags_on == true){
-                core.setActionVisible("btn-ir_corredor", true);
-                core.setActionVisible("btn-ir_leito", true);
-                core.setActionVisible("btn-lavar_maos", true);
+                if(level.getFlag("posicionou_coxim").getValue() == false){
+                    ala_masculinaAction(true);
+                }
+                else{
+                    ala_masculinaAction(false);
+                    level.getFlag("lavar_maos").setValue(false);
+                    core.setActionVisible("btn-lavar_maos", true);
+                    core.setActionVisible("btn-ler_prontuario", true);
+                }
             }
             else{
                 core.setActionVisible("btn-ir_corredor", true);
@@ -293,8 +307,26 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         }
         function alaMasculinaIrCorredor(){
-            core.getFlag("lavar_maos").setValue(false);
-            core.changeScene(1);
+            if(flags_on == true ){
+                if(core.getFlag("examinou_paciente").getValue() == true)
+                {
+                    if(core.getFlag("lavar_maos").getValue() == true){
+                        L.log("Ir corredor: depois examinar paciente");
+                        core.changeScene(1);
+                    }
+                    else{
+                        L.log("Ir corredor: lavar maos depois de examinar paciente");
+                        core.openDialog(0);
+                    }
+                }
+                else{
+                    L.log("Ir corredor: antes examinar paciente");
+                    core.changeScene(1);
+                }
+            }
+            else{
+                core.changeScene(1);
+            }
         }
         function alaMasculinaIrLeito(){
             L.log("Action: Ala Masculina - Ir Leito");
@@ -317,7 +349,22 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             L.log("Action: lavar as maos");
             core.getFlag("lavar_maos").setValue(true);
         }
+        function alaMasculinaLerProntuario(){
+            L.log("Action: ler prontuario");
+            if(flags_on){
+                if(level.getFlag("lavar_maos").getValue() == true){
+                    core.openModalScene("Prontuario");
+                }
+                else{
+                    L.log("Desconta pontos - falta lavar mãos");
+                }
+            }else{
 
+            }
+        }
+        function anotarProntuario(){
+            L.log("Anotar prontuario");
+        }
         // Actions
         ala_masculina.registerAction(
             new Action("btn-ir_corredor", "Ir ao corredor",
@@ -328,6 +375,19 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         ala_masculina.registerAction(
             new Action("btn-lavar_maos", "Lavar as mãos",
                 "action-lavar_maos", alaMasculinaLavarMaos, visibility));
+        ala_masculina.registerAction(
+            new Action("btn-ler_prontuario", "Ler prontuario",
+                "action-ler_prontuario", alaMasculinaLerProntuario, visibility));
+
+        // Modal
+        var prontuario = new Scene("Prontuario", "modalScene-prontuario");
+
+        prontuario.registerAction(
+            new Action("btn-anotar_prontuario", "Anotar prontuário",
+                "action-anotar_prontuario", anotarProntuario, true)
+        );
+
+        level.registerModalScene(prontuario);
 
         /*
          Leito
@@ -337,6 +397,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         level.registerFlag(new Flag("conversar_paciente", true));
         level.registerFlag(new Flag("confirmar_pulseira", false));
         level.registerFlag(new Flag("paciente_carlos", 0));
+        level.registerFlag(new Flag("posicionou_coxim", false));
 
         // Dialogs
         var fala_paciente = [];
@@ -356,9 +417,6 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         leito.registerDialogs(fala_paciente);
 
         // Functions
-
-
-        // Actions
         function leitoOnLoad() {
             if(flags_on == true){
                 if(level.getFlag("conversar_paciente").getValue() == true){
@@ -366,7 +424,13 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                     core.openDialog(0);
                 }
                 else{
-                    core.setActionVisible("btn-conversar_paciente", true);
+                    if(level.getFlag("pegou_coxim").getValue() == true){
+                        leitoFirstActions(false);
+                        core.setActionVisible("btn-mudar_posicao_paciente", true);
+                    }
+                    else{
+                        core.setActionVisible("btn-conversar_paciente", true);
+                    }
                 }
             }
             else {
@@ -393,6 +457,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         function examinarPaciente(){
             L.log("Action: Examinar paciente");
             core.getFlag("examinou_paciente").setValue(true);
+            core.getFlag("lavar_maos").setValue(false);
             core.getFlag("mentor_dialogo").setValue(true);
             if(core.getFlag("paciente_carlos").getValue() >= 20)
             {
@@ -403,7 +468,26 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             core.getFlag("paciente_carlos").setValue(
                 core.getFlag("paciente_carlos").getValue() + 1);
         }
+        function leitoFirstActions(_status){
+            L.log("Leito visibilidade acoes: " + _status);
+            core.setActionVisible("btn-ir_ala_masculina", _status);
+            core.setActionVisible("btn-ver_pulseira", _status);
+            core.setActionVisible("btn-conversar_paciente", _status);
+            core.setActionVisible("btn-examinar_paciente", _status);
+        }
+        function mudarPosicaoPaciente(){
+            L.log("Action: mudar posição do paciente");
+            core.setActionVisible("btn-mudar_posicao_paciente", false);
+            core.setActionVisible("btn-posicionar_coxim", true);
+        }
+        function posicionarCoxim(){
+            L.log("Action: posicionar coxim");
+            level.getFlag("posicionou_coxim").setValue(true);
+            core.setActionVisible("btn-posicionar_coxim", false);
+            core.setActionVisible("btn-ir_ala_masculina", true);
+        }
 
+        // Actions
         leito.registerAction(
             new Action("btn-ir_ala_masculina", "Ir para ala masculina",
                 "action-ir_sala_de_leitos", leitoIrAlaMasculina, visibility));
@@ -418,8 +502,21 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         leito.registerAction(new Action("btn-examinar_paciente", "Examinar paciente",
             "action-examinar_paciente", examinarPaciente, visibility));
 
+        leito.registerAction(new Action("btn-mudar_posicao_paciente", "Mudar posição do paciente",
+            "action-mudar_posicao_paciente", mudarPosicaoPaciente, visibility));
+
+        leito.registerAction(new Action("btn-posicionar_coxim", "Posicionar coxim e o travesseiro",
+            "action-posicionar_coxim", posicionarCoxim, visibility));
+
         // Modal Scene
         var pulseira = new Scene("Pulseira", "modalScene-pulseira");
+
+        var carlos_esme_gouvea = new Scene("Carlos Esme Gouvea", "modalScene-carlos_esme_gouvea");
+        carlos_esme_gouvea.registerAction(
+            new Action("btn-fechar_carlos", "Fechar Carlos",
+                "action-fechar_modal", function() {core.closeModalScene("Carlos Esme Gouvea");}, true)
+        );
+        level.registerModalScene(carlos_esme_gouvea);
 
         function leitoLargarPulseira(){
             L.log("Ação: Fechar modal pulseira");
@@ -442,13 +539,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 "action-confirmar_pulseira", leitoConfirmarPulseira, visibility));
 
         level.registerModalScene(pulseira);
-        var carlos_esme_gouvea = new Scene("Carlos Esme Gouvea", "modalScene-carlos_esme_gouvea");
-        carlos_esme_gouvea.registerAction(
-            new Action("btn-fechar_carlos", "Fechar Carlos",
-                "action-fechar_modal", function() {core.closeModalScene("Carlos Esme Gouvea");}, true)
-        );
 
-        level.registerModalScene(carlos_esme_gouvea);
+
         /*
          Posto de Enfermagem
          */
@@ -525,8 +617,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         level.registerModalScene(gaveta);
 
-
-
+        // Registrar cenas no level
         level.registerScene(recepcao);
         level.registerScene(corredor);
         level.registerScene(ala_masculina);
