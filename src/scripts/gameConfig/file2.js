@@ -33,24 +33,47 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         var corredor = new Scene("corredor", "scene-corredor", corredorOnLoad, corredorOnUnload);
         var ala_masculina = new Scene(
             "ala_masculina", "scene-ala_masculina", ala_masculinaOnLoad, ala_masculinaOnUnload);
-        var leito = new Scene("leito", "scene-leito", leitoOnLoad, leitoOnUnload);
+        var leito = new Scene("leito", "scene-leito-char-02", leitoOnLoad, leitoOnUnload);
         var posto_de_enfermagem = new Scene("posto_de_enfermagem", "scene-posto_de_enfermagem",
             postoEnfermagemOnload, postoEnfermagemOnUnload);
 
-        
+        // Dialogos
+
+        var dialog_recepcao = [[]];
+        dialog_recepcao[0][0] = "Olá! O mentor lhe espera  para um novo caso.";
+        dialog_recepcao[0][1] = "Irei encontrá-lo no corredor.";
+
+        var dialog_corredor = [[],[]];
+        dialog_corredor[0][0] = "Bom dia! O seu segundo paciente tem 69 anos, está  acamado  e sabemos que " +
+        "isso é um fator de risco para o desenvolvimento de úlcera por pressão, a mudança de posição  " +
+        "é essencial!";
+        dialog_corredor[0][1] = "Bom dia! Irei então para a enfermaria.";
+
+        dialog_corredor[1][0] = "Você inspecionou a pele do paciente?";
+        dialog_corredor[1][1] = "Sim e encontrei algumas regiões hiperemiadas no calcanhar.";
+        dialog_corredor[1][2] = "Isso mesmo! O essencial para fazer nestes casos  de pessoas acamadas " +
+        "é  mudar de decúbito a cada 2 horas e colocar coxim.";
+        dialog_corredor[1][3] = "Vou até o posto de enfermagem, ver se encontro.";
+
+        var dialog_enfermaria = [[]];
+        dialog_enfermaria[0][0] = "Olá! Sou o técnico de enfermagem  cuidarei de você hoje." +
+        "Como o Senhor se sente hoje?";
+        dialog_enfermaria[0][1] = "Vou indo.";
+        dialog_enfermaria[0][2] = "O Senhor poderia me dizer o seu nome completo e quando  você nasceu?";
+        dialog_enfermaria[0][3] = "Carlos Esme Gouvêa, nasci em 01-12-1945.";
+        dialog_enfermaria[0][4] = "Vou examinar o Senhor, licença.";
+
         /*
          Recepcao
           */
-        // Flags
 
+        // Flags
         // Dialogs
         var fala_recepcionista = [];
-        fala_recepcionista[0] = new Dialog("recepcionista", "char-recepcionista",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. " +
-            "Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur " +
-            "ante hendrerit. Donec et mollis dolor.");
+        fala_recepcionista[0] = new Dialog(
+            "recepcionista", "char-recepcionista", dialog_recepcao[0][0]);
         fala_recepcionista[0].registerOption({
-            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            text: dialog_recepcao[0][1],
             actionFunction: function () {
                 L.log("Selecionado 1a opção diálogo");
                 core.closeDialog(0);
@@ -102,49 +125,33 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         var fala_mentor = [[],[],[]];
 
         // primeiro dialogo com o mentor
-        fala_mentor[0][0] = new Dialog("mentor", "char-mentor",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet gravida ante, " +
-            "a euismod risus. Phasellus blandit enim nec elementum bibendum. In tempus, mauris.");
+        fala_mentor[0][0] = new Dialog(
+            "mentor", "char-mentor", dialog_corredor[0][0]);
         fala_mentor[0][0].registerOption({
-            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            text: dialog_corredor[0][1],
             actionFunction: function () {
                 core.closeDialog(0);
-                core.openDialog(1);
-            }
-        });
-        fala_mentor[0][1] = new Dialog("mentor", "char-mentor",
-            "Mauris nisl justo, venenatis non tellus tincidunt, pellentesque convallis nunc. " +
-            "Vivamus neque diam, venenatis vitae imperdiet at, hendrerit vitae magna. Curabitur " +
-            "mauris magna, viverra sit.");
-        fala_mentor[0][1].registerOption({
-            text: "Lorem ipsum dolor sit amet.",
-            actionFunction: function () {
-                core.closeDialog(1);
                 corredorActions(true);
                 core.setActionVisible("btn-falar_mentor_01", true);
             }
         });
 
         // segundo dialogo com o mentor
-        fala_mentor[1][0] = new Dialog("mentor", "char-mentor",
-            "Sed pulvinar sagittis mi, vel facilisis dolor pulvinar quis. Aenean non velit velit. " +
-            "Pellentesque egestas rutrum odio, vitae convallis tortor gravida ac. " +
-            "Curabitur fringilla libero.");
+        fala_mentor[1][0] = new Dialog("mentor", "char-mentor",dialog_corredor[1][0]);
         fala_mentor[1][0].registerOption({
-            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            text: dialog_corredor[1][1],
             actionFunction: function () {
-                core.closeDialog(2);
-                core.openDialog(3);
+                core.closeDialog(1);
+                core.openDialog(2);
             }
         });
 
-        fala_mentor[1][1] = new Dialog("mentor", "char-mentor",
-            "Phasellus placerat accumsan leo, facilisis dapibus nibh rutrum sit amet. " +
-            "Duis non sagittis elit. Praesent.");
+        fala_mentor[1][1] = new Dialog(
+            "mentor", "char-mentor",dialog_corredor[1][2]);
         fala_mentor[1][1].registerOption({
-            text: "Lorem ipsum dolor sit amet.",
+            text: dialog_corredor[1][3],
             actionFunction: function () {
-                core.closeDialog(3);
+                core.closeDialog(2);
                 core.setActionVisible("btn-falar_mentor_02", true);
                 level.getFlag("buscar_coxim").setValue(true);
                 corredorActions(true);
@@ -157,7 +164,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         fala_mentor[2][0].registerOption({
             text: "Nunc mollis, nunc in aliquet.",
             actionFunction: function () {
-                core.closeDialog(4);
+                core.closeDialog(3);
             }
         });
 
@@ -182,10 +189,13 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                     level.getFlag("mentor_dialogo").setValue(false);
                     corredorActions(false);
                     corredorDialogos(false);
-                    core.openDialog(2);
+                    core.openDialog(1);
                 }
                 else if(level.getFlag("buscar_coxim").getValue() == true){
-                    core.openDialog(4);
+                    core.openDialog(3);
+                }
+                else if(level.getFlag("pegou_coxim").getValue() == true){
+                    corredorDialogos(false);
                 }
             }
             else{
@@ -206,7 +216,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                     core.changeScene(2);
                 }
                 else {
-                    core.openDialog(4);
+                    core.openDialog(3);
                 }
             }
             else {
@@ -221,7 +231,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 if(level.getFlag("examinou_paciente").getValue() == false){
                 // Ainda nao pode ir ao posto de enfermagem
                     L.log("Mentor: Ação incorreta");
-                    core.openDialog(4);
+                    core.openDialog(3);
                 }
                 else{
                 // Ja pode ir ao posto de enfermagem
@@ -250,7 +260,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         corredor.registerAction(
             new Action("btn-falar_mentor_02", "Falar com mentor",
-                "action-abrir_dialogo", function(){core.openDialog(2);}, visibility));
+                "action-abrir_dialogo", function(){core.openDialog(1);}, visibility));
 
         corredor.registerAction(
             new Action("btn-ir_ala_masculina", "Ir para a ala masculina",
@@ -364,6 +374,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         }
         function anotarProntuario(){
             L.log("Anotar prontuario");
+            // Fim do level
+            core.changeScene(5);
         }
         // Actions
         ala_masculina.registerAction(
@@ -371,7 +383,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 "action-ir_corredor", alaMasculinaIrCorredor, visibility));
         ala_masculina.registerAction(
             new Action("btn-ir_leito", "Ir ao leito",
-                "action-ir_leito", alaMasculinaIrLeito, visibility));
+                "action-leito-char-02", alaMasculinaIrLeito, visibility));
         ala_masculina.registerAction(
             new Action("btn-lavar_maos", "Lavar as mãos",
                 "action-lavar_maos", alaMasculinaLavarMaos, visibility));
@@ -402,17 +414,37 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         // Dialogs
         var fala_paciente = [];
 
-        fala_paciente[0] = new Dialog("paciente-carlos", "char-carlos",
-            "Vestibulum molestie eros ligula, ut rhoncus ante pellentesque ut. Nunc.");
+        fala_paciente[0] = new Dialog(
+            "Jogador", "char-jogador","");
         fala_paciente[0].registerOption({
-            text: "Nullam sed metus enim. Etiam.",
+            text: dialog_enfermaria[0][0],
             actionFunction: function() {
                 core.closeDialog(0);
+                core.openDialog(1);
+            }
+        });
+
+        fala_paciente[1] = new Dialog(
+            "Paciente Carlos", "char-paciente-02",dialog_enfermaria[0][1]);
+        fala_paciente[1].registerOption({
+            text: dialog_enfermaria[0][2],
+            actionFunction: function() {
+                core.closeDialog(1);
+                core.openDialog(2);
+            }
+        });
+
+        fala_paciente[2] = new Dialog(
+            "Paciente Carlos", "char-paciente-02",dialog_enfermaria[0][3]);
+        fala_paciente[2].registerOption({
+            text: dialog_enfermaria[0][4],
+            actionFunction: function() {
+                core.closeDialog(2);
                 core.setActionVisible("btn-ir_ala_masculina", true);
                 core.setActionVisible("btn-ver_pulseira", true);
                 core.setActionVisible("btn-conversar_paciente", true);
             }
-        })
+        });
 
         leito.registerDialogs(fala_paciente);
 
@@ -617,12 +649,39 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         level.registerModalScene(gaveta);
 
+        /*
+         Scene:  Fim do Level
+         */
+        var fim_level = new Scene("Fim da fase", "scene-fim-level",
+            fimTutorialOnload, fimTutorialOnUnload);
+        // Flags
+        // Dialogs
+        // Functions
+        function fimTutorialOnload(){
+            core.setActionVisible("btn-proxima_fase", true);
+        }
+        function fimTutorialOnUnload(){
+
+        }
+
+        function fimTutorialIrCorredor(){
+            L.log("Proxima fase" + core);
+            //core.changeLevelTo(2);
+        }
+
+        // Actions
+        fim_level.registerAction(
+            new Action("btn-proxima_fase", "Ir a recepção",
+                "action-ir_recepcao", fimTutorialIrCorredor, visibility));
+
+
         // Registrar cenas no level
         level.registerScene(recepcao);
         level.registerScene(corredor);
         level.registerScene(ala_masculina);
         level.registerScene(leito);
         level.registerScene(posto_de_enfermagem);
+        level.registerScene(fim_level);
 
         // Cena inicial é recepcao
         level.setInitialScene(0);

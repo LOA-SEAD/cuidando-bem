@@ -23,6 +23,75 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         else
             var visibility = true;
 
+
+        /*
+        Dialogos
+         */
+        var dialog_recep = [[]];
+        // Recepcionista
+        dialog_recep[0][0] = "Bom dia! Você é novo por aqui? Como posso ajudá-lo?";
+        // Jogador
+        dialog_recep[0][1] = "Bom dia. Sou o novo técnico de enfermagem.";
+        // Recepcionista
+        dialog_recep[0][2] = "Ah, sim! Seja bem vindo! O Enfermeiro mentor está te esperando no corredor.";
+        // Jogador
+        dialog_recep[0][3] = "Obrigado!";
+
+        var dialog_corredor = [[]];
+        // Mentor
+        dialog_corredor[0][0] = "Olá! Seja bem-vindo ao Hospital Cuidando Bem! Aqui nossa missão é a " +
+        "garantia da segurança de nossos pacientes através dos protocolos. Você fará um estágio de " +
+        "experiência e, caso se saia bem, será contratado em definitivo pelo hospital.";
+        // Jogador
+        dialog_corredor[0][1] = "Obrigado! Espero conseguir atender suas expectativas.";
+        // Mentor
+        dialog_corredor[0][2] = "Agora me acompanhe, começaremos pela enfermaria masculina.";
+        // Jogador
+        dialog_corredor[0][3] = "Sim, vamos lá!";
+
+        var dialog_leito_masc = [[],[]];
+        // Mentor
+        dialog_leito_masc[0][0] = "Este é o Sr. João, seu primeiro paciente. Um dos principais protocolos " +
+        "de segurança é a sua apresentação ao paciente e a certificação de que a identificação dele está " +
+        "correta.";
+        // Jogador
+        dialog_leito_masc[0][1] = "Olá Sr. João. Sou o novo técnico de enfermagem e cuidarei do Sr. hoje. " +
+        "Como está se sentindo?";
+        // Paciente
+        dialog_leito_masc[0][2] = "Estou com muita dor de cabeça e passei muito nervoso hoje, acho que " +
+        "minha pressão subiu. É a primeira vez que preciso ser internado em um hospital e estou com um " +
+        "pouco de medo.";
+        // Jogador
+        dialog_leito_masc[0][3] = "Vamos fazer o que for possível para que sua estadia aqui seja rápida " +
+        "e que se sinta em casa. Porém, primeiro  o seu nome completo e da sua data de nascimento, tudo bem?!";
+        // Paciente
+        dialog_leito_masc[0][4] = "Meu nome é  João Manoel Ribeiro, nasci no dia 07-06-1956.";
+        // Jogador
+        dialog_leito_masc[0][5] = "Ok! Obrigado";
+        // Mentor
+        dialog_leito_masc[0][6] = "Sua primeira missão é admitir o Sr. João nesta enfermaria, " +
+        "identificando-o com uma pulseira e verificando os seus sinais vitais. Antes de começar, " +
+        "vá até o posto de enfermagem retirar os instrumentos necessários.";
+        // Jogador
+        dialog_leito_masc[0][7] = "Claro! Agora mesmo.";
+
+        // Jogador
+        dialog_leito_masc[1][0] = "Sr. João, esta pulseira agora é a sua identificação aqui dentro do " +
+        "hospital, ela é importante para que ninguém o confunda com outro paciente. Daqui em diante quando " +
+        "for submetido a um procedimento médico, peça ao profissional de saúde para verificar essa " +
+        "identificação. Agora preciso verificar seus sinais vitais: a pressão arterial, a frequência " +
+        "cardíaca, frequência respiratória, saturação de oxigênio e temperatura, ok?";
+        // Paciente
+        dialog_leito_masc[1][1] = "Ok. Obrigado.";
+        // Jogador
+        dialog_leito_masc[1][2] = "De nada.";
+        // Mentor
+        dialog_leito_masc[1][3] = "Parabéns, você conseguiu admitir o paciente neste hospital! Agora falta " +
+        "algo muito importante: anotar os procedimentos realizados e os dados obtidos dos sinais vitais " +
+        "(SSVV) do paciente. Vamos lá?";
+        // Jogador
+        dialog_leito_masc[1][4] = "Pode deixar, vou anotar imediatamente no prontuário.";
+
         /*
          Scene:  Recepcao
          */
@@ -33,10 +102,10 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         // Dialogs
         var fala_recepcionista = [];
-        fala_recepcionista[0] = new Dialog("recepcionista", "char-recepcionista",
-            "Bom dia, você parece novo por aqui. Como posso ajudá-lo?");
+        fala_recepcionista[0] = new Dialog(
+            "recepcionista", "char-recepcionista",dialog_recep[0][0]);
         fala_recepcionista[0].registerOption({
-            text: "Bom dia, sou o novo técnico de enfermagem contratado",
+            text: dialog_recep[0][1],
             actionFunction: function () {
                 level.getFlag("conversar_recepcionista").setValue(true);
                 L.log("Selecionado 1a opção diálogo: " + level.getFlag("conversar_recepcionista").getValue());
@@ -44,10 +113,10 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 core.openDialog(1);
             }});
 
-        fala_recepcionista[1] = new Dialog("recepcionista", "char-recepcionista",
-            "A sim o funcionário novo! O Enfermeiro mentor está lhe esperando no corredor");
+        fala_recepcionista[1] = new Dialog(
+            "recepcionista", "char-recepcionista", dialog_recep[0][2]);
         fala_recepcionista[1].registerOption({
-            text: "Obrigado",
+            text: dialog_recep[0][3],
             actionFunction: function () {
                 L.log("Encerrar o diálogo");
                 core.closeDialog(1);
@@ -129,23 +198,20 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         // Dialogs
         var fala_mentor = [];
-        fala_mentor[0] = new Dialog("mentor", "char-mentor",
-                "Bom dia! Seja bem vindo ao Hospital Cuidando Bem! É um prazer tê-lo como parte integrante de nossa " +
-                "equipe. Espero que dê tudo certo,  nesta instituição seguimos a missão e filosofia de garantir a " +
-                "segurança de nossos clientes, utilizando os protocolos de segurança do paciente");
+        fala_mentor[0] = new Dialog(
+            "mentor", "char-mentor", dialog_corredor[0][0]);
         fala_mentor[0].registerOption({
-            text: "Obrigado! Espero conseguir atender suas expectativas",
+            text: dialog_corredor[0][1],
             actionFunction: function () {
                 level.getFlag("conversar_mentor").setValue(true);
                 core.closeDialog(0);
                 core.openDialog(1);
             }
         });
-
-        fala_mentor[1] = new Dialog("mentor", "char-mentor",
-            "Agora por aqui, me acompanhe até a enfermaria masculina");
+        fala_mentor[1] = new Dialog(
+            "mentor", "char-mentor",dialog_corredor[0][2]);
         fala_mentor[1].registerOption({
-            text: "Encerrar diálogo",
+            text: dialog_corredor[0][3],
             actionFunction: function () {
                 core.closeDialog(1);
                 core.setActionVisible("btn-ir_sala_leitos", true);
@@ -284,12 +350,12 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 "action-ir_corredor", salaLeitosIrCorredor, visibility));
         sala_de_leitos.registerAction(
             new Action("btn-ir_leito", "Ir ao leito",
-                "action-ir_leito", salaLeitosIrLeito, visibility));
+                "action-leito-char-01", salaLeitosIrLeito, visibility));
 
         /*
          Scene: Leito
          */
-        var leito = new Scene("leito", "scene-leito", leitoOnLoad, leitoOnUnload);
+        var leito = new Scene("leito", "scene-leito-char-01", leitoOnLoad, leitoOnUnload);
 
         // Flags
         level.registerFlag(new Flag("visita-leito", 0));
@@ -297,46 +363,40 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         // Dialogs
         var fala_cena3_leito_masculino = [];
-        fala_cena3_leito_masculino[0] = new Dialog("mentor", "char-mentor",
-            "Este é o Senhor Antônio, seu primeiro paciente. Um dos principais protocolos de segurança é " +
-            "se certificar que a identificação dele está correta, ou seja, o paciente certo e também se apresentar");
+        fala_cena3_leito_masculino[0] = new Dialog(
+            "mentor", "char-mentor", dialog_leito_masc[0][0]);
         fala_cena3_leito_masculino[0].registerOption({
-            text: "Olá Senhor Antônio, como você se sente hoje? " +
-            "Sou o novo técnico de enfermagem que cuidará do senhor hoje",
+            text: dialog_leito_masc[0][1],
             actionFunction: function () {
                 core.closeDialog(0);
                 core.openDialog(1);
             }
         });
 
-        fala_cena3_leito_masculino[1] = new Dialog("paciente", "char-paciente",
-            "Eu me sinto com muita dor de cabeça e passei muito nervoso hoje, acho que minha pressão subiu. " +
-            "Estou assustado é a primeira vez que preciso ser internado em um hospital");
+        fala_cena3_leito_masculino[1] = new Dialog(
+            "paciente", "char-paciente-01",dialog_leito_masc[0][2]);
         fala_cena3_leito_masculino[1].registerOption({
-            text: "Vamos fazer o que for possível para que sua estadia aqui seja rápida e o " +
-            "mais confortável possível. Mas primeiro como é o nome completo seu e sua data de nascimento?",
+            text: dialog_leito_masc[0][3],
             actionFunction: function () {
                 core.closeDialog(1);
                 core.openDialog(2);
             }
         });
 
-        fala_cena3_leito_masculino[2] = new Dialog("paciente", "char-paciente",
-            "Meu nome é Antônio Moraes Casagrande, nasci no dia 07-06-1956");
+        fala_cena3_leito_masculino[2] = new Dialog(
+            "paciente", "char-paciente-01",dialog_leito_masc[0][4]);
         fala_cena3_leito_masculino[2].registerOption({
-            text: "Encerrar dialogo",
+            text: dialog_leito_masc[0][5],
             actionFunction: function () {
                 core.closeDialog(2);
                 core.openDialog(3);
             }
         });
 
-        fala_cena3_leito_masculino[3] = new Dialog("mentor", "char-mentor",
-            "Está é a sua primeira missão! E você terá que admitir este paciente nesta enfermaria identificando " +
-            "ele com a pulseira e aferir o SSVV. Mas antes você terá que ir até o posto de enfermagem retirar " +
-            "os instrumentos para aferição dos sinais vitais");
+        fala_cena3_leito_masculino[3] = new Dialog(
+            "mentor", "char-mentor",dialog_leito_masc[0][6]);
         fala_cena3_leito_masculino[3].registerOption({
-            text: "Encerrar dialogo",
+            text: dialog_leito_masc[0][7],
             actionFunction: function () {
                 core.closeDialog(3);
                 core.setActionVisible("btn-pulseira_paciente", true);
@@ -345,29 +405,36 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
 
         var fala_cena4_leito_masculino = [];
 
-        fala_cena4_leito_masculino[0] = new Dialog("jogador", "char-jogador",
-            "");
+        fala_cena4_leito_masculino[0] = new Dialog(
+            "jogador", "char-jogador","");
         fala_cena4_leito_masculino[0].registerOption({
-            text: "Senhor Antônio, vou identificar você com esta pulseira. Ela é necessária para identificarmos o " +
-            "senhor corretamente, para que ninguém o confunda, é importante também a cada procedimento, você pedir " +
-            "para que o profissional da saúde, confira se realmente é você o paciente, que ele realizará o " +
-            "procedimento. Agora vou precisar ver os sinais vitais seu, que são a pressão arterial, a frequência " +
-            "cardíaca, frequência respiratória, saturação de O2 e temperatura",
+            text: dialog_leito_masc[1][0],
             actionFunction: function () {
                 core.closeDialog(4);
                 core.openDialog(5);
             }
         });
 
-        fala_cena4_leito_masculino[1] = new Dialog("paciente", "char-paciente",
-            "Tudo bem, agora o que estiver alterado você já pode ir me avisando");
+        fala_cena4_leito_masculino[1] = new Dialog(
+            "paciente", "char-paciente-01",dialog_leito_masc[1][1]);
         fala_cena4_leito_masculino[1].registerOption({
-            text: "Encerrar Diálogo",
+            text: dialog_leito_masc[1][2],
             actionFunction: function () {
                 core.closeDialog(5);
+                core.openDialog(6);
+            }
+        });
+
+        fala_cena4_leito_masculino[2] = new Dialog(
+            "mentor", "char-mentor",dialog_leito_masc[1][3]);
+        fala_cena4_leito_masculino[2].registerOption({
+            text: dialog_leito_masc[1][4],
+            actionFunction: function () {
+                core.closeDialog(6);
                 core.setActionVisible("btn-lavar_maos", true);
             }
         });
+
 
         leito.registerDialogs(fala_cena3_leito_masculino);
         leito.registerDialogs(fala_cena4_leito_masculino);
@@ -650,7 +717,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         /*
          Scene:  Fim do Tutorial
          */
-        var fim_tutorial = new Scene("fim_tutorial", "scene-fim_tutorial",
+        var fim_tutorial = new Scene("Fim da fase", "scene-fim-level",
             fimTutorialOnload, fimTutorialOnUnload);
 
         // Flags
@@ -674,7 +741,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         // Actions
         fim_tutorial.registerAction(
             new Action("btn-proxima_fase", "Ir a recepção",
-                "action-ir_corredor", fimTutorialIrCorredor, visibility));
+                "action-ir_recepcao", fimTutorialIrCorredor, visibility));
 
         level.registerScene(recepcao);
         level.registerScene(corredor);

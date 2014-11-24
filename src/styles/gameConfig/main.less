@@ -74,25 +74,30 @@ html, body {
   width: 100%;
 }
 
-
 // Generic variables
 @default-bgcolor: gray;
 @sem_imagem: url('./images/action_buttons/sem-imagem.jpg');
+@sem_imagem-disabled: url('./images/action_buttons/sem-imagem-disabled.jpg');
 @arrow_dialog_button: url('./images/arrow-icon_button.png');
 @bg-menu_button: url('./images/button-bg.png');
 
 // scene's background
+/*  Imagem de background da abertura provisoria:
+      https://interfacelift.com/wallpaper/details/3335/rotsteinpass.html
+    "Rotsteinpass" by Jan Thoma
+*/
 @bg-menu_inicial: url('./images/scenes/abertura-provisoria.jpg');
 @bg-recepcao: url('./images/scenes/recepcao.jpg');
 @bg-posto_de_enfermagem: url('./images/scenes/posto_de_enfermagem.jpg');
 @bg-ala_masculina: url('./images/scenes/ala_masculina.jpg');
 @bg-ala_feminina: url('./images/scenes/ala_feminina.jpg');
 @bg-sala_de_leitos: url('./images/scenes/sala_de_leitos.jpg');
-@bg-leito: url('./images/scenes/leito.jpg');
+@bg-leito-char-01: url('./images/scenes/leito-char-01.jpg');
+@bg-leito-char-02: url('./images/scenes/leito-char-02.jpg');
 @bg-centro_cirurgico: url('./images/scenes/centro-cirurgico.jpg');
 @bg-corredor: url('./images/scenes/corredor.jpg');
 @bg-enfermaria: url('./images/scenes/enfermaria.jpg');
-@bg-fim_tutorial: url('./images/scenes/fim_tutorial.jpg');
+@bg-fim-level: url('./images/scenes/fim-level.jpg');
 
 // modalScenes.less
 @bg-gaveta: url('./images/modalScenes/gaveta.png');
@@ -108,41 +113,50 @@ html, body {
 @intObj-medidor-pressao-bg-hover: url('./images/interactiveObjects/pressao-hover.png');
 @intObj-oximetro-bg: url('./images/interactiveObjects/oximetro.png');
 @intObj-oximetro-bg-hover: url('./images/interactiveObjects/oximetro-hover.png');
-@intObj-char-mentor: url('./images/interactiveObjects/char-mentor.jpg');
+@intObj-char-mentor: url('./images/interactiveObjects/char-mentor.png');
+@intObj-char-mentor-hover: url('./images/interactiveObjects/char-mentor-hover.png');
 @intObj-confirmar_pulseira-bg: url('./images/interactiveObjects/confirmar_pulseira.png');
 
   // actionsThumbnails.less
 @ir_corredor: url('./images/action_buttons/ir_corredor.jpg');
 @ir_corredor-disabled: url('./images/action_buttons/ir_corredor-disabled.jpg');
 @ir_posto_de_enfermagem: url('./images/action_buttons/ir_posto_de_enfermagem.jpg');
+@ir_posto_de_enfermagem-disabled: url('./images/action_buttons/ir_posto_de_enfermagem-disabled.jpg');
+@ir_recepcao: url('./images/action_buttons/ir_recepcao.jpg');
+@ir_recepcao-disabled: url('./images/action_buttons/ir_recepcao-disabled.jpg');
 @ir_sala_de_leitos: url('./images/action_buttons/ir_sala_de_leitos.jpg');
 @ir_sala_de_leitos-disabled: url('./images/action_buttons/ir_sala_de_leitos-disabled.jpg');
-@ir_leito: url('./images/action_buttons/ir_leito.jpg');
+@abrir_dialogo: url('./images/action_buttons/abrir_dialogo.jpg');
+@abrir_dialogo-disabled: url('./images/action_buttons/abrir_dialogo-disabled.jpg');
+@examinar_paciente: url('./images/action_buttons/examinar_paciente.jpg');
+@examinar_paciente-disabled: url('./images/action_buttons/examinar_paciente-disabled.jpg');
+@lavar_maos: url('./images/action_buttons/lavar_maos.jpg');
+@lavar_maos-disabled: url('./images/action_buttons/lavar_maos-disabled.jpg');
 @gaveta: url('./images/action_buttons/gaveta.jpg');
 @abrir_gaveta: @gaveta;
 @fechar_gaveta: @gaveta;
 @pegar_termometro: url('./images/action_buttons/termometro.jpg');
 @pegar_medidor_pressao: url('./images/action_buttons/pressao.jpg');
 @pegar_oximetro: url('./images/action_buttons/oximetro.jpg');
-@abrir_dialogo: url('./images/action_buttons/abrir_dialogo.jpg');
-@abrir_dialogo-disabled: url('./images/action_buttons/abrir_dialogo-disabled.jpg');
-@lavar_maos: url('./images/action_buttons/lavar_maos.jpg');
 @medir_temperatura: @pegar_termometro;
 @medir_pulso: @pegar_medidor_pressao;
 @medir_freq_respiratoria: @pegar_oximetro;
 @anotar_prontuario: url('./images/action_buttons/anotar_prontuario.jpg');
-@conversar_paciente: @sem_imagem;
+@ler_prontuario: @anotar_prontuario;
 @pulseira_paciente: url('./images/action_buttons/pulseira.jpg');
+@pulseira_paciente-disabled: url('./images/action_buttons/pulseira-disabled.jpg');
 @confirmar_paciente: @sem_imagem;
 @fechar_pulseira: @sem_imagem;
-@conversar_mentor: @sem_imagem;
-@examinar_paciente: url('./images/action_buttons/examinar_paciente.jpg');
-@examinar_paciente-disabled: url('./images/action_buttons/examinar_paciente-disabled.jpg');
+@leito-char-01: url('./images/action_buttons/leito-char-01.jpg');
+@leito-char-01-disabled: url('./images/action_buttons/leito-char-01-disabled.jpg');
+@leito-char-02: url('./images/action_buttons/leito-char-02.jpg');
+@leito-char-02-disabled: url('./images/action_buttons/leito-char-02-disabled.jpg');
 
 // dialogModal.less
 @char-recepcionista: url('./images/characters/char-recepcionista.jpg');
 @char-mentor: url('./images/characters/char-mentor.jpg');
-@char-paciente: url('./images/characters/char-paciente.jpg');
+@char-paciente-01: url('./images/characters/char-paciente-01.jpg');
+@char-paciente-02: url('./images/characters/char-paciente-02.jpg');
 @char-jogador: url('./images/characters/char-jogador.jpg');
 @dialogBar-bg-color: rgba(0, 0, 0, 0.75);
 @dialogMainText-color: #ffffff;

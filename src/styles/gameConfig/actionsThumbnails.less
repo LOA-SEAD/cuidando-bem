@@ -16,6 +16,7 @@
   border-color: #4cae4c;
 }
 .action_button.disabled{
+  background-image: @sem_imagem-disabled;
   border-color: black;
 }
 .action_button.disabled:hover{
@@ -29,8 +30,18 @@
   background-image: @ir_corredor-disabled;
 }
 
+.action-ir_recepcao {
+  background-image: @ir_recepcao;
+}
+.action-ir_recepcao.disabled {
+  background-image: @ir_recepcao-disabled;
+}
+
 .action-ir_posto_de_enfermagem {
   background-image: @ir_posto_de_enfermagem;
+}
+.action-ir_posto_de_enfermagem.disabled {
+  background-image: @ir_posto_de_enfermagem-disabled;
 }
 
 .action-ir_sala_de_leitos {
@@ -40,14 +51,25 @@
   background-image: @ir_sala_de_leitos-disabled;
 }
 
-.action-ir_leito {
-  background-image: @ir_leito;
+.action-leito-char-01 {
+  background-image: @leito-char-01;
 }
-.action-conversar_paciente {
-  background-image: @conversar_paciente;
+.action-leito-char-01.disabled {
+  background-image: @leito-char-01-disabled;
 }
+
+.action-leito-char-02 {
+  background-image: @leito-char-02;
+}
+.action-leito-char-02.disabled {
+  background-image: @leito-char-02-disabled;
+}
+
 .action-pulseira_paciente {
   background-image: @pulseira_paciente;
+}
+.action-pulseira_paciente.disabled {
+  background-image: @pulseira_paciente-disabled;
 }
 .action-confirmar_paciente {
   background-image: @confirmar_paciente;
@@ -55,11 +77,12 @@
 .action-fechar_pulseira {
   background-image: @fechar_pulseira;
 }
-.action-conversar_mentor {
-  background-image: @conversar_mentor;
-}
+
 .action-lavar_maos {
   background-image: @lavar_maos;
+}
+.action-lavar_maos.disabled {
+  background-image: @lavar_maos-disabled;
 }
 .action-medir_temperatura {
   background-image: @medir_temperatura;
@@ -99,4 +122,7 @@
 }
 .action-anotar_prontuario {
   background-image: @anotar_prontuario;
+}
+.action-ler_prontuario {
+  background-image: @ler_prontuario;
 }
