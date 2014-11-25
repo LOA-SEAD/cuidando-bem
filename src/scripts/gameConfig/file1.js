@@ -33,53 +33,52 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         // Jogador
         dialog_recep[0][1] = "Bom dia. Sou o novo técnico de enfermagem.";
         // Recepcionista
-        dialog_recep[0][2] = "Ah, sim! Seja bem vindo! O Enfermeiro mentor está te esperando no corredor.";
+        dialog_recep[0][2] = "Ah, sim! Seja bem vindo! Sou Clarice. O Enfermeiro mentor está te esperando no corredor.";
         // Jogador
         dialog_recep[0][3] = "Obrigado!";
 
         var dialog_corredor = [[]];
         // Mentor
-        dialog_corredor[0][0] = "Olá! Seja bem-vindo ao Hospital Cuidando Bem! Aqui nossa missão é a " +
-        "garantia da segurança de nossos pacientes através dos protocolos. Você fará um estágio de " +
-        "experiência e, caso se saia bem, será contratado em definitivo pelo hospital.";
+        dialog_corredor[0][0] = "Olá! Seja bem-vindo ao Hospital Cuidando Bem! Sou Alberto, seu enfermeiro mentor.  " +
+        "Aqui nossa missão é a garantia da segurança de nossos pacientes através dos protocolos. Você fará um estágio " +
+        "de experiência e, caso se saia bem, será contratado em definitivo pelo hospital.";
         // Jogador
-        dialog_corredor[0][1] = "Obrigado! Espero conseguir atender suas expectativas.";
+        dialog_corredor[0][1] = "Obrigado, Alberto! Espero conseguir atender suas expectativas.";
         // Mentor
         dialog_corredor[0][2] = "Agora me acompanhe, começaremos pela enfermaria masculina.";
         // Jogador
-        dialog_corredor[0][3] = "Sim, vamos lá!";
+        dialog_corredor[0][3] = "Vamos lá!";
 
         var dialog_leito_masc = [[],[]];
         // Mentor
-        dialog_leito_masc[0][0] = "Este é o Sr. João, seu primeiro paciente. Um dos principais protocolos " +
-        "de segurança é a sua apresentação ao paciente e a certificação de que a identificação dele está " +
-        "correta.";
+        dialog_leito_masc[0][0] = "Este é o Sr. João, seu primeiro paciente. Um dos principais protocolos de segurança" +
+        " é a sua apresentação ao paciente e a certificação de que a identificação dele está correta.";
         // Jogador
         dialog_leito_masc[0][1] = "Olá Sr. João. Sou o novo técnico de enfermagem e cuidarei do Sr. hoje. " +
         "Como está se sentindo?";
         // Paciente
-        dialog_leito_masc[0][2] = "Estou com muita dor de cabeça e passei muito nervoso hoje, acho que " +
-        "minha pressão subiu. É a primeira vez que preciso ser internado em um hospital e estou com um " +
+        dialog_leito_masc[0][2] = "Estou com muita dor de cabeça e passei muito nervoso hoje, acho que minha" +
+        "pressão subiu. É a primeira vez que preciso ser internado em um hospital e estou com um" +
         "pouco de medo.";
         // Jogador
-        dialog_leito_masc[0][3] = "Vamos fazer o que for possível para que sua estadia aqui seja rápida " +
-        "e que se sinta em casa. Porém, primeiro  o seu nome completo e da sua data de nascimento, tudo bem?!";
+        dialog_leito_masc[0][3] = "Vamos fazer o que for possível para que sua estadia aqui seja rápida e que se sinta " +
+        "em casa. Porém, primeiro o seu nome completo e da sua data de nascimento, tudo bem?!";
         // Paciente
-        dialog_leito_masc[0][4] = "Meu nome é  João Manoel Ribeiro, nasci no dia 07-06-1956.";
+        dialog_leito_masc[0][4] = "Meu nome é João Manoel Ribeiro, nasci no dia 07-06-1956.";
         // Jogador
         dialog_leito_masc[0][5] = "Ok! Obrigado";
         // Mentor
-        dialog_leito_masc[0][6] = "Sua primeira missão é admitir o Sr. João nesta enfermaria, " +
-        "identificando-o com uma pulseira e verificando os seus sinais vitais. Antes de começar, " +
-        "vá até o posto de enfermagem retirar os instrumentos necessários.";
+        dialog_leito_masc[0][6] = "Sua primeira missão é admitir o Sr. João nesta enfermaria, identificando-o com uma " +
+        "pulseira e verificando os seus sinais vitais. Antes de começar, vá até o posto de enfermagem" +
+        "retirar os instrumentos necessários.";
         // Jogador
         dialog_leito_masc[0][7] = "Claro! Agora mesmo.";
 
         // Jogador
-        dialog_leito_masc[1][0] = "Sr. João, esta pulseira agora é a sua identificação aqui dentro do " +
-        "hospital, ela é importante para que ninguém o confunda com outro paciente. Daqui em diante quando " +
-        "for submetido a um procedimento médico, peça ao profissional de saúde para verificar essa " +
-        "identificação. Agora preciso verificar seus sinais vitais: a pressão arterial, a frequência " +
+        dialog_leito_masc[1][0] = "Sr. João, esta pulseira agora é a sua identificação aqui dentro do hospital, ela é " +
+        "importante para que ninguém o confunda com outro paciente. Daqui em diante quando for" +
+        "submetido a um procedimento médico, peça ao profissional de saúde para verificar essa" +
+        "identificação. Agora preciso verificar seus sinais vitais: a pressão arterial, a frequência" +
         "cardíaca, frequência respiratória, saturação de oxigênio e temperatura, ok?";
         // Paciente
         dialog_leito_masc[1][1] = "Ok. Obrigado.";
@@ -90,7 +89,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         "algo muito importante: anotar os procedimentos realizados e os dados obtidos dos sinais vitais " +
         "(SSVV) do paciente. Vamos lá?";
         // Jogador
-        dialog_leito_masc[1][4] = "Pode deixar, vou anotar imediatamente no prontuário.";
+        dialog_leito_masc[1][4] = "Pode deixar, anotarei imediatamente no prontuário";
 
         /*
          Scene:  Recepcao
