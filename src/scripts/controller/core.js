@@ -109,8 +109,6 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
 
         oldScene.unload();
         Scene_con.changeScene(Scene);
-        console.error("aAAAAAAAAAAAAAAAAA");
-
 
         CommandBar.changeToActionsButtons(Actions);
         InteractiveObject.changeToInteractiveObjects(InteractiveObjects);
