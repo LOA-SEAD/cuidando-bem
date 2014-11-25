@@ -208,7 +208,7 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (c
      * @memberOf module:CommandBar_Game_Controller
      */
     function setActionVisible(_action, _value) {
-        var selector = '.' + _action.getCssClass();
+        var selector = '#' + _action.getId();
 
         if (_value)
             $(selector).show();

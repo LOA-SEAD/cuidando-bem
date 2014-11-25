@@ -93,7 +93,7 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      * @memberOf module:InteractiveObjects_Game_Controller
      */
     function removeInteractiveObject(_interactiveObject) {
-        $('.' + _interactiveObject.getCssClass()).remove();
+        $('#' + _interactiveObject.getId()).remove();
     }
 
     /**
@@ -201,7 +201,7 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      * @memberOf module:InteractiveObjects_Game_Controller
      */
     function setInteractiveObjectVisible(_interactiveObject, _value) {
-        var selector = '.' + _interactiveObject.getCssClass();
+        var selector = '#' + _interactiveObject.getId();
 
         if (_value)
             $(selector).show();
