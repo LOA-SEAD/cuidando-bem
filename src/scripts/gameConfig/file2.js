@@ -63,6 +63,32 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         dialog_enfermaria[0][3] = "Carlos Esme Gouvêa, nasci em 01-12-1945.";
         dialog_enfermaria[0][4] = "Vou examinar o Senhor, licença.";
 
+        var alerta_mentor = [];
+        var alerta_resposta = [];
+        // Após primeiro diálogo com mentor no corredor - tentar ir ao posto de enfermagem
+        alerta_mentor[0] = "Após primeiro diálogo com mentor no corredor - tentar ir ao posto de enfermagem";
+        alerta_resposta[0] =  "Desculpe";
+
+        // Tentar ir ao leito sem lavar as mãos
+        alerta_mentor[1] = "Tentar ir ao leito sem lavar as mãos";
+        alerta_resposta[1] =  "Desculpe";
+
+        // Tentar ir ao corredor sem lavar as mãos após examinar o paciente
+        alerta_mentor[2] = "Tentar ir ao corredor sem lavar as mãos após examinar o paciente";
+        alerta_resposta[2] =  "Desculpe";
+
+        // Após o segundo diálogo c/ mentor - tentar ir a ala masculina
+        alerta_mentor[3] = "Após o segundo diálogo c/ mentor - tentar ir a ala masculina";
+        alerta_resposta[3] =  "Desculpe";
+
+        // Após ter ido ao posto de enfermagem, voltar ao corredor sem ter pego o coxim
+        alerta_mentor[4] = "Após ter ido ao posto de enfermagem, voltar ao corredor sem ter pego o coxim";
+        alerta_resposta[4] =  "Desculpe";
+
+        // Tentar ler o prontuário sem ter lavado as mãos
+        alerta_mentor[5] = "Tentar ler o prontuário sem ter lavado as mãos";
+        alerta_resposta[5] =  "Desculpe";
+
         /*
          Recepcao
           */
@@ -159,18 +185,38 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         });
 
         // alerta do mentor
-        fala_mentor[2][0] = new Dialog("mentor", "char-mentor",
-            "Proin laoreet quis nibh at.");
+        fala_mentor[2][0] = new Dialog(
+            "mentor", "char-mentor", alerta_mentor[0]);
         fala_mentor[2][0].registerOption({
-            text: "Nunc mollis, nunc in aliquet.",
+            text: alerta_resposta[0],
             actionFunction: function () {
                 core.closeDialog(3);
+            }
+        });
+
+        fala_mentor[2][4] = new Dialog(
+            "mentor", "char-mentor", alerta_mentor[3]);
+        fala_mentor[2][4].registerOption({
+            text: alerta_resposta[3],
+            actionFunction: function () {
+                core.closeDialog(4);
+            }
+        });
+
+        fala_mentor[2][5] = new Dialog(
+            "mentor", "char-mentor", alerta_mentor[4]);
+        fala_mentor[2][5].registerOption({
+            text: alerta_resposta[4],
+            actionFunction: function () {
+                core.closeDialog(5);
             }
         });
 
         corredor.registerDialogs(fala_mentor[0]);
         corredor.registerDialogs(fala_mentor[1]);
         corredor.registerDialog(fala_mentor[2][0]);
+        corredor.registerDialog(fala_mentor[2][4]);
+        corredor.registerDialog(fala_mentor[2][5]);
 
         // Functions
         function corredorOnLoad(){
@@ -192,7 +238,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                     core.openDialog(1);
                 }
                 else if(level.getFlag("buscar_coxim").getValue() == true){
-                    core.openDialog(3);
+                    L.log("Mentor: Ação incorreta");
+                    core.openDialog(5);
                 }
                 else if(level.getFlag("pegou_coxim").getValue() == true){
                     corredorDialogos(false);
@@ -216,7 +263,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                     core.changeScene(2);
                 }
                 else {
-                    core.openDialog(3);
+                    L.log("Mentor: Ação incorreta");
+                    core.openDialog(4);
                 }
             }
             else {
@@ -278,16 +326,36 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         level.registerFlag(new Flag("examinou_paciente", false));
 
         // Dialogs
-        fala_mentor[2][1] = new Dialog("mentor", "char-mentor",
-            "Proin laoreet quis nibh at.");
+        fala_mentor[2][1] = new Dialog(
+            "mentor", "char-mentor", alerta_mentor[1]);
         fala_mentor[2][1].registerOption({
-            text: "Nunc mollis, nunc in aliquet.",
+            text: alerta_resposta[1],
             actionFunction: function () {
                 core.closeDialog(0);
             }
         });
 
+        fala_mentor[2][2] = new Dialog(
+            "mentor", "char-mentor", alerta_mentor[2]);
+        fala_mentor[2][2].registerOption({
+            text: alerta_resposta[2],
+            actionFunction: function () {
+                core.closeDialog(1);
+            }
+        });
+
+        fala_mentor[2][3] = new Dialog(
+            "mentor", "char-mentor", alerta_mentor[5]);
+        fala_mentor[2][3].registerOption({
+            text: alerta_resposta[5],
+            actionFunction: function () {
+                core.closeDialog(2);
+            }
+        });
+
         ala_masculina.registerDialog(fala_mentor[2][1]);
+        ala_masculina.registerDialog(fala_mentor[2][2]);
+        ala_masculina.registerDialog(fala_mentor[2][3]);
 
         // Functions
         function ala_masculinaAction(_status){
@@ -325,8 +393,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                         core.changeScene(1);
                     }
                     else{
-                        L.log("Ir corredor: lavar maos depois de examinar paciente");
-                        core.openDialog(0);
+                        L.log("Erro: Lavar mãos necessario");
+                        core.openDialog(1);
                     }
                 }
                 else{
@@ -367,6 +435,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 }
                 else{
                     L.log("Desconta pontos - falta lavar mãos");
+                    core.openDialog(2);
                 }
             }else{
 
