@@ -40,54 +40,57 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         // Dialogos
 
         var dialog_recepcao = [[]];
-        dialog_recepcao[0][0] = "Olá! O mentor lhe espera  para um novo caso.";
-        dialog_recepcao[0][1] = "Irei encontrá-lo no corredor.";
+        dialog_recepcao[0][0] = "Oi! Parece que deu tudo certo com seu primeiro paciente. Parabéns! " +
+        "O mentor já te espera para um novo caso.";
+        dialog_recepcao[0][1] = "Vou encontrá-lo no corredor. Obrigado, Clarice.";
 
         var dialog_corredor = [[],[]];
-        dialog_corredor[0][0] = "Bom dia! O seu segundo paciente tem 69 anos, está  acamado  e sabemos que " +
-        "isso é um fator de risco para o desenvolvimento de úlcera por pressão, a mudança de posição  " +
-        "é essencial!";
-        dialog_corredor[0][1] = "Bom dia! Irei então para a enfermaria.";
+        dialog_corredor[0][0] = "Bom dia! Seu segundo paciente tem 69 anos, está acamado e sabemos que isso" +
+        " é um fator de risco para o desenvolvimento de úlcera por pressão; a mudança de posição é" +
+        " essencial!";
+        dialog_corredor[0][1] = "Bom dia! Vou até a enfermaria conhecê-lo.";
 
         dialog_corredor[1][0] = "Você inspecionou a pele do paciente?";
         dialog_corredor[1][1] = "Sim e encontrei algumas regiões hiperemiadas no calcanhar.";
-        dialog_corredor[1][2] = "Isso mesmo! O essencial para fazer nestes casos  de pessoas acamadas " +
-        "é  mudar de decúbito a cada 2 horas e colocar coxim.";
-        dialog_corredor[1][3] = "Vou até o posto de enfermagem, ver se encontro.";
+        dialog_corredor[1][2] = "Isso mesmo! Em casos como este é essencial a mudança de posição (decúbito) a cada " +
+        "2 horas e colocar coxim.";
+        dialog_corredor[1][3] = "Então precisarei de um. Vou ao posto de enfermagem procurar.";
 
         var dialog_enfermaria = [[]];
-        dialog_enfermaria[0][0] = "Olá! Sou o técnico de enfermagem  cuidarei de você hoje." +
-        "Como o Senhor se sente hoje?";
-        dialog_enfermaria[0][1] = "Vou indo.";
-        dialog_enfermaria[0][2] = "O Senhor poderia me dizer o seu nome completo e quando  você nasceu?";
+        dialog_enfermaria[0][0] = "Olá! Sou o técnico de enfermagem cuidarei do Sr. hoje. Como o Sr. está se " +
+        "sentindo?";
+        dialog_enfermaria[0][1] = "Olha, eu poderia estar melhor mas não serviram minha preciosa gelatina " +
+        "hoje. HAHAHAHAHA.";
+        dialog_enfermaria[0][2] = "HAHAHA a gelatina daqui é ótima mesmo. O sr. poderia me dizer  seu nome completo e " +
+        "data de nascimento, por favor?";
         dialog_enfermaria[0][3] = "Carlos Esme Gouvêa, nasci em 01-12-1945.";
-        dialog_enfermaria[0][4] = "Vou examinar o Senhor, licença.";
+        dialog_enfermaria[0][4] = "Preciso examiná-lo agora, Sr. Carlos. Com licença.";
 
         var alerta_mentor = [];
         var alerta_resposta = [];
         // Após primeiro diálogo com mentor no corredor - tentar ir ao posto de enfermagem
-        alerta_mentor[0] = "Após primeiro diálogo com mentor no corredor - tentar ir ao posto de enfermagem";
-        alerta_resposta[0] =  "Desculpe";
+        alerta_mentor[0] = "Volte à Enfermaria Masculina.";
+        alerta_resposta[0] =  "Já volto!";
 
         // Tentar ir ao leito sem lavar as mãos
-        alerta_mentor[1] = "Tentar ir ao leito sem lavar as mãos";
-        alerta_resposta[1] =  "Desculpe";
+        alerta_mentor[1] = "Nunca se esqueça de lavar as mãos antes e após tocar o paciente!";
+        alerta_resposta[1] =  "Não posso nunca isso!";
 
         // Tentar ir ao corredor sem lavar as mãos após examinar o paciente
-        alerta_mentor[2] = "Tentar ir ao corredor sem lavar as mãos após examinar o paciente";
-        alerta_resposta[2] =  "Desculpe";
+        alerta_mentor[2] = "Após contato com o paciente lave as mãos!";
+        alerta_resposta[2] =  "Sim!";
 
         // Após o segundo diálogo c/ mentor - tentar ir a ala masculina
-        alerta_mentor[3] = "Após o segundo diálogo c/ mentor - tentar ir a ala masculina";
-        alerta_resposta[3] =  "Desculpe";
+        alerta_mentor[3] = "Parece estar perdido? É no posto de enfermagem.";
+        alerta_resposta[3] =  "Ok!";
 
         // Após ter ido ao posto de enfermagem, voltar ao corredor sem ter pego o coxim
-        alerta_mentor[4] = "Após ter ido ao posto de enfermagem, voltar ao corredor sem ter pego o coxim";
-        alerta_resposta[4] =  "Desculpe";
+        alerta_mentor[4] = "Você está esquecendo de algo!";
+        alerta_resposta[4] =  "Falta o coxim!";
 
         // Tentar ler o prontuário sem ter lavado as mãos
-        alerta_mentor[5] = "Tentar ler o prontuário sem ter lavado as mãos";
-        alerta_resposta[5] =  "Desculpe";
+        alerta_mentor[5] = "Lave as mãos!";
+        alerta_resposta[5] =  "Sim, agora mesmo!";
 
         /*
          Recepcao
