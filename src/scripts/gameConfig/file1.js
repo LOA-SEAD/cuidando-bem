@@ -311,7 +311,8 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         /*
          Scene:  Sala de Leitos
          */
-        var sala_de_leitos = new Scene("sala_de_leitos", "scene-sala_de_leitos", salaLeitosOnLoad, salaLeitosOnUnload);
+        var sala_de_leitos = new Scene(
+            "sala_de_leitos", "scene-sala_de_leitos", salaLeitosOnLoad, salaLeitosOnUnload);
 
         // Flags
         level.registerFlag(new Flag("passagem_sala-de-leitos", 0));

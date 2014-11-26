@@ -447,6 +447,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         function anotarProntuario(){
             L.log("Anotar prontuario");
             // Fim do level
+            core.closeModalScene("Prontuario");
             core.changeScene(5);
         }
         // Actions
@@ -464,7 +465,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 "action-ler_prontuario", alaMasculinaLerProntuario, visibility));
 
         // Modal
-        var prontuario = new Scene("Prontuario", "modalScene-prontuario");
+        var prontuario = new Scene("Prontuario", "modalScene-prontuario_carlos");
 
         prontuario.registerAction(
             new Action("btn-anotar_prontuario", "Anotar prontuário",
@@ -643,7 +644,6 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 "action-confirmar_pulseira", leitoConfirmarPulseira, visibility));
 
         level.registerModalScene(pulseira);
-
 
         /*
          Posto de Enfermagem
