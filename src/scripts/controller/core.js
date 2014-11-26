@@ -3,7 +3,7 @@
  * @name Core_Controller
  * @module
  */
-define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene', 'scene'], function (game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene_con) {
+define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene', 'scene', 'endOfLevel'], function (game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene_con, endOfLevel) {
 
 //Attributes
 
@@ -14,6 +14,15 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
     var Dialogs;
     var Flags;
     var cur_scene;
+
+    var scoreList;
+
+
+    function ScoreItem (_title, _score){
+        this.title = _title;
+        this.score = _score;
+    }
+
 
 //Methods
     /**
@@ -75,6 +84,7 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         InteractiveObjects = Level.getInteractiveObjects(cur_scene);
 
         Flags = Level.getFlags();
+        scoreList = [];
 
         Scene_con.setScene(Scene);
         CommandBar.changeToActionsButtons(Actions);
@@ -158,8 +168,8 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         var dialog = Dialogs[_dialogId];
         Dialog.show(dialog);
 
-        deactivateAllActionButtons();
-        deactivateAllInteractiveObjects();
+        disableAllActionButtons();
+        disableAllInteractiveObjects();
     }
 
     /**
@@ -180,8 +190,8 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
      * @method openEndLevel
      * @memberOf module:Core_Controller
      */
-    function openEndLevel() {
-
+    function showEndOfLevel() {
+        endOfLevel.show(scoreList);
     }
 
     /**
@@ -189,8 +199,8 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
      * @method closeEndLevel
      * @memberOf module:Core_Controller
      */
-    function closeEndLevel() {
-
+    function closeEndOfLevel() {
+        endOfLevel.close();
     }
 
     /**
@@ -198,8 +208,8 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
      * @method deactivateAllActionButtons
      * @memberOf module:Core_Controller
      */
-    function deactivateAllActionButtons() {
-        CommandBar.deactivateAllActionButtons(Actions);
+    function disableAllActionButtons() {
+        CommandBar.disableAllActionButtons(Actions);
     }
 
     /**
@@ -208,8 +218,8 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
      *
      * @memberof module:Core_Controller
      */
-    function deactivateAllInteractiveObjects(){
-        InteractiveObject.deactivateAllInteractiveObjects(InteractiveObjects);
+    function disableAllInteractiveObjects(){
+        InteractiveObject.disableAllInteractiveObjects(InteractiveObjects);
     }
 
     /**
@@ -240,7 +250,7 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
     function disableActionButton(_actionId) {
         var action = Scene.getAction(_actionId);
         action.setEnable(false);
-        CommandBar.deactivateActionButton(action, _value);
+        CommandBar.disableActionButton(action, _value);
     }
 
     /**
@@ -252,7 +262,7 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
     function enableActionButton(_actionId) {
         var action = Scene.getAction(_actionId);
         action.setEnable(true);
-        CommandBar.activateActionButton(action);
+        CommandBar.enableActionButton(action);
     }
 
 //Getters
@@ -354,6 +364,10 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         InteractiveObject.setInteractiveObjectVisible(interactiveObject, interactiveObject.isVisible());
     }
 
+    function registerScoreItem(_title, _score){
+        scoreList.push(new ScoreItem(_title, _score));
+    }
+
 
 //Public Interface
     return {
@@ -364,8 +378,8 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         closeDialog: closeDialog,
         openModalScene: openModalScene,
         closeModalScene: closeModalScene,
-        openEndLevel: openEndLevel,
-        closeEndLevel: closeEndLevel,
+        showEndOfLevel: showEndOfLevel,
+        closeEndOfLevel: closeEndOfLevel,
 
         enableActionButton: enableActionButton,
         disableActionButton: disableActionButton,
@@ -379,10 +393,16 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
 
         setActionVisible: setActionVisible,
         toggleActionVisible: toggleActionVisible,
+
         setInteractiveObjectVisible: setInteractiveObjectVisible,
         toggleInteractiveObjectVisible: toggleInteractiveObjectVisible,
 
-        deactivateAllActionButtons: deactivateAllActionButtons,
-        updateAllActionButtons: updateAllActionButtons
+        registerScoreItem: registerScoreItem,
+
+        disableAllActionButtons: disableAllActionButtons,
+        updateAllActionButtons: updateAllActionButtons,
+
+        disableAllInteractiveObjects: disableAllInteractiveObjects,
+        updateAllInteractiveObjects: updateAllInteractiveObjects
     }
 });
