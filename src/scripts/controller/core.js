@@ -372,6 +372,15 @@ define(['stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         stage.changeScreen(0);
     }
 
+    function changeSceneCssClassTo(_cssClass){
+        var oldSelector = '.' + Scene.getCssClass();
+        var selector = '.' + _cssClass
+        $(oldSelector).addClass(_cssClass);
+        $(selector).removeClass(Scene.getCssClass());
+
+        Scene.setCssClass(_cssClass);
+    }
+
 
 //Public Interface
     return {
@@ -409,6 +418,8 @@ define(['stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         disableAllInteractiveObjects: disableAllInteractiveObjects,
         updateAllInteractiveObjects: updateAllInteractiveObjects,
 
-        goBackToMenu: goBackToMenu
+        goBackToMenu: goBackToMenu,
+
+        changeSceneCssClassTo: changeSceneCssClassTo
     }
 });
