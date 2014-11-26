@@ -230,13 +230,17 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                     break;
                 case 1: // second time at 'corredor'
                     core.setActionVisible("btn-ir_posto_enfermagem", true);
+                    core.setInteractiveObjectVisible("io-ir_posto_enfermagem", true);
                     core.setActionVisible("btn-ir_sala_leitos", false);
+                    core.setInteractiveObjectVisible("io-ir_sala_leitos", false);
                     core.setActionVisible("btn-conversar_mentor", false);
                     core.setInteractiveObjectVisible("io-conversar_mentor", false);
                     break;
                 case 2:
                     core.setActionVisible("btn-ir_posto_enfermagem", false);
+                    core.setInteractiveObjectVisible("io-ir_posto_enfermagem", false);
                     core.setActionVisible("btn-ir_sala_leitos", true);
+                    core.setInteractiveObjectVisible("io-ir_sala_leitos", true);
                     break;
             }
         }
