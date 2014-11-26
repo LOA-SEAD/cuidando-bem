@@ -225,7 +225,11 @@ define([], function () {
             registerAction: registerAction,
             registerDialog: registerDialog,
             registerDialogs: registerDialogs,
-            registerInteractiveObject: registerInteractiveObject
+            registerInteractiveObject: registerInteractiveObject,
+
+            setCssClass: function (_cssClass){
+                cssClass = _cssClass;
+            }
         }
 
     }

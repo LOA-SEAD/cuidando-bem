@@ -175,13 +175,13 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             new Action("btn-waaaat","Ir am",
                 "action-ir_corredor", function(){
                     core.closeEndOfLevel();
-                    core.goBackToMenu();
+                    core.changeSceneCssClassTo('FuncionaORole');
                 }, true));
 
         recepcao.registerAction(
             new Action("btn-asd","Ir para o menu inicial",
                 "action-ir_corredor", function(){
-                    core.closeEndOfLevel();
+                    core.goBackToMenu();
 
                 }, true));
 
@@ -300,7 +300,16 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             core.openDialog(0);
         }
 
+
         // Actions
+
+        corredor.registerAction(
+            new Action("btn-uuuuuuu","Conversar com Mentos",
+                "action-abrir_dialogo", function(){
+                    core.changeScene(0);
+                }, true));
+
+
         corredor.registerAction(
             new Action("btn-conversar_mentor","Conversar com Mentor",
                 "action-abrir_dialogo", dialogarMentor, visibility));
