@@ -117,7 +117,7 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (c
      * @param {} _action
      * @memberOf module:CommandBar_Game_Controller
      */
-    function activateActionButton(_action) {
+    function enableActionButton(_action) {
         var selector = '#' + _action.getId();
         var element = $(selector);
         element.removeClass("disabled");
@@ -132,7 +132,7 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (c
      * @param {} _action
      * @memberOf module:CommandBar_Game_Controller
      */
-    function deactivateActionButton(_action) {
+    function disableActionButton(_action) {
         var selector = '#' + _action.getId();
         var element = $(selector);
         element.removeClass("enabled");
@@ -146,7 +146,7 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (c
      * @param {} _actions
      * @memberOf module:CommandBar_Game_Controller
      */
-    function activeAllActionButtons(_actions) {
+    function enableAllActionButtons(_actions) {
         L.group("Enabling action Buttons", true);
         var i;
 
@@ -164,7 +164,7 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (c
      * @param {} _actions
      * @memberOf module:CommandBar_Game_Controller
      */
-    function deactivateAllActionButtons(_actions) {
+    function disableAllActionButtons(_actions) {
         L.group("Disabling action Buttons", true);
         var i;
 
@@ -225,11 +225,12 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (c
         changeToActionsButtons: changeToActionsButtons,
 
         removeActionButton: removeActionButton,
-        activateActionButton: activateActionButton,
-        deactivateActionButton: deactivateActionButton,
+        enableActionButton: enableActionButton,
+        disableActionButton: disableActionButton,
 
-        activeAllActionButtons: activeAllActionButtons,
-        deactivateAllActionButtons: deactivateAllActionButtons,
+        enableAllActionButtons: enableAllActionButtons,
+        disableAllActionButtons: disableAllActionButtons,
+
         updateAllActionButtons: updateAllActionButtons,
 
         setActionVisible: setActionVisible

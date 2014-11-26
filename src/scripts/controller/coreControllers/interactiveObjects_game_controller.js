@@ -103,7 +103,7 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      *
      * @memberOf module:InteractiveObjects_Game_Controller
      */
-    function activateInteractiveObject(_interactiveObject){
+    function enableInteractiveObject(_interactiveObject){
         var selector = '#' + _interactiveObject.getId();
         var element = $(selector);
         element.removeClass("disabled");
@@ -118,7 +118,7 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      *
      * @memberOf module:InteractiveObjects_Game_Controller
      */
-    function deactivateInteractiveObject(_interactiveObject){
+    function disableInteractiveObject(_interactiveObject){
         var selector = '#' + _interactiveObject.getId();
         var element = $(selector);
         element.removeClass("enabled");
@@ -133,7 +133,7 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      *
      * @memberOf module:InteractiveObjects_Game_Controller
      */
-    function activateAllInteractiveObjects(_interactiveObjects){
+    function enableAllInteractiveObjects(_interactiveObjects){
         L.group("Enabling interactiveObjects", true);
         var i;
 
@@ -152,7 +152,7 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      *
      * @memberOf module:InteractiveObjects_Game_Controller
      */
-    function deactivateAllInteractiveObjects(_interactiveObjects){
+    function disableAllInteractiveObjects(_interactiveObjects){
         L.group("Disabling interactiveObjects", true);
         var i;
 
@@ -223,10 +223,10 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
 
         setInteractiveObjectVisible: setInteractiveObjectVisible,
 
-        activateInteractiveObject: activateInteractiveObject,
-        deactivateInteractiveObject: deactivateInteractiveObject,
-        activateAllInteractiveObjects: activateAllInteractiveObjects,
-        deactivateAllInteractiveObjects: deactivateAllInteractiveObjects,
+        enableInteractiveObject: enableInteractiveObject,
+        disableInteractiveObject: disableInteractiveObject,
+        enableAllInteractiveObjects: enableAllInteractiveObjects,
+        disableAllInteractiveObjects: disableAllInteractiveObjects,
         updateAllInteractiveObjects: updateAllInteractiveObjects
     };
 
