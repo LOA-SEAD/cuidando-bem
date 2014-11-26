@@ -140,7 +140,7 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
         for (i = 0; i < _interactiveObjects.length; i++) {
             L.log("InteractiveObject to be enabled " + i + ": " + _interactiveObjects[i].getName());
             var action = _interactiveObjects[i];
-            activateInteractiveObject(action);
+            enableInteractiveObject(action);
         }
         L.groupEnd();
     }
@@ -159,7 +159,7 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
         for (i = 0; i < _interactiveObjects.length; i++) {
             L.log("InteractiveObject to be disabled " + i + ": " + _interactiveObjects[i].getName());
             var action = _interactiveObjects[i];
-            deactivateInteractiveObject(action);
+            disableInteractiveObject(action);
         }
         L.groupEnd();
     }
@@ -179,9 +179,9 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
             L.log("InteractiveObject to be updated " + i + ": " + _interactiveObjects[i].getName());
             var action = _interactiveObjects[i];
             if (action.isEnabled())
-                activateInteractiveObject(action);
+                enableInteractiveObject(action);
             else
-                deactivateInteractiveObject(action);
+                disableInteractiveObject(action);
         }
         L.groupEnd();
     }

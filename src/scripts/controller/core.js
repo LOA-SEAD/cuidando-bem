@@ -168,8 +168,8 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         var dialog = Dialogs[_dialogId];
         Dialog.show(dialog);
 
-        deactivateAllActionButtons();
-        deactivateAllInteractiveObjects();
+        disableAllActionButtons();
+        disableAllInteractiveObjects();
     }
 
     /**

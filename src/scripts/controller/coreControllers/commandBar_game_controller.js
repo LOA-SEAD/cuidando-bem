@@ -153,7 +153,7 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (c
         for (i = 0; i < _actions.length; i++) {
             L.log("Action to be enabled " + i + ": " + _actions[i].getName());
             var action = _actions[i];
-            activateActionButton(action);
+            enableActionButton(action);
         }
         L.groupEnd();
     }
@@ -171,7 +171,7 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (c
         for (i = 0; i < _actions.length; i++) {
             L.log("Action to be disabled " + i + ": " + _actions[i].getName());
             var action = _actions[i];
-            deactivateActionButton(action);
+            disableActionButton(action);
         }
         L.groupEnd();
     }
@@ -190,9 +190,9 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (c
             L.log("Action to be updated " + i + ": " + _actions[i].getName());
             var action = _actions[i];
             if (action.isEnabled())
-                activateActionButton(action);
+                enableActionButton(action);
             else
-                deactivateActionButton(action);
+                disableActionButton(action);
         }
         L.groupEnd();
     }
