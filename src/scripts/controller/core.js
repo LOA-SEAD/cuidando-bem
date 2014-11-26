@@ -3,7 +3,7 @@
  * @name Core_Controller
  * @module
  */
-define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene', 'scene', 'endOfLevel'], function (game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene_con, endOfLevel) {
+define(['stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene', 'scene', 'endOfLevel'], function (stage, game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene_con, endOfLevel) {
 
 //Attributes
 
@@ -368,6 +368,10 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         scoreList.push(new ScoreItem(_title, _score));
     }
 
+    function goBackToMenu(){
+        stage.changeScreen(0);
+    }
+
 
 //Public Interface
     return {
@@ -403,6 +407,8 @@ define(['levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalS
         updateAllActionButtons: updateAllActionButtons,
 
         disableAllInteractiveObjects: disableAllInteractiveObjects,
-        updateAllInteractiveObjects: updateAllInteractiveObjects
+        updateAllInteractiveObjects: updateAllInteractiveObjects,
+
+        goBackToMenu: goBackToMenu
     }
 });
