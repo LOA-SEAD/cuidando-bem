@@ -34,7 +34,7 @@ define(['stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     function start(_gameState) {
         L.group("Game Running:");
 
-        changeLevel(game.getCurrentLevel());
+        changeLevel(game.getInitialLevel());
         startLevel();
     }
 
