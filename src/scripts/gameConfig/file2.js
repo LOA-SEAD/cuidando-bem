@@ -374,6 +374,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 else{
                     ala_masculinaAction(false);
                     level.getFlag("lavar_maos").setValue(false);
+                    core.changeSceneCssClassTo("scene-ala_masculina-coxim");
                     core.setActionVisible("btn-lavar_maos", true);
                     core.setActionVisible("btn-ler_prontuario", true);
                 }
@@ -583,11 +584,13 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         function mudarPosicaoPaciente(){
             L.log("Action: mudar posição do paciente");
             core.setActionVisible("btn-mudar_posicao_paciente", false);
+            core.changeSceneCssClassTo("scene-leito-char-02-virado");
             core.setActionVisible("btn-posicionar_coxim", true);
         }
         function posicionarCoxim(){
             L.log("Action: posicionar coxim");
             level.getFlag("posicionou_coxim").setValue(true);
+            core.changeSceneCssClassTo("scene-leito-char-02-coxim");
             core.setActionVisible("btn-posicionar_coxim", false);
             core.setActionVisible("btn-ir_ala_masculina", true);
         }
@@ -724,28 +727,30 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         /*
          Scene:  Fim do Level
          */
-        var fim_level = new Scene("Fim da fase", "scene-fim-level",
-            fimTutorialOnload, fimTutorialOnUnload);
+        var fim_alfa = new Scene("Fim da fase", "scene-fim-alfa",
+            fimalfaOnLoad, fimalfaOnUnload);
         // Flags
+
         // Dialogs
+
         // Functions
-        function fimTutorialOnload(){
-            core.setActionVisible("btn-proxima_fase", true);
+        function fimalfaOnLoad(){
+            core.setActionVisible("btn-voltar_menu", true);
         }
-        function fimTutorialOnUnload(){
+
+        function fimalfaOnUnload(){
 
         }
 
-        function fimTutorialIrCorredor(){
-            L.log("Proxima fase" + core);
-            //core.changeLevelTo(2);
+        function fimalfaMenu(){
+            L.log("Voltar ao menu");
+            core.goBackToMenu();
         }
 
         // Actions
-        fim_level.registerAction(
-            new Action("btn-proxima_fase", "Ir a recepção",
-                "action-ir_recepcao", fimTutorialIrCorredor, visibility));
-
+        fim_alfa.registerAction(
+            new Action("btn-voltar_menu", "Voltar ao Menu Principal",
+                "action-voltar_menu", fimalfaMenu, visibility));
 
         // Registrar cenas no level
         level.registerScene(recepcao);
@@ -753,7 +758,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
         level.registerScene(ala_masculina);
         level.registerScene(leito);
         level.registerScene(posto_de_enfermagem);
-        level.registerScene(fim_level);
+        level.registerScene(fim_alfa);
 
         // Cena inicial é recepcao
         level.setInitialScene(0);

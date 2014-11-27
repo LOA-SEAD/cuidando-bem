@@ -482,7 +482,7 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 case 2:
                     level.getFlag("lavar-maos").setValue(3);
                     core.setActionVisible("btn-lavar_maos", false);
-                    core.setActionVisible("btn-anotar_prontuario", true);
+                    core.setActionVisible("btn-ler_prontuario", true);
                     break;
             }
         }
@@ -532,8 +532,13 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
             }
         }
 
+        function lerProntuario(){
+            L.log("Action: ler prontuario");
+            core.openModalScene("Prontuario");
+        }
         function anotarProntuario(){
             L.log("Action: anotar prontuario");
+            core.closeModalScene("Prontuario");
             core.changeScene(5);
         }
 
@@ -571,13 +576,12 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 "action-medir_freq_respiratoria", leitoMedirFreqRespiratoria, visibility));
 
         leito.registerAction(
-            new Action("btn-anotar_prontuario", "Anotar prontuario",
-                "action-anotar_prontuario", anotarProntuario, visibility));
+            new Action("btn-ler_prontuario", "Ler prontuario",
+                "action-ler_prontuario", lerProntuario, visibility));
 
         /*
             Modal
          */
-
         var pulseira = new Scene("Pulseira", "modalScene-pulseira");
 
         function leitoLargarPulseira(){
@@ -607,6 +611,16 @@ define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'Interacti
                 "intObj-confirmar_pulseira", leitoConfirmarPulseira, visibility));
 
         level.registerModalScene(pulseira);
+
+        // Modal
+        var prontuario = new Scene("Prontuario", "modalScene-prontuario_joao");
+
+        prontuario.registerAction(
+            new Action("btn-anotar_prontuario", "Anotar prontuário",
+                "action-anotar_prontuario", anotarProntuario, true)
+        );
+
+        level.registerModalScene(prontuario);
 
         /*
          Scene: Posto de Enfermagem
