@@ -47,9 +47,15 @@ html, body {
   font-size: larger;
   padding-top: 15px;
 }
-
 .menuButton:hover {
   box-shadow: #080808 1px 1px 10px;
+}
+
+.backButton {
+  &:extend(.menuButton);
+}
+.backButton:hover {
+  &:extend(.menuButton:hover);
 }
 
 #interactiveArea {
