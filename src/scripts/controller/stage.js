@@ -5,6 +5,9 @@
  */
 define(['text!../html/container.html'], function (container) {
 
+    //Imports
+    var Errors = require('Errors');
+
 
     /**
      * An array that stores all Screen objects
@@ -30,17 +33,27 @@ define(['text!../html/container.html'], function (container) {
      * @memberOf module:Stage_Controller
      */
     var controllerPath;
+    /**
+     * container should be an id on the html page to be the base for all other html content
+     * @private
+     * @type {string}
+     *
+     * #memberOf module:Stage_Controller
+     */
+    var containerId;
 
     /**
      * This function is called to init this module
      * @method start
-     * @param {string} id The id from the main html page that the stage controller will append its own container for the rest of the pages
      * @public
      *
      * @memberOf module:Stage_Controller
      */
-    function start(id) {
-        $('#' + id).append(container);
+    function start() {
+        if(containerId != undefined)
+            $('#' + containerId).append(container);
+        else
+            throw new Error(Errors.undefinedContainer);
     }
 
     /**
@@ -162,6 +175,19 @@ define(['text!../html/container.html'], function (container) {
     }
 
     /**
+     * Container setter
+     *
+     * @param _id
+     */
+    function setContainer(_id){
+        containerId = _id;
+    }
+
+    function getContainer(){
+        return container;
+    }
+
+    /**
      * Sets the base controller path
      * @method setControllersPath
      * @param {string} _path
@@ -180,6 +206,9 @@ define(['text!../html/container.html'], function (container) {
         changeScreen: changeScreen,
 
         setHtmlPath: setHtmlPath,
-        setControllersPath: setControllersPath
+        setControllersPath: setControllersPath,
+
+        setContainer: setContainer,
+        getContainer: getContainer
     }
 });

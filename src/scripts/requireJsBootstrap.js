@@ -8,13 +8,19 @@
 require.config({
     baseUrl: 'scripts/',
     paths: {
+        //Libs
         jquery: 'libs/jquery-min',
         text: 'libs/text',
         logger: 'libs/Logger',
 
+        //Refs
+        Errors: 'references/Errors',
+
+        //Configs
         gameConfig: 'controller/gameConfig',
         stageConfig: 'stageConfig/stageConfig',
 
+        //Models
         Scene: 'model/classes/class_scene',
         Flag: 'model/classes/class_flag',
         Action: 'model/classes/class_action',
@@ -24,6 +30,7 @@ require.config({
 
         levelsData: 'model/levelsData',
 
+        //Controller
         levelsData_interface: 'controller/levelsData_interface',
 
         stage: 'controller/stage',
@@ -40,6 +47,7 @@ require.config({
     }
 });
 //Init the app when everything is ready
+require(['Errors']);
 
 require(["logger", "jquery", "libs/less"], function () {
     L.group(" 'Cuidando Bem' Log:");
