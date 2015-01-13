@@ -9,14 +9,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         var debug_mode = true;
 
-        var level = new Level("Level 1", isEndOfLevel1, getNextLevel1);
+        var level = new Level("Level 1");
         console.groupCollapsed(level.getName());
-
-        function isEndOfLevel1() {
-        }
-
-        function getNextLevel1() {
-        }
 
         /*
          Flags for level 1

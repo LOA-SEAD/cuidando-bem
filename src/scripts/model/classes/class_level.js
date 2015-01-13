@@ -3,11 +3,9 @@ define([], function () {
      * @class
      * @name Level
      * @param {string} _name
-     * @param {function} _isEndOfLevelFunction
-     * @param {function} _nextLevelFunction
      * @return ObjectExpression
      */
-    function Level(_name, _isEndOfLevelFunction, _nextLevelFunction) {
+    function Level(_name) {
         //Attributes
 
         /**
@@ -18,22 +16,6 @@ define([], function () {
          * @memberOf Level#
          */
         var name = _name;
-        /**
-         *
-         * @type {function}
-         * @private
-         *
-         * @memberOf Level#
-         */
-        var isEndOfLevelFunction = _isEndOfLevelFunction;
-        /**
-         *
-         * @type {function}
-         * @private
-         *
-         * @memberOf Level#
-         */
-        var nextLevelFunction = _nextLevelFunction;
 
         /**
          *
@@ -243,28 +225,6 @@ define([], function () {
             return currentScene;
         }
 
-        /**
-         * Description
-         * @method isEndOfLevel
-         * @return CallExpression
-         *
-         * @memberOf Level#
-         */
-        function isEndOfLevel() {
-            return isEndOfLevelFunction();
-        }
-
-        /**
-         * Description
-         * @method getNextLevel
-         * @return CallExpression
-         *
-         * @memberOf Level#
-         */
-        function getNextLevel() {
-            return nextLevelFunction();
-        }
-
         //Setters
 
         /**
@@ -381,9 +341,6 @@ define([], function () {
             getCurrentSceneId: getCurrentSceneId,
             getScene: getScene,
             getModalScene: getModalScene,
-
-            isEndOfLevel: isEndOfLevel,
-            getNextLevel: getNextLevel,
 
             setInitialScene: setInitialScene,
             setCurrentSceneById: setCurrentSceneById,

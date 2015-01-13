@@ -7,14 +7,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core) {
         var debug_mode = true;
 
-        var level = new Level("Level Tutorial", isEndOfLevel1, getNextLevel1);
+        var level = new Level("Level Tutorial");
         console.groupCollapsed(level.getName());
-
-        function isEndOfLevel1() {
-        }
-
-        function getNextLevel1() {
-        }
 
         var flags_on = true;    // if false it wont check for flags -- tests purpose
 
