@@ -112,7 +112,7 @@ define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function (c
      * @memberOf module:DialogModal_Game_Controller
      */
     function addDialogButton(_option) {
-        L.log(_option);
+        console.log(_option);
 
         var element = $(dialogButtonTemplate);
 

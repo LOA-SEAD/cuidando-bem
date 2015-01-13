@@ -28,7 +28,7 @@ define(['core'], function (core) {
      * @memberOf module:ModalScene_Game_Controller
      */
     function show() {
-        L.info("Show Modal Scene");
+        console.info("Show Modal Scene");
         showing = true;
         $(divSelector).show();
     }
@@ -57,7 +57,7 @@ define(['core'], function (core) {
      * @memberOf module:ModalScene_Game_Controller
      */
     function close() {
-        L.info("Close modal Scene");
+        console.info("Close modal Scene");
         showing = false;
         $(divSelector).hide();
     }

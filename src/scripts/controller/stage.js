@@ -136,7 +136,7 @@ define(['text!../html/container.html'], function (container) {
      * @memberOf module:Stage_Controller
      */
     function addScreen(_name, _htmlPage, _controller) {
-        L.log(['Adding Screen: ', _name, _htmlPage, _controller], 1);
+        console.log('\tAdding Screen: ', _name, _htmlPage, _controller);
         screens.push(new Screen(_name, _htmlPage, _controller));
     }
 
@@ -151,11 +151,11 @@ define(['text!../html/container.html'], function (container) {
     function changeScreen(nextScreenId) {
         var nextScreen = screens[nextScreenId];
 
-        //L.log('text!'+htmlPath+nextScreen.getHtmlPage());
+        //console.log('text!'+htmlPath+nextScreen.getHtmlPage());
 
 
         require(['text!' + htmlPath + nextScreen.getHtmlPage(), controllerPath + nextScreen.getControllerName()], function (page, controller) {
-            L.log("Actual Screen Name: " + nextScreen.getControllerName());
+            console.log("Actual Screen Name: " + nextScreen.getControllerName());
             $('#stage').empty();
             $('#stage').append(page);
             controller.load();

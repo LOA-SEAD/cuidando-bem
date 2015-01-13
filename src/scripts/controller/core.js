@@ -32,7 +32,7 @@ define(['stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @memberOf module:Core_Controller
      */
     function start(_gameState) {
-        L.group("Game Running:");
+        console.group("Game Running:");
 
         changeLevel(game.getInitialLevel());
         startLevel();
@@ -74,7 +74,7 @@ define(['stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @memberOf module:Core_Controller
      */
     function startLevel() {
-        L.group('Starting level:' + Level.getName(), true);
+        console.group('Starting level:' + Level.getName(), true);
 
         Level.setCurrentSceneById(cur_scene);
         Scene = Level.getCurrentScene();
@@ -91,7 +91,7 @@ define(['stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         InteractiveObject.changeToInteractiveObjects(InteractiveObjects);
 
         Scene.load();
-        L.groupEnd();
+        console.groupEnd();
     }
 
     //Scene
@@ -108,7 +108,7 @@ define(['stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         Level.setCurrentSceneById(_newSceneId);
         Scene = Level.getCurrentScene();
 
-        L.group("Change Scene to: " + Scene.getName(), true);
+        console.group("Change Scene to: " + Scene.getName(), true);
 
         cur_scene = _newSceneId;
         Actions = Level.getActions(cur_scene);
@@ -125,7 +125,7 @@ define(['stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
 
         Scene.load();
 
-        L.groupEnd();
+        console.groupEnd();
     }
 
     //ModalScene

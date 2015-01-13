@@ -7,8 +7,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core) {
         var debug_mode = true;
 
-        var level = new Level("Level Tutorial", isEndOfLevel1, getNextLevel1);
-        L.group(level.getName(), debug_mode);
+        var level = new Level("Level Teste", isEndOfLevel1, getNextLevel1);
+        console.groupCollapsed(level.getName());
 
         function isEndOfLevel1() {
         }
@@ -107,7 +107,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             text: dialog_recep[0][1],
             actionFunction: function () {
                 level.getFlag("conversar_recepcionista").setValue(true);
-                L.log("Selecionado 1a opção diálogo: " + level.getFlag("conversar_recepcionista").getValue());
+                console.log("Selecionado 1a opção diálogo: " + level.getFlag("conversar_recepcionista").getValue());
                 core.closeDialog(0);
                 core.openDialog(1);
             }});
@@ -117,7 +117,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         fala_recepcionista[1].registerOption({
             text: dialog_recep[0][3],
             actionFunction: function () {
-                L.log("Encerrar o diálogo");
+                console.log("Encerrar o diálogo");
                 core.closeDialog(1);
                 core.setActionVisible("btn-ir_corredor", true);
                 core.setActionVisible("btn-conversar_recepcionista", true);
@@ -139,27 +139,27 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         }
 
         function recepcaoIrCorredor() {
-            L.log("Funcao: recepcao_ir_corredor");
+            console.log("Funcao: recepcao_ir_corredor");
             if (!flags_on) {  // wont check for flags
                 core.closeDialog(0);
                 core.closeDialog(1);
                 core.changeScene(1);
-                L.log("Ir para o corredor");
+                console.log("Ir para o corredor");
             }
             else {
                 if (level.getFlag("conversar_recepcionista").getValue() == true) {
                     core.closeDialog(0);
                     core.closeDialog(1);
                     core.changeScene(1);
-                    L.log("Ir para o corredor");
+                    console.log("Ir para o corredor");
                 }
                 else
-                    L.log("Necessita ação: conversar com a recepcionista");
+                    console.log("Necessita ação: conversar com a recepcionista");
             }
         }
 
         function conversarRecepcionista() {
-            L.log("action: Conversar com a recepcionista");
+            console.log("action: Conversar com a recepcionista");
             core.openDialog(0);
         }
 
@@ -278,25 +278,25 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         function corredorIrSalaLeitos() {
             if (!flags_on) {
-                L.log("Action: corredorIrSalaLeitos");
+                console.log("Action: corredorIrSalaLeitos");
                 core.changeScene(2);
             } else {
                 if (level.getFlag("conversar_mentor").getValue() == true) {
                     core.changeScene(2);
-                    L.log("Action: corredorIrSalaLeitos");
+                    console.log("Action: corredorIrSalaLeitos");
                 } else {
-                    L.log("Necessita ação: falar com mentor");
+                    console.log("Necessita ação: falar com mentor");
                 }
             }
         }
 
         function corredorIrPostoEnfermagem() {
-                L.log("Action: corredorIrPostoEnfermagem");
+                console.log("Action: corredorIrPostoEnfermagem");
                 core.changeScene(4);
         }
 
         function dialogarMentor(){
-            L.log("Abrir diálogo com o mentor");
+            console.log("Abrir diálogo com o mentor");
             core.openDialog(0);
         }
 
@@ -470,7 +470,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         // Functions
         function leitoOnLoad() {
-            L.log("Leito: Onload");
+            console.log("Leito: Onload");
             switch (level.getFlag("visita-leito").getValue()){
                 case 0:
                     core.openDialog(0);
@@ -485,17 +485,17 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             }
         }
         function leitoOnUnload(){
-            L.log("Leito: OnUnload");
+            console.log("Leito: OnUnload");
             level.getFlag("visita-leito").setValue(1);
         }
 
         function leitoIrCorredor(){
-            L.log("Action: action-ir_sala_de_leitos");
+            console.log("Action: action-ir_sala_de_leitos");
             core.changeScene(2);
         }
 
         function leitoLavarMaos(){
-            L.log("Action: lavar_maos");
+            console.log("Action: lavar_maos");
             switch (level.getFlag("lavar-maos").getValue()){
                 case 0:
                     level.getFlag("lavar-maos").setValue(1);
@@ -513,7 +513,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         }
 
         function leitoMedirTemperatura(){
-            L.log("Action: medir_temperatura");
+            console.log("Action: medir_temperatura");
             if(level.getFlag("lavar-maos").getValue() >= 1){
 
                 level.getFlag("termometro").setValue(true);
@@ -528,7 +528,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         }
 
         function leitoMedirPulso(){
-            L.log("Action: medir_pulso");
+            console.log("Action: medir_pulso");
             if(level.getFlag("lavar-maos").getValue() >= 1){
 
                 level.getFlag("medidor-pressao").setValue(true);
@@ -543,7 +543,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         }
 
         function leitoMedirFreqRespiratoria(){
-            L.log("Action: medir_freq_respiratoria");
+            console.log("Action: medir_freq_respiratoria");
             if(level.getFlag("lavar-maos").getValue() >= 1){
 
                 level.getFlag("oximetro").setValue(true);
@@ -558,12 +558,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         }
 
         function anotarProntuario(){
-            L.log("Action: anotar prontuario");
+            console.log("Action: anotar prontuario");
             core.changeScene(5);
         }
 
         function leitoPulseiraPaciente(){
-            L.log("Action: pulseira_paciente");
+            console.log("Action: pulseira_paciente");
             core.openModalScene("Pulseira");
             core.setActionVisible("btn-confirmar_pulseira", true);
             core.setInteractiveObjectVisible("io-confirmar_pulseira", true);
@@ -606,14 +606,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var pulseira = new Scene("Pulseira", "modalScene-pulseira");
 
         function leitoLargarPulseira(){
-            L.log("Ação: Fechar modal pulseira");
+            console.log("Ação: Fechar modal pulseira");
             core.closeModalScene("Pulseira");
             core.setActionVisible("btn-ir_sala_leitos", true);
             core.setActionVisible("btn-pulseira_paciente", false);
         }
 
         function leitoConfirmarPulseira(){
-            L.log("Ação: Confirmar pulseira");
+            console.log("Ação: Confirmar pulseira");
             core.setActionVisible("btn-confirmar_pulseira", false);
             core.setInteractiveObjectVisible("io-confirmar_pulseira", false);
             core.setActionVisible("btn-largar_pulseira", true);
@@ -655,12 +655,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         }
 
         function postoEnfermagemIrCorredor(){
-                L.log("Action: ir_corredor");
+                console.log("Action: ir_corredor");
                 core.changeScene(1);
         }
 
         function postoEnfermagemAbrirGaveta() {
-            L.log("Action: abrir_gaveta");
+            console.log("Action: abrir_gaveta");
             core.openModalScene("Gaveta");
 
             core.setActionVisible("btn-fechar_gaveta", true);
@@ -673,28 +673,28 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         }
 
         function postoEnfermagemPegarTermometro() {
-            L.log("Action: pegar_termometro");
+            console.log("Action: pegar_termometro");
             core.setInteractiveObjectVisible("io-termometro", false);
             core.setActionVisible("btn-termometro", false);
             core.getFlag("termometro").setValue(true);
         }
 
         function postoEnfermagemPegarMedidorPressao() {
-            L.log("O medidor de pressão foi ativado");
+            console.log("O medidor de pressão foi ativado");
             core.setInteractiveObjectVisible("io-medidor_pressao", false);
             core.setActionVisible("btn-medidor_pressao", false);
             core.getFlag("medidor-pressao").setValue(true);
         }
 
         function postoEnfermagemPegarOximetro() {
-            L.log("Action: pegar_oximetro");
+            console.log("Action: pegar_oximetro");
             core.setInteractiveObjectVisible("io-oximetro", false);
             core.setActionVisible("btn-oximetro", false);
             core.getFlag("oximetro").setValue(true);
         }
 
         function postoEnfermagemFecharGaveta() {
-            L.log("Action: fechar_gaveta");
+            console.log("Action: fechar_gaveta");
             core.closeModalScene("Gaveta");
             if(level.getFlag("termometro").getValue() == true &&
                 level.getFlag("oximetro").getValue() == true &&
@@ -763,7 +763,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         }
 
         function fimTutorialIrCorredor(){
-            L.log("Proxima fase" + core);
+            console.log("Proxima fase" + core);
             core.changeLevelTo(1);
         }
 
@@ -782,5 +782,5 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.setInitialScene(0);
 
         game.registerLevel(level, -1);
-        L.groupEnd();
+        console.groupEnd();
     });

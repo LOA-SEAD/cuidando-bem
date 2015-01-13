@@ -300,7 +300,7 @@ define([], function () {
         function registerScene(_scene) {
             scenes_aux[_scene.getName()] = scenes.length;
             scenes.push(_scene);
-            L.log(["Registering scene: ", _scene.getName()]);
+            console.log("Registering scene: ", _scene.getName());
         }
 
         /**
@@ -313,7 +313,7 @@ define([], function () {
         function registerModalScene(_modalScene) {
             modalScenes_aux[_modalScene.getName()] = modalScenes.length;
             modalScenes.push(_modalScene);
-            L.log(["Registering modalScene: ", _modalScene.getName()]);
+            console.log("Registering modalScene: ", _modalScene.getName());
         }
 
         /**
@@ -362,7 +362,7 @@ define([], function () {
         function registerFlag(_flag) {
             flags_aux[_flag.getName()] = flags.length;
             flags.push(_flag);
-            L.log(["Registering flag: ", _flag.getName()]);
+            console.log("Registering flag: ", _flag.getName());
         }
 
 

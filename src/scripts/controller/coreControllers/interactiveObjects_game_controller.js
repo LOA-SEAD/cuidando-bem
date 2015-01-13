@@ -27,16 +27,16 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      * @memberOf module:InteractiveObjects_Game_Controller
      */
     function addAllInteractiveObjects(_interactiveObjects) {
-        L.group("Adding Interactive Objects:", true);
+        console.group("Adding Interactive Objects:", true);
 
         var i;
         for (i = 0; i < _interactiveObjects.length; i++) {
-            L.log("Adding interactive object #" + i + ": " + _interactiveObjects[i].getName());
+            console.log("Adding interactive object #" + i + ": " + _interactiveObjects[i].getName());
             var interactiveObject = _interactiveObjects[i];
             addInteractiveObject(interactiveObject);
         }
 
-        L.groupEnd();
+        console.groupEnd();
     }
 
     /**
@@ -134,15 +134,15 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      * @memberOf module:InteractiveObjects_Game_Controller
      */
     function enableAllInteractiveObjects(_interactiveObjects){
-        L.group("Enabling interactiveObjects", true);
+        console.group("Enabling interactiveObjects", true);
         var i;
 
         for (i = 0; i < _interactiveObjects.length; i++) {
-            L.log("InteractiveObject to be enabled " + i + ": " + _interactiveObjects[i].getName());
+            console.log("InteractiveObject to be enabled " + i + ": " + _interactiveObjects[i].getName());
             var action = _interactiveObjects[i];
             enableInteractiveObject(action);
         }
-        L.groupEnd();
+        console.groupEnd();
     }
 
     /**
@@ -153,15 +153,15 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      * @memberOf module:InteractiveObjects_Game_Controller
      */
     function disableAllInteractiveObjects(_interactiveObjects){
-        L.group("Disabling interactiveObjects", true);
+        console.group("Disabling interactiveObjects", true);
         var i;
 
         for (i = 0; i < _interactiveObjects.length; i++) {
-            L.log("InteractiveObject to be disabled " + i + ": " + _interactiveObjects[i].getName());
+            console.log("InteractiveObject to be disabled " + i + ": " + _interactiveObjects[i].getName());
             var action = _interactiveObjects[i];
             disableInteractiveObject(action);
         }
-        L.groupEnd();
+        console.groupEnd();
     }
 
     /**
@@ -172,18 +172,18 @@ define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], functi
      * @memberOf module:InteractiveObjects_Game_Controller
      */
     function updateAllInteractiveObjects(_interactiveObjects){
-        L.group("Updating interactiveObjects", true);
+        console.group("Updating interactiveObjects", true);
         var i;
 
         for (i = 0; i < _interactiveObjects.length; i++) {
-            L.log("InteractiveObject to be updated " + i + ": " + _interactiveObjects[i].getName());
+            console.log("InteractiveObject to be updated " + i + ": " + _interactiveObjects[i].getName());
             var action = _interactiveObjects[i];
             if (action.isEnabled())
                 enableInteractiveObject(action);
             else
                 disableInteractiveObject(action);
         }
-        L.groupEnd();
+        console.groupEnd();
     }
 
 
