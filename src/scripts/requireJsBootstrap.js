@@ -11,7 +11,6 @@ require.config({
         //Libs
         jquery: 'libs/jquery-min',
         text: 'libs/text',
-        logger: 'libs/Logger',
 
         //Refs
         Errors: 'references/Errors',
@@ -49,8 +48,8 @@ require.config({
 //Init the app when everything is ready
 require(['Errors']);
 
-require(["logger", "jquery", "libs/less"], function () {
-    L.group(" 'Cuidando Bem' Log:");
+require(["jquery", "libs/less"], function () {
+    console.group(" 'Cuidando Bem' Log:");
     require(["main"]);
 });
 

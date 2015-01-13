@@ -3,11 +3,9 @@ define([], function () {
      * @class
      * @name Level
      * @param {string} _name
-     * @param {function} _isEndOfLevelFunction
-     * @param {function} _nextLevelFunction
      * @return ObjectExpression
      */
-    function Level(_name, _isEndOfLevelFunction, _nextLevelFunction) {
+    function Level(_name) {
         //Attributes
 
         /**
@@ -18,22 +16,6 @@ define([], function () {
          * @memberOf Level#
          */
         var name = _name;
-        /**
-         *
-         * @type {function}
-         * @private
-         *
-         * @memberOf Level#
-         */
-        var isEndOfLevelFunction = _isEndOfLevelFunction;
-        /**
-         *
-         * @type {function}
-         * @private
-         *
-         * @memberOf Level#
-         */
-        var nextLevelFunction = _nextLevelFunction;
 
         /**
          *
@@ -243,28 +225,6 @@ define([], function () {
             return currentScene;
         }
 
-        /**
-         * Description
-         * @method isEndOfLevel
-         * @return CallExpression
-         *
-         * @memberOf Level#
-         */
-        function isEndOfLevel() {
-            return isEndOfLevelFunction();
-        }
-
-        /**
-         * Description
-         * @method getNextLevel
-         * @return CallExpression
-         *
-         * @memberOf Level#
-         */
-        function getNextLevel() {
-            return nextLevelFunction();
-        }
-
         //Setters
 
         /**
@@ -300,7 +260,7 @@ define([], function () {
         function registerScene(_scene) {
             scenes_aux[_scene.getName()] = scenes.length;
             scenes.push(_scene);
-            L.log(["Registering scene: ", _scene.getName()]);
+            console.log("Registering scene: ", _scene.getName());
         }
 
         /**
@@ -313,7 +273,7 @@ define([], function () {
         function registerModalScene(_modalScene) {
             modalScenes_aux[_modalScene.getName()] = modalScenes.length;
             modalScenes.push(_modalScene);
-            L.log(["Registering modalScene: ", _modalScene.getName()]);
+            console.log("Registering modalScene: ", _modalScene.getName());
         }
 
         /**
@@ -362,7 +322,7 @@ define([], function () {
         function registerFlag(_flag) {
             flags_aux[_flag.getName()] = flags.length;
             flags.push(_flag);
-            L.log(["Registering flag: ", _flag.getName()]);
+            console.log("Registering flag: ", _flag.getName());
         }
 
 
@@ -381,9 +341,6 @@ define([], function () {
             getCurrentSceneId: getCurrentSceneId,
             getScene: getScene,
             getModalScene: getModalScene,
-
-            isEndOfLevel: isEndOfLevel,
-            getNextLevel: getNextLevel,
 
             setInitialScene: setInitialScene,
             setCurrentSceneById: setCurrentSceneById,

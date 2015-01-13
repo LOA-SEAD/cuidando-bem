@@ -976,7 +976,7 @@
                 j = ["US-ASCII", "UTF-8"].indexOf(m) < 0, j && (f += ";base64")
             } else j = /;base64$/.test(f);
             var n = h.readFileSync(g), o = 32, p = parseInt(n.length / 1024, 10);
-            if (p >= o && this.env.ieCompat !== !1)return this.env.silent || L.warn("Skipped data-uri embedding of %s because its size (%dKB) exceeds IE8-safe %dKB!", g, p, o), new d.URL(e || b, this.currentFileInfo).eval(this.env);
+            if (p >= o && this.env.ieCompat !== !1)return this.env.silent || console.warn("Skipped data-uri embedding of %s because its size (%dKB) exceeds IE8-safe %dKB!", g, p, o), new d.URL(e || b, this.currentFileInfo).eval(this.env);
             n = j ? n.toString("base64") : encodeURIComponent(n);
             var q = '"data:' + f + "," + n + '"';
             return new d.URL(new d.Anonymous(q))

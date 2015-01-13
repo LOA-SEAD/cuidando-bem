@@ -10,25 +10,25 @@ define(['stage', 'core'], function (stage, core) {
      * @memberOf module:MainMenu_Screen_Controller
      */
     function load() {
-        L.log("Configuring main menu listeners");
+        console.log("Configuring main menu listeners");
         $($('.menuButton')[0]).click(function () {
-            L.log(this);
+            console.log(this);
             stage.changeScreen(1);
             //core.start();
         });
 
         $($('.menuButton')[1]).click(function () {
-            L.log(this);
+            console.log(this);
             stage.changeScreen(2);
         });
 
         $($('.menuButton')[2]).click(function () {
-            L.log(this);
+            console.log(this);
             stage.changeScreen(4);
         });
 
         $($('.menuButton')[3]).click(function () {
-            L.log(this);
+            console.log(this);
             stage.changeScreen(3);
         });
     }

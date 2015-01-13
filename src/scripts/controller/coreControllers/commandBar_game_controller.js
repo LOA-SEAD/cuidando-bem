@@ -27,15 +27,15 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (c
      * @memberOf module:CommandBar_Game_Controller
      */
     function addAllActionButtons(_actions) {
-        L.group("Adding action Buttons", true);
+        console.group("Adding action Buttons", true);
         var i;
 
         for (i = 0; i < _actions.length; i++) {
-            L.log("Action to be added " + i + ": " + _actions[i].getName());
+            console.log("Action to be added " + i + ": " + _actions[i].getName());
             var action = _actions[i];
             addActionButton(action);
         }
-        L.groupEnd();
+        console.groupEnd();
     }
 
     /**
@@ -147,15 +147,15 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (c
      * @memberOf module:CommandBar_Game_Controller
      */
     function enableAllActionButtons(_actions) {
-        L.group("Enabling action Buttons", true);
+        console.group("Enabling action Buttons", true);
         var i;
 
         for (i = 0; i < _actions.length; i++) {
-            L.log("Action to be enabled " + i + ": " + _actions[i].getName());
+            console.log("Action to be enabled " + i + ": " + _actions[i].getName());
             var action = _actions[i];
             enableActionButton(action);
         }
-        L.groupEnd();
+        console.groupEnd();
     }
 
     /**
@@ -165,15 +165,15 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (c
      * @memberOf module:CommandBar_Game_Controller
      */
     function disableAllActionButtons(_actions) {
-        L.group("Disabling action Buttons", true);
+        console.group("Disabling action Buttons", true);
         var i;
 
         for (i = 0; i < _actions.length; i++) {
-            L.log("Action to be disabled " + i + ": " + _actions[i].getName());
+            console.log("Action to be disabled " + i + ": " + _actions[i].getName());
             var action = _actions[i];
             disableActionButton(action);
         }
-        L.groupEnd();
+        console.groupEnd();
     }
 
     /**
@@ -183,18 +183,18 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (c
      * @memberOf module:CommandBar_Game_Controller
      */
     function updateAllActionButtons(_actions) {
-        L.group("Updating action Buttons", true);
+        console.group("Updating action Buttons", true);
         var i;
 
         for (i = 0; i < _actions.length; i++) {
-            L.log("Action to be updated " + i + ": " + _actions[i].getName());
+            console.log("Action to be updated " + i + ": " + _actions[i].getName());
             var action = _actions[i];
             if (action.isEnabled())
                 enableActionButton(action);
             else
                 disableActionButton(action);
         }
-        L.groupEnd();
+        console.groupEnd();
     }
 
 //Getters

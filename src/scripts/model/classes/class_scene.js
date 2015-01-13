@@ -50,7 +50,7 @@ define([], function () {
          * @memberOf Scene#
          */
         function load() {
-            L.info("Scene " + name + " load function");
+            console.info("Scene " + name + " load function");
             loaderFunction();
         }
 
@@ -61,7 +61,7 @@ define([], function () {
          * @memberOf Scene#
          */
         function unload() {
-            L.info("Scene " + name + " unload function");
+            console.info("Scene " + name + " unload function");
             unloadFunction();
         }
 
@@ -165,7 +165,7 @@ define([], function () {
             actions_aux[_action.getId()] = actions.length;
             actions.push(_action);
 
-            L.log(["Registering Action: ", _action.getName(), "on Scene:" + name]);
+            console.log("Registering Action: ", _action.getName(), "on Scene:" + name);
         }
 
         /**
@@ -177,7 +177,7 @@ define([], function () {
          */
         function registerDialog(_dialog) {
             dialogs.push(_dialog);
-            L.log(["Registering Dialog: ", _dialog.getSpeakerName(), "on Scene:" + name]);
+            console.log("Registering Dialog: ", _dialog.getSpeakerName(), "on Scene:" + name);
         }
 
         /**
@@ -191,7 +191,7 @@ define([], function () {
             var i;
             for (i = 0; i < _dialogs.length; i++) {
                 dialogs.push(_dialogs[i]);
-                L.log(["Registering Dialog: ", _dialogs[i].getSpeakerName(), "on Scene:" + name]);
+                console.log("Registering Dialog: ", _dialogs[i].getSpeakerName(), "on Scene:" + name);
             }
         }
 
@@ -206,7 +206,7 @@ define([], function () {
             interactiveObjects_aux[_interactiveObject.getId()] = interactiveObjects.length;
             interactiveObjects.push(_interactiveObject);
 
-            L.log(["Registering Interactive Object: ", _interactiveObject.getName(), "on Scene:" + name]);
+            console.log("Registering Interactive Object: ", _interactiveObject.getName(), "on Scene:" + name);
         }
 
         //Public interface

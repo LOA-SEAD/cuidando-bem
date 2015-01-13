@@ -33,13 +33,13 @@ define([], function () {
      */
     function registerLevel(_level, _id) {
         if(levels[_id] != null){
-            L.warn("O id: " + _id + " já está em uso. O level anterior com esse mesmo id vai ser reescrito.")
+            console.warn("O id: " + _id + " já está em uso. O level anterior com esse mesmo id vai ser reescrito.");
         }
 
         levels[_id] = _level;
 
         //Log
-        L.log(['\nAdding new Level:', _level.getName()]);
+        console.log('\nAdding new Level:', _level.getName());
     }
 
 //Getters
