@@ -19,7 +19,6 @@ module.exports = function(grunt) {
                     '!'+src_path+'/scripts/libs/*.js',
                     '!'+src_path+'/scripts/gameConfig/*.js',
                     '!'+src_path+'/scripts/stageConfig/*.js',
-                    '!'+src_path+'/scripts/controller/levelsData_interface.js',
                     '!'+src_path+'/scripts/main.js',
                     '!'+src_path+'/scripts/requireJsBootstrap.js',
                     'README.md'
@@ -74,7 +73,6 @@ module.exports = function(grunt) {
                     '!scripts/libs/*.js',
                     '!scripts/gameConfig/*.js',
                     '!scripts/stageConfig/*.js',
-                    '!scripts/controller/levelsData_interface.js',
                     '!scripts/main.js',
                     '!scripts/requireJsBootstrap.js'
                 ],

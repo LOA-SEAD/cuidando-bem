@@ -4,7 +4,7 @@
 
  */
 
-define(['levelsData_interface', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'core'],
+define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'core'],
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core) {
 
         var debug_mode = true;
