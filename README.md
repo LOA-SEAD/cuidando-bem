@@ -4,9 +4,9 @@
 ## Setup
 
 Dependencies:
-    * (node)[http://nodejs.org/]
-    * (grunt)[http://gruntjs.com/]
-    * (bower)[http://bower.io/]
+* [node](http://nodejs.org/)
+* [grunt](http://gruntjs.com/)
+* [bower](http://bower.io/)
 
 After installing the dependencies run this using your prompt
 
