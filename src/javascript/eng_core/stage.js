@@ -3,11 +3,12 @@
  * @name Stage_Controller
  * @module
  */
-define(['text!../html/container.html'], function (container) {
+define(function () {
 
     //Imports
-    var Errors = require('Errors');
-
+    var Errors = {
+        undefinedContainer: "'container' is undefined and stage can't continue without a place to load its content"
+    };
 
     /**
      * An array that stores all Screen objects
@@ -50,9 +51,7 @@ define(['text!../html/container.html'], function (container) {
      * @memberOf module:Stage_Controller
      */
     function start() {
-        if(containerId != undefined)
-            $('#' + containerId).append(container);
-        else
+        if(containerId == undefined)
             throw new Error(Errors.undefinedContainer);
     }
 
@@ -184,7 +183,7 @@ define(['text!../html/container.html'], function (container) {
     }
 
     function getContainer(){
-        return container;
+        return containerId;
     }
 
     /**
@@ -200,7 +199,6 @@ define(['text!../html/container.html'], function (container) {
     }
 
     return {
-
         start: start,
         addScreen: addScreen,
         changeScreen: changeScreen,

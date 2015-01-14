@@ -3,7 +3,7 @@
  * @name Core_Controller
  * @module
  */
-define(['stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene', 'scene', 'endOfLevel'], function (stage, game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene_con, endOfLevel) {
+define(['stage', '../game_scripts/levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene', 'scene', 'endOfLevel'], function (stage, game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene_con, endOfLevel) {
 
 //Attributes
 
