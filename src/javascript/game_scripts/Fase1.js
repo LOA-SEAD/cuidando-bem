@@ -13,192 +13,188 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var level = new Level("Level 1");
         console.groupCollapsed(level.getName());
 
-        /*
-         Flags for level 1
-         */
-
         var flags_on = true;    // if false it wont check for flags -- tests purpose
         var visibility = false;
 
-        /*
-         Scenes for level 1
-         */
+        level.registerFlag(new Flag("mentor_dialogo", true));
+        level.registerFlag(new Flag("buscar_coxim", false));
 
-        var recepcao = new Scene("recepcao", "scene-recepcao", recepcaoOnLoad, recepcaoOnUnload);
-        var corredor = new Scene("corredor", "scene-corredor", corredorOnLoad, corredorOnUnload);
-        var ala_masculina = new Scene(
-            "ala_masculina", "scene-ala_masculina", ala_masculinaOnLoad, ala_masculinaOnUnload);
-        var leito = new Scene("leito", "scene-leito-char-02", leitoOnLoad, leitoOnUnload);
-        var posto_de_enfermagem = new Scene("posto_de_enfermagem", "scene-posto_de_enfermagem",
-            postoEnfermagemOnload, postoEnfermagemOnUnload);
+        var recepcao = new Scene("recepcao", "scene-recepcao")
+            .setLoadFunction(function (){
+                if(flags_on){
+                    core.openDialog(0);
+                }
+                else{
+                    core.setActionVisible("btn-ir_corredor", true);
+                    core.setActionVisible("btn-conversar_recepcionista", true);
+                }
+            })
+            .setUnloadFunction(core.closeDialog());
 
-        /*
-         Recepcao
-          */
+        var corredor = new Scene("corredor", "scene-corredor")
+            .setLoadFunction(function(){
+                if(flags_on == true){
+                    // primeira vez no corredor - ainda nao falou com o paciente
+                    if(level.getFlag("examinou_paciente").getValue() == false
+                        && level.getFlag("mentor_dialogo").getValue() == true) {
+                        console.log("Fala mentor");
+                        level.getFlag("mentor_dialogo").setValue(false);
+                        core.openDialog(0);
+                    }
+                    // ja examinou o paciente
+                    else if(level.getFlag("mentor_dialogo").getValue() == true
+                        && level.getFlag("examinou_paciente").getValue() == true){
+                        console.log("Segunda fala do mentor");
+                        level.getFlag("mentor_dialogo").setValue(false);
+                        corredorActions(false);
+                        corredorDialogos(false);
+                        core.openDialog(1);
+                    }
+                    else if(level.getFlag("buscar_coxim").getValue() == true){
+                        console.log("Mentor: Ação incorreta");
+                        core.openDialog(5);
+                    }
+                    else if(level.getFlag("pegou_coxim").getValue() == true){
+                        corredorDialogos(false);
+                    }
+                }
+                else{
+                    core.setActionVisible("btn-falar_mentor_01", true);
+                    core.setActionVisible("btn-falar_mentor_02", true);
+                    core.setActionVisible("btn-ir_ala_masculina", true);
+                    core.setActionVisible("btn-ir_posto_enfermagem", true);
+                }
+            })
+            .setUnloadFunction(function(){core.closeDialog()});
 
-        // Flags
-        // Dialogs
-        var fala_recepcionista = [];
-        fala_recepcionista[0] = new Dialog(
-            "recepcionista", "char-recepcionista", Dialogs.recepcionista[0]);
-        fala_recepcionista[0].registerOption({
-            text: Dialogs.recepcionista[1],
-            actionFunction: function () {
+        var ala_masculina = new Scene("ala_masculina", "scene-ala_masculina")
+            .setLoadFunction(function (){
+                if(flags_on == true){
+                    if(level.getFlag("posicionou_coxim").getValue() == false){
+                        ala_masculinaAction(true);
+                    }
+                    else{
+                        ala_masculinaAction(false);
+                        level.getFlag("lavar_maos").setValue(false);
+                        core.changeSceneCssClassTo("scene-ala_masculina-coxim");
+                        core.setActionVisible("btn-lavar_maos", true);
+                        core.setActionVisible("btn-ler_prontuario", true);
+                    }
+                }
+                else{
+                    core.setActionVisible("btn-ir_corredor", true);
+                    core.setActionVisible("btn-ir_leito", true);
+                    core.setActionVisible("btn-lavar_maos", true);
+                }
+            });
+
+        var leito = new Scene("leito", "scene-leito-char-02", leitoOnLoad, leitoOnUnload)
+            .setLoadFunction(function (){
+                if(flags_on == true){
+                    if(level.getFlag("conversar_paciente").getValue() == true){
+                        level.getFlag("conversar_paciente").setValue(false);
+                        core.openDialog(0);
+                    }
+                    else{
+                        if(level.getFlag("pegou_coxim").getValue() == true){
+                            leitoFirstActions(false);
+                            core.setActionVisible("btn-mudar_posicao_paciente", true);
+                        }
+                        else{
+                            core.setActionVisible("btn-conversar_paciente", true);
+                        }
+                    }
+                }
+                else {
+                    core.setActionVisible("btn-ir_ala_masculina", true);
+                    core.setActionVisible("btn-ver_pulseira", true);
+                    core.setActionVisible("btn-conversar_paciente", true);
+                }
+            });
+
+        var posto_de_enfermagem = new Scene("posto_de_enfermagem", "scene-posto_de_enfermagem")
+            .setLoadFunction(function (){
+                core.setActionVisible("btn-abrir_gaveta", true);
+                core.setActionVisible("btn-ir_corredor", true);
+            });
+
+
+        recepcao.registerDialogs([
+            new Dialog("recepcionista", "char-recepcionista")
+            .setText(Dialogs.recepcionista[0])
+            .registerOption(Dialogs.recepcionista[1], function () {
                 console.log("Selecionado 1a opção diálogo");
                 core.closeDialog(0);
                 core.setActionVisible("btn-ir_corredor", true);
                 core.setActionVisible("btn-conversar_recepcionista", true);
-            }});
+            })
+        ]);
+        recepcao.registerActions([
 
-        recepcao.registerDialogs(fala_recepcionista);
+            new Action("btn-ir_corredor", "Ir ao corredor")
+                .setCssClass("action-ir_corredor")
+                .setFunction(function(){
+                    console.log("Action: recepcao_ir_corredor");
+                    core.changeScene(1);
+                })
+                .setVisible(visibility),
 
-        // Functions
-        function recepcaoOnLoad(){
-            if(flags_on){
-                core.openDialog(0);
-            }
-            else{
-                core.setActionVisible("btn-ir_corredor", true);
-                core.setActionVisible("btn-conversar_recepcionista", true);
-            }
-        }
-        function recepcaoOnUnload(){
-            core.closeDialog();
-        }
-        function recepcaoIrCorredor() {
-            console.log("Action: recepcao_ir_corredor");
-            core.changeScene(1);
-        }
-        function conversarRecepcionista() {
-            console.log("Action: Conversar com a recepcionista");
-            core.openDialog(0);
-        }
-
-        // Actions
-        recepcao.registerAction(
-            new Action("btn-ir_corredor", "Ir ao corredor",
-                "action-ir_corredor", recepcaoIrCorredor, visibility));
-
-        recepcao.registerAction(
-            new Action("btn-conversar_recepcionista", "Conversar com a recepcionista",
-                "action-abrir_dialogo", conversarRecepcionista, visibility));
-
-        /*
-         Corredor
-          */
-        // Flags
-        level.registerFlag(new Flag("mentor_dialogo", true));
-        level.registerFlag(new Flag("buscar_coxim", false));
-
-        // Dialogs
-        var fala_mentor = [[],[],[]];
-
-        // primeiro dialogo com o mentor
-        fala_mentor[0][0] = new Dialog(
-            "mentor", "char-mentor", Dialogs.corredor.fala1[0]);
-        fala_mentor[0][0].registerOption({
-            text: Dialogs.corredor.fala1[1],
-            actionFunction: function () {
-                core.closeDialog(0);
-                corredorActions(true);
-                core.setActionVisible("btn-falar_mentor_01", true);
-            }
-        });
-
-        // segundo dialogo com o mentor
-        fala_mentor[1][0] = new Dialog("mentor", "char-mentor",Dialogs.corredor.fala2[0]);
-        fala_mentor[1][0].registerOption({
-            text: Dialogs.corredor.fala2[1],
-            actionFunction: function () {
-                core.closeDialog(1);
-                core.openDialog(2);
-            }
-        });
-
-        fala_mentor[1][1] = new Dialog(
-            "mentor", "char-mentor",Dialogs.corredor.fala2[2]);
-        fala_mentor[1][1].registerOption({
-            text: Dialogs.corredor.fala2[3],
-            actionFunction: function () {
-                core.closeDialog(2);
-                core.setActionVisible("btn-falar_mentor_02", true);
-                level.getFlag("buscar_coxim").setValue(true);
-                corredorActions(true);
-            }
-        });
-
-        // alerta do mentor
-        fala_mentor[2][0] = new Dialog(
-            "mentor", "char-mentor", Alerts.enfermaria_masculina[0]);
-        fala_mentor[2][0].registerOption({
-            text: Alerts.enfermaria_masculina[1],
-            actionFunction: function () {
-                core.closeDialog(3);
-            }
-        });
-
-        fala_mentor[2][4] = new Dialog(
-            "mentor", "char-mentor", Alerts.perdido.enfermagem[0]);
-        fala_mentor[2][4].registerOption({
-            text: Alerts.perdido.enfermagem[1],
-            actionFunction: function () {
-                core.closeDialog(4);
-            }
-        });
-
-        fala_mentor[2][5] = new Dialog(
-            "mentor", "char-mentor", Alerts.esqueceu[0]);
-        fala_mentor[2][5].registerOption({
-            text: Alerts.esqueceu[1],
-            actionFunction: function () {
-                core.closeDialog(5);
-            }
-        });
-
-        corredor.registerDialogs(fala_mentor[0]);
-        corredor.registerDialogs(fala_mentor[1]);
-        corredor.registerDialog(fala_mentor[2][0]);
-        corredor.registerDialog(fala_mentor[2][4]);
-        corredor.registerDialog(fala_mentor[2][5]);
-
-        // Functions
-        function corredorOnLoad(){
-            if(flags_on == true){
-                // primeira vez no corredor - ainda nao falou com o paciente
-                if(level.getFlag("examinou_paciente").getValue() == false
-                    && level.getFlag("mentor_dialogo").getValue() == true) {
-                    console.log("Fala mentor");
-                    level.getFlag("mentor_dialogo").setValue(false);
+            new Action("btn-conversar_recepcionista", "Conversar com a recepcionista")
+                .setCssClass("action-abrir_dialogo")
+                .setFunction(function(){
+                    console.log("Action: Conversar com a recepcionista");
                     core.openDialog(0);
-                }
-                // ja examinou o paciente
-                else if(level.getFlag("mentor_dialogo").getValue() == true
-                    && level.getFlag("examinou_paciente").getValue() == true){
-                    console.log("Segunda fala do mentor");
-                    level.getFlag("mentor_dialogo").setValue(false);
-                    corredorActions(false);
-                    corredorDialogos(false);
-                    core.openDialog(1);
-                }
-                else if(level.getFlag("buscar_coxim").getValue() == true){
-                    console.log("Mentor: Ação incorreta");
-                    core.openDialog(5);
-                }
-                else if(level.getFlag("pegou_coxim").getValue() == true){
-                    corredorDialogos(false);
-                }
-            }
-            else{
-                core.setActionVisible("btn-falar_mentor_01", true);
-                core.setActionVisible("btn-falar_mentor_02", true);
-                core.setActionVisible("btn-ir_ala_masculina", true);
-                core.setActionVisible("btn-ir_posto_enfermagem", true);
-            }
-        }
-        function corredorOnUnload(){
-            core.closeDialog();
-        }
+                })
+                .setVisible(visibility)
+            ]);
 
+        corredor.registerDialogs([
+            new Dialog("mentor", "char-mentor")
+                .setText(Dialogs.corredor.fala1[0])
+                .registerOption(Dialogs.corredor.fala1[1], function () {
+                    core.closeDialog(0);
+                    corredorActions(true);
+                    core.setActionVisible("btn-falar_mentor_01", true);
+                }),
+
+
+            new Dialog("mentor", "char-mentor")
+                .setText(Dialogs.corredor.fala2[0])
+                .registerOption(Dialogs.corredor.fala2[1], function () {
+                    core.closeDialog(1);
+                    core.openDialog(2);
+                }),
+
+            new Dialog("mentor", "char-mentor")
+                .setText(Dialogs.corredor.fala2[2])
+                .registerOption(Dialogs.corredor.fala2[3], function () {
+                    core.closeDialog(2);
+                    core.setActionVisible("btn-falar_mentor_02", true);
+                    level.getFlag("buscar_coxim").setValue(true);
+                    corredorActions(true);
+                }),
+
+            // alerta do mentor
+            new Dialog("mentor", "char-mentor")
+                .setText(Alerts.enfermaria_masculina[0])
+                .registerOption(Alerts.enfermaria_masculina[1], function () {
+                    core.closeDialog(3);
+                }),
+
+            new Dialog("mentor", "char-mentor")
+                .setText(Alerts.perdido.enfermagem[0])
+                .registerOption(Alerts.perdido.enfermagem[1], function () {
+                    core.closeDialog(4);
+                }),
+
+            new Dialog("mentor", "char-mentor")
+                .setText(Alerts.esqueceu[0])
+                .registerOption(Alerts.esqueceu[1], function () {
+                    core.closeDialog(5);
+                })
+        ]);
+
+//--------------------------------------------------------------------------------------------------------
         function corredorAlaMasculina() {
             if (flags_on == true) {
                 console.log("Action: Ir para a ala masculina");
@@ -306,28 +302,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             core.setActionVisible("btn-ir_leito", _status);
             core.setActionVisible("btn-lavar_maos", _status);
         }
-        function ala_masculinaOnLoad(){
-            if(flags_on == true){
-                if(level.getFlag("posicionou_coxim").getValue() == false){
-                    ala_masculinaAction(true);
-                }
-                else{
-                    ala_masculinaAction(false);
-                    level.getFlag("lavar_maos").setValue(false);
-                    core.changeSceneCssClassTo("scene-ala_masculina-coxim");
-                    core.setActionVisible("btn-lavar_maos", true);
-                    core.setActionVisible("btn-ler_prontuario", true);
-                }
-            }
-            else{
-                core.setActionVisible("btn-ir_corredor", true);
-                core.setActionVisible("btn-ir_leito", true);
-                core.setActionVisible("btn-lavar_maos", true);
-            }
-        }
-        function ala_masculinaOnUnload(){
 
-        }
         function alaMasculinaIrCorredor(){
             if(flags_on == true ){
                 if(core.getFlag("examinou_paciente").getValue() == true)
@@ -463,30 +438,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         leito.registerDialogs(fala_paciente);
 
         // Functions
-        function leitoOnLoad() {
-            if(flags_on == true){
-                if(level.getFlag("conversar_paciente").getValue() == true){
-                    level.getFlag("conversar_paciente").setValue(false);
-                    core.openDialog(0);
-                }
-                else{
-                    if(level.getFlag("pegou_coxim").getValue() == true){
-                        leitoFirstActions(false);
-                        core.setActionVisible("btn-mudar_posicao_paciente", true);
-                    }
-                    else{
-                        core.setActionVisible("btn-conversar_paciente", true);
-                    }
-                }
-            }
-            else {
-                core.setActionVisible("btn-ir_ala_masculina", true);
-                core.setActionVisible("btn-ver_pulseira", true);
-                core.setActionVisible("btn-conversar_paciente", true);
-            }
-        }
-        function leitoOnUnload(){
-        }
+
         function dialogarPaciente(){
             core.openDialog(0);
         }
@@ -596,17 +548,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         // Dialogs
 
         // Functions
-        function postoEnfermagemOnload(){
-            core.setActionVisible("btn-abrir_gaveta", true);
-            core.setActionVisible("btn-ir_corredor", true);
-        }
+
         function postoEnfermagemIrCorredor(){
             console.log("Action: ir_corredor");
             core.changeScene(1);
         }
-        function postoEnfermagemOnUnload(){
 
-        }
         function postoEnfermagemAbrirGaveta() {
             console.log("Action: abrir_gaveta");
             core.openModalScene("Gaveta");

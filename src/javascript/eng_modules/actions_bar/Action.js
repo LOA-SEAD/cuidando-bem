@@ -1,21 +1,25 @@
 define([], function () {
 
+
+    var counter = -1;
+
     /**
      * @class
      * @name Action
+     * @param {string} _id
      * @param {string} _name
-     * @param {string} _cssClass
-     * @param {function} _actionFunction
-     * @param {boolean} [_visible=true]
      * @return ObjectExpression
      */
     "use strict";
-    function Action(_id, _name, _cssClass, _actionFunction, _visible) {
+    function Action(_id, _name) {
+        counter++;
         //Attributes
 
-        if (_visible == null) {
-            _visible = true;
-        }
+        if(_id == null)
+            _id = "action_"+counter;
+
+        if(_name == null)
+            _name = "";
 
         var id = _id;
         /**
@@ -31,21 +35,21 @@ define([], function () {
          *
          * @memberOf Action#
          */
-        var cssClass = _cssClass;
+        var cssClass = "noTexture";
         /**
          * @type {boolean}
          * @private
          *
          * @memberOf Action#
          */
-        var visible = _visible;
+        var visible = true;
         /**
          * @type {function}
          * @private
          *
          * @memberOf Action#
          */
-        var actionFunction = _actionFunction;
+        var actionFunction = function(){};
         /**
          * @type {boolean}
          * @private
@@ -78,9 +82,11 @@ define([], function () {
          *
          * @memberOf Action#
          */
+        /*
         function getFunction() {
             return actionFunction;
         }
+        */
 
         function getId(){
             return id;
@@ -145,6 +151,7 @@ define([], function () {
          */
         function setEnable(_enable) {
             enable = _enable;
+            return this;
         }
 
         /**
@@ -158,6 +165,27 @@ define([], function () {
          */
         function setVisible(_visible) {
             visible = _visible;
+            return this;
+        }
+
+        function setCssClass(_cssClass){
+            cssClass = _cssClass;
+            return this;
+        }
+
+        function setId(_id){
+            id = _id;
+            return this;
+        }
+
+        function setName(_name){
+            name = _name;
+            return this;
+        }
+
+        function setFunction(_function){
+            actionFunction = _function;
+            return this;
         }
 
         //Public interface
@@ -165,15 +193,18 @@ define([], function () {
         return {
             execute: execute,
 
-            getFunction: getFunction,
             getId: getId,
             getName: getName,
             getCssClass: getCssClass,
             isEnabled: isEnabled,
             isVisible: isVisible,
 
+            setId: setId,
+            setName: setName,
+            setCssClass: setCssClass,
             setEnable: setEnable,
-            setVisible: setVisible
+            setVisible: setVisible,
+            setFunction: setFunction
         };
     }
 

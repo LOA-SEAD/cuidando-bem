@@ -20,7 +20,7 @@ define([], function () {
      * @param {string} _text
      * @return ObjectExpression
      */
-    function Dialog(_speakerName, _speakerCssClass, _text) {
+    function Dialog(_speakerName, _speakerCssClass) {
         //Inner Class
         /**
          * Description
@@ -56,7 +56,7 @@ define([], function () {
          *
          * @memberOf Dialog#
          */
-        var text = _text;
+        var text = "";
         /**
          * @type {array}
          * @private
@@ -135,6 +135,20 @@ define([], function () {
             return options[_optionIndex].text;
         }
 
+        function setSpeakerName(_speakerName){
+            speakerName = _speakerName;
+            return this;
+        }
+
+        function setSpeakerCssClass(_speakerCssClass){
+            speakerCssClass = _speakerCssClass;
+            return this;
+        }
+        function setText(_text){
+            text = _text;
+            return this;
+        }
+
         //Setters
         /**
          * Description
@@ -143,8 +157,11 @@ define([], function () {
          *
          * @memberOf Dialog#
          */
-        function registerOption(_option) {
-            options.push(_option);
+        function registerOption(_text, _actionFunction) {
+            var opt = new DialogOption(_text, _actionFunction);
+
+            options.push(opt);
+            return this;
         }
 
         //Public interface
@@ -158,6 +175,10 @@ define([], function () {
             getText: getText,
             getOptions: getOptions,
             getOptionText: getOptionText,
+
+            setSpeakerName:setSpeakerName,
+            setSpeakerCssClass:setSpeakerCssClass,
+            setText:setText,
 
             registerOption: registerOption
         }

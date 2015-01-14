@@ -7,6 +7,8 @@
  * @memberOf Scene
  */
 define([], function () {
+
+    var counter = -1;
     /**
      * @class
      * @name Scene
@@ -16,22 +18,21 @@ define([], function () {
      * @param {function} _unload
      * @return ObjectExpression
      */
-    function Scene(_name, _cssClass, _load, _unload) {
+    function Scene(_id, _name) {
         //Attributes
 
-        if (typeof _load === 'undefined') {
-            _load = function () {};
-        }
+        if(_id == null)
+            _id = "Scene_"+counter;
 
-        if (typeof _unload === 'undefined') {
-            _unload = function () {};
-        }
+        if(_name == null)
+            _name = "";
+
 
         var name = _name;
-        var cssClass = _cssClass;
+        var cssClass = "noTexture";
 
-        var loaderFunction = _load;
-        var unloadFunction = _unload;
+        var loaderFunction = function(){};
+        var unloadFunction = function(){};
 
         var dialogs = [];
 
@@ -153,6 +154,30 @@ define([], function () {
         }
 
         //Setters
+        function setId(_id){
+            id = _id;
+            return this;
+        }
+
+        function setName(_name){
+            name = _name;
+            return this;
+        }
+
+        function setCssClass(_cssClass){
+            cssClass = _cssClass;
+            return this;
+        }
+
+        function setLoadFunction(_load){
+            loaderFunction = _load;
+            return this;
+        }
+
+        function setUnloadFunction(_unload){
+            unloadFunction = _unload;
+            return this;
+        }
 
         /**
          * Description
@@ -166,6 +191,13 @@ define([], function () {
             actions.push(_action);
 
             console.log("Registering Action: ", _action.getName(), "on Scene:" + name);
+        }
+
+        function registerActions(_actions){
+            var i;
+            for (i = 0; i < _actions.length; i++) {
+                registerAction(_actions[i]);
+            }
         }
 
         /**
@@ -190,8 +222,7 @@ define([], function () {
         function registerDialogs(_dialogs) {
             var i;
             for (i = 0; i < _dialogs.length; i++) {
-                dialogs.push(_dialogs[i]);
-                console.log("Registering Dialog: ", _dialogs[i].getSpeakerName(), "on Scene:" + name);
+                registerDialog(_dialogs[i]);
             }
         }
 
@@ -209,6 +240,13 @@ define([], function () {
             console.log("Registering Interactive Object: ", _interactiveObject.getName(), "on Scene:" + name);
         }
 
+        function registerInteractiveObjects(_interactiveObjects) {
+            var i;
+            for (i = 0; i < _interactiveObjects.length; i++) {
+                registerInteractiveObject(_interactiveObjects[i]);
+            }
+        }
+
         //Public interface
         return {
             getName: getName,
@@ -222,14 +260,19 @@ define([], function () {
             getInteractiveObject: getInteractiveObject,
             getDialogs: getDialogs,
 
+            setId:setId,
+            setName:setName,
+            setCssClass:setCssClass,
+            setLoadFunction:setLoadFunction,
+            setUnloadFunction:setUnloadFunction,
+
+
             registerAction: registerAction,
+            registerActions: registerActions,
             registerDialog: registerDialog,
             registerDialogs: registerDialogs,
             registerInteractiveObject: registerInteractiveObject,
-
-            setCssClass: function (_cssClass){
-                cssClass = _cssClass;
-            }
+            registerInteractiveObjects: registerInteractiveObjects
         }
 
     }

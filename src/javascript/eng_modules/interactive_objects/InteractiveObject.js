@@ -4,177 +4,213 @@
  */
 
 define([], function () {
+
+
+    var counter = -1;
+
     /**
      * @class
-     * @name InteractiveObject
+     * @name Action
+     * @param {string} _id
      * @param {string} _name
-     * @param {string} _cssClass
-     * @param {function} _actionFunction
-     * @param {boolean} [_visible=true]
      * @return ObjectExpression
      */
-    function interactiveObject(_id, _name, _cssClass, _actionFunction, _visible) {
+    "use strict";
+    function InteractiveObject(_id, _name) {
+        counter++;
         //Attributes
 
-        if ( _visible == null)
-            _visible = true;
+        if(_id == null)
+            _id = "action_"+counter;
 
+        if(_name == null)
+            _name = "";
 
         var id = _id;
         /**
-         *
          * @type {string}
          * @private
          *
-         * @memberOf InteractiveObject#
+         * @memberOf Action#
          */
         var name = _name;
         /**
-         *
          * @type {string}
          * @private
          *
-         * @memberOf InteractiveObject#
+         * @memberOf Action#
          */
-        var cssClass = _cssClass;
+        var cssClass = "noTexture";
         /**
-         *
          * @type {boolean}
          * @private
          *
-         * @memberOf InteractiveObject#
+         * @memberOf Action#
          */
-        var visible = _visible;
+        var visible = true;
         /**
-         *
-         * @type {boolean}
-         * @private
-         *
-         * @memberOf InteractiveObject#
-         */
-        var enable = true;
-        /**
-         *
          * @type {function}
          * @private
          *
-         * @memberOf InteractiveObject#
+         * @memberOf Action#
          */
-        var actionFunction = _actionFunction;
+        var actionFunction = function(){};
+        /**
+         * @type {boolean}
+         * @private
+         *
+         * @memberOf Action#
+         */
+        var enable = true;
 
         //Methods
 
         /**
-         * Description
+         * It runs this class actionFunction
+         * @method
          * @method execute
+         * @public
          *
-         * @memberOf InteractiveObject#
+         * @memberOf Action#
          */
         function execute() {
-            action();
+            actionFunction();
         }
 
         //Getters
 
         /**
-         * Description
+         * @method
          * @method getFunction
          * @return actionFunction
+         * @public
          *
-         * @memberOf InteractiveObject#
+         * @memberOf Action#
          */
-        function getFunction() {
-            return actionFunction;
-        }
+        /*
+         function getFunction() {
+         return actionFunction;
+         }
+         */
 
         function getId(){
             return id;
         }
 
         /**
-         * Description
+         * @method
          * @method getName
          * @return name
+         * @public
          *
-         * @memberOf InteractiveObject#
+         * @memberOf Action#
          */
         function getName() {
             return name;
         }
 
         /**
-         * Description
+         * @method
          * @method getCssClass
          * @return cssClass
+         * @public
          *
-         * @memberOf InteractiveObject#
+         * @memberOf Action#
          */
         function getCssClass() {
             return cssClass;
         }
 
         /**
-         * Description
+         * @method
          * @method isEnabled
          * @return enable
+         * @public
          *
-         * @memberOf InteractiveObject#
+         * @memberOf Action#
          */
         function isEnabled() {
             return enable;
         }
 
         /**
-         * Description
+         * @method
          * @method isVisible
          * @return visible
+         * @public
          *
-         * @memberOf InteractiveObject#
+         * @memberOf Action#
          */
         function isVisible() {
             return visible;
         }
 
         //Setters
-
         /**
-         * Description
+         * @method
          * @method setEnable
          * @param {boolean} _enable
+         * @public
          *
-         * @memberOf InteractiveObject#
+         * @memberOf Action#
          */
         function setEnable(_enable) {
             enable = _enable;
+            return this;
         }
 
         /**
-         * Description
+         * @method
+         * @memberOf Action
          * @method setVisible
          * @param {boolean} _visible
+         * @public
          *
-         * @memberOf InteractiveObject#
+         * @memberOf Action#
          */
         function setVisible(_visible) {
             visible = _visible;
+            return this;
         }
 
-        //Public Interface
+        function setCssClass(_cssClass){
+            cssClass = _cssClass;
+            return this;
+        }
+
+        function setId(_id){
+            id = _id;
+            return this;
+        }
+
+        function setName(_name){
+            name = _name;
+            return this;
+        }
+
+        function setFunction(_function){
+            actionFunction = _function;
+            return this;
+        }
+
+        //Public interface
 
         return {
             execute: execute,
 
-            getFunction: getFunction,
             getId: getId,
             getName: getName,
             getCssClass: getCssClass,
             isEnabled: isEnabled,
             isVisible: isVisible,
 
+            setId: setId,
+            setName: setName,
+            setCssClass: setCssClass,
             setEnable: setEnable,
-            setVisible: setVisible
-        }
+            setVisible: setVisible,
+            setFunction: setFunction
+        };
     }
-
-    return interactiveObject;
+    return InteractiveObject;
 });
