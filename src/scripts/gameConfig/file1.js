@@ -3,12 +3,14 @@
  New levels can easily be made by adding new game levels.
  */
 
-define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'core'],
-    function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core) {
-        var debug_mode = true;
+define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'core', 'Commons'],
+    function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib) {
+        var Dialogs = require("Dialogs").tutorial;
+
 
         var level = new Level("Level Tutorial");
         console.groupCollapsed(level.getName());
+
 
         var flags_on = true;    // if false it wont check for flags -- tests purpose
 
@@ -16,74 +18,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             var visibility = false;
         else
             var visibility = true;
-
-
-        /*
-        Dialogos
-         */
-        var dialog_recep = [[]];
-        // Recepcionista
-        dialog_recep[0][0] = "Bom dia! Você é novo por aqui? Como posso ajudá-lo?";
-        // Jogador
-        dialog_recep[0][1] = "Bom dia. Sou o novo técnico de enfermagem.";
-        // Recepcionista
-        dialog_recep[0][2] = "Ah, sim! Seja bem vindo! Sou Clarice. O Enfermeiro mentor está te esperando no corredor.";
-        // Jogador
-        dialog_recep[0][3] = "Obrigado!";
-
-        var dialog_corredor = [[]];
-        // Mentor
-        dialog_corredor[0][0] = "Olá! Seja bem-vindo ao Hospital Cuidando Bem! Sou Alberto, seu enfermeiro mentor.  " +
-        "Aqui nossa missão é a garantia da segurança de nossos pacientes através dos protocolos. Você fará um estágio " +
-        "de experiência e, caso se saia bem, será contratado em definitivo pelo hospital.";
-        // Jogador
-        dialog_corredor[0][1] = "Obrigado, Alberto! Espero conseguir atender suas expectativas.";
-        // Mentor
-        dialog_corredor[0][2] = "Agora me acompanhe, começaremos pela enfermaria masculina.";
-        // Jogador
-        dialog_corredor[0][3] = "Vamos lá!";
-
-        var dialog_leito_masc = [[],[]];
-        // Mentor
-        dialog_leito_masc[0][0] = "Este é o Sr. João, seu primeiro paciente. Um dos principais protocolos de segurança" +
-        " é a sua apresentação ao paciente e a certificação de que a identificação dele está correta.";
-        // Jogador
-        dialog_leito_masc[0][1] = "Olá Sr. João. Sou o novo técnico de enfermagem e cuidarei do Sr. hoje. " +
-        "Como está se sentindo?";
-        // Paciente
-        dialog_leito_masc[0][2] = "Estou com muita dor de cabeça e passei muito nervoso hoje, acho que minha" +
-        "pressão subiu. É a primeira vez que preciso ser internado em um hospital e estou com um" +
-        "pouco de medo.";
-        // Jogador
-        dialog_leito_masc[0][3] = "Vamos fazer o que for possível para que sua estadia aqui seja rápida e que se sinta " +
-        "em casa. Porém, primeiro o seu nome completo e da sua data de nascimento, tudo bem?!";
-        // Paciente
-        dialog_leito_masc[0][4] = "Meu nome é João Manoel Ribeiro, nasci no dia 07-06-1956.";
-        // Jogador
-        dialog_leito_masc[0][5] = "Ok! Obrigado";
-        // Mentor
-        dialog_leito_masc[0][6] = "Sua primeira missão é admitir o Sr. João nesta enfermaria, identificando-o com uma " +
-        "pulseira e verificando os seus sinais vitais. Antes de começar, vá até o posto de enfermagem" +
-        "retirar os instrumentos necessários.";
-        // Jogador
-        dialog_leito_masc[0][7] = "Claro! Agora mesmo.";
-
-        // Jogador
-        dialog_leito_masc[1][0] = "Sr. João, esta pulseira agora é a sua identificação aqui dentro do hospital, ela é " +
-        "importante para que ninguém o confunda com outro paciente. Daqui em diante quando for" +
-        "submetido a um procedimento médico, peça ao profissional de saúde para verificar essa" +
-        "identificação. Agora preciso verificar seus sinais vitais: a pressão arterial, a frequência" +
-        "cardíaca, frequência respiratória, saturação de oxigênio e temperatura, ok?";
-        // Paciente
-        dialog_leito_masc[1][1] = "Ok. Obrigado.";
-        // Jogador
-        dialog_leito_masc[1][2] = "De nada.";
-        // Mentor
-        dialog_leito_masc[1][3] = "Parabéns, você conseguiu admitir o paciente neste hospital! Agora falta " +
-        "algo muito importante: anotar os procedimentos realizados e os dados obtidos dos sinais vitais " +
-        "(SSVV) do paciente. Vamos lá?";
-        // Jogador
-        dialog_leito_masc[1][4] = "Pode deixar, anotarei imediatamente no prontuário";
 
         /*
          Scene:  Recepcao
@@ -96,9 +30,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         // Dialogs
         var fala_recepcionista = [];
         fala_recepcionista[0] = new Dialog(
-            "recepcionista", "char-recepcionista",dialog_recep[0][0]);
+            "recepcionista", "char-recepcionista",Dialogs.recepcionista[0]);
         fala_recepcionista[0].registerOption({
-            text: dialog_recep[0][1],
+            text: Dialogs.recepcionista[1],
             actionFunction: function () {
                 level.getFlag("conversar_recepcionista").setValue(true);
                 console.log("Selecionado 1a opção diálogo: " + level.getFlag("conversar_recepcionista").getValue());
@@ -107,9 +41,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             }});
 
         fala_recepcionista[1] = new Dialog(
-            "recepcionista", "char-recepcionista", dialog_recep[0][2]);
+            "recepcionista", "char-recepcionista", Dialogs.recepcionista[2]);
         fala_recepcionista[1].registerOption({
-            text: dialog_recep[0][3],
+            text: Dialogs.recepcionista[3],
             actionFunction: function () {
                 console.log("Encerrar o diálogo");
                 core.closeDialog(1);
@@ -192,9 +126,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         // Dialogs
         var fala_mentor = [];
         fala_mentor[0] = new Dialog(
-            "mentor", "char-mentor", dialog_corredor[0][0]);
+            "mentor", "char-mentor", Dialogs.corredor[0]);
         fala_mentor[0].registerOption({
-            text: dialog_corredor[0][1],
+            text: Dialogs.corredor[1],
             actionFunction: function () {
                 level.getFlag("conversar_mentor").setValue(true);
                 core.closeDialog(0);
@@ -202,9 +136,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             }
         });
         fala_mentor[1] = new Dialog(
-            "mentor", "char-mentor",dialog_corredor[0][2]);
+            "mentor", "char-mentor", Dialogs.corredor[2]);
         fala_mentor[1].registerOption({
-            text: dialog_corredor[0][3],
+            text: Dialogs.corredor[3],
             actionFunction: function () {
                 core.closeDialog(1);
                 core.setActionVisible("btn-ir_sala_leitos", true);
@@ -362,9 +296,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         // Dialogs
         var fala_cena3_leito_masculino = [];
         fala_cena3_leito_masculino[0] = new Dialog(
-            "mentor", "char-mentor", dialog_leito_masc[0][0]);
+            "mentor", "char-mentor", Dialogs.leito.conversa1[0]);
         fala_cena3_leito_masculino[0].registerOption({
-            text: dialog_leito_masc[0][1],
+            text: Dialogs.leito.conversa1[1],
             actionFunction: function () {
                 core.closeDialog(0);
                 core.openDialog(1);
@@ -372,9 +306,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         });
 
         fala_cena3_leito_masculino[1] = new Dialog(
-            "paciente", "char-paciente-01",dialog_leito_masc[0][2]);
+            "paciente", "char-paciente-01", Dialogs.leito.conversa1[2]);
         fala_cena3_leito_masculino[1].registerOption({
-            text: dialog_leito_masc[0][3],
+            text: Dialogs.leito.conversa1[3],
             actionFunction: function () {
                 core.closeDialog(1);
                 core.openDialog(2);
@@ -382,9 +316,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         });
 
         fala_cena3_leito_masculino[2] = new Dialog(
-            "paciente", "char-paciente-01",dialog_leito_masc[0][4]);
+            "paciente", "char-paciente-01", Dialogs.leito.conversa1[4]);
         fala_cena3_leito_masculino[2].registerOption({
-            text: dialog_leito_masc[0][5],
+            text: Dialogs.leito.conversa1[5],
             actionFunction: function () {
                 core.closeDialog(2);
                 core.openDialog(3);
@@ -392,9 +326,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         });
 
         fala_cena3_leito_masculino[3] = new Dialog(
-            "mentor", "char-mentor",dialog_leito_masc[0][6]);
+            "mentor", "char-mentor",Dialogs.leito.conversa1[6]);
         fala_cena3_leito_masculino[3].registerOption({
-            text: dialog_leito_masc[0][7],
+            text: Dialogs.leito.conversa1[7],
             actionFunction: function () {
                 core.closeDialog(3);
                 core.setActionVisible("btn-pulseira_paciente", true);
@@ -406,7 +340,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         fala_cena4_leito_masculino[0] = new Dialog(
             "jogador", "char-jogador","");
         fala_cena4_leito_masculino[0].registerOption({
-            text: dialog_leito_masc[1][0],
+            text: Dialogs.leito.conversa2[0],
             actionFunction: function () {
                 core.closeDialog(4);
                 core.openDialog(5);
@@ -414,9 +348,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         });
 
         fala_cena4_leito_masculino[1] = new Dialog(
-            "paciente", "char-paciente-01",dialog_leito_masc[1][1]);
+            "paciente", "char-paciente-01",Dialogs.leito.conversa2[1]);
         fala_cena4_leito_masculino[1].registerOption({
-            text: dialog_leito_masc[1][2],
+            text: Dialogs.leito.conversa2[2],
             actionFunction: function () {
                 core.closeDialog(5);
                 core.openDialog(6);
@@ -424,9 +358,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         });
 
         fala_cena4_leito_masculino[2] = new Dialog(
-            "mentor", "char-mentor",dialog_leito_masc[1][3]);
+            "mentor", "char-mentor", Dialogs.leito.conversa2[3]);
         fala_cena4_leito_masculino[2].registerOption({
-            text: dialog_leito_masc[1][4],
+            text: Dialogs.leito.conversa2[4],
             actionFunction: function () {
                 core.closeDialog(6);
                 core.setActionVisible("btn-lavar_maos", true);

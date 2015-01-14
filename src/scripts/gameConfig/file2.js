@@ -4,10 +4,11 @@
 
  */
 
-define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'core'],
-    function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core) {
+define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'core', 'Commons'],
+    function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, Commons) {
 
-        var debug_mode = true;
+        var Dialogs = require('Dialogs').fase1;
+        var Alerts = require('Dialogs').alertas;
 
         var level = new Level("Level 1");
         console.groupCollapsed(level.getName());
@@ -31,61 +32,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var posto_de_enfermagem = new Scene("posto_de_enfermagem", "scene-posto_de_enfermagem",
             postoEnfermagemOnload, postoEnfermagemOnUnload);
 
-        // Dialogos
-
-        var dialog_recepcao = [[]];
-        dialog_recepcao[0][0] = "Oi! Parece que deu tudo certo com seu primeiro paciente. Parabéns! " +
-        "O mentor já te espera para um novo caso.";
-        dialog_recepcao[0][1] = "Vou encontrá-lo no corredor. Obrigado, Clarice.";
-
-        var dialog_corredor = [[],[]];
-        dialog_corredor[0][0] = "Bom dia! Seu segundo paciente tem 69 anos, está acamado e sabemos que isso" +
-        " é um fator de risco para o desenvolvimento de úlcera por pressão; a mudança de posição é" +
-        " essencial!";
-        dialog_corredor[0][1] = "Bom dia! Vou até a enfermaria conhecê-lo.";
-
-        dialog_corredor[1][0] = "Você inspecionou a pele do paciente?";
-        dialog_corredor[1][1] = "Sim e encontrei algumas regiões hiperemiadas no calcanhar.";
-        dialog_corredor[1][2] = "Isso mesmo! Em casos como este é essencial a mudança de posição (decúbito) a cada " +
-        "2 horas e colocar coxim.";
-        dialog_corredor[1][3] = "Então precisarei de um. Vou ao posto de enfermagem procurar.";
-
-        var dialog_enfermaria = [[]];
-        dialog_enfermaria[0][0] = "Olá! Sou o técnico de enfermagem cuidarei do Sr. hoje. Como o Sr. está se " +
-        "sentindo?";
-        dialog_enfermaria[0][1] = "Olha, eu poderia estar melhor mas não serviram minha preciosa gelatina " +
-        "hoje. HAHAHAHAHA.";
-        dialog_enfermaria[0][2] = "HAHAHA a gelatina daqui é ótima mesmo. O sr. poderia me dizer  seu nome completo e " +
-        "data de nascimento, por favor?";
-        dialog_enfermaria[0][3] = "Carlos Esme Gouvêa, nasci em 01-12-1945.";
-        dialog_enfermaria[0][4] = "Preciso examiná-lo agora, Sr. Carlos. Com licença.";
-
-        var alerta_mentor = [];
-        var alerta_resposta = [];
-        // Após primeiro diálogo com mentor no corredor - tentar ir ao posto de enfermagem
-        alerta_mentor[0] = "Volte à Enfermaria Masculina.";
-        alerta_resposta[0] =  "Já volto!";
-
-        // Tentar ir ao leito sem lavar as mãos
-        alerta_mentor[1] = "Nunca se esqueça de lavar as mãos antes e após tocar o paciente!";
-        alerta_resposta[1] =  "Não posso nunca isso!";
-
-        // Tentar ir ao corredor sem lavar as mãos após examinar o paciente
-        alerta_mentor[2] = "Após contato com o paciente lave as mãos!";
-        alerta_resposta[2] =  "Sim!";
-
-        // Após o segundo diálogo c/ mentor - tentar ir a ala masculina
-        alerta_mentor[3] = "Parece estar perdido? É no posto de enfermagem.";
-        alerta_resposta[3] =  "Ok!";
-
-        // Após ter ido ao posto de enfermagem, voltar ao corredor sem ter pego o coxim
-        alerta_mentor[4] = "Você está esquecendo de algo!";
-        alerta_resposta[4] =  "Falta o coxim!";
-
-        // Tentar ler o prontuário sem ter lavado as mãos
-        alerta_mentor[5] = "Lave as mãos!";
-        alerta_resposta[5] =  "Sim, agora mesmo!";
-
         /*
          Recepcao
           */
@@ -94,9 +40,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         // Dialogs
         var fala_recepcionista = [];
         fala_recepcionista[0] = new Dialog(
-            "recepcionista", "char-recepcionista", dialog_recepcao[0][0]);
+            "recepcionista", "char-recepcionista", Dialogs.recepcionista[0]);
         fala_recepcionista[0].registerOption({
-            text: dialog_recepcao[0][1],
+            text: Dialogs.recepcionista[1],
             actionFunction: function () {
                 console.log("Selecionado 1a opção diálogo");
                 core.closeDialog(0);
@@ -149,9 +95,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         // primeiro dialogo com o mentor
         fala_mentor[0][0] = new Dialog(
-            "mentor", "char-mentor", dialog_corredor[0][0]);
+            "mentor", "char-mentor", Dialogs.corredor.fala1[0]);
         fala_mentor[0][0].registerOption({
-            text: dialog_corredor[0][1],
+            text: Dialogs.corredor.fala1[1],
             actionFunction: function () {
                 core.closeDialog(0);
                 corredorActions(true);
@@ -160,9 +106,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         });
 
         // segundo dialogo com o mentor
-        fala_mentor[1][0] = new Dialog("mentor", "char-mentor",dialog_corredor[1][0]);
+        fala_mentor[1][0] = new Dialog("mentor", "char-mentor",Dialogs.corredor.fala2[0]);
         fala_mentor[1][0].registerOption({
-            text: dialog_corredor[1][1],
+            text: Dialogs.corredor.fala2[1],
             actionFunction: function () {
                 core.closeDialog(1);
                 core.openDialog(2);
@@ -170,9 +116,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         });
 
         fala_mentor[1][1] = new Dialog(
-            "mentor", "char-mentor",dialog_corredor[1][2]);
+            "mentor", "char-mentor",Dialogs.corredor.fala2[2]);
         fala_mentor[1][1].registerOption({
-            text: dialog_corredor[1][3],
+            text: Dialogs.corredor.fala2[3],
             actionFunction: function () {
                 core.closeDialog(2);
                 core.setActionVisible("btn-falar_mentor_02", true);
@@ -183,27 +129,27 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         // alerta do mentor
         fala_mentor[2][0] = new Dialog(
-            "mentor", "char-mentor", alerta_mentor[0]);
+            "mentor", "char-mentor", Alerts.enfermaria_masculina[0]);
         fala_mentor[2][0].registerOption({
-            text: alerta_resposta[0],
+            text: Alerts.enfermaria_masculina[1],
             actionFunction: function () {
                 core.closeDialog(3);
             }
         });
 
         fala_mentor[2][4] = new Dialog(
-            "mentor", "char-mentor", alerta_mentor[3]);
+            "mentor", "char-mentor", Alerts.perdido.enfermagem[0]);
         fala_mentor[2][4].registerOption({
-            text: alerta_resposta[3],
+            text: Alerts.perdido.enfermagem[1],
             actionFunction: function () {
                 core.closeDialog(4);
             }
         });
 
         fala_mentor[2][5] = new Dialog(
-            "mentor", "char-mentor", alerta_mentor[4]);
+            "mentor", "char-mentor", Alerts.esqueceu[0]);
         fala_mentor[2][5].registerOption({
-            text: alerta_resposta[4],
+            text: Alerts.esqueceu[1],
             actionFunction: function () {
                 core.closeDialog(5);
             }
@@ -485,7 +431,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         fala_paciente[0] = new Dialog(
             "Jogador", "char-jogador","");
         fala_paciente[0].registerOption({
-            text: dialog_enfermaria[0][0],
+            text: Dialogs.enfermaria[0],
             actionFunction: function() {
                 core.closeDialog(0);
                 core.openDialog(1);
@@ -493,9 +439,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         });
 
         fala_paciente[1] = new Dialog(
-            "Paciente Carlos", "char-paciente-02",dialog_enfermaria[0][1]);
+            "Paciente Carlos", "char-paciente-02",Dialogs.enfermaria[1]);
         fala_paciente[1].registerOption({
-            text: dialog_enfermaria[0][2],
+            text: Dialogs.enfermaria[2],
             actionFunction: function() {
                 core.closeDialog(1);
                 core.openDialog(2);
@@ -503,9 +449,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         });
 
         fala_paciente[2] = new Dialog(
-            "Paciente Carlos", "char-paciente-02",dialog_enfermaria[0][3]);
+            "Paciente Carlos", "char-paciente-02",Dialogs.enfermaria[3]);
         fala_paciente[2].registerOption({
-            text: dialog_enfermaria[0][4],
+            text: Dialogs.enfermaria[4],
             actionFunction: function() {
                 core.closeDialog(2);
                 core.setActionVisible("btn-ir_ala_masculina", true);

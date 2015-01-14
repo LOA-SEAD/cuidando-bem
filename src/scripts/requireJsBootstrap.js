@@ -14,9 +14,10 @@ require.config({
 
         //Refs
         Errors: 'references/Errors',
-
+        Dialogs: 'references/Dialogs',
         //Configs
         gameConfig: 'controller/gameConfig',
+        Commons: 'controller/gameConfig/Commons.js',
         stageConfig: 'stageConfig/stageConfig',
 
         //Models
@@ -46,7 +47,7 @@ require.config({
     }
 });
 //Init the app when everything is ready
-require(['Errors']);
+require(['Errors', 'Dialogs']);
 
 require(["jquery", "libs/less"], function () {
     console.group(" 'Cuidando Bem' Log:");

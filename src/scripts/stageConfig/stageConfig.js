@@ -1,5 +1,5 @@
 define(['stage'], function (stage) {
-    console.group("Stage Config:", true);
+    console.groupCollapsed("Stage Config:");
 
     stage.setHtmlPath('../html/screens/');
     stage.setControllersPath('../scripts/controller/stageControllers/');
