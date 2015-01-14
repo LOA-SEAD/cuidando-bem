@@ -9,17 +9,18 @@ require.config({
     baseUrl: 'scripts/',
     paths: {
         //Libs
-        jquery: '../../libs/jquery/dist/jquery-min',
+        jquery: '../../libs/jquery/dist/jquery.min',
         text: '../../libs/requirejs-text/text',
-        less: '../../libs/less/dist/less.min.js',
+        less: '../../libs/less/dist/less.min',
 
         //Refs
         Errors: 'references/Errors',
         Dialogs: 'references/Dialogs',
         //Configs
         gameConfig: 'controller/gameConfig',
-        Commons: 'controller/gameConfig/Commons.js',
         stageConfig: 'stageConfig/stageConfig',
+
+        Commons: 'gameConfig/Commons',
 
         //Models
         Scene: 'model/classes/class_scene',
