@@ -1,0 +1,28 @@
+/*
+	This css file will import other css files, so the files are all organized and there is only 
+one link on the main html
+
+	Date: 30/06/2014
+	Author: Otho - Marcelo Lopes Lotufo;
+
+	Last Revision: 29/09/2014
+    Last Revisor: Thales Menato
+
+*/
+/*Example: @import "css/normalize.css";*/
+@import "css/normalize.css";
+@import "less/common";
+@import "gameConfig/main";
+@import url("less/smallDevices") (min-width: @screen-sm-min);
+@import url("less/mediumDevices") (min-width: @screen-md-min);
+@import url("less/largeDevices") (min-width: @screen-lg-min);
+@import "gameConfig/scenesBackgroundImages";
+@import "gameConfig/gameConfig";
+@import "gameConfig/actionsThumbnails";
+@import "gameConfig/interactiveObjects";
+@import "gameConfig/modalScenes";
+@import "gameConfig/dialogModal";
+@import "gameConfig/endOfLevel";
+
+
+
