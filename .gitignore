@@ -1,17 +1,25 @@
-node_modules
-ideia
+#   IDE
 .idea/
+
+#   NODE
+node_modules
+
+#   Production
 build/
+libs/
+tests/
+
+#   JsDoc Documentation
 documentation/
 docs/
 doc_src/
 
-
+#   Example files
 *.example
 
-*.bat
+#   Office
 *.~vsd
 
-!server.bat
-
-#src/scripts/gameConfig/teste.js
+#   Bat files
+*.bat
+!server-2.0.bat
