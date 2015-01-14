@@ -9,8 +9,9 @@ require.config({
     baseUrl: 'scripts/',
     paths: {
         //Libs
-        jquery: 'libs/jquery-min',
-        text: 'libs/text',
+        jquery: '../../libs/jquery/dist/jquery-min',
+        text: '../../libs/requirejs-text/text',
+        less: '../../libs/less/dist/less.min.js',
 
         //Refs
         Errors: 'references/Errors',
@@ -49,7 +50,7 @@ require.config({
 //Init the app when everything is ready
 require(['Errors', 'Dialogs']);
 
-require(["jquery", "libs/less"], function () {
+require(["jquery", "less"], function () {
     console.group(" 'Cuidando Bem' Log:");
     require(["main"]);
 });
