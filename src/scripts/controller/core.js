@@ -35,6 +35,7 @@ define(['stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         console.group("Game Running:");
 
         changeLevel(game.getInitialLevel());
+        CommandBar.hide();
         startLevel();
     }
 
