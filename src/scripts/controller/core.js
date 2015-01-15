@@ -384,7 +384,7 @@ define(['stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
 
 
 //Public Interface
-    return {
+    var ret = {
         start: start,
         changeScene: changeScene,
         changeLevelTo: changeLevelTo,
@@ -422,5 +422,20 @@ define(['stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         goBackToMenu: goBackToMenu,
 
         changeSceneCssClassTo: changeSceneCssClassTo
-    }
+    };
+
+
+    window.gameShark = {
+        stage:stage,
+        game:game,
+        CommandBar: CommandBar,
+        Dialog:Dialog,
+        InteractiveObject:InteractiveObject,
+        ModalScene: ModalScene,
+        Scene_con:Scene_con,
+        endOfLevel:endOfLevel,
+        core: ret
+    };
+
+    return ret;
 });
