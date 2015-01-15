@@ -1,49 +1,50 @@
 #dialogBar {
-  position: relative;
+  text-align: left;
+  position: absolute;
+  bottom: 0;
   display: none;
-  width: @dialogBar-width;
-  min-height: @dialogBar-min-height;
-  padding: @dialogBar-padding;
-  background-color: @dialogBar-bg-color;
+  border: solid 1px rgba(0, 0, 0, 0.40);
+  box-shadow: #080808 1px 1px 2px;
+  background-color: rgba(217, 216, 195, 0.95);
+  .dialogBar;
 }
 
-.char_img {
-  display: table-cell;
-  width: @char_img-width;
+.dialog_charName {
+  font-family: 'Pacifico', cursive;
+  text-align: left;
+  height: 10%;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+  font-size: 25px;
+  padding-left: 2%;
+  text-decoration: none;
 }
 
 .dialog_mainText {
-  float: left;
-  width: 100% - @char_img-width;
-  padding-left: @dialogMainText-padding-left;
-  padding-bottom: @dialogMainText-padding-bottom;
-  color: @dialogMainText-color;
-  font-size: @dialogMainText-font-size;
-  font-style: italic;
+  padding: @dialogMainText-padding;
   font-weight: bold;
 }
 
 .dialog_options {
-  float: left;
-  padding-left: @dialogOptions-padding-left;
-  color: @dialogOptions-color;
-  font-size: @dialogOptions-font-size;
-  text-align: left;
+  text-align: center;
 }
 
 .dialog_button {
-  background: @arrow_dialog_button no-repeat left;
-  padding-left: @dialogButton-padding-left;
-  margin-bottom: 1.2%;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
 }
 
 .text:hover {
-  cursor: pointer;
-  color: #4cae4c;
+  color: #669644;
+  text-shadow: -1px -1px #666, 1px 1px #FFF;
+}
+.text:active {
+  color: black;
+  text-shadow: -1px -1px #666, 1px 1px #FFF;
 }
 
-.char-recepcionista {
-  background: @char-recepcionista no-repeat top;
+.char-receptionist {
+  background: @char-receptionist no-repeat top;
   background-size: cover;
 }
 
@@ -52,17 +53,17 @@
   background-size: cover;
 }
 
-.char-paciente-01 {
-  background: @char-paciente-01 no-repeat top;
+.char-patient01 {
+  background: @char-patient01 no-repeat top;
   background-size: cover;
 }
 
-.char-paciente-02 {
-  background: @char-paciente-02 no-repeat top;
+.char-patient02 {
+  background: @char-patient02 no-repeat top;
   background-size: cover;
 }
 
-.char-jogador {
-  background: @char-jogador no-repeat top;
+.char-player {
+  background: @char-player no-repeat top;
   background-size: cover;
 }

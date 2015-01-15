@@ -1,0 +1,191 @@
+// Generic variables
+@default_bgColor: gray;
+@no_image: url(./images/action_buttons/sem-imagem.jpg);
+@no_image-disabled: url(./images/action_buttons/sem-imagem-disabled.jpg);
+@arrow_dialog_button: url(./images/arrow-icon_button.png);
+@bg-menu_button: url(./images/button-bg.png);
+
+// Scene's background
+@bg-body: url(./images/shattered.png);
+/* Credits for image used on mainMenu background:
+https://interfacelift.com/wallpaper/details/3335/rotsteinpass.html - "Rotsteinpass" by Jan Thoma */
+@scene-mainMenu: url(./images/scenes/abertura-provisoria.jpg);
+@scene-lobby: url(./images/scenes/recepcao.jpg);
+@scene-nursingStation: url(./images/scenes/posto_de_enfermagem.jpg);
+@scene-maleRoom: url(./images/scenes/ala_masculina.jpg);
+@scene-femaleRoom: url('');
+@scene-bedroom: url(./images/scenes/sala_de_leitos.jpg);
+@scene-bedChar01: url(./images/scenes/leito-char-01.jpg);
+@scene-bedChar02: url(./images/scenes/leito-char-02.jpg);
+@scene-surgeryCenter: url('');
+@scene-hallway: url(./images/scenes/corredor.jpg);
+@scene-infirmary: url('');
+@scene-levelTransition: url(./images/scenes/fim-level.jpg);
+@scene-bedChar02-turned: url(./images/scenes/leito-char-02-virado.jpg);
+@scene-bedChar02-cushion: url(./images/scenes/leito-char-02-coxim.jpg);
+@scene-maleRoom-cushion: url(./images/scenes/ala_masculina-paciente-virado.jpg);
+@scene-endAlpha: url(./images/scenes/encerra-provisoria-alfa.jpg);
+
+// modalScenes.less
+@bg-drawer: url(./images/modalScenes/gaveta.png);
+@bg-bracelet: url(./images/modalScenes/pulseira.png);
+@bg-carlos_esme_gouvea: url(./images/modalScenes/carlos-esme-gouvea.jpg);
+@bg-recordsCarlos: url(./images/modalScenes/prontuario_carlos.jpg);
+@bg-recordsJoao: url(./images/modalScenes/prontuario_joao.jpg);
+
+// interactiveObjects.less
+@intObj-lobbyToHallway-left: url(./images/interactiveObjects/bg_lateral_esq.png);
+@intObj-lobbyToHallway-right: url(./images/interactiveObjects/bg_lateral_dir.png);
+@intObj-thermometer: url(./images/interactiveObjects/termometro.png);
+@intObj-thermometer-hover: url(./images/interactiveObjects/termometro-hover.png);
+@intObj-bloodPressureMonitor: url(./images/interactiveObjects/pressao.png);
+@intObj-bloodPressureMonitor-hover: url(./images/interactiveObjects/pressao-hover.png);
+@intObj-oximeter: url(./images/interactiveObjects/oximetro.png);
+@intObj-oximeter-hover: url(./images/interactiveObjects/oximetro-hover.png);
+@intObj-charMentor: url(./images/interactiveObjects/char-mentor.png);
+@intObj-charMentor-hover: url(./images/interactiveObjects/char-mentor-hover.png);
+@intObj-braceletConfirmation: url(./images/interactiveObjects/confirmar_pulseira.png);
+@intObj-cushion: url(./images/interactiveObjects/coxim.png);
+@intObj-cushion-hover: url(./images/interactiveObjects/coxim-hover.png);
+
+// dialogModal.less
+@char-receptionist: url(./images/characters/char-recepcionista.jpg);
+@char-mentor: url(./images/characters/char-mentor.jpg);
+@char-patient01: url(./images/characters/char-paciente-01.jpg);
+@char-patient02: url(./images/characters/char-paciente-02.jpg);
+@char-player: url(./images/characters/char-jogador.jpg);
+
+// actionsThumbnails.less - will be discontinued
+@ir_corredor: url(./images/action_buttons/ir_corredor.jpg);
+@ir_corredor-disabled: url(./images/action_buttons/ir_corredor-disabled.jpg);
+
+@ir_posto_de_enfermagem: url(./images/action_buttons/ir_posto_de_enfermagem.jpg);
+@ir_posto_de_enfermagem-disabled: url(./images/action_buttons/ir_posto_de_enfermagem-disabled.jpg);
+
+@ir_recepcao: url(./images/action_buttons/ir_recepcao.jpg);
+@ir_recepcao-disabled: url(./images/action_buttons/ir_recepcao-disabled.jpg);
+
+@ir_sala_de_leitos: url(./images/action_buttons/ir_sala_de_leitos.jpg);
+@ir_sala_de_leitos-disabled: url(./images/action_buttons/ir_sala_de_leitos-disabled.jpg);
+
+@abrir_dialogo: url(./images/action_buttons/abrir_dialogo.jpg);
+@abrir_dialogo-disabled: url(./images/action_buttons/abrir_dialogo-disabled.jpg);
+
+@examinar_paciente: url(./images/action_buttons/examinar_paciente.jpg);
+@examinar_paciente-disabled: url(./images/action_buttons/examinar_paciente-disabled.jpg);
+
+@lavar_maos: url(./images/action_buttons/lavar_maos.jpg);
+@lavar_maos-disabled: url(./images/action_buttons/lavar_maos-disabled.jpg);
+
+@gaveta: url(./images/action_buttons/gaveta.jpg);
+@abrir_gaveta: @gaveta;
+@fechar_gaveta: @gaveta;
+
+@pegar_termometro: url(./images/action_buttons/termometro.jpg);
+
+@pegar_medidor_pressao: url(./images/action_buttons/pressao.jpg);
+
+@pegar_oximetro: url(./images/action_buttons/oximetro.jpg);
+
+@medir_temperatura: @pegar_termometro;
+
+@medir_pulso: @pegar_medidor_pressao;
+
+@medir_freq_respiratoria: @pegar_oximetro;
+
+@anotar_prontuario: url(./images/action_buttons/anotar_prontuario.jpg);
+@anotar_prontuario-disabled: url(./images/action_buttons/anotar_prontuario-disabled.jpg);
+
+@ler_prontuario: url(./images/action_buttons/prontuario.jpg);
+@ler_prontuario-disabled: url(./images/action_buttons/prontuario-disabled.jpg);
+
+@confirmar_prontuario: url(./images/action_buttons/prontuario-confirma.jpg);
+@confirmar_prontuario-disabled: url(./images/action_buttons/prontuario-confirma-disabled.jpg);
+
+@pulseira_paciente: url(./images/action_buttons/pulseira.jpg);
+@pulseira_paciente-disabled: url(./images/action_buttons/pulseira-disabled.jpg);
+
+@confirmar_pulseira: url(./images/action_buttons/confirmar_pulseira.jpg);
+@confirmar_pulseira-disabled: url(./images/action_buttons/confirmar_pulseira-disabled.jpg);
+
+@confirmar_paciente: @no_image;
+
+@fechar_pulseira: @no_image;
+
+@leito-char-01: url(./images/action_buttons/leito-char-01.jpg);
+@leito-char-01-disabled: url(./images/action_buttons/leito-char-01-disabled.jpg);
+
+@leito-char-02: url(./images/action_buttons/leito-char-02.jpg);
+@leito-char-02-disabled: url(./images/action_buttons/leito-char-02-disabled.jpg);
+
+@posicionar_coxim: url(./images/action_buttons/posicionar_coxim.jpg);
+@posicionar_coxim-disabled: url(./images/action_buttons/posicionar_coxim-disabled.jpg);
+
+@mudar_posicao_paciente: url(./images/action_buttons/mudar_posicao_paciente.jpg);
+@mudar_posicao_paciente-disabled: url(./images/action_buttons/mudar_posicao_paciente-disabled.jpg);
+
+@voltar_menu: url(./images/action_buttons/voltar_menu.jpg);
+
+// Initialization of devices variables
+//  modalScenes
+@modalScene-drawer-width: 1000px;
+@modalScene-drawer-height: 520px;
+@modalScene-drawer-margin: 5% auto 0;
+@modalScene-bracelet-width: 0.75 * 1056px;
+@modalScene-bracelet-height: 0.75 * 210px;
+@modalScene-bracelet-margin: 15% auto 0;
+@modalScene-carlos_esme_gouvea-width: 0.75 * 2000px;
+@modalScene-carlos_esme_gouvea-height: 0.75 * 1125px;
+@modalScene-carlos_esme_gouvea-margin: 0;
+@modalScene-recordsCarlos-width: 800px;
+@modalScene-recordsCarlos-height: 624px;
+@modalScene-recordsCarlos-margin: 2% auto 0;
+@modalScene-recordsJoao-width: 800px;
+@modalScene-recordsJoao-height: 433px;
+@modalScene-recordsJoao-margin: 5% auto 0;
+
+
+//  actionThumbnails - to be discontinued
+@actionButton-width: 8%;
+@actionButton-height: 70%;
+@actionButton-margin-right: 1%;
+@actionButton-margin: 1.5% 0 0 1%;
+
+//  interactiveObjects
+@intObj-goToHallway-width: 10%;
+@intObj-talkToReceptionist-top: 23%;
+@intObj-talkToReceptionist-left: 45%;
+@intObj-talkToReceptionist-width: 12%;
+@intObj-talkToReceptionist-height: 22%;
+@intObj-goToNursingStation-top: 38%;
+@intObj-goToNursingStation-left: 40%;
+@intObj-goToNursingStation-height: 12%;
+@intObj-goToNursingStation-width: 10%;
+@intObj-goToBedroom-top: 27%;
+@intObj-goToBedroom-left: 69%;
+@intObj-goToBedroom-height: 14%;
+@intObj-goToBedroom-width: 12%;
+@intObj-thermometer-top: 20%;
+@intObj-thermometer-left: 34%;
+@intObj-thermometer-width: 250px;
+@intObj-thermometer-height: 115px;
+@intObj-bloodPressureMonitor-top: 15%;
+@intObj-bloodPressureMonitor-left: 50%;
+@intObj-bloodPressureMonitor-width: 300px;
+@intObj-bloodPressureMonitor-height: 349px;
+@intObj-oximeter-top: 37%;
+@intObj-oximeter-left:34%;
+@intObj-oximeter-width: 200px;
+@intObj-oximeter-height: 197px;
+@intObj-talkToMentor-bottom: -15%;
+@intObj-talkToMentor-right:38%;
+@intObj-talkToMentor-width: 190px;
+@intObj-talkToMentor-height: 524px;
+@intObj-braceletConfirmation-top: 0;
+@intObj-braceletConfirmation-left: 0;
+@intObj-braceletConfirmation-height: 100%;
+@intObj-braceletConfirmation-width: 100%;
+@intObj-cushion-top: 10%;
+@intObj-cushion-left: 34%;
+@intObj-cushion-height: 1 * 400px;
+@intObj-cushion-width: 1 * 400px;
