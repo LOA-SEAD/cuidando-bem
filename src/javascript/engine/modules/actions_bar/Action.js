@@ -87,6 +87,13 @@ define([], function () {
             return actionFunction;
         }
         */
+        function getClone(){
+            return new Action(id, name)
+                .setCssClass(cssClass)
+                .setVisible(visible)
+                .setFunction(actionFunction)
+                .setEnable(enable);
+        }
 
         function getId(){
             return id;
@@ -193,6 +200,7 @@ define([], function () {
         return {
             execute: execute,
 
+            getClone:getClone,
             getId: getId,
             getName: getName,
             getCssClass: getCssClass,

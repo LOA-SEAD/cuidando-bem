@@ -80,7 +80,15 @@ define([], function () {
         }
 
         //Getters
+        function getClone(){
+            var dialog_clone = new Dialog(speakerName, speakerCssClass)
+                .setText(text);
 
+            for(opt in options)
+                dialog_clone.registerOption(opt.text, opt.actionFunction);
+
+            return dialog_clone;
+        }
         /**
          * Description
          * @method getOptions
@@ -170,6 +178,7 @@ define([], function () {
             DialogOption: DialogOption,
             executeOption: executeOption,
 
+            getClone: getClone,
             getSpeakerName: getSpeakerName,
             getSpeakerCssClass: getSpeakerCssClass,
             getText: getText,

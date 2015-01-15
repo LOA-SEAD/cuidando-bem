@@ -67,6 +67,23 @@ define([], function () {
         }
 
         //Getters
+        function getClone(){
+            var scene_clone = new Scene(id, name)
+                .setCssClass(cssClass)
+                .setLoadFunction(loaderFunction)
+                .setUnloadFunction(unloadFunction);
+
+            for(dialog in dialogs)
+                scene_clone.registerDialog(dialog.getClone());
+
+            for(interactiveObject in interactiveObjects)
+                scene_clone.registerInteractiveObject(interactiveObject.getClone());
+
+            for(action in actions)
+                scene_clone.registerAction(action.getClone());
+
+            return scene_clone;
+        }
 
         /**
          * Description
@@ -254,6 +271,7 @@ define([], function () {
             load: load,
             unload: unload,
 
+            getClone: getClone,
             getActions: getActions,
             getAction: getAction,
             getInteractiveObjects: getInteractiveObjects,

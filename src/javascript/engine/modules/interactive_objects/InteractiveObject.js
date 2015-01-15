@@ -92,6 +92,13 @@ define([], function () {
          return actionFunction;
          }
          */
+        function getClone(){
+            return new InteractiveObject(id, name)
+                .setCssClass(cssClass)
+                .setVisible(visible)
+                .setFunction(actionFunction)
+                .setEnable(enable);
+        }
 
         function getId(){
             return id;
@@ -198,6 +205,7 @@ define([], function () {
         return {
             execute: execute,
 
+            getClone:getClone,
             getId: getId,
             getName: getName,
             getCssClass: getCssClass,
