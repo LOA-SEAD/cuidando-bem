@@ -16,9 +16,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var flags_on = true;    // if false it wont check for flags -- tests purpose
         var visibility = false;
 
-        level.registerFlag(new Flag("mentor_dialogo", true));
-        level.registerFlag(new Flag("buscar_coxim", false));
-
         var recepcao = new Scene("recepcao", "scene-recepcao")
             .setLoadFunction(function (){
                 if(flags_on){
@@ -118,6 +115,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 core.setActionVisible("btn-ir_corredor", true);
             });
 
+        level.registerFlag(new Flag("mentor_dialogo", true));
+        level.registerFlag(new Flag("buscar_coxim", false));
 
         recepcao.registerDialogs([
             new Dialog("recepcionista", "char-recepcionista")
@@ -195,41 +194,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         ]);
 
 //--------------------------------------------------------------------------------------------------------
-        function corredorAlaMasculina() {
-            if (flags_on == true) {
-                console.log("Action: Ir para a ala masculina");
-                if (level.getFlag("buscar_coxim").getValue() == false) {
-                    core.changeScene(2);
-                }
-                else {
-                    console.log("Mentor: Ação incorreta");
-                    core.openDialog(4);
-                }
-            }
-            else {
-                console.log("Action: Ir para a ala masculina");
-                core.changeScene(2);
-            }
-        }
 
-        function corredorIrPostoEnfermagem() {
-            console.log("Action: Ir para o posto enfermagem");
-            if(flags_on == true){
-                if(level.getFlag("examinou_paciente").getValue() == false){
-                // Ainda nao pode ir ao posto de enfermagem
-                    console.log("Mentor: Ação incorreta");
-                    core.openDialog(3);
-                }
-                else{
-                // Ja pode ir ao posto de enfermagem
-                    console.log("Mudar cenário: posto de enfermagem");
-                    core.changeScene(4);
-                }
-            }
-            else {
-                core.changeScene(4);
-            }
-        }
+
+
         function corredorActions(_status){
             console.log("Muda visibilidade de Actions: " + _status);
             core.setActionVisible("btn-ir_ala_masculina", _status);
@@ -241,21 +208,62 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             core.setActionVisible("btn-falar_mentor_02", _status);
         }
         // Actions
-        corredor.registerAction(
-            new Action("btn-falar_mentor_01", "Falar com mentor",
-                "action-abrir_dialogo", function(){core.openDialog(0);}, visibility));
+        corredor.registerActions([
+            new Action("btn-falar_mentor_01", "Falar com mentor")
+                .setCssClass("action-abrir_dialogo")
+                .setFunction(function(){core.openDialog(0);})
+                .setVisible(visibility),
 
-        corredor.registerAction(
-            new Action("btn-falar_mentor_02", "Falar com mentor",
-                "action-abrir_dialogo", function(){core.openDialog(1);}, visibility));
 
-        corredor.registerAction(
-            new Action("btn-ir_ala_masculina", "Ir para a ala masculina",
-                "action-ir_sala_de_leitos", corredorAlaMasculina, visibility));
+            new Action("btn-falar_mentor_02", "Falar com mentor")
+                .setCssClass("action-abrir_dialogo")
+                .setFunction(function(){core.openDialog(1);})
+                .setVisible(visibility),
 
-        corredor.registerAction(
-            new Action("btn-ir_posto_enfermagem", "Ir para o posto de enfermagem",
-                "action-ir_posto_de_enfermagem", corredorIrPostoEnfermagem, visibility));
+
+            new Action("btn-ir_ala_masculina", "Ir para a ala masculina")
+                .setCssClass("action-ir_sala_de_leitos")
+                .setFunction( function () {
+                    if (flags_on == true) {
+                        console.log("Action: Ir para a ala masculina");
+                        if (level.getFlag("buscar_coxim").getValue() == false) {
+                            core.changeScene(2);
+                        }
+                        else {
+                            console.log("Mentor: Ação incorreta");
+                            core.openDialog(4);
+                        }
+                    }
+                    else {
+                        console.log("Action: Ir para a ala masculina");
+                        core.changeScene(2);
+                    }
+                })
+                .setVisible(visibility),
+
+
+            new Action("btn-ir_posto_enfermagem", "Ir para o posto de enfermagem")
+                .setCssClass("action-ir_posto_de_enfermagem")
+                .setFunction(function () {
+                    console.log("Action: Ir para o posto enfermagem");
+                    if(flags_on == true){
+                        if(level.getFlag("examinou_paciente").getValue() == false){
+                            // Ainda nao pode ir ao posto de enfermagem
+                            console.log("Mentor: Ação incorreta");
+                            core.openDialog(3);
+                        }
+                        else{
+                            // Ja pode ir ao posto de enfermagem
+                            console.log("Mudar cenário: posto de enfermagem");
+                            core.changeScene(4);
+                        }
+                    }
+                    else {
+                        core.changeScene(4);
+                    }
+                })
+                .setVisible(visibility)
+        ]);
 
         /*
          Ala Masculina
@@ -265,36 +273,25 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("examinou_paciente", false));
 
         // Dialogs
-        fala_mentor[2][1] = new Dialog(
-            "mentor", "char-mentor", alerta_mentor[1]);
-        fala_mentor[2][1].registerOption({
-            text: alerta_resposta[1],
-            actionFunction: function () {
-                core.closeDialog(0);
-            }
-        });
+        ala_masculina.registerDialogs([
+            new Dialog("mentor", "char-mentor")
+                .setText(alerta_mentor[1])
+                .registerOption(alerta_resposta[1], function () {
+                        core.closeDialog(0);
+                }),
 
-        fala_mentor[2][2] = new Dialog(
-            "mentor", "char-mentor", alerta_mentor[2]);
-        fala_mentor[2][2].registerOption({
-            text: alerta_resposta[2],
-            actionFunction: function () {
+            new Dialog("mentor", "char-mentor")
+                .setText(alerta_mentor[2])
+                .registerOption(alerta_resposta[2], function () {
                 core.closeDialog(1);
-            }
-        });
+            }),
 
-        fala_mentor[2][3] = new Dialog(
-            "mentor", "char-mentor", alerta_mentor[5]);
-        fala_mentor[2][3].registerOption({
-            text: alerta_resposta[5],
-            actionFunction: function () {
+            new Dialog("mentor", "char-mentor")
+                .setText(alerta_mentor[5])
+                .registerOption(alerta_resposta[5], function () {
                 core.closeDialog(2);
-            }
-        });
-
-        ala_masculina.registerDialog(fala_mentor[2][1]);
-        ala_masculina.registerDialog(fala_mentor[2][2]);
-        ala_masculina.registerDialog(fala_mentor[2][3]);
+            })
+        ]);
 
         // Functions
         function ala_masculinaAction(_status){
