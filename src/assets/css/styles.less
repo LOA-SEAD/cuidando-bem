@@ -8,21 +8,21 @@
 
 */
 /*Example: @import "css/normalize.css";*/
-@import "css/normalize.css";
-@import "gameConfig/main.less";
-@import "gameConfig/gameConfig.less";
-@import "less/common.less";
-@import url("less/smallDevices.less") (min-width: @screen-sm-min);
-@import url("less/mediumDevices.less") (min-width: @screen-md-min);
-@import url("less/largeDevices.less") (min-width: @screen-lg-min);
-@import "gameConfig/scenesBackgroundImages.less";
-@import "gameConfig/interactiveObjects.less";
-@import "gameConfig/modalScenes.less";
-@import "gameConfig/dialogModal.less";
+@import "./normalize.css";
+@import "gameLayout/main.less";
+@import "gameLayout/gameConfig.less";
+@import "devices/common.less";
+@import url("devices/smallDevices.less") (min-width: @screen-sm-min);
+@import url("devices/mediumDevices.less") (min-width: @screen-md-min);
+@import url("devices/largeDevices.less") (min-width: @screen-lg-min);
+@import "gameLayout/scenesBackgroundImages.less";
+@import "gameLayout/interactiveObjects.less";
+@import "gameLayout/modalScenes.less";
+@import "gameLayout/dialogModal.less";
 
 @import url(http://fonts.googleapis.com/css?family=Pacifico);
 @import url(http://fonts.googleapis.com/css?family=Lato:700italic);
 
 // to be discontinued
-@import "gameConfig/actionsThumbnails.less";
-@import "gameConfig/endOfLevel.less";
+@import "gameLayout/actionsThumbnails.less";
+@import "gameLayout/endOfLevel.less";
