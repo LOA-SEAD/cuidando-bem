@@ -1,131 +1,143 @@
+// Disable the selection function on the website
+html, body {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  background-image: @bg-body;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
 
-// Generic variables
-@default-bgcolor: gray;
-@sem_imagem: url('../../assets/images/action_buttons/sem-imagem.jpg');
-@sem_imagem-disabled: url('../../assets/images/action_buttons/sem-imagem-disabled.jpg');
-@arrow_dialog_button: url('../../assets/images/arrow-icon_button.png');
-@bg-menu_button: url('../../assets/images/button-bg.png');
+//  Center and define the size of #game div
+//  also draw the border and shadow
+#game {
+  //  size change accordingly to screen size
+  //  located on large, medium and small devices files
+  border: solid 1px dimgray;
+  box-shadow: #080808 1px 1px 10px;
+  position: absolute;
+}
 
-// scene's background
-/*  Imagem de background da abertura provisoria:
-      https://interfacelift.com/wallpaper/details/3335/rotsteinpass.html
-    "Rotsteinpass" by Jan Thoma
-*/
-@bg-body: url('../../assets/images/shattered.png');
-@bg-menu_inicial: url('../../assets/images/scenes/abertura-provisoria.jpg');
-@bg-recepcao: url('../../assets/images/scenes/recepcao.jpg');
-@bg-posto_de_enfermagem: url('../../assets/images/scenes/posto_de_enfermagem.jpg');
-@bg-ala_masculina: url('../../assets/images/scenes/ala_masculina.jpg');
-@bg-ala_feminina: url('../../assets/images/scenes/ala_feminina.jpg');
-@bg-sala_de_leitos: url('../../assets/images/scenes/sala_de_leitos.jpg');
-@bg-leito-char-01: url('../../assets/images/scenes/leito-char-01.jpg');
-@bg-leito-char-02: url('../../assets/images/scenes/leito-char-02.jpg');
-@bg-centro_cirurgico: url('../../assets/images/scenes/centro-cirurgico.jpg');
-@bg-corredor: url('../../assets/images/scenes/corredor.jpg');
-@bg-enfermaria: url('../../assets/images/scenes/enfermaria.jpg');
-@bg-fim-level: url('../../assets/images/scenes/fim-level.jpg');
-@bg-leito-char-02-virado: url('../../assets/images/scenes/leito-char-02-virado.jpg');
-@bg-leito-char-02-coxim: url('../../assets/images/scenes/leito-char-02-coxim.jpg');
-@bg-ala_masculina-coxim: url('../../assets/images/scenes/ala_masculina-paciente-virado.jpg');
-@bg-fim-alfa: url('../../assets/images/scenes/encerra-provisoria-alfa.jpg');
+#stage {
+  background: center no-repeat @scene-mainMenu;
+  background-size: cover;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
 
-// modalScenes.less
-@bg-gaveta: url('../../assets/images/modalScenes/gaveta.png');
-@bg-pulseira: url('../../assets/images/modalScenes/pulseira.png');
-@bg-carlos_esme_gouvea: url('../../assets/images/modalScenes/carlos-esme-gouvea.jpg');
-@bg-prontuario_carlos: url('../../assets/images/modalScenes/prontuario_carlos.jpg');
-@bg-prontuario_joao: url('../../assets/images/modalScenes/prontuario_joao.jpg');
+#menuLogo {
+  //background-color: rgba(255, 255, 255, 0.50);
+  width: 100%;
+  height: 50%;
+}
 
-// interactiveObjects.less
-@bg-grad_esq: url('../../assets/images/interactiveObjects/bg_lateral_esq.png');
-@bg-grad_dir: url('../../assets/images/interactiveObjects/bg_lateral_dir.png');
-@intObj-termometro-bg: url('../../assets/images/interactiveObjects/termometro.png');
-@intObj-termometro-bg-hover: url('../../assets/images/interactiveObjects/termometro-hover.png');
-@intObj-medidor-pressao-bg: url('../../assets/images/interactiveObjects/pressao.png');
-@intObj-medidor-pressao-bg-hover: url('../../assets/images/interactiveObjects/pressao-hover.png');
-@intObj-oximetro-bg: url('../../assets/images/interactiveObjects/oximetro.png');
-@intObj-oximetro-bg-hover: url('../../assets/images/interactiveObjects/oximetro-hover.png');
-@intObj-char-mentor: url('../../assets/images/interactiveObjects/char-mentor.png');
-@intObj-char-mentor-hover: url('../../assets/images/interactiveObjects/char-mentor-hover.png');
-@intObj-confirmar_pulseira-bg: url('../../assets/images/interactiveObjects/confirmar_pulseira.png');
-@intObj-coxim: url('../../assets/images/interactiveObjects/coxim.png');
-@intObj-coxim-hover: url('../../assets/images/interactiveObjects/coxim-hover.png');
-// actionsThumbnails.less
-@ir_corredor: url('../../assets/images/action_buttons/ir_corredor.jpg');
-@ir_corredor-disabled: url('../../assets/images/action_buttons/ir_corredor-disabled.jpg');
+#menuContainer {
+  position: absolute;
+  right: 10%;
+  width: 25%;
+  height: 50%;
+}
 
-@ir_posto_de_enfermagem: url('../../assets/images/action_buttons/ir_posto_de_enfermagem.jpg');
-@ir_posto_de_enfermagem-disabled: url('../../assets/images/action_buttons/ir_posto_de_enfermagem-disabled.jpg');
+#interactiveArea {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
 
-@ir_recepcao: url('../../assets/images/action_buttons/ir_recepcao.jpg');
-@ir_recepcao-disabled: url('../../assets/images/action_buttons/ir_recepcao-disabled.jpg');
+#commandBar {
+  width: 100%;
+  height: 20%;
+  background-color: rgba(0, 0, 0, 0.75);
+  position: relative;
+  top: 80%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
 
-@ir_sala_de_leitos: url('../../assets/images/action_buttons/ir_sala_de_leitos.jpg');
-@ir_sala_de_leitos-disabled: url('../../assets/images/action_buttons/ir_sala_de_leitos-disabled.jpg');
+#backgroundScene {
+  height: 100%;
+  width: 100%;
+}
 
-@abrir_dialogo: url('../../assets/images/action_buttons/abrir_dialogo.jpg');
-@abrir_dialogo-disabled: url('../../assets/images/action_buttons/abrir_dialogo-disabled.jpg');
+.masked{
+  background: url(./images/teste.png) repeat, white;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-animation-name: masked-animation;
+  -webkit-animation-duration: 40s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+@-webkit-keyframes masked-animation {
+  0% {background-position: left bottom;}
+  100% {background-position: right bottom;}
+}
 
-@examinar_paciente: url('../../assets/images/action_buttons/examinar_paciente.jpg');
-@examinar_paciente-disabled: url('../../assets/images/action_buttons/examinar_paciente-disabled.jpg');
+.menuButton {
+  position: relative;
+  margin: 0 auto 5%;
+  cursor: hand;
+  width: 100%;
+  height: 14%;
+  font-family: 'Pacifico', cursive;
+  border-radius: 12px;
+  font-size: 25px;
+  color: #FFF;
+  text-decoration: none;
+}
 
-@lavar_maos: url('../../assets/images/action_buttons/lavar_maos.jpg');
-@lavar_maos-disabled: url('../../assets/images/action_buttons/lavar_maos-disabled.jpg');
+.menuButtonBlue {
+  background-color: #3498DB;
+  border-bottom: 5px solid #2980B9;
+  text-shadow: 0px -2px #2980B9;
+}
 
-@gaveta: url('../../assets/images/action_buttons/gaveta.jpg');
-@abrir_gaveta: @gaveta;
-@fechar_gaveta: @gaveta;
+.menuButtonRed {
+  background-color: #E74C3C;
+  border-bottom: 5px solid #BD3E31;
+  text-shadow: 0px -2px #BD3E31;
+}
 
-@pegar_termometro: url('../../assets/images/action_buttons/termometro.jpg');
+.menuButtonGreen {
+  background-color: #82BF56;
+  border-bottom: 5px solid #669644;
+  text-shadow: 0px -2px #669644;
+}
 
-@pegar_medidor_pressao: url('../../assets/images/action_buttons/pressao.jpg');
+.menuButtonYellow {
+  background-color: #E4BC47;
+  border-bottom: 5px solid #A38426;
+  text-shadow: 0px -2px #A38426;
+}
 
-@pegar_oximetro: url('../../assets/images/action_buttons/oximetro.jpg');
+.menuButton:hover{
+  transform: translate(0px, -2px);
+  -webkit-transform: translate(0px, -2px);
+  //border-bottom: 10px solid;
+  border-bottom-width: 7px;
+}
 
-@medir_temperatura: @pegar_termometro;
+.menuButton:active {
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  border-bottom: 1px solid #2980B9;
+}
 
-@medir_pulso: @pegar_medidor_pressao;
+.menuButtonAnimate {
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+}
 
-@medir_freq_respiratoria: @pegar_oximetro;
-
-@anotar_prontuario: url('../../assets/images/action_buttons/anotar_prontuario.jpg');
-@anotar_prontuario-disabled: url('../../assets/images/action_buttons/anotar_prontuario-disabled.jpg');
-
-@ler_prontuario: url('../../assets/images/action_buttons/prontuario.jpg');
-@ler_prontuario-disabled: url('../../assets/images/action_buttons/prontuario-disabled.jpg');
-
-@confirmar_prontuario: url('../../assets/images/action_buttons/prontuario-confirma.jpg');
-@confirmar_prontuario-disabled: url('../../assets/images/action_buttons/prontuario-confirma-disabled.jpg');
-
-@pulseira_paciente: url('../../assets/images/action_buttons/pulseira.jpg');
-@pulseira_paciente-disabled: url('../../assets/images/action_buttons/pulseira-disabled.jpg');
-
-@confirmar_pulseira: url('../../assets/images/action_buttons/confirmar_pulseira.jpg');
-@confirmar_pulseira-disabled: url('../../assets/images/action_buttons/confirmar_pulseira-disabled.jpg');
-
-@confirmar_paciente: @sem_imagem;
-
-@fechar_pulseira: @sem_imagem;
-
-@leito-char-01: url('../../assets/images/action_buttons/leito-char-01.jpg');
-@leito-char-01-disabled: url('../../assets/images/action_buttons/leito-char-01-disabled.jpg');
-
-@leito-char-02: url('../../assets/images/action_buttons/leito-char-02.jpg');
-@leito-char-02-disabled: url('../../assets/images/action_buttons/leito-char-02-disabled.jpg');
-
-@posicionar_coxim: url('../../assets/images/action_buttons/posicionar_coxim.jpg');
-@posicionar_coxim-disabled: url('../../assets/images/action_buttons/posicionar_coxim-disabled.jpg');
-
-@mudar_posicao_paciente: url('../../assets/images/action_buttons/mudar_posicao_paciente.jpg');
-@mudar_posicao_paciente-disabled: url('../../assets/images/action_buttons/mudar_posicao_paciente-disabled.jpg');
-
-@voltar_menu: url('../../assets/images/action_buttons/voltar_menu.jpg');
-// dialogModal.less
-@char-recepcionista: url('../../assets/images/characters/char-recepcionista.jpg');
-@char-mentor: url('../../assets/images/characters/char-mentor.jpg');
-@char-paciente-01: url('../../assets/images/characters/char-paciente-01.jpg');
-@char-paciente-02: url('../../assets/images/characters/char-paciente-02.jpg');
-@char-jogador: url('../../assets/images/characters/char-jogador.jpg');
-@dialogBar-bg-color: rgba(0, 0, 0, 0.75);
-@dialogMainText-color: #ffffff;
-@dialogOptions-color: #ffffff;
+.backButton {
+  &:extend(.menuButton);
+}
+.backButton:hover {
+  &:extend(.menuButton:hover);
+}

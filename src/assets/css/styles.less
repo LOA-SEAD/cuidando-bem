@@ -1,28 +1,28 @@
 /*
 	This css file will import other css files, so the files are all organized and there is only 
-one link on the main html
+	one link on the main html
 
 	Date: 30/06/2014
 	Author: Otho - Marcelo Lopes Lotufo;
-
-	Last Revision: 29/09/2014
-    Last Revisor: Thales Menato
+	Author: Thales Eduardo Adair Menato
 
 */
 /*Example: @import "css/normalize.css";*/
-@import "normalize.css";
-@import "devices/common";
-@import "gameLayout/main";
-@import url("devices/smallDevices") (min-width: @screen-sm-min);
-@import url("devices/mediumDevices") (min-width: @screen-md-min);
-@import url("devices/largeDevices") (min-width: @screen-lg-min);
-@import "gameLayout/scenesBackgroundImages";
-@import "gameLayout/gameConfig";
-@import "gameLayout/actionsThumbnails";
-@import "gameLayout/interactiveObjects";
-@import "gameLayout/modalScenes";
-@import "gameLayout/dialogModal";
-@import "gameLayout/endOfLevel";
+@import "css/normalize.css";
+@import "gameConfig/main.less";
+@import "gameConfig/gameConfig.less";
+@import "less/common.less";
+@import url("less/smallDevices.less") (min-width: @screen-sm-min);
+@import url("less/mediumDevices.less") (min-width: @screen-md-min);
+@import url("less/largeDevices.less") (min-width: @screen-lg-min);
+@import "gameConfig/scenesBackgroundImages.less";
+@import "gameConfig/interactiveObjects.less";
+@import "gameConfig/modalScenes.less";
+@import "gameConfig/dialogModal.less";
 
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
+@import url(http://fonts.googleapis.com/css?family=Lato:700italic);
 
-
+// to be discontinued
+@import "gameConfig/actionsThumbnails.less";
+@import "gameConfig/endOfLevel.less";

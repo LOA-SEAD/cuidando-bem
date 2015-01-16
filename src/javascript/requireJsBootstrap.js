@@ -10,6 +10,7 @@ require.config({
     paths: {
         //Libs
         jquery: '../../libs/jquery/dist/jquery.min',
+        jqueryui: '../../libs/jquery-ui/jquery-ui.min',
         text: '../../libs/requirejs-text/text',
         less: '../../libs/less/dist/less.min',
 
@@ -49,7 +50,7 @@ require(['Errors', 'Dialogs', 'Assets']);
 
 require(["jquery", "less"], function () {
     console.group(" 'Cuidando Bem' Log:");
-    require(["main"]);
+    require(['jqueryui', "main"]);
 });
 
 
