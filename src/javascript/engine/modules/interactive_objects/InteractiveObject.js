@@ -87,11 +87,11 @@ define([], function () {
          *
          * @memberOf Action#
          */
-        /*
+
          function getFunction() {
-         return actionFunction;
+            return actionFunction;
          }
-         */
+
         function getClone(){
             return new InteractiveObject(id, name)
                 .setCssClass(cssClass)
@@ -207,6 +207,7 @@ define([], function () {
 
             getClone:getClone,
             getId: getId,
+            getFunction:getFunction,
             getName: getName,
             getCssClass: getCssClass,
             isEnabled: isEnabled,

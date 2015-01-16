@@ -3,7 +3,7 @@
  New levels can easily be made by adding new game levels.
 
  */
-define(['../../modules/levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons'],
+define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons'],
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, Commons) {
 
         //region Imports

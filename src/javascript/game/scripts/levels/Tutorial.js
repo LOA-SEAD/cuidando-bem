@@ -3,7 +3,7 @@
  New levels can easily be made by adding new game levels.
  */
 
-define(['../../modules/levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons'],
+define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons'],
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib) {
 
         //region Imports
@@ -213,7 +213,7 @@ define(['../../modules/levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'Inter
                 .setVisible(visibility)
         ]);
 
-        corredor.registerInteractiveObject([
+        corredor.registerInteractiveObjects([
             new InteractiveObject("io-ir_sala_leitos","Ir para a sala de leitos masculino")
                 .setCssClass("intObj-ir_sala_de_leitos")
                 .setFunction(corredorIrSalaLeitos)
@@ -285,7 +285,7 @@ define(['../../modules/levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'Inter
         fim_tutorial.registerActions([
             new Action("btn-proxima_fase", "Ir a recepção")
                 .setCssClass("action-ir_recepcao")
-                .setLoadFunction( function (){
+                .setFunction( function (){
                     console.log("Proxima fase" + core);
                     core.changeLevelTo(1);
                 })
@@ -299,7 +299,7 @@ define(['../../modules/levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'Inter
                 core.setActionVisible("btn-abrir_gaveta", true);
             });
 
-        posto_de_enfermagem.registerAction([
+        posto_de_enfermagem.registerActions([
             new Action("btn-ir_corredor", "Ir ao corredor")
                 .setCssClass("action-ir_corredor")
                 .setFunction(function (){
@@ -511,7 +511,7 @@ define(['../../modules/levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'Inter
         //region Gaveta
         var gaveta = new Scene("Gaveta", "modalScene-gaveta");
 
-        gaveta.registerAction([
+        gaveta.registerActions([
             new Action("btn-fechar_gaveta", "Fechar gaveta")
                 .setCssClass("action-fechar_gaveta")
                 .setFunction( function () {
@@ -558,7 +558,7 @@ define(['../../modules/levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'Inter
                 .setVisible(visibility)
         ]);
 
-        gaveta.registerInteractiveObject([
+        gaveta.registerInteractiveObjects([
             new InteractiveObject("io-termometro", "Termômetro")
                 .setCssClass("intObj-termometro")
                 .setFunction(function () {
