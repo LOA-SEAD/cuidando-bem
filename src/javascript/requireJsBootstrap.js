@@ -25,7 +25,7 @@ require.config({
         //Models
         Scene: 'engine/modules/scenes/Scene',
         Flag: 'game/modules/Flag',
-        Action: 'engine/modules/actions_bar/Action',
+        Action: 'engine/modules/command_bar/Action',
         Level: 'game/modules/Level',
         Dialog: 'engine/modules/dialogs/Dialog',
         InteractiveObject: 'engine/modules/interactive_objects/InteractiveObject',

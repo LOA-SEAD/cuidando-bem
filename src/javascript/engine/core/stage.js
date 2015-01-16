@@ -43,6 +43,7 @@ define(function () {
      */
     var containerId;
 
+    var startingScreenId = 0;
     /**
      * This function is called to init this module
      * @method start
@@ -53,6 +54,8 @@ define(function () {
     function start() {
         if(containerId == undefined)
             throw new Error(Errors.undefinedContainer);
+
+        changeScreen(startingScreenId);
     }
 
     /**
@@ -182,6 +185,10 @@ define(function () {
         containerId = _id;
     }
 
+    function setStartingScreenId(_id){
+        startingScreenId = _id;
+    }
+
     function getContainer(){
         return containerId;
     }
@@ -205,6 +212,7 @@ define(function () {
 
         setHtmlPath: setHtmlPath,
         setControllersPath: setControllersPath,
+        setStartingScreenId: setStartingScreenId,
 
         setContainer: setContainer,
         getContainer: getContainer

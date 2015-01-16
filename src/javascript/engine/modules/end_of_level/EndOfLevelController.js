@@ -3,7 +3,7 @@
  * @name EndOfLevel_Game_Controller
  * @module
  */
-define(['core', 'text!../html/templates/scoreItemTemplate.html'], function (core, scoreItemHtml) {
+define(['text!../assets/html/templates/scoreItemTemplate.html'], function (scoreItemHtml) {
 
 //Attributes
 

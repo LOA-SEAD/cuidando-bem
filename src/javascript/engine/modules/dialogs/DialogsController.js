@@ -3,7 +3,7 @@
  * @name DialogModal_Game_Controller
  * @module
  */
-define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function (core, dialogButtonTemplate) {
+define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (dialogButtonTemplate) {
 
 //Attributes
     var dialogModalSelector = "#dialogBar";

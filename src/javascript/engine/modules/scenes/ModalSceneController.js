@@ -3,7 +3,7 @@
  * @name ModalScene_Game_Controller
  * @module
  */
-define(['core'], function (core) {
+define(function () {
 
 //Attributes
 

@@ -6,7 +6,7 @@
  Each scene has a background image
  * @memberOf Scene
  */
-define([], function () {
+define(function () {
 
     var counter = -1;
     /**

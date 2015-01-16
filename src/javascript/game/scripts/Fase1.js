@@ -30,7 +30,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.setActionVisible("btn-conversar_recepcionista", true);
                 }
             })
-            .setUnloadFunction(core.closeDialog());
+            .setUnloadFunction(core.closeDialog);
 
         recepcao.registerDialogs([
             new Dialog("recepcionista", "char-recepcionista")
@@ -242,20 +242,20 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         ala_masculina.registerDialogs([
             new Dialog("mentor", "char-mentor")
-                .setText(alerta_mentor[1])
-                .registerOption(alerta_resposta[1], function () {
+                .setText(Alerts.generico)
+                .registerOption("resposta", function () {
                     core.closeDialog(0);
                 }),
 
             new Dialog("mentor", "char-mentor")
-                .setText(alerta_mentor[2])
-                .registerOption(alerta_resposta[2], function () {
+                .setText(Alerts.generico)
+                .registerOption("resposta", function () {
                     core.closeDialog(1);
                 }),
 
             new Dialog("mentor", "char-mentor")
-                .setText(alerta_mentor[5])
-                .registerOption(alerta_resposta[5], function () {
+                .setText(Alerts.generico)
+                .registerOption("resposta", function () {
                     core.closeDialog(2);
                 })
         ]);
@@ -344,7 +344,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Leito
-        var leito = new Scene("leito", "scene-leito-char-02", leitoOnLoad, leitoOnUnload)
+        var leito = new Scene("leito", "scene-leito-char-02")
             .setLoadFunction(function (){
                 if(flags_on == true){
                     if(level.getFlag("conversar_paciente").getValue() == true){
@@ -498,7 +498,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region Fim Alfa
         var fim_alfa = new Scene("Fim da fase", "scene-fim-alfa")
-            .setLoadFunction(core.setActionVisible("btn-voltar_menu", true));
+            .setLoadFunction(function(){
+                core.setActionVisible("btn-voltar_menu", true)
+            });
 
         fim_alfa.registerActions([
             new Action("btn-voltar_menu", "Voltar ao Menu Principal")

@@ -1,8 +1,9 @@
 define(['stage'], function (stage) {
     console.groupCollapsed("Stage Config:");
 
-    stage.setHtmlPath('../html/screens/');
-    stage.setControllersPath('../scripts/controller/stageControllers/');
+    stage.setHtmlPath('../assets/html/screens/');
+    stage.setControllersPath('./menu/');
+    stage.setStartingScreenId(0);
 
     stage.addScreen('mainMenu', 'mainMenu.html', 'mainMenu_screen_controller');
     stage.addScreen('game', 'gameContainer.html', 'game_screen_controller');

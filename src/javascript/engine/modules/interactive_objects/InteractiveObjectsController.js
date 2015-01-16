@@ -3,7 +3,7 @@
  * @name InteractiveObjects_Game_Controller
  * @module
  */
-define(['core', 'text!../html/templates/interactiveObjectTemplate.html'], function (core, interactiveObjectTemplate) {
+define(['text!../assets/html/templates/interactiveObjectTemplate.html'], function (interactiveObjectTemplate) {
 //Attributes
     var divSelector = "#interactiveObjects";
     var interactiveObjectSelector = ".interactiveObject";

@@ -82,11 +82,11 @@ define([], function () {
          *
          * @memberOf Action#
          */
-        /*
+
         function getFunction() {
             return actionFunction;
         }
-        */
+
         function getClone(){
             return new Action(id, name)
                 .setCssClass(cssClass)
@@ -201,6 +201,7 @@ define([], function () {
             execute: execute,
 
             getClone:getClone,
+            getFunction:getFunction,
             getId: getId,
             getName: getName,
             getCssClass: getCssClass,

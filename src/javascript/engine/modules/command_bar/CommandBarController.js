@@ -3,7 +3,7 @@
  * @name CommandBar_Game_Controller
  * @module
  */
-define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (core, actionButtonTemplate) {
+define(['text!../assets/html/templates/actionButtonTemplate.html'], function (actionButtonTemplate) {
 
 //Attributes
     var barSelector = "#commandBar";
@@ -184,6 +184,7 @@ define(['core', 'text!../html/templates/actionButtonTemplate.html'], function (c
      */
     function updateAllActionButtons(_actions) {
         console.group("Updating action Buttons", true);
+        console.trace("here");
         var i;
 
         for (i = 0; i < _actions.length; i++) {

@@ -3,7 +3,7 @@
  * @name MainMenu_Screen_Controller
  * @module
  */
-define(['stage', 'core'], function (stage, core) {
+define(['stage', 'CuidandoBem'], function (stage, core) {
     /**
      * Description
      * @method load

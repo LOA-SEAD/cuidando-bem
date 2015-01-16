@@ -99,6 +99,7 @@ define({
         ]
     },
     alertas:{
+        generico:"Alerta do mentor",
         lavar_maos: {
             tipo1:[
                 "Nunca se esqueça de lavar as mãos antes e após tocar o paciente!",
