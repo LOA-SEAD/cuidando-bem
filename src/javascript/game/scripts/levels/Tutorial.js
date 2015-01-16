@@ -10,10 +10,8 @@ define(['../../modules/levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'Inter
         var Dialogs = require("Dialogs").tutorial;
         //endregion
 
-
         var level = new Level("Level Tutorial");
         console.groupCollapsed(level.getName());
-
 
         var flags_on = true;    // if false it wont check for flags -- tests purpose
         var visibility = true;
@@ -23,70 +21,6 @@ define(['../../modules/levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'Inter
         //region Scenes
 
         //region Recepcao
-        //endregion
-
-        //endregion
-
-        //region Modal Scenes
-
-        //endregion
-
-        //region Level
-        //region Register Scenes
-        //endregion
-
-        //region Register Modal Scenes
-        //endregion
-
-        //region Flags
-        //endregion
-
-        level.setInitialScene(0);
-        //endregion
-        var recepcao = new Scene("recepcao", "scene-recepcao",
-            recepcaoOnLoad, recepcaoOnUnload);
-        // Flags
-        level.registerFlag(new Flag("conversar_recepcionista"), false);
-
-        // Dialogs
-        var fala_recepcionista = [];
-        fala_recepcionista[0] = new Dialog(
-            "recepcionista", "char-recepcionista",Dialogs.recepcionista[0]);
-        fala_recepcionista[0].registerOption({
-            text: Dialogs.recepcionista[1],
-            actionFunction: function () {
-                level.getFlag("conversar_recepcionista").setValue(true);
-                console.log("Selecionado 1a opção diálogo: " + level.getFlag("conversar_recepcionista").getValue());
-                core.closeDialog(0);
-                core.openDialog(1);
-            }});
-
-        fala_recepcionista[1] = new Dialog(
-            "recepcionista", "char-recepcionista", Dialogs.recepcionista[2]);
-        fala_recepcionista[1].registerOption({
-            text: Dialogs.recepcionista[3],
-            actionFunction: function () {
-                console.log("Encerrar o diálogo");
-                core.closeDialog(1);
-                core.setActionVisible("btn-ir_corredor", true);
-                core.setActionVisible("btn-conversar_recepcionista", true);
-                core.setInteractiveObjectVisible("io-conversar_recepcionista", true);
-                core.setInteractiveObjectVisible("io-corredor_esquerda", true);
-                core.setInteractiveObjectVisible("io-corredor_direita", true);
-            }});
-
-        recepcao.registerDialogs(fala_recepcionista);
-
-        // Functions
-        function recepcaoOnLoad() {
-            core.openDialog(0);
-        }
-
-        function recepcaoOnUnload() {
-            core.closeDialog(0);
-            core.closeDialog(1);
-        }
-
         function recepcaoIrCorredor() {
             console.log("Funcao: recepcao_ir_corredor");
             if (!flags_on) {  // wont check for flags
@@ -112,65 +46,72 @@ define(['../../modules/levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'Inter
             core.openDialog(0);
         }
 
-        // Actions
-        recepcao.registerAction(
-            new Action("btn-ir_corredor","Ir ao corredor",
-                "action-ir_corredor", recepcaoIrCorredor, visibility));
-
-        recepcao.registerAction(
-            new Action("btn-conversar_recepcionista","Conversar com a recepcionista",
-                "action-abrir_dialogo", conversarRecepcionista, visibility));
-
-        // Interactive Objects
-        // # 3 - Falar com recepcionista
-        recepcao.registerInteractiveObject(
-            new InteractiveObject("io-conversar_recepcionista","Conversar com a recepcionista",
-                "intObj-falar_com_recepcionista", conversarRecepcionista, visibility));
-
-        recepcao.registerInteractiveObject(
-            new InteractiveObject("io-corredor_esquerda", "Ir ao corredor",
-                "intObj-ir_corredor_esq", recepcaoIrCorredor, visibility));
-
-        recepcao.registerInteractiveObject(
-            new InteractiveObject("io-corredor_direita", "Ir ao corredor",
-                "intObj-ir_corredor_dir", recepcaoIrCorredor, visibility));
-
-        /*
-         Scene:  Corredor
-         */
-        var corredor = new Scene("corredor", "scene-corredor", corredorOnLoad, corredorOnUnLoad);
-
-        // Flags
-        level.registerFlag(new Flag("conversar_mentor", false));
-        level.registerFlag(new Flag("passagem_corredor", 0));
-
-        // Dialogs
-        var fala_mentor = [];
-        fala_mentor[0] = new Dialog(
-            "mentor", "char-mentor", Dialogs.corredor[0]);
-        fala_mentor[0].registerOption({
-            text: Dialogs.corredor[1],
-            actionFunction: function () {
-                level.getFlag("conversar_mentor").setValue(true);
+        var recepcao = new Scene("recepcao", "scene-recepcao")
+            .setLoadFunction(function () {
+                core.openDialog(0);
+            })
+            .setUnloadFunction(function () {
                 core.closeDialog(0);
-                core.openDialog(1);
-            }
-        });
-        fala_mentor[1] = new Dialog(
-            "mentor", "char-mentor", Dialogs.corredor[2]);
-        fala_mentor[1].registerOption({
-            text: Dialogs.corredor[3],
-            actionFunction: function () {
                 core.closeDialog(1);
-                core.setActionVisible("btn-ir_sala_leitos", true);
-                core.setActionVisible("btn-conversar_mentor", true);
-                core.setInteractiveObjectVisible("io-ir_sala_leitos", true);
-            }
-        });
+            });
 
-        corredor.registerDialogs(fala_mentor);
+        recepcao.registerDialogs([
+            new Dialog("recepcionista", "char-recepcionista")
+                .setText(Dialogs.recepcionista[0])
+                .registerOption(Dialogs.recepcionista[1], function () {
+                    level.getFlag("conversar_recepcionista").setValue(true);
+                    console.log("Selecionado 1a opção diálogo: " + level.getFlag("conversar_recepcionista").getValue());
+                    core.closeDialog(0);
+                    core.openDialog(1);
+                }),
 
-        // Functions
+            new Dialog("recepcionista", "char-recepcionista")
+                .setText(Dialogs.recepcionista[2])
+                .registerOption(Dialogs.recepcionista[3], function () {
+                    console.log("Encerrar o diálogo");
+                    core.closeDialog(1);
+                    core.setActionVisible("btn-ir_corredor", true);
+                    core.setActionVisible("btn-conversar_recepcionista", true);
+                    core.setInteractiveObjectVisible("io-conversar_recepcionista", true);
+                    core.setInteractiveObjectVisible("io-corredor_esquerda", true);
+                    core.setInteractiveObjectVisible("io-corredor_direita", true);
+                })
+        ]);
+
+        recepcao.registerActions([
+            new Action("btn-ir_corredor","Ir ao corredor")
+                .setCssClass("action-ir_corredor")
+                .setFunction(recepcaoIrCorredor)
+                .setVisible(visibility),
+
+            new Action("btn-conversar_recepcionista","Conversar com a recepcionista")
+                .setCssClass("action-abrir_dialogo")
+                .setFunction(conversarRecepcionista)
+                .setVisible(visibility)
+        ]);
+
+        recepcao.registerInteractiveObjects([
+            new InteractiveObject("io-conversar_recepcionista","Conversar com a recepcionista")
+                .setCssClass("intObj-falar_com_recepcionista")
+                .setFunction(conversarRecepcionista)
+                .setVisible(visibility),
+
+
+            new InteractiveObject("io-corredor_esquerda", "Ir ao corredor")
+                .setCssClass("intObj-ir_corredor_esq")
+                .setFunction(recepcaoIrCorredor)
+                .setVisible(visibility),
+
+
+            new InteractiveObject("io-corredor_direita", "Ir ao corredor")
+                .setCssClass("intObj-ir_corredor_dir")
+                .setFunction(recepcaoIrCorredor)
+                .setVisible(visibility)
+        ]);
+
+        //endregion
+
+        //region Corredor
         function corredorOnLoad() {
             switch (level.getFlag("passagem_corredor").getValue()){
                 case 0: // first time at 'corredor'
@@ -222,494 +163,487 @@ define(['../../modules/levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'Inter
             }
         }
 
+        var corredor = new Scene("corredor", "scene-corredor", corredorOnLoad, corredorOnUnLoad);
+
+        corredor.registerDialogs([
+            new Dialog("mentor", "char-mentor")
+                .setText(Dialogs.corredor[0])
+                .registerOption(Dialogs.corredor[1], function () {
+                    level.getFlag("conversar_mentor").setValue(true);
+                    core.closeDialog(0);
+                    core.openDialog(1);
+                }),
+
+            new Dialog("mentor", "char-mentor")
+                .setText(Dialogs.corredor[2])
+                .registerOption(Dialogs.corredor[3],function () {
+                    core.closeDialog(1);
+                    core.setActionVisible("btn-ir_sala_leitos", true);
+                    core.setActionVisible("btn-conversar_mentor", true);
+                    core.setInteractiveObjectVisible("io-ir_sala_leitos", true);
+                })
+        ]);
+
+
+
         function corredorIrPostoEnfermagem() {
-                console.log("Action: corredorIrPostoEnfermagem");
-                core.changeScene(4);
+            console.log("Action: corredorIrPostoEnfermagem");
+            core.changeScene(4);
         }
 
-        function dialogarMentor(){
-            console.log("Abrir diálogo com o mentor");
-            core.openDialog(0);
-        }
-
-        // Actions
-        corredor.registerAction(
-            new Action("btn-conversar_mentor","Conversar com Mentor",
-                "action-abrir_dialogo", dialogarMentor, visibility));
-
-        corredor.registerAction(
-            new Action("btn-ir_sala_leitos","Ir para a sala de leitos masculino",
-                "action-ir_sala_de_leitos", corredorIrSalaLeitos, visibility));
-
-        corredor.registerAction(
-            new Action("btn-ir_posto_enfermagem","Ir para o posto de enfermagem",
-                "action-ir_posto_de_enfermagem", corredorIrPostoEnfermagem, visibility));
-
-        corredor.registerInteractiveObject(
-            new InteractiveObject("io-ir_sala_leitos","Ir para a sala de leitos masculino",
-                "intObj-ir_sala_de_leitos", corredorIrSalaLeitos, visibility));
-
-        corredor.registerInteractiveObject(
-            new InteractiveObject("io-ir_posto_enfermagem","Ir para o posto de enfermagem",
-                "intObj-ir_posto_de_enfermagem", corredorIrPostoEnfermagem, visibility));
-
-        corredor.registerInteractiveObject(
-            new InteractiveObject("io-conversar_mentor","Conversar com Mentor",
-                "intObj-conversar-mentor", dialogarMentor, visibility));
-
-        /*
-         Scene:  Sala de Leitos
-         */
-        var sala_de_leitos = new Scene(
-            "sala_de_leitos", "scene-sala_de_leitos", salaLeitosOnLoad, salaLeitosOnUnload);
-
-        // Flags
-        level.registerFlag(new Flag("passagem_sala-de-leitos", 0));
-
-        // Dialogs
-
-        // Functions
-        function salaLeitosOnLoad(){
-            switch (level.getFlag("passagem_sala-de-leitos").getValue()){
-                case 0:
-                    core.setActionVisible("btn-ir_leito", true);
-                    core.setActionVisible("btn-ir_corredor", false);
-                    break;
-                case 1:
-                    core.setActionVisible("btn-ir_leito", false);
-                    core.setActionVisible("btn-ir_corredor", true);
-                    break;
-            }
-        }
-        function salaLeitosOnUnload(){
-            switch (level.getFlag("passagem_sala-de-leitos").getValue()){
-                case 0:
-                    level.getFlag("passagem_sala-de-leitos").setValue(1);
-                    break;
-                case 1:
-                    level.getFlag("passagem_sala-de-leitos").setValue(0);
-                    break;
-            }
-        }
-        function salaLeitosIrCorredor(){
-            core.changeScene(1);
-        }
-        function salaLeitosIrLeito(){
-            core.changeScene(3);
-        }
-        // Actions
-        sala_de_leitos.registerAction(
-            new Action("btn-ir_corredor", "Ir ao corredor",
-                "action-ir_corredor", salaLeitosIrCorredor, visibility));
-        sala_de_leitos.registerAction(
-            new Action("btn-ir_leito", "Ir ao leito",
-                "action-leito-char-01", salaLeitosIrLeito, visibility));
-
-        /*
-         Scene: Leito
-         */
-        var leito = new Scene("leito", "scene-leito-char-01", leitoOnLoad, leitoOnUnload);
-
-        // Flags
-        level.registerFlag(new Flag("visita-leito", 0));
-        level.registerFlag(new Flag("lavar-maos", 0));
-
-        // Dialogs
-        var fala_cena3_leito_masculino = [];
-        fala_cena3_leito_masculino[0] = new Dialog(
-            "mentor", "char-mentor", Dialogs.leito.conversa1[0]);
-        fala_cena3_leito_masculino[0].registerOption({
-            text: Dialogs.leito.conversa1[1],
-            actionFunction: function () {
-                core.closeDialog(0);
-                core.openDialog(1);
-            }
-        });
-
-        fala_cena3_leito_masculino[1] = new Dialog(
-            "paciente", "char-paciente-01", Dialogs.leito.conversa1[2]);
-        fala_cena3_leito_masculino[1].registerOption({
-            text: Dialogs.leito.conversa1[3],
-            actionFunction: function () {
-                core.closeDialog(1);
-                core.openDialog(2);
-            }
-        });
-
-        fala_cena3_leito_masculino[2] = new Dialog(
-            "paciente", "char-paciente-01", Dialogs.leito.conversa1[4]);
-        fala_cena3_leito_masculino[2].registerOption({
-            text: Dialogs.leito.conversa1[5],
-            actionFunction: function () {
-                core.closeDialog(2);
-                core.openDialog(3);
-            }
-        });
-
-        fala_cena3_leito_masculino[3] = new Dialog(
-            "mentor", "char-mentor",Dialogs.leito.conversa1[6]);
-        fala_cena3_leito_masculino[3].registerOption({
-            text: Dialogs.leito.conversa1[7],
-            actionFunction: function () {
-                core.closeDialog(3);
-                core.setActionVisible("btn-pulseira_paciente", true);
-            }
-        });
-
-        var fala_cena4_leito_masculino = [];
-
-        fala_cena4_leito_masculino[0] = new Dialog(
-            "jogador", "char-jogador","");
-        fala_cena4_leito_masculino[0].registerOption({
-            text: Dialogs.leito.conversa2[0],
-            actionFunction: function () {
-                core.closeDialog(4);
-                core.openDialog(5);
-            }
-        });
-
-        fala_cena4_leito_masculino[1] = new Dialog(
-            "paciente", "char-paciente-01",Dialogs.leito.conversa2[1]);
-        fala_cena4_leito_masculino[1].registerOption({
-            text: Dialogs.leito.conversa2[2],
-            actionFunction: function () {
-                core.closeDialog(5);
-                core.openDialog(6);
-            }
-        });
-
-        fala_cena4_leito_masculino[2] = new Dialog(
-            "mentor", "char-mentor", Dialogs.leito.conversa2[3]);
-        fala_cena4_leito_masculino[2].registerOption({
-            text: Dialogs.leito.conversa2[4],
-            actionFunction: function () {
-                core.closeDialog(6);
-                core.setActionVisible("btn-lavar_maos", true);
-            }
-        });
-
-
-        leito.registerDialogs(fala_cena3_leito_masculino);
-        leito.registerDialogs(fala_cena4_leito_masculino);
-
-        // Functions
-        function leitoOnLoad() {
-            console.log("Leito: Onload");
-            switch (level.getFlag("visita-leito").getValue()){
-                case 0:
+        corredor.registerActions([
+            new Action("btn-conversar_mentor","Conversar com Mentor")
+                .setCssClass("action-abrir_dialogo")
+                .setFunction(function (){
+                    console.log("Abrir diálogo com o mentor");
                     core.openDialog(0);
-                    break;
-                case 1:
-                    core.setActionVisible("btn-ir_sala_leitos", false);
-                    core.openDialog(4);
-                    core.getFlag("termometro").setValue(false);
-                    core.getFlag("medidor-pressao").setValue(false);
-                    core.getFlag("oximetro").setValue(false);
-                    break;
-            }
-        }
-        function leitoOnUnload(){
-            console.log("Leito: OnUnload");
-            level.getFlag("visita-leito").setValue(1);
-        }
+                })
+                .setVisible(visibility),
 
-        function leitoIrCorredor(){
-            console.log("Action: action-ir_sala_de_leitos");
-            core.changeScene(2);
-        }
 
-        function leitoLavarMaos(){
-            console.log("Action: lavar_maos");
-            switch (level.getFlag("lavar-maos").getValue()){
-                case 0:
-                    level.getFlag("lavar-maos").setValue(1);
-                    core.setActionVisible("btn-frequencia_respiratoria", true);
-                    core.setActionVisible("btn-medir_pulso", true);
-                    core.setActionVisible("btn-medir_temperatura", true);
-                    core.setActionVisible("btn-lavar_maos", false);
-                    break;
-                case 2:
-                    level.getFlag("lavar-maos").setValue(3);
-                    core.setActionVisible("btn-lavar_maos", false);
-                    core.setActionVisible("btn-ler_prontuario", true);
-                    break;
-            }
-        }
+            new Action("btn-ir_sala_leitos","Ir para a sala de leitos masculino")
+                .setCssClass("action-ir_sala_de_leitos")
+                .setFunction(corredorIrSalaLeitos)
+                .setVisible(visibility),
 
-        function leitoMedirTemperatura(){
-            console.log("Action: medir_temperatura");
-            if(level.getFlag("lavar-maos").getValue() >= 1){
 
-                level.getFlag("termometro").setValue(true);
-                core.setActionVisible("btn-medir_temperatura", false);
+            new Action("btn-ir_posto_enfermagem","Ir para o posto de enfermagem")
+                .setCssClass("action-ir_posto_de_enfermagem")
+                .setFunction(corredorIrPostoEnfermagem)
+                .setVisible(visibility)
+        ]);
 
-                if(level.getFlag("oximetro").getValue() == true && level.getFlag("medidor-pressao").getValue() == true)
-                {
-                    core.setActionVisible("btn-lavar_maos", true);
-                    core.getFlag("lavar-maos").setValue(2);
+        corredor.registerInteractiveObject([
+            new InteractiveObject("io-ir_sala_leitos","Ir para a sala de leitos masculino")
+                .setCssClass("intObj-ir_sala_de_leitos")
+                .setFunction(corredorIrSalaLeitos)
+                .setVisible(visibility),
+
+            new InteractiveObject("io-ir_posto_enfermagem","Ir para o posto de enfermagem")
+                .setCssClass("intObj-ir_posto_de_enfermagem")
+                .setFunction(corredorIrPostoEnfermagem)
+                .setVisible(visibility),
+
+            new InteractiveObject("io-conversar_mentor","Conversar com Mentor")
+                .setCssClass("intObj-conversar-mentor")
+                .setFunction(function (){
+                    console.log("Abrir diálogo com o mentor");
+                    core.openDialog(0);
+                })
+                .setVisible(visibility)
+        ]);
+        //endregion
+
+        //region Sala de Leitos
+        var sala_de_leitos = new Scene("sala_de_leitos", "scene-sala_de_leitos")
+            .setLoadFunction(function (){
+                switch (level.getFlag("passagem_sala-de-leitos").getValue()){
+                    case 0:
+                        core.setActionVisible("btn-ir_leito", true);
+                        core.setActionVisible("btn-ir_corredor", false);
+                        break;
+                    case 1:
+                        core.setActionVisible("btn-ir_leito", false);
+                        core.setActionVisible("btn-ir_corredor", true);
+                        break;
                 }
-            }
-        }
-
-        function leitoMedirPulso(){
-            console.log("Action: medir_pulso");
-            if(level.getFlag("lavar-maos").getValue() >= 1){
-
-                level.getFlag("medidor-pressao").setValue(true);
-                core.setActionVisible("btn-medir_pulso", false);
-
-                if(level.getFlag("termometro").getValue() == true && level.getFlag("oximetro").getValue() == true)
-                {
-                    core.setActionVisible("btn-lavar_maos", true);
-                    core.getFlag("lavar-maos").setValue(2);
+            })
+            .setUnloadFunction( function (){
+                switch (level.getFlag("passagem_sala-de-leitos").getValue()){
+                    case 0:
+                        level.getFlag("passagem_sala-de-leitos").setValue(1);
+                        break;
+                    case 1:
+                        level.getFlag("passagem_sala-de-leitos").setValue(0);
+                        break;
                 }
-            }
-        }
+            });
 
-        function leitoMedirFreqRespiratoria(){
-            console.log("Action: medir_freq_respiratoria");
-            if(level.getFlag("lavar-maos").getValue() >= 1){
+        sala_de_leitos.registerActions([
+            new Action("btn-ir_corredor", "Ir ao corredor")
+                .setCssClass("action-ir_corredor")
+                .setFunction(function (){
+                    core.changeScene(1);
+                })
+                .setVisible(visibility),
 
-                level.getFlag("oximetro").setValue(true);
-                core.setActionVisible("btn-frequencia_respiratoria", false);
+            new Action("btn-ir_leito", "Ir ao leito")
+                .setCssClass("action-leito-char-01")
+                .setFunction( function (){
+                    core.changeScene(3);
+                })
+                .setVisible(visibility)
+        ]);
+        //endregion
 
-                if(level.getFlag("termometro").getValue() == true && level.getFlag("medidor-pressao").getValue() == true)
-                {
-                    core.setActionVisible("btn-lavar_maos", true);
-                    core.getFlag("lavar-maos").setValue(2);
+        //region Fim do Level
+        var fim_tutorial = new Scene("Fim da fase", "scene-fim-level")
+            .setLoadFunction(function (){
+                core.setActionVisible("btn-proxima_fase", true);
+            });
+
+        fim_tutorial.registerActions([
+            new Action("btn-proxima_fase", "Ir a recepção")
+                .setCssClass("action-ir_recepcao")
+                .setLoadFunction( function (){
+                    console.log("Proxima fase" + core);
+                    core.changeLevelTo(1);
+                })
+                .setVisible(visibility)
+        ]);
+        //endregion
+
+        //region Posto de Enfermagem
+        var posto_de_enfermagem = new Scene("posto_de_enfermagem", "scene-posto_de_enfermagem")
+            .setLoadFunction(function (){
+                core.setActionVisible("btn-abrir_gaveta", true);
+            });
+
+        posto_de_enfermagem.registerAction([
+            new Action("btn-ir_corredor", "Ir ao corredor")
+                .setCssClass("action-ir_corredor")
+                .setFunction(function (){
+                    console.log("Action: ir_corredor");
+                    core.changeScene(1);
+                })
+                .setVisible(visibility),
+
+            new Action("btn-abrir_gaveta", "Abrir gaveta")
+                .setCssClass("action-abrir_gaveta")
+                .setFunction( function () {
+                    console.log("Action: abrir_gaveta");
+                    core.openModalScene("Gaveta");
+
+                    core.setActionVisible("btn-fechar_gaveta", true);
+                    if(core.getFlag("termometro").getValue() != true)
+                        core.setActionVisible("btn-termometro", true);
+                    if(core.getFlag("medidor-pressao").getValue() != true)
+                        core.setActionVisible("btn-medidor_pressao", true);
+                    if(core.getFlag("oximetro").getValue() != true)
+                        core.setActionVisible("btn-oximetro", true);
+                })
+                .setVisible(visibility)
+        ]);
+        //endregion
+
+        //region Leito
+        var leito = new Scene("leito", "scene-leito-char-01")
+            .setLoadFunction(function () {
+                console.log("Leito: Onload");
+                switch (level.getFlag("visita-leito").getValue()){
+                    case 0:
+                        core.openDialog(0);
+                        break;
+                    case 1:
+                        core.setActionVisible("btn-ir_sala_leitos", false);
+                        core.openDialog(4);
+                        core.getFlag("termometro").setValue(false);
+                        core.getFlag("medidor-pressao").setValue(false);
+                        core.getFlag("oximetro").setValue(false);
+                        break;
                 }
-            }
-        }
+            })
+            .setUnloadFunction(function (){
+                console.log("Leito: OnUnload");
+                level.getFlag("visita-leito").setValue(1);
+            });
 
-        function lerProntuario(){
-            console.log("Action: ler prontuario");
-            core.openModalScene("Prontuario");
-        }
-        function anotarProntuario(){
-            console.log("Action: anotar prontuario");
-            core.closeModalScene("Prontuario");
-            core.changeScene(5);
-        }
+        leito.registerDialogs([
+            new Dialog("mentor", "char-mentor")
+                .setText(Dialogs.leito.conversa1[0])
+                .registerOption(Dialogs.leito.conversa1[1], function () {
+                    core.closeDialog(0);
+                    core.openDialog(1);
+                }),
 
-        function leitoPulseiraPaciente(){
-            console.log("Action: pulseira_paciente");
-            core.openModalScene("Pulseira");
-            core.setActionVisible("btn-confirmar_pulseira", true);
-            core.setInteractiveObjectVisible("io-confirmar_pulseira", true);
-        }
+            new Dialog("paciente", "char-paciente-01")
+                .setText(Dialogs.leito.conversa1[2])
+                .registerOption(Dialogs.leito.conversa1[3], function () {
+                    core.closeDialog(1);
+                    core.openDialog(2);
+                }),
 
-        // Actions
+            new Dialog("paciente", "char-paciente-01")
+                .setText(Dialogs.leito.conversa1[4])
+                .registerOption(Dialogs.leito.conversa1[5], function () {
+                    core.closeDialog(2);
+                    core.openDialog(3);
+                }),
 
-        leito.registerAction(
-            new Action("btn-ir_sala_leitos", "Ir para sala de leitos",
-                "action-ir_sala_de_leitos", leitoIrCorredor, visibility));
 
-        leito.registerAction(
-            new Action("btn-pulseira_paciente", "Checar pulseira paciente",
-                "action-pulseira_paciente", leitoPulseiraPaciente, visibility));
+            new Dialog("mentor", "char-mentor")
+                .setText(Dialogs.leito.conversa1[6])
+                .registerOption(Dialogs.leito.conversa1[7], function () {
+                    core.closeDialog(3);
+                    core.setActionVisible("btn-pulseira_paciente", true);
+                }),
 
-        leito.registerAction(
-            new Action("btn-lavar_maos", "Lavar as mãos",
-                "action-lavar_maos", leitoLavarMaos, visibility));
+            new Dialog("jogador", "char-jogador")
+                .setText("")
+                .registerOption(Dialogs.leito.conversa2[0], function () {
+                    core.closeDialog(4);
+                    core.openDialog(5);
+                }),
 
-        leito.registerAction(
-            new Action("btn-medir_temperatura", "Medir temperatura",
-                "action-medir_temperatura", leitoMedirTemperatura, visibility));
+            new Dialog("paciente", "char-paciente-01")
+                .setText(Dialogs.leito.conversa2[1])
+                .registerOption(Dialogs.leito.conversa2[2], function () {
+                    core.closeDialog(5);
+                    core.openDialog(6);
+                }),
 
-        leito.registerAction(
-            new Action("btn-medir_pulso", "Medir pulso",
-                "action-medir_pulso", leitoMedirPulso, visibility));
+            new Dialog("mentor", "char-mentor")
+                .setText(Dialogs.leito.conversa2[3])
+                .registerOption(Dialogs.leito.conversa2[4], function () {
+                    core.closeDialog(6);
+                    core.setActionVisible("btn-lavar_maos", true);
+                })
+        ]);
 
-        leito.registerAction(
-            new Action("btn-frequencia_respiratoria", "Medir frequência respiratória",
-                "action-medir_freq_respiratoria", leitoMedirFreqRespiratoria, visibility));
+        leito.registerActions([
+            new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
+                .setCssClass("action-ir_sala_de_leitos")
+                .setFunction(function (){
+                    console.log("Action: action-ir_sala_de_leitos");
+                    core.changeScene(2);
+                })
+                .setVisible(visibility),
 
-        leito.registerAction(
-            new Action("btn-ler_prontuario", "Ler prontuario",
-                "action-ler_prontuario", lerProntuario, visibility));
+            new Action("btn-pulseira_paciente", "Checar pulseira paciente")
+                .setCssClass("action-pulseira_paciente")
+                .setFunction(function (){
+                    console.log("Action: pulseira_paciente");
+                    core.openModalScene("Pulseira");
+                    core.setActionVisible("btn-confirmar_pulseira", true);
+                    core.setInteractiveObjectVisible("io-confirmar_pulseira", true);
+                })
+                .setVisible(visibility),
 
-        /*
-            Modal
-         */
-        var pulseira = new Scene("Pulseira", "modalScene-pulseira");
+            new Action("btn-lavar_maos", "Lavar as mãos")
+                .setCssClass("action-lavar_maos")
+                .setFunction(function (){
+                    console.log("Action: lavar_maos");
+                    switch (level.getFlag("lavar-maos").getValue()){
+                        case 0:
+                            level.getFlag("lavar-maos").setValue(1);
+                            core.setActionVisible("btn-frequencia_respiratoria", true);
+                            core.setActionVisible("btn-medir_pulso", true);
+                            core.setActionVisible("btn-medir_temperatura", true);
+                            core.setActionVisible("btn-lavar_maos", false);
+                            break;
+                        case 2:
+                            level.getFlag("lavar-maos").setValue(3);
+                            core.setActionVisible("btn-lavar_maos", false);
+                            core.setActionVisible("btn-ler_prontuario", true);
+                            break;
+                    }
+                })
+                .setVisible(visibility),
 
-        function leitoLargarPulseira(){
-            console.log("Ação: Fechar modal pulseira");
-            core.closeModalScene("Pulseira");
-            core.setActionVisible("btn-ir_sala_leitos", true);
-            core.setActionVisible("btn-pulseira_paciente", false);
-        }
+            new Action("btn-medir_temperatura", "Medir temperatura")
+                .setCssClass("action-medir_temperatura")
+                .setFunction(function (){
+                    console.log("Action: medir_temperatura");
+                    if(level.getFlag("lavar-maos").getValue() >= 1){
 
-        function leitoConfirmarPulseira(){
-            console.log("Ação: Confirmar pulseira");
-            core.setActionVisible("btn-confirmar_pulseira", false);
-            core.setInteractiveObjectVisible("io-confirmar_pulseira", false);
-            core.setActionVisible("btn-largar_pulseira", true);
-        }
+                        level.getFlag("termometro").setValue(true);
+                        core.setActionVisible("btn-medir_temperatura", false);
 
-        pulseira.registerAction(
-            new Action("btn-largar_pulseira", "Largar pulseira",
-                "action-pulseira_paciente", leitoLargarPulseira, visibility));
+                        if(level.getFlag("oximetro").getValue() == true && level.getFlag("medidor-pressao").getValue() == true)
+                        {
+                            core.setActionVisible("btn-lavar_maos", true);
+                            core.getFlag("lavar-maos").setValue(2);
+                        }
+                    }
+                })
+                .setVisible(visibility),
 
-        pulseira.registerAction(
-            new Action("btn-confirmar_pulseira", "Confirmar pulseira",
-                "action-confirmar_pulseira", leitoConfirmarPulseira, visibility));
+            new Action("btn-medir_pulso", "Medir pulso")
+                .setCssClass("action-medir_pulso")
+                .setFunction(function (){
+                    console.log("Action: medir_pulso");
+                    if(level.getFlag("lavar-maos").getValue() >= 1){
 
-        pulseira.registerInteractiveObject(
-            new Action("io-confirmar_pulseira", "Confirmar pulseira",
-                "intObj-confirmar_pulseira", leitoConfirmarPulseira, visibility));
+                        level.getFlag("medidor-pressao").setValue(true);
+                        core.setActionVisible("btn-medir_pulso", false);
 
-        level.registerModalScene(pulseira);
+                        if(level.getFlag("termometro").getValue() == true && level.getFlag("oximetro").getValue() == true)
+                        {
+                            core.setActionVisible("btn-lavar_maos", true);
+                            core.getFlag("lavar-maos").setValue(2);
+                        }
+                    }
+                })
+                .setVisible(visibility),
 
-        // Modal
-        var prontuario = new Scene("Prontuario", "modalScene-prontuario_joao");
 
-        prontuario.registerAction(
-            new Action("btn-anotar_prontuario", "Anotar prontuário",
-                "action-anotar_prontuario", anotarProntuario, true)
-        );
+            new Action("btn-frequencia_respiratoria", "Medir frequência respiratória")
+                .setCssClass("action-medir_freq_respiratoria")
+                .setFunction( function (){
+                    console.log("Action: medir_freq_respiratoria");
+                    if(level.getFlag("lavar-maos").getValue() >= 1){
 
-        level.registerModalScene(prontuario);
+                        level.getFlag("oximetro").setValue(true);
+                        core.setActionVisible("btn-frequencia_respiratoria", false);
 
-        /*
-         Scene: Posto de Enfermagem
-         */
-        var posto_de_enfermagem = new Scene("posto_de_enfermagem", "scene-posto_de_enfermagem",
-            postoEnfermagemOnload, postoEnfermagemOnUnload);
+                        if(level.getFlag("termometro").getValue() == true && level.getFlag("medidor-pressao").getValue() == true)
+                        {
+                            core.setActionVisible("btn-lavar_maos", true);
+                            core.getFlag("lavar-maos").setValue(2);
+                        }
+                    }
+                })
+                .setVisible(visibility),
 
-        // Flags
-        level.registerFlag(new Flag("termometro", false));
-        level.registerFlag(new Flag("medidor-pressao", false));
-        level.registerFlag(new Flag("oximetro", false));
-        // Dialogs
+            new Action("btn-ler_prontuario", "Ler prontuario")
+                .setCssClass("action-ler_prontuario")
+                .setFunction(function (){
+                    console.log("Action: ler prontuario");
+                    core.openModalScene("Prontuario");
+                })
+                .setVisible(visibility)
+        ]);
+        //endregion
+        //endregion
 
-        // Functions
-        function postoEnfermagemOnload(){
-            core.setActionVisible("btn-abrir_gaveta", true);
-        }
+        //region Modal Scenes
 
-        function postoEnfermagemOnUnload(){
-
-        }
-
-        function postoEnfermagemIrCorredor(){
-                console.log("Action: ir_corredor");
-                core.changeScene(1);
-        }
-
-        function postoEnfermagemAbrirGaveta() {
-            console.log("Action: abrir_gaveta");
-            core.openModalScene("Gaveta");
-
-            core.setActionVisible("btn-fechar_gaveta", true);
-            if(core.getFlag("termometro").getValue() != true)
-                core.setActionVisible("btn-termometro", true);
-            if(core.getFlag("medidor-pressao").getValue() != true)
-                core.setActionVisible("btn-medidor_pressao", true);
-            if(core.getFlag("oximetro").getValue() != true)
-                core.setActionVisible("btn-oximetro", true);
-        }
-
-        function postoEnfermagemPegarTermometro() {
-            console.log("Action: pegar_termometro");
-            core.setInteractiveObjectVisible("io-termometro", false);
-            core.setActionVisible("btn-termometro", false);
-            core.getFlag("termometro").setValue(true);
-        }
-
-        function postoEnfermagemPegarMedidorPressao() {
-            console.log("O medidor de pressão foi ativado");
-            core.setInteractiveObjectVisible("io-medidor_pressao", false);
-            core.setActionVisible("btn-medidor_pressao", false);
-            core.getFlag("medidor-pressao").setValue(true);
-        }
-
-        function postoEnfermagemPegarOximetro() {
-            console.log("Action: pegar_oximetro");
-            core.setInteractiveObjectVisible("io-oximetro", false);
-            core.setActionVisible("btn-oximetro", false);
-            core.getFlag("oximetro").setValue(true);
-        }
-
-        function postoEnfermagemFecharGaveta() {
-            console.log("Action: fechar_gaveta");
-            core.closeModalScene("Gaveta");
-            if(level.getFlag("termometro").getValue() == true &&
-                level.getFlag("oximetro").getValue() == true &&
-                level.getFlag("medidor-pressao").getValue() == true)
-                core.setActionVisible("btn-ir_corredor", true);
-        }
-
-        // Actions
-        posto_de_enfermagem.registerAction(
-            new Action("btn-ir_corredor", "Ir ao corredor",
-                "action-ir_corredor",postoEnfermagemIrCorredor, visibility));
-
-        posto_de_enfermagem.registerAction(
-            new Action("btn-abrir_gaveta", "Abrir gaveta",
-                "action-abrir_gaveta", postoEnfermagemAbrirGaveta, visibility));
-
+        //region Gaveta
         var gaveta = new Scene("Gaveta", "modalScene-gaveta");
 
-        gaveta.registerAction(
-            new Action("btn-fechar_gaveta", "Fechar gaveta",
-                "action-fechar_gaveta", postoEnfermagemFecharGaveta, visibility));
+        gaveta.registerAction([
+            new Action("btn-fechar_gaveta", "Fechar gaveta")
+                .setCssClass("action-fechar_gaveta")
+                .setFunction( function () {
+                    console.log("Action: fechar_gaveta");
+                    core.closeModalScene("Gaveta");
+                    if(level.getFlag("termometro").getValue() == true &&
+                        level.getFlag("oximetro").getValue() == true &&
+                        level.getFlag("medidor-pressao").getValue() == true)
+                        core.setActionVisible("btn-ir_corredor", true);
+                })
+                .setVisible(visibility),
 
-        gaveta.registerAction(
-            new Action("btn-termometro", "Pegar termômetro",
-                "action-pegar_termometro", postoEnfermagemPegarTermometro, visibility));
 
-        gaveta.registerAction(
-            new Action("btn-medidor_pressao", "Pegar medidor pressão",
-                "action-pegar_medidor_pressao", postoEnfermagemPegarMedidorPressao, visibility));
+            new Action("btn-termometro", "Pegar termômetro")
+                .setCssClass("action-pegar_termometro")
+                .setFunction(function () {
+                    console.log("Action: pegar_termometro");
+                    core.setInteractiveObjectVisible("io-termometro", false);
+                    core.setActionVisible("btn-termometro", false);
+                    core.getFlag("termometro").setValue(true);
+                })
+                .setVisible(visibility),
 
-        gaveta.registerAction(
-            new Action("btn-oximetro", "Pegar oxímetro",
-                "action-pegar_oximetro", postoEnfermagemPegarOximetro, visibility));
 
-        gaveta.registerInteractiveObject(
-            new InteractiveObject("io-termometro", "Termômetro",
-                "intObj-termometro", postoEnfermagemPegarTermometro));
+            new Action("btn-medidor_pressao", "Pegar medidor pressão")
+                .setCssClass("action-pegar_medidor_pressao")
+                .setFunction(function () {
+                    console.log("O medidor de pressão foi ativado");
+                    core.setInteractiveObjectVisible("io-medidor_pressao", false);
+                    core.setActionVisible("btn-medidor_pressao", false);
+                    core.getFlag("medidor-pressao").setValue(true);
+                })
+                .setVisible(visibility),
 
-        gaveta.registerInteractiveObject(
-            new InteractiveObject("io-medidor_pressao", "Medidor de pressão",
-                "intObj-medidor_pressao", postoEnfermagemPegarMedidorPressao));
 
-        gaveta.registerInteractiveObject(
-            new InteractiveObject("io-oximetro", "Oxímetro",
-                "intObj-oximetro", postoEnfermagemPegarOximetro));
+            new Action("btn-oximetro", "Pegar oxímetro")
+                .setCssClass("action-pegar_oximetro")
+                .setFunction(function () {
+                    console.log("Action: pegar_oximetro");
+                    core.setInteractiveObjectVisible("io-oximetro", false);
+                    core.setActionVisible("btn-oximetro", false);
+                    core.getFlag("oximetro").setValue(true);
+                })
+                .setVisible(visibility)
+        ]);
 
-        level.registerModalScene(gaveta);
+        gaveta.registerInteractiveObject([
+            new InteractiveObject("io-termometro", "Termômetro")
+                .setCssClass("intObj-termometro")
+                .setFunction(function () {
+                    console.log("Action: pegar_termometro");
+                    core.setInteractiveObjectVisible("io-termometro", false);
+                    core.setActionVisible("btn-termometro", false);
+                    core.getFlag("termometro").setValue(true);
+                }),
 
-        /*
-         Scene:  Fim do Tutorial
-         */
-        var fim_tutorial = new Scene("Fim da fase", "scene-fim-level",
-            fimTutorialOnload, fimTutorialOnUnload);
+            new InteractiveObject("io-medidor_pressao", "Medidor de pressão")
+                .setCssClass("intObj-medidor_pressao")
+                .setFunction(function () {
+                    console.log("O medidor de pressão foi ativado");
+                    core.setInteractiveObjectVisible("io-medidor_pressao", false);
+                    core.setActionVisible("btn-medidor_pressao", false);
+                    core.getFlag("medidor-pressao").setValue(true);
+                }),
 
-        // Flags
+            new InteractiveObject("io-oximetro", "Oxímetro")
+                .setCssClass("intObj-oximetro")
+                .setFunction(function () {
+                    console.log("Action: pegar_oximetro");
+                    core.setInteractiveObjectVisible("io-oximetro", false);
+                    core.setActionVisible("btn-oximetro", false);
+                    core.getFlag("oximetro").setValue(true);
+                })
+        ]);
+        //endregion
 
-        // Dialogs
+        //region Prontuario
+        var prontuario = new Scene("Prontuario", "modalScene-prontuario_joao");
 
-        // Functions
-        function fimTutorialOnload(){
-            core.setActionVisible("btn-proxima_fase", true);
-        }
+        prontuario.registerActions([
+            new Action("btn-anotar_prontuario", "Anotar prontuário")
+                .setCssClass("action-anotar_prontuario")
+                .setFunction(function (){
+                    console.log("Action: anotar prontuario");
+                    core.closeModalScene("Prontuario");
+                    core.changeScene(5);
+                })
+        ]);
+        //endregion
 
-        function fimTutorialOnUnload(){
+        //region Pulseira
+        var pulseira = new Scene("Pulseira", "modalScene-pulseira");
 
-        }
+        pulseira.registerActions([
+            new Action("btn-largar_pulseira", "Largar pulseira")
+                .setCssClass("action-pulseira_paciente")
+                .setFunction(function (){
+                    console.log("Ação: Fechar modal pulseira");
+                    core.closeModalScene("Pulseira");
+                    core.setActionVisible("btn-ir_sala_leitos", true);
+                    core.setActionVisible("btn-pulseira_paciente", false);
+                })
+                .setVisible(visibility),
 
-        function fimTutorialIrCorredor(){
-            console.log("Proxima fase" + core);
-            core.changeLevelTo(1);
-        }
+            new Action("btn-confirmar_pulseira", "Confirmar pulseira")
+                .setCssClass("action-confirmar_pulseira")
+                .setFunction(function (){
+                    console.log("Ação: Confirmar pulseira");
+                    core.setActionVisible("btn-confirmar_pulseira", false);
+                    core.setInteractiveObjectVisible("io-confirmar_pulseira", false);
+                    core.setActionVisible("btn-largar_pulseira", true);
+                })
+                .setVisible(visibility)
+        ]);
 
-        // Actions
-        fim_tutorial.registerAction(
-            new Action("btn-proxima_fase", "Ir a recepção",
-                "action-ir_recepcao", fimTutorialIrCorredor, visibility));
+        pulseira.registerInteractiveObjects([
+            new Action("io-confirmar_pulseira", "Confirmar pulseira")
+                .setCssClass("intObj-confirmar_pulseira")
+                .setFunction(function (){
+                    console.log("Ação: Confirmar pulseira");
+                    core.setActionVisible("btn-confirmar_pulseira", false);
+                    core.setInteractiveObjectVisible("io-confirmar_pulseira", false);
+                    core.setActionVisible("btn-largar_pulseira", true);
+                })
+                .setVisible(visibility)
+        ]);
+        //endregion
 
+        //endregion
+
+        //region Level
+        //region Register Scenes
         level.registerScene(recepcao);
         level.registerScene(corredor);
         level.registerScene(sala_de_leitos);
@@ -717,8 +651,30 @@ define(['../../modules/levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'Inter
         level.registerScene(posto_de_enfermagem);
         level.registerScene(fim_tutorial);
 
+        //endregion
+
+        //region Register Modal Scenes
+        level.registerModalScene(pulseira);
+        level.registerModalScene(prontuario);
+        level.registerModalScene(gaveta);
+        //endregion
+
+        //region Flags
+        level.registerFlag(new Flag("conversar_recepcionista"), false);
+        level.registerFlag(new Flag("conversar_mentor", false));
+        level.registerFlag(new Flag("passagem_corredor", 0));
+        level.registerFlag(new Flag("passagem_sala-de-leitos", 0));
+        level.registerFlag(new Flag("visita-leito", 0));
+        level.registerFlag(new Flag("lavar-maos", 0));
+        level.registerFlag(new Flag("termometro", false));
+        level.registerFlag(new Flag("medidor-pressao", false));
+        level.registerFlag(new Flag("oximetro", false));
+        //endregion
+
         level.setInitialScene(0);
+        //endregion
 
         game.registerLevel(level, 0);
+
         console.groupEnd();
     });
