@@ -3,7 +3,7 @@
  New levels can easily be made by adding new game levels.
 
  */
-define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons'],
+define(['../../modules/levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons'],
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, Commons) {
 
         //region Imports
@@ -521,7 +521,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //endregion
 
-        //region Modal Scene
+        //region Modal Scenes
 
         //region Prontuario
         var prontuario = new Scene("Prontuario")
@@ -628,17 +628,23 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Level
+        //region Register Scenes
+        level.registerScene(recepcao);
         level.registerScene(corredor);
         level.registerScene(ala_masculina);
         level.registerScene(leito);
         level.registerScene(posto_de_enfermagem);
         level.registerScene(fim_alfa);
+        //endregion
 
+        //region Register Modal Scenes
         level.registerModalScene(prontuario);
         level.registerModalScene(gaveta);
         level.registerModalScene(carlos_esme_gouvea);
         level.registerModalScene(pulseira);
+        //endregion
 
+        //region Flags
         level.registerFlag(new Flag("lavar_maos", false));
         level.registerFlag(new Flag("examinou_paciente", false));
 
@@ -651,8 +657,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         level.registerFlag(new Flag("mentor_dialogo", true));
         level.registerFlag(new Flag("buscar_coxim", false));
-
-        level.registerScene(recepcao);
+        //endregion
 
         level.setInitialScene(0);
         //endregion

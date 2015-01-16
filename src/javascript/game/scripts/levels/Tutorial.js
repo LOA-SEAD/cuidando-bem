@@ -3,9 +3,12 @@
  New levels can easily be made by adding new game levels.
  */
 
-define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons'],
+define(['../../modules/levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons'],
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib) {
+
+        //region Imports
         var Dialogs = require("Dialogs").tutorial;
+        //endregion
 
 
         var level = new Level("Level Tutorial");
@@ -13,15 +16,33 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
 
         var flags_on = true;    // if false it wont check for flags -- tests purpose
-
+        var visibility = true;
         if (flags_on)
-            var visibility = false;
-        else
-            var visibility = true;
+            visibility = true;
 
-        /*
-         Scene:  Recepcao
-         */
+        //region Scenes
+
+        //region Recepcao
+        //endregion
+
+        //endregion
+
+        //region Modal Scenes
+
+        //endregion
+
+        //region Level
+        //region Register Scenes
+        //endregion
+
+        //region Register Modal Scenes
+        //endregion
+
+        //region Flags
+        //endregion
+
+        level.setInitialScene(0);
+        //endregion
         var recepcao = new Scene("recepcao", "scene-recepcao",
             recepcaoOnLoad, recepcaoOnUnload);
         // Flags

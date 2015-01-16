@@ -6,7 +6,7 @@
 
 define([], function () {
 
-    var generalPath = "./game/scripts/";
+    var generalPath = "./game/scripts/levels/";
     var filePaths = [
         "Tutorial",
         "Fase1",

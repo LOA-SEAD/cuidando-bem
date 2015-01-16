@@ -3,7 +3,7 @@
  New levels can easily be made by adding new game levels.
  */
 
-define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem'],
+define(['../../modules/levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem'],
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core) {
         var debug_mode = true;
 
