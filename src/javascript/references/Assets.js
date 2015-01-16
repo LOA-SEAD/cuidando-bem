@@ -1,0 +1,8 @@
+define({
+    images: {
+
+    },
+    sounds:{
+
+    }
+});

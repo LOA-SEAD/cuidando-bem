@@ -20,7 +20,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Scenes
 
         //region Recepcao
-        var recepcao = new Scene("recepcao", "scene-recepcao")
+        var recepcao = new Scene("recepcao")
+            .setCssClass("scene-recepcao")
             .setLoadFunction(function (){
                 if(flags_on){
                     core.openDialog(0);
@@ -63,7 +64,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Corredor
-        var corredor = new Scene("corredor", "scene-corredor")
+        var corredor = new Scene("corredor")
+            .setCssClass("scene-corredor")
             .setLoadFunction(function(){
                 if(flags_on == true){
                     // primeira vez no corredor - ainda nao falou com o paciente
@@ -219,7 +221,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Ala Masculina
-        var ala_masculina = new Scene("ala_masculina", "scene-ala_masculina")
+        var ala_masculina = new Scene("ala_masculina")
+            .setCssClass("scene-ala_masculina")
             .setLoadFunction(function (){
                 if(flags_on == true){
                     if(level.getFlag("posicionou_coxim").getValue() == false){
@@ -344,7 +347,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Leito
-        var leito = new Scene("leito", "scene-leito-char-02")
+        var leito = new Scene("leito")
+            .setCssClass("scene-leito-char-02")
             .setLoadFunction(function (){
                 if(flags_on == true){
                     if(level.getFlag("conversar_paciente").getValue() == true){
@@ -469,7 +473,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Posto de Enfermagem
-        var posto_de_enfermagem = new Scene("posto_de_enfermagem", "scene-posto_de_enfermagem")
+        var posto_de_enfermagem = new Scene("posto_de_enfermagem")
+            .setCssClass("scene-posto_de_enfermagem")
             .setLoadFunction(function (){
                 core.setActionVisible("btn-abrir_gaveta", true);
                 core.setActionVisible("btn-ir_corredor", true);
@@ -497,7 +502,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Fim Alfa
-        var fim_alfa = new Scene("Fim da fase", "scene-fim-alfa")
+        var fim_alfa = new Scene("Fim da fase")
+            .setCssClass("scene-fim-alfa")
             .setLoadFunction(function(){
                 core.setActionVisible("btn-voltar_menu", true)
             });
@@ -518,7 +524,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Modal Scene
 
         //region Prontuario
-        var prontuario = new Scene("Prontuario", "modalScene-prontuario_carlos");
+        var prontuario = new Scene("Prontuario")
+            .setCssClass("modalScene-prontuario_carlos");
 
         prontuario.registerActions([
             new Action("btn-anotar_prontuario", "Anotar prontuário")
@@ -534,7 +541,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Paciente
-        var carlos_esme_gouvea = new Scene("Carlos Esme Gouvea", "modalScene-carlos_esme_gouvea");
+        var carlos_esme_gouvea = new Scene("Carlos Esme Gouvea")
+            .setCssClass("modalScene-carlos_esme_gouvea");
         carlos_esme_gouvea.registerActions([
             new Action("btn-fechar_carlos", "Fechar Carlos")
                 .setCssClass("action-fechar_modal")
@@ -544,7 +552,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Pulseira
-        var pulseira = new Scene("Pulseira", "modalScene-pulseira");
+        var pulseira = new Scene("Pulseira")
+            .setCssClass("modalScene-pulseira");
 
         pulseira.registerActions([
             new Action("btn-largar_pulseira", "Largar pulseira")
@@ -582,7 +591,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 }
             }
         }
-        var gaveta = new Scene("Gaveta", "modalScene-gaveta");
+        var gaveta = new Scene("Gaveta")
+            .setCssClass("modalScene-gaveta");
         gaveta.registerActions([
             new Action("btn-fechar_gaveta", "Fechar gaveta")
                 .setCssClass("action-fechar_gaveta")
