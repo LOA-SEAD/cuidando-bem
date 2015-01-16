@@ -3,7 +3,7 @@
  New levels can easily be made by adding new game levels.
  */
 
-define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'core', 'Commons'],
+define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons'],
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib) {
         var Dialogs = require("Dialogs").tutorial;
 

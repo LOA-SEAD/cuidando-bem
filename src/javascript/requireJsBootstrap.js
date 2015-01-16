@@ -6,7 +6,7 @@
 
 //Configure all files paths, so inside each module the files address are shorter
 require.config({
-    baseUrl: 'scripts/',
+    baseUrl: 'javascript/',
     paths: {
         //Libs
         jquery: '../../libs/jquery/dist/jquery.min',
@@ -17,35 +17,30 @@ require.config({
         Errors: 'references/Errors',
         Dialogs: 'references/Dialogs',
         //Configs
-        gameConfig: 'controller/gameConfig',
-        stageConfig: 'stageConfig/stageConfig',
+        gameConfig: 'game/scripts/gameConfig',
+        stageConfig: 'game/scripts/stageConfig',
 
-        Commons: 'gameConfig/Commons',
+        Commons: 'game/scripts/Commons',
 
         //Models
-        Scene: 'model/classes/class_scene',
-        Flag: 'model/classes/class_flag',
-        Action: 'model/classes/class_action',
-        Level: 'model/classes/class_level',
-        Dialog: 'model/classes/class_dialog',
-        InteractiveObject: 'model/classes/class_interactiveObject',
+        Scene: 'engine/modules/scenes/Scene',
+        Flag: 'game/modules/Flag',
+        Action: 'engine/modules/actions_bar/Action',
+        Level: 'game/modules/Level',
+        Dialog: 'engine/modules/dialogs/Dialog',
+        InteractiveObject: 'engine/modules/interactive_objects/InteractiveObject',
 
-        levelsData: 'model/levelsData',
+        levelsData: 'game/modules/levelsData',
 
-        //Controller
-        levelsData_interface: 'controller/levelsData_interface',
+        stage: 'engine/core/stage',
+        CuidandoBem: 'game/modules/CuidandoBem',
 
-        stage: 'controller/stage',
-        core: 'controller/core',
-
-        commandBar: 'controller/coreControllers/commandBar_game_controller',
-        dialogModal: 'controller/coreControllers/dialogModal_game_controller',
-        endOfLevel: 'controller/coreControllers/endOfLevel_game_controller',
-        interactiveObjects: "controller/coreControllers/interactiveObjects_game_controller",
-        modalScene: "controller/coreControllers/modalScene_game_controller",
-        scene: 'controller/coreControllers/scene_game_controller'
-
-
+        commandBar: 'engine/modules/command_bar/CommandBarController',
+        dialogModal: 'engine/modules/dialogs/DialogsController',
+        endOfLevel: 'engine/modules/end_of_level/EndOfLevelController',
+        interactiveObjects: "engine/modules/interactive_objects/InteractiveObjectsController",
+        modalScene: "engine/modules/scenes/ModalSceneController",
+        scene: 'engine/modules/scenes/SceneController'
     }
 });
 //Init the app when everything is ready
