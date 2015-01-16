@@ -8,8 +8,8 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
 //Attributes
     var dialogModalSelector = "#dialogBar";
 
+    var dialogCharNameSelector = ".dialog_charName";
     var dialogTextSelector = ".dialog_mainText";
-    var dialogCharImgSelector = ".char_img";
     var dialogOptionsSelector = ".dialog_options";
 
     var isDialogOpen = false;
@@ -47,8 +47,14 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
     function openDialog(_dialog) {
         dialog = _dialog;
 
-        $(dialogModalSelector).css("display", "table");
-        changeDialogTo(_dialog);
+        //$(dialogModalSelector).css("display", "table");
+        //$(dialogModalSelector).hide()
+        $(dialogModalSelector).show("fade",{
+            duration: 200,
+            complete: function() {
+                changeDialogTo(_dialog);
+            }
+        });
 
         isDialogOpen = true;
     }
@@ -60,9 +66,44 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
      * @memberOf module:DialogModal_Game_Controller
      */
     function changeDialogTo(_dialog) {
+
+        // type of animation to be executed
+        var charNameAnimation = "blind";
+        var textAnimation = "clip";
+        var duration = 250;
+
+        // if first time hide everything to animate later
+        if( isDialogOpen == false){
+            $(dialogModalSelector + " div").hide();
+            animation();
+        }
+        // if already opened, keep the charName and animate the rest
+        else {
+            $(dialogTextSelector).hide();
+            $(dialogOptionsSelector).hide();
+            animation();
+        }
+
+        // set the text for charName, dialog text and answer options
+        $(dialogCharNameSelector).text(_dialog.getSpeakerName());
         $(dialogTextSelector).text(_dialog.getText());
-        $(dialogCharImgSelector).attr('class', dialogCharImgSelector.substr(1) + ' ' + _dialog.getSpeakerCssClass());
         changeDialogOptionsTo(_dialog.getOptions());
+
+        // animation for dialog
+        function animation(){
+            $(dialogCharNameSelector).first().show(charNameAnimation, {
+                duration: duration,
+                complete: function() {
+                    $(dialogTextSelector).show(textAnimation, {
+                        duration: duration,
+                        complete: function() {
+                            $(dialogOptionsSelector).show(textAnimation)
+                        }
+                    })
+                }
+            });
+        }
+        //$(dialogCharNameSelector).attr('class', dialogCharNameSelector.substr(1) + ' ' + _dialog.getSpeakerCssClass());
     }
 
     /**
@@ -82,7 +123,8 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
      * @memberOf module:DialogModal_Game_Controller
      */
     function close() {
-        $(dialogModalSelector).css("display", "none");
+
+        $(dialogModalSelector).hide("fade", 200);
 
         isDialogOpen = false;
     }

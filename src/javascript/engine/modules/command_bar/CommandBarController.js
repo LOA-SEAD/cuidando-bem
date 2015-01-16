@@ -64,6 +64,14 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
         }
     }
 
+    function hide(){
+        $(barSelector).hide();
+    }
+
+    function show(){
+        $(barSelector).show();
+    }
+
     //Add a button into the UI
     /**
      * Description
@@ -221,6 +229,10 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
     return {
         init: init,
         close: close,
+
+        hide: hide,
+        show: show,
+
         addActionButton: addActionButton,
         addAllActionButtons: addAllActionButtons,
         changeToActionsButtons: changeToActionsButtons,

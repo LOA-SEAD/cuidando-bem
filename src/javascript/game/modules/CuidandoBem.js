@@ -35,6 +35,7 @@ define(['stage', './levelsData', 'commandBar', 'dialogModal', 'interactiveObject
         console.group("Game Running:");
 
         changeLevel(game.getInitialLevel());
+        CommandBar.hide();
         startLevel();
     }
 
@@ -383,7 +384,7 @@ define(['stage', './levelsData', 'commandBar', 'dialogModal', 'interactiveObject
 
 
 //Public Interface
-    return {
+    var ret = {
         start: start,
         changeScene: changeScene,
         changeLevelTo: changeLevelTo,
@@ -421,5 +422,20 @@ define(['stage', './levelsData', 'commandBar', 'dialogModal', 'interactiveObject
         goBackToMenu: goBackToMenu,
 
         changeSceneCssClassTo: changeSceneCssClassTo
-    }
+    };
+
+
+    window.gameShark = {
+        stage:stage,
+        game:game,
+        CommandBar: CommandBar,
+        Dialog:Dialog,
+        InteractiveObject:InteractiveObject,
+        ModalScene: ModalScene,
+        Scene_con:Scene_con,
+        endOfLevel:endOfLevel,
+        core: ret
+    };
+
+    return ret;
 });
