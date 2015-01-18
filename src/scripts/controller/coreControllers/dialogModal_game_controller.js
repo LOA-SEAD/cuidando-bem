@@ -11,8 +11,10 @@ define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function (c
     var dialogCharNameSelector = ".dialog_charName";
     var dialogTextSelector = ".dialog_mainText";
     var dialogOptionsSelector = ".dialog_options";
+    var dialogButtonSelector = ".dialog_right";
 
     var isDialogOpen = false;
+
 //Methods
     //Init
     /**
@@ -113,8 +115,28 @@ define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function (c
      * @memberOf module:DialogModal_Game_Controller
      */
     function changeDialogOptionsTo(_options) {
+
+        // remove all dialog buttons (answer options)
         removeAllDialogButtons();
-        addAllDialogButtons(_options);
+
+        // if only one option and there's no text on it
+        // the 'next' arrow will show up on the dialog
+        if(_options.length == 1 && _options[0].text == '')
+        {
+            console.log("Show `next arrow` on dialog");
+            var element = $(dialogButtonSelector);
+            element.click(_options[0].actionFunction);
+            element.on();
+            $(dialogButtonSelector).removeClass("off");
+            $(dialogButtonSelector).addClass("on");
+            $(dialogButtonSelector).append(element);
+        }
+        // if there's dialog options to be shown (answers)
+        else
+        {
+            console.log("Show 'options' on dialog");
+            addAllDialogButtons(_options);
+        }
     }
 
     /**
@@ -196,6 +218,10 @@ define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function (c
      */
     function removeAllDialogButtons() {
         $(dialogOptionsSelector).empty();
+        $(dialogButtonSelector).empty();
+        $(dialogButtonSelector).off();
+        $(dialogButtonSelector).removeClass("on");
+        $(dialogButtonSelector).addClass("off");
     }
 
 //Getters
