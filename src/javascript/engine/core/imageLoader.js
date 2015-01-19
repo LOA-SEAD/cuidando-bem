@@ -1,4 +1,4 @@
-define(["Sounds"], function(Sounds){
+define(["Images"], function(Images){
 
 	
 	

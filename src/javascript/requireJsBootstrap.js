@@ -8,6 +8,8 @@
 require.config({
     baseUrl: 'javascript/',
     paths: {
+        Player: 'engine/core/Player',
+        ImageLoader: 'engine/core/ImageLoader',
         //Libs
         jquery: '../../libs/jquery/dist/jquery.min',
         jqueryui: '../../libs/jquery-ui/jquery-ui.min',
@@ -17,7 +19,8 @@ require.config({
         //Refs
         Errors: 'references/Errors',
         Dialogs: 'references/Dialogs',
-        Assets: 'references/Assets',
+        Images: 'references/Images',
+        Sounds: 'references/Sounds',
         //Configs
         gameConfig: 'game/scripts/gameConfig',
         stageConfig: 'game/scripts/stageConfig',
@@ -45,9 +48,9 @@ require.config({
         scene: 'engine/modules/scenes/SceneController'
     }
 });
+require(['Errors', 'Dialogs', 'Images', 'Sounds']);
 //Init the app when everything is ready
-//require(['levelsData']);
-require(['Errors', 'Dialogs', 'Assets']);
+require(['Player']);
 
 require(["jquery", "less"], function () {
     console.group(" 'Cuidando Bem' Log:");
