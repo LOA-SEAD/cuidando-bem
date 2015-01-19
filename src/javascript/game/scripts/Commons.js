@@ -6,9 +6,10 @@
 define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem'],
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core) {
         console.groupCollapsed("Commons:");
-        var lib = {};
 
-        lib.voltarMenu = new Action();
+        var lib = {
+            sceneLobby : new Scene("lobby", "scene-lobby")
+        };
 
         console.groupEnd();
         return lib;

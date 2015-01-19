@@ -20,6 +20,30 @@
   text-decoration: none;
 }
 
+.dialog_left {
+  position: absolute;
+  left: 0;
+  width: 95%;
+  height: 75%;
+}
+.dialog_right {
+  position: absolute;
+  text-align: center;
+  right: 0;
+  width: 5%;
+  height: 75%;
+
+}
+.on {
+  background: @arrow_dialog_button no-repeat center;
+}
+.on:hover {
+  background-image: @arrow_dialog_button-hover;
+}
+.off {
+  background-image: none;
+}
+
 .dialog_mainText {
   padding: @dialogMainText-padding;
   font-weight: bold;
