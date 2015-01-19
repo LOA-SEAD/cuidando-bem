@@ -9,6 +9,7 @@ define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function (c
     var dialogModalSelector = "#dialogBar";
 
     var dialogCharNameSelector = ".dialog_charName";
+    var dialogCharImg = "#dialog_charImg";
     var dialogTextSelector = ".dialog_mainText";
     var dialogOptionsSelector = ".dialog_options";
     var dialogButtonSelector = ".dialog_right";
@@ -88,6 +89,7 @@ define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function (c
 
         // set the text for charName, dialog text and answer options
         $(dialogCharNameSelector).text(_dialog.getSpeakerName());
+        $(dialogCharImg).addClass(_dialog.getSpeakerCssClass());
         $(dialogTextSelector).text(_dialog.getText());
         changeDialogOptionsTo(_dialog.getOptions());
 

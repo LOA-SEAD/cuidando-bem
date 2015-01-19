@@ -22,15 +22,16 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         /*
          Scene:  Recepcao
          */
-        var recepcao = new Scene("recepcao", "scene-recepcao",
+        var lobby = new Scene("lobby", "scene-lobby",
             recepcaoOnLoad, recepcaoOnUnload);
+
         // Flags
         level.registerFlag(new Flag("conversar_recepcionista"), false);
 
         // Dialogs
         var fala_recepcionista = [];
         fala_recepcionista[0] = new Dialog(
-            "recepcionista", "char-recepcionista",Dialogs.recepcionista[0]);
+            "recepcionista", "char-receptionist",Dialogs.recepcionista[0]);
         fala_recepcionista[0].registerOption({
             text: Dialogs.recepcionista[1],
             actionFunction: function () {
@@ -41,7 +42,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             }});
 
         fala_recepcionista[1] = new Dialog(
-            "recepcionista", "char-recepcionista", Dialogs.recepcionista[2]);
+            "recepcionista", "char-receptionist", Dialogs.recepcionista[2]);
         fala_recepcionista[1].registerOption({
             text: Dialogs.recepcionista[3],
             actionFunction: function () {
@@ -54,7 +55,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 core.setInteractiveObjectVisible("io-corredor_direita", true);
             }});
 
-        recepcao.registerDialogs(fala_recepcionista);
+        lobby.registerDialogs(fala_recepcionista);
 
         // Functions
         function recepcaoOnLoad() {
@@ -92,25 +93,25 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         }
 
         // Actions
-        recepcao.registerAction(
+        lobby.registerAction(
             new Action("btn-ir_corredor","Ir ao corredor",
                 "action-ir_corredor", recepcaoIrCorredor, visibility));
 
-        recepcao.registerAction(
+        lobby.registerAction(
             new Action("btn-conversar_recepcionista","Conversar com a recepcionista",
                 "action-abrir_dialogo", conversarRecepcionista, visibility));
 
         // Interactive Objects
         // # 3 - Falar com recepcionista
-        recepcao.registerInteractiveObject(
+        lobby.registerInteractiveObject(
             new InteractiveObject("io-conversar_recepcionista","Conversar com a recepcionista",
                 "intObj-falar_com_recepcionista", conversarRecepcionista, visibility));
 
-        recepcao.registerInteractiveObject(
+        lobby.registerInteractiveObject(
             new InteractiveObject("io-corredor_esquerda", "Ir ao corredor",
                 "intObj-ir_corredor_esq", recepcaoIrCorredor, visibility));
 
-        recepcao.registerInteractiveObject(
+        lobby.registerInteractiveObject(
             new InteractiveObject("io-corredor_direita", "Ir ao corredor",
                 "intObj-ir_corredor_dir", recepcaoIrCorredor, visibility));
 
@@ -689,7 +690,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             new Action("btn-proxima_fase", "Ir a recepção",
                 "action-ir_recepcao", fimTutorialIrCorredor, visibility));
 
-        level.registerScene(recepcao);
+        level.registerScene(lobby);
         level.registerScene(corredor);
         level.registerScene(sala_de_leitos);
         level.registerScene(leito);
