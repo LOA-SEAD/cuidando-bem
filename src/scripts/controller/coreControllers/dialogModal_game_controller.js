@@ -52,6 +52,7 @@ define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function (c
 
         //$(dialogModalSelector).css("display", "table");
         //$(dialogModalSelector).hide()
+        $("#interactiveArea").toggleClass("interactiveArea-mask");
         $(dialogModalSelector).show("fade",{
             duration: 200,
             complete: function() {
@@ -97,6 +98,7 @@ define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function (c
         function animation(){
             $(dialogCharNameSelector).first().show(charNameAnimation, {
                 duration: duration,
+                progress: function() {$(dialogCharImg.show(charNameAnimation))},
                 complete: function() {
                     $(dialogTextSelector).show(textAnimation, {
                         duration: duration,
@@ -149,7 +151,7 @@ define(['core', 'text!../html/templates/dialogButtonTemplate.html'], function (c
     function close() {
 
         $(dialogModalSelector).hide("fade", 200);
-
+        $("#interactiveArea").toggleClass("interactiveArea-mask");
         isDialogOpen = false;
     }
 
