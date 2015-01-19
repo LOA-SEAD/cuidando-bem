@@ -27,6 +27,7 @@ define(function () {
         if(_name == null)
             _name = "";
 
+        var id = _id;
 
         var name = _name;
         var cssClass = "noTexture";
@@ -61,7 +62,7 @@ define(function () {
          *
          * @memberOf Scene#
          */
-        function unload() {
+        function unload() {thi
             console.info("Scene " + name + " unload function");
             unloadFunction();
         }
@@ -69,18 +70,18 @@ define(function () {
         //Getters
         function getClone(){
             var scene_clone = new Scene(id, name)
-                .setCssClass(cssClass)
+                .setCssClass(getCssClass())
                 .setLoadFunction(loaderFunction)
                 .setUnloadFunction(unloadFunction);
 
             for(dialog in dialogs)
-                scene_clone.registerDialog(dialog.getClone());
+                scene_clone.registerDialog(dialogs[dialog].getClone());
 
             for(interactiveObject in interactiveObjects)
-                scene_clone.registerInteractiveObject(interactiveObject.getClone());
+                scene_clone.registerInteractiveObject(interactiveObjects[interactiveObject].getClone());
 
             for(action in actions)
-                scene_clone.registerAction(action.getClone());
+                scene_clone.registerAction(actions[action].getClone());
 
             return scene_clone;
         }

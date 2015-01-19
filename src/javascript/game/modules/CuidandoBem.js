@@ -57,7 +57,9 @@ define(['stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @memberOf module:Core_Controller
      */
     function changeLevel(_newLevel) {
-        Level = $.extend(true, {}, _newLevel);
+        console.group("Clone Level");
+        Level = _newLevel.getClone();
+        console.groupEnd();
 
         cur_scene = Level.getCurrentSceneId();
     }

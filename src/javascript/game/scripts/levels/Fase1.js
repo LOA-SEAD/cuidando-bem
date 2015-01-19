@@ -20,7 +20,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Scenes
 
         //region Recepcao
-        var recepcao = new Scene("recepcao")
+        var recepcao = new Scene("scene-recepcao", "Recepcao")
             .setCssClass("scene-recepcao")
             .setLoadFunction(function (){
                 if(flags_on){

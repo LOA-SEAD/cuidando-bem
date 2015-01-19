@@ -46,6 +46,7 @@ require.config({
     }
 });
 //Init the app when everything is ready
+//require(['levelsData']);
 require(['Errors', 'Dialogs', 'Assets']);
 
 require(["jquery", "less"], function () {

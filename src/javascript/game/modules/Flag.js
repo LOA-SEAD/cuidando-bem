@@ -29,6 +29,9 @@ define([], function () {
         //Methods
 
         //Getters
+        function getClone(){
+            return new Flag(name, value);
+        }
 
         /**
          * Description
@@ -78,6 +81,8 @@ define([], function () {
 
         //Public interface
         return {
+            getClone: getClone,
+
             getName: getName,
             getValue: getValue,
 

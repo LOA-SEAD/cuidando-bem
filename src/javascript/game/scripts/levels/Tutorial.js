@@ -47,6 +47,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         }
 
         var recepcao = new Scene("recepcao", "scene-recepcao")
+            .setCssClass("scene-lobby")
             .setLoadFunction(function () {
                 core.openDialog(0);
             })
@@ -112,42 +113,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Corredor
-        function corredorOnLoad() {
-            switch (level.getFlag("passagem_corredor").getValue()){
-                case 0: // first time at 'corredor'
-                    core.setInteractiveObjectVisible("io-conversar_mentor", true);
-                    core.openDialog(0);
-                    break;
-                case 1: // second time at 'corredor'
-                    core.setActionVisible("btn-ir_posto_enfermagem", true);
-                    core.setInteractiveObjectVisible("io-ir_posto_enfermagem", true);
-                    core.setActionVisible("btn-ir_sala_leitos", false);
-                    core.setInteractiveObjectVisible("io-ir_sala_leitos", false);
-                    core.setActionVisible("btn-conversar_mentor", false);
-                    core.setInteractiveObjectVisible("io-conversar_mentor", false);
-                    break;
-                case 2:
-                    core.setActionVisible("btn-ir_posto_enfermagem", false);
-                    core.setInteractiveObjectVisible("io-ir_posto_enfermagem", false);
-                    core.setActionVisible("btn-ir_sala_leitos", true);
-                    core.setInteractiveObjectVisible("io-ir_sala_leitos", true);
-                    break;
-            }
-        }
-
-        function corredorOnUnLoad(){
-            switch (level.getFlag("passagem_corredor").getValue()){
-                case 0:
-                    level.getFlag("passagem_corredor").setValue(1);
-                    break;
-                case 1:
-                    level.getFlag("passagem_corredor").setValue(2);
-                    break;
-                case 2:
-                    level.getFlag("passagem_corredor").setValue(3);
-                    break;
-            }
-        }
 
         function corredorIrSalaLeitos() {
             if (!flags_on) {
@@ -163,7 +128,43 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             }
         }
 
-        var corredor = new Scene("corredor", "scene-corredor", corredorOnLoad, corredorOnUnLoad);
+        var corredor = new Scene("corredor", "scene-corredor")
+            .setCssClass("scene-corredor")
+            .setLoadFunction( function () {
+                switch (level.getFlag("passagem_corredor").getValue()){
+                    case 0: // first time at 'corredor'
+                        core.setInteractiveObjectVisible("io-conversar_mentor", true);
+                        core.openDialog(0);
+                        break;
+                    case 1: // second time at 'corredor'
+                        core.setActionVisible("btn-ir_posto_enfermagem", true);
+                        core.setInteractiveObjectVisible("io-ir_posto_enfermagem", true);
+                        core.setActionVisible("btn-ir_sala_leitos", false);
+                        core.setInteractiveObjectVisible("io-ir_sala_leitos", false);
+                        core.setActionVisible("btn-conversar_mentor", false);
+                        core.setInteractiveObjectVisible("io-conversar_mentor", false);
+                        break;
+                    case 2:
+                        core.setActionVisible("btn-ir_posto_enfermagem", false);
+                        core.setInteractiveObjectVisible("io-ir_posto_enfermagem", false);
+                        core.setActionVisible("btn-ir_sala_leitos", true);
+                        core.setInteractiveObjectVisible("io-ir_sala_leitos", true);
+                        break;
+                }
+            })
+            .setUnloadFunction(function (){
+                switch (level.getFlag("passagem_corredor").getValue()){
+                    case 0:
+                        level.getFlag("passagem_corredor").setValue(1);
+                        break;
+                    case 1:
+                        level.getFlag("passagem_corredor").setValue(2);
+                        break;
+                    case 2:
+                        level.getFlag("passagem_corredor").setValue(3);
+                        break;
+                }
+            });
 
         corredor.registerDialogs([
             new Dialog("mentor", "char-mentor")
@@ -236,6 +237,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region Sala de Leitos
         var sala_de_leitos = new Scene("sala_de_leitos", "scene-sala_de_leitos")
+            .setCssClass("scene-sala_de_leitos")
             .setLoadFunction(function (){
                 switch (level.getFlag("passagem_sala-de-leitos").getValue()){
                     case 0:
@@ -278,6 +280,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region Fim do Level
         var fim_tutorial = new Scene("Fim da fase", "scene-fim-level")
+            .setCssClass("scene-fim-level")
             .setLoadFunction(function (){
                 core.setActionVisible("btn-proxima_fase", true);
             });
@@ -295,6 +298,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region Posto de Enfermagem
         var posto_de_enfermagem = new Scene("posto_de_enfermagem", "scene-posto_de_enfermagem")
+            .setCssClass("scene-posto_de_enfermagem")
             .setLoadFunction(function (){
                 core.setActionVisible("btn-abrir_gaveta", true);
             });
@@ -328,6 +332,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region Leito
         var leito = new Scene("leito", "scene-leito-char-01")
+            .setCssClass("scene-leito-char-01")
             .setLoadFunction(function () {
                 console.log("Leito: Onload");
                 switch (level.getFlag("visita-leito").getValue()){

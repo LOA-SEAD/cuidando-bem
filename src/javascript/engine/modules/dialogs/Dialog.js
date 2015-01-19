@@ -85,7 +85,7 @@ define([], function () {
                 .setText(text);
 
             for(opt in options)
-                dialog_clone.registerOption(opt.text, opt.actionFunction);
+                dialog_clone.registerOption(options[opt].text, options[opt].actionFunction);
 
             return dialog_clone;
         }

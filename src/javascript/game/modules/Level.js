@@ -89,6 +89,24 @@ define([], function () {
 
         //Getters
 
+        function getClone(){
+            var newLevel = new Level(name);
+
+            for(scene in scenes)
+                newLevel.registerScene(scenes[scene].getClone());
+
+            for(modal in modalScenes)
+                newLevel.registerModalScene(modalScenes[modal].getClone());
+
+            for(flag in flags)
+                newLevel.registerFlag(flags[flag].getClone());
+
+            newLevel.setInitialScene(initialScene);
+            newLevel.setCurrentSceneById(currentScene);
+
+            return newLevel;
+        }
+
         /**
          * Description
          * @method getName
@@ -328,6 +346,7 @@ define([], function () {
 
         //Public interface
         return {
+            getClone: getClone,
             getName: getName,
             getActions: getActions,
             getFlag: getFlag,
