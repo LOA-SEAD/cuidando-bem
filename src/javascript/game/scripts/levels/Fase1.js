@@ -31,7 +31,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.setActionVisible("btn-conversar_recepcionista", true);
                 }
             })
-            .setUnloadFunction(core.closeDialog);
+            .setUnloadFunction(function(){
+                core.closeDialog();
+            });
 
         recepcao.registerDialogs([
             new Dialog("recepcionista", "char-recepcionista")
@@ -108,7 +110,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.setActionVisible("btn-ir_posto_enfermagem", true);
                 }
             })
-            .setUnloadFunction(function(){core.closeDialog()});
+            .setUnloadFunction(function(){
+                core.closeDialog()
+            });
 
         corredor.registerDialogs([
             new Dialog("mentor", "char-mentor")
