@@ -16,7 +16,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         // Dialogs
         var fala_recepcionista = [];
         fala_recepcionista[0] = new Dialog(
-            "Clara", "char-recepcionista",Dialogs.recepcionista[0]);
+            "Clara", "char-receptionist",Dialogs.recepcionista[0]);
 
         fala_recepcionista[0].registerOption({
             text: '',
