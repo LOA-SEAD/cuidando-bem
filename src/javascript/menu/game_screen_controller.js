@@ -3,18 +3,25 @@
  * @name Game_Screen_Controller
  * @module
  */
-define(['stage', 'CuidandoBem'], function (stage, core) {
+define(['Stage', 'CuidandoBem'], function (Stage, Core) {
+
+    var Player = require('Player');
+
     /**
      * Description
      * @method load
      * @memberOf module:Game_Screen_Controller
      */
     function load() {
-        $('.backButton').click(function () {
-            stage.changeScreen(0);
+        $('.menuButton').click(function(){
+            Player.play(Player.audios.selecionar_menu);
         });
 
-        core.start();
+        $('.backButton').click(function () {
+            Stage.changeScreen(0);
+        });
+
+        Core.start();
     }
 
     /**

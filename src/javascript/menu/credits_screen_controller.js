@@ -3,15 +3,22 @@
  * @name Credits_Screen_Controller
  * @module
  */
-define(['stage'], function (stage) {
+define(['Stage'], function (Stage) {
+
+    var Player = require('Player');
+
     /**
      * Description
      * @method load
      * @memberOf module:Credits_Screen_Controller
      */
     function load() {
+        $('.menuButton').click(function(){
+            Player.play(Player.audios.selecionar_menu);
+        });
+
         $('.backButton').click(function () {
-            stage.changeScreen(0);
+            Stage.changeScreen(0);
         });
     }
 

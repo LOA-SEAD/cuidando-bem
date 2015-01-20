@@ -3,33 +3,44 @@
  * @name MainMenu_Screen_Controller
  * @module
  */
-define(['stage', 'CuidandoBem'], function (stage, core) {
+define(['Stage', 'CuidandoBem'], function (Stage, Core) {
+
+    var Player = require('Player');
+
     /**
      * Description
      * @method load
      * @memberOf module:MainMenu_Screen_Controller
      */
     function load() {
+        //Player.setLoop(Player.audios.fundo, true);
+        //Player.play(Player.audios.fundo);
+
         console.log("Configuring main menu listeners");
-        $($('.menuButton')[0]).click(function () {
-            console.log(this);
-            stage.changeScreen(1);
-            //core.start();
+        var menuButtons = $('.menuButton');
+
+        menuButtons.click(function(){
+           Player.play(Player.audios.selecionar_menu);
         });
 
-        $($('.menuButton')[1]).click(function () {
+        $(menuButtons[0]).click(function () {
             console.log(this);
-            stage.changeScreen(2);
+            Stage.changeScreen(1);
         });
 
-        $($('.menuButton')[2]).click(function () {
+        $(menuButtons[1]).click(function () {
             console.log(this);
-            stage.changeScreen(4);
+            Stage.changeScreen(2);
         });
 
-        $($('.menuButton')[3]).click(function () {
+        $(menuButtons[2]).click(function () {
             console.log(this);
-            stage.changeScreen(3);
+            Stage.changeScreen(4);
+        });
+
+        $(menuButtons[3]).click(function () {
+            console.log(this);
+            Stage.changeScreen(3);
         });
     }
 
