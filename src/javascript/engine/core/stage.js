@@ -4,10 +4,10 @@
  * @module
  */
 define(function () {
-
+    console.info("Stage - module loaded");
     //Imports
     var Errors = {
-        undefinedContainer: "'container' is undefined and stage can't continue without a place to load its content"
+        undefinedContainer: "'container' is undefined and Stage can't continue without a place to load its content"
     };
 
     /**
@@ -19,7 +19,7 @@ define(function () {
      */
     var screens = [];
     /**
-     * The path where the stage controller will look for the html pages
+     * The path where the Stage controller will look for the html pages
      * @private
      * @type {string}
      *
@@ -27,7 +27,7 @@ define(function () {
      */
     var htmlPath;
     /**
-     * The path where the stage controller will look for the js controllers
+     * The path where the Stage controller will look for the js controllers
      * @private
      * @type {string}
      *

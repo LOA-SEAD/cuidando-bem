@@ -37,7 +37,7 @@ require.config({
 
         levelsData: 'game/modules/levelsData',
 
-        stage: 'engine/core/stage',
+        Stage: 'engine/core/Stage',
         CuidandoBem: 'game/modules/CuidandoBem',
 
         commandBar: 'engine/modules/command_bar/CommandBarController',
@@ -52,10 +52,16 @@ require(['Errors', 'Dialogs', 'Images', 'Sounds']);
 //Init the app when everything is ready
 require(['Player']);
 
-require(["jquery", "less"], function () {
-    console.group(" 'Cuidando Bem' Log:");
-    require(['jqueryui', "main"]);
-});
+
+
+require(['ImageLoader']);
+
+window.init = function(){
+    require(["jquery", "less"], function () {
+        console.group("Cuidando Bem Log:");
+        require(['jqueryui', "main"]);
+    });
+};
 
 
 

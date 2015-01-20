@@ -3,7 +3,7 @@
  * @name MainMenu_Screen_Controller
  * @module
  */
-define(['stage', 'CuidandoBem'], function (stage, core) {
+define(['Stage', 'CuidandoBem'], function (Stage, Core) {
 
     var Player = require('Player');
 
@@ -22,22 +22,22 @@ define(['stage', 'CuidandoBem'], function (stage, core) {
 
         $(menuButtons[0]).click(function () {
             console.log(this);
-            stage.changeScreen(1);
+            Stage.changeScreen(1);
         });
 
         $(menuButtons[1]).click(function () {
             console.log(this);
-            stage.changeScreen(2);
+            Stage.changeScreen(2);
         });
 
         $(menuButtons[2]).click(function () {
             console.log(this);
-            stage.changeScreen(4);
+            Stage.changeScreen(4);
         });
 
         $(menuButtons[3]).click(function () {
             console.log(this);
-            stage.changeScreen(3);
+            Stage.changeScreen(3);
         });
     }
 

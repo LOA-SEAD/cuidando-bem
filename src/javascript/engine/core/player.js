@@ -1,5 +1,6 @@
 define(function(){
-    console.groupCollapsed("Loading Player and music files");
+    console.info("Player - module loaded");
+
     var Sounds = require('Sounds');
 
     var audios = {};
@@ -24,7 +25,7 @@ define(function(){
                 to[audio] = new Audio(Sounds.baseDir + path);
                 sound = to[audio];
 
-                console.log("Name: " + fileName, "Extension: " + extension);
+                console.log("\tName: " + fileName, "Extension: " + extension);
 
                 sound.loop = false;
                 sound.volume = Sounds.masterVolume;
@@ -33,8 +34,9 @@ define(function(){
         }
     }
 
-    console.info("Loading files: ");
+    console.groupCollapsed("Loading Sounds: ");
     deepCopy(Sounds.paths, audios);
+    console.groupEnd();
 
     function getAsArray(obj){
         var arr = [];
@@ -80,7 +82,6 @@ define(function(){
             playList[sound].loop = loop;
     }
 
-    console.groupEnd();
     return{
         audios: audios,
         play: play,

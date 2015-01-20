@@ -5,8 +5,7 @@
  */
 
 define([], function () {
-
-    console.info("Game Config module loaded");
+    console.info("GameConfig - module loaded");
     var generalPath = "./game/scripts/levels/";
     var filePaths = [
         "Tutorial",
@@ -14,7 +13,7 @@ define([], function () {
     ];
 
     for (i = 0; i < filePaths.length; i++) {
-        console.log("requiring level module");
+        console.log("\tRequiring Level module: ", filePaths[i]);
         require([generalPath + filePaths[i]]);
     }
 });

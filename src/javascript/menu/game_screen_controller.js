@@ -3,7 +3,7 @@
  * @name Game_Screen_Controller
  * @module
  */
-define(['stage', 'CuidandoBem'], function (stage, core) {
+define(['Stage', 'CuidandoBem'], function (Stage, Core) {
 
     var Player = require('Player');
 
@@ -18,10 +18,10 @@ define(['stage', 'CuidandoBem'], function (stage, core) {
         });
 
         $('.backButton').click(function () {
-            stage.changeScreen(0);
+            Stage.changeScreen(0);
         });
 
-        core.start();
+        Core.start();
     }
 
     /**

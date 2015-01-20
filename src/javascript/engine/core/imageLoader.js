@@ -1,5 +1,5 @@
 define(["Images"], function(Images){
-
+    console.info("ImageLoader - module loaded");
     function getAsArray(obj){
         var arr = [];
         if(typeof obj === "object"){
@@ -18,15 +18,27 @@ define(["Images"], function(Images){
     }
 
     var paths = getAsArray(Images.paths);
+    console.info("Images to load: ", paths.length);
     var loaded = 0;
 
 
-    function onLoad(){
+    function onLoad(event){
         loaded++;
+        console.log("Loaded Image", event.path[0].src);
+
+        if(loaded == paths.length) {
+            console.groupEnd();
+            window.init();
+        }
     }
 
-    for(image in paths)
-        console.log(paths[image]);
-	
-	
+    console.groupCollapsed("Loading Images: ");
+    for(id in paths){
+        var path = paths[id];
+        var image = new Image();
+
+        image.onload = onLoad;
+        image.src = path;
+    }
+
 });

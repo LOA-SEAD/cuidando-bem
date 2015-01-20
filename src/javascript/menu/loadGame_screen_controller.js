@@ -3,7 +3,7 @@
  * @name LoadGame_Screen_Controller
  * @module
  */
-define(['stage'], function (stage) {
+define(['Stage'], function (Stage) {
 
     var Player = require('Player');
 
@@ -18,7 +18,7 @@ define(['stage'], function (stage) {
         });
 
         $('.backButton').click(function () {
-            stage.changeScreen(0);
+            Stage.changeScreen(0);
         });
     }
 

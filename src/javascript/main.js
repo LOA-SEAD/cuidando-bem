@@ -1,7 +1,7 @@
-require(["stage", "CuidandoBem", "gameConfig", "stageConfig"], function (stage, core) {
+require(["Stage", "CuidandoBem", "gameConfig", "stageConfig"], function (Stage, core) {
     $('document').ready(function () {
         //When everything is loaded ...
-        stage.setContainer('stage');
-        stage.start();
+        Stage.setContainer('Stage');
+        Stage.start();
     });
 });
