@@ -170,49 +170,12 @@ html, body {
   &:extend(.menuButton:hover);
 }
 
-.ui-tooltip, .arrow:after {
-  background: rgba(0, 0, 0, 0.5);
-  boder: 2px solid white;
-}
 .ui-tooltip {
+  background-image: svg-gradient(to right, transparent, rgba(0, 0, 0, 0.5) 15%, rgba(0, 0, 0, 0.5) 85%,transparent);
   float: left;
   position: absolute;
-  padding: 10px 20px;
   color: white;
-  font: bold 14px "Helvetica Neue", Sans-Serif;
-  //text-transform: uppercase;
-  box-shadow: 0 0 7px black;
-}
-.arrow {
-  width: 70px;
-  height: 16px;
-  overflow: hidden;
-  position: absolute;
-  left: 50%;
-  margin-left: -35px;
-  bottom: -16px;
-}
-
-.arrow.top {
-  top: -16px;
-  bottom: auto;
-}
-.arrow.left {
-  left: 20%;
-}
-.arrow:after {
-  content: "";
-  position: absolute;
-  left: 20px;
-  top: -20px;
-  width: 25px;
-  height: 25px;
-  box-shadow: 6px 5px 9px -9px black;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-.arrow.top:after {
-  bottom: -20px;
-  top: auto;
+  font-family: Indie Flower, sans-serif;
+  padding: 5px 45px;
+  font-size: 22px;
 }

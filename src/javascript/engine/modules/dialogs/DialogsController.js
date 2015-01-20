@@ -72,6 +72,12 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
      */
     function changeDialogTo(_dialog) {
 
+        // set the text for charName, dialog text and answer options
+        $(dialogCharNameSelector).text(_dialog.getSpeakerName());
+        $(dialogCharImg).addClass(_dialog.getSpeakerCssClass());
+        $(dialogTextSelector).text(_dialog.getText());
+        changeDialogOptionsTo(_dialog.getOptions());
+
         // type of animation to be executed
         var charNameAnimation = "blind";
         var textAnimation = "clip";
@@ -88,12 +94,6 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
             $(dialogOptionsSelector).hide();
             animation();
         }
-
-        // set the text for charName, dialog text and answer options
-        $(dialogCharNameSelector).text(_dialog.getSpeakerName());
-        $(dialogCharImg).addClass(_dialog.getSpeakerCssClass());
-        $(dialogTextSelector).text(_dialog.getText());
-        changeDialogOptionsTo(_dialog.getOptions());
 
         // animation for dialog
         function animation(){

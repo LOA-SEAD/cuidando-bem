@@ -57,7 +57,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             });
 
         recepcao.registerDialogs([
-            new Dialog("recepcionista", "char-recepcionista")
+            new Dialog("Clara", "char-receptionist")
                 .setText(Dialogs.recepcionista[0])
                 .registerOption(Dialogs.recepcionista[1], function () {
                     level.getFlag("conversar_recepcionista").setValue(true);
@@ -66,7 +66,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.openDialog(1);
                 }),
 
-            new Dialog("recepcionista", "char-recepcionista")
+            new Dialog("Clara", "char-receptionist")
                 .setText(Dialogs.recepcionista[2])
                 .registerOption(Dialogs.recepcionista[3], function () {
                     console.log("Encerrar o diálogo");
@@ -79,33 +79,21 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 })
         ]);
 
-        recepcao.registerActions([
-            new Action("btn-ir_corredor","Ir ao corredor")
-                .setCssClass("action-ir_corredor")
-                .setFunction(recepcaoIrCorredor)
-                .setVisible(visibility),
-
-            new Action("btn-conversar_recepcionista","Conversar com a recepcionista")
-                .setCssClass("action-abrir_dialogo")
-                .setFunction(conversarRecepcionista)
-                .setVisible(visibility)
-        ]);
-
         recepcao.registerInteractiveObjects([
-            new InteractiveObject("io-conversar_recepcionista","Conversar com a recepcionista")
-                .setCssClass("intObj-falar_com_recepcionista")
+            new InteractiveObject("io-conversar_recepcionista","Conversar com a Recepcionista")
+                .setCssClass("intObj-talkToReceptionist")
                 .setFunction(conversarRecepcionista)
                 .setVisible(visibility),
 
 
-            new InteractiveObject("io-corredor_esquerda", "Ir ao corredor")
-                .setCssClass("intObj-ir_corredor_esq")
+            new InteractiveObject("io-ir_corredor", "Ir ao corredor")
+                .setCssClass("intObj-lobbyToHallway-left")
                 .setFunction(recepcaoIrCorredor)
                 .setVisible(visibility),
 
 
-            new InteractiveObject("io-corredor_direita", "Ir ao corredor")
-                .setCssClass("intObj-ir_corredor_dir")
+            new InteractiveObject("io-ir_corredor", "Ir ao corredor")
+                .setCssClass("intObj-lobbyToHallway-right")
                 .setFunction(recepcaoIrCorredor)
                 .setVisible(visibility)
         ]);

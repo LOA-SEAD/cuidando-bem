@@ -1,42 +1,57 @@
 .interactiveObject {
   position: absolute;
+  cursor: hand;
 }
 
 .intObj-talkToReceptionist {
   background-image: url(../images/interactiveObjects/intObj-receptionist.png);
-  width: 242px;
-  height: 263px;
-  top: 157px;
-  left: 488px;
+  background-size: cover;
+
+  @intObj-receptionist-width: 242px;
+  @intObj-receptionist-height: 263px;
+
+  @media screen and (min-width: @screen-sm-min) {
+    width: 0.60 * @intObj-receptionist-width;
+    height: 0.60 * @intObj-receptionist-height;
+    top: 108px;
+    right: 290px;
+  }
+
+  @media screen and (min-width: @screen-md-min) {
+    width: 0.80 * @intObj-receptionist-width;
+    height: 0.80 * @intObj-receptionist-height;
+    top: 135px;
+    right: 380px;
+  }
+
+  @media screen and (min-width: @screen-lg-min) {
+    width: @intObj-receptionist-width;
+    height: @intObj-receptionist-height;
+    top: 157px;
+    right: 448px;
+  }
 }
 
 .intObj-lobbyToHallway-left {
-  border-radius: 0;
-  left: 0%;
-  top: 0%;
+  left: 0;
+  top: 0;
   height: 100%;
-  width: @intObj-goToHallway-width;
+  width: 8%;
 }
 
 .intObj-lobbyToHallway-left:hover {
-  box-shadow: none;
-  background-image: @intObj-lobbyToHallway-left;
-  background-size: contain;
-  background-repeat: repeat-y;
+  background-image: svg-gradient(to right, rgba(255,255,255,0.7), rgba(255,255,255,0.2) 25%, transparent);
 }
 
 .intObj-lobbyToHallway-right {
-  border-radius: 0;
-  left: (100% - @intObj-goToHallway-width);
+  right: 0;
+  top: 0;
   height: 100%;
-  width: @intObj-goToHallway-width;
+  width: 8%;
 }
 
 .intObj-lobbyToHallway-right:hover {
-  box-shadow: none;
-  background-size: contain;
-  background-image: @intObj-lobbyToHallway-right;
-  background-repeat: repeat-y;
+  background-image: svg-gradient(to right, transparent, rgba(255,255,255,0.2) 75%, rgba(255,255,255,0.7));
 }
 
 .intObj-goToNursingStation {

@@ -65,18 +65,18 @@ define(['text!../assets/html/templates/interactiveObjectTemplate.html'], functio
         element.attr('title', _interactiveObject.getName());
         element.attr('id', _interactiveObject.getId());
         element.addClass(_interactiveObject.getCssClass());
+
+        var mouseX = 0, mouseY = 0;
+
         element.tooltip({
+            show: {
+                duration: 200
+            },
             position: {
-                my: "center bottom-20",
-                at: "center top",
-                using: function( position, feedback ) {
-                    $( this ).css( position );
-                    $( "<div>" )
-                        .addClass( "arrow" )
-                        .addClass( feedback.vertical )
-                        .addClass( feedback.horizontal )
-                        .appendTo( this );
-                }
+                within: "#interactiveArea",
+                of: "#interactiveArea",
+                my: "center top+10",
+                at: "center top"
             }
         });
         if (_interactiveObject.isEnabled())
@@ -202,9 +202,6 @@ define(['text!../assets/html/templates/interactiveObjectTemplate.html'], functio
         }
         console.groupEnd();
     }
-
-
-
 
 //Getters
 

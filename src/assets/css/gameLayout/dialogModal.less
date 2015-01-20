@@ -25,6 +25,7 @@
   height: 75%;
 }
 .dialog_right {
+  cursor: hand;
   position: absolute;
   text-align: center;
   right: 0;
@@ -75,16 +76,16 @@
   @char-receptionist-height: 419px;
 
   @media screen and (min-width: @screen-sm-min) {
-    width: @char-receptionist-width;
-    height: @char-receptionist-height;
-    top: -320px;
+    width: 0.5 * @char-receptionist-width;
+    height: 0.5 * @char-receptionist-height;
+    top: -160px;
     right: 50px;
   }
 
   @media screen and (min-width: @screen-md-min) {
     width: 0.7 * @char-receptionist-width;
     height: 0.7 * @char-receptionist-height;
-    top: -320px;
+    top: -225px;
     right: 50px;
   }
 
