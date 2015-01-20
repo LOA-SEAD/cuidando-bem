@@ -1,27 +1,31 @@
 define(function(){
-    console.info("LOADING PLAYER");
+    console.groupCollapsed("Loading Player and music files");
     var Sounds = require('Sounds');
 
     var audios = {};
     var masterVolume = Sounds.masterVolume;
 
     function deepCopy(from, to){
-        //console.log("deep");
         for(audio in from){
             if(typeof from[audio] === "object"){
-                //console.group(audio + " deeper");
                 if(from[audio] instanceof Array){
                     to[audio] = [];
                 }else{
                     to[audio] = {};
                 }
                 deepCopy(from[audio], to[audio]);
-                //console.groupEnd();
             }else{
-                //console.log(to);
+                var path = from[audio];
+                var parser = path.split('.');
+                var fileName = parser[0];
+                var extension = parser[1];
 
-                to[audio] = new Audio(Sounds.baseDir + from[audio]);
+
+                to[audio] = new Audio(Sounds.baseDir + path);
                 sound = to[audio];
+
+                console.log("Name: " + fileName, "Extension: " + extension);
+
                 sound.loop = false;
                 sound.volume = Sounds.masterVolume;
                 sound.load();
@@ -29,6 +33,7 @@ define(function(){
         }
     }
 
+    console.info("Loading files: ");
     deepCopy(Sounds.paths, audios);
 
     function getAsArray(obj){
@@ -47,12 +52,18 @@ define(function(){
 
         return arr;
     }
+
     function play(obj){
         var playList = getAsArray(obj);
 
         var randomId = Math.floor(Math.random() * playList.length);
 
-        playList[randomId].play();
+        var sound = playList[randomId].cloneNode();
+
+        sound.currentTime = 0;
+        sound.play();
+
+        console.log(sound);
     }
 
     function setVolume(obj, volume){
@@ -69,6 +80,7 @@ define(function(){
             playList[sound].loop = loop;
     }
 
+    console.groupEnd();
     return{
         audios: audios,
         play: play,

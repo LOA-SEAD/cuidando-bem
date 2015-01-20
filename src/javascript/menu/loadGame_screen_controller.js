@@ -4,12 +4,19 @@
  * @module
  */
 define(['stage'], function (stage) {
+
+    var Player = require('Player');
+
     /**
      * Description
      * @method load
      * @memberOf module:LoadGame_Screen_Controller
      */
     function load() {
+        $('.menuButton').click(function(){
+            Player.play(Player.audios.selecionar_menu);
+        });
+
         $('.backButton').click(function () {
             stage.changeScreen(0);
         });

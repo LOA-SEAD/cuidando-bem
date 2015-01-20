@@ -1,9 +1,12 @@
 define(function () {
 
-	var dir = "./assets/images/";
+	var baseDir = "./assets/images/";
 	var paths = {
 
 	};
 
-	return paths;
+	return {
+        paths: paths,
+        baseDir: baseDir
+    };
 });

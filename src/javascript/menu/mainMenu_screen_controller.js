@@ -4,6 +4,9 @@
  * @module
  */
 define(['stage', 'CuidandoBem'], function (stage, core) {
+
+    var Player = require('Player');
+
     /**
      * Description
      * @method load
@@ -11,23 +14,28 @@ define(['stage', 'CuidandoBem'], function (stage, core) {
      */
     function load() {
         console.log("Configuring main menu listeners");
-        $($('.menuButton')[0]).click(function () {
-            console.log(this);
-            stage.changeScreen(1);
-            //core.start();
+        var menuButtons = $('.menuButton');
+
+        menuButtons.click(function(){
+           Player.play(Player.audios.selecionar_menu);
         });
 
-        $($('.menuButton')[1]).click(function () {
+        $(menuButtons[0]).click(function () {
+            console.log(this);
+            stage.changeScreen(1);
+        });
+
+        $(menuButtons[1]).click(function () {
             console.log(this);
             stage.changeScreen(2);
         });
 
-        $($('.menuButton')[2]).click(function () {
+        $(menuButtons[2]).click(function () {
             console.log(this);
             stage.changeScreen(4);
         });
 
-        $($('.menuButton')[3]).click(function () {
+        $(menuButtons[3]).click(function () {
             console.log(this);
             stage.changeScreen(3);
         });
