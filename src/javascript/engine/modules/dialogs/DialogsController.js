@@ -52,7 +52,8 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
 
         //$(dialogModalSelector).css("display", "table");
         //$(dialogModalSelector).hide()
-        $("#interactiveArea").toggleClass("interactiveArea-mask");
+
+        $("#dialogBar-mask").show();
         $(dialogModalSelector).show("fade",{
             duration: 200,
             complete: function() {
@@ -150,8 +151,8 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
      */
     function close() {
 
+        $("#dialogBar-mask").hide();
         $(dialogModalSelector).hide("fade", 200);
-        $("#interactiveArea").toggleClass("interactiveArea-mask");
         isDialogOpen = false;
     }
 

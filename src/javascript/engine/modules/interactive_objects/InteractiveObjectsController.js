@@ -65,6 +65,20 @@ define(['text!../assets/html/templates/interactiveObjectTemplate.html'], functio
         element.attr('title', _interactiveObject.getName());
         element.attr('id', _interactiveObject.getId());
         element.addClass(_interactiveObject.getCssClass());
+        element.tooltip({
+            position: {
+                my: "center bottom-20",
+                at: "center top",
+                using: function( position, feedback ) {
+                    $( this ).css( position );
+                    $( "<div>" )
+                        .addClass( "arrow" )
+                        .addClass( feedback.vertical )
+                        .addClass( feedback.horizontal )
+                        .appendTo( this );
+                }
+            }
+        });
         if (_interactiveObject.isEnabled())
             element.addClass("enabled");
         else
@@ -109,6 +123,7 @@ define(['text!../assets/html/templates/interactiveObjectTemplate.html'], functio
         element.removeClass("disabled");
         element.addClass("enabled");
         element.click(_interactiveObject.getFunction());
+        element.tooltip("enable");
     }
 
     /**
@@ -124,6 +139,8 @@ define(['text!../assets/html/templates/interactiveObjectTemplate.html'], functio
         element.removeClass("enabled");
         element.addClass("disabled");
         element.unbind("click");
+        element.tooltip("disable");
+
     }
 
     /**
