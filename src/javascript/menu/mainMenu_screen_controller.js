@@ -13,6 +13,9 @@ define(['Stage', 'CuidandoBem'], function (Stage, Core) {
      * @memberOf module:MainMenu_Screen_Controller
      */
     function load() {
+        //Player.setLoop(Player.audios.fundo, true);
+        //Player.play(Player.audios.fundo);
+
         console.log("Configuring main menu listeners");
         var menuButtons = $('.menuButton');
 

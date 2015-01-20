@@ -29,8 +29,7 @@ define(function () {
 		],
 		escrever: [
 			"escrever1.mp3",
-			"escrever2.wav",
-			"escrever3.mp3"
+			"escrever2.wav"
 		],
 		fechar_gaveta: [
 			"fechar_gaveta.wav"
@@ -55,7 +54,10 @@ define(function () {
 		],
 		tic_tac: [
 			"tic_tac.wav"
-		]
+		],
+        fundo: [
+            "fundo.mp3"
+        ]
 	};
 
 	return {
