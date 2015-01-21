@@ -54,9 +54,11 @@ require(['Errors', 'Dialogs', 'Images', 'Sounds']);
 //Init the app when everything is ready
 require(['Player']);
 
-require(['SaveLoadGame']);
+require(['SaveLoadGame'], function(){
+    require(['ImageLoader']);
+});
 
-require(['ImageLoader']);
+
 
 window.init = function(){
     require(["jquery", "less"], function () {

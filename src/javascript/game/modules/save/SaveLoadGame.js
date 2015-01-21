@@ -45,7 +45,7 @@ define(["SimpleStorage"], function(Storage){
     //console.groupCollapsed("Loading saved files:");
     for(i in saves){
         var save = saves[i];
-        if(save !== undefined){
+        if(save !== undefined && save !== null){
             console.log("Slot #"+i+" = "+save.name);
         }else{
             console.log("Slot #"+i+" is empty");
@@ -75,7 +75,7 @@ define(["SimpleStorage"], function(Storage){
         Storage.set(SAVES_CONTAINER, saves);
     }
 
-    function save(){
+    function saveSlots(){
         Storage.set(SAVES_CONTAINER, saves);
     }
 
@@ -105,7 +105,7 @@ define(["SimpleStorage"], function(Storage){
 
     function setupSlot(id, name){
         saves[id] = new SaveObject(name);
-        save();
+        saveSlots();
     }
 
     resetAll();
@@ -115,7 +115,7 @@ define(["SimpleStorage"], function(Storage){
     // Public Interface for returning saved files
     return {
         load: load,
-        save: save,
+        save: saveSlots,
         setupSlot: setupSlot,
         reset: reset,
         resetAll: resetAll,

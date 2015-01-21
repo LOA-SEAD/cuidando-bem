@@ -54,10 +54,7 @@ define(function () {
 			tic_tac: [
 				"tictac_relogio_de_puslo.mp3"
 
-			],
-	        fundo: [
-	            "fundo.mp3"
-	        ]
+			]
 		},
 		musics:[
 		
