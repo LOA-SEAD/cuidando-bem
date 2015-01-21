@@ -3,61 +3,69 @@ define(function () {
 	var masterVolume = 0.5;
 	var baseDir = "./assets/sounds/";
 	var paths = {
-		abrir_gaveta: [
-			"abrir_gaveta1.wav",
-			"abrir_gaveta2.wav"
+		sfx: {
+			abrir_gaveta: [
+				"gaveta_abrindo_1.mp3",
+				"gaveta_abrindo_2.mp3"
+			],
+			abrir_porta: [
+				"porta_abrindo_1.mp3",
+				"porta_abrindo_2.mp3"
+			],			
+			bip: [
+				"bip_termometro_oximetro.mp3"
+			],
+			bombinha: [
+				"bombinha_esfigmnanometro.mp3"
+			],
+			campainha: [
+				"campainha_1.mp3",
+				"campainha_2.mp3"
+			],
+			clique: [
+				"clique_de_luz_botao_campainha_etc.mp3"
+			],
+			escrever: [
+				"escrevendo_papel.mp3"
+			],
+			fechar_gaveta: [
+				"gaveta_fechando.mp3"
+			],
+			lavar_maos: [
+				"lavando_as_maos.mp3"
+			],
+			mesa_com_rodinha: [
+				"mesa_com_rodinha.mp3"
+			],
+			monitor_coracao: [
+				"monitor_coracao_beeps.mp3"
+			],
+			objeto:[
+				"efeito_para_quando_um_objeto_e_manuseado_1.mp3",
+				"efeito_para_quando_um_objeto_e_manuseado_2.mp3",
+				"efeito_para_quando_um_objeto_e_manuseado_3.mp3"
+			],
+			pegar_objeto:[
+				"som_para_coletar_itens.mp3"
+			],
+			selecionar_menu: [
+				"menu_select.mp3"
+			],
+			tic_tac: [
+				"tictac_relogio_de_puslo.mp3"
+
+			],
+	        fundo: [
+	            "fundo.mp3"
+	        ]
+		},
+		musics:[
+		
 		],
-		abrir_porta: [
-			"abrir_porta1.wav",
-			"abrir_porta2.wav"
-		],
-		recepcao: [
-			"ambiente_recepcao.wav"
-		],
-		bip: [
-			"bip.wav"
-		],
-		bombinha: [
-			"bombinha.wav"
-		],
-		campainha: [
-			"campainha1.wav",
-			"campainha2.wav"
-		],
-		clique: [
-			"clique.wav"
-		],
-		escrever: [
-			"escrever1.mp3",
-			"escrever2.wav"
-		],
-		fechar_gaveta: [
-			"fechar_gaveta.wav"
-		],
-		lavar_maos: [
-			"lavar_maos.wav"
-		],
-		mesa_com_rodinha: [
-			"mesa_com_rodinha.wav"
-		],
-		monitor_coracao: [
-			"monitor_coracao.mp3"
-		],
-		objeto:[
-			"objeto1.wav",
-			"objeto2.wav",
-			"objeto3.wav",
-			"objeto4.wav"
-		],
-		selecionar_menu: [
-			"selecionar_menu.wav"
-		],
-		tic_tac: [
-			"tic_tac.wav"
-		],
-        fundo: [
-            "fundo.mp3"
-        ]
+		loops:{
+			recepcao: "sons_ambiente_hospital_recepcao.mp3"			
+		}		
+		
 	};
 
 	return {

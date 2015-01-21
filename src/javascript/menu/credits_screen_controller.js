@@ -14,7 +14,7 @@ define(['Stage'], function (Stage) {
      */
     function load() {
         $('.menuButton').click(function(){
-            Player.play(Player.audios.selecionar_menu);
+            Player.play(Player.audios.sfx.selecionar_menu);
         });
 
         $('.backButton').click(function () {
