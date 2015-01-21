@@ -15,6 +15,7 @@ require.config({
         jqueryui: '../../libs/jquery-ui/jquery-ui.min',
         text: '../../libs/requirejs-text/text',
         less: '../../libs/less/dist/less.min',
+        Storage: '../../libs/simpleStorage/simpleStorage',
 
         //Refs
         Errors: 'references/Errors',

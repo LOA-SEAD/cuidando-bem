@@ -60,11 +60,13 @@ define(function(){
 
         var randomId = Math.floor(Math.random() * playList.length);
 
-        var original = playList[randomId];
-        var sound = original.cloneNode();
+        var sound = playList[randomId];
 
-        sound.loop = original.loop;
-        sound.currentTime = 0;
+        if (window.chrome) {
+            sound.load();
+        }else{
+            sound.currentTime = 0;
+        }
         sound.play();
 
         console.log(sound);
