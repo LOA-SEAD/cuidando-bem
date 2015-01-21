@@ -22,9 +22,12 @@ define(["Images"], function(Images){
     var loaded = 0;
 
 
-    function onLoad(event){
+    function onLoad(){
+        var evt = arguments[0];
+
         loaded++;
-        console.log("Loaded Image", event.path[0].src);
+        //console.log(arguments.length, arguments[0]);
+        console.log("Loaded Image: " + evt.target.src);
 
         if(loaded == paths.length) {
             console.groupEnd();
@@ -37,7 +40,9 @@ define(["Images"], function(Images){
         var path = paths[id];
         var image = new Image();
 
+
         image.onload = onLoad;
+        //image.onload = function(){console.log("AAAAAAbAAAAAAAAAAAAAAAAAAAA")};
         image.src = path;
     }
 

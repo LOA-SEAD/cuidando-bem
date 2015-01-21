@@ -15,6 +15,8 @@ require.config({
         jqueryui: '../../libs/jquery-ui/jquery-ui.min',
         text: '../../libs/requirejs-text/text',
         less: '../../libs/less/dist/less.min',
+        SimpleStorage: '../../libs/simpleStorage/simpleStorage',
+
 
         //Refs
         Errors: 'references/Errors',
@@ -27,7 +29,6 @@ require.config({
 
         Commons: 'game/scripts/Commons',
 
-        //Models
         Scene: 'engine/modules/scenes/Scene',
         Flag: 'game/modules/Flag',
         Action: 'engine/modules/command_bar/Action',
@@ -36,6 +37,7 @@ require.config({
         InteractiveObject: 'engine/modules/interactive_objects/InteractiveObject',
 
         levelsData: 'game/modules/levelsData',
+        SaveLoadGame: 'game/modules/save/SaveLoadGame',
 
         Stage: 'engine/core/Stage',
         CuidandoBem: 'game/modules/CuidandoBem',
@@ -52,9 +54,11 @@ require(['Errors', 'Dialogs', 'Images', 'Sounds']);
 //Init the app when everything is ready
 require(['Player']);
 
+require(['SaveLoadGame'], function(){
+    require(['ImageLoader']);
+});
 
 
-require(['ImageLoader']);
 
 window.init = function(){
     require(["jquery", "less"], function () {

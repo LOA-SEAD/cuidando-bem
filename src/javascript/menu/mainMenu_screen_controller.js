@@ -20,7 +20,7 @@ define(['Stage', 'CuidandoBem'], function (Stage, Core) {
         var menuButtons = $('.menuButton');
 
         menuButtons.click(function(){
-           Player.play(Player.audios.selecionar_menu);
+           Player.play(Player.audios.sfx.selecionar_menu);
         });
 
         $(menuButtons[0]).click(function () {
