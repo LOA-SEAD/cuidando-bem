@@ -108,10 +108,6 @@ define(["SimpleStorage"], function(Storage){
         saveSlots();
     }
 
-    resetAll();
-    console.log("Setupping new slot for test");
-    setupSlot(0, "Otho");
-
     // Public Interface for returning saved files
     return {
         load: load,

@@ -76,7 +76,7 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
         $(dialogCharNameSelector).text(_dialog.getSpeakerName());
         $(dialogCharImg).addClass(_dialog.getSpeakerCssClass());
         $(dialogTextSelector).text(_dialog.getText());
-        changeDialogOptionsTo(_dialog.getOptions());
+        changeDialogOptionsTo(_dialog.getOptions(), _dialog.getRandomize());
 
         // type of animation to be executed
         var charNameAnimation = "blind";
@@ -119,7 +119,7 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
      * @param {} _options
      * @memberOf module:DialogModal_Game_Controller
      */
-    function changeDialogOptionsTo(_options) {
+    function changeDialogOptionsTo(_options, randomize) {
 
         // remove all dialog buttons (answer options)
         removeAllDialogButtons();
@@ -140,7 +140,7 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
         else
         {
             console.log("Show 'options' on dialog");
-            addAllDialogButtons(_options);
+            addAllDialogButtons(_options, randomize);
         }
     }
 
@@ -192,14 +192,36 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
         $(dialogOptionsSelector).append(element);
     }
 
+    //Fisher–Yates Shuffle
+    function shuffle(array) {
+        var m = array.length, t, i;
+
+        // While there remain elements to shuffle…
+        while (m) {
+
+            // Pick a remaining element…
+            i = Math.floor(Math.random() * m--);
+
+            // And swap it with the current element.
+            t = array[m];
+            array[m] = array[i];
+            array[i] = t;
+        }
+
+        return array;
+    }
+
     /**
      * Description
      * @method addAllDialogButtons
      * @param {} _options
      * @memberOf module:DialogModal_Game_Controller
      */
-    function addAllDialogButtons(_options) {
+    function addAllDialogButtons(_options, randomize) {
         var i;
+
+        if(randomize)
+            _options = shuffle(_options);
 
         for (i = 0; i < _options.length; i++) {
             addDialogButton(_options[i]);

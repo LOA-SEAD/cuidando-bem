@@ -65,6 +65,8 @@ define([], function () {
          */
         var options = [];
 
+        var randomize = false;
+
         //Methods
 
         /**
@@ -131,6 +133,10 @@ define([], function () {
             return text;
         }
 
+        function getRandomize(){
+            return randomize;
+        }
+
         /**
          * Description
          * @method getOptionText
@@ -154,6 +160,10 @@ define([], function () {
         }
         function setText(_text){
             text = _text;
+            return this;
+        }
+        function setRandomize(_randomize){
+            randomize = _randomize;
             return this;
         }
 
@@ -184,10 +194,12 @@ define([], function () {
             getText: getText,
             getOptions: getOptions,
             getOptionText: getOptionText,
+            getRandomize: getRandomize,
 
             setSpeakerName:setSpeakerName,
             setSpeakerCssClass:setSpeakerCssClass,
             setText:setText,
+            setRamdomize: setRandomize,
 
             registerOption: registerOption
         }
