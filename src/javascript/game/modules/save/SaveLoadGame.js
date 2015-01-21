@@ -1,4 +1,5 @@
 define(["SimpleStorage"], function(Storage){
+    console.info("SaveLoadGame - module loaded");
 
     function SaveObject(name){
         this.name = name;
@@ -41,7 +42,7 @@ define(["SimpleStorage"], function(Storage){
         saves = SAVES_CONTAINER_EMPTY_SLOTS;
     }
 
-    console.groupCollapsed("Loading saved files:");
+    //console.groupCollapsed("Loading saved files:");
     for(i in saves){
         var save = saves[i];
         if(save !== undefined){
@@ -50,7 +51,7 @@ define(["SimpleStorage"], function(Storage){
             console.log("Slot #"+i+" is empty");
         }
     }
-    console.groupEnd();
+    //console.groupEnd();
 
     function load(id){
         if(id < 0 || id > 2)
@@ -107,6 +108,7 @@ define(["SimpleStorage"], function(Storage){
         save();
     }
 
+    resetAll();
     console.log("Setupping new slot for test");
     setupSlot(0, "Otho");
 
