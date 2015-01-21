@@ -66,8 +66,6 @@ define(['text!../assets/html/templates/interactiveObjectTemplate.html'], functio
         element.attr('id', _interactiveObject.getId());
         element.addClass(_interactiveObject.getCssClass());
 
-        var mouseX = 0, mouseY = 0;
-
         element.tooltip({
             show: {
                 duration: 200
