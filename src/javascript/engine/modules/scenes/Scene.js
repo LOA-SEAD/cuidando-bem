@@ -62,7 +62,7 @@ define(function () {
          *
          * @memberOf Scene#
          */
-        function unload() {thi
+        function unload() {
             console.info("Scene " + name + " unload function");
             unloadFunction();
         }

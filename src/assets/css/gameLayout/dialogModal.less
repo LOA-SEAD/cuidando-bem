@@ -1,3 +1,4 @@
+//region generic config stuff
 #dialogBar {
   text-align: left;
   position: absolute;
@@ -65,7 +66,9 @@
   color: black;
   text-shadow: -1px -1px #666, 1px 1px #FFF;
 }
+//endregion
 
+//region Recepcao - Lobby
 .char-receptionist {
   background: @char-receptionist no-repeat top;
   background-size: cover;
@@ -96,12 +99,42 @@
     right: 50px;
   }
 }
+//endregion
 
+//region Corredor - Hallway
 .char-mentor {
   background: @char-mentor no-repeat top;
   background-size: cover;
-}
+  float: right;
+  position: absolute;
 
+  @char-mentor-width: 283px;
+  @char-mentor-height: 419px;
+
+  @media screen and (min-width: @screen-sm-min) {
+    width: 0.60 * @char-mentor-width;
+    height: 0.60 * @char-mentor-height;
+    top: -220px;
+    right: 50px;
+  }
+
+  @media screen and (min-width: @screen-md-min) {
+    width: 0.77 * @char-mentor-width;
+    height: 0.77 * @char-mentor-height;
+    top: -280px;
+    right: 50px;
+  }
+
+  @media screen and (min-width: @screen-lg-min) {
+    width: 0.95 * @char-mentor-width;
+    height: 0.95 * @char-mentor-height;
+    top: -350px;
+    right: 50px;
+  }
+}
+//endregion
+
+//region Sala de Leitos - Bedroom
 .char-patient01 {
   background: @char-patient01 no-repeat top;
   background-size: cover;
@@ -111,6 +144,7 @@
   background: @char-patient02 no-repeat top;
   background-size: cover;
 }
+//endregion
 
 .char-player {
   background: @char-player no-repeat top;

@@ -14,7 +14,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         console.groupCollapsed(level.getName());
 
         var flags_on = true;    // if false it wont check for flags -- tests purpose
-        var visibility = true;
+        var visibility = false;
         if (flags_on)
             visibility = true;
 
@@ -49,11 +49,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var recepcao = new Scene("recepcao", "scene-recepcao")
             .setCssClass("scene-lobby")
             .setLoadFunction(function () {
+                console.log("Load scene: " + recepcao.getName());
                 core.openDialog(0);
             })
             .setUnloadFunction(function () {
-                core.closeDialog(0);
-                core.closeDialog(1);
+                console.log("Unload scene: " + recepcao.getName());
+                //core.closeDialog(0);
+                //core.closeDialog(1);
             });
 
         recepcao.registerDialogs([
@@ -62,7 +64,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .registerOption(Dialogs.recepcionista[1], function () {
                     level.getFlag("conversar_recepcionista").setValue(true);
                     console.log("Selecionado 1a opção diálogo: " + level.getFlag("conversar_recepcionista").getValue());
-                    core.closeDialog(0);
                     core.openDialog(1);
                 }),
 
@@ -71,11 +72,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .registerOption(Dialogs.recepcionista[3], function () {
                     console.log("Encerrar o diálogo");
                     core.closeDialog(1);
-                    core.setActionVisible("btn-ir_corredor", true);
-                    core.setActionVisible("btn-conversar_recepcionista", true);
                     core.setInteractiveObjectVisible("io-conversar_recepcionista", true);
-                    core.setInteractiveObjectVisible("io-corredor_esquerda", true);
-                    core.setInteractiveObjectVisible("io-corredor_direita", true);
+                    core.setInteractiveObjectVisible("io-ir_corredor_esquerda", true);
+                    core.setInteractiveObjectVisible("io-ir_corredor_direita", true);
                 })
         ]);
 
@@ -86,13 +85,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisible(visibility),
 
 
-            new InteractiveObject("io-ir_corredor", "Ir ao corredor")
+            new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
                 .setCssClass("intObj-lobbyToHallway-left")
                 .setFunction(recepcaoIrCorredor)
                 .setVisible(visibility),
 
 
-            new InteractiveObject("io-ir_corredor", "Ir ao corredor")
+            new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
                 .setCssClass("intObj-lobbyToHallway-right")
                 .setFunction(recepcaoIrCorredor)
                 .setVisible(visibility)
@@ -117,7 +116,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         }
 
         var corredor = new Scene("corredor", "scene-corredor")
-            .setCssClass("scene-corredor")
+            .setCssClass("scene-hallway")
             .setLoadFunction( function () {
                 switch (level.getFlag("passagem_corredor").getValue()){
                     case 0: // first time at 'corredor'
@@ -155,32 +154,28 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             });
 
         corredor.registerDialogs([
-            new Dialog("mentor", "char-mentor")
+            new Dialog("Mentor", "char-mentor")
                 .setText(Dialogs.corredor[0])
                 .registerOption(Dialogs.corredor[1], function () {
                     level.getFlag("conversar_mentor").setValue(true);
-                    core.closeDialog(0);
                     core.openDialog(1);
                 }),
 
-            new Dialog("mentor", "char-mentor")
+            new Dialog("Mentor", "char-mentor")
                 .setText(Dialogs.corredor[2])
                 .registerOption(Dialogs.corredor[3],function () {
                     core.closeDialog(1);
-                    core.setActionVisible("btn-ir_sala_leitos", true);
-                    core.setActionVisible("btn-conversar_mentor", true);
                     core.setInteractiveObjectVisible("io-ir_sala_leitos", true);
+                    core.setInteractiveObjectVisible("io-conversar_mentor", true);
                 })
         ]);
-
-
 
         function corredorIrPostoEnfermagem() {
             console.log("Action: corredorIrPostoEnfermagem");
             core.changeScene(4);
         }
 
-        corredor.registerActions([
+        /*corredor.registerActions([
             new Action("btn-conversar_mentor","Conversar com Mentor")
                 .setCssClass("action-abrir_dialogo")
                 .setFunction(function (){
@@ -200,7 +195,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("action-ir_posto_de_enfermagem")
                 .setFunction(corredorIrPostoEnfermagem)
                 .setVisible(visibility)
-        ]);
+        ]);*/
 
         corredor.registerInteractiveObjects([
             new InteractiveObject("io-ir_sala_leitos","Ir para a sala de leitos masculino")
@@ -214,7 +209,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisible(visibility),
 
             new InteractiveObject("io-conversar_mentor","Conversar com Mentor")
-                .setCssClass("intObj-conversar-mentor")
+                .setCssClass("intObj-talkToMentor")
                 .setFunction(function (){
                     console.log("Abrir diálogo com o mentor");
                     core.openDialog(0);

@@ -3,6 +3,7 @@
   cursor: hand;
 }
 
+//region Recepcao - Lobby
 .intObj-talkToReceptionist {
   background-image: url(../images/interactiveObjects/intObj-receptionist.png);
   background-size: cover;
@@ -53,20 +54,55 @@
 .intObj-lobbyToHallway-right:hover {
   background-image: svg-gradient(to right, transparent, rgba(255,255,255,0.2) 75%, rgba(255,255,255,0.7));
 }
+//endregion
 
-.intObj-goToNursingStation {
+//region Corredor - Hallway
+.intObj-talkToMentor {
+  background-image: @intObj-charMentor;
+  background-size: contain;
+  @charMentor-width: 190px;
+  @charMentor-height: 524px;
+
+  @media screen and (min-width: @screen-sm-min) {
+    bottom: 6%;
+    left: 25%;
+    width: 0.58 * @charMentor-width;
+    height: 0.58 * @charMentor-height;
+  }
+  @media screen and (min-width: @screen-md-min) {
+    bottom: 6%;
+    left: 25%;
+    width: 0.74 * @charMentor-width;
+    height: 0.74 * @charMentor-height;
+  }
+  @media screen and (min-width: @screen-lg-min) {
+    bottom: 6%;
+    left: 25%;
+    width: 0.9 * @charMentor-width;
+    height: 0.9 * @charMentor-height;
+  }
+}
+.intObj-talkToMentor:hover {
+  box-shadow: none;
+  background-image: @intObj-charMentor-hover;
+}
+.intObj-goToNursingStation {  // Posto de Enfermagem
   top: @intObj-goToNursingStation-top;
   left: @intObj-goToNursingStation-left;
   height: @intObj-goToNursingStation-height;
   width: @intObj-goToHallway-width;
 }
 
-.intObj-goToBedroom {
+.intObj-goToBedroom { // Sala de Leitos
   top: @intObj-goToBedroom-top;
   left: @intObj-goToBedroom-left;
   height: @intObj-goToBedroom-height;
   width: @intObj-goToBedroom-width;
 }
+//endregion
+
+
+
 
 .intObj-braceletConfirmation:hover {
   background-image: @intObj-braceletConfirmation;
@@ -115,19 +151,7 @@
   box-shadow: none;
   background-image: @intObj-oximeter-hover;
 }
-.intObj-charMentor {
-  background-image: @intObj-charMentor;
-  background-repeat: no-repeat;
-  background-size: contain;
-  bottom: @intObj-talkToMentor-bottom;
-  right: @intObj-talkToMentor-right;
-  width: @intObj-talkToMentor-width;
-  height: @intObj-talkToMentor-height;
-}
-.intObj-charMentor:hover {
-  box-shadow: none;
-  background-image: @intObj-charMentor-hover;
-}
+
 
 .intObj-cushion {
   background-image: @intObj-cushion;
