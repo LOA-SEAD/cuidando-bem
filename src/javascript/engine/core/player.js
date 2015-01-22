@@ -6,6 +6,9 @@ define(function(){
     var isMuted = false;
     var pastMasterVolume;
 
+    var normalSound = undefined;
+    var pastNormalSound = undefined;
+
     var loopList;
     var loopId;
     var isSoundLooping  = false;
@@ -20,6 +23,7 @@ define(function(){
     var pastRangeSound = undefined;
 
     var audios = {};
+
     var masterVolume = Sounds.masterVolume;
 
     function deepCopy(from, to){
@@ -45,6 +49,7 @@ define(function(){
 
                 sound.loop = false;
                 sound.volume = Sounds.masterVolume;
+                sound.vol = sound.volume;
                 sound.load();
             }
         }
@@ -82,14 +87,19 @@ define(function(){
     }
 
     function play(sound){
+        normalSound = sound;
         if (window.chrome) {
-            sound.load();
+            normalSound.load();
         }else{
-            sound.currentTime = 0;
+            normalSound.currentTime = 0;
         }
-        sound.play();
+        normalSound.play();
 
-        console.log(sound);
+        //console.log(sound);
+    }
+
+    function stop(){
+        normalSound.pause();
     }
 
     function playInLoop(obj){
@@ -103,8 +113,10 @@ define(function(){
     }
 
     function stopLoop(){
-        isSoundLooping = false;
-        loopSound.pause();
+        if(isSoundLooping) {
+            isSoundLooping = false;
+            loopSound.pause();
+        }
     }
 
     function playNextInLoop(){
@@ -147,12 +159,24 @@ define(function(){
     }
 
     function stopRange(){
-        isRangePlaying = false;
-        rangeSound.pause();
+        if(isRangePlaying) {
+            isRangePlaying = false;
+            rangeSound.pause();
+        }
     }
 
     function playNextInRange(){
-        rangeSoundId = Math.floor(Math.random() * rangeList.length);
+        var rangeIdArray = [];
+        for(i in rangeList)
+            rangeIdArray.push(i);
+
+        pastRangeSoundId = rangeSoundId;
+
+        if(pastRangeSoundId !== undefined) {
+            rangeIdArray.splice(pastRangeSoundId, 1);
+        }
+
+        rangeSoundId = rangeIdArray[Math.floor(Math.random() * rangeIdArray.length)];
 
         if(pastLoopSound !== undefined) {
             pastLoopSound.pause();
@@ -178,30 +202,66 @@ define(function(){
             playNextInRange();
     }
 
-    function setVolume(obj, volume){
+    function setVolumeOfTo(obj, volume){
         var playList = getAsArray(obj);
 
-        for(sound in playList)
-            playList[sound].volume = volume * masterVolume;
+        for(soundId in playList) {
+            var sound = playList[soundId];
+            sound.vol = volume;
+            sound.volume = volume * masterVolume;
+        }
+    }
+
+    function resetAllVolumes(){
+        var playList = getAsArray(audios);
+
+        for(soundId in playList) {
+            var sound = playList[soundId];
+
+            sound.volume = sound.vol * masterVolume;
+        }
+    }
+
+    function setMasterVolumeTo(volume){
+        masterVolume = volume;
+
+        resetAllVolumes();
     }
 
     function mute(){
-        if(!isMuted){
+        isMuted = !isMuted;
 
-            isMuted = true;
+        if(isMuted){
+            pastMasterVolume = masterVolume;
+
+            setMasterVolumeTo(0);
+        }else{
+            setMasterVolumeTo(pastMasterVolume);
         }
+    }
+
+    function stopAll(){
+        stop();
+        stopLoop();
+        stopRange();
     }
 
     return{
         audios: audios,
 
         play: playRandom,
-        setVolume: setVolume,
+        stop: stop,
+        mute: mute,
+
+        setVolumeOfTo: setVolumeOfTo,
+        setMasterVolumeTo: setMasterVolumeTo,
 
         playInLoop: playInLoop,
         stopLoop: stopLoop,
 
         playInRange:playInRange,
-        stopRange: stopRange
+        stopRange: stopRange,
+
+        stopAll: stopAll
     }
 });

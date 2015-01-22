@@ -436,6 +436,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         ModalScene: ModalScene,
         Scene_con:Scene_con,
         endOfLevel:endOfLevel,
+        Player: require('Player'),
         core: ret
     };
 
