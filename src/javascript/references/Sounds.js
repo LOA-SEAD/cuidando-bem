@@ -60,7 +60,8 @@ define(function () {
 		
 		],
 		loops:{
-			recepcao: "sons_ambiente_hospital_recepcao.mp3"			
+			recepcao: ["sons_ambiente_hospital_recepcao.mp3"],
+            test: ["teste.mp3"]
 		}		
 		
 	};

@@ -102,7 +102,7 @@ define({
         }
     },
     fase1:{
-        recepcionista:[
+        recepcao:[
             "Oi! Parece que deu tudo certo com seu primeiro paciente. Parabéns! " +
             "O mentor já te espera para um novo caso.",
 

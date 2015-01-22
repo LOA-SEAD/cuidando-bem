@@ -60,16 +60,16 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         recepcao.registerDialogs([
             new Dialog("Clara", "char-receptionist")
-                .setText(Dialogs.recepcionista[0])
-                .registerOption(Dialogs.recepcionista[1], function () {
+                .setText(Dialogs.recepcao[0])
+                .registerOption(Dialogs.recepcao[1], function () {
                     level.getFlag("conversar_recepcionista").setValue(true);
                     console.log("Selecionado 1a opção diálogo: " + level.getFlag("conversar_recepcionista").getValue());
                     core.openDialog(1);
                 }),
 
             new Dialog("Clara", "char-receptionist")
-                .setText(Dialogs.recepcionista[2])
-                .registerOption(Dialogs.recepcionista[3], function () {
+                .setText(Dialogs.recepcao[2])
+                .registerOption(Dialogs.recepcao[3], function () {
                     console.log("Encerrar o diálogo");
                     core.closeDialog(1);
                     core.setInteractiveObjectVisible("io-conversar_recepcionista", true);

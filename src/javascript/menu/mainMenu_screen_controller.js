@@ -16,6 +16,9 @@ define(['Stage', 'CuidandoBem'], function (Stage, Core) {
         //Player.setLoop(Player.audios.fundo, true);
         //Player.play(Player.audios.fundo);
 
+        //Player.playInLoop(Player.audios.loops.test);
+        Player.playInRange(Player.audios.sfx.objeto);
+
         console.log("Configuring main menu listeners");
         var menuButtons = $('.menuButton');
 
@@ -25,7 +28,9 @@ define(['Stage', 'CuidandoBem'], function (Stage, Core) {
 
         $(menuButtons[0]).click(function () {
             console.log(this);
+            Player.stopLoop();
             Stage.changeScreen(1);
+
         });
 
         $(menuButtons[1]).click(function () {
