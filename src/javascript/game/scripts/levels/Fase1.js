@@ -37,8 +37,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         recepcao.registerDialogs([
             new Dialog("recepcionista", "char-recepcionista")
-                .setText(Dialogs.recepcionista[0])
-                .registerOption(Dialogs.recepcionista[1], function () {
+                .setText(Dialogs.recepcao[0])
+                .registerOption(Dialogs.recepcao[1], function () {
                     console.log("Selecionado 1a opção diálogo");
                     core.closeDialog(0);
                     core.setActionVisible("btn-ir_corredor", true);
