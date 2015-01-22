@@ -1,6 +1,6 @@
 define(function () {
 	
-	var masterVolume = 0.5;
+	var masterVolume = 1;
 	var baseDir = "./assets/sounds/";
 	var paths = {
 		sfx: {
