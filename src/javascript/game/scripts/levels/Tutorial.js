@@ -15,8 +15,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         var flags_on = true;    // if false it wont check for flags -- tests purpose
         var visibility = false;
-        if (flags_on)
+        if (!flags_on)
             visibility = true;
+
+        var nomePaciente = "Sr. João";
+        var nomeRecepcionista = "Clara";
+        var nomeJogador = "Jogador";
+        var nomeMentor = "Mentor";
 
         //region Scenes
 
@@ -50,12 +55,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .setCssClass("scene-lobby")
             .setLoadFunction(function () {
                 console.log("Load scene: " + recepcao.getName());
+                core.setInteractiveObjectVisible("io-conversar_recepcionista", true);
                 core.openDialog(0);
             })
             .setUnloadFunction(function () {
                 console.log("Unload scene: " + recepcao.getName());
-                //core.closeDialog(0);
-                //core.closeDialog(1);
             });
 
         recepcao.registerDialogs([
@@ -72,7 +76,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .registerOption(Dialogs.recepcao[3], function () {
                     console.log("Encerrar o diálogo");
                     core.closeDialog(1);
-                    core.setInteractiveObjectVisible("io-conversar_recepcionista", true);
                     core.setInteractiveObjectVisible("io-ir_corredor_esquerda", true);
                     core.setInteractiveObjectVisible("io-ir_corredor_direita", true);
                 })
@@ -124,17 +127,17 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         core.openDialog(0);
                         break;
                     case 1: // second time at 'corredor'
-                        core.setActionVisible("btn-ir_posto_enfermagem", true);
+                        //core.setActionVisible("btn-ir_posto_enfermagem", true);
                         core.setInteractiveObjectVisible("io-ir_posto_enfermagem", true);
-                        core.setActionVisible("btn-ir_sala_leitos", false);
+                        //core.setActionVisible("btn-ir_sala_leitos", false);
                         core.setInteractiveObjectVisible("io-ir_sala_leitos", false);
-                        core.setActionVisible("btn-conversar_mentor", false);
+                        //core.setActionVisible("btn-conversar_mentor", false);
                         core.setInteractiveObjectVisible("io-conversar_mentor", false);
                         break;
                     case 2:
-                        core.setActionVisible("btn-ir_posto_enfermagem", false);
+                        //core.setActionVisible("btn-ir_posto_enfermagem", false);
                         core.setInteractiveObjectVisible("io-ir_posto_enfermagem", false);
-                        core.setActionVisible("btn-ir_sala_leitos", true);
+                        //core.setActionVisible("btn-ir_sala_leitos", true);
                         core.setInteractiveObjectVisible("io-ir_sala_leitos", true);
                         break;
                 }
@@ -198,13 +201,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         ]);*/
 
         corredor.registerInteractiveObjects([
-            new InteractiveObject("io-ir_sala_leitos","Ir para a sala de leitos masculino")
-                .setCssClass("intObj-ir_sala_de_leitos")
+            new InteractiveObject("io-ir_sala_leitos","Ir para a sala de Leitos Masculino")
+                .setCssClass("intObj-goToBedroom")
                 .setFunction(corredorIrSalaLeitos)
                 .setVisible(visibility),
 
-            new InteractiveObject("io-ir_posto_enfermagem","Ir para o posto de enfermagem")
-                .setCssClass("intObj-ir_posto_de_enfermagem")
+            new InteractiveObject("io-ir_posto_enfermagem","Ir para o Posto de Enfermagem")
+                .setCssClass("intObj-goToNursingStation")
                 .setFunction(corredorIrPostoEnfermagem)
                 .setVisible(visibility),
 
@@ -220,16 +223,20 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region Sala de Leitos
         var sala_de_leitos = new Scene("sala_de_leitos", "scene-sala_de_leitos")
-            .setCssClass("scene-sala_de_leitos")
+            .setCssClass("scene-bedroom")
             .setLoadFunction(function (){
                 switch (level.getFlag("passagem_sala-de-leitos").getValue()){
                     case 0:
-                        core.setActionVisible("btn-ir_leito", true);
-                        core.setActionVisible("btn-ir_corredor", false);
+                        //core.setActionVisible("btn-ir_leito", true);
+                        //core.setActionVisible("btn-ir_corredor", false);
+                        core.setInteractiveObjectVisible("io-ir_leito", true);
+                        core.setInteractiveObjectVisible("io-ir_corredor", false);
                         break;
                     case 1:
-                        core.setActionVisible("btn-ir_leito", false);
-                        core.setActionVisible("btn-ir_corredor", true);
+                        //core.setActionVisible("btn-ir_leito", false);
+                        //core.setActionVisible("btn-ir_corredor", true);
+                        core.setInteractiveObjectVisible("io-ir_leito", false);
+                        core.setInteractiveObjectVisible("io-ir_corredor", true);
                         break;
                 }
             })
@@ -244,6 +251,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 }
             });
 
+        /*
         sala_de_leitos.registerActions([
             new Action("btn-ir_corredor", "Ir ao corredor")
                 .setCssClass("action-ir_corredor")
@@ -259,63 +267,29 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 })
                 .setVisible(visibility)
         ]);
-        //endregion
+        */
 
-        //region Fim do Level
-        var fim_tutorial = new Scene("Fim da fase", "scene-fim-level")
-            .setCssClass("scene-fim-level")
-            .setLoadFunction(function (){
-                core.setActionVisible("btn-proxima_fase", true);
-            });
+        sala_de_leitos.registerInteractiveObjects([
+           new InteractiveObject("io-ir_leito", "Ir ao leito")
+               .setCssClass("intObj-ir_leito-tutorial")
+               .setFunction(function (){
+                   core.changeScene(3);
+               })
+               .setVisible(visibility),
 
-        fim_tutorial.registerActions([
-            new Action("btn-proxima_fase", "Ir a recepção")
-                .setCssClass("action-ir_recepcao")
-                .setFunction( function (){
-                    console.log("Proxima fase" + core);
-                    core.changeLevelTo(1);
-                })
-                .setVisible(visibility)
-        ]);
-        //endregion
-
-        //region Posto de Enfermagem
-        var posto_de_enfermagem = new Scene("posto_de_enfermagem", "scene-posto_de_enfermagem")
-            .setCssClass("scene-posto_de_enfermagem")
-            .setLoadFunction(function (){
-                core.setActionVisible("btn-abrir_gaveta", true);
-            });
-
-        posto_de_enfermagem.registerActions([
-            new Action("btn-ir_corredor", "Ir ao corredor")
-                .setCssClass("action-ir_corredor")
-                .setFunction(function (){
-                    console.log("Action: ir_corredor");
+            new InteractiveObject("io-ir_corredor", "Ir ao Corredor")
+                .setCssClass("intObj-bedroomToHallway")
+                .setFunction(function () {
                     core.changeScene(1);
                 })
-                .setVisible(visibility),
-
-            new Action("btn-abrir_gaveta", "Abrir gaveta")
-                .setCssClass("action-abrir_gaveta")
-                .setFunction( function () {
-                    console.log("Action: abrir_gaveta");
-                    core.openModalScene("Gaveta");
-
-                    core.setActionVisible("btn-fechar_gaveta", true);
-                    if(core.getFlag("termometro").getValue() != true)
-                        core.setActionVisible("btn-termometro", true);
-                    if(core.getFlag("medidor-pressao").getValue() != true)
-                        core.setActionVisible("btn-medidor_pressao", true);
-                    if(core.getFlag("oximetro").getValue() != true)
-                        core.setActionVisible("btn-oximetro", true);
-                })
                 .setVisible(visibility)
         ]);
+
         //endregion
 
         //region Leito
         var leito = new Scene("leito", "scene-leito-char-01")
-            .setCssClass("scene-leito-char-01")
+            .setCssClass("scene-bedChar01")
             .setLoadFunction(function () {
                 console.log("Leito: Onload");
                 switch (level.getFlag("visita-leito").getValue()){
@@ -336,58 +310,83 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 level.getFlag("visita-leito").setValue(1);
             });
 
+
+        //region Leito - Dialogs
         leito.registerDialogs([
-            new Dialog("mentor", "char-mentor")
+            new Dialog(nomeMentor, "char-mentor")
                 .setText(Dialogs.leito.conversa1[0])
                 .registerOption(Dialogs.leito.conversa1[1], function () {
-                    core.closeDialog(0);
+                    //core.closeDialog(0);
                     core.openDialog(1);
                 }),
 
-            new Dialog("paciente", "char-paciente-01")
+            new Dialog(nomePaciente, "char-paciente_01")
                 .setText(Dialogs.leito.conversa1[2])
                 .registerOption(Dialogs.leito.conversa1[3], function () {
-                    core.closeDialog(1);
+                    //core.closeDialog(1);
                     core.openDialog(2);
                 }),
 
-            new Dialog("paciente", "char-paciente-01")
+            new Dialog(nomePaciente, "char-paciente_01")
                 .setText(Dialogs.leito.conversa1[4])
                 .registerOption(Dialogs.leito.conversa1[5], function () {
-                    core.closeDialog(2);
+                    //core.closeDialog(2);
                     core.openDialog(3);
                 }),
 
 
-            new Dialog("mentor", "char-mentor")
+            new Dialog(nomeMentor, "char-mentor")
                 .setText(Dialogs.leito.conversa1[6])
                 .registerOption(Dialogs.leito.conversa1[7], function () {
                     core.closeDialog(3);
-                    core.setActionVisible("btn-pulseira_paciente", true);
+                    //core.setActionVisible("btn-pulseira_paciente", true);
+                    core.setInteractiveObjectVisible("io-pulseira_paciente", true);
                 }),
 
-            new Dialog("jogador", "char-jogador")
+            new Dialog(nomeJogador, "char-jogador")
                 .setText("")
                 .registerOption(Dialogs.leito.conversa2[0], function () {
-                    core.closeDialog(4);
+                    //core.closeDialog(4);
                     core.openDialog(5);
                 }),
 
-            new Dialog("paciente", "char-paciente-01")
+            new Dialog(nomePaciente, "char-paciente_01")
                 .setText(Dialogs.leito.conversa2[1])
                 .registerOption(Dialogs.leito.conversa2[2], function () {
-                    core.closeDialog(5);
+                    //core.closeDialog(5);
                     core.openDialog(6);
                 }),
 
-            new Dialog("mentor", "char-mentor")
+            new Dialog(nomeMentor, "char-mentor")
                 .setText(Dialogs.leito.conversa2[3])
                 .registerOption(Dialogs.leito.conversa2[4], function () {
                     core.closeDialog(6);
                     core.setActionVisible("btn-lavar_maos", true);
                 })
         ]);
+        //endregion
 
+        //region Leito - interactiveObjects and Actions
+        leito.registerInteractiveObjects([
+            /*
+             new InteractiveObject()
+             .setCssClass()
+             .setFunction()
+             .setVisible(visibility)
+             */
+
+            new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
+                .setCssClass("intObj-paciente_01-checar_pulseira")
+                .setFunction(function () {
+                    console.log("IO: pulseira_paciente");
+                    core.openModalScene("pulseira");
+                    //core.setActionVisible("btn-confirmar_pulseira", true);
+                    //core.setInteractiveObjectVisible("io-confirmar_pulseira", true);
+                })
+                .setVisible(visibility)
+
+
+        ]);
         leito.registerActions([
             new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
                 .setCssClass("action-ir_sala_de_leitos")
@@ -492,6 +491,60 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisible(visibility)
         ]);
         //endregion
+    //endregion
+
+        //region Posto de Enfermagem
+        var posto_de_enfermagem = new Scene("posto_de_enfermagem", "scene-posto_de_enfermagem")
+            .setCssClass("scene-posto_de_enfermagem")
+            .setLoadFunction(function (){
+                core.setActionVisible("btn-abrir_gaveta", true);
+            });
+
+        posto_de_enfermagem.registerActions([
+            new Action("btn-ir_corredor", "Ir ao corredor")
+                .setCssClass("action-ir_corredor")
+                .setFunction(function (){
+                    console.log("Action: ir_corredor");
+                    core.changeScene(1);
+                })
+                .setVisible(visibility),
+
+            new Action("btn-abrir_gaveta", "Abrir gaveta")
+                .setCssClass("action-abrir_gaveta")
+                .setFunction( function () {
+                    console.log("Action: abrir_gaveta");
+                    core.openModalScene("Gaveta");
+
+                    core.setActionVisible("btn-fechar_gaveta", true);
+                    if(core.getFlag("termometro").getValue() != true)
+                        core.setActionVisible("btn-termometro", true);
+                    if(core.getFlag("medidor-pressao").getValue() != true)
+                        core.setActionVisible("btn-medidor_pressao", true);
+                    if(core.getFlag("oximetro").getValue() != true)
+                        core.setActionVisible("btn-oximetro", true);
+                })
+                .setVisible(visibility)
+        ]);
+        //endregion
+
+        //region Fim do Level
+        var fim_tutorial = new Scene("Fim da fase", "scene-fim-level")
+            .setCssClass("scene-fim-level")
+            .setLoadFunction(function (){
+                core.setActionVisible("btn-proxima_fase", true);
+            });
+
+        fim_tutorial.registerActions([
+            new Action("btn-proxima_fase", "Ir a recepção")
+                .setCssClass("action-ir_recepcao")
+                .setFunction( function (){
+                    console.log("Proxima fase" + core);
+                    core.changeLevelTo(1);
+                })
+                .setVisible(visibility)
+        ]);
+        //endregion
+
         //endregion
 
         //region Modal Scenes
@@ -591,8 +644,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Pulseira
-        var pulseira = new Scene("Pulseira", "modalScene-pulseira");
+        var pulseira = new Scene("pulseira", "modalScene-pulseira");
 
+        /*
         pulseira.registerActions([
             new Action("btn-largar_pulseira", "Largar pulseira")
                 .setCssClass("action-pulseira_paciente")
@@ -626,11 +680,19 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 })
                 .setVisible(visibility)
         ]);
+        */
         //endregion
 
         //endregion
 
         //region Level
+
+        //region Register Modal Scenes
+        level.registerModalScene(pulseira);
+        level.registerModalScene(prontuario);
+        level.registerModalScene(gaveta);
+        //endregion
+
         //region Register Scenes
         level.registerScene(recepcao);
         level.registerScene(corredor);
@@ -639,12 +701,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerScene(posto_de_enfermagem);
         level.registerScene(fim_tutorial);
 
-        //endregion
-
-        //region Register Modal Scenes
-        level.registerModalScene(pulseira);
-        level.registerModalScene(prontuario);
-        level.registerModalScene(gaveta);
         //endregion
 
         //region Flags
@@ -659,7 +715,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("oximetro", false));
         //endregion
 
-        level.setInitialScene(0);
+        level.setInitialScene(3);
         //endregion
 
         game.registerLevel(level, 0);
