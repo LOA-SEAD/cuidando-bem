@@ -380,6 +380,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setFunction(function () {
                     console.log("IO: pulseira_paciente");
                     core.openModalScene("pulseira");
+
                     //core.setActionVisible("btn-confirmar_pulseira", true);
                     //core.setInteractiveObjectVisible("io-confirmar_pulseira", true);
                 })
@@ -644,7 +645,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Pulseira
-        var pulseira = new Scene("pulseira", "modalScene-pulseira");
+        var pulseira = new Scene("pulseira", "pulseira")
+            .setCssClass("modalScene-pulseira");
 
         /*
         pulseira.registerActions([
@@ -687,12 +689,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region Level
 
-        //region Register Modal Scenes
-        level.registerModalScene(pulseira);
-        level.registerModalScene(prontuario);
-        level.registerModalScene(gaveta);
-        //endregion
-
         //region Register Scenes
         level.registerScene(recepcao);
         level.registerScene(corredor);
@@ -701,6 +697,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerScene(posto_de_enfermagem);
         level.registerScene(fim_tutorial);
 
+        //endregion
+
+        //region Register Modal Scenes
+        level.registerModalScene(pulseira);
+        level.registerModalScene(prontuario);
+        level.registerModalScene(gaveta);
         //endregion
 
         //region Flags
