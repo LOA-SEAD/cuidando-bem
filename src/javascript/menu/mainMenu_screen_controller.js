@@ -16,7 +16,7 @@ define(['Stage', 'CuidandoBem'], function (Stage, Core) {
         //Player.setLoop(Player.audios.fundo, true);
         //Player.play(Player.audios.fundo);
 
-        Player.playInLoop(Player.audios.loops.test);
+        Player.playInLoop(Player.audios.loops.test2);
         //Player.playInRange(Player.audios.sfx.objeto);
 
         console.log("Configuring main menu listeners");

@@ -17,6 +17,10 @@ define(['Stage'], function (Stage) {
             Player.play(Player.audios.sfx.selecionar_menu);
         });
 
+        $('#muteSoundButton').click(function(){
+           Player.mute();
+        });
+
         $('.backButton').click(function () {
             Stage.changeScreen(0);
         });
