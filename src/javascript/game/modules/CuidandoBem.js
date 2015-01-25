@@ -35,7 +35,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         console.group("Game Running:");
 
         changeLevel(game.getInitialLevel());
-        CommandBar.hide();
+        //CommandBar.hide();
         startLevel();
     }
 
@@ -160,6 +160,14 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         Scene = Level.getCurrentScene();
     }
 
+
+    //CommandBar
+    function openCommandBar(){
+        CommandBar.show();
+    }
+    function closeCommandBar(){
+        CommandBar.hide();
+    }
     //Dialog
     /**
      * Description
@@ -396,6 +404,8 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         closeModalScene: closeModalScene,
         showEndOfLevel: showEndOfLevel,
         closeEndOfLevel: closeEndOfLevel,
+        openCommandBar: openCommandBar,
+        closeCommandBar: closeCommandBar,
 
         enableActionButton: enableActionButton,
         disableActionButton: disableActionButton,
