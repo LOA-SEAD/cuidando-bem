@@ -37,6 +37,79 @@ html, body {
   height: 50%;
 }
 
+#saveSlotMain{
+  width: 100%;
+  height: 50%;
+}
+#dialog-confirmDelete{
+  //display: none;
+
+}
+
+#slotsContainer{
+  width: 40%;
+  height: 80%;
+  //background-color: white;
+
+  position: relative;
+  margin-left: 50%;
+  left: -150px;
+
+  .slot{
+    width: 70%;
+    padding: 5px;
+    margin-bottom: 25px;
+    margin-left: 45px;
+    background-color: cadetblue;
+    border-radius: 12px;
+
+    font-family: 'Pacifico', cursive;
+    cursor: hand;
+
+    input[type=text]
+    {
+
+      height: 28px;
+      text-decoration: none;
+      text-align: center;
+      border-radius: 5px; /*up to date browsers support this, but you can add prefixes if you want*/
+      background-color: rgba(0,0,0,0);
+      border: 0;
+    }
+  }
+  .slot.selected{
+    background-color: indianred;
+  }
+
+  .slot.empty{
+    input[type=text] {
+      color: #000;
+    }
+  }
+
+  .slot.filled{
+    input[type=text] {
+      color: #FFF;
+    }
+  }
+}
+
+#slotsMenu{
+  //width: 80%;
+  margin-left: 9%;
+
+  .menuButton{
+    margin-top: 5px;
+    width: 200px;
+
+    float: left;
+    margin-left: 1%;
+    margin-right: 1%;
+
+
+  }
+}
+
 #menuContainer {
   position: absolute;
   right: 10%;
@@ -143,6 +216,12 @@ html, body {
   background-color: #E4BC47;
   border-bottom: 5px solid #A38426;
   text-shadow: 0px -2px #A38426;
+}
+
+.menuButton.disabled{
+  background-color: #8E8F8E !important;
+  border-bottom: 5px solid #5b5c5b !important;
+  text-shadow: 0px -2px #5b5c5b !important;
 }
 
 .menuButton:hover{

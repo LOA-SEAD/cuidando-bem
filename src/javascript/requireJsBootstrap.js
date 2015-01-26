@@ -52,10 +52,8 @@ require.config({
 });
 require(['Errors', 'Dialogs', 'Images', 'Sounds']);
 //Init the app when everything is ready
-require(['Player']);
-
 require(['SaveLoadGame'], function(){
-    require(['ImageLoader']);
+    require(['Player', 'ImageLoader']);
 });
 
 

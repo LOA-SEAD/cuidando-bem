@@ -16,7 +16,7 @@ define(['Stage', 'CuidandoBem'], function (Stage, Core) {
         //Player.setLoop(Player.audios.fundo, true);
         //Player.play(Player.audios.fundo);
 
-        Player.playInLoop(Player.audios.loops.test2);
+        //Player.playInLoop(Player.audios.loops.test2);
         //Player.playInRange(Player.audios.sfx.objeto);
 
         console.log("Configuring main menu listeners");
@@ -26,23 +26,27 @@ define(['Stage', 'CuidandoBem'], function (Stage, Core) {
            Player.play(Player.audios.sfx.selecionar_menu);
         });
 
+        //Iniciar Jogo
         $(menuButtons[0]).click(function () {
             console.log(this);
             Player.stopLoop();
-            Stage.changeScreen(1);
+            Stage.changeScreen(5);
 
         });
 
+        //Carregar Jogo
         $(menuButtons[1]).click(function () {
             console.log(this);
             Stage.changeScreen(2);
         });
 
+        //Configurações
         $(menuButtons[2]).click(function () {
             console.log(this);
             Stage.changeScreen(4);
         });
 
+        //Créditos
         $(menuButtons[3]).click(function () {
             console.log(this);
             Stage.changeScreen(3);
