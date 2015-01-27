@@ -86,6 +86,26 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
         element.attr('title', _action.getName());
         element.attr('id', _action.getId());
         element.addClass(_action.getCssClass());
+
+        element.tooltip({
+            tooltipClass: "actionButton-ui-tooltip",
+            show: {
+                duration: 100
+            },
+            position: {
+                my: "center bottom-20",
+                at: "center top",
+                using: function( position, feedback ) {
+                    $( this ).css( position );
+                    $( "<div>" )
+                        .addClass( "arrow" )
+                        .addClass( feedback.vertical )
+                        .addClass( feedback.horizontal )
+                        .appendTo( this );
+                }
+            }
+        });
+
         if (_action.isEnabled())
             element.addClass("enabled");
         else
@@ -131,6 +151,7 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
         element.removeClass("disabled");
         element.addClass("enabled");
         element.click(_action.getFunction());
+        element.tooltip("enable");
     }
 
     //Deactivate Button
@@ -146,6 +167,7 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
         element.removeClass("enabled");
         element.addClass("disabled");
         element.unbind("click");
+        element.tooltip("disable");
     }
 
     /**

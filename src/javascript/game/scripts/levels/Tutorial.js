@@ -380,14 +380,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setFunction(function () {
                     console.log("IO: pulseira_paciente");
                     core.openModalScene("pulseira");
-
-                    //core.setActionVisible("btn-confirmar_pulseira", true);
-                    //core.setInteractiveObjectVisible("io-confirmar_pulseira", true);
+                    core.openCommandBar();
+                    if(level.getFlag("pulseira").getValue() == false)
+                        core.setInteractiveObjectVisible("io-confirmar_pulseira", true);
                 })
-                .setVisible(visibility)
-
+                .setVisible(visibility),
 
         ]);
+
         leito.registerActions([
             new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
                 .setCssClass("action-ir_sala_de_leitos")
@@ -396,17 +396,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.changeScene(2);
                 })
                 .setVisible(visibility),
-
-            new Action("btn-pulseira_paciente", "Checar pulseira paciente")
-                .setCssClass("action-pulseira_paciente")
-                .setFunction(function (){
-                    console.log("Action: pulseira_paciente");
-                    core.openModalScene("Pulseira");
-                    core.setActionVisible("btn-confirmar_pulseira", true);
-                    core.setInteractiveObjectVisible("io-confirmar_pulseira", true);
-                })
-                .setVisible(visibility),
-
+            /*
             new Action("btn-lavar_maos", "Lavar as mãos")
                 .setCssClass("action-lavar_maos")
                 .setFunction(function (){
@@ -490,7 +480,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.openModalScene("Prontuario");
                 })
                 .setVisible(visibility)
+             */
         ]);
+
         //endregion
     //endregion
 
@@ -648,7 +640,24 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var pulseira = new Scene("pulseira", "pulseira")
             .setCssClass("modalScene-pulseira");
 
-        /*
+        pulseira.registerInteractiveObjects([
+            new InteractiveObject("io-confirmar_pulseira", "Confirmar pulseira")
+                .setCssClass("intObj-braceletConfirmation")
+                .setFunction(function () {
+                    console.log("Ação: Confirmar pulseira");
+                    core.setInteractiveObjectVisible("io-pulseira_confirmada", true);
+                    core.setInteractiveObjectVisible("io-confirmar_pulseira", false);
+                    level.getFlag("pulseira").setValue(true);
+                    core.setActionVisible("btn-largar_pulseira", true);
+                })
+                .setVisible(visibility),
+
+            new InteractiveObject("io-pulseira_confirmada", "Pulseira confirmada")
+                .setCssClass("intObj-braceletConfirmed")
+                .setFunction(function () {})
+                .setVisible(visibility)
+        ]);
+
         pulseira.registerActions([
             new Action("btn-largar_pulseira", "Largar pulseira")
                 .setCssClass("action-pulseira_paciente")
@@ -656,33 +665,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("Ação: Fechar modal pulseira");
                     core.closeModalScene("Pulseira");
                     core.setActionVisible("btn-ir_sala_leitos", true);
-                    core.setActionVisible("btn-pulseira_paciente", false);
-                })
-                .setVisible(visibility),
-
-            new Action("btn-confirmar_pulseira", "Confirmar pulseira")
-                .setCssClass("action-confirmar_pulseira")
-                .setFunction(function (){
-                    console.log("Ação: Confirmar pulseira");
-                    core.setActionVisible("btn-confirmar_pulseira", false);
-                    core.setInteractiveObjectVisible("io-confirmar_pulseira", false);
-                    core.setActionVisible("btn-largar_pulseira", true);
+                    // o correto era dar um disable aqui no pulseira paciente
+                    core.setInteractiveObjectVisible("io-pulseira_paciente", false);
                 })
                 .setVisible(visibility)
         ]);
 
-        pulseira.registerInteractiveObjects([
-            new Action("io-confirmar_pulseira", "Confirmar pulseira")
-                .setCssClass("intObj-confirmar_pulseira")
-                .setFunction(function (){
-                    console.log("Ação: Confirmar pulseira");
-                    core.setActionVisible("btn-confirmar_pulseira", false);
-                    core.setInteractiveObjectVisible("io-confirmar_pulseira", false);
-                    core.setActionVisible("btn-largar_pulseira", true);
-                })
-                .setVisible(visibility)
-        ]);
-        */
         //endregion
 
         //endregion
@@ -711,6 +699,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("passagem_corredor", 0));
         level.registerFlag(new Flag("passagem_sala-de-leitos", 0));
         level.registerFlag(new Flag("visita-leito", 0));
+        level.registerFlag(new Flag("pulseira", false));
         level.registerFlag(new Flag("lavar-maos", 0));
         level.registerFlag(new Flag("termometro", false));
         level.registerFlag(new Flag("medidor-pressao", false));

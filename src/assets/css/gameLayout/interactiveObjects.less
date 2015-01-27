@@ -126,13 +126,41 @@
 //endregion
 
 //endregion
-.intObj-braceletConfirmation:hover {
-  background-image: @intObj-braceletConfirmation;
+.intObj-braceletConfirmation, .intObj-braceletConfirmed{
+  background-image: @intObj-braceletConfirmationGray;
   background-size: contain;
-  top: @intObj-braceletConfirmation-top;
-  left: @intObj-braceletConfirmation-left;
-  height: @intObj-braceletConfirmation-height;
-  width: @intObj-braceletConfirmation-width;
+
+  @media screen and (min-width: @screen-sm-min) {
+    width: 0.6 * 284px;
+    height: 0.6 * 263px;
+    top: (@game-height-sm - (0.6 * 263px)) / 2;
+    right: (@screen-sm-min - (0.6 * 284px)) / 2;
+  }
+
+  @media screen and (min-width: @screen-md-min) {
+    width: 0.8 * 284px;
+    height: 0.8 * 263px;
+    top: (@game-height-md - (0.8 * 263px)) / 2;
+    right: (@screen-md-min - (0.8 * 284px)) / 2;
+  }
+
+  @media screen and (min-width: @screen-lg-min) {
+    width: 284px;
+    height: 263px;
+    top: (@game-height-lg - 263px) / 2;
+    right: (@screen-lg-min - 284px) / 2;
+  }
+
+}
+.intObj-braceletConfirmation:hover {
+  background-image: @intObj-braceletConfirmationGreen;
+  background-size: contain;
+}
+
+.intObj-braceletConfirmed {
+  cursor: default;
+  background-image: @intObj-braceletConfirmationGreen;
+  background-size: contain;
 }
 
 .intObj-thermometer {

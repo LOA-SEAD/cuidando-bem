@@ -1,7 +1,59 @@
 #modalScene {
-  position: relative;
+  position: absolute;
   display: none;
 }
+
+#modalScene-mask {
+  position: absolute;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left : 0;
+}
+
+//region Leito
+.modalScene-pulseira {
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: @bg-bracelet;
+  background-position: center;
+  background-size: 80%;
+  background-repeat: no-repeat;
+
+  width: 100%;
+  height: 100%;
+
+  //@modalScene-bracelet-width: 1056px;
+  //@modalScene-bracelet-height: 210px;
+  /*
+  @media screen and (min-width: @screen-sm-min) {
+    @width: 0.45 * @modalScene-bracelet-width;
+    @height: 0.45 *@modalScene-bracelet-height;
+    width: @width;
+    height: @height;
+    top: (@game-height-sm - @height)/2;
+    left: (@screen-sm-min - @width)/2;
+  }
+  @media screen and (min-width: @screen-md-min) {
+    @width: 0.6 * @modalScene-bracelet-width;
+    @height: 0.6 * @modalScene-bracelet-height;
+    width: @width;
+    height: @height;
+    top: (@game-height-md - @height)/2;
+    left: (@screen-md-min - @width)/2;
+  }
+  @media screen and (min-width: @screen-lg-min) {
+    @width: 0.75 * @modalScene-bracelet-width;
+    @height: 0.75 * @modalScene-bracelet-height;
+    width: @width;
+    height: @height;
+    top: (@game-height-lg - @height)/2;
+    left: (@screen-lg-min - @width)/2;
+  }
+  */
+}
+//endregion
 
 .modalScene-drawer {
   background-image: @bg-drawer;
@@ -22,20 +74,7 @@
   height: 125%;
   margin: @modalScene-carlos_esme_gouvea-margin;
 }
-.modalScene-pulseira {
-  background-image: @bg-bracelet;
-  background-size: contain;
-  background-repeat: no-repeat;
-  position: relative;
 
-  @modalScene-bracelet-width: 0.75 * 1056px;
-  @modalScene-bracelet-height: 0.75 * 210px;
-  @modalScene-bracelet-margin: 15% auto 0;
-
-  width: @modalScene-bracelet-width;
-  height: @modalScene-bracelet-height;
-  margin: @modalScene-bracelet-margin;
-}
 .modalScene-prontuario_joao {
   background-image: @bg-recordsJoao;
   background-size: contain;

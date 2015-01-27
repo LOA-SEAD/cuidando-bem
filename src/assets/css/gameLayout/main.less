@@ -1,3 +1,4 @@
+//region General configuration (gameContainer layout)
 // Disable the selection function on the website
 html, body {
   -webkit-touch-callout: none;
@@ -22,7 +23,6 @@ html, body {
   box-shadow: #080808 1px 1px 10px;
   position: absolute;
 }
-
 #stage {
   background: center no-repeat @scene-mainMenu;
   background-size: cover;
@@ -30,13 +30,31 @@ html, body {
   height: 100%;
   width: 100%;
 }
-
-#menuLogo {
-  //background-color: rgba(255, 255, 255, 0.50);
+#backgroundScene {
+  height: 100%;
   width: 100%;
-  height: 50%;
 }
+#interactiveArea {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+#interactiveObjects {
+  width: 100%;
+  height: 100%;
+}
+#commandBar {
+  position: absolute;
+  width: 100%;
+  height: 20%;
+  bottom: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+//endregion
 
+//region Menu
 #menuContainer {
   position: absolute;
   right: 10%;
@@ -44,41 +62,10 @@ html, body {
   height: 50%;
 }
 
-#interactiveArea {
-  position: absolute;
+#menuLogo {
+  //background-color: rgba(255, 255, 255, 0.50);
   width: 100%;
-  height: 100%;
-}
-
-#interactiveObjects {
-  width: 100%;
-  height: 100%;
-}
-
-#dialogBar-mask {
-  position: absolute;
-  display: none;
-  background-color: rgba(0, 0, 0, 0.7);
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left : 0;
-}
-
-#commandBar {
-  width: 100%;
-  height: 20%;
-  background-color: rgba(0, 0, 0, 0.75);
-  position: relative;
-  top: 80%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap;
-}
-
-#backgroundScene {
-  height: 100%;
-  width: 100%;
+  height: 50%;
 }
 
 .interactiveArea-mask {
@@ -179,3 +166,4 @@ html, body {
   padding: 5px 45px;
   font-size: 22px;
 }
+//endregion
