@@ -20,34 +20,32 @@ define(['Stage', 'CuidandoBem'], function (Stage, Core) {
         //Player.playInRange(Player.audios.sfx.objeto);
 
         console.log("Configuring main menu listeners");
-        var menuButtons = $('.menuButton');
+        //var menuButtons = $('.menuButton');
 
-        menuButtons.click(function(){
+        $('.menuButton').click(function(){
            Player.play(Player.audios.sfx.selecionar_menu);
         });
 
         //Iniciar Jogo
-        $(menuButtons[0]).click(function () {
+        $('#initGame_btn').click(function () {
             console.log(this);
-            Player.stopLoop();
             Stage.changeScreen(5);
-
         });
 
         //Carregar Jogo
-        $(menuButtons[1]).click(function () {
+        $('#loadGame_btn').click(function () {
             console.log(this);
             Stage.changeScreen(2);
         });
 
         //Configurações
-        $(menuButtons[2]).click(function () {
+        $('#config_btn').click(function () {
             console.log(this);
             Stage.changeScreen(4);
         });
 
         //Créditos
-        $(menuButtons[3]).click(function () {
+        $('#credits_btn').click(function () {
             console.log(this);
             Stage.changeScreen(3);
         });

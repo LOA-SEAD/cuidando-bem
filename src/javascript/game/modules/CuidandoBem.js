@@ -31,10 +31,14 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @param {} _gameState
      * @memberOf module:Core_Controller
      */
-    function start(_gameState) {
+    function start(_level) {
         console.group("Game Running:");
 
-        changeLevel(game.getInitialLevel());
+        if(_level === undefined){
+            changeLevel(game.getCurrentLevel());
+        }else{
+            changeLevelTo(_level);
+        }
         //CommandBar.hide();
         startLevel();
     }

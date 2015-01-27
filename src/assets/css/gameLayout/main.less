@@ -41,6 +41,46 @@ html, body {
   width: 100%;
   height: 50%;
 }
+
+#levelSelectContainer{
+  width: 100%;
+  height: 50%;
+
+  //background-color: red;
+}
+
+#levelSelector {
+  width: 40%;
+  height: 70%;
+  margin-left: 32%;
+  //background-color: white;
+}
+
+.level {
+  width: 30%;
+  height: 30%;
+  background-color: #58CA85;
+  float: left;
+  margin: 5px;
+  border-radius: 15;
+
+  cursor: hand;
+
+  border-bottom: 3px solid #468b4a;
+}
+
+.level.disabled{
+  background-color: #8E8F8E !important;
+  border-bottom: 3px solid #5b5c5b !important;
+}
+
+.level:active {
+  //transform: translate(0px, 3px);
+  //-webkit-transform: translate(0px, 3px);
+  background-color: #b61f20;
+  border-bottom: 3px solid #8b191a;
+}
+
 #dialog-confirmDelete{
   //display: none;
 
@@ -82,15 +122,11 @@ html, body {
   }
 
   .slot.empty{
-    input[type=text] {
-      color: #000;
-    }
+    color: #000;
   }
 
   .slot.filled{
-    input[type=text] {
-      color: #FFF;
-    }
+    color: #FFF;
   }
 }
 
@@ -231,13 +267,13 @@ html, body {
   border-bottom-width: 7px;
 }
 
-.menuButton:active {
+.menuButton:active{
   transform: translate(0px, 5px);
   -webkit-transform: translate(0px, 5px);
   border-bottom: 1px solid #2980B9;
 }
 
-.menuButtonAnimate {
+.menuButtonAnimate, .level {
   transition: all 0.1s;
   -webkit-transition: all 0.1s;
 }

@@ -52,24 +52,34 @@ define(["SimpleStorage"], function(Storage){
         saves = Storage.get(KEY_SAVES_CONTAINER);
 
         //"SavesContainer" does not exist
-        if (saves === undefined) {
+        if (saves === undefined || !(saves instanceof Array) || saves.length !== 3) {
             //Create "Saves"
             creatEmptySaves();
         }
+        for(i in saves){
+            var save = saves[i];
+            if(!save instanceof SaveObject || save === null){
+                save = emptySlot.getClone();
+                saves[i] = save;
+            }
+        }
+        saveSlots();
 
         //Get is muted data from storage module
         muted = Storage.get(KEY_MUTED);
 
-        if(muted === undefined){
+        if(muted === undefined || typeof muted !== 'boolean'){
             muted = false;
             Storage.set(KEY_MUTED, muted);
         }
 
         selectedId = Storage.get(KEY_SELECTED_ID);
 
-        if(selectedId === undefined){
+        if(selectedId === undefined || typeof selectedId !== 'number' || selectedId < 0 || selectedId > 3){
             selectedId = 0;
             Storage.set(KEY_SELECTED_ID);
+        }else{
+
         }
     }
     init();
@@ -108,6 +118,10 @@ define(["SimpleStorage"], function(Storage){
         console.log("Loading save from: " + saves[id].name + " id: "+id);
         loadedId = id;
         return saves[id];
+    }
+
+    function getLoadedSlot(){
+        return saves[loadedId];
     }
 
     function resetAll(){
@@ -179,8 +193,18 @@ define(["SimpleStorage"], function(Storage){
         return selectedId;
     }
 
-    //Storage.flush();
-   // setupSlot(0, "Marcelo");
+    //region Test Slot
+    /*
+    Storage.flush();
+
+    saves[0] = new SaveObject("Testing");
+    saves[0].lastLevel = 8;
+    saves[0].empty = false;
+
+    saveSlots();
+    */
+    //endregion
+
 
     // Public Interface for returning saved files
     return {
@@ -197,6 +221,7 @@ define(["SimpleStorage"], function(Storage){
         toggleMute: toggleMute,
         isMuted: isMuted,
 
+        getLoadedSlot: getLoadedSlot,
         setSelectedId: setSelectedId,
         getSelectedId: getSelectedId
     };

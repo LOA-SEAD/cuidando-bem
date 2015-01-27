@@ -37,7 +37,7 @@ define(['Stage'], function (Stage) {
                     saves[selectedId] = SaveLoadGame.loadSlot(selectedId);
                     var save = saves[selectedId];
                     isSelectedEmpty = save.empty;
-                    $(slotsSel.find(".slotNameInput")[selectedId]).val(save.name);
+                    $(slotsSel[selectedId]).text(save.name);
                     checkIfSlotIsEmpty();
                 }
             }
@@ -62,8 +62,9 @@ define(['Stage'], function (Stage) {
                 $(slotsSel[i]).addClass("empty");
             }else{
                 $(slotsSel[i]).addClass("filled");
-                $(slotsSel.find(".slotNameInput")[i]).val(save.name);
             }
+
+            $(slotsSel[i]).text(save.name);
         }
 
         $('.menuButton').click(function(){
@@ -81,16 +82,36 @@ define(['Stage'], function (Stage) {
             }
         });
 
+        $('#loadSlot').click(function(){
+            if(!isSelectedEmpty) {
+                SaveLoadGame.loadSlot(selectedId);
+                Stage.changeScreen(6);
+            }
+        });
+
         slotsSel.click(function () {
             var slotsSel = $('.slot');
-            slotsSel.removeClass('selected');
-            $(this).addClass('selected');
             selectedId = slotsSel.index(this);
+            slotsSel.removeClass('selected');
 
-            isSelectedEmpty = saves[selectedId].empty;
+            $(this).addClass('selected');
+            var save = saves[selectedId];
+            isSelectedEmpty = save.empty;
             checkIfSlotIsEmpty();
 
             SaveLoadGame.setSelectedId(selectedId);
+            if(save.empty) {
+                var name = prompt("Please enter your name", "Type name here");
+                if(name != null){
+                    SaveLoadGame.setupSlot(selectedId, name);
+
+                    SaveLoadGame.loadSlot(selectedId);
+
+                    isSelectedEmpty = false;
+                    checkIfSlotIsEmpty();
+                    Stage.changeScreen(6);
+                }
+            }
         });
     }
 
