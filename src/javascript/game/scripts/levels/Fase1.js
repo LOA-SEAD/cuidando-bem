@@ -9,6 +9,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Imports
         var Dialogs = require('Dialogs').fase1;
         var Alerts = require('Dialogs').alertas;
+        var HTML = require('HTML');
         //endregion
 
         var level = new Level("Level 1");

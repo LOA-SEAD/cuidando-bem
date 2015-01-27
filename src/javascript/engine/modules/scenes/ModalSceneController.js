@@ -47,6 +47,10 @@ define(function () {
             $(divSelector).addClass(_modalScene.getCssClass());
         }
 
+
+        $(divSelector).append(_modalScene.getTemplate());
+
+
         lastSceneClass = _modalScene.getCssClass();
         show();
     }

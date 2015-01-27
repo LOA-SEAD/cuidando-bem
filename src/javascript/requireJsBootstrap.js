@@ -23,6 +23,7 @@ require.config({
         Dialogs: 'references/Dialogs',
         Images: 'references/Images',
         Sounds: 'references/Sounds',
+        HTML: 'references/HTML',
         //Configs
         gameConfig: 'game/scripts/gameConfig',
         stageConfig: 'game/scripts/stageConfig',
@@ -50,21 +51,19 @@ require.config({
         scene: 'engine/modules/scenes/SceneController'
     }
 });
-require(['Errors', 'Dialogs', 'Images', 'Sounds']);
-//Init the app when everything is ready
-require(['SaveLoadGame'], function(){
-    require(['Player', 'ImageLoader']);
-});
-
-
-
-window.init = function(){
-    require(["jquery", "less"], function () {
-        console.group("Cuidando Bem Log:");
-        require(['jqueryui', "main"]);
+require(['Errors', 'Dialogs', 'Images', 'Sounds', 'HTML'], function (){
+    //Init the app when everything is ready
+    require(['SaveLoadGame'], function(){
+        require(['Player', 'ImageLoader']);
     });
-};
 
+    window.init = function(){
+        require(["jquery", "less"], function () {
+            console.group("Cuidando Bem Log:");
+            require(['jqueryui', "main"]);
+        });
+    };
+});
 
 
 

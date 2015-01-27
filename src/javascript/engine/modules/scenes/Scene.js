@@ -43,6 +43,8 @@ define(function () {
         var actions = [];
         var actions_aux = {};
 
+        var template;
+
         //Methods
 
         /**
@@ -72,7 +74,8 @@ define(function () {
             var scene_clone = new Scene(id, name)
                 .setCssClass(getCssClass())
                 .setLoadFunction(loaderFunction)
-                .setUnloadFunction(unloadFunction);
+                .setUnloadFunction(unloadFunction)
+                .setTemplate(getTemplate());
 
             for(dialog in dialogs)
                 scene_clone.registerDialog(dialogs[dialog].getClone());
@@ -171,6 +174,10 @@ define(function () {
             }
         }
 
+        function getTemplate(){
+            return template;
+        }
+
         //Setters
         function setId(_id){
             id = _id;
@@ -194,6 +201,11 @@ define(function () {
 
         function setUnloadFunction(_unload){
             unloadFunction = _unload;
+            return this;
+        }
+
+        function setTemplate(_template){
+            template = _template;
             return this;
         }
 
@@ -278,12 +290,14 @@ define(function () {
             getInteractiveObjects: getInteractiveObjects,
             getInteractiveObject: getInteractiveObject,
             getDialogs: getDialogs,
+            getTemplate: getTemplate,
 
             setId:setId,
             setName:setName,
             setCssClass:setCssClass,
             setLoadFunction:setLoadFunction,
             setUnloadFunction:setUnloadFunction,
+            setTemplate: setTemplate,
 
 
             registerAction: registerAction,
