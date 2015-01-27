@@ -227,14 +227,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .setLoadFunction(function (){
                 switch (level.getFlag("passagem_sala-de-leitos").getValue()){
                     case 0:
-                        //core.setActionVisible("btn-ir_leito", true);
-                        //core.setActionVisible("btn-ir_corredor", false);
                         core.setInteractiveObjectVisible("io-ir_leito", true);
                         core.setInteractiveObjectVisible("io-ir_corredor", false);
                         break;
                     case 1:
-                        //core.setActionVisible("btn-ir_leito", false);
-                        //core.setActionVisible("btn-ir_corredor", true);
                         core.setInteractiveObjectVisible("io-ir_leito", false);
                         core.setInteractiveObjectVisible("io-ir_corredor", true);
                         break;
@@ -294,6 +290,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 console.log("Leito: Onload");
                 switch (level.getFlag("visita-leito").getValue()){
                     case 0:
+                        core.setInteractiveObjectVisible("io-pulseira_paciente", true);
                         core.openDialog(0);
                         break;
                     case 1:
@@ -340,7 +337,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .registerOption(Dialogs.leito.conversa1[7], function () {
                     core.closeDialog(3);
                     //core.setActionVisible("btn-pulseira_paciente", true);
-                    core.setInteractiveObjectVisible("io-pulseira_paciente", true);
                 }),
 
             new Dialog(nomeJogador, "char-jogador")
@@ -488,10 +484,34 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region Posto de Enfermagem
         var posto_de_enfermagem = new Scene("posto_de_enfermagem", "scene-posto_de_enfermagem")
-            .setCssClass("scene-posto_de_enfermagem")
+            .setCssClass("scene-nursingStation")
             .setLoadFunction(function (){
-                core.setActionVisible("btn-abrir_gaveta", true);
+                core.setInteractiveObjectVisible("io-abrir_gaveta", true);
+                //core.setActionVisible("btn-abrir_gaveta", true);
             });
+
+
+        posto_de_enfermagem.registerInteractiveObjects([
+            new InteractiveObject("io-abrir_gaveta","Abrir gaveta")
+                .setCssClass("intObj-openDrawer")
+                .setFunction(function () {
+                    console.log("Action: abrir_gaveta");
+                    core.openModalScene("Gaveta");
+                    core.openCommandBar();
+
+                    core.setActionVisible("btn-fechar_gaveta", true);
+
+                    if (level.getFlag("termometro").getValue() != true)
+                        core.setInteractiveObjectVisible("io-termometro", true);
+                    if (level.getFlag("medidor-pressao").getValue() != true)
+                        core.setInteractiveObjectVisible("io-medidor_pressao", true);
+                    if (level.getFlag("oximetro").getValue() != true)
+                        core.setInteractiveObjectVisible("io-oximetro", true);
+
+                })
+                .setVisible(visibility),
+
+        ]);
 
         posto_de_enfermagem.registerActions([
             new Action("btn-ir_corredor", "Ir ao corredor")
@@ -501,7 +521,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.changeScene(1);
                 })
                 .setVisible(visibility),
-
+            /*
             new Action("btn-abrir_gaveta", "Abrir gaveta")
                 .setCssClass("action-abrir_gaveta")
                 .setFunction( function () {
@@ -517,6 +537,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         core.setActionVisible("btn-oximetro", true);
                 })
                 .setVisible(visibility)
+                */
         ]);
         //endregion
 
@@ -543,7 +564,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Modal Scenes
 
         //region Gaveta
-        var gaveta = new Scene("Gaveta", "modalScene-gaveta");
+        var gaveta = new Scene("Gaveta", "Gaveta")
+            .setCssClass("modalScene-drawer");
 
         gaveta.registerActions([
             new Action("btn-fechar_gaveta", "Fechar gaveta")
@@ -553,12 +575,15 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.closeModalScene("Gaveta");
                     if(level.getFlag("termometro").getValue() == true &&
                         level.getFlag("oximetro").getValue() == true &&
-                        level.getFlag("medidor-pressao").getValue() == true)
-                        core.setActionVisible("btn-ir_corredor", true);
+                        level.getFlag("medidor-pressao").getValue() == true){
+                            console.log("Btn ir corredor");
+                            core.setActionVisible("btn-ir_corredor", true);
+                            core.openCommandBar();
+                    }
                 })
                 .setVisible(visibility),
 
-
+            /*
             new Action("btn-termometro", "Pegar termômetro")
                 .setCssClass("action-pegar_termometro")
                 .setFunction(function () {
@@ -590,35 +615,36 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.getFlag("oximetro").setValue(true);
                 })
                 .setVisible(visibility)
+            */
         ]);
 
         gaveta.registerInteractiveObjects([
             new InteractiveObject("io-termometro", "Termômetro")
-                .setCssClass("intObj-termometro")
+                .setCssClass("intObj-thermometer")
                 .setFunction(function () {
                     console.log("Action: pegar_termometro");
                     core.setInteractiveObjectVisible("io-termometro", false);
-                    core.setActionVisible("btn-termometro", false);
-                    core.getFlag("termometro").setValue(true);
-                }),
+                    level.getFlag("termometro").setValue(true);
+                })
+                .setVisible(visibility),
 
             new InteractiveObject("io-medidor_pressao", "Medidor de pressão")
-                .setCssClass("intObj-medidor_pressao")
+                .setCssClass("intObj-bloodPressureMonitor")
                 .setFunction(function () {
                     console.log("O medidor de pressão foi ativado");
                     core.setInteractiveObjectVisible("io-medidor_pressao", false);
-                    core.setActionVisible("btn-medidor_pressao", false);
-                    core.getFlag("medidor-pressao").setValue(true);
-                }),
+                    level.getFlag("medidor-pressao").setValue(true);
+                })
+                .setVisible(visibility),
 
             new InteractiveObject("io-oximetro", "Oxímetro")
-                .setCssClass("intObj-oximetro")
+                .setCssClass("intObj-oximeter")
                 .setFunction(function () {
                     console.log("Action: pegar_oximetro");
                     core.setInteractiveObjectVisible("io-oximetro", false);
-                    core.setActionVisible("btn-oximetro", false);
-                    core.getFlag("oximetro").setValue(true);
+                    level.getFlag("oximetro").setValue(true);
                 })
+                .setVisible(visibility)
         ]);
         //endregion
 
@@ -706,7 +732,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("oximetro", false));
         //endregion
 
-        level.setInitialScene(3);
+        level.setInitialScene(0);
         //endregion
 
         game.registerLevel(level, 0);

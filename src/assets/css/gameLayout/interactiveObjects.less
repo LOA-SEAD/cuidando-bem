@@ -115,16 +115,34 @@
 //endregion
 
 //region Leito
-
 //region Paciente 01 - Sr. Joao
 .intObj-paciente_01-checar_pulseira {
-  width: 5%;
-  height: 10%;
-  bottom: 31%;
-  left: 54%;
-}
-//endregion
+  background-image: @intObj-paciente_01-checar_pulseira;
+  background-size: cover;
+  @paciente_01-pulseira-width: 146px;
+  @paciente_01-pulseira-height: 147px;
 
+  @media screen and (min-width: @screen-sm-min) {
+    width: 0.205 * @paciente_01-pulseira-width;
+    height: 0.205 * @paciente_01-pulseira-height;
+    bottom: 31.5%;
+    left: 52%;
+  }
+
+  @media screen and (min-width: @screen-md-min) {
+    width: 0.27 * @paciente_01-pulseira-width;
+    height: 0.27 * @paciente_01-pulseira-height;
+    bottom: 31.5%;
+    left: 52%;
+  }
+
+  @media screen and (min-width: @screen-lg-min) {
+    width: 0.34 * @paciente_01-pulseira-width;
+    height: 0.34 * @paciente_01-pulseira-height;
+    bottom: 31%;
+    left: 52%;
+  }
+}
 //endregion
 .intObj-braceletConfirmation, .intObj-braceletConfirmed{
   background-image: @intObj-braceletConfirmationGray;
@@ -162,14 +180,45 @@
   background-image: @intObj-braceletConfirmationGreen;
   background-size: contain;
 }
+//endregion
+
+//region Posto de Enfermagem - nursingStation
+.intObj-openDrawer{
+  width: 30%;
+  height: 29%;
+  top: 33%;
+  right: 2%;
+}
+
+//endregion
 
 .intObj-thermometer {
   background-image: @intObj-thermometer;
   background-size: contain;
-  top: @intObj-thermometer-top;
-  left: @intObj-thermometer-left;
-  width: @intObj-thermometer-width;
-  height: @intObj-thermometer-height;
+  background-repeat: no-repeat;
+
+  @thermometer-width: 250px;
+  @thermometer-height: 115px;
+
+  @media screen and (min-width: @screen-sm-min) {
+    top: 12%;
+    left: 2%;
+    width: 0.8 * @thermometer-width;
+    height: 0.8 * @thermometer-height;
+  }
+  @media screen and (min-width: @screen-md-min) {
+    top: 12%;
+    left: 2%;
+    width: 0.8 * @thermometer-width;
+    height: 0.8 * @thermometer-height;
+  }
+  @media screen and (min-width: @screen-lg-min) {
+    top: 12%;
+    left: 2%;
+    width: 0.9 * @thermometer-width;
+    height: 0.9 * @thermometer-height;
+  }
+
 }
 .intObj-thermometer:hover{
   box-shadow: none;
@@ -179,10 +228,28 @@
 .intObj-bloodPressureMonitor {
   background-image: @intObj-bloodPressureMonitor;
   background-size: contain;
-  top: @intObj-bloodPressureMonitor-top;
-  left: @intObj-bloodPressureMonitor-left;
-  width: @intObj-bloodPressureMonitor-width;
-  height: @intObj-bloodPressureMonitor-height;
+
+  @bloodPressure-width: 300px;
+  @bloodPressure-height: 349px;
+
+  @media screen and (min-width: @screen-sm-min) {
+    top: 15%;
+    left: 50%;
+    width: @bloodPressure-width;
+    height: @bloodPressure-height;
+  }
+  @media screen and (min-width: @screen-md-min) {
+    top: 15%;
+    left: 50%;
+    width: @bloodPressure-width;
+    height: @bloodPressure-height;
+  }
+  @media screen and (min-width: @screen-lg-min) {
+    top: 12%;
+    left: 25%;
+    width: 0.5 * @bloodPressure-width;
+    height: 0.5 * @bloodPressure-height;
+  }
 }
 .intObj-bloodPressureMonitor:hover{
   box-shadow: none;
@@ -192,10 +259,28 @@
 .intObj-oximeter {
   background-image: @intObj-oximeter;
   background-size: contain;
-  top: @intObj-oximeter-top;
-  left: @intObj-oximeter-left;
-  width: @intObj-oximeter-width;
-  height: @intObj-oximeter-height;
+
+  @oximeter-width: 200px;
+  @oximeter-height: 197px;
+
+  @media screen and (min-width: @screen-sm-min) {
+    top: 37%;
+    left: 34%;
+    width: @oximeter-width;
+    height: @oximeter-height;
+  }
+  @media screen and (min-width: @screen-md-min) {
+    top: 37%;
+    left: 34%;
+    width: @oximeter-width;
+    height: @oximeter-height;
+  }
+  @media screen and (min-width: @screen-lg-min) {
+    top: 12%;
+    left: 45%;
+    width: 0.6 * @oximeter-width;
+    height: 0.6 *  @oximeter-height;
+  }
 }
 .intObj-oximeter:hover{
   box-shadow: none;
