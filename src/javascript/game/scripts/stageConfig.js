@@ -10,6 +10,8 @@ define(['Stage'], function (Stage) {
     Stage.addScreen('loadGame', 'loadGame.html', 'loadGame_screen_controller');
     Stage.addScreen('credits', 'credits.html', 'credits_screen_controller');
     Stage.addScreen('configuration', 'configuration.html', 'configuration_screen_controller');
+    Stage.addScreen('newGameSlotSelect', 'newGameSlotSelect.html', 'newGameSlotSelect_screen_controller');
+    Stage.addScreen('levelSelect', 'levelSelect.html', 'levelSelect_screen_controller');
 
     console.groupEnd();
 });

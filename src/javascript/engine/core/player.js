@@ -2,8 +2,9 @@ define(function(){
     console.info("Player - module loaded");
 
     var Sounds = require('Sounds');
+    var SaveLoadGame = require('SaveLoadGame');
 
-    var isMuted = false;
+    var isMuted = SaveLoadGame.isMuted();
     var masterVolume = Sounds.masterVolume;
     var pastMasterVolume;
 
@@ -64,6 +65,8 @@ define(function(){
 
     console.groupCollapsed("Loading Sounds: ");
     deepCopy(Sounds.paths, audios);
+    if(isMuted)
+        setSoundToMuted();
     console.groupEnd();
 
     function getAsArray(obj){
@@ -161,7 +164,7 @@ define(function(){
 
         if(pastLoopSound !== undefined) {
             clearInterval(loopInterval);
-            console.log("CLEAR");
+            //console.log("CLEAR");
             //pastLoopSound.pause();
             //loopSound.removeEventListener('timeupdate', shouldPlayNextInLoop, false);
             //loopSoundBuffer.removeEventListener('timeupdate', shouldPlayNextInLoop, false);
@@ -190,7 +193,7 @@ define(function(){
 
     function shouldPlayNextInLoop(){
         var percentage = (loopSound.currentTime*100)/loopSound.duration;
-        console.log(loopSound.duration, loopSound.currentTime, percentage+"%");
+        //console.log(loopSound.duration, loopSound.currentTime, percentage+"%");
 
         if(percentage >= AUDIO_PERCENTAGE_TO_NEXT_IN_LOOP)
             playNextInLoop();
@@ -276,13 +279,17 @@ define(function(){
     }
 
     function mute(){
+        SaveLoadGame.toggleMute();
         isMuted = !isMuted;
 
-        if(isMuted){
+        setSoundToMuted();
+    }
+    function setSoundToMuted(){
+        if (isMuted) {
             pastMasterVolume = masterVolume;
 
             setMasterVolumeTo(0);
-        }else{
+        } else {
             setMasterVolumeTo(pastMasterVolume);
         }
     }

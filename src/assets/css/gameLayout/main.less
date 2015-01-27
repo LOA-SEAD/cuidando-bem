@@ -34,6 +34,123 @@ html, body {
   height: 100%;
   width: 100%;
 }
+
+#saveSlotMain{
+  width: 100%;
+  height: 50%;
+}
+
+#levelSelectContainer{
+  width: 100%;
+  height: 50%;
+
+  //background-color: red;
+}
+
+#levelSelector {
+  width: 40%;
+  height: 70%;
+  margin-left: 32%;
+  //background-color: white;
+}
+
+.level {
+  width: 30%;
+  height: 30%;
+  background-color: #58CA85;
+  float: left;
+  margin: 5px;
+  border-radius: 15;
+
+  cursor: hand;
+
+  border-bottom: 3px solid #468b4a;
+}
+
+.level.disabled{
+  background-color: #8E8F8E !important;
+  border-bottom: 3px solid #5b5c5b !important;
+}
+
+.level:active {
+  //transform: translate(0px, 3px);
+  //-webkit-transform: translate(0px, 3px);
+  background-color: #b61f20;
+  border-bottom: 3px solid #8b191a;
+}
+
+#dialog-confirmDelete{
+  //display: none;
+
+}
+
+#slotsContainer{
+  width: 40%;
+  height: 80%;
+  //background-color: white;
+
+  position: relative;
+  margin-left: 50%;
+  left: -150px;
+
+  .slot{
+    width: 70%;
+    padding: 5px;
+    margin-bottom: 25px;
+    margin-left: 45px;
+    background-color: cadetblue;
+    border-radius: 12px;
+
+    font-family: 'Pacifico', cursive;
+    cursor: hand;
+
+    input[type=text]
+    {
+
+      height: 28px;
+      text-decoration: none;
+      text-align: center;
+      border-radius: 5px; /*up to date browsers support this, but you can add prefixes if you want*/
+      background-color: rgba(0,0,0,0);
+      border: 0;
+    }
+  }
+  .slot.selected{
+    background-color: indianred;
+  }
+
+  .slot.empty{
+    color: #000;
+  }
+
+  .slot.filled{
+    color: #FFF;
+  }
+}
+
+#slotsMenu{
+  //width: 80%;
+  margin-left: 9%;
+
+  .menuButton{
+    margin-top: 5px;
+    width: 200px;
+
+    float: left;
+    margin-left: 1%;
+    margin-right: 1%;
+
+
+  }
+}
+
+#menuContainer {
+  position: absolute;
+  right: 10%;
+  width: 25%;
+  height: 50%;
+}
+
 #interactiveArea {
   position: absolute;
   width: 100%;
@@ -132,6 +249,12 @@ html, body {
   text-shadow: 0px -2px #A38426;
 }
 
+.menuButton.disabled{
+  background-color: #8E8F8E !important;
+  border-bottom: 5px solid #5b5c5b !important;
+  text-shadow: 0px -2px #5b5c5b !important;
+}
+
 .menuButton:hover{
   transform: translate(0px, -2px);
   -webkit-transform: translate(0px, -2px);
@@ -139,13 +262,13 @@ html, body {
   border-bottom-width: 7px;
 }
 
-.menuButton:active {
+.menuButton:active{
   transform: translate(0px, 5px);
   -webkit-transform: translate(0px, 5px);
   border-bottom: 1px solid #2980B9;
 }
 
-.menuButtonAnimate {
+.menuButtonAnimate, .level {
   transition: all 0.1s;
   -webkit-transition: all 0.1s;
 }
