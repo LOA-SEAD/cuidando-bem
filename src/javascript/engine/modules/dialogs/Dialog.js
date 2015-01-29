@@ -84,7 +84,8 @@ define([], function () {
         //Getters
         function getClone(){
             var dialog_clone = new Dialog(speakerName, speakerCssClass)
-                .setText(text);
+                .setText(text)
+                .setRandomize(randomize);
 
             for(opt in options)
                 dialog_clone.registerOption(options[opt].text, options[opt].actionFunction);
