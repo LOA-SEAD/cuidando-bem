@@ -6,9 +6,7 @@ define({
             //Jogador
             "Bom dia. Sou profissional de enfermagem e hoje é meu primeiro dia de trabalho.",
             //Recepcionista 
-            "Ah, sim! Sou Clarice, a recepcionista. O Enfermeiro mentor está te esperando no corredor.",
-            //Jogador
-            "Obrigado!"
+            "Ah, sim! Sou Clarice, a recepcionista. O Enfermeiro mentor está te esperando no corredor."
         ],
         corredor: [
             //Mentor
@@ -32,47 +30,47 @@ define({
         ],
         leito: {
             conversa1: [
-                //Mentor
+                //0 Mentor
                     "Este é o Sr. João, seu primeiro paciente. Um dos principais protocolos de segurança" +
                     " é a sua apresentação ao paciente e a certificação de que a identificação dele está correta.",
-                //Jogador op 1
+                //1 Jogador op 1
                     "Olá Sr. João. Sou profissional de enfermagem e cuidarei do Sr. hoje. " +
                     "Como está se sentindo?",
-                //Jogador op 2
+                //2 Jogador op 2
                 "Olá, sou eu quem cuidará do senhor hoje. Está se sentindo bem?",
-                //Mentor
+                //3 Mentor
                 "Você precisa se apresentar como profissional de enfermagem!",
-                //Jogador op 3
+                //4 Jogador op 3
                     "Olá, senhor João. Sou profissional de enfermagem do hospital, tenho 28 anos e cuidarei" +
                     "do senhor hoje. É um prazer conhecê-lo. Como está se sentindo?",
-                //Mentor
+                //5 Mentor
                 "Sua apresentação contém informações desnecessárias.",
 
-                //Paciente
+                //6 Paciente
                     "Estou com muita dor de cabeça e passei muito nervoso hoje, acho que minha" +
                     "pressão subiu. É a primeira vez que preciso ser internado em um hospital e estou com um" +
                     "pouco de medo.",
 
-                //Jogador op 1
+                //7 Jogador op 1
                     "Vamos fazer o possível para que sua estadia aqui seja rápida e que se sinta " +
                     "em casa. Porém, primeiro preciso do seu nome completo e da sua data de nascimento, tudo bem?!",
-                //Jogador op 2
+                //8 Jogador op 2
                 " Vamos fazer o possível para que se sinta confortável.",
-                //Mentor
+                //9 Mentor
                 "Você precisa das informações sobre o paciente.",
-                //Jogador op 3
+                //10    Jogador op 3
                     "HAHAHA fique sussa, seu João, o senhor vai pra casa em breve. Mas primeiro preciso" +
                     "dos seus dados.",
-                //Mentor
+                //11    Mentor
                 "Sua resposta está vaga e informal. Você pode melhorar!",
 
-                //Paciente
+                //12    Paciente
                 "Meu nome é João Manoel Ribeiro, nasci no dia 07-06-1956.",
 
-                //Jogador
+                //13    Jogador
                 " Está certo, seu João. Já tenho todas as informações de que preciso ",
 
-                //Mentor
+                //14    Mentor
                     "Sua primeira missão é admitir o Sr. João nesta enfermaria, identificando-o com uma " +
                     "pulseira e verificando os seus sinais vitais. Antes de começar, vá até o posto de enfermagem " +
                     "retirar os instrumentos necessários."

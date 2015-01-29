@@ -199,7 +199,7 @@ define([], function () {
             setSpeakerName:setSpeakerName,
             setSpeakerCssClass:setSpeakerCssClass,
             setText:setText,
-            setRamdomize: setRandomize,
+            setRandomize: setRandomize,
 
             registerOption: registerOption
         }

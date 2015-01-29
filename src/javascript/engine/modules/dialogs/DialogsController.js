@@ -74,7 +74,9 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
 
         // set the text for charName, dialog text and answer options
         $(dialogCharNameSelector).text(_dialog.getSpeakerName());
+        $(dialogCharImg).removeClass();
         $(dialogCharImg).addClass(_dialog.getSpeakerCssClass());
+        $(dialogCharImg).show();
         $(dialogTextSelector).text(_dialog.getText());
         changeDialogOptionsTo(_dialog.getOptions(), _dialog.getRandomize());
 
@@ -101,12 +103,16 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
                 duration: duration,
                 progress: function() {$(dialogCharImg.show(charNameAnimation))},
                 complete: function() {
-                    $(dialogTextSelector).show(textAnimation, {
-                        duration: duration,
-                        complete: function() {
-                            $(dialogOptionsSelector).show(textAnimation)
-                        }
-                    })
+                    if(_dialog.getText() != "")
+                        $(dialogTextSelector).show(textAnimation, {
+                            duration: duration,
+                            complete: function() {
+                                $(dialogOptionsSelector).show(textAnimation);
+                            }
+                        })
+                    else
+                        $(dialogOptionsSelector).show(textAnimation);
+
                 }
             });
         }
@@ -151,6 +157,10 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
      */
     function close() {
 
+        $(dialogCharNameSelector).hide();
+        $(dialogCharImg).hide();
+        $(dialogTextSelector).hide();
+        $(dialogOptionsSelector).hide();
         $("#dialogBar-mask").hide();
         $(dialogModalSelector).hide("fade", 200);
         isDialogOpen = false;

@@ -61,16 +61,23 @@
 
 .dialog_options {
   text-align: center;
+  font-size: 16px;
 }
 
 .dialog_button {
+  margin-top: 8px;
+  padding: 0 10px;
   cursor: pointer;
   font-family: 'Lato', sans-serif;
-}
 
+}
+.text {
+  display: list-item;
+  list-style: circle;
+  list-style-position: inside;
+}
 .text:hover {
-  color: #669644;
-  text-shadow: -1px -1px #666, 1px 1px #FFF;
+  color: #276a23;
 }
 .text:active {
   color: black;
@@ -85,27 +92,27 @@
   float: right;
   position: absolute;
 
-  @char-receptionist-width: 367px;
+  @char-receptionist-width: 296px;
   @char-receptionist-height: 419px;
 
   @media screen and (min-width: @screen-sm-min) {
     width: 0.5 * @char-receptionist-width;
     height: 0.5 * @char-receptionist-height;
-    top: -160px;
+    top: -180px;
     right: 50px;
   }
 
   @media screen and (min-width: @screen-md-min) {
     width: 0.7 * @char-receptionist-width;
     height: 0.7 * @char-receptionist-height;
-    top: -225px;
+    top: -255px;
     right: 50px;
   }
 
   @media screen and (min-width: @screen-lg-min) {
     width: @char-receptionist-width;
     height: @char-receptionist-height;
-    top: -320px;
+    top: -370px;
     right: 50px;
   }
 }

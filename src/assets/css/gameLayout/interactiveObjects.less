@@ -199,22 +199,18 @@
 
   @thermometer-width: 250px;
   @thermometer-height: 115px;
+  top: 12%;
+  left: 10%;
 
   @media screen and (min-width: @screen-sm-min) {
-    top: 12%;
-    left: 2%;
-    width: 0.8 * @thermometer-width;
-    height: 0.8 * @thermometer-height;
+    width: 0.7 * @thermometer-width;
+    height: 0.7 * @thermometer-height;
   }
   @media screen and (min-width: @screen-md-min) {
-    top: 12%;
-    left: 2%;
     width: 0.8 * @thermometer-width;
     height: 0.8 * @thermometer-height;
   }
   @media screen and (min-width: @screen-lg-min) {
-    top: 12%;
-    left: 2%;
     width: 0.9 * @thermometer-width;
     height: 0.9 * @thermometer-height;
   }
@@ -231,22 +227,18 @@
 
   @bloodPressure-width: 300px;
   @bloodPressure-height: 349px;
+  top: 12%;
+  left: 33%;
 
   @media screen and (min-width: @screen-sm-min) {
-    top: 15%;
-    left: 50%;
-    width: @bloodPressure-width;
-    height: @bloodPressure-height;
+    width: 0.38 * @bloodPressure-width;
+    height: 0.38 * @bloodPressure-height;
   }
   @media screen and (min-width: @screen-md-min) {
-    top: 15%;
-    left: 50%;
-    width: @bloodPressure-width;
-    height: @bloodPressure-height;
+    width: 0.45 * @bloodPressure-width;
+    height: 0.45 * @bloodPressure-height;
   }
   @media screen and (min-width: @screen-lg-min) {
-    top: 12%;
-    left: 25%;
     width: 0.5 * @bloodPressure-width;
     height: 0.5 * @bloodPressure-height;
   }
@@ -262,22 +254,17 @@
 
   @oximeter-width: 200px;
   @oximeter-height: 197px;
-
+  top: 12%;
+  left: 53%;
   @media screen and (min-width: @screen-sm-min) {
-    top: 37%;
-    left: 34%;
-    width: @oximeter-width;
-    height: @oximeter-height;
+    width: 0.4 * @oximeter-width;
+    height: 0.4 * @oximeter-height;
   }
   @media screen and (min-width: @screen-md-min) {
-    top: 37%;
-    left: 34%;
-    width: @oximeter-width;
-    height: @oximeter-height;
+    width: 0.5 * @oximeter-width;
+    height: 0.5 * @oximeter-height;
   }
   @media screen and (min-width: @screen-lg-min) {
-    top: 12%;
-    left: 45%;
     width: 0.6 * @oximeter-width;
     height: 0.6 *  @oximeter-height;
   }
@@ -285,6 +272,32 @@
 .intObj-oximeter:hover{
   box-shadow: none;
   background-image: @intObj-oximeter-hover;
+}
+
+.intObj-watch {
+  background-image: @intObj-watch;
+  background-size: contain;
+
+  @watch-width: 500px;
+  @watch-height: 664px;
+  top: 12%;
+  left: 68%;
+  @media screen and (min-width: @screen-sm-min) {
+    width: 0.18 * @watch-width;
+    height: 0.18 * @watch-height;
+  }
+  @media screen and (min-width: @screen-md-min) {
+    width: 0.20 * @watch-width;
+    height: 0.20 * @watch-height;
+  }
+  @media screen and (min-width: @screen-lg-min) {
+    width: 0.24 * @watch-width;
+    height: 0.24 *  @watch-height;
+  }
+}
+.intObj-watch:hover{
+  box-shadow: none;
+  background-image: @intObj-watch-hover;
 }
 
 
