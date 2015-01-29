@@ -18,6 +18,7 @@ define(function () {
      * @memberOf module:Stage_Controller
      */
     var screens = [];
+
     /**
      * The path where the Stage controller will look for the html pages
      * @private

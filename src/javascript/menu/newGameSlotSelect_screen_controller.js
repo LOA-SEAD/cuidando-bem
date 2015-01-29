@@ -8,6 +8,12 @@ define(['Stage'], function (Stage) {
 
     var isSelectedEmpty = saves[selectedId].empty;
 
+    var deleteDialogSelector = "#dialog-confirmDelete";
+    var typeNameDialogSelector = "#dialog-typeName";
+    var nameInputSelector = "#nameInput";
+
+    var defaultNameInputValue = 'Cuidando Bem';
+
 
 
     /**
@@ -17,7 +23,9 @@ define(['Stage'], function (Stage) {
      */
     function load() {
 
-        $( "#dialog-confirmDelete" ).dialog({
+        //region Setup Dialogs
+        //region Delete Slot
+        $(deleteDialogSelector).dialog({
             resizable: false,
             autoOpen: false,
             height:140,
@@ -43,11 +51,51 @@ define(['Stage'], function (Stage) {
             }
         });
 
-        $( "#dialog-confirmDelete" )
+        $(deleteDialogSelector)
             .dialog()
             .dialog( "widget" )
             .find( ".ui-dialog-titlebar-close" )
             .hide();
+
+        //endregion
+        //region Type Name
+        $(typeNameDialogSelector).dialog({
+            resizable: false,
+            autoOpen: false,
+            height:140,
+            modal: true,
+            draggable: false,
+            buttons: {
+                "Voltar": function() {
+                    $( this ).dialog( "close" );
+                    $(nameInputSelector).val(defaultNameInputValue);
+                },
+                "Confirmar": function() {
+                    $( this ).dialog( "close" );
+                     var name = $(nameInputSelector).val();
+                     if(name === null || name === undefined || name === '' || name === defaultNameInputValue)
+                        name = defaultNameInputValue +" "+ (selectedId + 1);
+
+                     SaveLoadGame.setupSlot(selectedId, name);
+
+                     SaveLoadGame.loadSlot(selectedId);
+
+                     isSelectedEmpty = false;
+                     checkIfSlotIsEmpty();
+                     Stage.changeScreen(6);
+                }
+            }
+        });
+
+        $(typeNameDialogSelector)
+            .dialog()
+            .dialog( "widget" )
+            .find( ".ui-dialog-titlebar-close" )
+            .hide();
+        //endregion
+        //endregion
+
+
 
         var slotsSel = $('.slot');
 
@@ -86,6 +134,9 @@ define(['Stage'], function (Stage) {
             if(!isSelectedEmpty) {
                 SaveLoadGame.loadSlot(selectedId);
                 Stage.changeScreen(6);
+            }else{
+                $(typeNameDialogSelector)
+                    .dialog("open");
             }
         });
 
@@ -100,18 +151,6 @@ define(['Stage'], function (Stage) {
             checkIfSlotIsEmpty();
 
             SaveLoadGame.setSelectedId(selectedId);
-            if(save.empty) {
-                var name = prompt("Please enter your name", "Type name here");
-                if(name != null){
-                    SaveLoadGame.setupSlot(selectedId, name);
-
-                    SaveLoadGame.loadSlot(selectedId);
-
-                    isSelectedEmpty = false;
-                    checkIfSlotIsEmpty();
-                    Stage.changeScreen(6);
-                }
-            }
         });
     }
 
@@ -119,10 +158,12 @@ define(['Stage'], function (Stage) {
     {
         if(isSelectedEmpty) {
             $('#deleteSlot').addClass('disabled');
-            $('#loadSlot').addClass('disabled');
+
+            $('#loadSlot').text('Iniciar');
         }else{
             $('#deleteSlot').removeClass('disabled');
-            $('#loadSlot').removeClass('disabled');
+
+            $('#loadSlot').text('Carregar');
         }
     }
 

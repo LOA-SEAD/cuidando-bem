@@ -34,7 +34,8 @@ define(['Stage', 'levelsData'], function (Stage, game) {
 
         $('.level').click(function(){
             var index = $('.level').index(this);
-            var levelId;
+            var levelId = index;
+            /*
             switch (index){
                 case 0:
                 default:
@@ -44,7 +45,7 @@ define(['Stage', 'levelsData'], function (Stage, game) {
                     levelId = 1;
                     break;
 
-                /*
+
                 case 2:
                     levelId = 2;
                     break;
@@ -66,8 +67,9 @@ define(['Stage', 'levelsData'], function (Stage, game) {
                 case 8:
                     levelId = 8;
                     break;
-                */
+
             }
+        */
             game.setCurrentLevel(levelId);
             Stage.changeScreen(1);
         });

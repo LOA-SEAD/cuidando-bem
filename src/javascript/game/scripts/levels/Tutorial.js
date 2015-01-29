@@ -664,8 +664,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region Pulseira
         var pulseira = new Scene("pulseira", "pulseira")
-            .setCssClass("modalScene-pulseira")
-            .setTemplate("<p>Funcionando</p>");
+            .setCssClass("modalScene-pulseira");
+
 
         pulseira.registerInteractiveObjects([
             new InteractiveObject("io-confirmar_pulseira", "Confirmar pulseira")

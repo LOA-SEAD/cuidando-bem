@@ -38,8 +38,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         recepcao.registerDialogs([
             new Dialog("recepcionista", "char-recepcionista")
-                .setText(Dialogs.recepcao[0])
-                .registerOption(Dialogs.recepcao[1], function () {
+                .setText(Dialogs.recepcionista[0])
+                .registerOption(Dialogs.recepcionista[1], function () {
                     console.log("Selecionado 1a opção diálogo");
                     core.closeDialog(0);
                     core.setActionVisible("btn-ir_corredor", true);
@@ -130,15 +130,15 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
 
             new Dialog("mentor", "char-mentor")
-                .setText(Dialogs.corredor.fala2[0])
-                .registerOption(Dialogs.corredor.fala2[1], function () {
+                .setText(Dialogs.corredor.fala1[0])
+                .registerOption(Dialogs.corredor.fala1[0], function () {
                     core.closeDialog(1);
                     core.openDialog(2);
                 }),
 
             new Dialog("mentor", "char-mentor")
-                .setText(Dialogs.corredor.fala2[2])
-                .registerOption(Dialogs.corredor.fala2[3], function () {
+                .setText(Dialogs.corredor.fala1[0])
+                .registerOption(Dialogs.corredor.fala1[0], function () {
                     core.closeDialog(2);
                     core.setActionVisible("btn-falar_mentor_02", true);
                     level.getFlag("buscar_coxim").setValue(true);
