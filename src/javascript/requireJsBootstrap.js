@@ -36,6 +36,7 @@ require.config({
         Level: 'game/modules/Level',
         Dialog: 'engine/modules/dialogs/Dialog',
         InteractiveObject: 'engine/modules/interactive_objects/InteractiveObject',
+        Pulseira: 'game/modules/pulseira/Pulseira_Modal',
 
         levelsData: 'game/modules/levelsData',
         SaveLoadGame: 'game/modules/save/SaveLoadGame',

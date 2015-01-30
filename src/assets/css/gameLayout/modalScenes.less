@@ -13,6 +13,52 @@
   left : 0;
 }
 
+#pulseira_modal{
+  display: none;
+
+
+  #name_display{
+    position: relative;
+    /* background-color: yellow; */
+    width: 170px;
+    height: 20px;
+    text-align: left;
+    cursor: text;
+
+    @media (min-width:@screen-sm-min) {
+      left: 175px;
+      top: 198px;
+    }
+    @media (min-width:@screen-md-min) {
+      left: 175px;
+      top: 198px;
+    }
+    @media (min-width:@screen-lg-min) {
+      left: 175px;
+      top: 198px;
+    }
+  }
+  #name_input{
+    position: absolute;
+    /* background-color: yellow; */
+    width: 170px;
+    height: 20px;
+    display: none;
+    @media (min-width:@screen-sm-min) {
+      left: 173px;
+      top: 197px;
+    }
+    @media (min-width:@screen-md-min) {
+      left: 173px;
+      top: 197px;
+    }
+    @media (min-width:@screen-lg-min) {
+      left: 173px;
+      top: 197px;
+    }
+  }
+}
+
 //region Leito
 .modalScene-pulseira {
   background-color: rgba(0, 0, 0, 0.7);
