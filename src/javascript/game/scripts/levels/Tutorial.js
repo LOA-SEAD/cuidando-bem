@@ -51,8 +51,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             core.openDialog(0);
         }
 
-        var recepcao = new Scene("recepcao", "scene-recepcao")
-            .setCssClass("scene-lobby")
+        var recepcao = lib.scenes.recepcao.getClone()
             .setLoadFunction(function () {
                 console.log("Load scene: " + recepcao.getName());
                 core.setInteractiveObjectVisible("io-conversar_recepcionista", true);
@@ -92,8 +91,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         recepcao.registerInteractiveObjects([
             new InteractiveObject("io-conversar_recepcionista","Conversar com a Recepcionista")
                 .setCssClass("intObj-talkToReceptionist")
-                .setFunction(conversarRecepcionista)
-                .setVisible(visibility),
+                .setVisible(visibility)
+                .setFunction(conversarRecepcionista),
 
 
             new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
@@ -290,6 +289,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .setLoadFunction(function () {
                 console.log("Leito: Onload");
                 core.setInteractiveObjectVisible("io-pulseira_paciente", true);
+
+                //force case 1
+                //level.getFlag("visita-leito").setValue(1);
+                // delete here
+
                 switch (level.getFlag("visita-leito").getValue()){
                     case 0:
                         core.openDialog(0);
@@ -300,6 +304,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         level.getFlag("termometro").setValue(false);
                         level.getFlag("medidor-pressao").setValue(false);
                         level.getFlag("oximetro").setValue(false);
+                        level.getFlag("relogio").setValue(false);
                         break;
                 }
             })
@@ -478,6 +483,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                             core.setActionVisible("btn-frequencia_respiratoria", true);
                             core.setActionVisible("btn-medir_pulso", true);
                             core.setActionVisible("btn-medir_temperatura", true);
+                            core.setActionVisible("btn-saturacao_02", true);
                             core.setActionVisible("btn-lavar_maos", false);
                             break;
                         case 2:
@@ -489,16 +495,19 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 })
                 .setVisible(visibility),
 
-            new Action("btn-medir_temperatura", "Medir temperatura")
+            new Action("btn-medir_temperatura", "Ver temperatura")
                 .setCssClass("action-medir_temperatura")
                 .setFunction(function (){
                     console.log("Action: medir_temperatura");
                     if(level.getFlag("lavar-maos").getValue() >= 1){
 
+                        core.openModalScene("modalTermometro");
                         level.getFlag("termometro").setValue(true);
                         core.setActionVisible("btn-medir_temperatura", false);
 
-                        if(level.getFlag("oximetro").getValue() == true && level.getFlag("medidor-pressao").getValue() == true)
+                        if(level.getFlag("oximetro").getValue() == true
+                            && level.getFlag("medidor-pressao").getValue() == true
+                            && level.getFlag("relogio").getValue() == true)
                         {
                             core.setActionVisible("btn-lavar_maos", true);
                             level.getFlag("lavar-maos").setValue(2);
@@ -507,16 +516,19 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 })
                 .setVisible(visibility),
 
-            new Action("btn-medir_pulso", "Medir pulso")
+            new Action("btn-medir_pulso", "Ver pressão")
                 .setCssClass("action-medir_pulso")
                 .setFunction(function (){
                     console.log("Action: medir_pulso");
                     if(level.getFlag("lavar-maos").getValue() >= 1){
 
+                        core.openModalScene("modalMedidor_pressao");
                         level.getFlag("medidor-pressao").setValue(true);
                         core.setActionVisible("btn-medir_pulso", false);
 
-                        if(level.getFlag("termometro").getValue() == true && level.getFlag("oximetro").getValue() == true)
+                        if(level.getFlag("termometro").getValue() == true
+                            && level.getFlag("oximetro").getValue() == true
+                            && level.getFlag("relogio").getValue() == true)
                         {
                             core.setActionVisible("btn-lavar_maos", true);
                             level.getFlag("lavar-maos").setValue(2);
@@ -525,16 +537,38 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 })
                 .setVisible(visibility),
 
-            new Action("btn-frequencia_respiratoria", "Medir frequência respiratória")
+            new Action("btn-saturacao_02", "Ver saturação de O2")
+                .setCssClass("action-medir_saturacao_02")
+                .setFunction( function (){
+                    console.log("Action: medir_saturacao_02");
+                    if(level.getFlag("lavar-maos").getValue() >= 1){
+
+                        level.getFlag("oximetro").setValue(true);
+                        core.setActionVisible("btn-saturacao_02", false);
+
+                        if(level.getFlag("termometro").getValue() == true
+                            && level.getFlag("medidor-pressao").getValue() == true
+                            && level.getFlag("relogio").getValue() == true)
+                        {
+                            core.setActionVisible("btn-lavar_maos", true);
+                            level.getFlag("lavar-maos").setValue(2);
+                        }
+                    }
+                })
+                .setVisible(visibility),
+
+            new Action("btn-frequencia_respiratoria", "Ver frequência respiratória")
                 .setCssClass("action-medir_freq_respiratoria")
                 .setFunction( function (){
                     console.log("Action: medir_freq_respiratoria");
                     if(level.getFlag("lavar-maos").getValue() >= 1){
 
-                        level.getFlag("oximetro").setValue(true);
+                        level.getFlag("relogio").setValue(true);
                         core.setActionVisible("btn-frequencia_respiratoria", false);
 
-                        if(level.getFlag("termometro").getValue() == true && level.getFlag("medidor-pressao").getValue() == true)
+                        if(level.getFlag("termometro").getValue() == true
+                            && level.getFlag("medidor-pressao").getValue() == true
+                            && level.getFlag("oximetro").getValue() == true)
                         {
                             core.setActionVisible("btn-lavar_maos", true);
                             level.getFlag("lavar-maos").setValue(2);
@@ -734,6 +768,33 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisible(visibility)
         ]);
 
+
+        var termometro = new Scene("modalTermometro", "modalTermometro")
+            .setCssClass("modalScene-termometro")
+            .setTemplate("<span class='temp_termometro'>37.5º</span>");
+
+        termometro.registerActions([
+            new Action("btn-largar_termometro", "Largar termômetro")
+                .setCssClass("action-largar_termometro")
+                .setFunction(function() {
+                    core.closeModalScene("modalTermometro");
+                })
+                .setVisible(true)
+        ])
+
+        var medidor_pressao = new Scene("modalMedidor_pressao", "modalMedidor_pressao")
+            .setCssClass("modalScene-medidor_pressao")
+            .setTemplate("<span class='pressao'>160x100 mmHg</span>");
+
+        medidor_pressao.registerActions([
+            new Action("btn-largar_medidor_pressao", "Largar medidor de pressão")
+                .setCssClass("action-largar_medidor_pressao")
+                .setFunction(function() {
+                    core.closeModalScene("modalMedidor_pressao");
+                })
+                .setVisible(true)
+        ])
+
         //endregion
 
         //endregion
@@ -754,6 +815,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerModalScene(pulseira);
         level.registerModalScene(prontuario);
         level.registerModalScene(gaveta);
+        level.registerModalScene(termometro);
+        level.registerModalScene(medidor_pressao);
         //endregion
 
         //region Flags

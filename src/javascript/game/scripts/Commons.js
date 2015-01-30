@@ -8,9 +8,16 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         console.groupCollapsed("Commons:");
 
         var lib = {
-            sceneLobby : new Scene("lobby", "scene-lobby")
-        };
+            //region Scenes
+            scenes : {
+                recepcao: new Scene("recepcao", "scene-recepcao")
+                  .setCssClass("scene-lobby"),
+                corredor: new Scene("corredor", "scene-corredor")
+                    .setCssClass("scene-hallway")
+            }
+            //endregion
 
+        };
         console.groupEnd();
         return lib;
     });
