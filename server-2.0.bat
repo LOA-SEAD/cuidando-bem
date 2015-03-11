@@ -18,7 +18,7 @@ GOTO End
 
 :PYTHON
 ECHO Starting simple python server for this folder on port 8080
-python -m SimpleHTTPServer 8080
+py -m http.server 8080
 GOTO End
 
 
