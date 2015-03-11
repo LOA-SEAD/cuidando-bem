@@ -35,43 +35,13 @@ define(['Stage', 'levelsData'], function (Stage, game) {
         $('.level').click(function(){
             var index = $('.level').index(this);
             var levelId = index;
-            /*
-            switch (index){
-                case 0:
-                default:
-                    levelId = 0;
-                    break;
-                case 1:
-                    levelId = 1;
-                    break;
 
-
-                case 2:
-                    levelId = 2;
-                    break;
-                case 3:
-                    levelId = 3;
-                    break;
-                case 4:
-                    levelId = 4;
-                    break;
-                case 5:
-                    levelId = 5;
-                    break;
-                case 6:
-                    levelId = 6;
-                    break;
-                case 7:
-                    levelId = 7;
-                    break;
-                case 8:
-                    levelId = 8;
-                    break;
-
+            console.log("Grr: "+levelId + "/" + save.lastLevel);
+            if(levelId <= save.lastLevel + 1){
+                game.setCurrentLevel(levelId);
+                Stage.changeScreen(1);
             }
-        */
-            game.setCurrentLevel(levelId);
-            Stage.changeScreen(1);
+
         });
     }
 
