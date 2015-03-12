@@ -194,7 +194,7 @@ define(["SimpleStorage"], function(Storage){
     }
 
     //region Test Slot
-    /*
+
     Storage.flush();
 
     saves[0] = new SaveObject("Testing");
@@ -202,7 +202,7 @@ define(["SimpleStorage"], function(Storage){
     saves[0].empty = false;
 
     saveSlots();
-    */
+
     //endregion
 
 

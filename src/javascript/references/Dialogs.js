@@ -47,7 +47,7 @@ define({
                 "Sua apresentação contém informações desnecessárias.",
 
                 //6 Paciente
-                    "Estou com muita dor de cabeça e passei muito nervoso hoje, acho que minha" +
+                    "Estou com muita dor de cabeça e passei muito nervoso hoje, acho que minha " +
                     "pressão subiu. É a primeira vez que preciso ser internado em um hospital e estou com um" +
                     "pouco de medo.",
 
