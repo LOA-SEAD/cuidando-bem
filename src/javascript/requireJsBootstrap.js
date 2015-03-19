@@ -20,7 +20,7 @@ require.config({
 
         //Refs
         Errors: 'references/Errors',
-        Dialogs: 'references/Dialogs',
+        Dialogs: 'references/Dialog_texts',
         Images: 'references/Images',
         Sounds: 'references/Sounds',
         HTML: 'references/HTML',

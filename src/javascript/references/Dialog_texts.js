@@ -2,7 +2,7 @@ define({
     tutorial: {
         recepcao: [
             //Recepcionista 
-            "Bom dia! Ainda não conheço você. Como posso ajudar",
+            "Bom dia! Ainda não conheço você. Como posso ajudar?",
             //Jogador
             "Bom dia. Sou profissional de enfermagem e hoje é meu primeiro dia de trabalho.",
             //Recepcionista 
