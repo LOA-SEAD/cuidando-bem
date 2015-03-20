@@ -23,7 +23,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Recepcao
         var recepcao = new Scene("recepcao", "scene-recepcao")
             .setCssClass("scene-lobby")
-            .setLoadFunction(function(){
+            .onLoad(function(){
                 Pulseira.open();
             });
         //endregion

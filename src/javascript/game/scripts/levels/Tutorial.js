@@ -47,7 +47,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         }
 
         var recepcao = lib.scenes.recepcao.getClone()
-            .setLoadFunction(function () {
+            .onLoad(function () {
                 console.log("Load scene: " + recepcao.getName());
                 core.openDialog(0);
             });
@@ -117,7 +117,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         }
 
         var corredor = lib.scenes.corredor.getClone()
-            .setLoadFunction( function () {
+            .onLoad( function () {
                 switch (level.getFlag("passagem_corredor").getValue()){
                     case 0: // first time at 'corredor'
                         core.setInteractiveObjectVisible("io-conversar_mentor", true);
@@ -139,7 +139,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         break;
                 }
             })
-            .setUnloadFunction(function (){
+            .onUnload(function (){
                 switch (level.getFlag("passagem_corredor").getValue()){
                     case 0:
                         level.getFlag("passagem_corredor").setValue(1);
@@ -232,7 +232,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Sala de Leitos
         var sala_de_leitos = new Scene("sala_de_leitos", "scene-sala_de_leitos")
             .setCssClass("scene-bedroom")
-            .setLoadFunction(function (){
+            .onLoad(function (){
                 switch (level.getFlag("passagem_sala-de-leitos").getValue()){
                     case 0:
                         core.setInteractiveObjectVisible("io-ir_leito", true);
@@ -244,7 +244,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         break;
                 }
             })
-            .setUnloadFunction( function (){
+            .onUnload( function (){
                 switch (level.getFlag("passagem_sala-de-leitos").getValue()){
                     case 0:
                         level.getFlag("passagem_sala-de-leitos").setValue(1);
@@ -275,7 +275,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region Leito
         var leito = lib.scenes.leitos.joao.getClone()
-            .setLoadFunction(function () {
+            .onLoad(function () {
                 console.log("Leito: Onload");
                 core.setInteractiveObjectVisible("io-pulseira_paciente", true);
 
@@ -297,7 +297,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         break;
                 }
             })
-            .setUnloadFunction(function (){
+            .onUnload(function (){
                 console.log("Leito: OnUnload");
                 level.getFlag("visita-leito").setValue(1);
                 core.closeCommandBar();
@@ -581,10 +581,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region Posto de Enfermagem
         var posto_de_enfermagem = lib.scenes.postoDeEnfermagem.getClone()
-            .setLoadFunction(function (){
+            .onLoad(function (){
                 core.setInteractiveObjectVisible("io-abrir_gaveta", true);
             })
-            .setUnloadFunction(function() {
+            .onUnload(function() {
                 core.closeCommandBar();
             });
 
@@ -626,7 +626,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region Fim do Level
         var fim_tutorial = lib.scenes.finalDeFase.getClone()
-            .setLoadFunction(function (){
+            .onLoad(function (){
                 core.setActionVisible("btn-proxima_fase", true);
             });
 

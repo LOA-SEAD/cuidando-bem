@@ -23,7 +23,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Recepcao
         var recepcao = new Scene("scene-recepcao", "Recepcao")
             .setCssClass("scene-recepcao")
-            .setLoadFunction(function (){
+            .onLoad(function (){
                 if(flags_on){
                     core.openDialog(0);
                 }
@@ -32,7 +32,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.setActionVisible("btn-conversar_recepcionista", true);
                 }
             })
-            .setUnloadFunction(function(){
+            .onUnload(function(){
                 core.closeDialog();
             });
 
@@ -69,7 +69,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Corredor
         var corredor = new Scene("corredor")
             .setCssClass("scene-corredor")
-            .setLoadFunction(function(){
+            .onLoad(function(){
                 if(flags_on == true){
                     // primeira vez no corredor - ainda nao falou com o paciente
                     if(level.getFlag("examinou_paciente").getValue() == false
@@ -111,7 +111,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.setActionVisible("btn-ir_posto_enfermagem", true);
                 }
             })
-            .setUnloadFunction(function(){
+            .onUnload(function(){
                 core.closeDialog()
             });
 
@@ -228,7 +228,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Ala Masculina
         var ala_masculina = new Scene("ala_masculina")
             .setCssClass("scene-ala_masculina")
-            .setLoadFunction(function (){
+            .onLoad(function (){
                 if(flags_on == true){
                     if(level.getFlag("posicionou_coxim").getValue() == false){
                         ala_masculinaAction(true);
@@ -354,7 +354,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Leito
         var leito = new Scene("leito")
             .setCssClass("scene-leito-char-02")
-            .setLoadFunction(function (){
+            .onLoad(function (){
                 if(flags_on == true){
                     if(level.getFlag("conversar_paciente").getValue() == true){
                         level.getFlag("conversar_paciente").setValue(false);
@@ -480,7 +480,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Posto de Enfermagem
         var posto_de_enfermagem = new Scene("posto_de_enfermagem")
             .setCssClass("scene-posto_de_enfermagem")
-            .setLoadFunction(function (){
+            .onLoad(function (){
                 core.setActionVisible("btn-abrir_gaveta", true);
                 core.setActionVisible("btn-ir_corredor", true);
             });
@@ -509,7 +509,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Fim Alfa
         var fim_alfa = new Scene("Fim da fase")
             .setCssClass("scene-fim-alfa")
-            .setLoadFunction(function(){
+            .onLoad(function(){
                 core.setActionVisible("btn-voltar_menu", true)
             });
 

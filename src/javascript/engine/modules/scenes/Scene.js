@@ -32,8 +32,8 @@ define(function () {
         var name = _name;
         var cssClass = "noTexture";
 
-        var loaderFunction = function(){};
-        var unloadFunction = function(){};
+        var onLoadFunction = function(){};
+        var onUnloadFunction = function(){};
 
         var dialogs = [];
 
@@ -55,7 +55,7 @@ define(function () {
          */
         function load() {
             console.info("Scene " + name + " load function");
-            loaderFunction();
+            onLoadFunction();
         }
 
         /**
@@ -66,15 +66,15 @@ define(function () {
          */
         function unload() {
             console.info("Scene " + name + " unload function");
-            unloadFunction();
+            onUnloadFunction();
         }
 
         //Getters
         function getClone(){
             var scene_clone = new Scene(id, name)
                 .setCssClass(getCssClass())
-                .setLoadFunction(loaderFunction)
-                .setUnloadFunction(unloadFunction)
+                .onLoad(onLoadFunction)
+                .onUnload(onUnloadFunction)
                 .setTemplate(getTemplate());
 
             for(dialog in dialogs)
@@ -194,13 +194,13 @@ define(function () {
             return this;
         }
 
-        function setLoadFunction(_load){
-            loaderFunction = _load;
+        function onLoad(_load){
+            onLoadFunction = _load;
             return this;
         }
 
-        function setUnloadFunction(_unload){
-            unloadFunction = _unload;
+        function onUnload(_unload){
+            onUnloadFunction = _unload;
             return this;
         }
 
@@ -295,8 +295,8 @@ define(function () {
             setId:setId,
             setName:setName,
             setCssClass:setCssClass,
-            setLoadFunction:setLoadFunction,
-            setUnloadFunction:setUnloadFunction,
+            onLoad:onLoad,
+            onUnload:onUnload,
             setTemplate: setTemplate,
 
 
