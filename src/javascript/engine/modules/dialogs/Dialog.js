@@ -15,12 +15,10 @@ define([], function () {
     /**
      * @class
      * @name Dialog
-     * @param {string} _speakerName
-     * @param {string} _speakerCssClass
-     * @param {string} _text
+     * @param {string} _speaker
      * @return ObjectExpression
      */
-    function Dialog(_speakerName, _speakerCssClass) {
+    function Dialog(_speaker) {
         //Inner Class
         /**
          * Description
@@ -42,14 +40,14 @@ define([], function () {
          *
          * @memberOf Dialog#
          */
-        var speakerName = _speakerName;
+        var speakerName = _speaker.getName();
         /**
          * @type {string}
          * @private
          *
          * @memberOf Dialog#
          */
-        var speakerCssClass = _speakerCssClass;
+        var speakerCssClass = _speaker.getCssClass();
         /**
          * @type {string}
          * @private

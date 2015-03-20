@@ -2,7 +2,7 @@ define({
     tutorial: {
         recepcao: [
             //Recepcionista 
-            "Bom dia! Ainda não conheço você. Como posso ajudar",
+            "Bom dia! Ainda não conheço você. Como posso ajudar?",
             //Jogador
             "Bom dia. Sou profissional de enfermagem e hoje é meu primeiro dia de trabalho.",
             //Recepcionista 
@@ -47,7 +47,7 @@ define({
                 "Sua apresentação contém informações desnecessárias.",
 
                 //6 Paciente
-                    "Estou com muita dor de cabeça e passei muito nervoso hoje, acho que minha" +
+                    "Estou com muita dor de cabeça e passei muito nervoso hoje, acho que minha " +
                     "pressão subiu. É a primeira vez que preciso ser internado em um hospital e estou com um" +
                     "pouco de medo.",
 
