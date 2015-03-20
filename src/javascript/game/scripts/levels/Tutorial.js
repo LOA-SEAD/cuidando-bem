@@ -82,20 +82,20 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         recepcao.registerInteractiveObjects([
             new InteractiveObject("intObj-conversar_recepcionista","Conversar com a Recepcionista")
                 .setCssClass("intObj-talkToReceptionist")
-                .setVisible(true)
+                .setVisibility(true)
                 .onClick(conversarRecepcionista),
 
 
             new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
                 .setCssClass("intObj-lobbyToHallway-left")
                 .onClick(recepcaoIrCorredor)
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
 
             new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
                 .setCssClass("intObj-lobbyToHallway-right")
                 .onClick(recepcaoIrCorredor)
-                .setVisible(visibility)
+                .setVisibility(visibility)
         ]);
 
         //endregion
@@ -212,12 +212,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             new InteractiveObject("io-ir_sala_leitos","Ir para a sala de Leitos Masculino")
                 .setCssClass("intObj-goToBedroom")
                 .onClick(corredorIrSalaLeitos)
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new InteractiveObject("io-ir_posto_enfermagem","Ir para o Posto de Enfermagem")
                 .setCssClass("intObj-goToNursingStation")
                 .onClick(corredorIrPostoEnfermagem)
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new InteractiveObject("io-conversar_mentor","Conversar com Mentor")
                 .setCssClass("intObj-talkToMentor")
@@ -225,7 +225,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("Abrir diálogo com o mentor");
                     core.openDialog(0);
                 })
-                .setVisible(visibility)
+                .setVisibility(visibility)
         ]);
         //endregion
 
@@ -261,14 +261,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                .onClick(function (){
                    core.changeScene(3);
                })
-               .setVisible(visibility),
+               .setVisibility(visibility),
 
             new InteractiveObject("io-ir_corredor", "Ir ao Corredor")
                 .setCssClass("intObj-bedroomToHallway")
                 .onClick(function () {
                     core.changeScene(1);
                 })
-                .setVisible(visibility)
+                .setVisibility(visibility)
         ]);
 
         //endregion
@@ -451,7 +451,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     if(level.getFlag("pulseira").getValue() == false)
                         core.setInteractiveObjectVisible("io-confirmar_pulseira", true);
                 })
-                .setVisible(visibility)
+                .setVisibility(visibility)
 
         ]);
 
@@ -462,7 +462,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("Action: action-ir_sala_de_leitos");
                     core.changeScene(2);
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
             new Action("btn-lavar_maos", "Lavar as mãos")
                 .setCssClass("action-lavar_maos")
                 .onClick(function (){
@@ -483,7 +483,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                             break;
                     }
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new Action("btn-medir_temperatura", "Ver temperatura")
                 .setCssClass("action-medir_temperatura")
@@ -504,7 +504,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         }
                     }
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new Action("btn-medir_pulso", "Ver pressão")
                 .setCssClass("action-medir_pulso")
@@ -525,7 +525,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         }
                     }
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new Action("btn-saturacao_02", "Ver saturação de O2")
                 .setCssClass("action-medir_saturacao_02")
@@ -545,7 +545,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         }
                     }
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new Action("btn-frequencia_respiratoria", "Ver frequência respiratória")
                 .setCssClass("action-medir_freq_respiratoria")
@@ -565,7 +565,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         }
                     }
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new Action("btn-ler_prontuario", "Ler prontuario")
                 .setCssClass("action-ler_prontuario")
@@ -573,7 +573,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("Action: ler prontuario");
                     core.openModalScene("Prontuario");
                 })
-                .setVisible(visibility)
+                .setVisibility(visibility)
         ]);
 
         //endregion
@@ -609,7 +609,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         core.setInteractiveObjectVisible("io-relogio", true);
 
                 })
-                .setVisible(visibility)
+                .setVisibility(visibility)
 
         ]);
 
@@ -620,7 +620,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("Action: ir_corredor");
                     core.changeScene(1);
                 })
-                .setVisible(visibility)
+                .setVisibility(visibility)
         ]);
         //endregion
 
@@ -637,7 +637,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("Proxima fase" + core);
                     core.changeLevelTo(1);
                 })
-                .setVisible(visibility)
+                .setVisibility(visibility)
         ]);
         //endregion
 
@@ -663,7 +663,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                             core.openCommandBar();
                     }
                 })
-                .setVisible(visibility)
+                .setVisibility(visibility)
         ]);
 
         gaveta.registerInteractiveObjects([
@@ -674,7 +674,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.setInteractiveObjectVisible("io-termometro", false);
                     level.getFlag("termometro").setValue(true);
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new InteractiveObject("io-medidor_pressao", "Medidor de pressão")
                 .setCssClass("intObj-bloodPressureMonitor")
@@ -683,7 +683,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.setInteractiveObjectVisible("io-medidor_pressao", false);
                     level.getFlag("medidor-pressao").setValue(true);
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new InteractiveObject("io-oximetro", "Oxímetro")
                 .setCssClass("intObj-oximeter")
@@ -692,7 +692,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.setInteractiveObjectVisible("io-oximetro", false);
                     level.getFlag("oximetro").setValue(true);
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new InteractiveObject("io-relogio", "Relógio")
                 .setCssClass("intObj-watch")
@@ -701,7 +701,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.setInteractiveObjectVisible("io-relogio", false);
                     level.getFlag("relogio").setValue(true);
                 })
-                .setVisible(visibility)
+                .setVisibility(visibility)
         ]);
         //endregion
 
@@ -734,12 +734,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     level.getFlag("pulseira").setValue(true);
                     core.setActionVisible("btn-largar_pulseira", true);
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new InteractiveObject("io-pulseira_confirmada", "Pulseira confirmada")
                 .setCssClass("intObj-braceletConfirmed")
                 .onClick(function () {})
-                .setVisible(visibility)
+                .setVisibility(visibility)
         ]);
 
         pulseira.registerActions([
@@ -753,7 +753,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     // o correto era dar um disable aqui no pulseira paciente
                     //core.setInteractiveObjectVisible("io-pulseira_paciente", false);
                 })
-                .setVisible(visibility)
+                .setVisibility(visibility)
         ]);
 
 
@@ -767,8 +767,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function() {
                     core.closeModalScene("modalTermometro");
                 })
-                .setVisible(true)
-        ])
+                .setVisibility(true)
+        ]);
 
         var medidor_pressao = new Scene("modalMedidor_pressao", "modalMedidor_pressao")
             .setCssClass("modalScene-medidor_pressao")
@@ -780,8 +780,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function() {
                     core.closeModalScene("modalMedidor_pressao");
                 })
-                .setVisible(true)
-        ])
+                .setVisibility(true)
+        ]);
 
         //endregion
 

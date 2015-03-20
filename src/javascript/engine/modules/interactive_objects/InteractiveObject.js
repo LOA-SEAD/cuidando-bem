@@ -95,7 +95,7 @@ define([], function () {
         function getClone(){
             return new InteractiveObject(id, name)
                 .setCssClass(cssClass)
-                .setVisible(visible)
+                .setVisibility(visible)
                 .onClick(onClickFunction)
                 .setEnable(enable);
         }
@@ -169,13 +169,13 @@ define([], function () {
         /**
          * @method
          * @memberOf Action
-         * @method setVisible
+         * @method setVisibility
          * @param {boolean} _visible
          * @public
          *
          * @memberOf Action#
          */
-        function setVisible(_visible) {
+        function setVisibility(_visible) {
             visible = _visible;
             return this;
         }
@@ -217,7 +217,7 @@ define([], function () {
             setName: setName,
             setCssClass: setCssClass,
             setEnable: setEnable,
-            setVisible: setVisible,
+            setVisibility: setVisibility,
             onClick: onClick
         };
     }

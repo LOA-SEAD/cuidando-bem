@@ -54,7 +54,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("Action: recepcao_ir_corredor");
                     core.changeScene(1);
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new Action("btn-conversar_recepcionista", "Conversar com a recepcionista")
                 .setCssClass("action-abrir_dialogo")
@@ -62,7 +62,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("Action: Conversar com a recepcionista");
                     core.openDialog(0);
                 })
-                .setVisible(visibility)
+                .setVisibility(visibility)
         ]);
         //endregion
 
@@ -171,13 +171,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             new Action("btn-falar_mentor_01", "Falar com mentor")
                 .setCssClass("action-abrir_dialogo")
                 .onClick(function(){core.openDialog(0);})
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
 
             new Action("btn-falar_mentor_02", "Falar com mentor")
                 .setCssClass("action-abrir_dialogo")
                 .onClick(function(){core.openDialog(1);})
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
 
             new Action("btn-ir_ala_masculina", "Ir para a ala masculina")
@@ -198,7 +198,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         core.changeScene(2);
                     }
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
 
             new Action("btn-ir_posto_enfermagem", "Ir para o posto de enfermagem")
@@ -221,7 +221,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         core.changeScene(4);
                     }
                 })
-                .setVisible(visibility)
+                .setVisibility(visibility)
         ]);
         //endregion
 
@@ -293,7 +293,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         core.changeScene(1);
                     }
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new Action("btn-ir_leito", "Ir ao leito")
                 .setCssClass("action-leito-char-02")
@@ -314,7 +314,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         core.changeScene(3);
                     }
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new Action("btn-lavar_maos", "Lavar as mãos")
                 .setCssClass("action-lavar_maos")
@@ -322,7 +322,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("Action: lavar as maos");
                     core.getFlag("lavar_maos").setValue(true);
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new Action("btn-ler_prontuario", "Ler prontuario")
                 .setCssClass("action-ler_prontuario")
@@ -340,7 +340,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
                     }
                 })
-                .setVisible(visibility)
+                .setVisibility(visibility)
         ]);
 
         function ala_masculinaAction(_status){
@@ -417,7 +417,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("Action: action-ir_ala_masculina");
                     core.changeScene(2);
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new Action("btn-ver_pulseira", "Ver pulseira")
                 .setCssClass("action-pulseira_paciente")
@@ -427,14 +427,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.setActionVisible("btn-largar_pulseira", true);
                     core.setActionVisible("btn-confirmar_pulseira", true);
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new Action("btn-conversar_paciente", "Conversar paciente")
                 .setCssClass("action-abrir_dialogo")
                 .onClick(  function dialogarPaciente(){
                     core.openDialog(0);
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new Action("btn-examinar_paciente", "Examinar paciente")
                 .setCssClass("action-examinar_paciente")
@@ -452,7 +452,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.getFlag("paciente_carlos").setValue(
                             core.getFlag("paciente_carlos").getValue() + 1);
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new Action("btn-mudar_posicao_paciente", "Mudar posição do paciente")
                 .setCssClass("action-mudar_posicao_paciente")
@@ -462,7 +462,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.changeSceneCssClassTo("scene-leito-char-02-virado");
                     core.setActionVisible("btn-posicionar_coxim", true);
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new Action("btn-posicionar_coxim", "Posicionar coxim e o travesseiro")
                 .setCssClass("action-posicionar_coxim")
@@ -473,7 +473,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.setActionVisible("btn-posicionar_coxim", false);
                     core.setActionVisible("btn-ir_ala_masculina", true);
                 })
-                .setVisible(visibility)
+                .setVisibility(visibility)
         ]);
         //endregion
 
@@ -492,7 +492,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("Action: ir_corredor");
                     core.changeScene(1);
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new Action("btn-abrir_gaveta", "Abrir gaveta")
                 .setCssClass("action-abrir_gaveta")
@@ -502,7 +502,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     gavetaActions(true);
 
                 })
-                .setVisible(visibility)
+                .setVisibility(visibility)
         ]);
         //endregion
 
@@ -520,7 +520,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("Voltar ao menu");
                     core.goBackToMenu();
                 })
-                .setVisible(visibility)
+                .setVisibility(visibility)
         ]);
         //endregion
 
@@ -541,7 +541,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.closeModalScene("Prontuario");
                     core.changeScene(5);
                 })
-                .setVisible(true)
+                .setVisibility(true)
         ]);
         //endregion
 
@@ -552,7 +552,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             new Action("btn-fechar_carlos", "Fechar Carlos")
                 .setCssClass("action-fechar_modal")
                 .onClick(function() {core.closeModalScene("Carlos Esme Gouvea");})
-                .setVisible(true)
+                .setVisibility(true)
         ]);
         //endregion
 
@@ -570,7 +570,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         core.setActionVisible("btn-examinar_paciente", true);
                     }
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new Action("btn-confirmar_pulseira", "Confirmar pulseira")
                 .setCssClass("action-confirmar_pulseira")
@@ -578,7 +578,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("Ação: Confirmar pulseira");
                     level.getFlag("confirmar_pulseira").setValue(true);
                 })
-                .setVisible(visibility)
+                .setVisibility(visibility)
         ]);
         //endregion
 
@@ -606,7 +606,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.closeModalScene("Gaveta");
                     gavetaActions(false);
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new Action("btn-coxim", "Pegar coxim")
                 .setCssClass("action-pegar_coxim")
@@ -617,7 +617,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.setActionVisible("btn-coxim", false);
                     core.setInteractiveObjectVisible("io-coxim", false);
                 })
-                .setVisible(visibility),
+                .setVisibility(visibility),
 
             new InteractiveObject("io-coxim", "Coxim")
                 .setCssClass("intObj-coxim")

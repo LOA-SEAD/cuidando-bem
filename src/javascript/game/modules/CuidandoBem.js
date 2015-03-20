@@ -331,7 +331,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      */
     function setActionVisible(_actionId, _value) {
         var action = Scene.getAction(_actionId);
-        action.setVisible(_value);
+        action.setVisibility(_value);
         CommandBar.setActionVisible(action, _value);
     }
 
@@ -344,9 +344,9 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     function toggleActionVisible(_actionId) {
         var action = Scene.getAction(_actionId);
         if (action.isVisible())
-            action.setVisible(false);
+            action.setVisibility(false);
         else
-            action.setVisible(true);
+            action.setVisibility(true);
 
         CommandBar.setActionVisible(action, action.isVisible());
     }
@@ -360,7 +360,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      */
     function setInteractiveObjectVisible(_interactiveObjectId, _value) {
         var interactiveObject = Scene.getInteractiveObject(_interactiveObjectId);
-        interactiveObject.setVisible(_value);
+        interactiveObject.setVisibility(_value);
         InteractiveObject.setInteractiveObjectVisible(interactiveObject, _value);
     }
 
@@ -373,9 +373,9 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     function toggleInteractiveObjectVisible(_interactiveObjectId) {
         var interactiveObject = Scene.getInteractiveObject(_interactiveObjectId);
         if (interactiveObject.isVisible())
-            interactiveObject.setVisible(false);
+            interactiveObject.setVisibility(false);
         else
-            interactiveObject.setVisible(true);
+            interactiveObject.setVisibility(true);
 
         InteractiveObject.setInteractiveObjectVisible(interactiveObject, interactiveObject.isVisible());
     }
