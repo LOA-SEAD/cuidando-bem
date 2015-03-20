@@ -3,8 +3,8 @@
  New levels can easily be made by adding new game levels.
  */
 
-define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons'],
-    function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib) {
+define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'Pulseira', 'CuidandoBem', 'Commons'],
+    function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, Pulseira, core, lib) {
 
         //region Imports
         var Dialogs = require("Dialogs").tutorial;
@@ -445,7 +445,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("intObj-paciente_01-checar_pulseira")
                 .setFunction(function () {
                     console.log("IO: pulseira_paciente");
-                    core.openModalScene("pulseira");
+                    //core.openModalScene("pulseira");
+                    Pulseira.open();
                     core.openCommandBar();
                     if(level.getFlag("pulseira").getValue() == false)
                         core.setInteractiveObjectVisible("io-confirmar_pulseira", true);
