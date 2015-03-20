@@ -34,6 +34,7 @@ require.config({
         Flag: 'game/modules/Flag',
         Action: 'engine/modules/command_bar/Action',
         Level: 'game/modules/Level',
+        Character: 'game/modules/Character',
         Dialog: 'engine/modules/dialogs/Dialog',
         InteractiveObject: 'engine/modules/interactive_objects/InteractiveObject',
         Pulseira: 'game/modules/pulseira/Pulseira_Modal',

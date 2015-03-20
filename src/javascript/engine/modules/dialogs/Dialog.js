@@ -19,6 +19,8 @@ define([], function () {
      * @return ObjectExpression
      */
     function Dialog(_speaker) {
+
+
         //Inner Class
         /**
          * Description
@@ -32,22 +34,24 @@ define([], function () {
             this.text = _text;
             this.actionFunction = _actionFunction;
         }
-
         //Attributes
-        /**
-         * @type {string}
-         * @private
-         *
-         * @memberOf Dialog#
-         */
-        var speakerName = _speaker.getName();
-        /**
-         * @type {string}
-         * @private
-         *
-         * @memberOf Dialog#
-         */
-        var speakerCssClass = _speaker.getCssClass();
+
+        if(_speaker != null) {
+            /**
+             * @type {string}
+             * @private
+             *
+             * @memberOf Dialog#
+             */
+            var speakerName = _speaker.getName();
+            /**
+             * @type {string}
+             * @private
+             *
+             * @memberOf Dialog#
+             */
+            var speakerCssClass = _speaker.getCssClass();
+        }
         /**
          * @type {string}
          * @private
@@ -81,9 +85,12 @@ define([], function () {
 
         //Getters
         function getClone(){
-            var dialog_clone = new Dialog(speakerName, speakerCssClass)
+            var dialog_clone = new Dialog()
                 .setText(text)
-                .setRandomize(randomize);
+                .setRandomize(randomize)
+                .setSpeakerCssClass(speakerCssClass)
+                .setSpeakerName(speakerName);
+
 
             for(opt in options)
                 dialog_clone.registerOption(options[opt].text, options[opt].actionFunction);

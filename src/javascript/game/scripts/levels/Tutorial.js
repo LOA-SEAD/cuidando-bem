@@ -18,11 +18,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         if (!flags_on)
             visibility = true;
 
-        var nomePaciente = "Sr. João";
-        var nomeRecepcionista = "Clarice";
-        var nomeJogador = "Jogador";
-        var nomeMentor = "Mentor";
-
         //region Scenes
 
         //region Recepcao
@@ -54,16 +49,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var recepcao = lib.scenes.recepcao.getClone()
             .setLoadFunction(function () {
                 console.log("Load scene: " + recepcao.getName());
-                core.setInteractiveObjectVisible("io-conversar_recepcionista", true);
                 core.openDialog(0);
-            })
-            .setUnloadFunction(function () {
-                console.log("Unload scene: " + recepcao.getName());
             });
 
         recepcao.registerDialogs([
             // Dialog 0
-            new Dialog("Recepcionista", "char-receptionist")
+            new Dialog(lib.characters.recepcionista_unknow)
                 .setText(Dialogs.recepcao[0])
                 .registerOption("", function(){
                     level.getFlag("conversar_recepcionista").setValue(true);
@@ -71,14 +62,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 }),
 
             // Dialog 1
-            new Dialog(nomeJogador, "char-player")
+            new Dialog(lib.characters.jogador)
                 .setText("")
                 .registerOption(Dialogs.recepcao[1], function(){
                     core.openDialog(2);
                 }),
 
             // Dialog 2
-            new Dialog(nomeRecepcionista, "char-receptionist")
+            new Dialog(lib.characters.recepcionista)
                 .setText(Dialogs.recepcao[2])
                 .registerOption("", function(){
                     console.log("Encerrar o diálogo");
@@ -89,9 +80,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         ]);
 
         recepcao.registerInteractiveObjects([
-            new InteractiveObject("io-conversar_recepcionista","Conversar com a Recepcionista")
+            new InteractiveObject("intObj-conversar_recepcionista","Conversar com a Recepcionista")
                 .setCssClass("intObj-talkToReceptionist")
-                .setVisible(visibility)
+                .setVisible(true)
                 .setFunction(conversarRecepcionista),
 
 
@@ -125,8 +116,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             }
         }
 
-        var corredor = new Scene("corredor", "scene-corredor")
-            .setCssClass("scene-hallway")
+        var corredor = lib.scenes.corredor.getClone()
             .setLoadFunction( function () {
                 switch (level.getFlag("passagem_corredor").getValue()){
                     case 0: // first time at 'corredor'
@@ -165,14 +155,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         corredor.registerDialogs([
             // Dialog 0
-            new Dialog(nomeMentor, "char-mentor")
+            new Dialog(lib.characters.mentor)
                 .setText(Dialogs.corredor[0])
                 .registerOption("", function () {
                     level.getFlag("conversar_mentor").setValue(true);
                     core.openDialog(1);
                 }),
             // Dialog 1
-            new Dialog(nomeJogador, "char-player")
+            new Dialog(lib.characters.jogador)
                 .setText("")
                 // resposta correta
                 .registerOption(Dialogs.corredor[1], function () {
@@ -191,20 +181,20 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setRandomize(true),
 
             // Dialog 2
-            new Dialog(nomeMentor, "char-mentor")
+            new Dialog(lib.characters.mentor)
                 .setText(Dialogs.corredor[3])
                 .registerOption("",function () {
                     core.openDialog(1);
                 }),
             // Dialog 3
-            new Dialog(nomeMentor, "char-mentor")
+            new Dialog(lib.characters.mentor)
                 .setText(Dialogs.corredor[5])
                 .registerOption("",function () {
                     core.openDialog(1);
                 }),
 
             // Dialog 4 - correto
-            new Dialog(nomeMentor, "char-mentor")
+            new Dialog(lib.characters.mentor)
                 .setText(Dialogs.corredor[6])
                 .registerOption("",function () {
                     core.closeDialog(4);
@@ -284,8 +274,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Leito
-        var leito = new Scene("leito", "scene-leito-char-01")
-            .setCssClass("scene-bedChar01")
+        var leito = lib.scenes.leitos.joao.getClone()
             .setLoadFunction(function () {
                 console.log("Leito: Onload");
                 core.setInteractiveObjectVisible("io-pulseira_paciente", true);
@@ -318,13 +307,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Leito - Dialogs
         leito.registerDialogs([
             // Dialog 0 - mentor
-            new Dialog(nomeMentor, "char-mentor")
+            new Dialog(lib.characters.mentor)
                 .setText(Dialogs.leito.conversa1[0])
                 .registerOption("", function () {
                     core.openDialog(1);
                 }),
             // Dialog 1 - resp jogador
-            new Dialog(nomeJogador, "char-player")
+            new Dialog(lib.characters.jogador)
                 .setText("")
                 .registerOption(Dialogs.leito.conversa1[1], function () {
                     core.openDialog(4);
@@ -337,25 +326,25 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 })
                 .setRandomize(true),
             // Dialog 2
-            new Dialog(nomeMentor, "char-mentor")
+            new Dialog(lib.characters.mentor)
                 .setText(Dialogs.leito.conversa1[3])
                 .registerOption("", function () {
                     core.openDialog(1);
                 }),
             // Dialog 3
-            new Dialog(nomeMentor, "char-mentor")
+            new Dialog(lib.characters.mentor)
                 .setText(Dialogs.leito.conversa1[5])
                 .registerOption("", function () {
                     core.openDialog(1);
                 }),
             // Dialog 4
-            new Dialog(nomePaciente, "char-paciente_01")
+            new Dialog(lib.characters.pacientes.joao)
                 .setText(Dialogs.leito.conversa1[6])
                 .registerOption("", function () {
                     core.openDialog(5);
                 }),
             // Dialog 5
-            new Dialog(nomeJogador, "char-player")
+            new Dialog(lib.characters.jogador)
                 .setText("")
                 .registerOption(Dialogs.leito.conversa1[7], function () {
                     core.openDialog(8);
@@ -368,31 +357,31 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 })
                 .setRandomize(true),
             // Dialog 6
-            new Dialog(nomeMentor, "char-mentor")
+            new Dialog(lib.characters.mentor)
                 .setText(Dialogs.leito.conversa1[9])
                 .registerOption("", function () {
                     core.openDialog(5);
                 }),
             // Dialog 7
-            new Dialog(nomeMentor, "char-mentor")
+            new Dialog(lib.characters.mentor)
                 .setText(Dialogs.leito.conversa1[11])
                 .registerOption("", function () {
                     core.openDialog(5);
                 }),
             // Dialog 8
-            new Dialog(nomePaciente, "char-paciente_01")
+            new Dialog(lib.characters.pacientes.joao)
                 .setText(Dialogs.leito.conversa1[12])
                 .registerOption("", function () {
                     core.openDialog(9);
                 }),
             // Dialog 9
-            new Dialog(nomeJogador, "char-player")
+            new Dialog(lib.characters.jogador)
                 .setText("")
                 .registerOption(Dialogs.leito.conversa1[13], function () {
                     core.openDialog(10);
                 }),
             // Dialog 10
-            new Dialog(nomeMentor, "char-mentor")
+            new Dialog(lib.characters.mentor)
                 .setText(Dialogs.leito.conversa1[14])
                 .registerOption("", function () {
                     core.closeDialog(10);
@@ -402,7 +391,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             // 2a visita do jogador ao leito
 
             // Dialog 11
-            new Dialog(nomeJogador, "char-jogador")
+            new Dialog(lib.characters.jogador)
                 .setText("")
                 .registerOption(Dialogs.leito.conversa2[0], function () {
                     core.openDialog(14);
@@ -415,32 +404,32 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 })
                 .setRandomize(true),
             // Dialog 12
-            new Dialog(nomeMentor, "char-mentor")
+            new Dialog(lib.characters.mentor)
                 .setText(Dialogs.leito.conversa2[2])
                 .registerOption("", function () {
                     core.openDialog(11);
                 }),
             // Dialog 13
-            new Dialog(nomeMentor, "char-mentor")
+            new Dialog(lib.characters.mentor)
                 .setText(Dialogs.leito.conversa2[4])
                 .registerOption("", function () {
                     core.openDialog(11);
                 }),
 
             // Dialog 14
-            new Dialog(nomePaciente, "char-paciente_01")
+            new Dialog(lib.characters.pacientes.joao)
                 .setText(Dialogs.leito.conversa2[5])
                 .registerOption("", function () {
                     core.openDialog(15);
                 }),
             // Dialog 15
-            new Dialog(nomeJogador, "char-player")
+            new Dialog(lib.characters.jogador)
                 .setText("")
                 .registerOption(Dialogs.leito.conversa2[6], function () {
                     core.openDialog(16);
                 }),
             // Dialog 16
-            new Dialog(nomeMentor, "char-mentor")
+            new Dialog(lib.characters.mentor)
                 .setText(Dialogs.leito.conversa2[7])
                 .registerOption("", function () {
                     core.closeDialog(16);
@@ -461,7 +450,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     if(level.getFlag("pulseira").getValue() == false)
                         core.setInteractiveObjectVisible("io-confirmar_pulseira", true);
                 })
-                .setVisible(visibility),
+                .setVisible(visibility)
 
         ]);
 
@@ -590,8 +579,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
     //endregion
 
         //region Posto de Enfermagem
-        var posto_de_enfermagem = new Scene("posto_de_enfermagem", "scene-posto_de_enfermagem")
-            .setCssClass("scene-nursingStation")
+        var posto_de_enfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .setLoadFunction(function (){
                 core.setInteractiveObjectVisible("io-abrir_gaveta", true);
             })
@@ -620,7 +608,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         core.setInteractiveObjectVisible("io-relogio", true);
 
                 })
-                .setVisible(visibility),
+                .setVisible(visibility)
 
         ]);
 
@@ -636,8 +624,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Fim do Level
-        var fim_tutorial = new Scene("Fim da fase", "scene-fim-level")
-            .setCssClass("scene-fim-level")
+        var fim_tutorial = lib.scenes.finalDeFase.getClone()
             .setLoadFunction(function (){
                 core.setActionVisible("btn-proxima_fase", true);
             });

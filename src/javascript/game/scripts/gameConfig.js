@@ -8,9 +8,9 @@ define([], function () {
     console.info("GameConfig - module loaded");
     var generalPath = "./game/scripts/levels/";
     var filePaths = [
-        "Tutorial",
-        "Fase1",
-        "Fase8"
+
+        "Tutorial"
+
     ];
 
     for (i = 0; i < filePaths.length; i++) {
