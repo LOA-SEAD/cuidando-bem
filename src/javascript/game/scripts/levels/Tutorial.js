@@ -83,18 +83,18 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             new InteractiveObject("intObj-conversar_recepcionista","Conversar com a Recepcionista")
                 .setCssClass("intObj-talkToReceptionist")
                 .setVisible(true)
-                .setFunction(conversarRecepcionista),
+                .onClick(conversarRecepcionista),
 
 
             new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
                 .setCssClass("intObj-lobbyToHallway-left")
-                .setFunction(recepcaoIrCorredor)
+                .onClick(recepcaoIrCorredor)
                 .setVisible(visibility),
 
 
             new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
                 .setCssClass("intObj-lobbyToHallway-right")
-                .setFunction(recepcaoIrCorredor)
+                .onClick(recepcaoIrCorredor)
                 .setVisible(visibility)
         ]);
 
@@ -211,17 +211,17 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         corredor.registerInteractiveObjects([
             new InteractiveObject("io-ir_sala_leitos","Ir para a sala de Leitos Masculino")
                 .setCssClass("intObj-goToBedroom")
-                .setFunction(corredorIrSalaLeitos)
+                .onClick(corredorIrSalaLeitos)
                 .setVisible(visibility),
 
             new InteractiveObject("io-ir_posto_enfermagem","Ir para o Posto de Enfermagem")
                 .setCssClass("intObj-goToNursingStation")
-                .setFunction(corredorIrPostoEnfermagem)
+                .onClick(corredorIrPostoEnfermagem)
                 .setVisible(visibility),
 
             new InteractiveObject("io-conversar_mentor","Conversar com Mentor")
                 .setCssClass("intObj-talkToMentor")
-                .setFunction(function (){
+                .onClick(function (){
                     console.log("Abrir diálogo com o mentor");
                     core.openDialog(0);
                 })
@@ -258,14 +258,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         sala_de_leitos.registerInteractiveObjects([
            new InteractiveObject("io-ir_leito", "Ir ao leito")
                .setCssClass("intObj-ir_leito-tutorial")
-               .setFunction(function (){
+               .onClick(function (){
                    core.changeScene(3);
                })
                .setVisible(visibility),
 
             new InteractiveObject("io-ir_corredor", "Ir ao Corredor")
                 .setCssClass("intObj-bedroomToHallway")
-                .setFunction(function () {
+                .onClick(function () {
                     core.changeScene(1);
                 })
                 .setVisible(visibility)
@@ -443,7 +443,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         leito.registerInteractiveObjects([
             new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
                 .setCssClass("intObj-paciente_01-checar_pulseira")
-                .setFunction(function () {
+                .onClick(function () {
                     console.log("IO: pulseira_paciente");
                     //core.openModalScene("pulseira");
                     Pulseira.open();
@@ -458,14 +458,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         leito.registerActions([
             new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
                 .setCssClass("action-ir_sala_de_leitos")
-                .setFunction(function (){
+                .onClick(function (){
                     console.log("Action: action-ir_sala_de_leitos");
                     core.changeScene(2);
                 })
                 .setVisible(visibility),
             new Action("btn-lavar_maos", "Lavar as mãos")
                 .setCssClass("action-lavar_maos")
-                .setFunction(function (){
+                .onClick(function (){
                     console.log("Action: lavar_maos");
                     switch (level.getFlag("lavar-maos").getValue()){
                         case 0:
@@ -487,7 +487,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             new Action("btn-medir_temperatura", "Ver temperatura")
                 .setCssClass("action-medir_temperatura")
-                .setFunction(function (){
+                .onClick(function (){
                     console.log("Action: medir_temperatura");
                     if(level.getFlag("lavar-maos").getValue() >= 1){
 
@@ -508,7 +508,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             new Action("btn-medir_pulso", "Ver pressão")
                 .setCssClass("action-medir_pulso")
-                .setFunction(function (){
+                .onClick(function (){
                     console.log("Action: medir_pulso");
                     if(level.getFlag("lavar-maos").getValue() >= 1){
 
@@ -529,7 +529,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             new Action("btn-saturacao_02", "Ver saturação de O2")
                 .setCssClass("action-medir_saturacao_02")
-                .setFunction( function (){
+                .onClick( function (){
                     console.log("Action: medir_saturacao_02");
                     if(level.getFlag("lavar-maos").getValue() >= 1){
 
@@ -549,7 +549,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             new Action("btn-frequencia_respiratoria", "Ver frequência respiratória")
                 .setCssClass("action-medir_freq_respiratoria")
-                .setFunction( function (){
+                .onClick( function (){
                     console.log("Action: medir_freq_respiratoria");
                     if(level.getFlag("lavar-maos").getValue() >= 1){
 
@@ -569,7 +569,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             new Action("btn-ler_prontuario", "Ler prontuario")
                 .setCssClass("action-ler_prontuario")
-                .setFunction(function (){
+                .onClick(function (){
                     console.log("Action: ler prontuario");
                     core.openModalScene("Prontuario");
                 })
@@ -592,7 +592,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         posto_de_enfermagem.registerInteractiveObjects([
             new InteractiveObject("io-abrir_gaveta","Abrir gaveta")
                 .setCssClass("intObj-openDrawer")
-                .setFunction(function () {
+                .onClick(function () {
                     console.log("Action: abrir_gaveta");
                     core.openModalScene("Gaveta");
                     core.openCommandBar();
@@ -616,7 +616,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         posto_de_enfermagem.registerActions([
             new Action("btn-ir_corredor", "Ir ao corredor")
                 .setCssClass("action-ir_corredor")
-                .setFunction(function (){
+                .onClick(function (){
                     console.log("Action: ir_corredor");
                     core.changeScene(1);
                 })
@@ -633,7 +633,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         fim_tutorial.registerActions([
             new Action("btn-proxima_fase", "Ir a recepção")
                 .setCssClass("action-ir_recepcao")
-                .setFunction( function (){
+                .onClick( function (){
                     console.log("Proxima fase" + core);
                     core.changeLevelTo(1);
                 })
@@ -652,7 +652,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         gaveta.registerActions([
             new Action("btn-fechar_gaveta", "Fechar gaveta")
                 .setCssClass("action-fechar_gaveta")
-                .setFunction( function () {
+                .onClick( function () {
                     console.log("Action: fechar_gaveta");
                     core.closeModalScene("Gaveta");
                     if(level.getFlag("termometro").getValue() == true &&
@@ -669,7 +669,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         gaveta.registerInteractiveObjects([
             new InteractiveObject("io-termometro", "Termômetro")
                 .setCssClass("intObj-thermometer")
-                .setFunction(function () {
+                .onClick(function () {
                     console.log("Action: pegar_termometro");
                     core.setInteractiveObjectVisible("io-termometro", false);
                     level.getFlag("termometro").setValue(true);
@@ -678,7 +678,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             new InteractiveObject("io-medidor_pressao", "Medidor de pressão")
                 .setCssClass("intObj-bloodPressureMonitor")
-                .setFunction(function () {
+                .onClick(function () {
                     console.log("O medidor de pressão foi ativado");
                     core.setInteractiveObjectVisible("io-medidor_pressao", false);
                     level.getFlag("medidor-pressao").setValue(true);
@@ -687,7 +687,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             new InteractiveObject("io-oximetro", "Oxímetro")
                 .setCssClass("intObj-oximeter")
-                .setFunction(function () {
+                .onClick(function () {
                     console.log("Action: pegar_oximetro");
                     core.setInteractiveObjectVisible("io-oximetro", false);
                     level.getFlag("oximetro").setValue(true);
@@ -696,7 +696,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             new InteractiveObject("io-relogio", "Relógio")
                 .setCssClass("intObj-watch")
-                .setFunction(function () {
+                .onClick(function () {
                     console.log("Action: pegar_relogio");
                     core.setInteractiveObjectVisible("io-relogio", false);
                     level.getFlag("relogio").setValue(true);
@@ -711,7 +711,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         prontuario.registerActions([
             new Action("btn-anotar_prontuario", "Anotar prontuário")
                 .setCssClass("action-anotar_prontuario")
-                .setFunction(function (){
+                .onClick(function (){
                     console.log("Action: anotar prontuario");
                     core.closeModalScene("Prontuario");
                     core.changeScene(5);
@@ -727,7 +727,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         pulseira.registerInteractiveObjects([
             new InteractiveObject("io-confirmar_pulseira", "Confirmar pulseira")
                 .setCssClass("intObj-braceletConfirmation")
-                .setFunction(function () {
+                .onClick(function () {
                     console.log("Ação: Confirmar pulseira");
                     core.setInteractiveObjectVisible("io-pulseira_confirmada", true);
                     core.setInteractiveObjectVisible("io-confirmar_pulseira", false);
@@ -738,14 +738,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             new InteractiveObject("io-pulseira_confirmada", "Pulseira confirmada")
                 .setCssClass("intObj-braceletConfirmed")
-                .setFunction(function () {})
+                .onClick(function () {})
                 .setVisible(visibility)
         ]);
 
         pulseira.registerActions([
             new Action("btn-largar_pulseira", "Largar pulseira")
                 .setCssClass("action-pulseira_paciente")
-                .setFunction(function (){
+                .onClick(function (){
                     console.log("Ação: Fechar modal pulseira");
                     core.closeModalScene("Pulseira");
                     if(level.getFlag("visita-leito").getValue() == 0)
@@ -764,7 +764,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         termometro.registerActions([
             new Action("btn-largar_termometro", "Largar termômetro")
                 .setCssClass("action-largar_termometro")
-                .setFunction(function() {
+                .onClick(function() {
                     core.closeModalScene("modalTermometro");
                 })
                 .setVisible(true)
@@ -777,7 +777,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         medidor_pressao.registerActions([
             new Action("btn-largar_medidor_pressao", "Largar medidor de pressão")
                 .setCssClass("action-largar_medidor_pressao")
-                .setFunction(function() {
+                .onClick(function() {
                     core.closeModalScene("modalMedidor_pressao");
                 })
                 .setVisible(true)

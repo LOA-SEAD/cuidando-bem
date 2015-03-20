@@ -19,7 +19,6 @@ require.config({
 
 
         //Refs
-        Errors: 'references/Errors',
         Dialogs: 'references/Dialog_texts',
         Images: 'references/Images',
         Sounds: 'references/Sounds',

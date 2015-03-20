@@ -49,7 +49,7 @@ define([], function () {
          *
          * @memberOf Action#
          */
-        var actionFunction = function(){};
+        var onClickFunction = function(){};
         /**
          * @type {boolean}
          * @private
@@ -69,7 +69,7 @@ define([], function () {
          * @memberOf Action#
          */
         function execute() {
-            actionFunction();
+            onClickFunction();
         }
 
         //Getters
@@ -84,14 +84,14 @@ define([], function () {
          */
 
         function getFunction() {
-            return actionFunction;
+            return onClickFunction;
         }
 
         function getClone(){
             return new Action(id, name)
                 .setCssClass(cssClass)
                 .setVisible(visible)
-                .setFunction(actionFunction)
+                .onClick(onClickFunction)
                 .setEnable(enable);
         }
 
@@ -190,8 +190,8 @@ define([], function () {
             return this;
         }
 
-        function setFunction(_function){
-            actionFunction = _function;
+        function onClick(_function){
+            onClickFunction = _function;
             return this;
         }
 
@@ -213,7 +213,7 @@ define([], function () {
             setCssClass: setCssClass,
             setEnable: setEnable,
             setVisible: setVisible,
-            setFunction: setFunction
+            onClick: onClick
         };
     }
 
