@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
 
     var src_path = 'src/';
+    var javascript_path = src_path + 'javascript/';
     var build_path = 'build/';
     var build_step_1_path = 'build_s1/';
 
@@ -16,11 +17,8 @@ module.exports = function(grunt) {
             docs : {
                 src: [
                     src_path+'/**/*.js',
-                    '!'+src_path+'/scripts/libs/*.js',
-                    '!'+src_path+'/scripts/gameConfig/*.js',
-                    '!'+src_path+'/scripts/stageConfig/*.js',
-                    '!'+src_path+'/scripts/main.js',
-                    '!'+src_path+'/scripts/requireJsBootstrap.js',
+                    '!'+javascript_path+'/game/scripts/levels/*.js',
+
                     'README.md'
                 ],
                 options: {

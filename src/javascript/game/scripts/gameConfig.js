@@ -9,7 +9,8 @@ define([], function () {
     var generalPath = "./game/scripts/levels/";
     var filePaths = [
 
-        "Tutorial"
+        "Tutorial",
+        "Fase8"
 
     ];
 

@@ -52,7 +52,7 @@ require.config({
         scene: 'engine/modules/scenes/SceneController'
     }
 });
-require(['Errors', 'Dialogs', 'Images', 'Sounds', 'HTML'], function (){
+require(['Dialogs', 'Images', 'Sounds', 'HTML'], function (){
     //Init the app when everything is ready
     require(['SaveLoadGame'], function(){
         require(['Player', 'ImageLoader']);

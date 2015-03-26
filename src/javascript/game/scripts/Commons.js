@@ -55,7 +55,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             actions: {
                 irCorredor: new Action("btn-ir_corredor", "Ir ao corredor")
                     .setCssClass("action-ir_corredor")
-                    .setFunction(function(){
+                    .onClick(function(){
                         console.log("Action: 'Ir ao corredor'");
                         core.changeScene(1);
                     })

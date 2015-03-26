@@ -13,14 +13,14 @@ define(function () {
     /**
      * An array that stores all Screen objects
      * @private
-     * @type {array}
+     * @type {Array}
      *
      * @memberOf module:Stage_Controller
      */
     var screens = [];
 
     /**
-     * The path where the Stage controller will look for the html pages
+     * Html path
      * @private
      * @type {string}
      *
@@ -35,12 +35,13 @@ define(function () {
      * @memberOf module:Stage_Controller
      */
     var controllerPath;
+
     /**
-     * container should be an id on the html page to be the base for all other html content
+     * Container should be an id on the html page to be the base for all other html content
      * @private
      * @type {string}
      *
-     * #memberOf module:Stage_Controller
+     * @memberOf module:Stage_Controller
      */
     var containerId;
 
@@ -76,7 +77,6 @@ define(function () {
          * The screen name
          * @private
          * @type {string}
-         * @private
          *
          * @memberOf module:Stage_Controller.Screen
          */
@@ -85,7 +85,6 @@ define(function () {
          * The screen html path
          * @private
          * @type {string}
-         * @private
          *
          * @memberOf module:Stage_Controller.Screen
          */
@@ -94,7 +93,6 @@ define(function () {
          * The screen controller path
          * @private
          * @type {string}
-         * @private
          *
          * @memberOf module:Stage_Controller.Screen
          */
