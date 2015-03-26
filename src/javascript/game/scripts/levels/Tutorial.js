@@ -445,7 +445,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("intObj-paciente_01-checar_pulseira")
                 .onClick(function () {
                     console.log("IO: pulseira_paciente");
-                    //core.openModalScene("pulseira");
+                    core.openModalScene("pulseira");
                     Pulseira.open();
                     core.openCommandBar();
                     if(level.getFlag("pulseira").getValue() == false)
@@ -720,8 +720,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Pulseira
-        var pulseira = new Scene("pulseira", "pulseira")
-            .setCssClass("modalScene-pulseira");
+        var pulseira = new Scene("pulseira", "pulseira");
+            //.setCssClass("modalScene-pulseira");
 
 
         pulseira.registerInteractiveObjects([
@@ -821,7 +821,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("relogio", false));
         //endregion
 
-        level.setInitialScene(0);
+        level.setInitialScene(3);
         //endregion
 
         game.registerLevel(level, 0);
