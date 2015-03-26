@@ -10,7 +10,7 @@ define({
         ],
         corredor: [
             //Mentor
-                "Olá! Toda a equipe do Hospital Cuidando Bem te deseja boas vindas!Sou Alberto, seu enfermeiro mentor.  " +
+                "Olá! Toda a equipe do Hospital Cuidando Bem te deseja boas vindas! Sou Alberto, seu enfermeiro mentor.  " +
                 "Aqui nossa missão é a garantia da segurança de nossos pacientes através dos protocolos. Você fará um estágio " +
                 "de experiência e, caso se saia bem, seu contrato será definitivo.",
 

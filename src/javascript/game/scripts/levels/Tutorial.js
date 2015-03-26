@@ -821,7 +821,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("relogio", false));
         //endregion
 
-        level.setInitialScene(3);
+        level.setInitialScene(0);
         //endregion
 
         game.registerLevel(level, 0);
