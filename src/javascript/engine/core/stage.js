@@ -8,6 +8,8 @@
  *
  * @name Stage
  * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
  */
 define(function () {
     console.info("Stage - module loaded");
@@ -185,8 +187,10 @@ define(function () {
 
     /**
      * Container setter
-     *
-     * @param _id
+
+     * @method setContainer
+     * @param {string} _id
+     * @public
      *
      * @memberOf module:Stage
      */
@@ -194,10 +198,27 @@ define(function () {
         containerSelector = _id;
     }
 
+    /**
+     * This function sets the first screen to be loaded when the start method is called
+
+     * @method setContainer
+     * @param {number} _id
+     * @public
+     *
+     * @memberOf module:Stage
+     */
     function setStartingScreenId(_id){
         startingScreenId = _id;
     }
 
+    /**
+     * Container getter
+
+     * @method getContainer
+     * @public
+     *
+     * @memberOf module:Stage
+     */
     function getContainer(){
         return containerSelector;
     }

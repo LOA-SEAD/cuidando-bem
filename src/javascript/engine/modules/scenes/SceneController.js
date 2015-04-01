@@ -1,7 +1,9 @@
 /**
  *
- * @name Scene_Game_Controller
+ * @name Scene
  * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
  */
 define(function () {
 
@@ -13,7 +15,7 @@ define(function () {
      * Description
      * @method changeScene
      * @param {} _newScene
-     * @memberOf module:Scene_Game_Controller
+     * @memberOf module:Scene
      */
     function changeScene(_newScene) {
         setScene(_newScene);
@@ -23,7 +25,7 @@ define(function () {
      * Description
      * @method setScene
      * @param {} _scene
-     * @memberOf module:Scene_Game_Controller
+     * @memberOf module:Scene
      */
     function setScene(_scene) {
         $('#backgroundScene').attr('class', _scene.getCssClass());

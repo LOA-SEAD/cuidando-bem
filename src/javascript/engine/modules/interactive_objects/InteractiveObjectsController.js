@@ -1,7 +1,9 @@
 /**
  *
- * @name InteractiveObjects_Game_Controller
+ * @name InteractiveObject
  * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
  */
 define(['text!../assets/html/templates/interactiveObjectTemplate.html'], function (interactiveObjectTemplate) {
 //Attributes
@@ -13,7 +15,7 @@ define(['text!../assets/html/templates/interactiveObjectTemplate.html'], functio
      * Description
      * @method init
      *
-     * @memberOf module:InteractiveObjects_Game_Controller
+     * @memberOf module:InteractiveObject
      */
     function init() {
 
@@ -24,7 +26,7 @@ define(['text!../assets/html/templates/interactiveObjectTemplate.html'], functio
      * @method addAllInteractiveObjects
      * @param {} _interactiveObjects
      *
-     * @memberOf module:InteractiveObjects_Game_Controller
+     * @memberOf module:InteractiveObject
      */
     function addAllInteractiveObjects(_interactiveObjects) {
         console.group("Adding Interactive Objects:", true);
@@ -44,7 +46,7 @@ define(['text!../assets/html/templates/interactiveObjectTemplate.html'], functio
      * @method changeToInteractiveObjects
      * @param {} _interactiveObjects
      *
-     * @memberOf module:InteractiveObjects_Game_Controller
+     * @memberOf module:InteractiveObject
      */
     function changeToInteractiveObjects(_interactiveObjects) {
         removeAllInteractiveObjects();
@@ -56,7 +58,7 @@ define(['text!../assets/html/templates/interactiveObjectTemplate.html'], functio
      * @method addInteractiveObject
      * @param {} _interactiveObject
      *
-     * @memberOf module:InteractiveObjects_Game_Controller
+     * @memberOf module:InteractiveObject
      */
     function addInteractiveObject(_interactiveObject) {
         var element = $($(interactiveObjectTemplate)[0]);
@@ -91,7 +93,7 @@ define(['text!../assets/html/templates/interactiveObjectTemplate.html'], functio
      * Description
      * @method removeAllInteractiveObjects
      *
-     * @memberOf module:InteractiveObjects_Game_Controller
+     * @memberOf module:InteractiveObject
      */
     function removeAllInteractiveObjects() {
         $(divSelector).empty();
@@ -102,7 +104,7 @@ define(['text!../assets/html/templates/interactiveObjectTemplate.html'], functio
      * @method removeInteractiveObject
      * @param {} _interactiveObject
      *
-     * @memberOf module:InteractiveObjects_Game_Controller
+     * @memberOf module:InteractiveObject
      */
     function removeInteractiveObject(_interactiveObject) {
         $('#' + _interactiveObject.getId()).remove();
@@ -113,7 +115,7 @@ define(['text!../assets/html/templates/interactiveObjectTemplate.html'], functio
      * @method activateInteractiveObject
      * @param {} _interactiveObject
      *
-     * @memberOf module:InteractiveObjects_Game_Controller
+     * @memberOf module:InteractiveObject
      */
     function enableInteractiveObject(_interactiveObject){
         var selector = '#' + _interactiveObject.getId();
@@ -129,7 +131,7 @@ define(['text!../assets/html/templates/interactiveObjectTemplate.html'], functio
      * @method deactivateInteractiveObject
      * @param {} _interactiveObject
      *
-     * @memberOf module:InteractiveObjects_Game_Controller
+     * @memberOf module:InteractiveObject
      */
     function disableInteractiveObject(_interactiveObject){
         var selector = '#' + _interactiveObject.getId();
@@ -146,7 +148,7 @@ define(['text!../assets/html/templates/interactiveObjectTemplate.html'], functio
      * @method activateAllInteractiveObjects
      * @param {} _interactiveObjects
      *
-     * @memberOf module:InteractiveObjects_Game_Controller
+     * @memberOf module:InteractiveObject
      */
     function enableAllInteractiveObjects(_interactiveObjects){
         console.group("Enabling interactiveObjects", true);
@@ -165,7 +167,7 @@ define(['text!../assets/html/templates/interactiveObjectTemplate.html'], functio
      * @method deactivateAllInteractiveObjects
      * @param {} _interactiveObjects
      *
-     * @memberOf module:InteractiveObjects_Game_Controller
+     * @memberOf module:InteractiveObject
      */
     function disableAllInteractiveObjects(_interactiveObjects){
         console.group("Disabling interactiveObjects", true);
@@ -184,7 +186,7 @@ define(['text!../assets/html/templates/interactiveObjectTemplate.html'], functio
      * @method updateAllActionButtons
      * @param {} _interactiveObjects
      *
-     * @memberOf module:InteractiveObjects_Game_Controller
+     * @memberOf module:InteractiveObject
      */
     function updateAllInteractiveObjects(_interactiveObjects){
         console.group("Updating interactiveObjects", true);
@@ -210,7 +212,7 @@ define(['text!../assets/html/templates/interactiveObjectTemplate.html'], functio
      * @param {} _interactiveObject
      * @param {} _value
      *
-     * @memberOf module:InteractiveObjects_Game_Controller
+     * @memberOf module:InteractiveObject
      */
     function setInteractiveObjectVisible(_interactiveObject, _value) {
         var selector = '#' + _interactiveObject.getId();

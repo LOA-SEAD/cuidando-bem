@@ -1,3 +1,9 @@
+/*
+
+This module is responsible to register every screen used in this application, in this case a game.
+
+@author Otho - Marcelo Lopes Lotufo
+ */
 define(['Stage'], function (Stage) {
     console.groupCollapsed("Stage Config:");
 

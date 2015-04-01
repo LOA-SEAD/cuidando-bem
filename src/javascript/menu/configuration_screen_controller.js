@@ -2,6 +2,8 @@
  *
  * @name Configuration_Screen_Controller
  * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
  */
 define(['Stage'], function (Stage) {
 

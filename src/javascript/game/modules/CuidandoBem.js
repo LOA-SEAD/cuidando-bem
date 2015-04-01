@@ -2,6 +2,8 @@
  *
  * @name Core_Controller
  * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
  */
 define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene', 'scene', 'endOfLevel'], function (Stage, game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene_con, endOfLevel) {
 

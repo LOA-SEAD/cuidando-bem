@@ -3,7 +3,9 @@ Character
 
 Stores a character name and cssClass
 
- */
+
+@author Otho - Marcelo Lopes Lotufo
+*/
 
 define([], function(){
 
@@ -15,6 +17,8 @@ define([], function(){
      * @param {string} _cssClass
      * @returns ObjectExpression
      * @constructor
+	 *
+	 * @author Otho - Marcelo Lopes Lotufo
      */
 	function Character(_name, _cssClass){
 

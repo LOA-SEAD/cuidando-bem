@@ -1,7 +1,9 @@
 /**
  *
- * @name DialogModal_Game_Controller
+ * @name DialogModal
  * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
  */
 define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (dialogButtonTemplate) {
 
@@ -21,7 +23,7 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
     /**
      * Description
      * @method init
-     * @memberOf module:DialogModal_Game_Controller
+     * @memberOf module:DialogModal
      */
     function init() {
         //bind event listeners to UI
@@ -31,7 +33,7 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
      * Description
      * @method show
      * @param {} _dialog
-     * @memberOf module:DialogModal_Game_Controller
+     * @memberOf module:DialogModal
      */
     function show(_dialog) {
         if (!isDialogOpen) {
@@ -45,7 +47,7 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
      * Description
      * @method openDialog
      * @param {} _dialog
-     * @memberOf module:DialogModal_Game_Controller
+     * @memberOf module:DialogModal
      */
     function openDialog(_dialog) {
         dialog = _dialog;
@@ -68,7 +70,7 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
      * Description
      * @method changeDialogTo
      * @param {} _dialog
-     * @memberOf module:DialogModal_Game_Controller
+     * @memberOf module:DialogModal
      */
     function changeDialogTo(_dialog) {
 
@@ -123,7 +125,7 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
      * Description
      * @method changeDialogOptionsTo
      * @param {} _options
-     * @memberOf module:DialogModal_Game_Controller
+     * @memberOf module:DialogModal
      */
     function changeDialogOptionsTo(_options, randomize) {
 
@@ -153,7 +155,7 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
     /**
      * Description
      * @method close
-     * @memberOf module:DialogModal_Game_Controller
+     * @memberOf module:DialogModal
      */
     function close() {
 
@@ -169,7 +171,7 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
     /**
      * Description
      * @method hide
-     * @memberOf module:DialogModal_Game_Controller
+     * @memberOf module:DialogModal
      */
     function hide() {
 
@@ -178,7 +180,7 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
     /**
      * Description
      * @method printText
-     * @memberOf module:DialogModal_Game_Controller
+     * @memberOf module:DialogModal
      */
     function printText() {
 
@@ -188,7 +190,7 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
      * Description
      * @method addDialogButton
      * @param {} _option
-     * @memberOf module:DialogModal_Game_Controller
+     * @memberOf module:DialogModal
      */
     function addDialogButton(_option) {
         console.log(_option);
@@ -225,7 +227,7 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
      * Description
      * @method addAllDialogButtons
      * @param {} _options
-     * @memberOf module:DialogModal_Game_Controller
+     * @memberOf module:DialogModal
      */
     function addAllDialogButtons(_options, randomize) {
         var i;
@@ -242,7 +244,7 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
      * Description
      * @method removeDialogButton
      * @param {} _option
-     * @memberOf module:DialogModal_Game_Controller
+     * @memberOf module:DialogModal
      */
     function removeDialogButton(_option) {
         $('.' + _option.getCssClass(), element).remove();
@@ -251,7 +253,7 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
     /**
      * Description
      * @method removeAllDialogButtons
-     * @memberOf module:DialogModal_Game_Controller
+     * @memberOf module:DialogModal
      */
     function removeAllDialogButtons() {
         $(dialogOptionsSelector).empty();

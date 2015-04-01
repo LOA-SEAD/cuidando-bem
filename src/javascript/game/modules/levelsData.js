@@ -1,6 +1,8 @@
 define([], function () {
     /**
      * @module LevelsData
+     *
+     * @author Otho - Marcelo Lopes Lotufo
      */
 //Attributes
     /**

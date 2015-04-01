@@ -1,3 +1,9 @@
+/**
+ * @name SaveLoadGame
+ * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
+ */
 define(["SimpleStorage"], function(Storage){
     console.info("SaveLoadGame - module loaded");
 

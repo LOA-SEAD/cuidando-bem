@@ -1,7 +1,9 @@
 /**
  *
- * @name ModalScene_Game_Controller
+ * @name ModalScene
  * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
  */
 define(function () {
 
@@ -16,7 +18,7 @@ define(function () {
     /**
      * Description
      * @method init
-     * @memberOf module:ModalScene_Game_Controller
+     * @memberOf module:ModalScene
      */
     function init() {
 
@@ -25,7 +27,7 @@ define(function () {
     /**
      * Description
      * @method show
-     * @memberOf module:ModalScene_Game_Controller
+     * @memberOf module:ModalScene
      */
     function show() {
         console.info("Show Modal Scene");
@@ -37,7 +39,7 @@ define(function () {
      * Description
      * @method open
      * @param {} _modalScene
-     * @memberOf module:ModalScene_Game_Controller
+     * @memberOf module:ModalScene
      */
     function open(_modalScene) {
         if (lastSceneClass == "") {
@@ -58,7 +60,7 @@ define(function () {
     /**
      * Description
      * @method close
-     * @memberOf module:ModalScene_Game_Controller
+     * @memberOf module:ModalScene
      */
     function close() {
         console.info("Close modal Scene");
@@ -71,7 +73,7 @@ define(function () {
      * Description
      * @method isShowing
      * @return showing
-     * @memberOf module:ModalScene_Game_Controller
+     * @memberOf module:ModalScene
      */
     function isShowing() {
         return showing;

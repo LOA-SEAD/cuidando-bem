@@ -2,6 +2,8 @@
  *
  * @name Pulseira_Controller
  * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
  */
 define(function () {
 

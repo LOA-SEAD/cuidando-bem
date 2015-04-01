@@ -1,3 +1,7 @@
+/**
+ *
+ * @author Otho - Marcelo Lopes Lotufo
+ */
 define(['Stage'], function (Stage) {
 
     var Player = require('Player');

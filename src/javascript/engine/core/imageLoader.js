@@ -5,6 +5,8 @@
  * For this module works properly it must receive a json object with all images urls
  * @name Image Loader
  * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
  */
 define(["Images"], function(Images){
     console.info("ImageLoader - module loaded");

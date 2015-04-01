@@ -5,6 +5,8 @@
  * It loads all sounds and get them ready to be played
  * @name Player
  * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
  */
 
 //TODO: Modulo "SaveLoadGame" não deveria ser carregado como pre requisito do módulo player. Uma vez que o módulo player havia sido projetado para funcionar de forma independente de outros módulos

@@ -1,3 +1,10 @@
+/*
+
+This module is used as a "Class" file for Action
+
+@author Otho - Marcelo Lopes Lotufo
+
+ */
 define([], function () {
 
 
@@ -9,6 +16,8 @@ define([], function () {
      * @param {string} _id
      * @param {string} _name
      * @return ObjectExpression
+     *
+     * @author Otho - Marcelo Lopes Lotufo
      */
     "use strict";
     function Action(_id, _name) {

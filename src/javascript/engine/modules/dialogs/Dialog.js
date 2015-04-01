@@ -1,15 +1,3 @@
-/*
- Dialogo
-
- Texto do dialogo
- Quem esta falando (talvez um texto e class css)
- Opcoes de resposta com seus respectivos proximos dialogos
- acao de acordo com a resposta anterior
- Proximo dialogo
-
-
- */
-
 define([], function () {
 
     /**
@@ -17,6 +5,8 @@ define([], function () {
      * @name Dialog
      * @param {Character} _speaker
      * @return ObjectExpression
+     *
+     * @author Otho - Marcelo Lopes Lotufo
      */
     function Dialog(_speaker) {
 

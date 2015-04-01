@@ -1,3 +1,6 @@
+/*
+
+ */
 define([], function () {
     /**
      * @class
@@ -5,6 +8,8 @@ define([], function () {
      * @param {string} _name
      * @param {any} _value
      * @return ObjectExpression
+     *
+     * @author Otho - Marcelo Lopes Lotufo
      */
     function Flag(_name, _value) {
         //Attributes

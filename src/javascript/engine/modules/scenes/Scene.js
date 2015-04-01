@@ -5,6 +5,8 @@
 
  Each scene has a background image
  * @memberOf Scene
+
+ @author Otho - Marcelo Lopes Lotufo
  */
 define(function () {
 
@@ -17,6 +19,8 @@ define(function () {
      * @param {function} _load
      * @param {function} _unload
      * @return ObjectExpression
+     *
+     * @author Otho - Marcelo Lopes Lotufo
      */
     function Scene(_id, _name) {
         //Attributes

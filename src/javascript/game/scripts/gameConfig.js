@@ -1,9 +1,9 @@
-/**
- *
- * @name gameConfig
- * @module
- */
+/*
 
+This module register which files to load. Each of these files should contain a Level.
+
+@author Otho - Marcelo Lopes Lotufo
+ */
 define([], function () {
     console.info("GameConfig - module loaded");
     var generalPath = "./game/scripts/levels/";

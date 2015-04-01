@@ -1,3 +1,6 @@
+/**
+ * @author Otho - Marcelo Lopes Lotufo
+ */
 define(function () {
 	
 	var masterVolume = 1;

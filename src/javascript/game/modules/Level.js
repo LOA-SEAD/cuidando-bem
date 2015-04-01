@@ -4,6 +4,8 @@ define([], function () {
      * @name Level
      * @param {string} _name
      * @return ObjectExpression
+     *
+     * @author Otho - Marcelo Lopes Lotufo
      */
     function Level(_name) {
         //Attributes

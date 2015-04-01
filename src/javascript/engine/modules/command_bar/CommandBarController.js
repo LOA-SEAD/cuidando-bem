@@ -1,7 +1,9 @@
 /**
  *
- * @name CommandBar_Game_Controller
+ * @name CommandBar
  * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
  */
 define(['text!../assets/html/templates/actionButtonTemplate.html'], function (actionButtonTemplate) {
 
@@ -14,7 +16,7 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
     /**
      * Description
      * @method init
-     * @memberOf module:CommandBar_Game_Controller
+     * @memberOf module:CommandBar
      */
     function init() {
         //bind event listeners to UI
@@ -24,7 +26,7 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
      * Description
      * @method addAllActionButtons
      * @param {} _actions
-     * @memberOf module:CommandBar_Game_Controller
+     * @memberOf module:CommandBar
      */
     function addAllActionButtons(_actions) {
         console.group("Adding action Buttons", true);
@@ -42,7 +44,7 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
      * Description
      * @method changeToActionsButtons
      * @param {} _actions
-     * @memberOf module:CommandBar_Game_Controller
+     * @memberOf module:CommandBar
      */
     function changeToActionsButtons(_actions) {
         removeAllActionButtons();
@@ -53,7 +55,7 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
     /**
      * Description
      * @method close
-     * @memberOf module:CommandBar_Game_Controller
+     * @memberOf module:CommandBar
      */
     function close() {
         var action_buttons = $(actionButtonSelector);
@@ -77,7 +79,7 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
      * Description
      * @method addActionButton
      * @param {} _action
-     * @memberOf module:CommandBar_Game_Controller
+     * @memberOf module:CommandBar
      */
     function addActionButton(_action) {
         var element = $($(actionButtonTemplate)[0]);
@@ -121,7 +123,7 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
     /**
      * Description
      * @method removeAllActionButtons
-     * @memberOf module:CommandBar_Game_Controller
+     * @memberOf module:CommandBar
      */
     function removeAllActionButtons() {
         $(barSelector).empty();
@@ -131,7 +133,7 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
     /**
      * Description
      * @method removeActionButton
-     * @memberOf module:CommandBar_Game_Controller
+     * @memberOf module:CommandBar
      * @todo function to remove only one action button based on ID
      */
     function removeActionButton() {
@@ -143,7 +145,7 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
      * Description
      * @method activateActionButton
      * @param {} _action
-     * @memberOf module:CommandBar_Game_Controller
+     * @memberOf module:CommandBar
      */
     function enableActionButton(_action) {
         var selector = '#' + _action.getId();
@@ -159,7 +161,7 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
      * Description
      * @method deactivateActionButton
      * @param {} _action
-     * @memberOf module:CommandBar_Game_Controller
+     * @memberOf module:CommandBar
      */
     function disableActionButton(_action) {
         var selector = '#' + _action.getId();
@@ -174,7 +176,7 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
      * Description
      * @method activeAllActionButtons
      * @param {} _actions
-     * @memberOf module:CommandBar_Game_Controller
+     * @memberOf module:CommandBar
      */
     function enableAllActionButtons(_actions) {
         console.group("Enabling action Buttons", true);
@@ -192,7 +194,7 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
      * Description
      * @method deactivateAllActionButtons
      * @param {} _actions
-     * @memberOf module:CommandBar_Game_Controller
+     * @memberOf module:CommandBar
      */
     function disableAllActionButtons(_actions) {
         console.group("Disabling action Buttons", true);
@@ -210,7 +212,7 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
      * Description
      * @method updateAllActionButtons
      * @param {} _actions
-     * @memberOf module:CommandBar_Game_Controller
+     * @memberOf module:CommandBar
      */
     function updateAllActionButtons(_actions) {
         console.group("Updating action Buttons", true);
@@ -236,7 +238,7 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
      * @method setActionVisible
      * @param {} _action
      * @param {} _value
-     * @memberOf module:CommandBar_Game_Controller
+     * @memberOf module:CommandBar
      */
     function setActionVisible(_action, _value) {
         var selector = '#' + _action.getId();

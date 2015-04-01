@@ -2,6 +2,8 @@
  *
  * @name MainMenu_Screen_Controller
  * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
  */
 define(['Stage', 'CuidandoBem'], function (Stage, Core) {
 

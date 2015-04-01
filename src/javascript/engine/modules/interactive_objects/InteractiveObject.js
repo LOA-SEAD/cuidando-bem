@@ -1,6 +1,8 @@
 /* 
  This module declares the object interactive Object that
  represents one object that will be "clickable" inside a scene
+
+ @author Otho - Marcelo Lopes Lotufo
  */
 
 define([], function () {
@@ -14,6 +16,8 @@ define([], function () {
      * @param {string} _id
      * @param {string} _name
      * @return ObjectExpression
+     *
+     * @author Otho - Marcelo Lopes Lotufo
      */
     "use strict";
     function InteractiveObject(_id, _name) {

@@ -1,3 +1,7 @@
+/**
+ *
+ * @author Otho - Marcelo Lopes Lotufo
+ */
 define({
     tutorial: {
         recepcao: [

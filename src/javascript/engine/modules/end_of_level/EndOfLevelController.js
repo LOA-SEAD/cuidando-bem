@@ -1,7 +1,9 @@
 /**
  *
- * @name EndOfLevel_Game_Controller
+ * @name EndOfLevel
  * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
  */
 define(['text!../assets/html/templates/scoreItemTemplate.html'], function (scoreItemHtml) {
 
@@ -19,7 +21,7 @@ define(['text!../assets/html/templates/scoreItemTemplate.html'], function (score
     /**
      * Description
      * @method init
-     * @memberOf module:EndOfLevel_Game_Controller
+     * @memberOf module:EndOfLevel
      */
     function init() {
 
