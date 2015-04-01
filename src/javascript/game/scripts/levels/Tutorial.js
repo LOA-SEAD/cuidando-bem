@@ -435,6 +435,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.closeDialog(16);
                     core.setActionVisible("btn-lavar_maos", true);
                     core.openCommandBar();
+                }),
+            //Dialog 17 - Mentor
+            new Dialog(lib.characters.mentor)
+                .setText(Dialogs.leito.pulseira_incorreta)
+                .registerOption("",function () {
+                    core.closeDialog();
+                    core.openCommandBar();
                 })
         ]);
         //endregion
@@ -459,8 +466,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
                 .setCssClass("action-ir_sala_de_leitos")
                 .onClick(function (){
-                    console.log("Action: action-ir_sala_de_leitos");
-                    core.changeScene(2);
+                    if(Pulseira.isNameValid() && Pulseira.isLeitoValid() && Pulseira.isDataValid()){
+                        console.log("Action: action-ir_sala_de_leitos");
+                        core.changeScene(2);
+                    }else{
+                        core.closeCommandBar();
+                        core.openDialog(17);
+                        console.log("Alguns dados da pulseira estão incorretos");
+                    }
                 })
                 .setVisibility(visibility),
             new Action("btn-lavar_maos", "Lavar as mãos")
@@ -575,7 +588,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 })
                 .setVisibility(visibility)
         ]);
-
         //endregion
     //endregion
 
@@ -720,27 +732,19 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Pulseira
+        Pulseira.setNameRegExp(/João Manoel Ribeiro/);
+        Pulseira.setLeitoRegExp(/0*2/);
+        Pulseira.setDataRegExp(/05\/05/);
+
         var pulseira = new Scene("pulseira", "pulseira");
-            //.setCssClass("modalScene-pulseira");
+            //.setCssClass("modalSce    ne-pulseira");
 
 
         pulseira.registerInteractiveObjects([
-            new InteractiveObject("io-confirmar_pulseira", "Confirmar pulseira")
-                .setCssClass("intObj-braceletConfirmation")
-                .onClick(function () {
-                    console.log("Ação: Confirmar pulseira");
-                    core.setInteractiveObjectVisible("io-pulseira_confirmada", true);
-                    core.setInteractiveObjectVisible("io-confirmar_pulseira", false);
-                    level.getFlag("pulseira").setValue(true);
-                    core.setActionVisible("btn-largar_pulseira", true);
-                })
-                .setVisibility(visibility),
 
-            new InteractiveObject("io-pulseira_confirmada", "Pulseira confirmada")
-                .setCssClass("intObj-braceletConfirmed")
-                .onClick(function () {})
-                .setVisibility(visibility)
         ]);
+
+
 
         pulseira.registerActions([
             new Action("btn-largar_pulseira", "Largar pulseira")
@@ -752,10 +756,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         core.setActionVisible("btn-ir_sala_leitos", true);
                     // o correto era dar um disable aqui no pulseira paciente
                     //core.setInteractiveObjectVisible("io-pulseira_paciente", false);
+                    Pulseira.close();
                 })
-                .setVisibility(visibility)
+                .setVisibility(true)
         ]);
-
 
         var termometro = new Scene("modalTermometro", "modalTermometro")
             .setCssClass("modalScene-termometro")

@@ -1,3 +1,15 @@
+/**
+ * This module's purpose is to provide an easy way to play sounds in a html5 application
+ * It comes with a set of functions to play sounds in loops, a sinlge time, control global and single volumes, etc
+ *
+ * It loads all sounds and get them ready to be played
+ * @name Player
+ * @module
+ */
+
+//TODO: Modulo "SaveLoadGame" não deveria ser carregado como pre requisito do módulo player. Uma vez que o módulo player havia sido projetado para funcionar de forma independente de outros módulos
+//TODO: Módulo "Sounds" não deveria ser carregado como pre requisito do módulo player. Deveria existir uma função de init para carregamento dos arquivos de áudio.
+
 define(function(){
     console.info("Player - module loaded");
 

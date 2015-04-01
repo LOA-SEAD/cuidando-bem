@@ -163,7 +163,6 @@ define([], function () {
 
         /**
          * @method
-         * @memberOf Action
          * @method setVisibility
          * @param {boolean} _visible
          * @public

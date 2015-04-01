@@ -1,5 +1,18 @@
+/**
+ * This module ensures that all the images that are going to be used during the game are already loaded in cache before
+ * they are requested. This way there is no load time between scenes.
+ *
+ * For this module works properly it must receive a json object with all images urls
+ * @name Image Loader
+ * @module
+ */
 define(["Images"], function(Images){
     console.info("ImageLoader - module loaded");
+
+    var paths = getAsArray(Images.paths);
+    console.info("Images to load: ", paths.length);
+    var loaded = 0;
+
     function getAsArray(obj){
         var arr = [];
         if(typeof obj === "object"){
@@ -16,11 +29,6 @@ define(["Images"], function(Images){
 
         return arr;
     }
-
-    var paths = getAsArray(Images.paths);
-    console.info("Images to load: ", paths.length);
-    var loaded = 0;
-
 
     function onLoad(){
         var evt = arguments[0];
@@ -42,7 +50,6 @@ define(["Images"], function(Images){
 
 
         image.onload = onLoad;
-        //image.onload = function(){console.log("AAAAAAbAAAAAAAAAAAAAAAAAAAA")};
         image.src = path;
     }
 

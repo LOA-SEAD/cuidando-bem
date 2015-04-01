@@ -10,7 +10,7 @@ define([], function () {
 
     /**
      * @class
-     * @name Action
+     * @name InteractiveObject
      * @param {string} _id
      * @param {string} _name
      * @return ObjectExpression
@@ -31,35 +31,35 @@ define([], function () {
          * @type {string}
          * @private
          *
-         * @memberOf Action#
+         * @memberOf InteractiveObject#
          */
         var name = _name;
         /**
          * @type {string}
          * @private
          *
-         * @memberOf Action#
+         * @memberOf InteractiveObject#
          */
         var cssClass = "noTexture";
         /**
          * @type {boolean}
          * @private
          *
-         * @memberOf Action#
+         * @memberOf InteractiveObject#
          */
         var visible = true;
         /**
          * @type {function}
          * @private
          *
-         * @memberOf Action#
+         * @memberOf InteractiveObject#
          */
         var onClickFunction = function(){};
         /**
          * @type {boolean}
          * @private
          *
-         * @memberOf Action#
+         * @memberOf InteractiveObject#
          */
         var enable = true;
 
@@ -71,7 +71,7 @@ define([], function () {
          * @method execute
          * @public
          *
-         * @memberOf Action#
+         * @memberOf InteractiveObject#
          */
         function execute() {
             onClickFunction();
@@ -85,7 +85,7 @@ define([], function () {
          * @return actionFunction
          * @public
          *
-         * @memberOf Action#
+         * @memberOf InteractiveObject#
          */
 
          function getFunction() {
@@ -110,7 +110,7 @@ define([], function () {
          * @return name
          * @public
          *
-         * @memberOf Action#
+         * @memberOf InteractiveObject#
          */
         function getName() {
             return name;
@@ -122,7 +122,7 @@ define([], function () {
          * @return cssClass
          * @public
          *
-         * @memberOf Action#
+         * @memberOf InteractiveObject#
          */
         function getCssClass() {
             return cssClass;
@@ -134,7 +134,7 @@ define([], function () {
          * @return enable
          * @public
          *
-         * @memberOf Action#
+         * @memberOf InteractiveObject#
          */
         function isEnabled() {
             return enable;
@@ -146,7 +146,7 @@ define([], function () {
          * @return visible
          * @public
          *
-         * @memberOf Action#
+         * @memberOf InteractiveObject#
          */
         function isVisible() {
             return visible;
@@ -159,7 +159,7 @@ define([], function () {
          * @param {boolean} _enable
          * @public
          *
-         * @memberOf Action#
+         * @memberOf InteractiveObject#
          */
         function setEnable(_enable) {
             enable = _enable;
@@ -173,7 +173,7 @@ define([], function () {
          * @param {boolean} _visible
          * @public
          *
-         * @memberOf Action#
+         * @memberOf InteractiveObject#
          */
         function setVisibility(_visible) {
             visible = _visible;

@@ -15,7 +15,7 @@ define([], function () {
     /**
      * @class
      * @name Dialog
-     * @param {string} _speaker
+     * @param {Character} _speaker
      * @return ObjectExpression
      */
     function Dialog(_speaker) {

@@ -98,7 +98,8 @@ define({
                     "Parabéns, você conseguiu admitir o paciente neste hospital! " +
                     "Agora falta algo muito importante: anotar os procedimentos realizados e os " +
                     "dados obtidos dos sinais vitais (SSVV) do paciente. Vamos lá?"
-            ]
+            ],
+            pulseira_incorreta: "Você tem certeza que as informações do paciente estão corretas?"
         }
     },
     fase1: {

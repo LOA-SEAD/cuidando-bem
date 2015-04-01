@@ -1,6 +1,12 @@
 /**
+ * The module stage is responsible to change and control the "screen" presented to the user.
+ * For the module work it is needed to register "views" and "controllers" before calling the method start
  *
- * @name Stage_Controller
+ * A view is a html file, and a controller is a js file that is responsible to make its view work.
+ * To bind all events to the view, as for example button clicks.
+ * Because this project uses require.js every call to a new "screen" will asynchronously load the new view and controller
+ *
+ * @name Stage
  * @module
  */
 define(function () {
@@ -15,46 +21,48 @@ define(function () {
      * @private
      * @type {Array}
      *
-     * @memberOf module:Stage_Controller
+     * @memberOf module:Stage
      */
     var screens = [];
 
     /**
-     * Html path
+     * Path used as base for all html(views) files
      * @private
      * @type {string}
      *
-     * @memberOf module:Stage_Controller
+     * @memberOf module:Stage
      */
     var htmlPath;
     /**
-     * The path where the Stage controller will look for the js controllers
+     * Path used as base for all js(controllers) files
      * @private
      * @type {string}
      *
-     * @memberOf module:Stage_Controller
+     * @memberOf module:Stage
      */
     var controllerPath;
 
     /**
-     * Container should be an id on the html page to be the base for all other html content
+     * Container should be an jquery selector string relative to the main html file. The selected element will be used
+     * as base for all other elements that the module stage will append.
      * @private
      * @type {string}
      *
-     * @memberOf module:Stage_Controller
+     * @memberOf module:Stage
      */
-    var containerId;
+    var containerSelector;
 
     var startingScreenId = 0;
     /**
-     * This function is called to init this module
+     * This function is called to init this module. It checks if an id was passed to the module and changes the screen
+     * to the starting screen. That is also required to be registered.
      * @method start
      * @public
      *
-     * @memberOf module:Stage_Controller
+     * @memberOf module:Stage
      */
     function start() {
-        if(containerId == undefined)
+        if(containerSelector == undefined)
             throw new Error(Errors.undefinedContainer);
 
         changeScreen(startingScreenId);
@@ -69,7 +77,7 @@ define(function () {
      * @return ObjectExpression
      * @private
      *
-     * @memberOf module:Stage_Controller
+     * @memberOf module:Stage
      */
     function Screen(_name, _htmlPage, _controllerName) {
 
@@ -78,7 +86,7 @@ define(function () {
          * @private
          * @type {string}
          *
-         * @memberOf module:Stage_Controller.Screen
+         * @memberOf module:Stage.Screen
          */
         var name = _name;
         /**
@@ -86,7 +94,7 @@ define(function () {
          * @private
          * @type {string}
          *
-         * @memberOf module:Stage_Controller.Screen
+         * @memberOf module:Stage.Screen
          */
         var htmlPage = _htmlPage;
         /**
@@ -94,7 +102,7 @@ define(function () {
          * @private
          * @type {string}
          *
-         * @memberOf module:Stage_Controller.Screen
+         * @memberOf module:Stage.Screen
          */
         var controllerName = _controllerName;
 
@@ -103,7 +111,7 @@ define(function () {
          * @return {string} htmlPage
          * @public
          *
-         * @memberOf module:Stage_Controller.Screen
+         * @memberOf module:Stage.Screen
          */
         function getHtmlPage() {
             return htmlPage;
@@ -114,7 +122,7 @@ define(function () {
          * @return {string} controllerName
          * @public
          *
-         * @memberOf module:Stage_Controller.Screen
+         * @memberOf module:Stage.Screen
          */
         function getControllerName() {
             return controllerName;
@@ -128,15 +136,15 @@ define(function () {
 
     /**
      * Adds a screen object to screens array
-     * @method addScreen
+     * @method registerScreen
      * @param {string} _name
      * @param {string} _htmlPage
      * @param {string} _controller
      * @public
      *
-     * @memberOf module:Stage_Controller
+     * @memberOf module:Stage
      */
-    function addScreen(_name, _htmlPage, _controller) {
+    function registerScreen(_name, _htmlPage, _controller) {
         console.log('\tAdding Screen: ', _name, _htmlPage, _controller);
         screens.push(new Screen(_name, _htmlPage, _controller));
     }
@@ -147,7 +155,7 @@ define(function () {
      * @param {int} nextScreenId
      * @public
      *
-     * @memberOf module:Stage_Controller
+     * @memberOf module:Stage
      */
     function changeScreen(nextScreenId) {
         var nextScreen = screens[nextScreenId];
@@ -157,8 +165,8 @@ define(function () {
 
         require(['text!' + htmlPath + nextScreen.getHtmlPage(), controllerPath + nextScreen.getControllerName()], function (page, controller) {
             console.log("Actual Screen Name: " + nextScreen.getControllerName());
-            $('#stage').empty();
-            $('#stage').append(page);
+            $(containerSelector).empty();
+            $(containerSelector).append(page);
             controller.load();
         });
     }
@@ -169,7 +177,7 @@ define(function () {
      * @param {string} _path
      * @public
      *
-     * @memberOf module:Stage_Controller
+     * @memberOf module:Stage
      */
     function setHtmlPath(_path) {
         htmlPath = _path;
@@ -179,9 +187,11 @@ define(function () {
      * Container setter
      *
      * @param _id
+     *
+     * @memberOf module:Stage
      */
     function setContainer(_id){
-        containerId = _id;
+        containerSelector = _id;
     }
 
     function setStartingScreenId(_id){
@@ -189,7 +199,7 @@ define(function () {
     }
 
     function getContainer(){
-        return containerId;
+        return containerSelector;
     }
 
     /**
@@ -198,7 +208,7 @@ define(function () {
      * @param {string} _path
      * @public
      *
-     * @memberOf module:Stage_Controller
+     * @memberOf module:Stage
      */
     function setControllersPath(_path) {
         controllerPath = _path;
@@ -206,7 +216,7 @@ define(function () {
 
     return {
         start: start,
-        addScreen: addScreen,
+        registerScreen: registerScreen,
         changeScreen: changeScreen,
 
         setHtmlPath: setHtmlPath,
