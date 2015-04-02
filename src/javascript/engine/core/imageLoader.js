@@ -2,7 +2,7 @@
  * This module ensures that all the images that are going to be used during the game are already loaded in cache before
  * they are requested. This way there is no load time between scenes.
  *
- * For this module works properly it must receive a json object with all images urls
+ * For this module to work properly it must receive a json object with all images urls
  * @name Image Loader
  * @module
  *
