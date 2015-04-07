@@ -9,7 +9,19 @@ define(function () {
 
 //Attributes
 
-    var nome_display1
+    var nomeDisplaySelector;
+
+    var dataDisplaySelector;
+
+    var idadeDisplaySelector;
+
+    var sexoDisplaySelector;
+
+    var estadoCivilDisplaySelector;
+
+    var profissaoDisplaySelector;
+
+    var paiDisplaySelector;
 
 //Public Interface
     return {
