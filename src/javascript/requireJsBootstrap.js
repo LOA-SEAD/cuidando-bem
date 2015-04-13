@@ -24,6 +24,7 @@ require.config({
         Images: 'references/Images',
         Sounds: 'references/Sounds',
         HTML: 'references/HTML',
+
         //Configs
         gameConfig: 'game/scripts/gameConfig',
         stageConfig: 'game/scripts/stageConfig',
@@ -38,6 +39,7 @@ require.config({
         Dialog: 'engine/modules/dialogs/Dialog',
         InteractiveObject: 'engine/modules/interactive_objects/InteractiveObject',
         Pulseira: 'game/modules/pulseira/Pulseira_Modal',
+        Prontuario: 'game/modules/prontuario/Prontuario',
 
         levelsData: 'game/modules/levelsData',
         SaveLoadGame: 'game/modules/save/SaveLoadGame',

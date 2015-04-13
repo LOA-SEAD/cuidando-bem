@@ -3,8 +3,8 @@
  New levels can easily be made by adding new game levels.
 
  */
-define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons', 'Pulseira'],
-    function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, Commons, Pulseira) {
+define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons', 'Pulseira', 'Prontuario'],
+    function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, Commons, Pulseira, Prontuario) {
 
         //region Imports
         var Dialogs = require('Dialogs').fase1;
@@ -24,7 +24,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var recepcao = new Scene("recepcao", "scene-recepcao")
             .setCssClass("scene-lobby")
             .onLoad(function(){
-                Pulseira.open();
+                //Pulseira.open();
+                Prontuario.open();
             });
         //endregion
 
