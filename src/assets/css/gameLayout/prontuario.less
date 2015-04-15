@@ -1,0 +1,207 @@
+#prontuario {
+  display: none;
+  z-index: 1;
+
+  height: 70%;
+  width: 80%;
+  position: relative;
+  background-color: white;
+
+  @media (min-width:@screen-sm-min) {
+    left: 75px;
+    top: 25px;
+  }
+  @media (min-width:@screen-md-min) {
+    left: 100px;
+    top: 45px;
+  }
+  @media (min-width:@screen-lg-min) {
+    left: 110px;
+    top: 45px;
+  }
+
+  text-align: left;
+  .notbold, span{
+    font-weight: 100;
+  }
+  .content{
+    overflow-y: scroll;
+    height: 90%;
+  }
+
+  .title{
+    height: 10%;
+    max-height: 10%;
+    text-align: center;
+    border-bottom: 1px solid black;
+  }
+
+  .row{
+    padding: 10px 0px;
+    text-align: center;
+    border-bottom: 1px black solid;
+  }
+
+  .outerBlock{
+    padding: 25px;
+  }
+
+  .block{
+    border: 1px black solid;
+  }
+
+  .container{
+    height: 40px;
+    font-weight: bold;
+    border-bottom: 1px black solid;
+  }
+
+  .doubleContainer{
+    height: 80px;
+    font-weight: bold;
+    border-bottom: 1px black solid;
+  }
+
+  .tripleContainer{
+    height: 120px;
+    font-weight: bold;
+    border-bottom: 1px black solid;
+  }
+
+  .oneLeft{
+    float: left;
+    width: 50%;
+    height: 100%;
+    border-right: 1px black solid;
+  }
+  .dataInternacao, .medidas_antropometricas{
+    border: none;
+  }
+
+
+  .doubleLeft{
+    float: left;
+    width: 50%;
+    height: 100%;
+    border-right: 1px black solid;
+  }
+
+  .tripleLeft{
+    float: left;
+    width: 50%;
+    height: 100%;
+    border-right: 1px black solid;
+  }
+
+  .oneRight{
+    height: 100%;
+  }
+
+  .doubleRight{
+    height: 50%;
+  }
+
+  .tripleRight{
+    height: 33.2%;
+  }
+
+  .third{
+    width: 33%;
+    height: 100%;
+    float: left;
+  }
+
+  .third:not(:last-child){
+    border-right: 1px black solid;
+  }
+
+  table.col6 {
+    width: 100%;
+
+    thead {
+      text-align: center;
+      border-bottom: 1px solid black;
+
+      th {
+        padding: 5px;
+        width: 16%;
+      }
+      th:not(:last-child) {
+        border-right: 1px solid black;
+      }
+    }
+    tbody {
+
+      tr {
+        height: 40px;
+      }
+      td:not(:last-child) {
+        border-right: 1px solid black;
+      }
+      tr:not(:last-child) {
+        border-bottom: 1px solid black;
+      }
+    }
+  }
+
+  table.col4 {
+    width: 100%;
+
+    thead {
+      text-align: center;
+      border-bottom: 1px solid black;
+
+      th {
+        padding: 5px;
+        width: 25%;
+      }
+      th:not(:last-child) {
+        border-right: 1px solid black;
+      }
+    }
+    tbody {
+
+      tr {
+        height: 40px;
+      }
+      td:not(:last-child) {
+        border-right: 1px solid black;
+      }
+      tr:not(:last-child) {
+        border-bottom: 1px solid black;
+      }
+    }
+  }
+
+  table.col2 {
+    width: 100%;
+
+    thead {
+      text-align: center;
+      border-bottom: 1px solid black;
+
+      th{
+        padding: 5px;
+      }
+
+      th:first-child {
+        width: 25%;
+      }
+      th:not(:last-child) {
+        border-right: 1px solid black;
+      }
+    }
+    tbody {
+
+      tr {
+        height: 40px;
+      }
+      td:not(:last-child) {
+        border-right: 1px solid black;
+      }
+      tr:not(:last-child) {
+        border-bottom: 1px solid black;
+      }
+    }
+  }
+}

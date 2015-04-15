@@ -20,11 +20,27 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region Scenes
 
+        Prontuario.setNome("João Manoel Ribeiro");
+        Prontuario.setSexo("M");
+        Prontuario.setEstadoCivil("Casado");
+        Prontuario.setDataNascimento("07/06/1956");
+        Prontuario.setIdade("58 anos");
+        Prontuario.setPai("Joaquim Casagrande");
+        Prontuario.setMae("Lúcia Moraes Casagrande");
+        Prontuario.setLeito("02");
+        Prontuario.setAntecedentes("Ocorrência de internação em 2004, devido a suspeita de infarto agudo do miocárdio (IAM)");
+        Prontuario.setHipotese("Crise hipertensiva");
+        //TODO: alergia medicamentosa
+        Prontuario.setPeso("87");
+        Prontuario.setAltura("1,62");
+        Prontuario.setCircunferenciaAbdominal("115");
+
         //region Recepcao
         var recepcao = new Scene("recepcao", "scene-recepcao")
             .setCssClass("scene-lobby")
             .onLoad(function(){
                 //Pulseira.open();
+
                 Prontuario.open();
             });
         //endregion

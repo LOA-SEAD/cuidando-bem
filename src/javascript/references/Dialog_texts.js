@@ -33,6 +33,7 @@ define({
             "Agora me acompanhe, começaremos pela enfermaria masculina."
         ],
         leito: {
+            perguntarNome: "Me desculpe, mas poderia repetir seu nome completo e sua data de nascimento?",
             conversa1: [
                 //0 Mentor
                     "Este é o Sr. João, seu primeiro paciente. Um dos principais protocolos de segurança" +

@@ -12,13 +12,11 @@ define(function () {
 
     var prontuarioSelector = "#prontuario";
 
-
-
     var nomeDisplaySelector = "#pront_nome";
     var nomeText;
 
-    var dataDisplaySelector = "#pront_data_nascimento";
-    var dataText;
+    var dataNascimentoDisplaySelector = "#pront_data_nascimento";
+    var dataNascimentoText;
 
     var idadeDisplaySelector = "#pront_idade";
     var idadeText;
@@ -38,13 +36,13 @@ define(function () {
     var maeDisplaySelector = "#pront_nome_mae";
     var maeText;
 
-    var dataInternacaoDisplaySelector = "#";
+    var dataInternacaoDisplaySelector = "#pront_data_internacao";
     var dataInternacaoText;
 
     var leitoDisplaySelector = "#pront_numero_leito";
     var leitoText;
 
-    var antecedentesHospitalares = "#pront_antecedentes";
+    var antecedentesHospitalaresDisplaySelector = "#pront_antecedentes";
     var antecedentesText;
 
     var hipoteseDiagnosticaDisplaySelector = "#pront_hipotese_diagnostica";
@@ -80,8 +78,8 @@ define(function () {
         return nomeText;
     }
 
-    function getData(){
-        return dataText;
+    function getDataNascimento(){
+        return dataNascimentoText;
     }
 
     function getIdade(){
@@ -145,66 +143,82 @@ define(function () {
     //region Sets
     function setNome(_nomeText){
         nomeText = _nomeText;
+        $(nomeDisplaySelector).text(nomeText);
     }
 
-    function setData(_dataText){
-        dataText = _dataText;
+    function setDataNascimento(_dataText){
+        dataNascimentoText = _dataText;
+        $(dataNascimentoDisplaySelector).text(dataNascimentoText);
     }
 
     function setIdade(_idadeText){
         idadeText = _idadeText;
+        $(idadeDisplaySelector).text(idadeText);
     }
 
     function setSexo(_sexoText){
         sexoText = _sexoText;
+        $(sexoDisplaySelector).text(sexoText);
     }
 
     function setEstadoCivil(_estadoCivilext){
         estadoCivilext = _estadoCivilext;
+        $(estadoCivilDisplaySelector).text(estadoCivilext);
     }
 
     function setProfissao(_profissaoText){
         profissaoText = _profissaoText;
+        $(profissaoDisplaySelector).text(profissaoText);
     }
 
     function setPai(_paiText){
         paiText = _paiText;
+        $(paiDisplaySelector).text(paiText);
     }
 
     function setMae(_maeText){
         maeText = _maeText;
+        $(maeDisplaySelector).text(maeText);
     }
 
     function setDataInternacao(_dataInternacaoText){
         dataInternacaoText = _dataInternacaoText;
+        $(dataInternacaoDisplaySelector).text(dataInternacaoText);
     }
 
     function setLeito(_leitoText){
         leitoText = _leitoText;
+        $(leitoDisplaySelector).text(leitoText);
     }
 
     function setAntecedentes(_antecedentesText){
         antecedentesText = _antecedentesText;
+        $(antecedentesHospitalaresDisplaySelector).text(antecedentesText);
     }
 
     function setHipotese(_hipoteseText){
         hipoteseText = _hipoteseText;
+        $(hipoteseDiagnosticaDisplaySelector).text(hipoteseText);
     }
 
     function setObservacoes(_observacoesText){
         observacoesText = _observacoesText;
+        $(observacoesDisplaySelector).text(observacoesText);
     }
 
     function setPeso(_pesoText){
         pesoText = _pesoText;
+        $(pesoDisplaySelector).text(pesoText);
     }
 
     function setAltura(_alturaText) {
         alturaText = _alturaText;
+        $(alturaDisplaySelector).text(alturaText);
     }
 
     function setCircunferenciaAbdominal(_circunferenciaAbdominalText){
         circunferenciaAbdominalText = _circunferenciaAbdominalText;
+        $(circunferenciaAbdominalSelector).text(circunferenciaAbdominalText);
     }
     //endregion
 
@@ -212,6 +226,26 @@ define(function () {
 
     function open(){
         $(prontuarioSelector).show();
+        updateData();
+    }
+
+    function updateData(){
+        $(nomeDisplaySelector).text(nomeText);
+        $(dataNascimentoDisplaySelector).text(dataNascimentoText);
+        $(idadeDisplaySelector).text(idadeText);
+        $(sexoDisplaySelector).text(sexoText);
+        $(estadoCivilDisplaySelector).text(estadoCivilext);
+        $(profissaoDisplaySelector).text(profissaoText);
+        $(paiDisplaySelector).text(paiText);
+        $(maeDisplaySelector).text(maeText);
+        $(dataInternacaoDisplaySelector).text(dataInternacaoText);
+        $(leitoDisplaySelector).text(leitoText);
+        $(antecedentesHospitalaresDisplaySelector).text(antecedentesText);
+        $(hipoteseDiagnosticaDisplaySelector).text(hipoteseText);
+        $(observacoesDisplaySelector).text(observacoesText);
+        $(pesoDisplaySelector).text(pesoText);
+        $(alturaDisplaySelector).text(alturaText);
+        $(circunferenciaAbdominalSelector).text(circunferenciaAbdominalText);
     }
 
     function close(){
@@ -224,9 +258,10 @@ define(function () {
     return {
         open: open,
         close: close,
+        updateDate: updateData,
 
         getNome: getNome,
-        getData: getData,
+        getDataNascimento: getDataNascimento,
         getIdade: getIdade,
         getSexo: getSexo,
         getEstadoCivil: getEstadoCivil,
@@ -243,7 +278,7 @@ define(function () {
         getCircunferenciaAbdominal: getCircunferenciaAbdominal,
 
         setNome: setNome,
-        setData: setData,
+        setDataNascimento: setDataNascimento,
         setIdade: setIdade,
         setSexo: setSexo,
         setEstadoCivil: setEstadoCivil,

@@ -3,8 +3,8 @@
  New levels can easily be made by adding new game levels.
  */
 
-define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'Pulseira', 'CuidandoBem', 'Commons'],
-    function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, Pulseira, core, lib) {
+define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons', 'Pulseira', 'Prontuario'],
+    function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario) {
 
         //region Imports
         var Dialogs = require("Dialogs").tutorial;
@@ -256,12 +256,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             });
 
         sala_de_leitos.registerInteractiveObjects([
-           new InteractiveObject("io-ir_leito", "Ir ao leito")
-               .setCssClass("intObj-ir_leito-tutorial")
-               .onClick(function (){
-                   core.changeScene(3);
-               })
-               .setVisibility(visibility),
+            new InteractiveObject("io-ir_leito", "Ir ao leito")
+                .setCssClass("intObj-ir_leito-tutorial")
+                .onClick(function (){
+                    core.changeScene(3);
+                })
+                .setVisibility(visibility),
 
             new InteractiveObject("io-ir_corredor", "Ir ao Corredor")
                 .setCssClass("intObj-bedroomToHallway")
@@ -385,6 +385,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setText(Dialogs.leito.conversa1[14])
                 .registerOption("", function () {
                     core.closeDialog(10);
+                    core.openCommandBar();
                 }),
 
 
@@ -442,6 +443,19 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .registerOption("",function () {
                     core.closeDialog();
                     core.openCommandBar();
+                }),
+            //Dialog 18 - Jogador
+            new Dialog(lib.characters.jogador)
+                .setText(Dialogs.leito.perguntarNome)
+                .registerOption("", function() {
+                    core.openDialog(19);
+                }),
+            //Dialog 19 - Nome do Paciente
+            new Dialog(lib.characters.pacientes.joao)
+                .setText(Dialogs.leito.conversa1[12])
+                .registerOption("", function () {
+                    core.closeDialog(9);
+                    core.openCommandBar();
                 })
         ]);
         //endregion
@@ -476,6 +490,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     }
                 })
                 .setVisibility(visibility),
+            new Action("btn-perguntar_nome_do_paciente", "Perguntar nome do paciente")
+                .setCssClass("action-ir_sala_de_leitos")
+                .onClick(function (){
+                    core.openDialog(18);
+                    core.closeCommandBar();
+                })
+                .setVisibility(true),
             new Action("btn-lavar_maos", "Lavar as mãos")
                 .setCssClass("action-lavar_maos")
                 .onClick(function (){
@@ -584,12 +605,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("action-ler_prontuario")
                 .onClick(function (){
                     console.log("Action: ler prontuario");
-                    core.openModalScene("Prontuario");
+                    Prontuario.open();
                 })
                 .setVisibility(visibility)
         ]);
         //endregion
-    //endregion
+        //endregion
 
         //region Posto de Enfermagem
         var posto_de_enfermagem = lib.scenes.postoDeEnfermagem.getClone()
@@ -670,9 +691,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     if(level.getFlag("termometro").getValue() == true &&
                         level.getFlag("oximetro").getValue() == true &&
                         level.getFlag("medidor-pressao").getValue() == true){
-                            console.log("Btn ir corredor");
-                            core.setActionVisible("btn-ir_corredor", true);
-                            core.openCommandBar();
+                        console.log("Btn ir corredor");
+                        core.setActionVisible("btn-ir_corredor", true);
+                        core.openCommandBar();
                     }
                 })
                 .setVisibility(visibility)
@@ -718,6 +739,23 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Prontuario
+        Prontuario.setNome("João Manoel Ribeiro");
+        Prontuario.setSexo("M");
+        Prontuario.setEstadoCivil("Casado");
+        Prontuario.setDataNascimento("07/06/1956");
+        Prontuario.setIdade("58 anos");
+        Prontuario.setPai("Joaquim Casagrande");
+        Prontuario.setMae("Lúcia Moraes Casagrande");
+        Prontuario.setLeito("02");
+        Prontuario.setAntecedentes("Ocorrência de internação em 2004, devido a suspeita de infarto agudo do miocárdio (IAM)");
+        Prontuario.setHipotese("Crise hipertensiva");
+        //TODO: alergia medicamentosa
+        Prontuario.setPeso("87");
+        Prontuario.setAltura("1,62");
+        Prontuario.setCircunferenciaAbdominal("115");
+        //TODO: SSVV
+
+
         var prontuario = new Scene("Prontuario", "modalScene-prontuario_joao");
 
         prontuario.registerActions([
@@ -734,10 +772,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Pulseira
         Pulseira.setNameRegExp(/João Manoel Ribeiro/);
         Pulseira.setLeitoRegExp(/0*2/);
-        Pulseira.setDataRegExp(/05\/05/);
+        Pulseira.setDataRegExp(/07\/06\/1956/);
 
         var pulseira = new Scene("pulseira", "pulseira");
-            //.setCssClass("modalSce    ne-pulseira");
+        //.setCssClass("modalScene-pulseira");
 
 
         pulseira.registerInteractiveObjects([

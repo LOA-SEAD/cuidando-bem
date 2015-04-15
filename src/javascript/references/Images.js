@@ -29,7 +29,7 @@ define(function () {
             "./assets/images/scenes/encerra-provisoria-alfa.jpg",
             "./assets/images/modalScenes/gaveta.png",
             "./assets/images/modalScenes/pulseira.png",
-            "./assets/images/modalScenes/carlos-esme-gouvea.jpg",
+            //"./assets/images/modalScenes/carlos-esme-gouvea.jpg",
             "./assets/images/modalScenes/prontuario_carlos.jpg",
             "./assets/images/modalScenes/prontuario_joao.jpg",
             "./assets/images/interactiveObjects/bg_lateral_esq.png",
