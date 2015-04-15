@@ -63,9 +63,9 @@ define(function () {
 		
 		],
 		loops:{
-			recepcao: ["sons_ambiente_hospital_recepcao.mp3"],
-            test: ["teste.mp3"],
-            test2: ["teste2.mp3"]
+			recepcao: ["sons_ambiente_hospital_recepcao.mp3"]
+            //test: ["teste.mp3"],
+            //test2: ["teste2.mp3"]
 		}		
 		
 	};

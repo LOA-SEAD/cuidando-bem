@@ -12,39 +12,57 @@ define(function () {
 
     var prontuarioSelector = "#prontuario";
 
-    var nomeDisplaySelector;
 
-    var dataDisplaySelector;
 
-    var idadeDisplaySelector;
+    var nomeDisplaySelector = "#pront_nome";
+    var nomeText;
 
-    var sexoDisplaySelector;
+    var dataDisplaySelector = "#pront_data_nascimento";
+    var dataText;
 
-    var estadoCivilDisplaySelector;
+    var idadeDisplaySelector = "#pront_idade";
+    var idadeText;
 
-    var profissaoDisplaySelector;
+    var sexoDisplaySelector = "#pront_sexo";
+    var sexoText;
 
-    var paiDisplaySelector;
+    var estadoCivilDisplaySelector = "#pront_estado_civil";
+    var estadoCivilext;
 
-    var maeDisplaySelector;
+    var profissaoDisplaySelector = "#pront_profissao";
+    var profissaoText;
 
-    var dataInternacaoDisplaySelector;
+    var paiDisplaySelector = "#pront_nome_pai";
+    var paiText;
 
-    var leitoDisplaySelector;
+    var maeDisplaySelector = "#pront_nome_mae";
+    var maeText;
 
-    var antecedentesHospitalares;
+    var dataInternacaoDisplaySelector = "#";
+    var dataInternacaoText;
 
-    var hipoteseDiagnosticaDisplaySelector;
+    var leitoDisplaySelector = "#pront_numero_leito";
+    var leitoText;
 
-    var observacoesDisplaySelector;
+    var antecedentesHospitalares = "#pront_antecedentes";
+    var antecedentesText;
+
+    var hipoteseDiagnosticaDisplaySelector = "#pront_hipotese_diagnostica";
+    var hipoteseText;
+
+    var observacoesDisplaySelector = "#pront_observacoes";
+    var observacoesText;
 
     //TODO: Radio button e caixa de texto para Alergia medicamentosa
 
-    var pesoDisplaySelector;
+    var pesoDisplaySelector = "#pront_peso";
+    var pesoText;
 
-    var alturaDisplaySelector;
+    var alturaDisplaySelector = "#pront_altura";
+    var alturaText;
 
-    var circunferenciaAbdominalSelector;
+    var circunferenciaAbdominalSelector = "#pront_circunferencia_abdominal";
+    var circunferenciaAbdominalText;
 
     //TODO: Prescrição Médica
 
@@ -55,6 +73,139 @@ define(function () {
     //TODO: Anotação de Enfermagem
 
     //endregion
+    //endregion
+
+    //region Gets
+    function getNome(){
+        return nomeText;
+    }
+
+    function getData(){
+        return dataText;
+    }
+
+    function getIdade(){
+        return idadeText;
+    }
+
+    function getSexo(){
+        return sexoText;
+    }
+
+    function getEstadoCivil(){
+        return estadoCivilext;
+    }
+
+    function getProfissao(){
+        return profissaoText;
+    }
+
+    function getPai(){
+        return paiText;
+    }
+
+    function getMae(){
+        return maeText;
+    }
+
+    function getDataInternacao(){
+        return dataInternacaoText;
+    }
+
+    function getLeito(){
+        return leitoText;
+    }
+
+    function getAntecedentes(){
+        return antecedentesText;
+    }
+
+    function getHipotese(){
+        return hipoteseText;
+    }
+
+    function getObservacoes(){
+        return observacoesText;
+    }
+
+    function getPeso(){
+        return pesoText;
+    }
+
+    function getAltura() {
+        return alturaText;
+    }
+
+    function getCircunferenciaAbdominal(){
+        return circunferenciaAbdominalText;
+    }
+
+    //endregion
+
+    //region Sets
+    function setNome(_nomeText){
+        nomeText = _nomeText;
+    }
+
+    function setData(_dataText){
+        dataText = _dataText;
+    }
+
+    function setIdade(_idadeText){
+        idadeText = _idadeText;
+    }
+
+    function setSexo(_sexoText){
+        sexoText = _sexoText;
+    }
+
+    function setEstadoCivil(_estadoCivilext){
+        estadoCivilext = _estadoCivilext;
+    }
+
+    function setProfissao(_profissaoText){
+        profissaoText = _profissaoText;
+    }
+
+    function setPai(_paiText){
+        paiText = _paiText;
+    }
+
+    function setMae(_maeText){
+        maeText = _maeText;
+    }
+
+    function setDataInternacao(_dataInternacaoText){
+        dataInternacaoText = _dataInternacaoText;
+    }
+
+    function setLeito(_leitoText){
+        leitoText = _leitoText;
+    }
+
+    function setAntecedentes(_antecedentesText){
+        antecedentesText = _antecedentesText;
+    }
+
+    function setHipotese(_hipoteseText){
+        hipoteseText = _hipoteseText;
+    }
+
+    function setObservacoes(_observacoesText){
+        observacoesText = _observacoesText;
+    }
+
+    function setPeso(_pesoText){
+        pesoText = _pesoText;
+    }
+
+    function setAltura(_alturaText) {
+        alturaText = _alturaText;
+    }
+
+    function setCircunferenciaAbdominal(_circunferenciaAbdominalText){
+        circunferenciaAbdominalText = _circunferenciaAbdominalText;
+    }
     //endregion
 
     //region Methods
@@ -72,7 +223,41 @@ define(function () {
 //Public Interface
     return {
         open: open,
-        close: close
+        close: close,
+
+        getNome: getNome,
+        getData: getData,
+        getIdade: getIdade,
+        getSexo: getSexo,
+        getEstadoCivil: getEstadoCivil,
+        getProfissao: getProfissao,
+        getPai: getPai,
+        getMae: getMae,
+        getDataInternacao: getDataInternacao,
+        getLeito: getLeito,
+        getAntecedentes: getAntecedentes,
+        getHipotese: getHipotese,
+        getObservacoes: getObservacoes,
+        getPeso: getPeso,
+        getAltura: getAltura,
+        getCircunferenciaAbdominal: getCircunferenciaAbdominal,
+
+        setNome: setNome,
+        setData: setData,
+        setIdade: setIdade,
+        setSexo: setSexo,
+        setEstadoCivil: setEstadoCivil,
+        setProfissao: setProfissao,
+        setPai: setPai,
+        setMae: setMae,
+        setDataInternacao: setDataInternacao,
+        setLeito: setLeito,
+        setAntecedentes: setAntecedentes,
+        setHipotese: setHipotese,
+        setObservacoes: setObservacoes,
+        setPeso: setPeso,
+        setAltura: setAltura,
+        setCircunferenciaAbdominal: setCircunferenciaAbdominal
 
     }
 
