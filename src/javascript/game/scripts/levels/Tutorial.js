@@ -80,7 +80,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         ]);
 
         recepcao.registerInteractiveObjects([
-            new InteractiveObject("intObj-conversar_recepcionista","Conversar com a Recepcionista")
+            new InteractiveObject("intObj-conversar_recepcionista", "Conversar com a Recepcionista")
                 .setCssClass("intObj-talkToReceptionist")
                 .setVisibility(true)
                 .onClick(conversarRecepcionista),
@@ -565,8 +565,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("action-medir_saturacao_02")
                 .onClick( function (){
                     console.log("Action: medir_saturacao_02");
+
                     if(level.getFlag("lavar-maos").getValue() >= 1){
 
+
+                        core.openModalScene("modalOximetro");
                         level.getFlag("oximetro").setValue(true);
                         core.setActionVisible("btn-saturacao_02", false);
 
@@ -799,6 +802,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisibility(true)
         ]);
 
+        //endregion
+        //region termometro
         var termometro = new Scene("modalTermometro", "modalTermometro")
             .setCssClass("modalScene-termometro")
             .setTemplate("<span class='temp_termometro'>37.5º</span>");
@@ -811,7 +816,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 })
                 .setVisibility(true)
         ]);
+        //endregion
 
+        //region medidor de pressao
         var medidor_pressao = new Scene("modalMedidor_pressao", "modalMedidor_pressao")
             .setCssClass("modalScene-medidor_pressao")
             .setTemplate("<span class='pressao'>160x100 mmHg</span>");
@@ -824,7 +831,21 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 })
                 .setVisibility(true)
         ]);
+        //endregion
 
+        //region oximetro
+        var oximetro = new Scene("modalOximetro", "Oxímetro")
+            .setCssClass("modalScene-oximetro")
+            .setTemplate("<span class='text'>valor unidade</span>");
+
+        medidor_pressao.registerActions([
+            new Action("btn-largar_oximetro", "Largar Oxímetro")
+                .setCssClass("action-largar_oximetro")
+                .onClick(function() {
+                    core.closeModalScene("modalMedidor_pressao");
+                })
+                .setVisibility(true)
+        ]);
         //endregion
 
         //endregion
@@ -847,6 +868,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerModalScene(gaveta);
         level.registerModalScene(termometro);
         level.registerModalScene(medidor_pressao);
+        level.registerModalScene(oximetro);
         //endregion
 
         //region Flags

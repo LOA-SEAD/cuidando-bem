@@ -70,7 +70,7 @@ define({
                 "Sua resposta está vaga e informal. Você pode melhorar!",
 
                 //12    Paciente
-                "Meu nome é João Manoel Ribeiro, nasci no dia 07-06-1956.",
+                "Meu nome é João Manoel Ribeiro, nasci no dia 07/06/1956.",
 
                 //13    Jogador
                 " Está certo, seu João. Já tenho todas as informações de que preciso ",
