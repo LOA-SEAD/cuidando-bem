@@ -6,56 +6,31 @@
 	Author: Otho - Marcelo Lopes Lotufo
 	Author: Thales Eduardo Adair Menato
 */
-/*Example: @import "css/normalize.css";*/
+@screen-lg-min: 1200px;
+@screen-md-min: 992px;
+@screen-sm-min: 768px;
+
+@game-height-sm: 461px;
+@game-height-md: 595px;
+@game-height-lg: 720px;
+@dialogMainText-padding: 2%;
+
 @import "./normalize.css";
-@import "gameLayout/main.less";
-@import "gameLayout/gameConfig.less";
-@import "devices/common.less";
-@import url("devices/smallDevices.less") (min-width: @screen-sm-min);
-@import url("devices/mediumDevices.less") (min-width: @screen-md-min);
-@import url("devices/largeDevices.less") (min-width: @screen-lg-min);
-@import "gameLayout/scenesBackgroundImages.less";
-@import "gameLayout/interactiveObjects.less";
-@import "gameLayout/modalScenes.less";
-@import "gameLayout/prontuario.less";
-@import "gameLayout/pulseira.less";
-@import "gameLayout/dialogModal.less";
-@import "gameLayout/jquery-ui.less";
+@import "main.less";
+@import "imageURLs.less";
+@import "fonts.less";
 
-@font-face {
-  font-family: "Pacifico";
-  src: local("☺"), url("fonts/Pacifico/Pacifico.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
+@import "mainMenu/jquery-ui.less";
 
-@font-face {
-  font-family: "Lato";
-  src: local("☺"), url("fonts/Lato/Lato-Italic.ttf") format("truetype");
-  font-weight: 700;
-  font-style: italic;
-}
+@import "interactiveObjects/interactiveObjects.less";
 
-@font-face {
-  font-family: "Open Sans";
-  src: local("☺"), url("fonts/Open_Sans/OpenSans-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
+@import "scenes/scenesBackgroundImages.less";
+@import "scenes/modalScenes.less";
+@import "scenes/prontuario.less";
+@import "scenes/pulseira.less";
 
-@font-face {
-  font-family: "Indie Flower";
-  src: local("☺"), url("fonts/Indie_Flower/IndieFlower.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
+@import "dialogs/dialogModal.less";
 
-// Import using the Google Api - not used anymore, fonts on local
-//@import url(http://fonts.googleapis.com/css?family=Pacifico);
-//@import url(http://fonts.googleapis.com/css?family=Lato:700italic);
-//@import url(http://fonts.googleapis.com/css?family=Open+Sans);
-//@import url(http://fonts.googleapis.com/css?family=Indie+Flower);
 
-// to be discontinued or not :P
-@import "gameLayout/actionsThumbnails.less";
-@import "gameLayout/endOfLevel.less";
+@import "commandBar/actionsThumbnails.less";
+@import "endOfLevel/endOfLevel.less";
