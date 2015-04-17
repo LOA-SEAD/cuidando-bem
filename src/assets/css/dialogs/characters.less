@@ -1,0 +1,83 @@
+
+//region Recepcao - Lobby
+.char-receptionist {
+  background: @char-receptionist no-repeat top;
+  background-size: cover;
+  float: right;
+  position: absolute;
+
+  @char-receptionist-width: 296px;
+  @char-receptionist-height: 419px;
+
+  @media screen and (min-width: @screen-sm-min) {
+    width: 0.5 * @char-receptionist-width;
+    height: 0.5 * @char-receptionist-height;
+    top: -180px;
+    right: 50px;
+  }
+
+  @media screen and (min-width: @screen-md-min) {
+    width: 0.7 * @char-receptionist-width;
+    height: 0.7 * @char-receptionist-height;
+    top: -255px;
+    right: 50px;
+  }
+
+  @media screen and (min-width: @screen-lg-min) {
+    width: @char-receptionist-width;
+    height: @char-receptionist-height;
+    top: -370px;
+    right: 50px;
+  }
+}
+//endregion
+
+//region Corredor - Hallway
+.char-mentor {
+  background: @char-mentor no-repeat top;
+  background-size: cover;
+  float: right;
+  position: absolute;
+
+  @char-mentor-width: 283px;
+  @char-mentor-height: 419px;
+
+  @media screen and (min-width: @screen-sm-min) {
+    width: 0.60 * @char-mentor-width;
+    height: 0.60 * @char-mentor-height;
+    top: -220px;
+    right: 50px;
+  }
+
+  @media screen and (min-width: @screen-md-min) {
+    width: 0.77 * @char-mentor-width;
+    height: 0.77 * @char-mentor-height;
+    top: -280px;
+    right: 50px;
+  }
+
+  @media screen and (min-width: @screen-lg-min) {
+    width: 0.95 * @char-mentor-width;
+    height: 0.95 * @char-mentor-height;
+    top: -340px;
+    right: 50px;
+  }
+}
+//endregion
+
+//region Sala de Leitos - Bedroom
+.char-patient01 {
+  background: @char-patient01 no-repeat top;
+  background-size: cover;
+}
+
+.char-patient02 {
+  background: @char-patient02 no-repeat top;
+  background-size: cover;
+}
+//endregion
+
+.char-player {
+  background: @char-player no-repeat top;
+  background-size: cover;
+}

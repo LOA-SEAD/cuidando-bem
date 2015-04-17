@@ -216,7 +216,6 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
      */
     function updateAllActionButtons(_actions) {
         console.group("Updating action Buttons", true);
-        console.trace("here");
         var i;
 
         for (i = 0; i < _actions.length; i++) {
