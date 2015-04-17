@@ -12,7 +12,6 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-
         jsdoc : {
             docs : {
                 src: [
@@ -43,7 +42,7 @@ module.exports = function(grunt) {
             },
 
             css: {
-                src: [ build_path + 'styles/css', build_path + 'scripts/libs/less.js']
+                src: [ build_path + 'assets/css', build_path + 'javascript/libs/less.js']
 
             },
 
@@ -92,7 +91,6 @@ module.exports = function(grunt) {
 
                 files :  [
                     {
-
                         src : build_path + "index.html",
                         dest: build_path + "index.html"
                     },
@@ -100,7 +98,7 @@ module.exports = function(grunt) {
                     {
                         expand : true,
                         cwd: src_path,
-                        src: "html/**/*.html",
+                        src: "assets/html/**/*.html",
                         dest : build_path
                     }
                 ]
@@ -110,15 +108,9 @@ module.exports = function(grunt) {
         less : {
             build: {
                 options: {
-                    paths: [
-                        "src/styles/gameConfig/"
-                    ]
+                    src: [src_path + '**/*.less']
                 },
-                files: [
-                    {
-                        "build/style/styles.css": "src/styles/styles.less"
-                    }
-                ]
+                dest: build_path + "assets/css/main.css"
             }
         },
 
@@ -129,7 +121,7 @@ module.exports = function(grunt) {
                 },
 
                 src: build_path + 'styles/**/*.css',
-                dest: build_path + 'styles/styles.css'
+                dest: build_path + 'styles/main.css'
 
             }
 
@@ -137,21 +129,27 @@ module.exports = function(grunt) {
 
         replace: {
             index: {
-                src: [build_path + '/index.html'],             // source files array (supports minimatch)
+                src: [build_path + 'index.html'],             // source files array (supports minimatch)
                 dest: build_path + 'index.html',             // destination directory or file
                 replacements: [{
-                    from: '<link rel="stylesheet/less" type="text/css" href="./styles/styles.less">',                   // string replacement
-                    to: '<link rel="stylesheet" type="text/css" href="./styles/styles.css">'
+                    from: '<link rel="stylesheet/less" type="text/css" href="./assets/css/main.less">',                   // string replacement
+                    to: '<link rel="stylesheet/less" type="text/css" href="./assets/css/main.css">'
                 }]
             },
 
             bootstrap: {
                 src: [build_path + 'scripts/requireJsBootstrap.js'],             // source files array (supports minimatch)
                 dest: build_path + 'scripts/requireJsBootstrap.js',             // destination directory or file
-                replacements: [{
-                    from: 'require(["jquery", "libs/less"]);',                   // string replacement
-                    to: 'require(["jquery"]);'
-                }]
+                replacements: [
+                    {
+                        from: 'require(["jquery", "less"], function () {',                   // string replacement
+                        to: 'require(["jquery"], function () {'
+                    },
+                    {
+                        from: "text: '../../libs/requirejs-text/text',",                   // string replacement
+                        to: ''
+                    }
+                ]
             },
 
             logs: {
@@ -173,14 +171,14 @@ module.exports = function(grunt) {
                     baseUrl: "./",
                     dir: build_step_1_path,
                     optimize: 'uglify',
-                    mainConfigFile: build_path + "scripts/requireJsBootstrap.js",
+                    mainConfigFile: build_path + "javascript/requireJsBootstrap.js",
 
 
                     inlineText:true,
                     stubModules: ['text'],
 
                     paths: {
-                        'text':'scripts/libs/text'
+                        'text':'javascript/libs/text'
                     }
                 }
             },
@@ -191,7 +189,7 @@ module.exports = function(grunt) {
                     baseUrl: "./",
                     dir: build_step_1_path,
                     optimize: 'none',
-                    mainConfigFile: build_path+ "scripts/requireJsBootstrap.js",
+                    mainConfigFile: build_path+ "javascript/requireJsBootstrap.js",
                     inlineText: true,
                     stubModules: ['text'],
                     paths: {
