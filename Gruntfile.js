@@ -107,10 +107,15 @@ module.exports = function(grunt) {
 
         less : {
             build: {
-                options: {
-                    src: [src_path + '**/*.less']
-                },
-                dest: build_path + "assets/css/main.css"
+                files: [
+                    {
+                        expand: true,
+                        cwd: src_path + 'assets/css/',
+                        src: ['main.less'],
+                        dest: build_path + 'assets/css/',
+                        ext: '.css'
+                    }
+                ]
             }
         },
 
@@ -224,6 +229,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-jsdoc');
 
     // Registering tasks
-    grunt.registerTask('default', ['clean:build', 'copy:build', 'replace', 'htmlmin:build', 'less:build', 'cssmin:build', 'clean:css', 'clean:final', 'requirejs:compile', 'clean:build', 'rename:build']);
+    grunt.registerTask('default', ['clean:build', 'copy:build', 'replace', 'htmlmin:build', 'less:build', 'cssmin:build', 'clean:final', 'requirejs:compile', 'clean:build', 'rename:build']);
     grunt.registerTask('docs', ['clean:docs', 'jsdoc:docs']);
 };
