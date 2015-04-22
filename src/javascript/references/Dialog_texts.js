@@ -21,7 +21,7 @@ define({
             //Jogador op 1
             "Agradeço, Alberto! Espero conseguir atender suas expectativas.",
             //Jogador op 2
-            " Preciso começar agora?",
+            "Preciso começar agora?",
             // Mentor
             "Esteja sempre preparado para o trabalho",
             //Jogador op 3

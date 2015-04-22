@@ -41,8 +41,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .onLoad(function(){
                 //Pulseira.open();
                 //core.openModalScene("modalOximetro");
+                //Prontuario.open();
 
-                Prontuario.open();
+                core.showEndOfLevel();
             });
         //endregion
 
