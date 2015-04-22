@@ -41,15 +41,22 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .onLoad(function(){
                 //Pulseira.open();
 
-                Prontuario.open();
+                core.openModalScene("modalOximetro");
             });
         //endregion
+
+        var oximetro = new Scene("modalOximetro", "Oxímetro")
+            .setCssClass("modalScene-oximetro")
+            .setTemplate("<span class='oximetro-text'>valor unidade</span>");
+
 
         //endregion
 
         //region Level
         //region Register Scenes
         level.registerScene(recepcao);
+
+        level.registerModalScene(oximetro);
         //endregion
 
         level.setInitialScene(0);

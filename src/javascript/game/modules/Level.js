@@ -278,7 +278,7 @@ define([], function () {
          * @memberOf Level#
          */
         function registerScene(_scene) {
-            scenes_aux[_scene.getName()] = scenes.length;
+            scenes_aux[_scene.getId()] = scenes.length;
             scenes.push(_scene);
             console.log("Registering scene: ", _scene.getName());
         }
@@ -291,7 +291,7 @@ define([], function () {
          * @memberOf Level#
          */
         function registerModalScene(_modalScene) {
-            modalScenes_aux[_modalScene.getName()] = modalScenes.length;
+            modalScenes_aux[_modalScene.getId()] = modalScenes.length;
             modalScenes.push(_modalScene);
             console.log("Registering modalScene: ", _modalScene.getName());
         }

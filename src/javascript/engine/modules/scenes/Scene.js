@@ -93,6 +93,10 @@ define(function () {
             return scene_clone;
         }
 
+        function getId(){
+            return id;
+        }
+
         /**
          * Description
          * @method getName
@@ -283,6 +287,7 @@ define(function () {
 
         //Public interface
         return {
+            getId: getId,
             getName: getName,
             getCssClass: getCssClass,
             load: load,

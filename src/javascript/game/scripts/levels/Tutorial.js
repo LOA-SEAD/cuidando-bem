@@ -838,7 +838,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .setCssClass("modalScene-oximetro")
             .setTemplate("<span class='text'>valor unidade</span>");
 
-        medidor_pressao.registerActions([
+        oximetro.registerActions([
             new Action("btn-largar_oximetro", "Largar Oxímetro")
                 .setCssClass("action-largar_oximetro")
                 .onClick(function() {
