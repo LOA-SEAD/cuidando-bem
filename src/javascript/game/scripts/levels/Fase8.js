@@ -40,8 +40,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .setCssClass("scene-lobby")
             .onLoad(function(){
                 //Pulseira.open();
+                //core.openModalScene("modalOximetro");
 
-                core.openModalScene("modalOximetro");
+                Prontuario.open();
             });
         //endregion
 

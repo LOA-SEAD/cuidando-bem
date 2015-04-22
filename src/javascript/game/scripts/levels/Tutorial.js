@@ -836,7 +836,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region oximetro
         var oximetro = new Scene("modalOximetro", "Oxímetro")
             .setCssClass("modalScene-oximetro")
-            .setTemplate("<span class='text'>valor unidade</span>");
+            .setTemplate("<span class='oximetro-text'>valor unidade</span>");
 
         oximetro.registerActions([
             new Action("btn-largar_oximetro", "Largar Oxímetro")

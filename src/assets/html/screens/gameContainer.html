@@ -11,7 +11,15 @@
                 <span>Prontuário</span>
             </div>
             <div class="content">
-                <div class="outerBlock">
+                <ul>
+                    <li><a href="#bloco1">Paciente</a></li>
+                    <li><a href="#bloco2">Internação</a></li>
+                    <li><a href="#bloco3">Prescrição Médica</a></li>
+                    <li><a href="#bloco4">Prescrição Enfermagem</a></li>
+                    <li><a href="#bloco5">Sinais Vitais</a></li>
+                    <li><a href="#bloco6">Anotação Enfermagem</a></li>
+                </ul>
+                <div id="bloco1" class="outerBlock">
                     <div class="block">
                         <div class="nome container">
                             Nome:
@@ -56,7 +64,11 @@
                                 <span id="pront_nome_mae"></span>
                             </div>
                         </div>
+                    </div>
+                </div>
 
+                <div id="bloco2" class="outerBlock">
+                    <div class="block">
                         <div class="dataInternacaoContainer container">
                             <div class="dataInternacao oneLeft">
                                 Data da Internação:
@@ -68,9 +80,13 @@
                             </div>
                         </div>
 
-                        <div class="antecedentes container">
-                            Antecedentes hospitalares:
-                            <span id="pront_antecedentes"></span>
+                        <div class="antecedentes doubleContainer">
+                            <div class="oneLeft" >
+                                Antecedentes hospitalares:
+                            </div>
+                            <div class="oneRight">
+                                <span classid="pront_antecedentes"></span>
+                            </div>
                         </div>
 
                         <div class="hipotese_diagnostica doubleContainer">
@@ -121,7 +137,7 @@
                     </div>
                 </div>
 
-                <div class="outerBlock">
+                <div id="bloco3" class="outerBlock">
                     <div class="block">
                         <div class="row">
                             <span class="anotacao_enfermagem">Prescrição Médica</span>
@@ -176,7 +192,7 @@
                     </div>
                 </div>
 
-                <div class="outerBlock">
+                <div id="bloco4" class="outerBlock">
                     <div class="block">
                         <div class="row">
                             <span class="anotacao_enfermagem ">Prescrição de Enfermagem</span>
@@ -210,7 +226,7 @@
                     </div>
                 </div>
 
-                <div class="outerBlock">
+                <div id="bloco5" class="outerBlock">
                     <div class="block">
                         <div class="row">
                             Sinais Vitais (SSVV)
@@ -248,7 +264,7 @@
                     </div>
                 </div>
 
-                <div class="outerBlock">
+                <div id="bloco6" class="outerBlock">
                     <div class="block">
                         <div class="row">
                             <span class="anotacao_enfermagem">Anotação de Enfermagem</span>

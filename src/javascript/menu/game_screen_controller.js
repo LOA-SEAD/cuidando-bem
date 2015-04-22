@@ -24,6 +24,7 @@ define(['Stage', 'CuidandoBem'], function (Stage, Core) {
         });
 
         Core.start();
+        $('.content').tabs();
     }
 
     /**
