@@ -6,10 +6,10 @@ define(function () {
 	var baseDir = "./assets/images/";
 	var paths = {
         others: [
-            "./assets/images/arrow-icon_button-hover.png",
-            "./assets/images/arrow-icon_button.png",
-            "./assets/images/button-bg.png",
-            "./assets/images/shattered.png",
+            "./assets/images/misc/arrow-icon_button-hover.png",
+            "./assets/images/misc/arrow-icon_button.png",
+            "./assets/images/misc/button-bg.png",
+            "./assets/images/misc/shattered.png",
             "./assets/images/action_buttons/abrir_dialogo-disabled.jpg",
             "./assets/images/action_buttons/abrir_dialogo.jpg",
             "./assets/images/action_buttons/anotar_prontuario-disabled.jpg",
