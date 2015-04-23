@@ -24,8 +24,8 @@ require.config({
         commandBar: 'engine/modules/command_bar/CommandBarController',
         Action: 'engine/modules/command_bar/Action',
 
-        dialogModal: 'engine/modules/dialogs/DialogsController',
-        Dialog: 'engine/modules/dialogs/Dialog',
+        dialogModal: 'engine/modules/dialog/DialogsController',
+        Dialog: 'engine/modules/dialog/Dialog',
 
         endOfLevel: 'engine/modules/end_of_level/EndOfLevelController',
 
