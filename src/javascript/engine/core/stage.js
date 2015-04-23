@@ -13,7 +13,7 @@
  */
 define(function () {
     console.info("Stage - module loaded");
-    //Imports
+
     var Errors = {
         undefinedContainer: "'container' is undefined and Stage can't continue without a place to load its content"
     };

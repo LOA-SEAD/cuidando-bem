@@ -1,18 +1,22 @@
 /**
+ * This method adds all the events to the Credits screen
  *
- * @name Game_Screen_Controller
+ * @name Screen_credits_Controller
  * @module
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['Stage', 'CuidandoBem'], function (Stage, Core) {
+define(['Stage'], function (Stage) {
 
     var Player = require('Player');
 
     /**
-     * Description
+     * This method is called when the screen Credits is loaded
+     *
      * @method load
-     * @memberOf module:Game_Screen_Controller
+     * @public
+     *
+     * @memberOf module:Screen_credits_Controller
      */
     function load() {
         $('.menuButton').click(function(){
@@ -22,15 +26,15 @@ define(['Stage', 'CuidandoBem'], function (Stage, Core) {
         $('.backButton').click(function () {
             Stage.changeScreen(0);
         });
-
-        Core.start();
-        $('.content').tabs();
     }
 
     /**
-     * Description
+     * This method is called when the screen Credits is unloaded
+     *
      * @method unload
-     * @memberOf module:Game_Screen_Controller
+     * @public
+     *
+     * @memberOf module:Screen_credits_Controller
      */
     function unload() {
 

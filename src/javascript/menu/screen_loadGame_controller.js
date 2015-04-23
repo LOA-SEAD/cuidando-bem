@@ -1,6 +1,7 @@
 /**
- *
- * @name Configuration_Screen_Controller
+ * This method adds all the events to the loadGame screen
+ * 
+ * @name Screen_loadGame_Controller
  * @module
  *
  * @author Otho - Marcelo Lopes Lotufo
@@ -10,17 +11,16 @@ define(['Stage'], function (Stage) {
     var Player = require('Player');
 
     /**
-     * Description
+     * This method is called when the screen loadGame is loaded
+     *
      * @method load
-     * @memberOf module:Configuration_Screen_Controller
+     * @public
+     *
+     * @memberOf module:Screen_loadGame_Controller
      */
     function load() {
         $('.menuButton').click(function(){
             Player.play(Player.audios.sfx.selecionar_menu);
-        });
-
-        $('#muteSoundButton').click(function(){
-           Player.mute();
         });
 
         $('.backButton').click(function () {
@@ -29,9 +29,12 @@ define(['Stage'], function (Stage) {
     }
 
     /**
-     * Description
+     * This method is called when the screen loadGame is unloaded
+     *
      * @method unload
-     * @memberOf module:Configuration_Screen_Controller
+     * @public
+     *
+     * @memberOf module:Screen_loadGame_Controller
      */
     function unload() {
 

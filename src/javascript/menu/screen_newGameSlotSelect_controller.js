@@ -1,4 +1,8 @@
 /**
+ * This method adds all the events to the newGameSlotSelect screen
+ *
+ * @name Screen_newGameSlotSelect_Controller
+ * @module
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
@@ -21,9 +25,12 @@ define(['Stage'], function (Stage) {
 
 
     /**
-     * Description
+     * This method is called when the screen newGameSlotSelect is loaded
+     *
      * @method load
-     * @memberOf module:LoadGame_Screen_Controller
+     * @public
+     *
+     * @memberOf module:Screen_newGameSlotSelect_Controller
      */
     function load() {
 
@@ -158,8 +165,15 @@ define(['Stage'], function (Stage) {
         });
     }
 
-    function checkIfSlotIsEmpty()
-    {
+    /**
+     * Checks if the current selected slot is empty
+     *
+     * @method checkIfSlotIsEmpty
+     * @private
+     *
+     * @memberOf module:Screen_newGameSlotSelect_Controller
+     */
+    function checkIfSlotIsEmpty() {
         if(isSelectedEmpty) {
             $('#deleteSlot').addClass('disabled');
 
@@ -172,9 +186,12 @@ define(['Stage'], function (Stage) {
     }
 
     /**
-     * Description
+     * This method is called when the screen newGameSlotSelect is unloaded
+     *
      * @method unload
-     * @memberOf module:LoadGame_Screen_Controller
+     * @public
+     *
+     * @memberOf module:Screen_newGameSlotSelect_Controller
      */
     function unload() {
 

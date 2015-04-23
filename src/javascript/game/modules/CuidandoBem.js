@@ -1,6 +1,7 @@
 /**
+ * This module is the core module for the game CuidandoBem. It's intention is to provide methods that communicate between all the other modules in game
  *
- * @name Core_Controller
+ * @name CuidandoBem
  * @module
  *
  * @author Otho - Marcelo Lopes Lotufo
@@ -8,6 +9,7 @@
 define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene', 'scene', 'endOfLevel'], function (Stage, game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene_con, endOfLevel) {
 
 //Attributes
+
 
     var Level;
     var Scene;
@@ -31,7 +33,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * Description
      * @method start
      * @param {} _gameState
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function start(_level) {
         console.group("Game Running:");
@@ -51,7 +53,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * Description
      * @method getCurrentLevel
      * @return Level
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function getCurrentLevel() {
         return Level;
@@ -61,7 +63,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * Description
      * @method changeLevel
      * @param {} _newLevel
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function changeLevel(_newLevel) {
         console.group("Clone Level");
@@ -81,7 +83,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     /**
      * Description
      * @method startLevel
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function startLevel() {
         console.group('Starting level:' + Level.getName(), true);
@@ -109,7 +111,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * Description
      * @method changeScene
      * @param {} _newSceneId
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function changeScene(_newSceneId) {
 
@@ -143,7 +145,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * Description
      * @method openModalScene
      * @param {} _modalSceneId
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function openModalScene(_modalSceneId) {
         var modalScene = Level.getModalScene(_modalSceneId);
@@ -157,7 +159,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     /**
      * Description
      * @method closeModalScene
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function closeModalScene() {
         ModalScene.close();
@@ -180,7 +182,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * Description
      * @method openDialog
      * @param {} _dialogId
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function openDialog(_dialogId) {
         var dialog = Dialogs[_dialogId];
@@ -193,7 +195,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     /**
      * Description
      * @method closeDialog
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function closeDialog() {
         Dialog.close();
@@ -206,7 +208,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     /**
      * Description
      * @method openEndLevel
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function showEndOfLevel() {
         endOfLevel.show(scoreList);
@@ -215,7 +217,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     /**
      * Description
      * @method closeEndLevel
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function closeEndOfLevel() {
         endOfLevel.close();
@@ -224,7 +226,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     /**
      * Description
      * @method deactivateAllActionButtons
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function disableAllActionButtons() {
         CommandBar.disableAllActionButtons(Actions);
@@ -234,7 +236,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * Description
      * @method deactivateAllInteractiveObjects
      *
-     * @memberof module:Core_Controller
+     * @memberof module:CuidandoBem
      */
     function disableAllInteractiveObjects(){
         InteractiveObject.disableAllInteractiveObjects(InteractiveObjects);
@@ -244,7 +246,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * Description
      * @method updateAllInteractiveObjects
      *
-     * @memberof module:Core_Controller
+     * @memberof module:CuidandoBem
      */
     function updateAllInteractiveObjects(){
         InteractiveObject.updateAllInteractiveObjects(InteractiveObjects);
@@ -253,7 +255,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     /**
      * Description
      * @method updateAllActionButtons
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function updateAllActionButtons() {
         CommandBar.updateAllActionButtons(Actions);
@@ -263,7 +265,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * Description
      * @method disableActionButton
      * @param {} _actionId
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function disableActionButton(_actionId) {
         var action = Scene.getAction(_actionId);
@@ -275,7 +277,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * Description
      * @method enableActionButton
      * @param {} _actionId
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function enableActionButton(_actionId) {
         var action = Scene.getAction(_actionId);
@@ -290,7 +292,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @method getFlag
      * @param {} _flagId
      * @return CallExpression
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function getFlag(_flagId) {
         return Level.getFlag(_flagId);
@@ -303,7 +305,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @method setFlag
      * @param {} _flagId
      * @param {} _value
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function setFlag(_flagId, _value) {
         Level.setFlag(_flagId, _value)
@@ -314,7 +316,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @method setActionEnable
      * @param {} _actionId
      * @param {} _value
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function setActionEnable(_actionId, _value) {
         var action = Scene.getAction(_actionId);
@@ -329,7 +331,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @method setActionVisible
      * @param {} _actionId
      * @param {} _value
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function setActionVisible(_actionId, _value) {
         var action = Scene.getAction(_actionId);
@@ -341,7 +343,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * Description
      * @method toggleActionVisible
      * @param {} _actionId
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function toggleActionVisible(_actionId) {
         var action = Scene.getAction(_actionId);
@@ -358,7 +360,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @method setInteractiveObjectVisible
      * @param {} _interactiveObjectId
      * @param {} _value
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function setInteractiveObjectVisible(_interactiveObjectId, _value) {
         var interactiveObject = Scene.getInteractiveObject(_interactiveObjectId);
@@ -370,7 +372,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * Description
      * @method toggleInteractiveObjectVisible
      * @param {} _interactiveObjectId
-     * @memberOf module:Core_Controller
+     * @memberOf module:CuidandoBem
      */
     function toggleInteractiveObjectVisible(_interactiveObjectId) {
         var interactiveObject = Scene.getInteractiveObject(_interactiveObjectId);

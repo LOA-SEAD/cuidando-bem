@@ -1,6 +1,7 @@
 /**
- *
- * @name MainMenu_Screen_Controller
+ * This method adds all the events to the mainMenu screen
+ * 
+ * @name Screen_mainMenu_Controller
  * @module
  *
  * @author Otho - Marcelo Lopes Lotufo
@@ -10,9 +11,12 @@ define(['Stage', 'CuidandoBem'], function (Stage, Core) {
     var Player = require('Player');
 
     /**
-     * Description
+     * This method is called when the screen mainMenu is loaded
+     *
      * @method load
-     * @memberOf module:MainMenu_Screen_Controller
+     * @public
+     *
+     * @memberOf module:Screen_mainMenu_Controller
      */
     function load() {
         //Player.setLoop(Player.audios.fundo, true);
@@ -54,9 +58,12 @@ define(['Stage', 'CuidandoBem'], function (Stage, Core) {
     }
 
     /**
-     * Description
+     * This method is called when the screen mainMenu is unloaded
+     *
      * @method unload
-     * @memberOf module:MainMenu_Screen_Controller
+     * @public
+     *
+     * @memberOf module:Screen_mainMenu_Controller
      */
     function unload() {
         //$('.menuButton')

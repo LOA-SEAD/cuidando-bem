@@ -1,6 +1,7 @@
 /**
+ * This method adds all the events to the levelSelect screen
  *
- * @name Credits_Screen_Controller
+ * @name Screen_levelSelect_Controller
  * @module
  *
  * @author Otho - Marcelo Lopes Lotufo
@@ -13,9 +14,12 @@ define(['Stage', 'levelsData'], function (Stage, game) {
     var save = SaveLoadGame.getLoadedSlot();
 
     /**
-     * Description
+     * This method is called when the screen levelSelect is loaded
+     *
      * @method load
-     * @memberOf module:Credits_Screen_Controller
+     * @public
+     *
+     * @memberOf module:Screen_levelSelect_Controller
      */
     function load() {
 
@@ -48,9 +52,12 @@ define(['Stage', 'levelsData'], function (Stage, game) {
     }
 
     /**
-     * Description
+     * This method is called when the screen levelSelect is unloaded
+     *
      * @method unload
-     * @memberOf module:Credits_Screen_Controller
+     * @public
+     *
+     * @memberOf module:Screen_levelSelect_Controller
      */
     function unload() {
 

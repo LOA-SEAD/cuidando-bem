@@ -8,14 +8,35 @@
 define(['text!../assets/html/templates/actionButtonTemplate.html'], function (actionButtonTemplate) {
 
 //Attributes
+    /**
+     * This string represents a selector for the html element that is the command bar
+     *
+     * @type {string}
+     * @private
+     * @constant
+     *
+     * @memberOf module:CommandBar
+     */
     var barSelector = "#commandBar";
+    /**
+     * This is a class selector for all the action button elements int the html
+     *
+     * @type {string}
+     * @private
+     * @constant
+     *
+     * @memberOf module:CommandBar
+     */
     var actionButtonSelector = ".action_button";
 
 //Methods
     //Init
     /**
-     * Description
+     * The init method should insert into the main html every html that the commandbar needs
+     *
      * @method init
+     * @public
+     *
      * @memberOf module:CommandBar
      */
     function init() {
@@ -23,9 +44,12 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
     }
 
     /**
-     * Description
+     * Add all action buttons in an array of actions. Calls "addActionButton" for each action in the array
+     *
      * @method addAllActionButtons
      * @param {} _actions
+     * @public
+     *
      * @memberOf module:CommandBar
      */
     function addAllActionButtons(_actions) {
@@ -41,9 +65,12 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
     }
 
     /**
-     * Description
+     * Change the current actions buttons for a new array of actions
+     *
      * @method changeToActionsButtons
      * @param {} _actions
+     * @public
+     *
      * @memberOf module:CommandBar
      */
     function changeToActionsButtons(_actions) {
@@ -53,8 +80,11 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
 
     //This function, if called should remove all the listeners and extra interface
     /**
-     * Description
+     * This method removes every event listener from the action buttons
+     *
      * @method close
+     * @public
+     *
      * @memberOf module:CommandBar
      */
     function close() {
@@ -66,19 +96,38 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
         }
     }
 
+    /**
+     * This method hides the command bar
+     *
+     * @method hide
+     * @public
+     *
+     * @memberOf module:CommandBar
+     */
     function hide(){
         $(barSelector).hide();
     }
 
+    /**
+     * This method shows the command bar
+     *
+     * @method show
+     * @public
+     *
+     * @memberOf module:CommandBar
+     */
     function show(){
         $(barSelector).show();
     }
 
-    //Add a button into the UI
+
     /**
-     * Description
+     * Add action button in command bar, also adds every attribute needed for an action to work including its "click" callback function
+     *
      * @method addActionButton
      * @param {} _action
+     * @public
+     *
      * @memberOf module:CommandBar
      */
     function addActionButton(_action) {
@@ -121,8 +170,11 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
 
     //Remove all buttons
     /**
-     * Description
+     * Empties the command bar
+     *
      * @method removeAllActionButtons
+     * @public
+     *
      * @memberOf module:CommandBar
      */
     function removeAllActionButtons() {
@@ -131,8 +183,11 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
 
     //Remove Button
     /**
-     * Description
+     * Remove a single action button from the command bar based in its action id
+     *
      * @method removeActionButton
+     * @public
+     *
      * @memberOf module:CommandBar
      * @todo function to remove only one action button based on ID
      */
@@ -142,9 +197,12 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
 
     //Activate button
     /**
-     * Description
+     * Sets the button appearing in the command bar to enabled
+     *
      * @method activateActionButton
      * @param {} _action
+     * @public
+     *
      * @memberOf module:CommandBar
      */
     function enableActionButton(_action) {
@@ -158,9 +216,12 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
 
     //Deactivate Button
     /**
-     * Description
+     * Sets the button appearing in the command bar to disabled
+     *
      * @method deactivateActionButton
      * @param {} _action
+     * @public
+     *
      * @memberOf module:CommandBar
      */
     function disableActionButton(_action) {
@@ -173,9 +234,12 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
     }
 
     /**
-     * Description
+     * Enable all actions in an array
+     *
      * @method activeAllActionButtons
      * @param {} _actions
+     * @public
+     *
      * @memberOf module:CommandBar
      */
     function enableAllActionButtons(_actions) {
@@ -191,9 +255,12 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
     }
 
     /**
-     * Description
+     * Disable all actions in an array
+     *
      * @method deactivateAllActionButtons
      * @param {} _actions
+     * @public
+     *
      * @memberOf module:CommandBar
      */
     function disableAllActionButtons(_actions) {
@@ -209,9 +276,12 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
     }
 
     /**
-     * Description
+     * Updates the action to its "enabled/disabled" state
+     *
      * @method updateAllActionButtons
      * @param {} _actions
+     * @public
+     *
      * @memberOf module:CommandBar
      */
     function updateAllActionButtons(_actions) {
@@ -233,10 +303,13 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
 
 //Setters
     /**
-     * Description
+     * Set an action visibility
+     *
      * @method setActionVisible
      * @param {} _action
      * @param {} _value
+     * @public
+     *
      * @memberOf module:CommandBar
      */
     function setActionVisible(_action, _value) {
