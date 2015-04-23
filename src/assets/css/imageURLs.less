@@ -1,71 +1,32 @@
-//region Generic variables
-@default_bgColor: gray;
+//region Action Buttons
 @no_image: url(../../assets/images/action_buttons/sem-imagem.jpg);
 @no_image-disabled: url(../../assets/images/action_buttons/sem-imagem-disabled.jpg);
-@arrow_dialog_button: url(../../assets/images/arrow-icon_button.png);
-@arrow_dialog_button-hover: url(../../assets/images/arrow-icon_button-hover.png);
-@bg-menu_button: url(../../assets/images/button-bg.png);
-//endregion
 
-//region Scene's background
-@bg-body: url(../../assets/images/shattered.png);
-/* Credits for image used on mainMenu background:
-https://interfacelift.com/wallpaper/details/3335/rotsteinpass.html - "Rotsteinpass" by Jan Thoma */
-@scene-mainMenu: url(../../assets/images/scenes/abertura-provisoria.jpg);
-@scene-lobby: url(../../assets/images/scenes/recepcao.jpg);
-@scene-nursingStation: url(../../assets/images/scenes/posto_de_enfermagem.jpg);
-@scene-maleRoom: url(../../assets/images/scenes/ala_masculina.jpg);
-@scene-femaleRoom: url('');
-@scene-bedroom: url(../../assets/images/scenes/sala_de_leitos.jpg);
-@scene-bedChar01: url(../../assets/images/scenes/leito-char-01.jpg);
-@scene-bedChar02: url(../../assets/images/scenes/leito-char-02.jpg);
-@scene-surgeryCenter: url('');
-@scene-hallway: url(../../assets/images/scenes/corredor.jpg);
-@scene-infirmary: url('');
-@scene-levelTransition: url(../../assets/images/scenes/fim-level.jpg);
-@scene-bedChar02-turned: url(../../assets/images/scenes/leito-char-02-virado.jpg);
-@scene-bedChar02-cushion: url(../../assets/images/scenes/leito-char-02-coxim.jpg);
-@scene-maleRoom-cushion: url(../../assets/images/scenes/ala_masculina-paciente-virado.jpg);
-@scene-endAlpha: url(../../assets/images/scenes/encerra-provisoria-alfa.jpg);
-//endregion
 
-//region modalScenes.less
-@bg-drawer: url(../../assets/images/modalScenes/gaveta.png);
-@bg-bracelet: url(../../assets/images/modalScenes/pulseira.png);
-@bg-termometro: url(../../assets/images/modalScenes/termometro.png);
-@bg-medidor_pressao: url(../../assets/images/modalScenes/medidorPressao.png);
-@bg-relogio_digital: url(../../assets/images/modalScenes/relogioDigital.png);
-@bg-oximetro: url(../../assets/images/modalScenes/oximetro.png);
-@bg-carlos_esme_gouvea: url(../../assets/images/modalScenes/carlos-esme-gouvea.jpg);
-//endregion
+@anotar_prontuario: url(../../assets/images/action_buttons/anotar_prontuario.jpg);
+@anotar_prontuario-disabled: url(../../assets/images/action_buttons/anotar_prontuario-disabled.jpg);
+@ler_prontuario: url(../../assets/images/action_buttons/prontuario.jpg);
+@ler_prontuario-disabled: url(../../assets/images/action_buttons/prontuario-disabled.jpg);
+@confirmar_prontuario: url(../../assets/images/action_buttons/prontuario-confirma.jpg);
+@confirmar_prontuario-disabled: url(../../assets/images/action_buttons/prontuario-confirma-disabled.jpg);
+@pulseira_paciente: url(../../assets/images/action_buttons/pulseira.jpg);
+@pulseira_paciente-disabled: url(../../assets/images/action_buttons/pulseira-disabled.jpg);
+@confirmar_pulseira: url(../../assets/images/action_buttons/confirmar_pulseira.jpg);
+@confirmar_pulseira-disabled: url(../../assets/images/action_buttons/confirmar_pulseira-disabled.jpg);
+@confirmar_paciente: @no_image;
+@fechar_pulseira: @no_image;
 
-//region interactiveObjects.less
-@intObj-thermometer: url(../../assets/images/interactiveObjects/termometro.png);
-@intObj-thermometer-hover: url(../../assets/images/interactiveObjects/termometro-hover.png);
-@intObj-bloodPressureMonitor: url(../../assets/images/interactiveObjects/pressao.png);
-@intObj-bloodPressureMonitor-hover: url(../../assets/images/interactiveObjects/pressao-hover.png);
-@intObj-oximeter: url(../../assets/images/interactiveObjects/oximetro.png);
-@intObj-oximeter-hover: url(../../assets/images/interactiveObjects/oximetro-hover.png);
-@intObj-charMentor: url(../../assets/images/interactiveObjects/char-mentor.png);
-@intObj-charMentor-hover: url(../../assets/images/interactiveObjects/char-mentor-hover.png);
-@intObj-braceletConfirmationGray: url(../../assets/images/interactiveObjects/checkmark-gray.png);
-@intObj-braceletConfirmationGreen: url(../../assets/images/interactiveObjects/checkmark.png);
-@intObj-cushion: url(../../assets/images/interactiveObjects/coxim.png);
-@intObj-cushion-hover: url(../../assets/images/interactiveObjects/coxim-hover.png);
-@intObj-paciente_01-checar_pulseira: url(../../assets/images/interactiveObjects/pulseira-paciente01.png);
-@intObj-watch: url(../../assets/images/interactiveObjects/relogio.png);
-@intObj-watch-hover: url(../../assets/images/interactiveObjects/relogio-hover.png);
-//endregion
+@leito-char-01: url(../../assets/images/action_buttons/leito-char-01.jpg);
+@leito-char-01-disabled: url(../../assets/images/action_buttons/leito-char-01-disabled.jpg);
+@leito-char-02: url(../../assets/images/action_buttons/leito-char-02.jpg);
+@leito-char-02-disabled: url(../../assets/images/action_buttons/leito-char-02-disabled.jpg);
+@posicionar_coxim: url(../../assets/images/action_buttons/posicionar_coxim.jpg);
+@posicionar_coxim-disabled: url(../../assets/images/action_buttons/posicionar_coxim-disabled.jpg);
+@mudar_posicao_paciente: url(../../assets/images/action_buttons/mudar_posicao_paciente.jpg);
+@mudar_posicao_paciente-disabled: url(../../assets/images/action_buttons/mudar_posicao_paciente-disabled.jpg);
 
-//region dialogModal.less
-@char-receptionist: url(../../assets/images/characters/recepcionista.png);
-@char-mentor: url(../../assets/images/characters/mentor.png);
-@char-patient01: url(../../assets/images/characters/char-paciente-01.jpg);
-@char-patient02: url(../../assets/images/characters/char-paciente-02.jpg);
-@char-player: url(../../assets/images/characters/char-jogador.jpg);
-//endregion
+@voltar_menu: url(../../assets/images/action_buttons/voltar_menu.jpg);
 
-//region actionsThumbnails.less - will be discontinued
 @ir_corredor: url(../../assets/images/action_buttons/ir_corredor.jpg);
 @ir_corredor-disabled: url(../../assets/images/action_buttons/ir_corredor-disabled.jpg);
 
@@ -101,58 +62,65 @@ https://interfacelift.com/wallpaper/details/3335/rotsteinpass.html - "Rotsteinpa
 @medir_pulso: @pegar_medidor_pressao;
 @medir_freq_respiratoria: url(../../assets/images/action_buttons/relogio.jpg);
 @medir_saturacao_02: @pegar_oximetro;
-
-@anotar_prontuario: url(../../assets/images/action_buttons/anotar_prontuario.jpg);
-@anotar_prontuario-disabled: url(../../assets/images/action_buttons/anotar_prontuario-disabled.jpg);
-
-@ler_prontuario: url(../../assets/images/action_buttons/prontuario.jpg);
-@ler_prontuario-disabled: url(../../assets/images/action_buttons/prontuario-disabled.jpg);
-
-@confirmar_prontuario: url(../../assets/images/action_buttons/prontuario-confirma.jpg);
-@confirmar_prontuario-disabled: url(../../assets/images/action_buttons/prontuario-confirma-disabled.jpg);
-
-@pulseira_paciente: url(../../assets/images/action_buttons/pulseira.jpg);
-@pulseira_paciente-disabled: url(../../assets/images/action_buttons/pulseira-disabled.jpg);
-
-@confirmar_pulseira: url(../../assets/images/action_buttons/confirmar_pulseira.jpg);
-@confirmar_pulseira-disabled: url(../../assets/images/action_buttons/confirmar_pulseira-disabled.jpg);
-
-@confirmar_paciente: @no_image;
-
-@fechar_pulseira: @no_image;
-
-@leito-char-01: url(../../assets/images/action_buttons/leito-char-01.jpg);
-@leito-char-01-disabled: url(../../assets/images/action_buttons/leito-char-01-disabled.jpg);
-
-@leito-char-02: url(../../assets/images/action_buttons/leito-char-02.jpg);
-@leito-char-02-disabled: url(../../assets/images/action_buttons/leito-char-02-disabled.jpg);
-
-@posicionar_coxim: url(../../assets/images/action_buttons/posicionar_coxim.jpg);
-@posicionar_coxim-disabled: url(../../assets/images/action_buttons/posicionar_coxim-disabled.jpg);
-
-@mudar_posicao_paciente: url(../../assets/images/action_buttons/mudar_posicao_paciente.jpg);
-@mudar_posicao_paciente-disabled: url(../../assets/images/action_buttons/mudar_posicao_paciente-disabled.jpg);
-
-@voltar_menu: url(../../assets/images/action_buttons/voltar_menu.jpg);
 //endregion
 
-// Initialization of devices variables
-//  modalScenes
-@modalScene-drawer-width: 1000px;
-@modalScene-drawer-height: 520px;
-@modalScene-drawer-margin: 5% auto 0;
-@modalScene-carlos_esme_gouvea-width: 0.75 * 2000px;
-@modalScene-carlos_esme_gouvea-height: 0.75 * 1125px;
-@modalScene-carlos_esme_gouvea-margin: 0;
-@modalScene-recordsCarlos-width: 800px;
-@modalScene-recordsCarlos-height: 624px;
-@modalScene-recordsCarlos-margin: 2% auto 0;
-@modalScene-recordsJoao-width: 800px;
-@modalScene-recordsJoao-height: 433px;
-@modalScene-recordsJoao-margin: 5% auto 0;
+//region Characters
+@char-receptionist: url(../../assets/images/characters/recepcionista.png);
+@char-mentor: url(../../assets/images/characters/mentor.png);
+@char-patient01: url(../../assets/images/characters/char-paciente-01.jpg);
+@char-patient02: url(../../assets/images/characters/char-paciente-02.jpg);
+@char-player: url(../../assets/images/characters/char-jogador.jpg);
+//endregion
 
-//  interactiveObjects
-@intObj-cushion-top: 10%;
-@intObj-cushion-left: 34%;
-@intObj-cushion-height: 1 * 400px;
-@intObj-cushion-width: 1 * 400px;
+//region Interactive Objects
+@intObj-thermometer: url(../../assets/images/interactiveObjects/termometro.png);
+@intObj-thermometer-hover: url(../../assets/images/interactiveObjects/termometro-hover.png);
+@intObj-bloodPressureMonitor: url(../../assets/images/interactiveObjects/pressao.png);
+@intObj-bloodPressureMonitor-hover: url(../../assets/images/interactiveObjects/pressao-hover.png);
+@intObj-oximeter: url(../../assets/images/interactiveObjects/oximetro.png);
+@intObj-oximeter-hover: url(../../assets/images/interactiveObjects/oximetro-hover.png);
+@intObj-charMentor: url(../../assets/images/interactiveObjects/char-mentor.png);
+@intObj-charMentor-hover: url(../../assets/images/interactiveObjects/char-mentor-hover.png);
+@intObj-braceletConfirmationGray: url(../../assets/images/interactiveObjects/checkmark-gray.png);
+@intObj-braceletConfirmationGreen: url(../../assets/images/interactiveObjects/checkmark.png);
+@intObj-cushion: url(../../assets/images/interactiveObjects/coxim.png);
+@intObj-cushion-hover: url(../../assets/images/interactiveObjects/coxim-hover.png);
+@intObj-paciente_01-checar_pulseira: url(../../assets/images/interactiveObjects/pulseira-paciente01.png);
+@intObj-watch: url(../../assets/images/interactiveObjects/relogio.png);
+@intObj-watch-hover: url(../../assets/images/interactiveObjects/relogio-hover.png);
+//endregion
+
+//region Misc
+@arrow_dialog_button: url(../../assets/images/misc/arrow-icon_button.png);
+@arrow_dialog_button-hover: url(../../assets/images/misc/arrow-icon_button-hover.png);
+@bg-menu_button: url(../../assets/images/misc/button-bg.png);
+@bg-body: url(../../assets/images/misc/shattered.png);
+//endregion
+
+//region Modal Scenes
+@bg-drawer: url(../../assets/images/modalScenes/gaveta.png);
+@bg-bracelet: url(../../assets/images/modalScenes/pulseira.png);
+@bg-termometro: url(../../assets/images/modalScenes/termometro.png);
+@bg-medidor_pressao: url(../../assets/images/modalScenes/medidorPressao.png);
+@bg-relogio_digital: url(../../assets/images/modalScenes/relogioDigital.png);
+@bg-oximetro: url(../../assets/images/modalScenes/oximetro.png);
+//endregion
+
+//region Scenes
+@scene-mainMenu: url(../../assets/images/scenes/abertura-provisoria.jpg);
+@scene-lobby: url(../../assets/images/scenes/recepcao.jpg);
+@scene-nursingStation: url(../../assets/images/scenes/posto_de_enfermagem.jpg);
+@scene-maleRoom: url(../../assets/images/scenes/ala_masculina.jpg);
+@scene-femaleRoom: url('');
+@scene-bedroom: url(../../assets/images/scenes/sala_de_leitos.jpg);
+@scene-bedChar01: url(../../assets/images/scenes/leito-char-01.jpg);
+@scene-bedChar02: url(../../assets/images/scenes/leito-char-02.jpg);
+@scene-surgeryCenter: url('');
+@scene-hallway: url(../../assets/images/scenes/corredor.jpg);
+@scene-infirmary: url('');
+@scene-levelTransition: url(../../assets/images/scenes/fim-level.jpg);
+@scene-bedChar02-turned: url(../../assets/images/scenes/leito-char-02-virado.jpg);
+@scene-bedChar02-cushion: url(../../assets/images/scenes/leito-char-02-coxim.jpg);
+@scene-maleRoom-cushion: url(../../assets/images/scenes/ala_masculina-paciente-virado.jpg);
+@scene-endAlpha: url(../../assets/images/scenes/encerra-provisoria-alfa.jpg);
+//endregion

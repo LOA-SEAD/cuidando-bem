@@ -1,3 +1,10 @@
+/*
+This file is a configuration script fot the tool "Grunt"
+
+This gruntfile minifies html, css and js of the game project CuidandoBem
+
+@author Otho - Marcelo Lopes Lotufo
+*/
 module.exports = function(grunt) {
 
     var src_path = 'src/';
@@ -8,7 +15,6 @@ module.exports = function(grunt) {
     var documentation_src_path = 'doc_src/';
     var documentation_path = 'docs/';
 
-    // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -159,14 +165,79 @@ module.exports = function(grunt) {
 
             logs: {
                 overwrite: true,
-                src: [build_path + '**/*.js'],             // source files array (supports minimatch)
+                src: [build_path + '**/*.js'],
 
-                replacements: [{
-                    from: /(console.log)(.)*\)/g,                   // string replacement
-                    to: ''
-                }]
+                replacements: [
+                    {
+                        from: /(console.assert)(.)*\)/g,
+                        to: ''
+                    },
+                    {
+                        from: /(console.count)(.)*\)/g,
+                        to: ''
+                    },
+                    {
+                        from: /(console.debug)(.)*\)/g,
+                        to: ''
+                    },
+                    {
+                        from: /(console.dir)(.)*\)/g,
+                        to: ''
+                    },
+                    {
+                        from: /(console.error)(.)*\)/g,
+                        to: ''
+                    },
+                    {
+                        from: /(console.group)(.)*\)/g,
+                        to: ''
+                    },
+                    {
+                        from: /(console.groupCollapsed)(.)*\)/g,
+                        to: ''
+                    },
+                    {
+                        from: /(console.groupEnd)(.)*\)/g,
+                        to: ''
+                    },
+                    {
+                        from: /(console.info)(.)*\)/g,
+                        to: ''
+                    },
+                    {
+                        from: /(console.log)(.)*\)/g,
+                        to: ''
+                    },
+                    {
+                        from: /(console.profile)(.)*\)/g,
+                        to: ''
+                    },
+                    {
+                        from: /(console.profileEnd)(.)*\)/g,
+                        to: ''
+                    },
+                    {
+                        from: /(console.table)(.)*\)/g,
+                        to: ''
+                    },
+                    {
+                        from: /(console.time)(.)*\)/g,
+                        to: ''
+                    },
+                    {
+                        from: /(console.timeEnd)(.)*\)/g,
+                        to: ''
+                    },
+                    {
+                        from: /(console.trace)(.)*\)/g,
+                        to: ''
+                    },
+                    {
+                        from: /(console.warn)(.)*\)/g,
+                        to: ''
+                    }
+                ]
             }
-
         },
 
         requirejs: {

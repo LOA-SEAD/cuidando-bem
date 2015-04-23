@@ -1,6 +1,3 @@
-/*
-
- */
 define([], function () {
     /**
      * @class

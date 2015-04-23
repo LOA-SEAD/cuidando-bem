@@ -1,15 +1,8 @@
-/*
-Character
-
-Stores a character name and cssClass
-
-
-@author Otho - Marcelo Lopes Lotufo
-*/
-
 define([], function(){
 
     /**
+	 * Stores a character name and cssClass
+	 *
      * @class
      * @name Character
      *
