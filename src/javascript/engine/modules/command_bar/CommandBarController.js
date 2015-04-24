@@ -5,7 +5,7 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['text!../assets/html/templates/actionButtonTemplate.html'], function (actionButtonTemplate) {
+define(['text!../assets/html/command_bar/commandBar.html', 'text!../assets/html/command_bar/actionButtonTemplate.html'], function (html, actionButtonTemplate) {
 
 //Attributes
     /**
@@ -39,8 +39,8 @@ define(['text!../assets/html/templates/actionButtonTemplate.html'], function (ac
      *
      * @memberOf module:CommandBar
      */
-    function init() {
-        //bind event listeners to UI
+    function init(selector) {
+        $(selector).append(html);
     }
 
     /**

@@ -5,7 +5,7 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['text!../assets/html/templates/interactiveObjectTemplate.html'], function (interactiveObjectTemplate) {
+define(['text!../assets/html/interactiveObject/interactiveObjects.html', 'text!../assets/html/interactiveObject/interactiveObjectTemplate.html'], function (html, interactiveObjectTemplate) {
 //Attributes
     var divSelector = "#interactiveObjects";
     var interactiveObjectSelector = ".interactiveObject";
@@ -17,8 +17,8 @@ define(['text!../assets/html/templates/interactiveObjectTemplate.html'], functio
      *
      * @memberOf module:InteractiveObject
      */
-    function init() {
-
+    function init(selector) {
+        $(selector).append(html);
     }
 
     /**

@@ -5,7 +5,8 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (dialogButtonTemplate) {
+define(['text!../assets/html/dialog/dialog.html', 'text!../assets/html/dialog/dialogButtonTemplate.html'],
+    function (html, dialogButtonTemplate) {
 
 //Attributes
     var dialogModalSelector = "#dialogBar";
@@ -25,8 +26,8 @@ define(['text!../assets/html/templates/dialogButtonTemplate.html'], function (di
      * @method init
      * @memberOf module:DialogModal
      */
-    function init() {
-        //bind event listeners to UI
+    function init(selector) {
+        $(selector).append(html);
     }
 
     /**

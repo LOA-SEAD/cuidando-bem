@@ -5,7 +5,7 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['text!../assets/html/templates/scoreItemTemplate.html'], function (scoreItemHtml) {
+define(['text!../assets/html/end_of_level/endOfLevel.html', 'text!../assets/html/end_of_level/scoreItemTemplate.html'], function (html, scoreItemHtml) {
 
 //Attributes
 
@@ -23,8 +23,8 @@ define(['text!../assets/html/templates/scoreItemTemplate.html'], function (score
      * @method init
      * @memberOf module:EndOfLevel
      */
-    function init() {
-
+    function init(selector) {
+        $(selector).append(html);
     }
 
     function show(_scoreList) {

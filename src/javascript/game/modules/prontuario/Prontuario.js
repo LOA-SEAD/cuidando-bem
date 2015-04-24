@@ -5,7 +5,7 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(function () {
+define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
 
     //region Attributes
     //region Selectors
@@ -224,6 +224,10 @@ define(function () {
 
     //region Methods
 
+    function init(selector) {
+        $(selector).append(html);
+    }
+
     function open(){
         $(prontuarioSelector).show();
         updateData();
@@ -256,6 +260,8 @@ define(function () {
 
 //Public Interface
     return {
+        init: init,
+
         open: open,
         close: close,
         updateDate: updateData,

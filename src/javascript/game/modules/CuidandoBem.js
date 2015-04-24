@@ -6,10 +6,12 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene', 'scene', 'endOfLevel'], function (Stage, game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene_con, endOfLevel) {
+define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene', 'scene', 'endOfLevel', 'Prontuario', 'Pulseira'],
+    function (Stage, game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene_con, endOfLevel, prontuario, pulseira) {
 
 //Attributes
 
+    var gameStageSelector = "#gameStage";
 
     var Level;
     var Scene;
@@ -30,6 +32,30 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
 
 //Methods
     /**
+     *
+     */
+    function init(){
+
+        Scene_con.init(gameStageSelector);
+
+        ModalScene.init(gameStageSelector);
+
+        InteractiveObject.init(gameStageSelector);
+        endOfLevel.init(gameStageSelector);
+        prontuario.init(gameStageSelector);
+        pulseira.init(gameStageSelector);
+
+        Dialog.init(gameStageSelector);
+
+        CommandBar.init(gameStageSelector);
+
+        changeLevel(game.getCurrentLevel());
+        startLevel();
+
+        CommandBar.hide();
+    }
+
+    /**
      * Description
      * @method start
      * @param {} _gameState
@@ -38,14 +64,8 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     function start(_level) {
         console.group("Game Running:");
 
-        if(_level === undefined){
-            changeLevel(game.getCurrentLevel());
-        }else{
-            changeLevelTo(_level);
-        }
-        CommandBar.hide();
+        changeLevelTo(_level);
 
-        startLevel();
     }
 
     //Level
@@ -394,7 +414,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
 
     function changeSceneCssClassTo(_cssClass){
         var oldSelector = '.' + Scene.getCssClass();
-        var selector = '.' + _cssClass
+        var selector = '.' + _cssClass;
         $(oldSelector).addClass(_cssClass);
         $(selector).removeClass(Scene.getCssClass());
 
@@ -404,6 +424,8 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
 
 //Public Interface
     var ret = {
+        init: init,
+
         start: start,
         changeScene: changeScene,
         changeLevelTo: changeLevelTo,

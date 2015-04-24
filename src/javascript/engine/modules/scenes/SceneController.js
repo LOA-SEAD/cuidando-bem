@@ -5,11 +5,14 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(function () {
+define(['text!../assets/html/scenes/scene.html'], function (html) {
 
 
 //Attributes
 //Methods
+    function init(selector) {
+        $(selector).append(html);
+    }
 
     /**
      * Description
@@ -35,6 +38,7 @@ define(function () {
 //Setters
 //Public Interface
     return {
+        init: init,
         changeScene: changeScene,
         setScene: setScene
     }

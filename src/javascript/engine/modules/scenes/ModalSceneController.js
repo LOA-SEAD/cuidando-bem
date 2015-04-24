@@ -5,7 +5,7 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(function () {
+define(['text!../assets/html/scenes/modalScene.html'], function (html) {
 
 //Attributes
 
@@ -20,8 +20,8 @@ define(function () {
      * @method init
      * @memberOf module:ModalScene
      */
-    function init() {
-
+    function init(selector) {
+        $(selector).append(html);
     }
 
     /**

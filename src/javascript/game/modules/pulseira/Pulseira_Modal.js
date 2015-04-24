@@ -5,7 +5,7 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(function () {
+define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
 
 //Attributes
 
@@ -171,8 +171,8 @@ define(function () {
      * @method init
      * @memberOf module:Pulseira_Controller
      */
-    function init() {
-
+    function init(selector) {
+        $(selector).append(html);
     }
 
     /**

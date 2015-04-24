@@ -27,7 +27,7 @@ define(['Stage', 'CuidandoBem'], function (Stage, Core) {
             Stage.changeScreen(0);
         });
 
-        Core.start();
+        Core.init();
         $('.content').tabs();
     }
 
