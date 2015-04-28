@@ -8,7 +8,6 @@
 define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
 
     //region Attributes
-    //region Selectors
 
     var prontuarioSelector = "#prontuario";
 
@@ -65,10 +64,7 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
     //TODO: Prescrição Médica
 
     //TODO: Prescrição de Enfermagem
-
-    //TODO: SSVV
-
-    var ssvv_rowSelector = ".ssvv_row";
+    var ssvv_tbodySelector = "#ssvv_tbody";
 
     var ssvv_dataSelector = ".data";
     var ssvv_pressaoArterialSelector = ".pa";
@@ -79,25 +75,6 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
 
     var ssvv_data = [
         {
-            data: "45",
-            pa: "",
-            fc: "",
-            fr: "",
-            sat: "",
-            temp: ""
-        },
-        {
-            data: "",
-            pa: "",
-            fc: "",
-            fr: "",
-            sat: "",
-            temp: ""
-        }
-    ];
-
-    var ssvv_regexps = [
-        {
             data: "",
             pa: "",
             fc: "",
@@ -115,10 +92,69 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
         }
     ];
 
-
+    var ssvv_regExps = [
+        {
+            data: "",
+            pa: "",
+            fc: "",
+            fr: "",
+            sat: "",
+            temp: ""
+        },
+        {
+            data: "",
+            pa: "",
+            fc: "",
+            fr: "",
+            sat: "",
+            temp: ""
+        }
+    ];
     //TODO: Anotação de Enfermagem
 
-    //endregion
+    var anotacaoEnfermagem_tbodySelector = "#anotacaoEnfermagem_tbody";
+
+    var anotacaoEnfermagem_dataSelector = ".data";
+    var anotacaoEnfermagem_anotacaoSelector = ".anotacao";
+
+    var anotacaoEnfermagem_data = [
+        {
+            data: "",
+            anotacao: ""
+        },
+        {
+            data: "",
+            anotacao: ""
+        },
+        {
+            data: "",
+            anotacao: ""
+        },
+        {
+            data: "",
+            anotacao: ""
+        }
+    ];
+
+    var anotacaoEnfermagem_regExps = [
+        {
+            data: "",
+            anotacao: ""
+        },
+        {
+            data: "",
+            anotacao: ""
+        },
+        {
+            data: "",
+            anotacao: ""
+        },
+        {
+            data: "",
+            anotacao: ""
+        }
+    ];
+
     //endregion
 
     //region Gets
@@ -270,7 +306,7 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
     }
 
     function setSsvvRowData(_row, _data, _pa, _fc, _fr, _sat, _temp){
-        if(_row < 0 || _row > ssvv_regexps.length){
+        if(_row < 0 || _row > ssvv_data.length){
             throw new Error("Invalid row index");
         }
 
@@ -281,25 +317,46 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
         ssvv_data[_row].sat = _sat;
         ssvv_data[_row].temp = _temp;
 
-        $($(ssvv_dataSelector)[_row]).text(_data);
-        $($(ssvv_pressaoArterialSelector)[_row]).text(_pa);
-        $($(ssvv_frequenciaCardiacaSelector)[_row]).text(_fc);
-        $($(ssvv_frequenciaRespiratoriaSelector)[_row]).text(_fr);
-        $($(ssvv_saturacaoSelector)[_row]).text(_sat);
-        $($(ssvv_temperaturaSelector)[_row]).text(_temp);
+        $($(ssvv_dataSelector, ssvv_tbodySelector)[_row]).val(_data);
+        $($(ssvv_pressaoArterialSelector, ssvv_tbodySelector)[_row]).val(_pa);
+        $($(ssvv_frequenciaCardiacaSelector, ssvv_tbodySelector)[_row]).val(_fc);
+        $($(ssvv_frequenciaRespiratoriaSelector, ssvv_tbodySelector)[_row]).val(_fr);
+        $($(ssvv_saturacaoSelector, ssvv_tbodySelector)[_row]).val(_sat);
+        $($(ssvv_temperaturaSelector, ssvv_tbodySelector)[_row]).val(_temp);
     }
 
     function setSsvvRowRegExp(_row, _data, _pa, _fc, _fr, _sat, _temp){
-        if(_row < 0 || _row > ssvv_regexps.length){
+        if(_row < 0 || _row > ssvv_data.length){
             throw new Error("Invalid row index");
         }
 
-        ssvv_regexps[_row].data = _data;
-        ssvv_regexps[_row].pa = _pa;
-        ssvv_regexps[_row].fc = _fc;
-        ssvv_regexps[_row].fr = _fr;
-        ssvv_regexps[_row].sat = _sat;
-        ssvv_regexps[_row].temp = _temp;
+        ssvv_regExps[_row].data = _data;
+        ssvv_regExps[_row].pa = _pa;
+        ssvv_regExps[_row].fc = _fc;
+        ssvv_regExps[_row].fr = _fr;
+        ssvv_regExps[_row].sat = _sat;
+        ssvv_regExps[_row].temp = _temp;
+    }
+
+    function setAnotacaoEnfermagemRowData(_row, _data, _anotacao){
+        if(_row < 0 || _row > anotacaoEnfermagem_data.length){
+            throw new Error("Invalid row index");
+        }
+
+        anotacaoEnfermagem_data[_row].data = _data;
+        anotacaoEnfermagem_data[_row].anotacao = _anotacao;
+
+        $($(anotacaoEnfermagem_dataSelector, anotacaoEnfermagem_tbodySelector)[_row]).val(_data);
+        $($(anotacaoEnfermagem_anotacaoSelector, anotacaoEnfermagem_tbodySelector)[_row]).val(_anotacao);
+    }
+
+    function setAnotacaoEnfermagemRowRegExp(_row, _data, _anotacao){
+        if(_row < 0 || _row > anotacaoEnfermagem_data.length){
+            throw new Error("Invalid row index");
+        }
+
+        anotacaoEnfermagem_regExps[_row].data = _data;
+        anotacaoEnfermagem_regExps[_row].anotacao = _anotacao;
     }
     //endregion
 
@@ -333,17 +390,50 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
         $(circunferenciaAbdominalSelector).text(circunferenciaAbdominalText);
 
         for(row = 0; row< ssvv_data.length; row++){
-            $($(ssvv_dataSelector)[row]).val(ssvv_data[row].data);
-            $($(ssvv_pressaoArterialSelector)[row]).val(ssvv_data[row].pa);
-            $($(ssvv_frequenciaCardiacaSelector)[row]).val(ssvv_data[row].fc);
-            $($(ssvv_frequenciaRespiratoriaSelector)[row]).val(ssvv_data[row].fr);
-            $($(ssvv_saturacaoSelector)[row]).val(ssvv_data[row].sat);
-            $($(ssvv_temperaturaSelector)[row]).val(ssvv_data[row].temp);
+            $($(ssvv_dataSelector, ssvv_tbodySelector)[row]).val(ssvv_data[row].data);
+            $($(ssvv_pressaoArterialSelector, ssvv_tbodySelector)[row]).val(ssvv_data[row].pa);
+            $($(ssvv_frequenciaCardiacaSelector, ssvv_tbodySelector)[row]).val(ssvv_data[row].fc);
+            $($(ssvv_frequenciaRespiratoriaSelector, ssvv_tbodySelector)[row]).val(ssvv_data[row].fr);
+            $($(ssvv_saturacaoSelector, ssvv_tbodySelector)[row]).val(ssvv_data[row].sat);
+            $($(ssvv_temperaturaSelector, ssvv_tbodySelector)[row]).val(ssvv_data[row].temp);
         }
+        //todo  anotacao enfermagem
     }
 
     function close(){
         $(prontuarioSelector).hide();
+    }
+
+    function isDataValid(){
+
+        var row;
+        var valid = true;
+
+        for(row = 0; row< ssvv_data.length; row++){
+            data = $($(ssvv_dataSelector, ssvv_tbodySelector)[row]).val();
+            pa = $($(ssvv_pressaoArterialSelector, ssvv_tbodySelector)[row]).val();
+            fc = $($(ssvv_frequenciaCardiacaSelector, ssvv_tbodySelector)[row]).val();
+            fr = $($(ssvv_frequenciaRespiratoriaSelector, ssvv_tbodySelector)[row]).val();
+            sat = $($(ssvv_saturacaoSelector, ssvv_tbodySelector)[row]).val();
+            temp = $($(ssvv_temperaturaSelector, ssvv_tbodySelector)[row]).val();
+
+            valid = valid && ssvv_regExps[row].data.test(data);
+            valid = valid && ssvv_regExps[row].pa.test(pa);
+            valid = valid && ssvv_regExps[row].fc.test(fc);
+            valid = valid && ssvv_regExps[row].fr.test(fr);
+            valid = valid && ssvv_regExps[row].sat.test(sat);
+            valid = valid && ssvv_regExps[row].temp.test(temp);
+        }
+
+        for(row = 0; row< anotacaoEnfermagem_data.length; row++){
+            data =  $($(anotacaoEnfermagem_dataSelector, anotacaoEnfermagem_tbodySelector)[row]).val();
+            anotacao = $($(anotacaoEnfermagem_anotacaoSelector, anotacaoEnfermagem_tbodySelector)[row]).val();
+
+            valid = valid && anotacaoEnfermagem_regExps[row].data.test(data);
+            valid = valid && anotacaoEnfermagem_regExps[row].anotacao.test(anotacao);
+        }
+
+        return valid;
     }
 
     //endregion
@@ -354,6 +444,7 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
 
         open: open,
         close: close,
+        isDataValid: isDataValid,
         updateDate: updateData,
 
         getNome: getNome,
@@ -391,8 +482,10 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
         setCircunferenciaAbdominal: setCircunferenciaAbdominal,
 
         setSsvvRowData: setSsvvRowData,
-        setSsvvRowRegExp: setSsvvRowRegExp
+        setSsvvRowRegExp: setSsvvRowRegExp,
 
+        setAnotacaoEnfermagemRowData: setAnotacaoEnfermagemRowData,
+        setAnotacaoEnfermagemRowRegExp: setAnotacaoEnfermagemRowRegExp
     }
 
 });

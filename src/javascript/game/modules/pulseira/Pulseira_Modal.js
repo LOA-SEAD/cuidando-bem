@@ -177,98 +177,14 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
 
     /**
      * Description
-     * @method show
-     * @memberOf module:Pulseira_Controller
-     */
-    function show() {
-        console.info("Show Modal Scene");
-        showing = true;
-        $(divSelector).show();
-    }
-
-    /**
-     * Description
      * @method open
 
      * @memberOf module:Pulseira_Controller
      */
     function open() {
-        show();
-
-        //region name selector and display
-        $(nameDisplaySelector).click(function(){
-            $(nameInputSelector).show();
-            $(nameInputSelector).val($(this).text());
-            $(nameInputSelector).focus();
-            $(nameInputSelector).keydown(function(e){
-                if (!e) e = window.event;
-                var keyCode = e.keyCode || e.which;
-                if (keyCode == '13'){
-                    $(this).blur();
-                }
-            })
-        });
-
-        $(nameInputSelector).blur(function(){
-            name = $(this).val();
-            validName = nameRegExp.test(name);
-
-            $(nameInputSelector).unbind('keydown');
-
-            $(nameDisplaySelector).text(name);
-            $(this).hide();
-        });
-        //endregion
-
-        //region leito selector and display
-        $(leitoDisplaySelector).click(function(){
-            $(leitoInputSelector).show();
-            $(leitoInputSelector).val($(this).text());
-            $(leitoInputSelector).focus();
-            $(leitoInputSelector).keydown(function(e){
-                if (!e) e = window.event;
-                var keyCode = e.keyCode || e.which;
-                if (keyCode == '13'){
-                    $(this).blur();
-                }
-            })
-        });
-
-        $(leitoInputSelector).blur(function(){
-            leito = $(this).val();
-            validLeito = leitoRegExp.test(leito);
-
-            $(leitoInputSelector).unbind('keydown');
-
-            $(leitoDisplaySelector).text(leito);
-            $(this).hide();
-        });
-        //endregion
-
-        //region data selector and display
-        $(dataDisplaySelector).click(function(){
-            $(dataInputSelector).show();
-            $(dataInputSelector).val($(this).text());
-            $(dataInputSelector).focus();
-            $(dataInputSelector).keydown(function(e){
-                if (!e) e = window.event;
-                var keyCode = e.keyCode || e.which;
-                if (keyCode == '13'){
-                    $(this).blur();
-                }
-            })
-        });
-
-        $(dataInputSelector).blur(function(){
-            data = $(this).val();
-            validData = dataRegExp.test(data);
-
-            $(dataInputSelector).unbind('keydown');
-
-            $(dataDisplaySelector).text(data);
-            $(this).hide();
-        });
-        //endregion
+        console.info("Show Modal Scene");
+        showing = true;
+        $(divSelector).show();
     }
 
     /**
@@ -323,6 +239,20 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
         return validLeito;
     }
 
+    function isAllDataValid(){
+        var valid = true;
+
+        var data = $(dataInputSelector).val();
+        var leito = $(leitoInputSelector).val();
+        var name = $(nameInputSelector).val();
+
+        valid = valid && nameRegExp.test(name);
+        valid = valid && leitoRegExp.test(leito);
+        valid = valid && dataRegExp.test(data);
+
+        return valid;
+    }
+
 //Setters
     /**
      * Description
@@ -375,6 +305,7 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
         isNameValid: isNameValid,
         isDataValid: isDataValid,
         isLeitoValid: isLeitoValid,
+        isAllDataValid: isAllDataValid,
 
         setNameRegExp: setNameRegExp,
         setDataRegExp: setDataRegExp,

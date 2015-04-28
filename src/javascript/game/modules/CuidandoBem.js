@@ -31,9 +31,6 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
 
 
 //Methods
-    /**
-     *
-     */
     function init(){
 
         Scene_con.init(gameStageSelector);

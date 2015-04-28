@@ -480,7 +480,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
                 .setCssClass("action-ir_sala_de_leitos")
                 .onClick(function (){
-                    if(Pulseira.isNameValid() && Pulseira.isLeitoValid() && Pulseira.isDataValid()){
+                    if(Pulseira.isAllDataValid()){
                         console.log("Action: action-ir_sala_de_leitos");
                         core.changeScene(2);
                     }else{
