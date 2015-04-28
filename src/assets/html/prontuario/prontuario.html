@@ -11,6 +11,8 @@
             <li><a href="#bloco5">Sinais Vitais</a></li>
             <li><a href="#bloco6">Anotação Enfermagem</a></li>
         </ul>
+
+        <!-- Paciente -->
         <div id="bloco1" class="outerBlock">
             <div class="block">
                 <div class="nome container">
@@ -59,6 +61,7 @@
             </div>
         </div>
 
+        <!-- Internacao -->
         <div id="bloco2" class="outerBlock">
             <div class="block">
                 <div class="dataInternacaoContainer container">
@@ -77,7 +80,7 @@
                         Antecedentes hospitalares:
                     </div>
                     <div class="oneRight">
-                        <span classid="pront_antecedentes"></span>
+                        <span id="pront_antecedentes"></span>
                     </div>
                 </div>
 
@@ -129,6 +132,7 @@
             </div>
         </div>
 
+        <!-- Precricao Medica -->
         <div id="bloco3" class="outerBlock">
             <div class="block">
                 <div class="row">
@@ -184,6 +188,7 @@
             </div>
         </div>
 
+        <!-- Prescricao Enfermagem -->
         <div id="bloco4" class="outerBlock">
             <div class="block">
                 <div class="row">
@@ -218,6 +223,7 @@
             </div>
         </div>
 
+        <!-- Sinais Vitais -->
         <div id="bloco5" class="outerBlock">
             <div class="block">
                 <div class="row">
@@ -225,37 +231,38 @@
                 </div>
                 <table class="col6">
                     <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>PA</th>
-                        <th>FC</th>
-                        <th>FR</th>
-                        <th>Sat.02</th>
-                        <th>Temperatura</th>
-                    </tr>
+                        <tr>
+                            <th>Data</th>
+                            <th>PA</th>
+                            <th>FC</th>
+                            <th>FR</th>
+                            <th>Sat.02</th>
+                            <th>Temperatura</th>
+                        </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    <tbody id="ssvv_tbody">
+                        <tr class="ssvv_row">
+                            <td><input class="data" type="text"></td>
+                            <td><input class="pa" type="text"></td>
+                            <td><input class="fc" type="text"></td>
+                            <td><input class="fr" type="text"></td>
+                            <td><input class="sat" type="text"></td>
+                            <td><input class="temp" type="text"></td>
+                        </tr>
+                        <tr class="ssvv_row">
+                            <td><input class="data" type="text"></td>
+                            <td><input class="pa" type="text"></td>
+                            <td><input class="fc" type="text"></td>
+                            <td><input class="fr" type="text"></td>
+                            <td><input class="sat" type="text"></td>
+                            <td><input class="temp" type="text"></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
+        <!-- Anotação Enfermagem -->
         <div id="bloco6" class="outerBlock">
             <div class="block">
                 <div class="row">

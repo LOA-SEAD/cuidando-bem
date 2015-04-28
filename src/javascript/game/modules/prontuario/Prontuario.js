@@ -68,6 +68,54 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
 
     //TODO: SSVV
 
+    var ssvv_rowSelector = ".ssvv_row";
+
+    var ssvv_dataSelector = ".data";
+    var ssvv_pressaoArterialSelector = ".pa";
+    var ssvv_frequenciaCardiacaSelector = ".fc";
+    var ssvv_frequenciaRespiratoriaSelector = ".fr";
+    var ssvv_saturacaoSelector = ".sat";
+    var ssvv_temperaturaSelector = ".temp";
+
+    var ssvv_data = [
+        {
+            data: "45",
+            pa: "",
+            fc: "",
+            fr: "",
+            sat: "",
+            temp: ""
+        },
+        {
+            data: "",
+            pa: "",
+            fc: "",
+            fr: "",
+            sat: "",
+            temp: ""
+        }
+    ];
+
+    var ssvv_regexps = [
+        {
+            data: "",
+            pa: "",
+            fc: "",
+            fr: "",
+            sat: "",
+            temp: ""
+        },
+        {
+            data: "",
+            pa: "",
+            fc: "",
+            fr: "",
+            sat: "",
+            temp: ""
+        }
+    ];
+
+
     //TODO: Anotação de Enfermagem
 
     //endregion
@@ -220,6 +268,39 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
         circunferenciaAbdominalText = _circunferenciaAbdominalText;
         $(circunferenciaAbdominalSelector).text(circunferenciaAbdominalText);
     }
+
+    function setSsvvRowData(_row, _data, _pa, _fc, _fr, _sat, _temp){
+        if(_row < 0 || _row > ssvv_regexps.length){
+            throw new Error("Invalid row index");
+        }
+
+        ssvv_data[_row].data = _data;
+        ssvv_data[_row].pa = _pa;
+        ssvv_data[_row].fc = _fc;
+        ssvv_data[_row].fr = _fr;
+        ssvv_data[_row].sat = _sat;
+        ssvv_data[_row].temp = _temp;
+
+        $($(ssvv_dataSelector)[_row]).text(_data);
+        $($(ssvv_pressaoArterialSelector)[_row]).text(_pa);
+        $($(ssvv_frequenciaCardiacaSelector)[_row]).text(_fc);
+        $($(ssvv_frequenciaRespiratoriaSelector)[_row]).text(_fr);
+        $($(ssvv_saturacaoSelector)[_row]).text(_sat);
+        $($(ssvv_temperaturaSelector)[_row]).text(_temp);
+    }
+
+    function setSsvvRowRegExp(_row, _data, _pa, _fc, _fr, _sat, _temp){
+        if(_row < 0 || _row > ssvv_regexps.length){
+            throw new Error("Invalid row index");
+        }
+
+        ssvv_regexps[_row].data = _data;
+        ssvv_regexps[_row].pa = _pa;
+        ssvv_regexps[_row].fc = _fc;
+        ssvv_regexps[_row].fr = _fr;
+        ssvv_regexps[_row].sat = _sat;
+        ssvv_regexps[_row].temp = _temp;
+    }
     //endregion
 
     //region Methods
@@ -250,6 +331,15 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
         $(pesoDisplaySelector).text(pesoText);
         $(alturaDisplaySelector).text(alturaText);
         $(circunferenciaAbdominalSelector).text(circunferenciaAbdominalText);
+
+        for(row = 0; row< ssvv_data.length; row++){
+            $($(ssvv_dataSelector)[row]).val(ssvv_data[row].data);
+            $($(ssvv_pressaoArterialSelector)[row]).val(ssvv_data[row].pa);
+            $($(ssvv_frequenciaCardiacaSelector)[row]).val(ssvv_data[row].fc);
+            $($(ssvv_frequenciaRespiratoriaSelector)[row]).val(ssvv_data[row].fr);
+            $($(ssvv_saturacaoSelector)[row]).val(ssvv_data[row].sat);
+            $($(ssvv_temperaturaSelector)[row]).val(ssvv_data[row].temp);
+        }
     }
 
     function close(){
@@ -298,7 +388,10 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
         setObservacoes: setObservacoes,
         setPeso: setPeso,
         setAltura: setAltura,
-        setCircunferenciaAbdominal: setCircunferenciaAbdominal
+        setCircunferenciaAbdominal: setCircunferenciaAbdominal,
+
+        setSsvvRowData: setSsvvRowData,
+        setSsvvRowRegExp: setSsvvRowRegExp
 
     }
 
