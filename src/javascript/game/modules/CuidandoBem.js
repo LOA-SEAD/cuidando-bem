@@ -1,5 +1,5 @@
 /**
- * This module is the core module for the game CuidandoBem. It's intention is to provide methods that communicate between all the other modules in game
+ * This module is the core module for the game CuidandoBem. It's intention is to provide methods that communicate between all the other modules used in game
  *
  * @name CuidandoBem
  * @module

@@ -26,17 +26,6 @@ define(['text!../assets/html/scenes/modalScene.html'], function (html) {
 
     /**
      * Description
-     * @method show
-     * @memberOf module:ModalScene
-     */
-    function show() {
-        console.info("Show Modal Scene");
-        showing = true;
-        $(divSelector).show();
-    }
-
-    /**
-     * Description
      * @method open
      * @param {} _modalScene
      * @memberOf module:ModalScene
@@ -54,7 +43,11 @@ define(['text!../assets/html/scenes/modalScene.html'], function (html) {
 
 
         lastSceneClass = _modalScene.getCssClass();
-        show();
+
+
+        console.info("Show Modal Scene");
+        showing = true;
+        $(divSelector).show();
     }
 
     /**

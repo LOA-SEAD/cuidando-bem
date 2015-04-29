@@ -16,7 +16,7 @@ define([], function(){
 	function Character(_name, _cssClass){
 
         /**
-         *
+         * Character name that will be displayed in the Dialog Modal
          * @type {string}
          * @private
          *
@@ -25,7 +25,7 @@ define([], function(){
 		var name = _name;
 
         /**
-         *
+         * Css class of the character portrait
          * @type {string}
          * @private
          *
@@ -34,7 +34,7 @@ define([], function(){
 		var cssClass = _cssClass;
 
         /**
-         *
+         * Returns cssClass
          * @method getCssClass
          * @returns {string} cssClass
          *
@@ -45,7 +45,7 @@ define([], function(){
 		}
 
         /**
-         *
+         * Sets cssClass
          * @method setCssClass
          * @param {string} _cssClass
          *
@@ -57,7 +57,7 @@ define([], function(){
 		}
 
         /**
-         *
+         * Returns Name
          * @method getName
          * @returns {string} name
          *
@@ -68,7 +68,7 @@ define([], function(){
 		}
 
         /**
-         *
+         * Sets name
          * @method setName
          * @param {string} _name
          *
