@@ -7,7 +7,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario) {
 
         //region Imports
-        var Dialogs = require("Dialogs").tutorial;
+        var Dialogs = require("Dialogs_data").tutorial;
         //endregion
 
         var level = new Level("Level Tutorial");

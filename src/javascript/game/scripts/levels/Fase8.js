@@ -7,8 +7,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, Commons, Pulseira, Prontuario) {
 
         //region Imports
-        var Dialogs = require('Dialogs').fase1;
-        var Alerts = require('Dialogs').alertas;
+        var Dialogs = require('Dialogs_data').fase1;
+        var Alerts = require('Dialogs_data').alertas;
         //endregion
 
         var level = new Level("Level 8");

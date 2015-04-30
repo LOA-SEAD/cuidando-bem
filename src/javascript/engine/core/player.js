@@ -9,17 +9,12 @@
  * @author Otho - Marcelo Lopes Lotufo
  */
 
-//TODO: Modulo "SaveLoadGame" não deveria ser carregado como pre requisito do módulo player. Uma vez que o módulo player havia sido projetado para funcionar de forma independente de outros módulos
-//TODO: Módulo "Sounds" não deveria ser carregado como pre requisito do módulo player. Deveria existir uma função de init para carregamento dos arquivos de áudio.
-
 define(function(){
     console.info("Player - module loaded");
 
-    var Sounds = require('Sounds');
-    var SaveLoadGame = require('SaveLoadGame');
 
-    var isMuted = SaveLoadGame.isMuted();
-    var masterVolume = Sounds.masterVolume;
+    var isMuted = false;
+    var masterVolume = 1;
     var pastMasterVolume;
 
     var normalSound = undefined;
@@ -47,8 +42,15 @@ define(function(){
     var AUDIO_PERCENTAGE_TO_NEXT_IN_RANGE = 98.5;
 
 
+    function load(baseDir, pathsObj){
+        console.groupCollapsed("Loading Sounds: ");
+        deepCopy(baseDir, pathsObj, audios);
+        if(isMuted)
+            setSoundToMuted();
+        console.groupEnd();
+    }
 
-    function deepCopy(from, to){
+    function deepCopy(baseDir, from, to){
         for(audio in from){
             if(typeof from[audio] === "object"){
                 if(from[audio] instanceof Array){
@@ -56,7 +58,7 @@ define(function(){
                 }else{
                     to[audio] = {};
                 }
-                deepCopy(from[audio], to[audio]);
+                deepCopy(baseDir, from[audio], to[audio]);
             }else{
                 var path = from[audio];
                 var parser = path.split('.');
@@ -64,24 +66,18 @@ define(function(){
                 var extension = parser[1];
 
 
-                to[audio] = new Audio(Sounds.baseDir + path);
+                to[audio] = new Audio(baseDir + path);
                 sound = to[audio];
 
                 console.log("\tName: " + fileName, "Extension: " + extension);
 
                 sound.loop = false;
-                sound.volume = Sounds.masterVolume;
+                sound.volume = masterVolume;
                 sound.vol = sound.volume;
                 sound.load();
             }
         }
     }
-
-    console.groupCollapsed("Loading Sounds: ");
-    deepCopy(Sounds.paths, audios);
-    if(isMuted)
-        setSoundToMuted();
-    console.groupEnd();
 
     function getAsArray(obj){
         var arr = [];
@@ -298,6 +294,7 @@ define(function(){
 
         setSoundToMuted();
     }
+
     function setSoundToMuted(){
         if (isMuted) {
             pastMasterVolume = masterVolume;
@@ -317,6 +314,7 @@ define(function(){
     return{
         audios: audios,
 
+        load: load,
         play: playRandom,
         stop: stop,
         mute: mute,

@@ -8,25 +8,26 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(["Images"], function(Images){
+define([], function(){
     console.info("ImageLoader - module loaded");
 
-    var paths = getAsArray(Images.paths);
-    console.info("Images to load: ", paths.length);
+    var loading = false;
     var loaded = 0;
+    var imagesToLoad = 0;
+    var callback;
 
-    function getAsArray(obj){
+    function getAsArray(baseDir, obj){
         var arr = [];
         if(typeof obj === "object"){
             if(obj instanceof Array){
                 arr = arr.concat(obj);
             }else {
                 for (x in obj) {
-                    arr = arr.concat(getAsArray(obj[x]));
+                    arr = arr.concat(getAsArray(baseDir, obj[x]));
                 }
             }
         }else{
-            arr.push(Images.baseDir + obj);
+            arr.push(baseDir + obj);
         }
 
         return arr;
@@ -39,20 +40,44 @@ define(["Images"], function(Images){
         //console.log(arguments.length, arguments[0]);
         console.log("Loaded Image: " + evt.target.src);
 
-        if(loaded == paths.length) {
+        if(loaded == imagesToLoad) {
             console.groupEnd();
-            window.init();
+            loading = false;
+            callback();
         }
     }
 
-    console.groupCollapsed("Loading Images: ");
-    for(id in paths){
-        var path = paths[id];
-        var image = new Image();
+
+    function load(baseDir, pathObject, _callback){
+        if(loading){
+            throw new Error("Can't load two path objects at the same time");
+        }
+        else{
+            loading = true;
+            loaded = 0;
 
 
-        image.onload = onLoad;
-        image.src = path;
+            callback = _callback;
+
+            var paths = getAsArray(baseDir, pathObject);
+            imagesToLoad = paths.length;
+
+            console.info("Images to load: ", imagesToLoad);
+            console.groupCollapsed("Loading Images: ");
+
+
+            for(id in paths){
+                var path = paths[id];
+                var image = new Image();
+
+
+                image.onload = onLoad;
+                image.src = path;
+            }
+        }
     }
 
+    return {
+        load: load
+    }
 });

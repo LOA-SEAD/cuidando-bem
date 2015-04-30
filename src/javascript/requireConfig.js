@@ -1,8 +1,7 @@
 /*
- This file is required by require.js to work properly. It configures all file paths so it is easier
- to import them inside each module.
+    This file configures all paths to modules used by the project
 
- @author Otho - Marcelo Lopes Lotufo
+    @author Otho - Marcelo Lopes Lotufo
  */
 
 //Configure all files paths aliases
@@ -56,25 +55,8 @@ require.config({
         Commons: 'game/scripts/Commons',
 
         //Refs
-        Dialogs: 'references/Dialog_texts',
-        Images: 'references/Images',
-        Sounds: 'references/Sounds'
+        Dialogs_data: 'references/Dialog_data',
+        Images_urls: 'references/Images_urls',
+        Sounds_urls: 'references/Sounds_urls'
     }
 });
-require(['Dialogs', 'Images', 'Sounds'], function (){
-    //Init the app when everything is ready
-    require(['SaveLoadGame'], function(){
-        require(['Player', 'ImageLoader']);
-    });
-
-    window.init = function(){
-        require(["jquery", "less"], function () {
-            console.group("Cuidando Bem Log:");
-            require(['jqueryui', "main"]);
-        });
-    };
-});
-
-
-
-
