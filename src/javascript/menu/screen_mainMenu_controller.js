@@ -6,7 +6,7 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['Stage', 'CuidandoBem'], function (Stage, Core) {
+define(['Stage'], function (Stage) {
 
     var Player = require('Player');
 

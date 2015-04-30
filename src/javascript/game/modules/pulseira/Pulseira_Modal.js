@@ -8,7 +8,6 @@
 define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
 
 //Attributes
-
     /**
      * Description
      * @type {string}
@@ -17,15 +16,6 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
      * @memberOf module:Pulseira_Controller
      */
     var divSelector = "#pulseira_modal";
-
-    /**
-     * Description
-     * @type {string}
-     * @private
-     *
-     * @memberOf module:Pulseira_Controller
-     */
-    var nameDisplaySelector = "#name_display";
 
     /**
      * Description
@@ -52,15 +42,6 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
      *
      * @memberOf module:Pulseira_Controller
      */
-    var leitoDisplaySelector = "#leito_display";
-
-    /**
-     * Description
-     * @type {string}
-     * @private
-     *
-     * @memberOf module:Pulseira_Controller
-     */
     var leitoInputSelector = "#leito_input";
 
     /**
@@ -71,15 +52,6 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
      * @memberOf module:Pulseira_Controller
      */
     var validLeito = false;
-
-    /**
-     * Description
-     * @type {string}
-     * @private
-     *
-     * @memberOf module:Pulseira_Controller
-     */
-    var dataDisplaySelector = "#data_display";
 
     /**
      * Description
@@ -110,15 +82,6 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
 
     /**
      * Description
-     * @type {string}
-     * @private
-     *
-     * @memberOf module:Pulseira_Controller
-     */
-    var name;
-
-    /**
-     * Description
      * @type {regex}
      * @private
      *
@@ -133,25 +96,7 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
      *
      * @memberOf module:Pulseira_Controller
      */
-    var leito;
-
-    /**
-     * Description
-     * @type {regex}
-     * @private
-     *
-     * @memberOf module:Pulseira_Controller
-     */
     var leitoRegExp;
-
-    /**
-     * Description
-     * @type {string}
-     * @private
-     *
-     * @memberOf module:Pulseira_Controller
-     */
-    var data;
 
     /**
      * Description
@@ -162,8 +107,6 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
      */
     var dataRegExp;
 
-    //TODO: review this propertie, it may not be needed
-    var lastSceneClass = "";
 //Methods
     //Init
     /**

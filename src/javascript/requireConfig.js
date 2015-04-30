@@ -39,7 +39,7 @@ require.config({
         //Game
         CuidandoBem: 'game/modules/CuidandoBem',
 
-        SaveLoadGame: 'game/modules/save/SaveLoadGame',
+        Storage: 'game/modules/storage/Storage',
 
         Flag: 'game/modules/Flag',
         Level: 'game/modules/Level',

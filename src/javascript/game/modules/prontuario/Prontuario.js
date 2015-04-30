@@ -61,9 +61,9 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
     var circunferenciaAbdominalSelector = "#pront_circunferencia_abdominal";
     var circunferenciaAbdominalText;
 
-    //TODO: Prescrição Médica
+    //TODO: Prescriï¿½ï¿½o Mï¿½dica
 
-    //TODO: Prescrição de Enfermagem
+    //TODO: Prescriï¿½ï¿½o de Enfermagem
     var ssvv_tbodySelector = "#ssvv_tbody";
 
     var ssvv_dataSelector = ".data";
@@ -110,7 +110,7 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
             temp: ""
         }
     ];
-    //TODO: Anotação de Enfermagem
+    //TODO: Anotaï¿½ï¿½o de Enfermagem
 
     var anotacaoEnfermagem_tbodySelector = "#anotacaoEnfermagem_tbody";
 
@@ -364,6 +364,8 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
 
     function init(selector) {
         $(selector).append(html);
+
+        $('.content').tabs();
     }
 
     function open(){

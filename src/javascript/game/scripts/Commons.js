@@ -9,7 +9,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, Character) {
         console.groupCollapsed("Commons:");
 
-        //TODO: Set css classes ("leito", "farmacia")
         var lib = {
             //region Scenes
             scenes : {

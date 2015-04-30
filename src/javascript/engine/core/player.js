@@ -51,6 +51,7 @@ define(function(){
     }
 
     function deepCopy(baseDir, from, to){
+        var audio;
         for(audio in from){
             if(typeof from[audio] === "object"){
                 if(from[audio] instanceof Array){
@@ -85,6 +86,7 @@ define(function(){
             if(obj instanceof Array){
                 arr = arr.concat(obj);
             }else {
+                var x;
                 for (x in obj) {
                     arr = arr.concat(getAsArray(obj[x]));
                 }
@@ -227,6 +229,7 @@ define(function(){
 
     function playNextInRange(){
         var rangeIdArray = [];
+        var i;
         for(i in rangeList)
             rangeIdArray.push(i);
 
@@ -265,6 +268,7 @@ define(function(){
     function setVolumeOfTo(obj, volume){
         var playList = getAsArray(obj);
 
+        var soundId;
         for(soundId in playList) {
             var sound = playList[soundId];
             sound.vol = volume;
@@ -275,6 +279,7 @@ define(function(){
     function resetAllVolumes(){
         var playList = getAsArray(audios);
 
+        var soundId;
         for(soundId in playList) {
             var sound = playList[soundId];
 

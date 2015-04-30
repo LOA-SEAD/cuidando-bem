@@ -9,9 +9,9 @@
 define(['Stage', 'levelsData'], function (Stage, game) {
 
     var Player = require('Player');
-    var SaveLoadGame = require('SaveLoadGame');
+    var Storage = require('Storage');
 
-    var save = SaveLoadGame.getLoadedSlot();
+    var save = Storage.getLoadedSlot();
 
     /**
      * This method is called when the screen levelSelect is loaded
@@ -23,7 +23,7 @@ define(['Stage', 'levelsData'], function (Stage, game) {
      */
     function load() {
 
-        //for(i=0; i< save.levels.length; i++){
+        var i;
         for(i in save.levels){
             if(i > save.lastLevel + 1) {
                 $($('.level')[i]).addClass('disabled');

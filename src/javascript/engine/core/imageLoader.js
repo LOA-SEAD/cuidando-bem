@@ -11,13 +11,60 @@
 define([], function(){
     console.info("ImageLoader - module loaded");
 
+    /**
+     * This bool stores if the imageLoader is already loading an array of images or not
+     *
+     * @type {boolean}
+     * @private
+     *
+     * @memberOf module:Image Loader
+     */
     var loading = false;
+
+    /**
+     * This number controls how many images have been loaded
+     *
+     * @type {number}
+     * @private
+     *
+     * @memberOf module:Image Loader
+     */
     var loaded = 0;
+
+    /**
+     * This number controls how many images will be loaded
+     *
+     * @type {number}
+     * @private
+     *
+     * @memberOf module:Image Loader
+     */
     var imagesToLoad = 0;
+
+    /**
+     * This is a callback function that is called when the imageLoader has finished to load an array of images
+     *
+     * @type {function}
+     * @private
+     *
+     * @memberOf module:Image Loader
+     */
     var callback;
 
+    /**
+     * Receives a base path and an object filled with strings
+     * This method will convert all of this in an array of paths to be loaded
+     *
+     * @param baseDir
+     * @param obj
+     * @returns {Array}
+     * @private
+     *
+     * @memberOf module:Image Loader
+     */
     function getAsArray(baseDir, obj){
         var arr = [];
+        var x;
         if(typeof obj === "object"){
             if(obj instanceof Array){
                 arr = arr.concat(obj);
@@ -33,6 +80,14 @@ define([], function(){
         return arr;
     }
 
+    /**
+     * When an image is loaded this function is called.
+     * For each image loaded, count it in loaded and if loaded is equal to imagesToLoad call the callback function
+     *
+     * @private
+     *
+     * @memberOf module:Image Loader
+     */
     function onLoad(){
         var evt = arguments[0];
 
@@ -48,11 +103,24 @@ define([], function(){
     }
 
 
+    /**
+     * This function is called to load all the images inside the game
+     *
+     * @param baseDir
+     * @param pathObject
+     * @param _callback
+     *
+     * @public
+     *
+     * @memberOf module:Image Loader
+     */
     function load(baseDir, pathObject, _callback){
         if(loading){
             throw new Error("Can't load two path objects at the same time");
         }
         else{
+            var id;
+
             loading = true;
             loaded = 0;
 

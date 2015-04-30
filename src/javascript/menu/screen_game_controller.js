@@ -28,7 +28,6 @@ define(['Stage', 'CuidandoBem'], function (Stage, Core) {
         });
 
         Core.init();
-        $('.content').tabs();
     }
 
     /**

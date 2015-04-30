@@ -76,7 +76,6 @@ define(function () {
      * @param {string} _name
      * @param {string} _htmlPage
      * @param {string} _controllerName
-     * @return ObjectExpression
      * @private
      *
      * @memberOf module:Stage

@@ -1,12 +1,4 @@
-/*
-
-This module is used as a "Class" file for Action
-
-@author Otho - Marcelo Lopes Lotufo
-
- */
 define([], function () {
-
 
     var counter = -1;
 

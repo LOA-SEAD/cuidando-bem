@@ -9,10 +9,10 @@
 define(['Stage'], function (Stage) {
 
     var Player = require('Player');
-    var SaveLoadGame = require('SaveLoadGame');
-    var saves = SaveLoadGame.load();
+    var Storage = require('Storage');
+    var saves = Storage.load();
 
-    var selectedId = SaveLoadGame.getSelectedId();
+    var selectedId = Storage.getSelectedId();
 
     var isSelectedEmpty = saves[selectedId].empty;
 
@@ -48,12 +48,12 @@ define(['Stage'], function (Stage) {
                 },
                 "Apagar": function() {
                     $( this ).dialog( "close" );
-                    SaveLoadGame.reset(selectedId);
+                    Storage.reset(selectedId);
 
                     $(slotsSel[selectedId]).removeClass("filled");
                     $(slotsSel[selectedId]).addClass("empty");
 
-                    saves[selectedId] = SaveLoadGame.loadSlot(selectedId);
+                    saves[selectedId] = Storage.loadSlot(selectedId);
                     var save = saves[selectedId];
                     isSelectedEmpty = save.empty;
                     $(slotsSel[selectedId]).text(save.name);
@@ -87,9 +87,9 @@ define(['Stage'], function (Stage) {
                      if(name === null || name === undefined || name === '' || name === defaultNameInputValue)
                         name = defaultNameInputValue +" "+ (selectedId + 1);
 
-                     SaveLoadGame.setupSlot(selectedId, name);
+                     Storage.setupSlot(selectedId, name);
 
-                     SaveLoadGame.loadSlot(selectedId);
+                     Storage.loadSlot(selectedId);
 
                      isSelectedEmpty = false;
                      checkIfSlotIsEmpty();
@@ -114,6 +114,7 @@ define(['Stage'], function (Stage) {
 
         checkIfSlotIsEmpty();
 
+        var i;
         for(i in saves){
             var save = saves[i];
 
@@ -143,7 +144,7 @@ define(['Stage'], function (Stage) {
 
         $('#loadSlot').click(function(){
             if(!isSelectedEmpty) {
-                SaveLoadGame.loadSlot(selectedId);
+                Storage.loadSlot(selectedId);
                 Stage.changeScreen(6);
             }else{
                 $(typeNameDialogSelector)
@@ -161,7 +162,7 @@ define(['Stage'], function (Stage) {
             isSelectedEmpty = save.empty;
             checkIfSlotIsEmpty();
 
-            SaveLoadGame.setSelectedId(selectedId);
+            Storage.setSelectedId(selectedId);
         });
     }
 

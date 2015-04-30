@@ -20,8 +20,7 @@ define([], function () {
      *
      * @memberOf module:LevelsData
      */
-    var initialLevel = 0;
-    var currentLevel = initialLevel;
+    var currentLevel = 0;
 
 //Methods
     /**
@@ -68,16 +67,11 @@ define([], function () {
         currentLevel = _level;
     }
 
-    function getInitialLevel(){
-        return levels[initialLevel];
-    }
-
 //Public Interface
     return {
         registerLevel: registerLevel,
 
         getCurrentLevel: getCurrentLevel,
-        getInitialLevel: getInitialLevel,
 
         setCurrentLevel: setCurrentLevel
     }
