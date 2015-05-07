@@ -1,1 +1,53 @@
-require(["requireConfig"],function(){require(["ImageLoader","Images_urls"],function(e,t){e.load(t.baseDir,t.paths,function(){require(["Storage"],function(e){require(["Player","Sounds_urls"],function(e,t){e.setMasterVolumeTo(t.masterVolume),e.load(t.baseDir,t.paths),require(["jquery"],function(){require(["jqueryui"],function(){require(["Stage","stageConfig","CuidandoBem","gameConfig","Dialogs_data"],function(e){$("document").ready(function(){e.setContainer("#stage"),e.start()})})})})})})})})});
+/*
+    This file loads all modules that are required for the game to work.
+
+    @authro Otho - Marcelo Lopes Lotufo
+ */
+
+//Load requireConfig
+require(['requireConfig'], function(){
+    console.group("Cuidando Bem Log:");
+
+    //Load imageLoader and Images_urls
+    //require(['ImageLoader', 'Images_urls'], function(imageLoader, images) {
+
+        //Load all the images in Image_urls
+        //imageLoader.load(images.baseDir, images.paths, function () {
+
+            //Load Storage module
+            //TODO: use storage module to set if the game was muted or not
+            require(['Storage'], function (storage) {
+
+                //Load Sound Player and Sounds_urls
+                require(['Player', 'Sounds_urls'], function (player, sounds) {
+
+                    //Set SoundPlayer master volume
+                    player.setMasterVolumeTo(sounds.masterVolume);
+                    //Load all sound files ind Sounds_urls
+                    player.load(sounds.baseDir, sounds.paths);
+
+                    //Load jquery and less libs
+                    require(["jquery", "less"], function () {
+
+                        //Load jqueryui
+                        require(['jqueryui'], function() {
+
+                            //Load Stage module, stage configuration, game main Module, game configuration and all dialogs that will be used in game
+                            require(["Stage", "stageConfig", "CuidandoBem", "gameConfig",  "Dialogs_data"],
+                                function (Stage) {
+                                    $('document').ready(function () {
+                                        //As soon as the html has been loaded, set the container for the Stage module and start it
+                                        //The game will only be initiated when a level is selected
+
+                                        Stage.setContainer('#stage');
+                                        Stage.start();
+                                    });
+                                });
+                        });
+                    });
+                });
+            });
+        //});
+
+    //});
+});
