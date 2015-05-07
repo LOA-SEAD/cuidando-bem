@@ -1,0 +1,116 @@
+#modalScene {
+  position: absolute;
+  display: none;
+}
+
+#modalScene-mask {
+  position: absolute;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left : 0;
+}
+
+//region Leito
+.modalScene-pulseira {
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: @bg-bracelet;
+  background-position: center;
+  background-size: 80%;
+  background-repeat: no-repeat;
+
+  width: 100%;
+  height: 100%;
+}
+
+.modalScene-termometro {
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: @bg-termometro;
+  background-position: center;
+  background-size: 80%;
+  background-repeat: no-repeat;
+
+  width: 100%;
+  height: 100%;
+}
+.temp_termometro {
+  position: absolute;
+  color: #000;
+
+  @media (min-width:@screen-sm-min) {
+    font-size: 35px;
+    top: 47%;
+    left: 55%;
+  }
+  @media (min-width:@screen-md-min) {
+    font-size: 45px;
+    top: 47%;
+    left: 55%;
+  }
+  @media (min-width:@screen-lg-min) {
+    font-size: 53px;
+    top: 47%;
+    left: 55%;
+  }
+}
+
+.modalScene-medidor_pressao {
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: @bg-medidor_pressao;
+  background-position: center;
+  background-size: 40%;
+  background-repeat: no-repeat;
+
+  width: 100%;
+  height: 100%;
+}
+.pressao {
+  position: absolute;
+  color: #000;
+
+  @media (min-width:@screen-sm-min) {
+    font-size: 20px;
+    top: 33%;
+    right: 42%;
+  }
+  @media (min-width:@screen-md-min) {
+    font-size: 25px;
+    top: 33%;
+    right: 42%;
+  }
+  @media (min-width:@screen-lg-min) {
+    font-size: 30px;
+    top: 33%;
+    right: 42%;
+  }
+}
+
+.modalScene-oximetro{
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: @bg-oximetro;
+  background-position: center;
+  background-size: 40%;
+  background-repeat: no-repeat;
+
+  width: 100%;
+  height: 100%;
+  .text{
+
+  }
+}
+//endregion
+
+.modalScene-drawer {
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: @bg-drawer;
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+
+  display: table;
+
+  width: 100%;
+  height: 100%;
+}

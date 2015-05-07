@@ -1,1 +1,234 @@
-define(["SimpleStorage"],function(e){function t(e){this.name=e,this.empty=!0,this.lastLevel=-1,this.levels=[undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined],this.getClone=function(){var e=new t(this.name);return e.empty=this.empty,e.lastLevel=this.lastLevel,e.levels=this.levels,e}}function p(){f=e.get(o),(f===undefined||!(f instanceof Array)||f.length!==3)&&d();for(i in f){var r=f[i];if(!r instanceof t||r===null)r=n.getClone(),f[i]=r}E(),h=e.get(u);if(h===undefined||typeof h!="boolean")h=!1,e.set(u,h);c=e.get(a);if(c===undefined||typeof c!="number"||c<0||c>3)c=0,e.set(a)}function d(){f=[n.getClone(),n.getClone(),n.getClone()],e.set(o,f)}function m(){return f}function g(e){if(e<0||e>2)throw new Error(r.id_out_range+e);return l=e,f[e]}function y(){return f[l]}function b(){e.flush(),p()}function w(t){if(t<0||t>2)throw new Error(r.id_out_range+t);f[t]=n.getClone(),e.set(o,f)}function E(){e.set(o,f)}function S(e,t){if(e<0||e>8)throw new Error("LevelId Failed");var n=f[l].levels[e];n===undefined?n=[t]:n instanceof Array&&n.push(t),f[l].levels[e]=n}function x(e){if(e<0||e>8)throw new Error("LevelId Failed");f[l].levels[e]=undefined}function T(e,t){var n=f[e];n.name=t,n.empty=!1,f[e]=n,E()}function N(t){c=t,e.set(a,c)}function C(){h=!h,e.set(u,h)}function k(){return h}function L(){return c}var n=new t("Novo Jogo"),r={id_out_range:"Save id must be: 0 <= id <= 2. Passed id: "},s=[undefined,undefined,undefined],o="saves_container",u="is_muted",a="selected_id",f,l,c,h;p();for(i in f){var v=f[i];v!==undefined&&v!==null}return e.flush(),f[0]=new t("Testing"),f[0].lastLevel=8,f[0].empty=!1,E(),{load:m,loadSlot:g,save:E,setupSlot:T,reset:w,resetAll:b,addScore:S,resetScore:x,toggleMute:C,isMuted:k,getLoadedSlot:y,setSelectedId:N,getSelectedId:L}});
+/**
+ * @name SaveLoadGame
+ * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
+ */
+define(["SimpleStorage"], function(Storage){
+    console.info("SaveLoadGame - module loaded");
+
+    function SaveObject(name){
+        this.name = name;
+        this.empty = true;
+
+        this.lastLevel = -1;
+
+        this.levels = [
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined
+
+        ];
+
+        this.getClone = function(){
+            var clone = new SaveObject(this.name);
+            clone.empty = this.empty;
+            clone.lastLevel = this.lastLevel;
+            clone.levels = this.levels;
+
+            return clone;
+        };
+    }
+    var emptySlot = new SaveObject("Novo Jogo");
+
+    var Errors = {
+        id_out_range: "Save id must be: 0 <= id <= 2. Passed id: "
+    };
+
+    var SAVES_CONTAINER_EMPTY_SLOTS = [undefined, undefined, undefined];
+
+    var KEY_SAVES_CONTAINER = "saves_container";
+    var KEY_MUTED = "is_muted";
+    var KEY_SELECTED_ID = "selected_id";
+
+    var saves;
+    var loadedId;
+    var selectedId;
+
+    var muted;
+
+    function init() {
+        //Get saves data from storage module
+        saves = Storage.get(KEY_SAVES_CONTAINER);
+
+        //"SavesContainer" does not exist
+        if (saves === undefined || !(saves instanceof Array) || saves.length !== 3) {
+            //Create "Saves"
+            creatEmptySaves();
+        }
+        for(i in saves){
+            var save = saves[i];
+            if(!save instanceof SaveObject || save === null){
+                save = emptySlot.getClone();
+                saves[i] = save;
+            }
+        }
+        saveSlots();
+
+        //Get is muted data from storage module
+        muted = Storage.get(KEY_MUTED);
+
+        if(muted === undefined || typeof muted !== 'boolean'){
+            muted = false;
+            Storage.set(KEY_MUTED, muted);
+        }
+
+        selectedId = Storage.get(KEY_SELECTED_ID);
+
+        if(selectedId === undefined || typeof selectedId !== 'number' || selectedId < 0 || selectedId > 3){
+            selectedId = 0;
+            Storage.set(KEY_SELECTED_ID);
+        }else{
+
+        }
+    }
+    init();
+
+    function creatEmptySaves(){
+        saves = [
+            emptySlot.getClone(),
+            emptySlot.getClone(),
+            emptySlot.getClone()
+        ];
+
+        Storage.set(KEY_SAVES_CONTAINER, saves);
+    }
+
+    //console.groupCollapsed("Loading saved files:");
+    for(i in saves){
+        var save = saves[i];
+        if(save !== undefined && save !== null){
+            console.log("Slot #"+i+" = "+save.name);
+        }else{
+            console.log("Slot #"+i+" is empty");
+        }
+    }
+    //console.groupEnd();
+
+    function load(){
+        console.log("Loading all data");
+
+        return saves;
+    }
+
+    function loadSlot(id){
+        if(id < 0 || id > 2)
+            throw new Error(Errors.id_out_range+id);
+
+        console.log("Loading save from: " + saves[id].name + " id: "+id);
+        loadedId = id;
+        return saves[id];
+    }
+
+    function getLoadedSlot(){
+        return saves[loadedId];
+    }
+
+    function resetAll(){
+        Storage.flush();
+        init();
+    }
+
+    function reset(id){
+        if(id < 0 || id > 2)
+            throw new Error(Errors.id_out_range+id);
+
+        saves[id] = emptySlot.getClone();
+        Storage.set(KEY_SAVES_CONTAINER, saves);
+    }
+
+    function saveSlots(){
+        Storage.set(KEY_SAVES_CONTAINER, saves);
+    }
+
+    function addScore(levelId, scoreId){
+        if(levelId < 0 || levelId > 8)
+            throw new Error("LevelId Failed");
+
+        var level = saves[loadedId].levels[levelId];
+
+        if(level === undefined){
+            level = [scoreId];
+        }else if(level instanceof Array){
+            level.push(scoreId);
+        }else{
+            console.error("This should not happen");
+        }
+
+        saves[loadedId].levels[levelId] = level;
+    }
+
+    function resetScore(levelId){
+        if(levelId < 0 || levelId > 8)
+            throw new Error("LevelId Failed");
+
+        saves[loadedId].levels[levelId] = undefined;
+    }
+
+    function setupSlot(id, name){
+        var save = saves[id];
+        save.name = name;
+        save.empty = false;
+
+        saves[id] = save;
+
+        saveSlots();
+    }
+
+    function setSelectedId(_id){
+        selectedId = _id;
+        Storage.set(KEY_SELECTED_ID, selectedId);
+    }
+
+    function toggleMute(){
+        muted = !muted;
+        Storage.set(KEY_MUTED, muted);
+    }
+
+    function isMuted(){
+        return muted;
+    }
+
+    function getSelectedId(){
+        return selectedId;
+    }
+
+    //region Test Slot
+
+    Storage.flush();
+
+    saves[0] = new SaveObject("Testing");
+    saves[0].lastLevel = 8;
+    saves[0].empty = false;
+
+    saveSlots();
+
+    //endregion
+
+
+    // Public Interface for returning saved files
+    return {
+        load: load,
+        loadSlot: loadSlot,
+        save: saveSlots,
+        setupSlot: setupSlot,
+        reset: reset,
+        resetAll: resetAll,
+
+        addScore: addScore,
+        resetScore: resetScore,
+
+        toggleMute: toggleMute,
+        isMuted: isMuted,
+
+        getLoadedSlot: getLoadedSlot,
+        setSelectedId: setSelectedId,
+        getSelectedId: getSelectedId
+    };
+});

@@ -1,0 +1,42 @@
+/*
+	This css file will import other css files, so the files are all organized and there is only 
+	one link on the main html
+
+
+	Author: Otho - Marcelo Lopes Lotufo
+	Author: Thales Eduardo Adair Menato
+*/
+@screen-lg-min: 1200px;
+@screen-md-min: 992px;
+@screen-sm-min: 768px;
+
+@game-height-sm: 461px;
+@game-height-md: 595px;
+@game-height-lg: 720px;
+@dialogMainText-padding: 2%;
+
+@import "./normalize.css";
+@import "main.less";
+@import "imageURLs.less";
+@import "fonts.less";
+@import "disableSelection.less";
+
+@import "screens/general-menu.less";
+@import "screens/jquery-ui.less";
+@import "screens/screen-gameContainer.less";
+@import "screens/screen-levelSelect.less";
+@import "screens/screen-slotSelect.less";
+@import "screens/stage.less";
+
+@import "interactiveObjects/interactiveObjects.less";
+
+@import "scenes/scenesBackgroundImages.less";
+@import "scenes/modalScenes.less";
+@import "scenes/prontuario.less";
+@import "scenes/pulseira.less";
+
+@import "dialogs/dialogModal.less";
+@import "dialogs/characters.less";
+
+@import "commandBar/actionsThumbnails.less";
+@import "endOfLevel/endOfLevel.less";

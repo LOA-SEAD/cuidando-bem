@@ -1,1 +1,338 @@
-define([],function(){function S(t,n){x(t,n,b),e&&z()}function x(e,n,r){var i;for(i in n)if(typeof n[i]=="object")n[i]instanceof Array?r[i]=[]:r[i]={},x(e,n[i],r[i]);else{var s=n[i],o=s.split("."),u=o[0],a=o[1];r[i]=new Audio(e+s),sound=r[i],sound.loop=!1,sound.volume=t,sound.vol=sound.volume,sound.load()}}function T(e){var t=[];if(typeof e=="object")if(e instanceof Array)t=t.concat(e);else{var n;for(n in e)t=t.concat(T(e[n]))}else t.push(e);return t}function N(e){var t=T(e),n=Math.floor(Math.random()*t.length),r=t[n];k(r)}function C(e){window.chrome?e.load():e.currentTime=0}function k(e){r=e,C(r),r.play()}function L(e){e.play()}function A(){r.pause()}function O(e,t){return e++,e>=t&&(e=0),e}function M(e){u||(s=T(e),u=!0,o=0,a=s[o],f=new Audio(s[O(o,s.length)].getAttribute("src")),f.volume=s[O(o,s.length)].vol,C(f),l=a,c=setInterval(P,4),k(a))}function _(){u&&(u=!1,a.pause(),clearInterval(c))}function D(){o=O(o,s.length),l!==undefined&&clearInterval(c),l=a,a=f,delete f,f=new Audio(s[o].getAttribute("src")),f.volume=s[o].volume,C(f),L(a),u&&(c=setInterval(P,4))}function P(){var e=a.currentTime*100/a.duration;e>=w&&D()}function H(e){v||(h=T(e),v=!0,j())}function B(){v&&(v=!1,m.pause())}function j(){var e=[],t;for(t in h)e.push(t);d=p,d!==undefined&&e.splice(d,1),p=e[Math.floor(Math.random()*e.length)],l!==undefined&&(l.pause(),l.removeEventListener("timeupdate",F,!1)),y=m,m=h[p],k(m),v&&m.addEventListener("timeupdate",F,!1)}function F(){var e=this.currentTime*100/this.duration;e>=E&&j()}function I(e,n){var r=T(e),i;for(i in r){var s=r[i];s.vol=n,s.volume=n*t}}function q(){var e=T(b),n;for(n in e){var r=e[n];r.volume=r.vol*t}}function R(e){t=e,q()}function U(){SaveLoadGame.toggleMute(),e=!e,z()}function z(){e?(n=t,R(0)):R(n)}function W(){A(),_(),B()}var e=!1,t=1,n,r=undefined,i=undefined,s,o,u=!1,a=undefined,f=undefined,l=undefined,c,h,p,d,v=!1,m=undefined,g=undefined,y=undefined,b={},w=99.9,E=98.5;return{audios:b,load:S,play:N,stop:A,mute:U,setVolumeOfTo:I,setMasterVolumeTo:R,playInLoop:M,stopLoop:_,playInRange:H,stopRange:B,stopAll:W}});
+/**
+ * This module's purpose is to provide an easy way to play sounds in a html5 application
+ * It comes with a set of functions to play sounds in loops, a sinlge time, control global and single volumes, etc
+ *
+ * It loads all sounds and get them ready to be played
+ * @name Player
+ * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
+ */
+
+define(function(){
+    console.info("Player - module loaded");
+
+
+    var isMuted = false;
+    var masterVolume = 1;
+    var pastMasterVolume;
+
+    var normalSound = undefined;
+    var pastNormalSound = undefined;
+
+    var loopList;
+    var loopId;
+    var isSoundLooping  = false;
+    var loopSound = undefined;
+    var loopSoundBuffer = undefined;
+    var pastLoopSound = undefined;
+    var loopInterval;
+
+    var rangeList;
+    var rangeSoundId;
+    var pastRangeSoundId;
+    var isRangePlaying = false;
+    var rangeSound = undefined;
+    var rangeSoundBuffer = undefined;
+    var pastRangeSound = undefined;
+
+    var audios = {};
+
+    var AUDIO_PERCENTAGE_TO_NEXT_IN_LOOP = 99.9;
+    var AUDIO_PERCENTAGE_TO_NEXT_IN_RANGE = 98.5;
+
+
+    function load(baseDir, pathsObj){
+        console.groupCollapsed("Loading Sounds: ");
+        deepCopy(baseDir, pathsObj, audios);
+        if(isMuted)
+            setSoundToMuted();
+        console.groupEnd();
+    }
+
+    function deepCopy(baseDir, from, to){
+        var audio;
+        for(audio in from){
+            if(typeof from[audio] === "object"){
+                if(from[audio] instanceof Array){
+                    to[audio] = [];
+                }else{
+                    to[audio] = {};
+                }
+                deepCopy(baseDir, from[audio], to[audio]);
+            }else{
+                var path = from[audio];
+                var parser = path.split('.');
+                var fileName = parser[0];
+                var extension = parser[1];
+
+
+                to[audio] = new Audio(baseDir + path);
+                sound = to[audio];
+
+                console.log("\tName: " + fileName, "Extension: " + extension);
+
+                sound.loop = false;
+                sound.volume = masterVolume;
+                sound.vol = sound.volume;
+                sound.load();
+            }
+        }
+    }
+
+    function getAsArray(obj){
+        var arr = [];
+        if(typeof obj === "object"){
+            if(obj instanceof Array){
+                arr = arr.concat(obj);
+            }else {
+                var x;
+                for (x in obj) {
+                    arr = arr.concat(getAsArray(obj[x]));
+                }
+            }
+        }else{
+            arr.push(obj);
+        }
+
+        return arr;
+    }
+
+    function playRandom(obj){
+        var playList = getAsArray(obj);
+
+        var randomId = Math.floor(Math.random() * playList.length);
+
+        var sound = playList[randomId];
+
+        play(sound);
+    }
+
+    function prepare(sound){
+        if (window.chrome) {
+            sound.load();
+        }else{
+            sound.currentTime = 0;
+        }
+    }
+
+    function play(sound){
+        normalSound = sound;
+
+        prepare(normalSound);
+
+        normalSound.play();
+
+        //console.log(sound);
+    }
+
+    function justPlay(sound){
+        sound.play();
+    }
+
+    function stop(){
+        normalSound.pause();
+    }
+
+    function nextId(now, max){
+        now++;
+        if(now >= max)
+            now = 0;
+
+        return now;
+    }
+
+    function playInLoop(obj){
+        if(!isSoundLooping){
+            loopList = getAsArray(obj);
+            isSoundLooping = true;
+            loopId = 0;
+
+            loopSound = loopList[loopId];
+
+            loopSoundBuffer = new Audio(loopList[nextId(loopId, loopList.length)].getAttribute('src'));
+            loopSoundBuffer.volume = loopList[nextId(loopId, loopList.length)].vol;
+            prepare(loopSoundBuffer);
+
+            pastLoopSound = loopSound;
+            //loopSound.addEventListener('timeupdate', shouldPlayNextInLoop, false);
+            loopInterval = setInterval(shouldPlayNextInLoop, 4);
+
+            play(loopSound);
+            //playNextInLoop();
+        }
+    }
+
+    function stopLoop(){
+        if(isSoundLooping) {
+            isSoundLooping = false;
+            loopSound.pause();
+            clearInterval(loopInterval);
+        }
+    }
+
+    function playNextInLoop(){
+        loopId = nextId(loopId, loopList.length);
+
+        if(pastLoopSound !== undefined) {
+            clearInterval(loopInterval);
+            //console.log("CLEAR");
+            //pastLoopSound.pause();
+            //loopSound.removeEventListener('timeupdate', shouldPlayNextInLoop, false);
+            //loopSoundBuffer.removeEventListener('timeupdate', shouldPlayNextInLoop, false);
+            //pastLoopSound.removeEventListener('ended', playNextInLoop, false);
+        }
+
+        pastLoopSound = loopSound;
+        loopSound = loopSoundBuffer;
+        delete loopSoundBuffer;
+        loopSoundBuffer = new Audio(loopList[loopId].getAttribute('src'));
+        loopSoundBuffer.volume = loopList[loopId].volume;
+        //loopSoundBuffer = loopList[loopId];
+
+
+        prepare(loopSoundBuffer);
+        justPlay(loopSound);
+
+        if(isSoundLooping) {
+            console.log("PLAY");
+            loopInterval = setInterval(shouldPlayNextInLoop, 4);
+            //loopSound.addEventListener('timeupdate', shouldPlayNextInLoop, false);
+            //loopSoundBuffer.addEventListener('timeupdate', shouldPlayNextInLoop, false);
+            //pastLoopSound.removeEventListener('ended', playNextInLoop, false);
+        }
+    }
+
+    function shouldPlayNextInLoop(){
+        var percentage = (loopSound.currentTime*100)/loopSound.duration;
+        //console.log(loopSound.duration, loopSound.currentTime, percentage+"%");
+
+        if(percentage >= AUDIO_PERCENTAGE_TO_NEXT_IN_LOOP)
+            playNextInLoop();
+    }
+
+    function playInRange(obj){
+        if(!isRangePlaying){
+            rangeList = getAsArray(obj);
+            isRangePlaying = true;
+
+            playNextInRange()
+        }
+    }
+
+    function stopRange(){
+        if(isRangePlaying) {
+            isRangePlaying = false;
+            rangeSound.pause();
+        }
+    }
+
+    function playNextInRange(){
+        var rangeIdArray = [];
+        var i;
+        for(i in rangeList)
+            rangeIdArray.push(i);
+
+        pastRangeSoundId = rangeSoundId;
+
+        if(pastRangeSoundId !== undefined) {
+            rangeIdArray.splice(pastRangeSoundId, 1);
+        }
+
+        rangeSoundId = rangeIdArray[Math.floor(Math.random() * rangeIdArray.length)];
+
+        if(pastLoopSound !== undefined) {
+            pastLoopSound.pause();
+            pastLoopSound.removeEventListener('timeupdate', shouldPlayNextInRange, false);
+            //pastLoopSound.removeEventListener('ended', playNextInLoop, false);
+        }
+
+        pastRangeSound = rangeSound;
+        rangeSound = rangeList[rangeSoundId];
+
+        play(rangeSound);
+        if(isRangePlaying) {
+            rangeSound.addEventListener('timeupdate', shouldPlayNextInRange, false);
+            //pastLoopSound.removeEventListener('ended', playNextInLoop, false);
+        }
+    }
+
+    function shouldPlayNextInRange(){
+        var percentage = (this.currentTime*100)/this.duration;
+        //console.log(this.duration, this.currentTime, percentage+"%");
+
+        if(percentage >= AUDIO_PERCENTAGE_TO_NEXT_IN_RANGE)
+            playNextInRange();
+    }
+
+    function setVolumeOfTo(obj, volume){
+        var playList = getAsArray(obj);
+
+        var soundId;
+        for(soundId in playList) {
+            var sound = playList[soundId];
+            sound.vol = volume;
+            sound.volume = volume * masterVolume;
+        }
+    }
+
+    function resetAllVolumes(){
+        var playList = getAsArray(audios);
+
+        var soundId;
+        for(soundId in playList) {
+            var sound = playList[soundId];
+
+            sound.volume = sound.vol * masterVolume;
+        }
+    }
+
+    function setMasterVolumeTo(volume){
+        masterVolume = volume;
+
+        resetAllVolumes();
+    }
+
+    function mute(){
+        SaveLoadGame.toggleMute();
+        isMuted = !isMuted;
+
+        setSoundToMuted();
+    }
+
+    function setSoundToMuted(){
+        if (isMuted) {
+            pastMasterVolume = masterVolume;
+
+            setMasterVolumeTo(0);
+        } else {
+            setMasterVolumeTo(pastMasterVolume);
+        }
+    }
+
+    function stopAll(){
+        stop();
+        stopLoop();
+        stopRange();
+    }
+
+    return{
+        audios: audios,
+
+        load: load,
+        play: playRandom,
+        stop: stop,
+        mute: mute,
+
+        setVolumeOfTo: setVolumeOfTo,
+        setMasterVolumeTo: setMasterVolumeTo,
+
+        playInLoop: playInLoop,
+        stopLoop: stopLoop,
+
+        playInRange:playInRange,
+        stopRange: stopRange,
+
+        stopAll: stopAll
+    }
+});

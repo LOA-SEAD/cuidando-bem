@@ -1,1 +1,323 @@
-define([],function(){function t(n,r){function v(){u()}function m(){a()}function g(){var e=(new t(i,s)).setCssClass(w()).onLoad(u).onUnload(a).setTemplate(C());for(dialog in f)e.registerDialog(f[dialog].getClone());for(interactiveObject in l)e.registerInteractiveObject(l[interactiveObject].getClone());for(action in h)e.registerAction(h[action].getClone());return e}function y(){return i}function b(){return s}function w(){return o}function E(){return h}function S(e){return typeof e=="string"?h[p[e]]:h[e]}function x(){return f}function T(){return l}function N(e){return typeof e=="string"?l[c[e]]:l[e]}function C(){return d}function k(e){return i=e,this}function L(e){return s=e,this}function A(e){return o=e,this}function O(e){return u=e,this}function M(e){return a=e,this}function _(e){return d=e,this}function D(e){p[e.getId()]=h.length,h.push(e)}function P(e){var t;for(t=0;t<e.length;t++)D(e[t])}function H(e){f.push(e)}function B(e){var t;for(t=0;t<e.length;t++)H(e[t])}function j(e){c[e.getId()]=l.length,l.push(e)}function F(e){var t;for(t=0;t<e.length;t++)j(e[t])}n==null&&(n="Scene_"+e),r==null&&(r="");var i=n,s=r,o="noTexture",u=function(){},a=function(){},f=[],l=[],c={},h=[],p={},d;return{getId:y,getName:b,getCssClass:w,load:v,unload:m,getClone:g,getActions:E,getAction:S,getInteractiveObjects:T,getInteractiveObject:N,getDialogs:x,getTemplate:C,setId:k,setName:L,setCssClass:A,onLoad:O,onUnload:M,setTemplate:_,registerAction:D,registerActions:P,registerDialog:H,registerDialogs:B,registerInteractiveObject:j,registerInteractiveObjects:F}}var e=-1;return t});
+/* 
+ This module declares the object type scene that represents one of the rooms inside the game.
+
+ Each scene may have more than one interactive Object that will be declared later.
+
+ Each scene has a background image
+ * @memberOf Scene
+
+ @author Otho - Marcelo Lopes Lotufo
+ */
+define(function () {
+
+    var counter = -1;
+    /**
+     * @class
+     * @name Scene
+     * @param {string} _name
+     * @param {string} _cssClass
+     * @param {function} _load
+     * @param {function} _unload
+     * @return ObjectExpression
+     *
+     * @author Otho - Marcelo Lopes Lotufo
+     */
+    function Scene(_id, _name) {
+        //Attributes
+
+        if(_id == null)
+            _id = "Scene_"+counter;
+
+        if(_name == null)
+            _name = "";
+
+        var id = _id;
+
+        var name = _name;
+        var cssClass = "noTexture";
+
+        var onLoadFunction = function(){};
+        var onUnloadFunction = function(){};
+
+        var dialogs = [];
+
+        var interactiveObjects = [];
+        var interactiveObjects_aux = {};
+
+        var actions = [];
+        var actions_aux = {};
+
+        var template;
+
+        //Methods
+
+        /**
+         * Description
+         * @method load
+         *
+         * @memberOf Scene#
+         */
+        function load() {
+            console.info("Scene " + name + " load function");
+            onLoadFunction();
+        }
+
+        /**
+         * Description
+         * @method unload
+         *
+         * @memberOf Scene#
+         */
+        function unload() {
+            console.info("Scene " + name + " unload function");
+            onUnloadFunction();
+        }
+
+        //Getters
+        function getClone(){
+            var scene_clone = new Scene(id, name)
+                .setCssClass(getCssClass())
+                .onLoad(onLoadFunction)
+                .onUnload(onUnloadFunction)
+                .setTemplate(getTemplate());
+
+            for(dialog in dialogs)
+                scene_clone.registerDialog(dialogs[dialog].getClone());
+
+            for(interactiveObject in interactiveObjects)
+                scene_clone.registerInteractiveObject(interactiveObjects[interactiveObject].getClone());
+
+            for(action in actions)
+                scene_clone.registerAction(actions[action].getClone());
+
+            return scene_clone;
+        }
+
+        function getId(){
+            return id;
+        }
+
+        /**
+         * Description
+         * @method getName
+         * @return name
+         *
+         * @memberOf Scene#
+         */
+        function getName() {
+            return name;
+        }
+
+        /**
+         * Description
+         * @method getCssClass
+         * @return cssClass
+         *
+         * @memberOf Scene#
+         */
+        function getCssClass() {
+            return cssClass;
+        }
+
+        /**
+         * Description
+         * @method getActions
+         * @return actions
+         *
+         * @memberOf Scene#
+         */
+        function getActions() {
+            return actions;
+        }
+
+        /**
+         * Description
+         * @method getAction
+         * @param {} _actionId
+         *
+         * @memberOf Scene#
+         */
+        function getAction(_actionId) {
+            if (typeof _actionId == "string") {
+                return actions[actions_aux[_actionId]];
+            } else {
+                return actions[_actionId];
+            }
+        }
+
+        /**
+         * Description
+         * @method getDialogs
+         * @return dialogs
+         *
+         * @memberOf Scene#
+         */
+        function getDialogs() {
+            return dialogs;
+        }
+
+        /**
+         * Description
+         * @method getInteractiveObjects
+         * @return interactiveObjects
+         *
+         * @memberOf Scene#
+         */
+        function getInteractiveObjects() {
+            return interactiveObjects;
+        }
+
+        /**
+         * Description
+         * @method getInteractiveObject
+         * @param {} _intObjId
+         *
+         * @memberOf Scene#
+         */
+        function getInteractiveObject(_intObjId) {
+            if (typeof _intObjId == "string") {
+                return interactiveObjects[interactiveObjects_aux[_intObjId]];
+            } else {
+                return interactiveObjects[_intObjId];
+            }
+        }
+
+        function getTemplate(){
+            return template;
+        }
+
+        //Setters
+        function setId(_id){
+            id = _id;
+            return this;
+        }
+
+        function setName(_name){
+            name = _name;
+            return this;
+        }
+
+        function setCssClass(_cssClass){
+            cssClass = _cssClass;
+            return this;
+        }
+
+        function onLoad(_load){
+            onLoadFunction = _load;
+            return this;
+        }
+
+        function onUnload(_unload){
+            onUnloadFunction = _unload;
+            return this;
+        }
+
+        function setTemplate(_template){
+            template = _template;
+            return this;
+        }
+
+        /**
+         * Description
+         * @method registerAction
+         * @param {} _action
+         *
+         * @memberOf Scene#
+         */
+        function registerAction(_action) {
+            actions_aux[_action.getId()] = actions.length;
+            actions.push(_action);
+
+            console.log("Registering Action: ", _action.getName(), "on Scene:" + name);
+        }
+
+        function registerActions(_actions){
+            var i;
+            for (i = 0; i < _actions.length; i++) {
+                registerAction(_actions[i]);
+            }
+        }
+
+        /**
+         * Description
+         * @method registerDialog
+         * @param {} _dialog
+         *
+         * @memberOf Scene#
+         */
+        function registerDialog(_dialog) {
+            dialogs.push(_dialog);
+            console.log("Registering Dialog: ", _dialog.getSpeakerName(), "on Scene:" + name);
+        }
+
+        /**
+         * Description
+         * @method registerDialogs
+         * @param {} _dialogs
+         *
+         * @memberOf Scene#
+         */
+        function registerDialogs(_dialogs) {
+            var i;
+            for (i = 0; i < _dialogs.length; i++) {
+                registerDialog(_dialogs[i]);
+            }
+        }
+
+        /**
+         * Description
+         * @method registerInteractiveObject
+         * @param {} _interactiveObject
+         *
+         * @memberOf Scene#
+         */
+        function registerInteractiveObject(_interactiveObject) {
+            interactiveObjects_aux[_interactiveObject.getId()] = interactiveObjects.length;
+            interactiveObjects.push(_interactiveObject);
+
+            console.log("Registering Interactive Object: ", _interactiveObject.getName(), "on Scene:" + name);
+        }
+
+        function registerInteractiveObjects(_interactiveObjects) {
+            var i;
+            for (i = 0; i < _interactiveObjects.length; i++) {
+                registerInteractiveObject(_interactiveObjects[i]);
+            }
+        }
+
+        //Public interface
+        return {
+            getId: getId,
+            getName: getName,
+            getCssClass: getCssClass,
+            load: load,
+            unload: unload,
+
+            getClone: getClone,
+            getActions: getActions,
+            getAction: getAction,
+            getInteractiveObjects: getInteractiveObjects,
+            getInteractiveObject: getInteractiveObject,
+            getDialogs: getDialogs,
+            getTemplate: getTemplate,
+
+            setId:setId,
+            setName:setName,
+            setCssClass:setCssClass,
+            onLoad:onLoad,
+            onUnload:onUnload,
+            setTemplate: setTemplate,
+
+
+            registerAction: registerAction,
+            registerActions: registerActions,
+            registerDialog: registerDialog,
+            registerDialogs: registerDialogs,
+            registerInteractiveObject: registerInteractiveObject,
+            registerInteractiveObjects: registerInteractiveObjects
+        }
+
+    }
+
+    return Scene;
+});

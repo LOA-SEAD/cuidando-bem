@@ -1,1 +1,301 @@
-<div id="prontuario"><div class="title"><span>Prontuário</span></div><div class="content"><ul><li><a href="#bloco1">Paciente</a></li><li><a href="#bloco2">Internação</a></li><li><a href="#bloco3">Prescrição Médica</a></li><li><a href="#bloco4">Prescrição Enfermagem</a></li><li><a href="#bloco5">Sinais Vitais</a></li><li><a href="#bloco6">Anotação Enfermagem</a></li></ul><div id="bloco1" class="outerBlock"><div class="block"><div class="nome container">Nome: <span id="pront_nome"></span></div><div class="container"><div class="data_nascimento third">Data de Nascimento: <span id="pront_data_nascimento"></span></div><div class="idade third">Idade: <span id="pront_idade"></span></div><div class="sexo third">Sexo: <span id="pront_sexo"></span></div></div><div class="estado_civil container">Estado Civil: <span id="pront_estado_civil"></span></div><div class="profissao container">Profissão: <span id="pront_profissao"></span></div><div class="filiacaoContainer doubleContainer"><div class="filiacao doubleLeft">Filiação:</div><div class="nome_pai doubleRight">Nome do Pai: <span id="pront_nome_pai"></span></div><div class="nome_mae doubleRight">Nome da Mãe: <span id="pront_nome_mae"></span></div></div></div></div><div id="bloco2" class="outerBlock"><div class="block"><div class="dataInternacaoContainer container"><div class="dataInternacao oneLeft">Data da Internação: <span id="pront_data_internacao"></span></div><div class="numero_leito oneRight">Leito: <span id="pront_numero_leito"></span></div></div><div class="antecedentes doubleContainer"><div class="oneLeft">Antecedentes hospitalares:</div><div class="oneRight"><span id="pront_antecedentes"></span></div></div><div class="hipotese_diagnostica doubleContainer"><div class="oneLeft">Hipótese diagnóstica:</div><div class="oneRight"><span id="pront_hipotese_diagnostica"></span></div></div><div class="observacoes doubleContainer"><div class="oneLeft">Observações:</div><div class="oneRight"><span id="pront_observacoes"></span></div></div><div class="alergia_medicamentosa doubleContainer"><div class="oneLeft">Alergia medicamentosa:</div><div class="doubleRight">(<span id="pront_alergia_sim">&nbsp;&nbsp;&nbsp;</span>) Sim. Qual(s) ?<span id="pront_alergia_qual"></span></div><div class="doubleRight">(<span id="pront_alergia_nao">&nbsp;&nbsp;&nbsp;</span>) Não.</div></div><div class="medidas_antropometricas tripleContainer"><div class="tripleLeft">Medidas antropométricas:</div><div class="tripleRight">Peso: <span id="pront_peso"></span> kg</div><div class="tripleRight">Altura: <span id="pront_altura"></span> cm</div><div class="tripleRight">Circunferência abdominal: <span id="pront_circunferencia_abdominal"></span>cm</div></div></div></div><div id="bloco3" class="outerBlock"><div class="block"><div class="row"><span class="anotacao_enfermagem">Prescrição Médica</span></div><table class="col6"><thead><tr><th>Data</th><th>Medicação</th><th>Via</th><th>Posologia</th><th>Horário</th><th>Relatório de Enfermagem</th></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div></div><div id="bloco4" class="outerBlock"><div class="block"><div class="row"><span class="anotacao_enfermagem">Prescrição de Enfermagem</span></div><table class="col4"><thead><tr><th>Data</th><th>Diagnóstico de Enfermagem</th><th>Cuidado de Enfermagem</th><th>Relatório de Enfermagem</th></tr></thead><tbody><tr><td></td><td>Risco de úlcera por pressão</td><td>Mudança de Decúbito (Mudar a cada 2h).</td><td>Realizado mudança de decúbito para:<p>(&nbsp;&nbsp;&nbsp;) Decúbito Ventral</p><p>(&nbsp;&nbsp;&nbsp;) Decúbito Lateral</p><p>(&nbsp;&nbsp;&nbsp;) Decúbito Dorsal</p><p>Horário:</p><p>Observações:</p></td></tr></tbody></table></div></div><div id="bloco5" class="outerBlock"><div class="block"><div class="row">Sinais Vitais (SSVV)</div><table class="col6"><thead><tr><th>Data</th><th>PA</th><th>FC</th><th>FR</th><th>Sat.02</th><th>Temperatura</th></tr></thead><tbody id="ssvv_tbody"><tr class="ssvv_row"><td><input class="data"></td><td><input class="pa"></td><td><input class="fc"></td><td><input class="fr"></td><td><input class="sat"></td><td><input class="temp"></td></tr><tr class="ssvv_row"><td><input class="data"></td><td><input class="pa"></td><td><input class="fc"></td><td><input class="fr"></td><td><input class="sat"></td><td><input class="temp"></td></tr></tbody></table></div></div><div id="bloco6" class="outerBlock"><div class="block"><div class="row"><span class="anotacao_enfermagem">Anotação de Enfermagem</span></div><table class="col2"><thead><tr><th>Data/Horário</th><th>Anotação</th></tr></thead><tbody class="anotacaoEnfermagem_tbody"><tr><td><input class="data"></td><td><input class="anotacao"></td></tr><tr><td><input class="data"></td><td><input class="anotacao"></td></tr><tr><td><input class="data"></td><td><input class="anotacao"></td></tr><tr><td><input class="data"></td><td><input class="anotacao"></td></tr></tbody></table></div></div></div></div>
+<div id="prontuario">
+    <div class="title">
+        <span>Prontuário</span>
+    </div>
+    <div class="content">
+        <ul>
+            <li><a href="#bloco1">Paciente</a></li>
+            <li><a href="#bloco2">Internação</a></li>
+            <li><a href="#bloco3">Prescrição Médica</a></li>
+            <li><a href="#bloco4">Prescrição Enfermagem</a></li>
+            <li><a href="#bloco5">Sinais Vitais</a></li>
+            <li><a href="#bloco6">Anotação Enfermagem</a></li>
+        </ul>
+
+        <!-- Paciente -->
+        <div id="bloco1" class="outerBlock">
+            <div class="block">
+                <div class="nome container">
+                    Nome:
+                    <span id="pront_nome"></span>
+                </div>
+
+                <div class="container">
+                    <div class="data_nascimento third">
+                        Data de Nascimento:
+                        <span id="pront_data_nascimento"></span>
+                    </div>
+                    <div class="idade third">
+                        Idade:
+                        <span id="pront_idade"></span>
+                    </div>
+                    <div class="sexo third">
+                        Sexo:
+                        <span id="pront_sexo"></span>
+                    </div>
+                </div>
+
+                <div class="estado_civil container">
+                    Estado Civil:
+                    <span id="pront_estado_civil"></span>
+                </div>
+
+                <div class="profissao container">
+                    Profissão:
+                    <span id="pront_profissao"></span>
+                </div>
+
+                <div class="filiacaoContainer doubleContainer">
+                    <div class="filiacao doubleLeft">
+                        Filiação:
+                    </div>
+                    <div class="nome_pai doubleRight">
+                        Nome do Pai:
+                        <span id="pront_nome_pai"></span>
+                    </div>
+                    <div class="nome_mae doubleRight">
+                        Nome da Mãe:
+                        <span id="pront_nome_mae"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Internacao -->
+        <div id="bloco2" class="outerBlock">
+            <div class="block">
+                <div class="dataInternacaoContainer container">
+                    <div class="dataInternacao oneLeft">
+                        Data da Internação:
+                        <span id="pront_data_internacao"></span>
+                    </div>
+                    <div class="numero_leito oneRight">
+                        Leito:
+                        <span id="pront_numero_leito"></span>
+                    </div>
+                </div>
+
+                <div class="antecedentes doubleContainer">
+                    <div class="oneLeft" >
+                        Antecedentes hospitalares:
+                    </div>
+                    <div class="oneRight">
+                        <span id="pront_antecedentes"></span>
+                    </div>
+                </div>
+
+                <div class="hipotese_diagnostica doubleContainer">
+                    <div class="oneLeft">
+                        Hipótese diagnóstica:
+                    </div>
+                    <div class="oneRight">
+                        <span id="pront_hipotese_diagnostica"></span>
+                    </div>
+                </div>
+
+                <div class="observacoes doubleContainer">
+                    <div class="oneLeft">
+                        Observações:
+                    </div>
+                    <div class="oneRight">
+                        <span id="pront_observacoes"></span>
+                    </div>
+                </div>
+
+                <div class="alergia_medicamentosa doubleContainer">
+                    <div class="oneLeft">
+                        Alergia medicamentosa:
+                    </div>
+                    <div class="doubleRight">
+                        (<span id="pront_alergia_sim">&nbsp;&nbsp;&nbsp;</span>) Sim.
+                        Qual(s) ?<span id="pront_alergia_qual"></span>
+                    </div>
+                    <div class="doubleRight">
+                        (<span id="pront_alergia_nao">&nbsp;&nbsp;&nbsp;</span>) Não.
+                    </div>
+                </div>
+
+                <div class="medidas_antropometricas tripleContainer">
+                    <div class="tripleLeft">
+                        Medidas antropométricas:
+                    </div>
+                    <div class="tripleRight">
+                        Peso: <span id="pront_peso"></span> kg
+                    </div>
+                    <div class="tripleRight">
+                        Altura: <span id="pront_altura"></span> cm
+                    </div>
+                    <div class="tripleRight">
+                        Circunferência abdominal: <span id="pront_circunferencia_abdominal"></span>cm
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Precricao Medica -->
+        <div id="bloco3" class="outerBlock">
+            <div class="block">
+                <div class="row">
+                    <span class="anotacao_enfermagem">Prescrição Médica</span>
+                </div>
+
+                <table class="col6">
+                    <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Medicação</th>
+                        <th>Via</th>
+                        <th>Posologia</th>
+                        <th>Horário</th>
+                        <th>Relatório de Enfermagem</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Prescricao Enfermagem -->
+        <div id="bloco4" class="outerBlock">
+            <div class="block">
+                <div class="row">
+                    <span class="anotacao_enfermagem ">Prescrição de Enfermagem</span>
+                </div>
+
+                <table class="col4">
+                    <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Diagnóstico de Enfermagem</th>
+                        <th>Cuidado de Enfermagem</th>
+                        <th>Relatório de Enfermagem</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td></td>
+                        <td>Risco de úlcera por pressão</td>
+                        <td>Mudança de Decúbito (Mudar a cada 2h).</td>
+                        <td>
+                            Realizado mudança de decúbito para:
+                            <p>(&nbsp;&nbsp;&nbsp;) Decúbito Ventral</p>
+                            <p>(&nbsp;&nbsp;&nbsp;) Decúbito Lateral</p>
+                            <p>(&nbsp;&nbsp;&nbsp;) Decúbito Dorsal</p>
+                            <p>Horário: </p>
+                            <p>Observações: </p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Sinais Vitais -->
+        <div id="bloco5" class="outerBlock">
+            <div class="block">
+                <div class="row">
+                    Sinais Vitais (SSVV)
+                </div>
+                <table class="col6">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>PA</th>
+                            <th>FC</th>
+                            <th>FR</th>
+                            <th>Sat.02</th>
+                            <th>Temperatura</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ssvv_tbody">
+                        <tr class="ssvv_row">
+                            <td><input class="data" type="text"></td>
+                            <td><input class="pa" type="text"></td>
+                            <td><input class="fc" type="text"></td>
+                            <td><input class="fr" type="text"></td>
+                            <td><input class="sat" type="text"></td>
+                            <td><input class="temp" type="text"></td>
+                        </tr>
+                        <tr class="ssvv_row">
+                            <td><input class="data" type="text"></td>
+                            <td><input class="pa" type="text"></td>
+                            <td><input class="fc" type="text"></td>
+                            <td><input class="fr" type="text"></td>
+                            <td><input class="sat" type="text"></td>
+                            <td><input class="temp" type="text"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Anotação Enfermagem -->
+        <div id="bloco6" class="outerBlock">
+            <div class="block">
+                <div class="row">
+                    <span class="anotacao_enfermagem">Anotação de Enfermagem</span>
+                </div>
+                <table class="col2">
+                    <thead>
+                        <tr>
+                            <th>Data/Horário</th>
+                            <th>Anotação</th>
+                        </tr>
+                    </thead>
+                    <tbody class="anotacaoEnfermagem_tbody">
+                        <tr>
+                            <td><input class="data" type="text"/></td>
+                            <td><input class="anotacao" type="text"/></td>
+                        </tr>
+                        <tr>
+                            <td><input class="data" type="text"/></td>
+                            <td><input class="anotacao" type="text"/></td>
+                        </tr>
+                        <tr>
+                            <td><input class="data" type="text"/></td>
+                            <td><input class="anotacao" type="text"/></td>
+                        </tr>
+                        <tr>
+                            <td><input class="data" type="text"/></td>
+                            <td><input class="anotacao" type="text"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

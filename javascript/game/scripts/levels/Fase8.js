@@ -1,1 +1,69 @@
-define(["levelsData","Scene","Action","Level","Dialog","InteractiveObject","Flag","CuidandoBem","Commons","Pulseira","Prontuario"],function(e,t,n,r,i,s,o,u,a,f,l){var c=require("Dialogs_data").fase1,h=require("Dialogs_data").alertas,p=new r("Level 8"),d=!0,v=!1;l.setNome("João Manoel Ribeiro"),l.setSexo("M"),l.setEstadoCivil("Casado"),l.setDataNascimento("07/06/1956"),l.setIdade("58 anos"),l.setPai("Joaquim Casagrande"),l.setMae("Lúcia Moraes Casagrande"),l.setLeito("02"),l.setAntecedentes("Ocorrência de internação em 2004, devido a suspeita de infarto agudo do miocárdio (IAM)"),l.setHipotese("Crise hipertensiva"),l.setPeso("87"),l.setAltura("1,62"),l.setCircunferenciaAbdominal("115");var m=(new t("recepcao","scene-recepcao")).setCssClass("scene-lobby").onLoad(function(){l.open()}),g=(new t("modalOximetro","Oxímetro")).setCssClass("modalScene-oximetro").setTemplate("<span class='oximetro-text'>valor unidade</span>");p.registerScene(m),p.registerModalScene(g),p.setInitialScene(0),e.registerLevel(p,8)});
+/*
+ This module has every wrold variable from each game level so it can be easily loaded inside the game.
+ New levels can easily be made by adding new game levels.
+
+ */
+define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons', 'Pulseira', 'Prontuario'],
+    function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, Commons, Pulseira, Prontuario) {
+
+        //region Imports
+        var Dialogs = require('Dialogs_data').fase1;
+        var Alerts = require('Dialogs_data').alertas;
+        //endregion
+
+        var level = new Level("Level 8");
+        console.groupCollapsed(level.getName());
+
+        var flags_on = true;
+        var visibility = false;
+
+        //region Scenes
+
+        Prontuario.setNome("João Manoel Ribeiro");
+        Prontuario.setSexo("M");
+        Prontuario.setEstadoCivil("Casado");
+        Prontuario.setDataNascimento("07/06/1956");
+        Prontuario.setIdade("58 anos");
+        Prontuario.setPai("Joaquim Casagrande");
+        Prontuario.setMae("Lúcia Moraes Casagrande");
+        Prontuario.setLeito("02");
+        Prontuario.setAntecedentes("Ocorrência de internação em 2004, devido a suspeita de infarto agudo do miocárdio (IAM)");
+        Prontuario.setHipotese("Crise hipertensiva");
+        //TODO: alergia medicamentosa
+        Prontuario.setPeso("87");
+        Prontuario.setAltura("1,62");
+        Prontuario.setCircunferenciaAbdominal("115");
+
+        //region Recepcao
+        var recepcao = new Scene("recepcao", "scene-recepcao")
+            .setCssClass("scene-lobby")
+            .onLoad(function(){
+                //Pulseira.open();
+                //core.openModalScene("modalOximetro");
+                Prontuario.open();
+
+                //core.showEndOfLevel();
+            });
+        //endregion
+
+        var oximetro = new Scene("modalOximetro", "Oxímetro")
+            .setCssClass("modalScene-oximetro")
+            .setTemplate("<span class='oximetro-text'>valor unidade</span>");
+
+
+        //endregion
+
+        //region Level
+        //region Register Scenes
+        level.registerScene(recepcao);
+
+        level.registerModalScene(oximetro);
+        //endregion
+
+        level.setInitialScene(0);
+        //endregion
+
+        game.registerLevel(level, 8);
+
+        console.groupEnd();
+    });
