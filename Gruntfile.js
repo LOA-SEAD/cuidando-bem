@@ -9,8 +9,11 @@ module.exports = function(grunt) {
 
     var src_path = 'src/';
     var javascript_path = src_path + 'javascript/';
-    var build_path = 'build/';
-    var build_step_1_path = 'build_s1/';
+    var js = 'javascript/';
+    var build = 'build/';
+    var final = 'build_s1/';
+
+    var libs = build + 'javascript/libs/';
 
     var documentation_src_path = 'doc_src/';
     var documentation_path = 'docs/';
@@ -44,16 +47,22 @@ module.exports = function(grunt) {
 
         clean: {
             build: {
-                src: [ build_path ]
+                src: [ build ]
+            },
+
+            build_less:{
+                expand: true,
+                cwd: build +'assets/css/',
+                src: ['**/*.less']
             },
 
             css: {
-                src: [ build_path + 'assets/css', build_path + 'javascript/libs/less.js']
+                src: [ build + 'assets/css', build + 'javascript/libs/less.js']
 
             },
 
             final: {
-                src: [ build_step_1_path ]
+                src: [ final ]
             },
 
             docs: {
@@ -63,10 +72,44 @@ module.exports = function(grunt) {
 
         copy: {
             build: {
-                cwd: src_path,
-                src: ['**', '!**/*.less', '!styles/less', '!styles/gameConfig'],
-                dest: build_path,
-                expand: true
+                options:{
+
+                },
+                files: [
+                    {
+                        cwd: src_path,
+                        src: ['**'],
+                        dest: build,
+                        expand: true
+                    },
+                    [
+                        {
+                            dest: libs + 'jquery.js', 
+                            src: ['./libs/jquery/dist/jquery.min.js']
+                        },
+                        {
+                            dest: libs + 'jquery.min.map', 
+                            src: ['./libs/jquery/dist/jquery.min.map']
+                        },
+                        {
+                            dest: libs + 'jquery-ui.js', 
+                            src: ['./libs/jquery-ui/jquery-ui.min.js']
+                        },
+                        {
+                            dest: libs + 'require.js' , 
+                            src: ['./libs/requirejs/require.js']
+                        },
+                        {
+                            dest: libs + 'text.js' , 
+                            src: ['./libs/requirejs-text/text.js']
+                        },
+                        {
+                            dest: libs + 'simpleStorage.js',
+                            src: ['./libs/simpleStorage/simpleStorage.js']
+                        }
+                    ]
+                ]
+                
             },
 
             docs: {
@@ -97,15 +140,15 @@ module.exports = function(grunt) {
 
                 files :  [
                     {
-                        src : build_path + "index.html",
-                        dest: build_path + "index.html"
+                        src : build + "index.html",
+                        dest: build + "index.html"
                     },
 
                     {
                         expand : true,
                         cwd: src_path,
                         src: "assets/html/**/*.html",
-                        dest : build_path
+                        dest : build
                     }
                 ]
             }
@@ -118,7 +161,7 @@ module.exports = function(grunt) {
                         expand: true,
                         cwd: src_path + 'assets/css/',
                         src: ['main.less'],
-                        dest: build_path + 'assets/css/',
+                        dest: build + 'assets/css/',
                         ext: '.css'
                     }
                 ]
@@ -131,8 +174,8 @@ module.exports = function(grunt) {
                     keepSpecialComments : 0
                 },
 
-                src: build_path + 'styles/**/*.css',
-                dest: build_path + 'styles/main.css'
+                src: build + 'styles/**/*.css',
+                dest: build + 'styles/main.css'
 
             }
 
@@ -140,32 +183,65 @@ module.exports = function(grunt) {
 
         replace: {
             index: {
-                src: [build_path + 'index.html'],             // source files array (supports minimatch)
-                dest: build_path + 'index.html',             // destination directory or file
-                replacements: [{
-                    from: '<link rel="stylesheet/less" type="text/css" href="./assets/css/main.less">',                   // string replacement
-                    to: '<link rel="stylesheet/less" type="text/css" href="./assets/css/main.css">'
-                }]
+                src: [build + 'index.html'],             // source files array (supports minimatch)
+                dest: build + 'index.html',             // destination directory or file
+                replacements: [
+                    {
+                        from: '<link rel="stylesheet/less" type="text/css" href="./assets/css/main.less">',                   // string replacement
+                        to: '<link rel="stylesheet" type="text/css" href="./assets/css/main.css">'
+                    },                    
+                    {
+                        from: 'src="../libs/requirejs/require.js"',
+                        to: 'src="./javascript/libs/require.js"'
+                    },
+                    {
+                        from: '<script src="//localhost:35729/livereload.js"></script>',
+                        to: ''
+                    }
+                ]
+            },
+
+            main: {
+                src: [build + js + 'main.js'],            
+                dest: build + js + 'main.js',   
+                replacements: [
+                    {
+                        from: 'require(["jquery", "less"], function () {',
+                        to: 'require(["jquery"], function (){'
+                    }
+                ]
             },
 
             bootstrap: {
-                src: [build_path + 'scripts/requireJsBootstrap.js'],             // source files array (supports minimatch)
-                dest: build_path + 'scripts/requireJsBootstrap.js',             // destination directory or file
+                src: [build + 'scripts/requireConfig.js'],             // source files array (supports minimatch)
+                dest: build + 'scripts/requireConfig.js',             // destination directory or file
                 replacements: [
                     {
-                        from: 'require(["jquery", "less"], function () {',                   // string replacement
-                        to: 'require(["jquery"], function () {'
+                        from: "jquery: '../../libs/jquery/dist/jquery.min',",
+                        to: "jquery: './libs/jquery',"
                     },
                     {
-                        from: "text: '../../libs/requirejs-text/text',",                   // string replacement
-                        to: ''
+                        from: "jqueryui: '../../libs/jquery-ui/jquery-ui.min',",
+                        to: "jqueryui: './libs/jquery-ui',"
+                    },
+                    {
+                        from: "text: '../../libs/requirejs-text/text',",
+                        to: "text: './libs/text',"
+                    },
+                    {
+                        from: "less: '../../libs/less/dist/less.min',",
+                        to: ""
+                    },
+                    {
+                        from: "SimpleStorage: '../../libs/simpleStorage/simpleStorage',",
+                        to: "SimpleStorage: './libs/simpleStorage',"
                     }
                 ]
             },
 
             logs: {
                 overwrite: true,
-                src: [build_path + '**/*.js'],
+                src: [build + '**/*.js'],
 
                 replacements: [
                     {
@@ -243,11 +319,11 @@ module.exports = function(grunt) {
         requirejs: {
             compile: {
                 options: {
-                    appDir: build_path,
+                    appDir: build,
                     baseUrl: "./",
-                    dir: build_step_1_path,
+                    dir: final,
                     optimize: 'uglify',
-                    mainConfigFile: build_path + "javascript/requireJsBootstrap.js",
+                    mainConfigFile: build + "javascript/requireConfig.js",
 
 
                     inlineText:true,
@@ -257,21 +333,6 @@ module.exports = function(grunt) {
                         'text':'javascript/libs/text'
                     }
                 }
-            },
-
-            inline: {
-                options: {
-                    appDir: build_path,
-                    baseUrl: "./",
-                    dir: build_step_1_path,
-                    optimize: 'none',
-                    mainConfigFile: build_path+ "javascript/requireJsBootstrap.js",
-                    inlineText: true,
-                    stubModules: ['text'],
-                    paths: {
-                        "text" : "text"
-                    }
-                }
             }
         },
 
@@ -279,8 +340,8 @@ module.exports = function(grunt) {
             build: {
                 files: [
                     {
-                        src: [build_step_1_path],
-                        dest: build_path
+                        src: [final],
+                        dest: build
                     }
                 ]
             }
@@ -300,6 +361,26 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-jsdoc');
 
     // Registering tasks
-    grunt.registerTask('default', ['clean:build', 'copy:build', 'replace', 'htmlmin:build', 'less:build', 'cssmin:build', 'clean:final', 'requirejs:compile', 'clean:build', 'rename:build']);
-    grunt.registerTask('docs', ['clean:docs', 'jsdoc:docs']);
+    grunt.registerTask('default', 
+        [
+            'clean:build', 
+            'copy:build', 
+            'htmlmin:build', 
+            'less:build', 
+            'clean:build_less',
+            'replace', 
+            'cssmin:build', 
+            'clean:final', 
+            'requirejs:compile', 
+            'clean:build', 
+            'rename:build'
+        ]
+    );
+
+    grunt.registerTask('docs', 
+        [
+            'clean:docs', 
+            'jsdoc:docs'
+        ]
+    );
 };
