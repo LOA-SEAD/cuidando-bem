@@ -213,8 +213,8 @@ module.exports = function(grunt) {
             },
 
             bootstrap: {
-                src: [build + 'scripts/requireConfig.js'],             // source files array (supports minimatch)
-                dest: build + 'scripts/requireConfig.js',             // destination directory or file
+                src: [build + js + 'requireConfig.js'],
+                dest: build + js + 'requireConfig.js',
                 replacements: [
                     {
                         from: "jquery: '../../libs/jquery/dist/jquery.min',",
@@ -374,6 +374,16 @@ module.exports = function(grunt) {
             'requirejs:compile', 
             'clean:build', 
             'rename:build'
+        ]
+    );
+
+    grunt.registerTask('test', 
+        [
+            'clean:build', 
+            'copy:build', 
+            'htmlmin:build', 
+            'less:build', 
+            'clean:build_less'
         ]
     );
 
