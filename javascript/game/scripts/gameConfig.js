@@ -1,0 +1,1 @@
+define([],function(){var e="./game/scripts/levels/",t=["Tutorial","Fase8"];for(i=0;i<t.length;i++)require([e+t[i]])});

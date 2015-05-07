@@ -1,0 +1,1 @@
+require(["Stage","CuidandoBem","gameConfig","stageConfig"],function(e,t){$("document").ready(function(){e.setContainer("#stage"),e.start()})});

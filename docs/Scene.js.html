@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Cuidando Bem Source: engine/modules/scenes/Scene.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
+
+</head>
+
+<body>
+<div class="container-fluid">
+	<div class="navbar navbar-fixed-top navbar-inverse">
+		<div class="navbar-inner">
+			<a class="brand" href="index.html">Cuidando Bem</a>
+			<ul class="nav">
+				
+				<li class="dropdown">
+					<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b
+						class="caret"></b></a>
+
+					<ul class="dropdown-menu ">
+						
+						<li>
+							<a href="module-CommandBar.html">CommandBar</a>
+						</li>
+						
+						<li>
+							<a href="module-CuidandoBem.html">CuidandoBem</a>
+						</li>
+						
+						<li>
+							<a href="module-DialogModal.html">DialogModal</a>
+						</li>
+						
+						<li>
+							<a href="module-EndOfLevel.html">EndOfLevel</a>
+						</li>
+						
+						<li>
+							<a href="Loader.html">Image Loader</a>
+						</li>
+						
+						<li>
+							<a href="module-InteractiveObject.html">InteractiveObject</a>
+						</li>
+						
+						<li>
+							<a href="module-LevelsData.html">LevelsData</a>
+						</li>
+						
+						<li>
+							<a href="module-ModalScene.html">ModalScene</a>
+						</li>
+						
+						<li>
+							<a href="module-Player.html">Player</a>
+						</li>
+						
+						<li>
+							<a href="module-Prontuario_Controller.html">Prontuario_Controller</a>
+						</li>
+						
+						<li>
+							<a href="module-Pulseira_Controller.html">Pulseira_Controller</a>
+						</li>
+						
+						<li>
+							<a href="module-SaveLoadGame.html">SaveLoadGame</a>
+						</li>
+						
+						<li>
+							<a href="module-Scene.html">Scene</a>
+						</li>
+						
+						<li>
+							<a href="module-Screen_configuration_Controller.html">Screen_configuration_Controller</a>
+						</li>
+						
+						<li>
+							<a href="module-Screen_credits_Controller.html">Screen_credits_Controller</a>
+						</li>
+						
+						<li>
+							<a href="module-Screen_game_Controller.html">Screen_game_Controller</a>
+						</li>
+						
+						<li>
+							<a href="module-Screen_levelSelect_Controller.html">Screen_levelSelect_Controller</a>
+						</li>
+						
+						<li>
+							<a href="module-Screen_loadGame_Controller.html">Screen_loadGame_Controller</a>
+						</li>
+						
+						<li>
+							<a href="module-Screen_mainMenu_Controller.html">Screen_mainMenu_Controller</a>
+						</li>
+						
+						<li>
+							<a href="module-Screen_newGameSlotSelect_Controller.html">Screen_newGameSlotSelect_Controller</a>
+						</li>
+						
+						<li>
+							<a href="module-Stage.html">Stage</a>
+						</li>
+						
+
+					</ul>
+				</li>
+				
+				<li class="dropdown">
+					<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b
+						class="caret"></b></a>
+
+					<ul class="dropdown-menu ">
+						
+						<li>
+							<a href="Action.html">Action</a>
+						</li>
+						
+						<li>
+							<a href="Character.html">Character</a>
+						</li>
+						
+						<li>
+							<a href="Dialog.html">Dialog</a>
+						</li>
+						
+						<li>
+							<a href="Dialog.DialogOption.html">Dialog.DialogOption</a>
+						</li>
+						
+						<li>
+							<a href="Flag.html">Flag</a>
+						</li>
+						
+						<li>
+							<a href="InteractiveObject.html">InteractiveObject</a>
+						</li>
+						
+						<li>
+							<a href="Level.html">Level</a>
+						</li>
+						
+						<li>
+							<a href="module-Stage.Screen.html">Stage.Screen</a>
+						</li>
+						
+						<li>
+							<a href="Scene.html">Scene</a>
+						</li>
+						
+
+					</ul>
+				</li>
+				
+			</ul>
+		</div>
+	</div>
+
+	<div class="row-fluid">
+
+		
+			<div class="span12">
+				
+				<div id="main">
+					
+
+
+		<h1 class="page-title">Source: engine/modules/scenes/Scene.js</h1>
+    
+<section>
+	<article>
+		<pre
+			class="sunlight-highlight-javascript linenums">/* 
+ This module declares the object type scene that represents one of the rooms inside the game.
+
+ Each scene may have more than one interactive Object that will be declared later.
+
+ Each scene has a background image
+ * @memberOf Scene
+
+ @author Otho - Marcelo Lopes Lotufo
+ */
+define(function () {
+
+    var counter = -1;
+    /**
+     * @class
+     * @name Scene
+     * @param {string} _name
+     * @param {string} _cssClass
+     * @param {function} _load
+     * @param {function} _unload
+     * @return ObjectExpression
+     *
+     * @author Otho - Marcelo Lopes Lotufo
+     */
+    function Scene(_id, _name) {
+        //Attributes
+
+        if(_id == null)
+            _id = "Scene_"+counter;
+
+        if(_name == null)
+            _name = "";
+
+        var id = _id;
+
+        var name = _name;
+        var cssClass = "noTexture";
+
+        var onLoadFunction = function(){};
+        var onUnloadFunction = function(){};
+
+        var dialogs = [];
+
+        var interactiveObjects = [];
+        var interactiveObjects_aux = {};
+
+        var actions = [];
+        var actions_aux = {};
+
+        var template;
+
+        //Methods
+
+        /**
+         * Description
+         * @method load
+         *
+         * @memberOf Scene#
+         */
+        function load() {
+            console.info("Scene " + name + " load function");
+            onLoadFunction();
+        }
+
+        /**
+         * Description
+         * @method unload
+         *
+         * @memberOf Scene#
+         */
+        function unload() {
+            console.info("Scene " + name + " unload function");
+            onUnloadFunction();
+        }
+
+        //Getters
+        function getClone(){
+            var scene_clone = new Scene(id, name)
+                .setCssClass(getCssClass())
+                .onLoad(onLoadFunction)
+                .onUnload(onUnloadFunction)
+                .setTemplate(getTemplate());
+
+            for(dialog in dialogs)
+                scene_clone.registerDialog(dialogs[dialog].getClone());
+
+            for(interactiveObject in interactiveObjects)
+                scene_clone.registerInteractiveObject(interactiveObjects[interactiveObject].getClone());
+
+            for(action in actions)
+                scene_clone.registerAction(actions[action].getClone());
+
+            return scene_clone;
+        }
+
+        function getId(){
+            return id;
+        }
+
+        /**
+         * Description
+         * @method getName
+         * @return name
+         *
+         * @memberOf Scene#
+         */
+        function getName() {
+            return name;
+        }
+
+        /**
+         * Description
+         * @method getCssClass
+         * @return cssClass
+         *
+         * @memberOf Scene#
+         */
+        function getCssClass() {
+            return cssClass;
+        }
+
+        /**
+         * Description
+         * @method getActions
+         * @return actions
+         *
+         * @memberOf Scene#
+         */
+        function getActions() {
+            return actions;
+        }
+
+        /**
+         * Description
+         * @method getAction
+         * @param {} _actionId
+         *
+         * @memberOf Scene#
+         */
+        function getAction(_actionId) {
+            if (typeof _actionId == "string") {
+                return actions[actions_aux[_actionId]];
+            } else {
+                return actions[_actionId];
+            }
+        }
+
+        /**
+         * Description
+         * @method getDialogs
+         * @return dialogs
+         *
+         * @memberOf Scene#
+         */
+        function getDialogs() {
+            return dialogs;
+        }
+
+        /**
+         * Description
+         * @method getInteractiveObjects
+         * @return interactiveObjects
+         *
+         * @memberOf Scene#
+         */
+        function getInteractiveObjects() {
+            return interactiveObjects;
+        }
+
+        /**
+         * Description
+         * @method getInteractiveObject
+         * @param {} _intObjId
+         *
+         * @memberOf Scene#
+         */
+        function getInteractiveObject(_intObjId) {
+            if (typeof _intObjId == "string") {
+                return interactiveObjects[interactiveObjects_aux[_intObjId]];
+            } else {
+                return interactiveObjects[_intObjId];
+            }
+        }
+
+        function getTemplate(){
+            return template;
+        }
+
+        //Setters
+        function setId(_id){
+            id = _id;
+            return this;
+        }
+
+        function setName(_name){
+            name = _name;
+            return this;
+        }
+
+        function setCssClass(_cssClass){
+            cssClass = _cssClass;
+            return this;
+        }
+
+        function onLoad(_load){
+            onLoadFunction = _load;
+            return this;
+        }
+
+        function onUnload(_unload){
+            onUnloadFunction = _unload;
+            return this;
+        }
+
+        function setTemplate(_template){
+            template = _template;
+            return this;
+        }
+
+        /**
+         * Description
+         * @method registerAction
+         * @param {} _action
+         *
+         * @memberOf Scene#
+         */
+        function registerAction(_action) {
+            actions_aux[_action.getId()] = actions.length;
+            actions.push(_action);
+
+            console.log("Registering Action: ", _action.getName(), "on Scene:" + name);
+        }
+
+        function registerActions(_actions){
+            var i;
+            for (i = 0; i &lt; _actions.length; i++) {
+                registerAction(_actions[i]);
+            }
+        }
+
+        /**
+         * Description
+         * @method registerDialog
+         * @param {} _dialog
+         *
+         * @memberOf Scene#
+         */
+        function registerDialog(_dialog) {
+            dialogs.push(_dialog);
+            console.log("Registering Dialog: ", _dialog.getSpeakerName(), "on Scene:" + name);
+        }
+
+        /**
+         * Description
+         * @method registerDialogs
+         * @param {} _dialogs
+         *
+         * @memberOf Scene#
+         */
+        function registerDialogs(_dialogs) {
+            var i;
+            for (i = 0; i &lt; _dialogs.length; i++) {
+                registerDialog(_dialogs[i]);
+            }
+        }
+
+        /**
+         * Description
+         * @method registerInteractiveObject
+         * @param {} _interactiveObject
+         *
+         * @memberOf Scene#
+         */
+        function registerInteractiveObject(_interactiveObject) {
+            interactiveObjects_aux[_interactiveObject.getId()] = interactiveObjects.length;
+            interactiveObjects.push(_interactiveObject);
+
+            console.log("Registering Interactive Object: ", _interactiveObject.getName(), "on Scene:" + name);
+        }
+
+        function registerInteractiveObjects(_interactiveObjects) {
+            var i;
+            for (i = 0; i &lt; _interactiveObjects.length; i++) {
+                registerInteractiveObject(_interactiveObjects[i]);
+            }
+        }
+
+        //Public interface
+        return {
+            getId: getId,
+            getName: getName,
+            getCssClass: getCssClass,
+            load: load,
+            unload: unload,
+
+            getClone: getClone,
+            getActions: getActions,
+            getAction: getAction,
+            getInteractiveObjects: getInteractiveObjects,
+            getInteractiveObject: getInteractiveObject,
+            getDialogs: getDialogs,
+            getTemplate: getTemplate,
+
+            setId:setId,
+            setName:setName,
+            setCssClass:setCssClass,
+            onLoad:onLoad,
+            onUnload:onUnload,
+            setTemplate: setTemplate,
+
+
+            registerAction: registerAction,
+            registerActions: registerActions,
+            registerDialog: registerDialog,
+            registerDialogs: registerDialogs,
+            registerInteractiveObject: registerInteractiveObject,
+            registerInteractiveObjects: registerInteractiveObjects
+        }
+
+    }
+
+    return Scene;
+});
+</pre>
+	</article>
+</section>
+
+
+
+
+
+				</div>
+
+				<div class="clearfix"></div>
+				<footer>
+					
+					
+		<span class="copyright">
+		Cuidando Bem Copyright © 2014-2014
+		</span>
+					<br />
+					
+		<span class="jsdoc-message">
+		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.2</a>
+		on Tue Apr 28th 2015 using the <a
+			href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		</span>
+				</footer>
+			</div>
+
+			
+			<br clear="both">
+		</div>
+
+	</div>
+	<!--<script src="scripts/sunlight.js"></script>-->
+	<script src="scripts/docstrap.lib.js"></script>
+	<script src="scripts/bootstrap-dropdown.js"></script>
+	<script src="scripts/toc.js"></script>
+
+	<script>
+		$( function () {
+			$( "[id*='$']" ).each( function () {
+				var $this = $( this );
+
+				$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+			} );
+
+			$( "#toc" ).toc( {
+				anchorName  : function ( i, heading, prefix ) {
+					return $( heading ).attr( "id" ) || ( prefix + i );
+				},
+				selectors   : "h1,h2,h3,h4",
+				showAndHide : false,
+				scrollTo    : "100px"
+			} );
+
+			$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
+			$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+			$( '.dropdown-toggle' ).dropdown();
+//			$( ".tutorial-section pre, .readme-section pre" ).addClass( "sunlight-highlight-javascript" ).addClass( "linenums" );
+
+			$( ".tutorial-section pre, .readme-section pre" ).each( function () {
+				var $this = $( this );
+
+				var example = $this.find( "code" );
+				exampleText = example.html();
+				var lang = /{@lang (.*?)}/.exec( exampleText );
+				if ( lang && lang[1] ) {
+					exampleText = exampleText.replace( lang[0], "" );
+					example.html( exampleText );
+					lang = lang[1];
+				} else {
+					lang = "javascript";
+				}
+
+				if ( lang ) {
+
+					$this
+						.addClass( "sunlight-highlight-" + lang )
+						.addClass( "linenums" )
+						.html( example.html() );
+
+				}
+			} );
+
+			Sunlight.highlightAll( {
+				lineNumbers : true,
+				showMenu : true,
+				enableDoclinks : true
+			} );
+		} );
+	 </script>
+
+
+
+	<!--Navigation and Symbol Display-->
+	
+
+
+	<!--Google Analytics-->
+	
+
+</body>
+</html>

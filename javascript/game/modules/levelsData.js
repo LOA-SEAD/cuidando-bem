@@ -1,0 +1,1 @@
+define([],function(){function r(t,n){e[n]!=null,e[n]=t}function i(){return e[n]}function s(e){n=e}function o(){return e[t]}var e={},t=0,n=t;return{registerLevel:r,getCurrentLevel:i,getInitialLevel:o,setCurrentLevel:s}});

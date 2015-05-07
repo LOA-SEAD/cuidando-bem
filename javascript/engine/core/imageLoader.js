@@ -1,0 +1,1 @@
+define(["Images"],function(e){function r(t){var n=[];if(typeof t=="object")if(t instanceof Array)n=n.concat(t);else for(x in t)n=n.concat(r(t[x]));else n.push(e.baseDir+t);return n}function i(){var e=arguments[0];n++,n==t.length&&window.init()}var t=r(e.paths),n=0;for(id in t){var s=t[id],o=new Image;o.onload=i,o.src=s}});
