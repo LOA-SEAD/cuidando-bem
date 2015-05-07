@@ -1191,36 +1191,13 @@ body {
   float: left;
   position: relative;
 }
-#pulseira_modal #name_display {
-  position: absolute;
-  width: 170px;
-  height: 20px;
-  text-align: left;
-  cursor: text;
-}
-@media (min-width: 768px) {
-  #pulseira_modal #name_display {
-    left: 175px;
-    top: 198px;
-  }
-}
-@media (min-width: 992px) {
-  #pulseira_modal #name_display {
-    left: 226px;
-    top: 260px;
-  }
-}
-@media (min-width: 1200px) {
-  #pulseira_modal #name_display {
-    left: 275px;
-    top: 317px;
-  }
+#pulseira_modal input {
+  border: none;
 }
 #pulseira_modal #name_input {
   position: absolute;
   width: 170px;
   height: 20px;
-  display: none;
 }
 @media (min-width: 768px) {
   #pulseira_modal #name_input {
@@ -1240,36 +1217,10 @@ body {
     top: 316px;
   }
 }
-#pulseira_modal #data_display {
-  position: absolute;
-  width: 75px;
-  height: 20px;
-  text-align: left;
-  cursor: text;
-}
-@media (min-width: 768px) {
-  #pulseira_modal #data_display {
-    left: 286px;
-    top: 217px;
-  }
-}
-@media (min-width: 992px) {
-  #pulseira_modal #data_display {
-    left: 372px;
-    top: 286px;
-  }
-}
-@media (min-width: 1200px) {
-  #pulseira_modal #data_display {
-    left: 450px;
-    top: 348px;
-  }
-}
 #pulseira_modal #data_input {
   position: absolute;
   width: 75px;
   height: 20px;
-  display: none;
 }
 @media (min-width: 768px) {
   #pulseira_modal #data_input {
@@ -1289,36 +1240,10 @@ body {
     top: 348px;
   }
 }
-#pulseira_modal #leito_display {
-  position: absolute;
-  width: 97px;
-  height: 20px;
-  text-align: left;
-  cursor: text;
-}
-@media (min-width: 768px) {
-  #pulseira_modal #leito_display {
-    left: 168px;
-    top: 217px;
-  }
-}
-@media (min-width: 992px) {
-  #pulseira_modal #leito_display {
-    left: 219px;
-    top: 284px;
-  }
-}
-@media (min-width: 1200px) {
-  #pulseira_modal #leito_display {
-    left: 265px;
-    top: 348px;
-  }
-}
 #pulseira_modal #leito_input {
   position: absolute;
   width: 97px;
   height: 20px;
-  display: none;
 }
 @media (min-width: 768px) {
   #pulseira_modal #leito_input {
