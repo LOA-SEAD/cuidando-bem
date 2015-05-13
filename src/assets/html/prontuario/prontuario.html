@@ -107,11 +107,11 @@
                         Alergia medicamentosa:
                     </div>
                     <div class="doubleRight">
-                        (<span id="pront_alergia_sim">&nbsp;&nbsp;&nbsp;</span>) Sim.
-                        Qual(s) ?<span id="pront_alergia_qual"></span>
+                        <div id="pront_alergia_divSim" class="inline">(&nbsp;<span id="pront_alergia_spanSim">&nbsp;</span>&nbsp;)Sim.</div>
+                        Qual(s) ?<input id="pront_alergia_qual">
                     </div>
                     <div class="doubleRight">
-                        (<span id="pront_alergia_nao">&nbsp;&nbsp;&nbsp;</span>) Não.
+                        <div id="pront_alergia_divNao" class="inline">(&nbsp;<span id="pront_alergia_spanNao">&nbsp;</span>&nbsp;)Não.</div>
                     </div>
                 </div>
 
@@ -141,48 +141,32 @@
 
                 <table class="col6">
                     <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Medicação</th>
-                        <th>Via</th>
-                        <th>Posologia</th>
-                        <th>Horário</th>
-                        <th>Relatório de Enfermagem</th>
-                    </tr>
+                        <tr>
+                            <th>Data</th>
+                            <th>Medicação</th>
+                            <th>Via</th>
+                            <th>Posologia</th>
+                            <th>Horário</th>
+                            <th>Relatório de Enfermagem</th>
+                        </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    <tbody id="prescMedica_tbody">
+                        <tr class="prescMedica_row">
+                            <td class="data"></td>
+                            <td class="medicacao"></td>
+                            <td class="via"></td>
+                            <td class="posologia"></td>
+                            <td class="horario"></td>
+                            <td><input class="relatorio" type="text"></td>
+                        </tr>
+                        <tr class="prescMedica_row">
+                            <td class="data"></td>
+                            <td class="medicacao"></td>
+                            <td class="via"></td>
+                            <td class="posologia"></td>
+                            <td class="horario"></td>
+                            <td><input class="relatorio" type="text"></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -192,7 +176,7 @@
         <div id="bloco4" class="outerBlock">
             <div class="block">
                 <div class="row">
-                    <span class="anotacao_enfermagem ">Prescrição de Enfermagem</span>
+                    <span class="anotacao_enfermagem">Prescrição de Enfermagem</span>
                 </div>
 
                 <table class="col4">

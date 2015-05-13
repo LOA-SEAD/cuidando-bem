@@ -24,15 +24,21 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         Prontuario.setEstadoCivil("Casado");
         Prontuario.setDataNascimento("07/06/1956");
         Prontuario.setIdade("58 anos");
+        Prontuario.setProfissao("Comerciante");
         Prontuario.setPai("Joaquim Casagrande");
         Prontuario.setMae("Lúcia Moraes Casagrande");
+
         Prontuario.setLeito("02");
         Prontuario.setAntecedentes("Ocorrência de internação em 2004, devido a suspeita de infarto agudo do miocárdio (IAM)");
         Prontuario.setHipotese("Crise hipertensiva");
+        Prontuario.setObservacoes("");
         //TODO: alergia medicamentosa
         Prontuario.setPeso("87");
         Prontuario.setAltura("1,62");
         Prontuario.setCircunferenciaAbdominal("115");
+
+        Prontuario.setPrescMedicaRowData(0, "15-03", "Captopril", "Oral", "comp 75 mg", "2x dia", "");
+        Prontuario.setPrescMedicaRowData(1, "15-03", "Ácido acetilsalicílico (AAS)", "Oral", "comp 100 mg", "1x dia", "");
 
         //region Recepcao
         var recepcao = new Scene("recepcao", "scene-recepcao")

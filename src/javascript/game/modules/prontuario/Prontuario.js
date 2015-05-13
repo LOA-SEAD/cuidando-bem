@@ -50,6 +50,14 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
     var observacoesDisplaySelector = "#pront_observacoes";
     var observacoesText;
 
+    var alergiaMedicamentosa_spanSim = "#pront_alergia_spanSim";
+    var alergiaMedicamentosa_divSim = "#pront_alergia_divSim";
+    var alergiaMedicamentosa_textSelector = "#pront_alergia_qual";
+    var alergiaMedicamentosa_text;
+    var alergiaMedicamentosa_divNao = "#pront_alergia_divNao";
+    var alergiaMedicamentosa_spanNao = "#pront_alergia_spanNao";
+    var alergiaMedicamentosa_status;
+
     //TODO: Radio button e caixa de texto para Alergia medicamentosa
 
     var pesoDisplaySelector = "#pront_peso";
@@ -62,6 +70,43 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
     var circunferenciaAbdominalText;
 
     //TODO: Prescri��o M�dica
+    var prescMedica_tbodySelector = "#prescMedica_tbody";
+    var prescMedica_rowSelector = ".prescMedica_row";
+
+    var prescMedica_dataSelector = ".data";
+    var prescMedica_medicacaoSelector = ".medicacao";
+    var prescMedica_viaSelector = ".via";
+    var prescMedica_posologiaSelector = ".posologia";
+    var prescMedica_horarioSelector = ".horario";
+    var prescMedica_relatorioSelector = ".relatorio";
+
+    var prescMedica_data = [
+        {
+            data: "",
+            medicacao: "",
+            via: "",
+            posologia: "",
+            horario: "",
+            relatorio: ""
+        },
+        {
+            data: "",
+            medicacao: "",
+            via: "",
+            posologia: "",
+            horario: "",
+            relatorio: ""
+        }
+    ];
+
+    var prescMedica_relatorioRegExp = [
+        {
+            relatorio: ""
+        },
+        {
+            relatorio: ""
+        }
+    ];
 
     //TODO: Prescri��o de Enfermagem
     var ssvv_tbodySelector = "#ssvv_tbody";
@@ -358,6 +403,34 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
         anotacaoEnfermagem_regExps[_row].data = _data;
         anotacaoEnfermagem_regExps[_row].anotacao = _anotacao;
     }
+
+    function setPrescMedicaRowData(_row, _data, _medicacao, _via, _posologia, _horario, _relatorio){
+        if(_row < 0 || _row > prescMedica_data.length){
+            throw new Error("Invalid row index");
+        }
+
+        prescMedica_data[_row].data = _data;
+        prescMedica_data[_row].medicacao = _medicacao;
+        prescMedica_data[_row].via = _via;
+        prescMedica_data[_row].posologia = _posologia;
+        prescMedica_data[_row].horario = _horario;
+        prescMedica_data[_row].relatorio = _relatorio;
+
+        $($(prescMedica_dataSelector, prescMedica_tbodySelector)[_row]).text(_data);
+        $($(prescMedica_medicacaoSelector, prescMedica_tbodySelector)[_row]).text(_medicacao);
+        $($(prescMedica_viaSelector, prescMedica_tbodySelector)[_row]).text(_via);
+        $($(prescMedica_posologiaSelector, prescMedica_tbodySelector)[_row]).text(_posologia);
+        $($(prescMedica_horarioSelector, prescMedica_tbodySelector)[_row]).text(_horario);
+        $($(prescMedica_relatorioSelector, prescMedica_tbodySelector)[_row]).val(_relatorio);
+    }
+
+    function setPrescMedicaRowRegExp(_row, _relatorio){
+        if(_row < 0 || _row > prescMedica_data.length){
+            throw new Error("Invalid row index");
+        }
+
+        prescMedica_relatorioRegExp[_row] = _relatorio;
+    }
     //endregion
 
     //region Methods
@@ -365,11 +438,30 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
     function init(selector) {
         $(selector).append(html);
 
+        $(alergiaMedicamentosa_divSim).click(function(){
+            alergiaMedicamentosa_status = true;
+
+            $(alergiaMedicamentosa_spanSim).text("X");
+            $(alergiaMedicamentosa_spanNao).text("   ");
+
+            $(alergiaMedicamentosa_textSelector).show();
+        });
+
+        $(alergiaMedicamentosa_divNao).click(function(){
+            alergiaMedicamentosa_status = false;
+
+            $(alergiaMedicamentosa_spanNao).text("X");
+            $(alergiaMedicamentosa_spanSim).text("   ");
+
+            $(alergiaMedicamentosa_textSelector).hide();
+        });
+
         $('.content').tabs();
     }
 
     function open(){
         $(prontuarioSelector).show();
+
         updateData();
     }
 
@@ -391,6 +483,15 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
         $(alturaDisplaySelector).text(alturaText);
         $(circunferenciaAbdominalSelector).text(circunferenciaAbdominalText);
 
+        for(row = 0; row< prescMedica_data.length; row++){
+            $($(prescMedica_dataSelector, prescMedica_tbodySelector)[row]).text(prescMedica_data[row].data);
+            $($(prescMedica_medicacaoSelector, prescMedica_tbodySelector)[row]).text(prescMedica_data[row].medicacao);
+            $($(prescMedica_viaSelector, prescMedica_tbodySelector)[row]).text(prescMedica_data[row].via);
+            $($(prescMedica_posologiaSelector, prescMedica_tbodySelector)[row]).text(prescMedica_data[row].posologia);
+            $($(prescMedica_horarioSelector, prescMedica_tbodySelector)[row]).text(prescMedica_data[row].horario);
+            $($(prescMedica_relatorioSelector, prescMedica_tbodySelector)[row]).val(prescMedica_data[row].relatorio);
+        }
+
         for(row = 0; row< ssvv_data.length; row++){
             $($(ssvv_dataSelector, ssvv_tbodySelector)[row]).val(ssvv_data[row].data);
             $($(ssvv_pressaoArterialSelector, ssvv_tbodySelector)[row]).val(ssvv_data[row].pa);
@@ -407,9 +508,7 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
     }
 
     function isDataValid(){
-
         var row;
-        var valid = true;
 
         for(row = 0; row< ssvv_data.length; row++){
             data = $($(ssvv_dataSelector, ssvv_tbodySelector)[row]).val();
@@ -419,23 +518,38 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
             sat = $($(ssvv_saturacaoSelector, ssvv_tbodySelector)[row]).val();
             temp = $($(ssvv_temperaturaSelector, ssvv_tbodySelector)[row]).val();
 
-            valid = valid && ssvv_regExps[row].data.test(data);
-            valid = valid && ssvv_regExps[row].pa.test(pa);
-            valid = valid && ssvv_regExps[row].fc.test(fc);
-            valid = valid && ssvv_regExps[row].fr.test(fr);
-            valid = valid && ssvv_regExps[row].sat.test(sat);
-            valid = valid && ssvv_regExps[row].temp.test(temp);
+            if(!ssvv_regExps[row].data.test(data))
+                return false;
+            if(!ssvv_regExps[row].pa.test(pa))
+                return false;
+            if(!ssvv_regExps[row].fc.test(fc))
+                return false;
+            if(!ssvv_regExps[row].fr.test(fr))
+                return false;
+            if(!ssvv_regExps[row].sat.test(sat))
+                return false;
+            if(!ssvv_regExps[row].temp.test(temp))
+                return false;
+        }
+
+        for(row = 0; row< prescMedica_data.length; row++){
+            relatorio = $($(prescMedica_relatorioSelector, prescMedica_tbodySelector)[row]).val();
+
+            if(!prescMedica_relatorioRegExp[row].relatorio.test(relatorio))
+                return false;
         }
 
         for(row = 0; row< anotacaoEnfermagem_data.length; row++){
             data =  $($(anotacaoEnfermagem_dataSelector, anotacaoEnfermagem_tbodySelector)[row]).val();
             anotacao = $($(anotacaoEnfermagem_anotacaoSelector, anotacaoEnfermagem_tbodySelector)[row]).val();
 
-            valid = valid && anotacaoEnfermagem_regExps[row].data.test(data);
-            valid = valid && anotacaoEnfermagem_regExps[row].anotacao.test(anotacao);
+            if(!anotacaoEnfermagem_regExps[row].data.test(data))
+                return false;
+            if(!anotacaoEnfermagem_regExps[row].anotacao.test(anotacao))
+                return false;
         }
 
-        return valid;
+        return true;
     }
 
     //endregion
@@ -487,7 +601,10 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
         setSsvvRowRegExp: setSsvvRowRegExp,
 
         setAnotacaoEnfermagemRowData: setAnotacaoEnfermagemRowData,
-        setAnotacaoEnfermagemRowRegExp: setAnotacaoEnfermagemRowRegExp
+        setAnotacaoEnfermagemRowRegExp: setAnotacaoEnfermagemRowRegExp,
+
+        setPrescMedicaRowData: setPrescMedicaRowData,
+        setPrescMedicaRowRegExp: setPrescMedicaRowRegExp
     }
 
 });
