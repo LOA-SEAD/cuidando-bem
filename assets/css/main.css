@@ -1109,6 +1109,12 @@ body {
 #prontuario table.col2 tbody tr:not(:last-child) {
   border-bottom: 1px solid black;
 }
+#prontuario .alergia_medicamentosa #pront_alergia_qual {
+  width: 30%;
+}
+#prontuario .alergia_medicamentosa .inline {
+  display: inline;
+}
 .ui-widget-overlay {
   position: fixed;
   top: 0;
