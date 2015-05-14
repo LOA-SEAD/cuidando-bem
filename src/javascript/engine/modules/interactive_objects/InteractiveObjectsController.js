@@ -73,8 +73,8 @@ define(['text!../assets/html/interactiveObject/interactiveObjects.html', 'text!.
                 duration: 200
             },
             position: {
-                within: "#interactiveArea",
-                of: "#interactiveArea",
+                within: "#gameStage",
+                of: "#gameStage",
                 my: "center top+10",
                 at: "center top"
             }

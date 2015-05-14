@@ -58,7 +58,6 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
     var alergiaMedicamentosa_spanNao = "#pront_alergia_spanNao";
     var alergiaMedicamentosa_status;
 
-    //TODO: Radio button e caixa de texto para Alergia medicamentosa
 
     var pesoDisplaySelector = "#pront_peso";
     var pesoText;
@@ -69,7 +68,6 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
     var circunferenciaAbdominalSelector = "#pront_circunferencia_abdominal";
     var circunferenciaAbdominalText;
 
-    //TODO: Prescri��o M�dica
     var prescMedica_tbodySelector = "#prescMedica_tbody";
     var prescMedica_rowSelector = ".prescMedica_row";
 
@@ -155,7 +153,6 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
             temp: ""
         }
     ];
-    //TODO: Anota��o de Enfermagem
 
     var anotacaoEnfermagem_tbodySelector = "#anotacaoEnfermagem_tbody";
 
@@ -500,7 +497,7 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
             $($(ssvv_saturacaoSelector, ssvv_tbodySelector)[row]).val(ssvv_data[row].sat);
             $($(ssvv_temperaturaSelector, ssvv_tbodySelector)[row]).val(ssvv_data[row].temp);
         }
-        //todo  anotacao enfermagem
+
     }
 
     function close(){

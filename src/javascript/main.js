@@ -34,15 +34,15 @@ require(['requireConfig'], function(){
 
                             //Load Stage module, stage configuration, game main Module, game configuration and all dialogs that will be used in game
                             require(["Stage", "stageConfig", "CuidandoBem", "gameConfig",  "Dialogs_data"],
-                                function (Stage) {
-                                    $('document').ready(function () {
-                                        //As soon as the html has been loaded, set the container for the Stage module and start it
-                                        //The game will only be initiated when a level is selected
+                            function (Stage) {
+                                $('document').ready(function () {
+                                    //As soon as the html has been loaded, set the container for the Stage module and start it
+                                    //The game will only be initiated when a level is selected
 
-                                        Stage.setContainer('#stage');
-                                        Stage.start();
-                                    });
+                                    Stage.setContainer('#stage');
+                                    Stage.start();
                                 });
+                            });
                         });
                     });
                 });
