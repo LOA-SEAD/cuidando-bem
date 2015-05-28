@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Teste de animação</title>
+</head>
+<body>	
+	<canvas id="canvas"></canvas>
+
+	<script type="text/javascript">
+
+	//Frame = each time things are draw in screen
+	//Tick = each time things get a logical update
+
+	var last = new Date().getTime();
+	var passed;
+	var now;
+	var accumulator = 0;
+
+	var tickTime = 1000/60;
+
+	var canvas = document.getElementById('canvas');
+
+	canvas.setAttribute('width', 100);
+	canvas.setAttribute('height', 100);
+	
+
+	function Clip(){
+		this.x;
+		this.y;
+
+		this.frameTime;
+		this.accumulator = 0;
+		this.frameTotal;
+		this.frameCounter = 0;
+		
+		this.img;
+		this.hasToDraw = false;
+
+		this.width;
+		this.height;
+
+
+		this.update = function(){
+
+			this.accumulator += tickTime;
+
+			while(this.accumulator >= this.frameTime){
+
+				this.frameCounter++;
+				this.frameCounter = this.frameCounter % this.frameTotal;
+				this.hasToDraw = true;
+
+				this.accumulator -=this.frameTime;
+			}
+		}
+
+		this.draw = function(canvas){
+
+			var ctx = canvas.getContext('2d');
+
+			var fx = this.frameCounter * this.width; 
+
+			ctx.drawImage(this.img, fx, 0, this.width, this.height, 0, 0, this.width, this.height);
+		}
+	}
+
+	var coin = new Clip();
+	coin.width = 100;
+	coin.height = 100;
+	coin.frameTotal = 10;
+	coin.frameTime = 1000*60/30/coin.frameTotal;
+
+	coin.img = new Image();
+
+	coin.img.onload = function(){
+		console.log("ImageLoaded");
+
+
+		gameLoop();
+	}
+
+	coin.img.src = "sprite-animation.png";
+
+	function gameLoop(){
+		console.log("loop");
+		now = new Date().getTime();
+		passed = now-last;
+		last = now;
+		accumulator += passed;
+
+		while(accumulator >= tickTime){
+			coin.update();
+
+			accumulator -=tickTime;
+		}
+
+
+		if(coin.hasToDraw){
+			var ctx = canvas.getContext('2d');
+
+			ctx.fillStyle = "#000000";
+            ctx.fillRect(0,0, 100, 100);
+
+			coin.draw(canvas);
+		}
+
+
+		window.requestAnimationFrame(gameLoop);	
+	}
+
+	</script>
+</body>
+</html>
