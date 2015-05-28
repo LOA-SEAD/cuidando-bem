@@ -435,6 +435,8 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
     function init(selector) {
         $(selector).append(html);
 
+        $(alergiaMedicamentosa_textSelector).hide();
+
         $(alergiaMedicamentosa_divSim).click(function(){
             alergiaMedicamentosa_status = true;
 
@@ -452,6 +454,7 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
 
             $(alergiaMedicamentosa_textSelector).hide();
         });
+        
 
         $('.content').tabs();
     }

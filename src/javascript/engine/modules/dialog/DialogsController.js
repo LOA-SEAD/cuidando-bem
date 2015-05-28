@@ -13,6 +13,7 @@ define(['text!../assets/html/dialog/dialog.html', 'text!../assets/html/dialog/di
 
     var dialogCharNameSelector = ".dialog_charName";
     var dialogCharImg = "#dialog_charImg";
+    var dialogMaskSelector = "#dialogBar-mask";
     var dialogTextSelector = ".dialog_mainText";
     var dialogOptionsSelector = ".dialog_options";
     var dialogButtonSelector = ".dialog_right";
@@ -56,7 +57,13 @@ define(['text!../assets/html/dialog/dialog.html', 'text!../assets/html/dialog/di
         //$(dialogModalSelector).css("display", "table");
         //$(dialogModalSelector).hide()
 
-        $("#dialogBar-mask").show();
+        $(document).keydown(function(e){
+            if(e.which == 32){
+                $('.dialog_right').click();
+            }
+        });
+
+        $(dialogMaskSelector).show();
         $(dialogModalSelector).show("fade",{
             duration: 200,
             complete: function() {
@@ -160,11 +167,13 @@ define(['text!../assets/html/dialog/dialog.html', 'text!../assets/html/dialog/di
      */
     function close() {
 
+        $(document).unbind("keydown");
+
         $(dialogCharNameSelector).hide();
         $(dialogCharImg).hide();
         $(dialogTextSelector).hide();
         $(dialogOptionsSelector).hide();
-        $("#dialogBar-mask").hide();
+        $(dialogMaskSelector).hide();
         $(dialogModalSelector).hide("fade", 200);
         isDialogOpen = false;
     }

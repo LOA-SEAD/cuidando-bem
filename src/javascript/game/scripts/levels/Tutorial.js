@@ -482,6 +482,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function (){
                     if(Pulseira.isAllDataValid()){
                         console.log("Action: action-ir_sala_de_leitos");
+                        core.setActionVisible("btn-perguntar_nome_do_paciente", false);
                         core.changeScene(2);
                     }else{
                         core.closeCommandBar();
@@ -609,6 +610,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function (){
                     console.log("Action: ler prontuario");
                     Prontuario.open();
+                    core.openModalScene("Prontuario");
                 })
                 .setVisibility(visibility)
         ]);
@@ -836,7 +838,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region oximetro
         var oximetro = new Scene("modalOximetro", "Oxímetro")
             .setCssClass("modalScene-oximetro")
-            .setTemplate("<span class='oximetro-text'>valor unidade</span>");
+            .setTemplate(
+                "<span class='oximetro-st-text'>94% Sat.O2</span>"
+                 +"<span class='oximetro-fc-text'>65 bpm</span>"
+                );
 
         oximetro.registerActions([
             new Action("btn-largar_oximetro", "Largar Oxímetro")
