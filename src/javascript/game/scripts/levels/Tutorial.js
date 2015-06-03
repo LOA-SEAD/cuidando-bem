@@ -492,7 +492,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 })
                 .setVisibility(visibility),
             new Action("btn-perguntar_nome_do_paciente", "Perguntar nome do paciente")
-                .setCssClass("action-ir_sala_de_leitos")
+                .setCssClass("action-perguntar_nome_char1")
                 .onClick(function (){
                     core.openDialog(18);
                     core.closeCommandBar();
@@ -509,7 +509,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                             core.setActionVisible("btn-medir_pulso", true);
                             core.setActionVisible("btn-medir_temperatura", true);
                             core.setActionVisible("btn-saturacao_02", true);
-                            core.setActionVisible("btn-lavar_maos", false);
+                            core.setActionVisible("btn-ler_prontuario", true);
+                            //core.setActionVisible("btn-lavar_maos", false);
                             break;
                         case 2:
                             level.getFlag("lavar-maos").setValue(3);
@@ -592,15 +593,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     if(level.getFlag("lavar-maos").getValue() >= 1){
 
                         level.getFlag("relogio").setValue(true);
-                        core.setActionVisible("btn-frequencia_respiratoria", false);
-
-                        if(level.getFlag("termometro").getValue() == true
-                            && level.getFlag("medidor-pressao").getValue() == true
-                            && level.getFlag("oximetro").getValue() == true)
-                        {
-                            core.setActionVisible("btn-lavar_maos", true);
-                            level.getFlag("lavar-maos").setValue(2);
-                        }
+                        //core.setActionVisible("btn-frequencia_respiratoria", false);
                     }
                 })
                 .setVisibility(visibility),
@@ -764,12 +757,23 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var prontuario = new Scene("Prontuario", "modalScene-prontuario_joao");
 
         prontuario.registerActions([
-            new Action("btn-anotar_prontuario", "Anotar prontuário")
-                .setCssClass("action-anotar_prontuario")
+            new Action("btn-fechar_prontuario", "Largar prontuário")
+                .setCssClass("action-ler_prontuario")
                 .onClick(function (){
-                    console.log("Action: anotar prontuario");
+                    console.log("Action: Fechar prontuario");
+                    Prontuario.close();
                     core.closeModalScene("Prontuario");
-                    core.changeScene(5);
+                    //core.changeScene(5);
+                }),
+
+            new Action("btn-terminar_fase", "Conversar com Mentor")
+                .setCssClass("action-abrir_dialogo")
+                .onClick(function (){
+                    console.log("Action: Fechar prontuario");
+                    Prontuario.close();
+                    //core.closeModalScene("Prontuario");
+                    //core.changeScene(5);
+                    alert(Prontuario.isDataValid() + " Final da fase");
                 })
         ]);
         //endregion
