@@ -3,8 +3,8 @@
  New levels can easily be made by adding new game levels.
  */
 
-define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons', 'Pulseira', 'Prontuario'],
-    function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario) {
+define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons', 'Pulseira', 'Prontuario', 'FreqRespiratoria'],
+    function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria) {
 
         //region Imports
         var Dialogs = require("Dialogs_data").tutorial;
@@ -593,6 +593,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     if(level.getFlag("lavar-maos").getValue() >= 1){
 
                         level.getFlag("relogio").setValue(true);
+
+                        FreqRespiratoria.open();
+                        core.openModalScene("freqRespiratoria");
                         //core.setActionVisible("btn-frequencia_respiratoria", false);
                     }
                 })
@@ -851,11 +854,27 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             new Action("btn-largar_oximetro", "Largar Oxímetro")
                 .setCssClass("action-largar_oximetro")
                 .onClick(function() {
-                    core.closeModalScene("modalMedidor_pressao");
+                    core.closeModalScene("modalOximetro");
                 })
                 .setVisibility(true)
         ]);
         //endregion
+
+        //region freqRespiratoria
+        var freqRespiratoria = new Scene("freqRespiratoria", "Frequência Respiratória")
+            .setCssClass("modalScene-freqRespiratoria");
+
+        freqRespiratoria.registerActions([
+            new Action("btn-largar_relogio", "Largar Relógio")
+                .setCssClass("action-largar_relogio")
+                .onClick(function(){
+                    FreqRespiratoria.close();
+                    core.closeModalScene("freqRespiratoria");
+                })
+                .setVisibility(true)
+        ]);
+
+        //enfregion
 
         //endregion
 
@@ -874,6 +893,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Register Modal Scenes
         level.registerModalScene(pulseira);
         level.registerModalScene(prontuario);
+        level.registerModalScene(freqRespiratoria);
         level.registerModalScene(gaveta);
         level.registerModalScene(termometro);
         level.registerModalScene(medidor_pressao);

@@ -25,8 +25,10 @@ define(function(require){
 	var clock = {
 		x: 700,
 		y: 300,
-		radius: 100,
+		radius: 60,
 		angle: 0,
+		line: 20,
+		img: undefined,
 
 		accumulator: 0,
 		time: 1
@@ -75,16 +77,16 @@ define(function(require){
 
 				var img = this.img[this.frameCounter];
 
-				ctx.drawImage(img, 0, 0, this.srWidth, this.srHeight, 0, 0, this.width, this.height);
+				ctx.drawImage(img, 0, 0, this.srWidth, this.srHeight, this.x, this.y, this.width, this.height);
 			}
 		}
 	}
 
 	var breathing = new Animation();
-	breathing.x = 0;
-	breathing.y = 0;
-	breathing.width = 600;
-	breathing.height = 600;
+	breathing.x = 50;
+	breathing.y = 180;
+	breathing.width = 400;
+	breathing.height = 240;
 	breathing.srWidth = 1920;
 	breathing.srHeight = 1152;
 	breathing.frameTotal = 12;
@@ -112,6 +114,14 @@ define(function(require){
 		img.src = "./assets/images/modalScenes/01_"+i+".png";
 	}
 
+	clock.img = new Image();
+
+	clock.img.src = "./assets/images/modalScenes/relogioDigital.png";
+
+	clock.img.onLoad = function(){
+		console.log("Clock ('watch') image loaded");
+	}
+
 
 
 	function init(selector){
@@ -127,6 +137,12 @@ define(function(require){
 	function open(){
 		$(canvasSelector).show();
 
+		clock.angle = -Math.PI/2;
+		clock.accumulator = 0;
+
+		breathing.frameCounter = 0;
+
+		tick.accumulator = 0;
 		tick.last = new Date().getTime();
 		state = STATES.playing;
 		
@@ -158,17 +174,35 @@ define(function(require){
 
 		breathing.draw(canvas);
 
-		ctx.beginPath();
-		ctx.lineWidth = 1;
-		ctx.arc(clock.x, clock.y, clock.radius, 0, Math.PI*2);
+		ctx.drawImage(clock.img, 0, 0, 350, 600, 601, 135, 200, 330);
 
+		ctx.beginPath();
+		ctx.moveTo(clock.x, clock.y-clock.radius);
+		ctx.lineTo(clock.x, clock.y-clock.radius+clock.line);
+
+		ctx.moveTo(clock.x, clock.y+clock.radius);
+		ctx.lineTo(clock.x, clock.y+clock.radius-clock.line);
+		
+		ctx.moveTo(clock.x-clock.radius, clock.y);
+		ctx.lineTo(clock.x-clock.radius+clock.line, clock.y);
+		
+		ctx.moveTo(clock.x+clock.radius, clock.y);
+		ctx.lineTo(clock.x+clock.radius-clock.line, clock.y);
+		
+		//ctx.arc(clock.x, clock.y, clock.radius, 0, Math.PI*2);
+		ctx.lineWidth = 2;
+		ctx.strokeStyle = "rgba(0,0,0,130)";
+		ctx.stroke();
+
+		ctx.beginPath();
 		px = Math.cos(clock.angle)*clock.radius + clock.x;
 		py = Math.sin(clock.angle)*clock.radius + clock.y;
 
 		ctx.moveTo(clock.x, clock.y);
-		ctx.lineWidth = 5;
 		ctx.lineTo(px, py);
 
+		ctx.lineWidth = 5;
+		ctx.strokeStyle = "rgba(0,0,0,255)";
 		ctx.stroke();
 	}
 
