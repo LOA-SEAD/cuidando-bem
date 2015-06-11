@@ -3,8 +3,8 @@
  New levels can easily be made by adding new game levels.
 
  */
-define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons', 'Pulseira', 'Prontuario'],
-    function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, Commons, Pulseira, Prontuario) {
+define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons', 'Pulseira', 'Prontuario', 'FreqRespiratoria'],
+    function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, Commons, Pulseira, Prontuario, freqRespiratoria) {
 
         //region Imports
         var Dialogs = require('Dialogs_data').fase1;
@@ -46,7 +46,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .onLoad(function(){
                 //Pulseira.open();
                 //core.openModalScene("modalOximetro");
-                Prontuario.open();
+                //Prontuario.open();
+                freqRespiratoria.open();
 
                 //core.showEndOfLevel();
             });

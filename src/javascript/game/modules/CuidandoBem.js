@@ -6,8 +6,8 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene', 'scene', 'endOfLevel', 'Prontuario', 'Pulseira'],
-    function (Stage, game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene_con, endOfLevel, prontuario, pulseira) {
+define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene', 'scene', 'endOfLevel', 'Prontuario', 'Pulseira', 'FreqRespiratoria'],
+    function (Stage, game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene_con, endOfLevel, prontuario, pulseira, freqRespiratoria) {
 
 //Attributes
 
@@ -41,6 +41,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         endOfLevel.init(gameStageSelector);
         prontuario.init(gameStageSelector);
         pulseira.init(gameStageSelector);
+        freqRespiratoria.init(gameStageSelector);
 
         Dialog.init(gameStageSelector);
 
