@@ -57,6 +57,9 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
     var alergiaMedicamentosa_divNao = "#pront_alergia_divNao";
     var alergiaMedicamentosa_spanNao = "#pront_alergia_spanNao";
     var alergiaMedicamentosa_status;
+    var alergiaMedicamentosa_status_empty = "   ";
+    var alergiaMedicamentosa_status_x = "X";
+
 
 
     var pesoDisplaySelector = "#pront_peso";
@@ -159,43 +162,10 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
     var anotacaoEnfermagem_dataSelector = ".data";
     var anotacaoEnfermagem_anotacaoSelector = ".anotacao";
 
-    var anotacaoEnfermagem_data = [
-        {
-            data: "",
-            anotacao: ""
-        },
-        {
-            data: "",
-            anotacao: ""
-        },
-        {
-            data: "",
-            anotacao: ""
-        },
-        {
-            data: "",
-            anotacao: ""
-        }
-    ];
-
-    var anotacaoEnfermagem_regExps = [
-        {
-            data: "",
-            anotacao: ""
-        },
-        {
-            data: "",
-            anotacao: ""
-        },
-        {
-            data: "",
-            anotacao: ""
-        },
-        {
-            data: "",
-            anotacao: ""
-        }
-    ];
+    var anotacaoEnfermagem_data = '';
+    var anotacaoEnfermagem_dataRegExp = '';
+    var anotacaoEnfermagem_text = '';
+    var anotacaoEnfermagem_textRegExp = '';
 
     //endregion
 
@@ -332,6 +302,25 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
         $(observacoesDisplaySelector).text(observacoesText);
     }
 
+    function setAlergiaMedicamentosa(status, text){
+        alergiaMedicamentosa_status = status;
+
+        if(status){
+            $(alergiaMedicamentosa_spanSim).text(alergiaMedicamentosa_status_x);
+            $(alergiaMedicamentosa_spanNao).text(alergiaMedicamentosa_status_empty);
+
+            alergiaMedicamentosa_text = text;
+            $(alergiaMedicamentosa_textSelector).val(text);
+            $(alergiaMedicamentosa_textSelector).show();
+        }else{
+            $(alergiaMedicamentosa_spanSim).text(alergiaMedicamentosa_status_empty);
+            $(alergiaMedicamentosa_spanNao).text(alergiaMedicamentosa_status_x);
+
+            $(alergiaMedicamentosa_textSelector).hide();
+        }
+
+    }
+
     function setPeso(_pesoText){
         pesoText = _pesoText;
         $(pesoDisplaySelector).text(pesoText);
@@ -380,25 +369,20 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
         ssvv_regExps[_row].temp = _temp;
     }
 
-    function setAnotacaoEnfermagemRowData(_row, _data, _anotacao){
-        if(_row < 0 || _row > anotacaoEnfermagem_data.length){
-            throw new Error("Invalid row index");
-        }
+    function setAnotacaoEnfermagemRowData(_data, _anotacao){      
+     
+        anotacaoEnfermagem_data = _data;
+        anotacaoEnfermagem_text = _anotacao;
 
-        anotacaoEnfermagem_data[_row].data = _data;
-        anotacaoEnfermagem_data[_row].anotacao = _anotacao;
-
-        $($(anotacaoEnfermagem_dataSelector, anotacaoEnfermagem_tbodySelector)[_row]).val(_data);
-        $($(anotacaoEnfermagem_anotacaoSelector, anotacaoEnfermagem_tbodySelector)[_row]).val(_anotacao);
+        $($(anotacaoEnfermagem_dataSelector, anotacaoEnfermagem_tbodySelector)[0]).val(_data);
+        $($(anotacaoEnfermagem_anotacaoSelector, anotacaoEnfermagem_tbodySelector)[0]).val(_anotacao);
     }
 
-    function setAnotacaoEnfermagemRowRegExp(_row, _data, _anotacao){
-        if(_row < 0 || _row > anotacaoEnfermagem_data.length){
-            throw new Error("Invalid row index");
-        }
+    function setAnotacaoEnfermagemRowRegExp(_data, _anotacao){
 
-        anotacaoEnfermagem_regExps[_row].data = _data;
-        anotacaoEnfermagem_regExps[_row].anotacao = _anotacao;
+        anotacaoEnfermagem_dataRegExp = _data;
+        anotacaoEnfermagem_textRegExp = _anotacao;
+        
     }
 
     function setPrescMedicaRowData(_row, _data, _medicacao, _via, _posologia, _horario, _relatorio){
@@ -434,8 +418,6 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
 
     function init(selector) {
         $(selector).append(html);
-
-        $(alergiaMedicamentosa_textSelector).hide();
 
         $(alergiaMedicamentosa_divSim).click(function(){
             alergiaMedicamentosa_status = true;
@@ -483,6 +465,19 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
         $(alturaDisplaySelector).text(alturaText);
         $(circunferenciaAbdominalSelector).text(circunferenciaAbdominalText);
 
+        if(alergiaMedicamentosa_status){
+            $(alergiaMedicamentosa_spanSim).text(alergiaMedicamentosa_status_x);
+            $(alergiaMedicamentosa_spanNao).text(alergiaMedicamentosa_status_empty);
+
+            $(alergiaMedicamentosa_textSelector).val(alergiaMedicamentosa_text);
+            $(alergiaMedicamentosa_textSelector).show();
+        }else{
+            $(alergiaMedicamentosa_spanSim).text(alergiaMedicamentosa_status_empty);
+            $(alergiaMedicamentosa_spanNao).text(alergiaMedicamentosa_status_x);
+
+            $(alergiaMedicamentosa_textSelector).hide();
+        }
+
         for(row = 0; row< prescMedica_data.length; row++){
             $($(prescMedica_dataSelector, prescMedica_tbodySelector)[row]).text(prescMedica_data[row].data);
             $($(prescMedica_medicacaoSelector, prescMedica_tbodySelector)[row]).text(prescMedica_data[row].medicacao);
@@ -500,6 +495,10 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
             $($(ssvv_saturacaoSelector, ssvv_tbodySelector)[row]).val(ssvv_data[row].sat);
             $($(ssvv_temperaturaSelector, ssvv_tbodySelector)[row]).val(ssvv_data[row].temp);
         }
+
+
+        $($(anotacaoEnfermagem_dataSelector, anotacaoEnfermagem_tbodySelector)[0]).val(anotacaoEnfermagem_data);
+        $($(anotacaoEnfermagem_anotacaoSelector, anotacaoEnfermagem_tbodySelector)[0]).val(anotacaoEnfermagem_text);
 
     }
 
@@ -576,6 +575,7 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
         getAntecedentes: getAntecedentes,
         getHipotese: getHipotese,
         getObservacoes: getObservacoes,
+        setAlergiaMedicamentosa: setAlergiaMedicamentosa,
         getPeso: getPeso,
         getAltura: getAltura,
         getCircunferenciaAbdominal: getCircunferenciaAbdominal,

@@ -128,6 +128,7 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
         console.info("Show Modal Scene");
         showing = true;
         $(divSelector).show();
+        $(dataInputSelector).mask('00/00/0000');
     }
 
     /**

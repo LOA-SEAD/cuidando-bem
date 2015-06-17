@@ -11,6 +11,7 @@ require.config({
         //Libs
         jquery: '../../libs/jquery/dist/jquery.min',
         jqueryui: '../../libs/jquery-ui/jquery-ui.min',
+        jquerymask: '../../libs/jQuery-Mask-Plugin/dist/jquery.mask',
         text: '../../libs/requirejs-text/text',
         less: '../../libs/less/dist/less.min',
         SimpleStorage: '../../libs/simpleStorage/simpleStorage',

@@ -30,7 +30,7 @@ require(['requireConfig'], function(){
                     require(["jquery", "less"], function () {
 
                         //Load jqueryui
-                        require(['jqueryui'], function() {
+                        require(['jqueryui', 'jquerymask'], function() {
 
                             //Load Stage module, stage configuration, game main Module, game configuration and all dialogs that will be used in game
                             require(["Stage", "stageConfig", "CuidandoBem", "gameConfig",  "Dialogs_data"],

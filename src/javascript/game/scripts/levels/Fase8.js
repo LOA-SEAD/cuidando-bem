@@ -19,26 +19,40 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region Scenes
 
-        Prontuario.setNome("João Manoel Ribeiro");
-        Prontuario.setSexo("M");
-        Prontuario.setEstadoCivil("Casado");
-        Prontuario.setDataNascimento("07/06/1956");
-        Prontuario.setIdade("58 anos");
-        Prontuario.setProfissao("Comerciante");
-        Prontuario.setPai("Joaquim Casagrande");
-        Prontuario.setMae("Lúcia Moraes Casagrande");
+        level.setSetupScript(function(){
 
-        Prontuario.setLeito("02");
-        Prontuario.setAntecedentes("Ocorrência de internação em 2004, devido a suspeita de infarto agudo do miocárdio (IAM)");
-        Prontuario.setHipotese("Crise hipertensiva");
-        Prontuario.setObservacoes("");
-        //TODO: alergia medicamentosa
-        Prontuario.setPeso("87");
-        Prontuario.setAltura("1,62");
-        Prontuario.setCircunferenciaAbdominal("115");
+            Pulseira.setNameRegExp(/João Manoel Ribeiro/);
+            Pulseira.setLeitoRegExp(/0*2/);
+            Pulseira.setDataRegExp(/07\/06\/1956/);
 
-        Prontuario.setPrescMedicaRowData(0, "15-03", "Captopril", "Oral", "comp 75 mg", "2x dia", "");
-        Prontuario.setPrescMedicaRowData(1, "15-03", "Ácido acetilsalicílico (AAS)", "Oral", "comp 100 mg", "1x dia", "");
+            Prontuario.setNome("João Manoel Ribeiro");
+            Prontuario.setSexo("M");
+            Prontuario.setEstadoCivil("Casado");
+            Prontuario.setDataNascimento("07/06/1956");
+            Prontuario.setIdade("58 anos");
+            Prontuario.setProfissao("Comerciante");
+            Prontuario.setPai("Joaquim Casagrande");
+            Prontuario.setMae("Lúcia Moraes Casagrande");
+
+            Prontuario.setAlergiaMedicamentosa(true, "Dipirona");
+            Prontuario.setDataInternacao("13/05/2015");
+            Prontuario.setLeito("02 - Leito Masculino");
+            Prontuario.setAntecedentes("Ocorrência de internação em 2004, devido a suspeita de infarto agudo do miocárdio (IAM)");
+            Prontuario.setHipotese("Crise hipertensiva");
+            Prontuario.setObservacoes("");
+            
+            Prontuario.setPeso("87");
+            Prontuario.setAltura("1,62");
+            Prontuario.setCircunferenciaAbdominal("115");
+
+            Prontuario.setPrescMedicaRowData(0, "15/03", "Captopril", "Oral", "comp 75 mg", "2x dia", "");
+            Prontuario.setPrescMedicaRowData(1, "15/03", "Ácido acetilsalicílico (AAS)", "Oral", "comp 100 mg", "1x dia", "");
+
+            Prontuario.setSsvvRowData(0, '15/03', '', '', '', '', '');
+
+            Prontuario.setAnotacaoEnfermagemRowData('15/03', '');
+        });
+
 
         //region Recepcao
         var recepcao = new Scene("recepcao", "scene-recepcao")
@@ -46,8 +60,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .onLoad(function(){
                 //Pulseira.open();
                 //core.openModalScene("modalOximetro");
-                //Prontuario.open();
-                freqRespiratoria.open();
+                Prontuario.open();
+                //freqRespiratoria.open();
 
                 //core.showEndOfLevel();
             });

@@ -740,27 +740,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Prontuario
-        Prontuario.setNome("João Manoel Ribeiro");
-        Prontuario.setSexo("M");
-        Prontuario.setEstadoCivil("Casado");
-        Prontuario.setDataNascimento("07/06/1956");
-        Prontuario.setIdade("58 anos");
-        Prontuario.setPai("Joaquim Casagrande");
-        Prontuario.setMae("Lúcia Moraes Casagrande");
-        Prontuario.setLeito("02");
-        Prontuario.setAntecedentes("Ocorrência de internação em 2004, devido a suspeita de infarto agudo do miocárdio (IAM)");
-        Prontuario.setHipotese("Crise hipertensiva");
-        //TODO: alergia medicamentosa
-        Prontuario.setPeso("87");
-        Prontuario.setAltura("1,62");
-        Prontuario.setCircunferenciaAbdominal("115");
-        //TODO: SSVV
-
-
         var prontuario = new Scene("Prontuario", "modalScene-prontuario_joao");
 
         prontuario.registerActions([
-            new Action("btn-fechar_prontuario", "Largar prontuário")
+            new Action("btn-fechar_prontuario", "Fechar prontuário")
                 .setCssClass("action-ler_prontuario")
                 .onClick(function (){
                     console.log("Action: Fechar prontuario");
@@ -782,9 +765,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Pulseira
-        Pulseira.setNameRegExp(/João Manoel Ribeiro/);
-        Pulseira.setLeitoRegExp(/0*2/);
-        Pulseira.setDataRegExp(/07\/06\/1956/);
+       
 
         var pulseira = new Scene("pulseira", "pulseira");
         //.setCssClass("modalScene-pulseira");
@@ -797,7 +778,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
 
         pulseira.registerActions([
-            new Action("btn-largar_pulseira", "Largar pulseira")
+            new Action("btn-largar_pulseira", "Fechar pulseira")
                 .setCssClass("action-pulseira_paciente")
                 .onClick(function (){
                     console.log("Ação: Fechar modal pulseira");
@@ -818,7 +799,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .setTemplate("<span class='temp_termometro'>37.5º</span>");
 
         termometro.registerActions([
-            new Action("btn-largar_termometro", "Largar termômetro")
+            new Action("btn-largar_termometro", "Fechar termômetro")
                 .setCssClass("action-largar_termometro")
                 .onClick(function() {
                     core.closeModalScene("modalTermometro");
@@ -833,7 +814,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .setTemplate("<span class='pressao'>160x100 mmHg</span>");
 
         medidor_pressao.registerActions([
-            new Action("btn-largar_medidor_pressao", "Largar medidor de pressão")
+            new Action("btn-largar_medidor_pressao", "Fechar medidor de pressão")
                 .setCssClass("action-largar_medidor_pressao")
                 .onClick(function() {
                     core.closeModalScene("modalMedidor_pressao");
@@ -851,7 +832,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 );
 
         oximetro.registerActions([
-            new Action("btn-largar_oximetro", "Largar Oxímetro")
+            new Action("btn-largar_oximetro", "Fechar Oxímetro")
                 .setCssClass("action-largar_oximetro")
                 .onClick(function() {
                     core.closeModalScene("modalOximetro");
@@ -865,7 +846,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .setCssClass("modalScene-freqRespiratoria");
 
         freqRespiratoria.registerActions([
-            new Action("btn-largar_relogio", "Largar Relógio")
+            new Action("btn-largar_relogio", "Fechar Relógio")
                 .setCssClass("action-largar_relogio")
                 .onClick(function(){
                     FreqRespiratoria.close();
@@ -879,6 +860,40 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Level
+
+        level.setSetupScript(function(){
+
+            Pulseira.setNameRegExp(/João Manoel Ribeiro/);
+            Pulseira.setLeitoRegExp(/0*2/);
+            Pulseira.setDataRegExp(/07\/06\/1956/);
+
+            Prontuario.setNome("João Manoel Ribeiro");
+            Prontuario.setSexo("M");
+            Prontuario.setEstadoCivil("Casado");
+            Prontuario.setDataNascimento("07/06/1956");
+            Prontuario.setIdade("58 anos");
+            Prontuario.setProfissao("Comerciante");
+            Prontuario.setPai("Joaquim Casagrande");
+            Prontuario.setMae("Lúcia Moraes Casagrande");
+
+            Prontuario.setAlergiaMedicamentosa(true, "Dipirona");
+            Prontuario.setDataInternacao("13/05/2015");
+            Prontuario.setLeito("02 - Leito Masculino");
+            Prontuario.setAntecedentes("Ocorrência de internação em 2004, devido a suspeita de infarto agudo do miocárdio (IAM)");
+            Prontuario.setHipotese("Crise hipertensiva");
+            Prontuario.setObservacoes("");
+            
+            Prontuario.setPeso("87");
+            Prontuario.setAltura("1,62");
+            Prontuario.setCircunferenciaAbdominal("115");
+
+            Prontuario.setPrescMedicaRowData(0, "15/03", "Captopril", "Oral", "comp 75 mg", "2x dia", "");
+            Prontuario.setPrescMedicaRowData(1, "15/03", "Ácido acetilsalicílico (AAS)", "Oral", "comp 100 mg", "1x dia", "");
+
+            Prontuario.setSsvvRowData(0, '15/03', '', '', '', '', '');
+
+            Prontuario.setAnotacaoEnfermagemRowData('15/03', '');
+        });
 
         //region Register Scenes
         level.registerScene(recepcao);

@@ -96,6 +96,10 @@ module.exports = function(grunt) {
                             src: ['./libs/jquery-ui/jquery-ui.min.js']
                         },
                         {
+                            dest: libs + 'jquery.mask.js',
+                            src: ['./libs/jQuery-Mask-Plugin/dist/jquery.mask']
+                        },
+                        {
                             dest: libs + 'require.js' , 
                             src: ['./libs/requirejs/require.js']
                         },
@@ -223,6 +227,10 @@ module.exports = function(grunt) {
                     {
                         from: "jqueryui: '../../libs/jquery-ui/jquery-ui.min',",
                         to: "jqueryui: './libs/jquery-ui',"
+                    },
+                    {
+                        from: "jquerymask: '../../libs/jQuery-Mask-Plugin/dist/jquery.mask',",
+                        to: "jquerymask: './libs/jquery.mask',"
                     },
                     {
                         from: "text: '../../libs/requirejs-text/text',",

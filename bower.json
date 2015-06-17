@@ -25,5 +25,8 @@
   "moduleType": [
     "amd"
   ],
-  "homepage": "https://github.com/LOA-SEAD/cuidando-bem"
+  "homepage": "https://github.com/LOA-SEAD/cuidando-bem",
+  "devDependencies": {
+    "jQuery-Mask-Plugin": "https://github.com/igorescobar/jQuery-Mask-Plugin.git#~1.11.4"
+  }
 }

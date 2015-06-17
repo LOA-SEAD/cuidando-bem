@@ -86,6 +86,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     function changeLevel(_newLevel) {
         console.group("Clone Level");
         Level = _newLevel.getClone();
+        Level.setup();
         console.groupEnd();
 
         cur_scene = Level.getCurrentSceneId();

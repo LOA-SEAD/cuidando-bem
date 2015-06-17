@@ -87,6 +87,8 @@ define([], function () {
          */
         var initialScene = 0;
 
+        var setupScript = function(){};
+
         //Methods
 
         //Getters
@@ -105,6 +107,7 @@ define([], function () {
 
             newLevel.setInitialScene(initialScene);
             newLevel.setCurrentSceneById(currentScene);
+            newLevel.setSetupScript(setupScript);
 
             return newLevel;
         }
@@ -365,6 +368,10 @@ define([], function () {
 
             setInitialScene: setInitialScene,
             setCurrentSceneById: setCurrentSceneById,
+            setSetupScript: function(script){
+                setupScript = script;
+            },
+            setup: function(){setupScript()},
 
 
             registerScene: registerScene,
