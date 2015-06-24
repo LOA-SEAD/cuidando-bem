@@ -877,6 +877,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Prontuario.setMae("Lúcia Moraes Casagrande");
 
             Prontuario.setAlergiaMedicamentosa(true, "Dipirona");
+            Prontuario.setDisableAlergiaMedicamentosa(true);
             Prontuario.setDataInternacao("13/05/2015");
             Prontuario.setLeito("02 - Leito Masculino");
             Prontuario.setAntecedentes("Ocorrência de internação em 2004, devido a suspeita de infarto agudo do miocárdio (IAM)");

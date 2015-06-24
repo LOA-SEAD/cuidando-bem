@@ -73,10 +73,10 @@ define(['text!../assets/html/interactiveObject/interactiveObjects.html', 'text!.
                 duration: 200
             },
             position: {
-                within: "#gameStage",
+                within: "#stage",
                 of: "#gameStage",
-                my: "center top+10",
-                at: "center top"
+                my: "center top",
+                at: "center top+20"
             }
         });
         if (_interactiveObject.isEnabled())

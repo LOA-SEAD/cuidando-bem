@@ -35,6 +35,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Prontuario.setMae("Lúcia Moraes Casagrande");
 
             Prontuario.setAlergiaMedicamentosa(true, "Dipirona");
+            Prontuario.setDisableAlergiaMedicamentosa(true);
             Prontuario.setDataInternacao("13/05/2015");
             Prontuario.setLeito("02 - Leito Masculino");
             Prontuario.setAntecedentes("Ocorrência de internação em 2004, devido a suspeita de infarto agudo do miocárdio (IAM)");
@@ -48,7 +49,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Prontuario.setPrescMedicaRowData(0, "15/03", "Captopril", "Oral", "comp 75 mg", "2x dia", "");
             Prontuario.setPrescMedicaRowData(1, "15/03", "Ácido acetilsalicílico (AAS)", "Oral", "comp 100 mg", "1x dia", "");
 
-            Prontuario.setSsvvRowData(0, '15/03', '', '', '', '', '');
+            
+            Prontuario.setSsvvRowData(0, '15/03', '', '', '', '', '', false);
+            Prontuario.setSsvvRowData(1, '', '', '', '', '', '', true);
 
             Prontuario.setAnotacaoEnfermagemRowData('15/03', '');
         });
@@ -61,7 +64,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 //Pulseira.open();
                 //core.openModalScene("modalOximetro");
                 Prontuario.open();
-                //freqRespiratoria.open();
+                //freqRespiratoria.open();                
 
                 //core.showEndOfLevel();
             });
