@@ -55,7 +55,11 @@ define([], function () {
         return levels[currentLevel];
     }
 
-//Setters	
+    function getCurrentLevelId(){
+      return currentLevel;
+    }
+
+//Setters
     /**
      * @method setCurrentLevel
      * @param {(string|number)} _level
@@ -72,6 +76,7 @@ define([], function () {
         registerLevel: registerLevel,
 
         getCurrentLevel: getCurrentLevel,
+        getCurrentLevelId: getCurrentLevelId,
 
         setCurrentLevel: setCurrentLevel
     }

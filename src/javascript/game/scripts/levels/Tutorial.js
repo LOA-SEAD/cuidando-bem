@@ -3,11 +3,12 @@
  New levels can easily be made by adding new game levels.
  */
 
-define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons', 'Pulseira', 'Prontuario', 'FreqRespiratoria'],
-    function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria) {
+define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons', 'Pulseira', 'Prontuario', 'FreqRespiratoria', 'Scores_data'],
+    function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores) {
 
         //region Imports
         var Dialogs = require("Dialogs_data").tutorial;
+        // var Scores = require("Scores_data").tutorial;
         //endregion
 
         var level = new Level("Level Tutorial");
@@ -759,13 +760,16 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     Prontuario.close();
                     //core.closeModalScene("Prontuario");
                     //core.changeScene(5);
-                    alert(Prontuario.isDataValid() + " Final da fase");
+                    // alert(Prontuario.isDataValid() + " Final da fase");
+                    core.registerScoreItem(Scores.identificarPaciente);
+                    core.closeCommandBar();
+                    core.showEndOfLevel();
                 })
         ]);
         //endregion
 
         //region Pulseira
-       
+
 
         var pulseira = new Scene("pulseira", "pulseira");
         //.setCssClass("modalScene-pulseira");
@@ -883,7 +887,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Prontuario.setAntecedentes("Ocorrência de internação em 2004, devido a suspeita de infarto agudo do miocárdio (IAM)");
             Prontuario.setHipotese("Crise hipertensiva");
             Prontuario.setObservacoes("");
-            
+
             Prontuario.setPeso("87");
             Prontuario.setAltura("1,62");
             Prontuario.setCircunferenciaAbdominal("115");
@@ -891,7 +895,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Prontuario.setPrescMedicaRowData(0, "15/03", "Captopril", "Oral", "comp 75 mg", "2x dia", "");
             Prontuario.setPrescMedicaRowData(1, "15/03", "Ácido acetilsalicílico (AAS)", "Oral", "comp 100 mg", "1x dia", "");
 
-            Prontuario.setSsvvRowData(0, '15/03', '', '', '', '', '');
+            Prontuario.setSsvvRowData(0, '15/03', '', '', '', '', '', false);
+            //Disable 2 row
+            Prontuario.setSsvvRowData(1, '', '', '', '', '', '', true);
 
             Prontuario.setAnotacaoEnfermagemRowData('15/03', '');
         });

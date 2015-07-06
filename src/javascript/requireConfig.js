@@ -59,6 +59,7 @@ require.config({
         //Refs
         Dialogs_data: 'references/Dialog_data',
         Images_urls: 'references/Images_urls',
+        Scores_data: 'references/Score_data',
         Sounds_urls: 'references/Sounds_urls'
     }
 });

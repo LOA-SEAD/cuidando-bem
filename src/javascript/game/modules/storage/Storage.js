@@ -147,18 +147,18 @@ define(["SimpleStorage"], function(Storage){
         Storage.set(KEY_SAVES_CONTAINER, saves);
     }
 
-    function addScore(levelId, scoreId){
+    function addScore(levelId, score){
         if(levelId < 0 || levelId > 8)
             throw new Error("LevelId Failed");
 
         var level = saves[loadedId].levels[levelId];
 
         if(level === undefined){
-            level = [scoreId];
+            level = [score];
         }else if(level instanceof Array){
-            level.push(scoreId);
+            level.push(score);
         }else{
-            console.error("This should not happen");
+            console.error("This should never happen.");
         }
 
         saves[loadedId].levels[levelId] = level;

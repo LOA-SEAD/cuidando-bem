@@ -53,6 +53,15 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Prontuario.setSsvvRowData(0, '15/03', '', '', '', '', '', false);
             Prontuario.setSsvvRowData(1, '', '', '', '', '', '', true);
 
+            Prontuario.setSsvvRowRegExp(0, 
+                new RegExp(''), 
+                new RegExp(''), 
+                new RegExp(''), 
+                new RegExp(''), 
+                new RegExp(''), 
+                new RegExp('')              
+                );
+
             Prontuario.setAnotacaoEnfermagemRowData('15/03', '');
         });
 

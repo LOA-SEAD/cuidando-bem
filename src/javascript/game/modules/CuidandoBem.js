@@ -10,7 +10,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     function (Stage, game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene_con, endOfLevel, prontuario, pulseira, freqRespiratoria) {
 
 //Attributes
-
+    var Storage = require('Storage');
     var gameStageSelector = "#gameStage";
 
     var Level;
@@ -403,8 +403,9 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         InteractiveObject.setInteractiveObjectVisible(interactiveObject, interactiveObject.isVisible());
     }
 
-    function registerScoreItem(_title, _score){
-        scoreList.push(new ScoreItem(_title, _score));
+    function registerScoreItem(score){
+        scoreList.push(score);
+        Storage.addScore(game.getCurrentLevelId(), score);
     }
 
     function goBackToMenu(){
