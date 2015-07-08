@@ -483,6 +483,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function (){
                     if(Pulseira.isAllDataValid()){
                         console.log("Action: action-ir_sala_de_leitos");
+                        core.registerScoreItem(Scores.tutorial.identificarPaciente);
                         core.setActionVisible("btn-perguntar_nome_do_paciente", false);
                         core.changeScene(2);
                     }else{
@@ -506,6 +507,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     switch (level.getFlag("lavar-maos").getValue()){
                         case 0:
                             level.getFlag("lavar-maos").setValue(1);
+                            core.registerScoreItem(Scores.tutorial.lavarMaosAntes);
                             core.setActionVisible("btn-frequencia_respiratoria", true);
                             core.setActionVisible("btn-medir_pulso", true);
                             core.setActionVisible("btn-medir_temperatura", true);
@@ -515,6 +517,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                             break;
                         case 2:
                             level.getFlag("lavar-maos").setValue(3);
+                            core.registerScoreItem(Scores.tutorial.lavarMaosDepois);
                             core.setActionVisible("btn-lavar_maos", false);
                             core.setActionVisible("btn-ler_prontuario", true);
                             break;
@@ -530,6 +533,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
                         core.openModalScene("modalTermometro");
                         level.getFlag("termometro").setValue(true);
+                        core.registerScoreItem(Scores.tutorial.verTemperatura);
                         core.setActionVisible("btn-medir_temperatura", false);
 
                         if(level.getFlag("oximetro").getValue() == true
@@ -551,6 +555,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
                         core.openModalScene("modalMedidor_pressao");
                         level.getFlag("medidor-pressao").setValue(true);
+                        core.registerScoreItem(Scores.tutorial.verPressao);
                         core.setActionVisible("btn-medir_pulso", false);
 
                         if(level.getFlag("termometro").getValue() == true
@@ -574,6 +579,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
                         core.openModalScene("modalOximetro");
                         level.getFlag("oximetro").setValue(true);
+                        core.registerScoreItem(Scores.tutorial.verSaturacao);
                         core.setActionVisible("btn-saturacao_02", false);
 
                         if(level.getFlag("termometro").getValue() == true
@@ -594,6 +600,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     if(level.getFlag("lavar-maos").getValue() >= 1){
 
                         level.getFlag("relogio").setValue(true);
+                        core.registerScoreItem(Scores.tutorial.verFrequenciaRespiratoria);
 
                         FreqRespiratoria.open();
                         core.openModalScene("freqRespiratoria");
@@ -706,6 +713,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("intObj-thermometer")
                 .onClick(function () {
                     console.log("Action: pegar_termometro");
+                    core.registerScoreItem(Scores.tutorial.pegarTermometro);
                     core.setInteractiveObjectVisible("io-termometro", false);
                     level.getFlag("termometro").setValue(true);
                 })
@@ -715,6 +723,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("intObj-bloodPressureMonitor")
                 .onClick(function () {
                     console.log("O medidor de pressão foi ativado");
+                    core.registerScoreItem(Scores.tutorial.pegarAparelhoPressao);
                     core.setInteractiveObjectVisible("io-medidor_pressao", false);
                     level.getFlag("medidor-pressao").setValue(true);
                 })
@@ -724,6 +733,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("intObj-oximeter")
                 .onClick(function () {
                     console.log("Action: pegar_oximetro");
+                    core.registerScoreItem(Scores.tutorial.pegarOximetro);
                     core.setInteractiveObjectVisible("io-oximetro", false);
                     level.getFlag("oximetro").setValue(true);
                 })
@@ -733,6 +743,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("intObj-watch")
                 .onClick(function () {
                     console.log("Action: pegar_relogio");
+                    core.registerScoreItem(Scores.tutorial.pegarRelogio);
                     core.setInteractiveObjectVisible("io-relogio", false);
                     level.getFlag("relogio").setValue(true);
                 })
@@ -761,7 +772,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     //core.closeModalScene("Prontuario");
                     //core.changeScene(5);
                     // alert(Prontuario.isDataValid() + " Final da fase");
-                    core.registerScoreItem(Scores.identificarPaciente);
+                    core.registerScoreItem(Scores.tutorial.identificarPaciente);
                     core.closeCommandBar();
                     core.showEndOfLevel();
                 })

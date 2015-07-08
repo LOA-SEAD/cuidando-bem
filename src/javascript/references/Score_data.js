@@ -1,25 +1,25 @@
 define(function ()
 {
-    function Score(_name, _score){
-        this.name = _name;
+    function Score(_title, _score){
+        this.title = _title;
         this.score = _score;
     }
 
     return {
         general: {},
         tutorial: {
-            identificarPaciente: new Score("Ver pulseira/identifica��o do paciente", 100),
-            pegarOximetro: new Score("Pegar ox�metro", 50),
-            pegarAparelhoPressao: new Score("Pegar aparelho de press�o", 50),
-            pegarTermometro: new Score("Pegar term�metro", 50),
-            pegarRelogio: new Score("Pegar rel�gio", 50),
-            lavarMaosAntes: new Score("Lavar as m�os", 200),
+            identificarPaciente: new Score("Ver pulseira/identificação do paciente", 100),
+            pegarOximetro: new Score("Pegar oxímetro", 50),
+            pegarAparelhoPressao: new Score("Pegar aparelho de pressão", 50),
+            pegarTermometro: new Score("Pegar termômetro", 50),
+            pegarRelogio: new Score("Pegar relógio", 50),
+            lavarMaosAntes: new Score("Lavar as mãos", 200),
             verTemperatura: new Score("Ver temperatura", 100),
-            verPressao: new Score("Ver press�o", 100),
-            verSaturacao: new Score("Ver satura��o de O2", 100),
-            verFrequenciaRespiratoria: new Score("Ver frequ�ncia respirat�ria", 100),
-            lavarMaosDepois: new Score("Lavar as m�os ap�s procedimento", 200),
-            anotarNoProntuario: new Score("Anotar prontu�rio", 250)
+            verPressao: new Score("Ver pressão", 100),
+            verSaturacao: new Score("Ver saturação de O2", 100),
+            verFrequenciaRespiratoria: new Score("Ver frequência respiratória", 100),
+            lavarMaosDepois: new Score("Lavar as mãos após procedimento", 200),
+            anotarNoProntuario: new Score("Anotar no prontuário", 250)
         },
         level1: {},
         level2: {},
