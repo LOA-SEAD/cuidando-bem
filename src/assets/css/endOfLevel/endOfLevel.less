@@ -1,6 +1,6 @@
 #endOfLevel{
   position: relative;
-  top: 100px;
+  top: 50px;
   left: 165px;
 
   display: none;
@@ -15,52 +15,50 @@
   //height: 100%;
   //width: 100%;
 
-  
-  .title{
+
+  .endOfLevel-title{
     padding: 10px;
 
     border-left: 1px solid black;
     border-right: 1px solid black;
     border-top: 1px solid black;
-
-    background-color: white;
-
   }
+  #scoreContainer{
+    #scoreList{
+      //height: 90%;
+      width: 100%;
+      border: 1px solid black;
 
-  #scoreList{
-    //height: 90%;
-    width: 100%;
-    border: 1px solid black;
-
-    thead{
-      tr{
-        height: 30px;
-        background-color: grey;
-        border-bottom: 1px solid black;
+      thead{
+        tr{
+          height: 30px;
+          background-color: grey;
+          border-bottom: 1px solid black;
+        }
+        th:not(:last-child){
+          border-right: 1px solid black;
+        }
       }
-      th:not(:last-child){
-        border-right: 1px solid black;
+      tbody{
+
+        tr:nth-child(odd){
+          background-color: lightgrey;
+        }
+        tr:nth-child(even){
+          background-color: white;
+        }
+
+        tr{
+          border-bottom: 1px solid black;
+        }
+        td:not(:last-child){
+          border-right: 1px solid black;
+        }
       }
     }
-    tbody{
-
-      tr:nth-child(odd){
-        background-color: lightgrey;
-      }
-      tr:nth-child(even){
-        background-color: white;
-      }
-
-      tr:not(:last-child){
-        border-bottom: 1px solid black;
-      }
-      td:not(:last-child){
-        border-right: 1px solid black;
-      }
-    }
 
 
-    .actions{
+    .titles{
       width: 75%;
     }
 
@@ -68,16 +66,37 @@
       width: 25%;
     }
 
-    .action{
+    .title{
       width: 75%;
     }
 
     .score{
       width: 25%;
+      text-align: center;
     }
   }
 }
 
+#scoreContainer{
+  height: 70%;
+  max-height: 70%;
+  overflow-y: scroll;
+}
+
+#endOfLevel-menu{
+  text-align: center;
+  height: 8%;
+
+  .button{
+    background-color: white;
+    width: 175px;
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    top: 10px;
+    display: inline-block;
+  }
+}
 
 
 .scoreItem{

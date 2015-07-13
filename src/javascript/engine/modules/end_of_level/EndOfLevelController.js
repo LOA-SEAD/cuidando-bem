@@ -37,8 +37,7 @@ define(['text!../assets/html/end_of_level/endOfLevel.html', 'text!../assets/html
                 var element = $($(scoreItemHtml)[0]);
                 var score = $(scoreSelector, element);
                 var title = $(titleSelector, element);
-
-                debugger;
+                
                 score.html(scoreItem.score);
                 title.html(scoreItem.title);
 
