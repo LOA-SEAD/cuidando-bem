@@ -46,7 +46,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 //Default object of "leito"
                 leitos:{
                     joao: new Scene("leito", "scene-leito-char-01")
-                        .setCssClass("scene-bedChar01")
+                        .setCssClass("scene-bedChar01"),
+                    char2: new Scene("leito", "scene-leito-char-02")
+                        .setCssClass("scene-bedChar02")
                 }
             },
             //endregion
