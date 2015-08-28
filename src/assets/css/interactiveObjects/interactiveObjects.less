@@ -161,6 +161,34 @@
     left: 52%;
   }
 }
+
+.intObj-paciente_02-checar_pulseira {
+  background-image: @intObj-paciente_02-checar_pulseira;
+  background-size: cover;
+  @paciente_01-pulseira-width: 146px;
+  @paciente_01-pulseira-height: 147px;
+
+  @media screen and (min-width: @screen-sm-min) {
+    width: 0.205 * @paciente_01-pulseira-width;
+    height: 0.205 * @paciente_01-pulseira-height;
+    bottom: 22%;
+    left: 40%;
+  }
+
+  @media screen and (min-width: @screen-md-min) {
+    width: 0.27 * @paciente_01-pulseira-width;
+    height: 0.27 * @paciente_01-pulseira-height;
+    bottom: 22%;
+    left: 40%;
+  }
+
+  @media screen and (min-width: @screen-lg-min) {
+    width: 0.34 * @paciente_01-pulseira-width;
+    height: 0.34 * @paciente_01-pulseira-height;
+    bottom: 22%;
+    left: 40%;
+  }
+}
 //endregion
 .intObj-braceletConfirmation, .intObj-braceletConfirmed{
   background-image: @intObj-braceletConfirmationGray;

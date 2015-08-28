@@ -9,6 +9,7 @@ define(['text!../assets/html/end_of_level/endOfLevel.html', 'text!../assets/html
 
 //Attributes
 
+    var Stage = require('Stage');
     var modalSelector = "#endOfLevel";
     var scoreListSelector = "#scoreList";
 
@@ -25,6 +26,10 @@ define(['text!../assets/html/end_of_level/endOfLevel.html', 'text!../assets/html
      */
     function init(selector) {
         $(selector).append(html);
+
+        $('.goToMenu').click(function() {
+            Stage.changeScreen(6);
+        });
     }
 
     function show(_scoreList) {

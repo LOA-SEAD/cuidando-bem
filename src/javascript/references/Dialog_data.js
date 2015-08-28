@@ -125,37 +125,37 @@ define({
             ]
         },
         enfermaria: [
-            // Jogador op 1
+            // 0 Jogador op 1
                 "Olá! Sou o técnico de enfermagem cuidarei do Sr. hoje. Como o Sr. está se " +
                 "sentindo?",
-            // Jogador op 2
+            // 1 Jogador op 2
             "Bom dia. O senhor está se sentindo bem hoje?",
-            //Mentor
+            // 2 Mentor
             "Você deve se apresentar ao paciente.",
-            //Jogador op 3
+            // 3 Jogador op 3
             "Olá.",
-            // Mentor
+            // 4 Mentor
             "Você deve se apresentar ao paciente e perguntar sobre seu estado de saúde atual.",
-            // Paciente
+            // 5 Paciente
                 "Olha, eu poderia estar melhor mas não serviram minha preciosa gelatina " +
                 "hoje. HAHAHAHAHA.",
-            // Jogador op 1
+            // 6 Jogador op 1 
                 "A gelatina daqui é ótima mesmo. O senhor poderia me dizer  seu nome completo e " +
                 "data de nascimento, por favor?",
-            // Jogador op 2
+            // 7 Jogador op 2
             "Nome completo, por favor.",
-            // Mentor
+            // 8 Mentor
             "Sua resposta está incompleta. Tente novamente.",
-            // Jogador op 3
+            // 9 Jogador op 3
                 "HAHAHA eu não gosto muito, comi uma vez e meu estômago não se acostumou. A comida é ruim, mas vou dar um" +
                 "voto de confiança e tentar jantar. Quem sabe dessa vez melhore? Agora preciso de seu nome" +
                 "completo e data de nascimento, por favor.",
-            // Mentor
+            // 10 Mentor
             "Não é ético dizer ao paciente sua percepção sobre o hospital.",
-            // Paciente
+            // 11 Paciente
             "Carlos Esme Gouvêa, nasci em 01-12-1945.",
-            // Jogador
-            "Preciso examiná-lo agora, Sr. Carlos. Com licença."
+            // 12 Jogador
+            "Vou verificar sua pulseira e depois examiná-lo, senhor Carlos. Com licença."
         ],
         Corredor: [
             // Mentor

@@ -90,7 +90,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function () {
                 console.log("Entrando no corredor");
-                if(level.getFlag("conversar_mentor") == false){
+                if(level.getFlag("conversar_mentor").getValue() == false){
                     core.openDialog(0);
                 }
             })
@@ -165,7 +165,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function (){
                     core.changeScene(3);
                 })
-                .setVisibility(true),
+                .setVisibility(false),
 
             new InteractiveObject("io-ir_corredor", "Ir ao Corredor")
                 .setCssClass("intObj-bedroomToHallway")
@@ -181,15 +181,18 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function (){
                     console.log("Action: lavar_maos");
                     level.getFlag("lavar_maos").setValue(true);
-
+                    core.setInteractiveObjectVisible("io-ir_leito", true);
                 })
                 .setVisibility(true),
         ]);
 
         leito = lib.scenes.leitos.char2.getClone()
             .onLoad(function () {
+                core.openCommandBar();
                 console.log("Leito: Onload");
-                // core.setInteractiveObjectVisible("io-pulseira_paciente", true);
+                if(level.getFlag('examinar_paciente').getValue() == false){
+                    core.setInteractiveObjectVisible("io-pulseira_paciente", true);                    
+                }
 
                 // //force case 1
                 // //level.getFlag("visita-leito").setValue(1);
@@ -211,10 +214,100 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             })
             .onUnload(function (){
                 console.log("Leito: OnUnload");
+                core.closeCommandBar();
 
                 // level.getFlag("visita-leito").setValue(1);
                 // core.closeCommandBar();
             });
+
+        leito.registerInteractiveObjects([
+            new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
+                .setCssClass("intObj-paciente_02-checar_pulseira")
+                .onClick(function () {
+                    console.log("IO: pulseira_paciente");
+                    core.openModalScene("pulseira");
+                    Pulseira.open();
+                    core.openCommandBar();
+                    // if(level.getFlag("pulseira").getValue() == false)
+                    //     core.setInteractiveObjectVisible("io-confirmar_pulseira", true);
+                })
+                .setVisibility(true)
+        ]);
+
+        leito.registerDialogs([
+            // 0 Jogador escolhe fala
+            new Dialog(lib.characters.jogador)
+                .setText('')
+                .registerOption(Dialogs.enfermaria[0], function(){                    
+                    core.openDialog(3);
+                })
+                .registerOption(Dialogs.enfermaria[1], function(){                    
+                    core.openDialog(1);
+                })
+                .registerOption(Dialogs.enfermaria[3], function(){                    
+                    core.openDialog(2);
+                }),
+            // 1 Mentor corrige 
+            new Dialog(lib.characters.mentor)
+                .setText(Dialogs.enfermaria[2])
+                .registerOption('', function(){                    
+                    core.openDialog(0);
+                }),
+            // 2
+            new Dialog(lib.characters.mentor)
+                .setText(Dialogs.enfermaria[4])
+                .registerOption('', function(){                    
+                    core.openDialog(0);
+                }),
+            // 3 Paciente Fala
+            new Dialog(lib.characters.pacientes.carlos)
+                .setText(Dialogs.enfermaria[5])
+                .registerOption(Dialogs.enfermaria[6], function(){                    
+                    core.openDialog(6);
+                })
+                .registerOption(Dialogs.enfermaria[7], function(){                    
+                    core.openDialog(4);
+                })
+                .registerOption(Dialogs.enfermaria[9], function(){                    
+                    core.openDialog(5);
+                }),
+            // 4 Mentor Corrige
+            new Dialog(lib.characters.mentor)
+                .setText(Dialogs.enfermaria[8])
+                .registerOption('', function(){                    
+                    core.openDialog(3);
+                }),
+            // 5
+            new Dialog(lib.characters.mentor)
+                .setText(Dialogs.enfermaria[10])
+                .registerOption('', function(){                    
+                    core.openDialog(3);
+                }),
+            // 6
+            new Dialog(lib.characters.pacientes.carlos)
+                .setText(Dialogs.enfermaria[11])
+                .registerOption(Dialogs.enfermaria[12], function(){                    
+                    alert("Examinar Paciente");
+                })
+                
+
+        ]);
+
+        leito.registerActions([
+            new Action("btn-examinar_paciente", "Examinar Paciente")
+                .setCssClass("")
+                .onClick(function () {
+                    console.log("Action: btn-examinar_paciente");
+                    core.openDialog(0);
+                })
+                .setVisibility(false),
+            new Action("btn-falar_paciente", "Conversar com Paciente")
+                .setCssClass("")
+                .onClick(function () {
+                    console.log("Action: btn-examinar_paciente");
+                })
+                .setVisibility(true)
+        ]);
 
         posto_de_enfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function (){
@@ -225,7 +318,31 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             });
 
 
+        pulseira = new Scene("pulseira", "pulseira");
+        //.setCssClass("modalScene-pulseira");
 
+
+        pulseira.registerInteractiveObjects([
+
+        ]);
+
+
+
+        pulseira.registerActions([
+            new Action("btn-largar_pulseira", "Fechar pulseira")
+                .setCssClass("action-pulseira_paciente")
+                .onClick(function (){
+                    console.log("Ação: Fechar modal pulseira");
+                    core.closeModalScene("Pulseira");
+                    if(level.getFlag("confirmou_pulseira").getValue() == false) {
+                        level.getFlag("confirmou_pulseira").setValue(true);
+                        core.setActionVisible("btn-examinar_paciente", true);
+                    }
+                   
+                    Pulseira.close();
+                })
+                .setVisibility(true)
+        ]);
 
 
         //ModalScenes
@@ -237,8 +354,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerScene(leito);
         level.registerScene(posto_de_enfermagem);
 
+        level.registerModalScene(pulseira);
         //level init script
         level.setSetupScript(function(){
+
+            level.getFlag("conversar_recepcionista").setValue(false);
+            level.getFlag("conversar_mentor").setValue(false);
+            level.getFlag("conversar_paciente").setValue(false);
+            level.getFlag("lavar_maos").setValue(false);
 
             Pulseira.setNameRegExp(/João Manoel Ribeiro/);
             Pulseira.setLeitoRegExp(/0*2/);
@@ -280,6 +403,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("conversar_recepcionista"), false);
         level.registerFlag(new Flag("conversar_mentor"), false);
         level.registerFlag(new Flag("conversar_paciente"), false);
+        level.registerFlag(new Flag("confirmou_pulseira"), false);
+        level.registerFlag(new Flag("examinar_paciente"), false);
         level.registerFlag(new Flag("lavar_maos"), false);
 
 
