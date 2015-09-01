@@ -1,8 +1,3 @@
-@intObj-cushion-top: 10%;
-@intObj-cushion-left: 34%;
-@intObj-cushion-height: 1 * 400px;
-@intObj-cushion-width: 1 * 400px;
-
 #interactiveObjects {
   position: absolute;
   width: 100%;
@@ -349,12 +344,28 @@
 
 .intObj-cushion {
   background-image: @intObj-cushion;
-  background-repeat: no-repeat;
+
   background-size: contain;
-  top: @intObj-cushion-top;
-  left: @intObj-cushion-left;
-  width: @intObj-cushion-width;
-  height: @intObj-cushion-height;
+  background-repeat: no-repeat;
+
+  top: 30%;
+  left: 25%;
+
+  @intObj-cushion-height: 0.6 * 400px;
+  @intObj-cushion-width: 0.6 * 400px;
+
+  @media screen and (min-width: @screen-sm-min) {
+    width: 0.7 * @intObj-cushion-width;
+    height: 0.7 * @intObj-cushion-height;
+  }
+  @media screen and (min-width: @screen-md-min) {
+    width: 0.8 * @intObj-cushion-width;
+    height: 0.8 * @intObj-cushion-height;
+  }
+  @media screen and (min-width: @screen-lg-min) {
+    width: 0.9 * @intObj-cushion-width;
+    height: 0.9 * @intObj-cushion-height;
+  }
 }
 .intObj-cushion:hover {
   box-shadow: none;

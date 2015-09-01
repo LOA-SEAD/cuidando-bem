@@ -5,11 +5,11 @@
 define({
     tutorial: {
         recepcao: [
-            //Recepcionista 
+            //Recepcionista
             "Bom dia! Ainda não conheço você. Como posso ajudar?",
             //Jogador
             "Bom dia. Sou profissional de enfermagem e hoje é meu primeiro dia de trabalho.",
-            //Recepcionista 
+            //Recepcionista
             "Ah, sim! Sou Clarice, a recepcionista. O Enfermeiro mentor está te esperando no corredor."
         ],
         corredor: [
@@ -116,14 +116,43 @@ define({
         ],
         corredor: {
             fala1: [
-                // Mentor
+                // 0 Mentor
                     "Bom dia! Seu segundo paciente tem 69 anos, está acamado e sabemos que isso" +
                     " é um fator de risco para o desenvolvimento de úlcera por pressão, a mudança de posição é" +
                     " essencial!",
-                // Jogador
+                // 1 Jogador
                 "Bom dia, Alberto! Vou até a enfermaria conhecê-lo."
+            ],
+            fala2: [
+                // 0 Mentor
+                "Você inspecionou a pele do paciente?",
+                // 1 Jogador op 1
+                "Sim e encontrei algumas regiões hiperemiadas no calcanhar.",
+                // 2 Jogador op 2
+                "Sim, porém não encontrei nada.",
+                // 3 Mentor
+                "Você tem certeza?",
+                // 4 Jogador op 3
+                "Rapidamente e tenho algumas dúvidas.",
+                // 5 Mentor
+                "A inspeção deve ser minuciosa e requer atenção.",
+
+                // 6 Mentor
+                    "Isso mesmo! Em casos como este é essencial a mudança de posição (decúbito)" +
+                    "a cada 2 horas e colocar coxim.",
+                // 7 Jogador op 1
+                "Vou  procurar no posto de enfermagem imediatamente.",
+                // 8 Jogador op 2
+                "O que é coxim?",
+                // 9 Mentor
+                "O coxim é um objeto parecido com um travesseiro.",
+                // 10 Jogador op 3
+                "Ok.",
+                // 11 Mentor
+                "O que você deve procurar no posto de enfermagem agora?"
             ]
         },
+        perguntarNome: "Me desculpe, mas poderia repetir seu nome completo e sua data de nascimento?",
         enfermaria: [
             // 0 Jogador op 1
                 "Olá! Sou o técnico de enfermagem cuidarei do Sr. hoje. Como o Sr. está se " +
@@ -139,7 +168,7 @@ define({
             // 5 Paciente
                 "Olha, eu poderia estar melhor mas não serviram minha preciosa gelatina " +
                 "hoje. HAHAHAHAHA.",
-            // 6 Jogador op 1 
+            // 6 Jogador op 1
                 "A gelatina daqui é ótima mesmo. O senhor poderia me dizer  seu nome completo e " +
                 "data de nascimento, por favor?",
             // 7 Jogador op 2
@@ -158,32 +187,7 @@ define({
             "Vou verificar sua pulseira e depois examiná-lo, senhor Carlos. Com licença."
         ],
         Corredor: [
-            // Mentor
-            "Você inspecionou a pele do paciente?",
-            // Jogador op 1
-            "Sim e encontrei algumas regiões hiperemiadas no calcanhar.",
-            // Jogador op 2
-            "Sim, porém não encontrei nada.",
-            // Mentor
-            "Você tem certeza?",
-            // Jogador op 3
-            "Rapidamente e tenho algumas dúvidas.",
-            // Mentor
-            "A inspeção deve ser minuciosa e requer atenção.",
 
-            // Mentor
-                "Isso mesmo! Em casos como este é essencial a mudança de posição (decúbito)" +
-                "a cada 2 horas e colocar coxim.",
-            // Jogador op 1
-            "Vou  procurar no posto de enfermagem imediatamente.",
-            // Jogador op 2
-            "O que é coxim?",
-            // Mentor
-            "O coxim é um objeto parecido com um travesseiro.",
-            // Jogador op 3
-            "Ok.",
-            // Mentor
-            "O que você deve procurar no posto de enfermagem agora?"
         ]
     },
     fase2: {
