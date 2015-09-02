@@ -7,7 +7,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores) {
 
         //region Imports
-        var Dialogs = require("Dialogs_data").fas2;
+        var Dialogs = require("Dialogs_data").fase2;
         // var Scores = require("Scores_data").tutorial;
         //endregion
 
@@ -67,12 +67,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisibility(true)
                 .onClick(conversarRecepcionista),
 
-
             new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
                 .setCssClass("intObj-lobbyToHallway-left")
                 .onClick(recepcaoIrCorredor)
                 .setVisibility(true),
-
 
             new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
                 .setCssClass("intObj-lobbyToHallway-right")
@@ -164,6 +162,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("")
                 .onClick(function (){
                    core.openDialog(0);
+                   core.closeCommandBar();
                 })
                 .setVisibility(true),
 
@@ -200,6 +199,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.setActionVisible("btn-ler_prontuario", true);
                     core.setActionVisible("btn-lavar_maos", true);
                     core.closeDialog();
+                    core.openCommandBar();
                 })
         ]);
 
@@ -314,34 +314,52 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         ]);
 
         gaveta.registerInteractiveObjects([
+            //Kit glicemia
             new InteractiveObject("io-kitGlicemia","Pegar Kit de glicemia")
                 .setCssClass("")
                 .onClick(function () {
                     console.log("Action: pegar kit de glicemia");
 
-                    core.setInteractiveObjectVisible("io-kitGlicemia", !(level.getFlag("pegou_kit_glicemia").getValue()));
-                    core.setInteractiveObjectVisible("io-algodao", !(level.getFlag("pegou_algodao").getValue()));
-                    core.setInteractiveObjectVisible("io-luvas", !(level.getFlag("pegou_luvas").getValue()));
-                    core.setInteractiveObjectVisible("io-bandeja", !(level.getFlag("pegou_bandeja").getValue()));
+                    level.getFlag("pegou_kit_glicemia").setValue(true);
+                    
+                    core.setInteractiveObjectVisible("io-kitGlicemia", false);
                 })
                 .setVisibility(true),
+
+            //Algodao
             new InteractiveObject("io-algodao","Pegar algodao")
                 .setCssClass("")
                 .onClick(function () {
                     console.log("Action: pegar algodao ");
-                }
+
+                    level.getFlag("pegou_algodao").setValue(true);
+
+                    core.setInteractiveObjectVisible("io-algodao", false);
+                })
                 .setVisibility(true),
+
+            //Luvas
             new InteractiveObject("io-luvas","Pegar luvas")
                 .setCssClass("")
                 .onClick(function () {
                     console.log("Action: pegar luvas");
-                }
+
+                    level.getFlag("pegou_luvas").setValue(true);
+
+                    core.setInteractiveObjectVisible("io-luvas", false);
+                })
                 .setVisibility(true),
+
+            //Bandeja
             new InteractiveObject("io-bandeja","Pegar bandeja")
                 .setCssClass("")
                 .onClick(function () {
                     console.log("Action: pegar bandeja");
-                }
+
+                    level.getFlag("pegou_bandeja").setValue(true);
+
+                    core.setInteractiveObjectVisible("io-bandeja", false);
+                })
                 .setVisibility(true)
         ]);
 
@@ -479,7 +497,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.setInitialScene(0);
         //endregion
 
-        game.registerLevel(level, 1);
+        game.registerLevel(level, 2);
 
         console.groupEnd();
 
