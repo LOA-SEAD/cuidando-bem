@@ -191,36 +191,36 @@ define({
         ]
     },
     fase2: {
-        Recepção: [
+        recepcionista: [
             // Recepcionista
-                "Bom dia! Hoje o mentor não poderá te apresentar seu novo paciente, mas estará aqui" +
-                "no hospital caso precise dele. Ele também pediu que você comece pela" +
+                "Bom dia! Hoje o mentor não poderá te apresentar seu novo paciente, mas estará aqui " +
+                "no hospital caso precise dele. Ele também pediu que você comece pela " +
                 "enfermaria masculina. Boa Sorte!"
         ],
-        Ala_Masculina: [
+        ala_masculina: [
             //Jogador
             "Bom dia!",
             // Pacientes
             "Bom dia.",
             // Ação - pegar o prontuário
             // Jogador
-                "Parece que temos um procedimento para ser realizado, vou até" +
+                "Parece que temos um procedimento para ser realizado, vou até " +
                 "o posto de enfermagem e já volto."
         ],
-        Leito_paciente: [
+        leito_paciente: [
             // Jogador
-                "Olá. Sou profissional de enfermagem e preciso fazer alguns testes. Deixe-me" +
+                "Olá. Sou profissional de enfermagem e preciso fazer alguns testes. Deixe-me " +
                 "conferir sua pulseira de identificação, por favor?",
             // Paciente
             "Pero de nuevo?",
             // Jogador
-                "É um procedimento padrão. Raul Gonzales, 78 anos, certo? Pelo sotaque dá para perceber" +
+                "É um procedimento padrão. Raul Gonzales, 78 anos, certo? Pelo sotaque dá para perceber " +
                 "que o senhor não é daqui. Espanha?",
             // Paciente
             "No no no, soy de mi amada Argentina.",
             // Jogador
-                "Justo a Argentina, senhor Raul? Hahaha. Vou verificar sua glicemia para que possamos" +
-                "acompanhar a diabetes. Quando precisar se levantar, aperte" +
+                "Justo a Argentina, senhor Raul? Hahaha. Vou verificar sua glicemia para que possamos " +
+                "acompanhar a diabetes. Quando precisar se levantar, aperte " +
                 "a campainha e terá auxílio imediato.",
             // Mentor
             "Gracias! Soy velho e últimamente já no consigo estar de pie.",
@@ -238,7 +238,7 @@ define({
             // Mentor
             " Seu resultado está incorreto. Tente novamente."
         ],
-        Corredor: [
+        corredor: [
             // Jogador
                 "Olá, Alberto. A taxa de glicemia  do paciente estava alterada, tornando-o propenso a"+
                 "quedas. Ergui a grade do leito e cumpri os procedimentos prescritos.",

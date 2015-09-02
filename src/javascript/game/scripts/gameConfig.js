@@ -10,8 +10,9 @@ define(function () {
     var filePaths = [
 
         "Tutorial",
-        "Fase8",
-        "Fase1b"
+        "Fase1",
+        "Fase2",
+        "Fase8"
 
     ];
 

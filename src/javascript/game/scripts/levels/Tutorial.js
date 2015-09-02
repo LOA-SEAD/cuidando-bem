@@ -785,12 +785,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var pulseira = new Scene("pulseira", "pulseira");
         //.setCssClass("modalScene-pulseira");
 
-
         pulseira.registerInteractiveObjects([
 
         ]);
-
-
 
         pulseira.registerActions([
             new Action("btn-largar_pulseira", "Fechar pulseira")
