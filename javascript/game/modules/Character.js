@@ -1,1 +1,0 @@
-define([],function(){function e(e,t){function i(){return r}function s(e){return r=e,this}function o(){return n}function u(e){return n=e,this}var n=e,r=t;return{getName:o,setName:u,getCssClass:i,setCssClass:s}}return e});
