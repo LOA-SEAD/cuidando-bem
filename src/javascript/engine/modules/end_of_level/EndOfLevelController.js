@@ -10,6 +10,7 @@ define(['text!../assets/html/end_of_level/endOfLevel.html', 'text!../assets/html
 //Attributes
 
     var Stage = require('Stage');
+    var core = require('CuidandoBem');
     var modalSelector = "#endOfLevel";
     var scoreListSelector = "#scoreList";
 
@@ -30,6 +31,10 @@ define(['text!../assets/html/end_of_level/endOfLevel.html', 'text!../assets/html
         $('.goToMenu').click(function() {
             isOpen = false;
             Stage.changeScreen(6);
+        });
+
+        $('.playAgain').click(function() {
+            core.restartLevel();
         });
     }
 

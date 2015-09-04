@@ -66,6 +66,13 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
 
     }
 
+    function restartLevel () {
+        console.info("Restarting current level");
+
+        changeLevel(game.getCurrentLevel());
+        startLevel();
+    }
+
     //Level
     /**
      * Description
@@ -304,6 +311,24 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         CommandBar.enableActionButton(action);
     }
 
+    function disableInteractiveObject(_ioId) {
+        var io = Scene.getInteractiveObject(_ioId);
+        io.setEnable(false);
+        InteractiveObject.disableActionButton(action, _value);
+    }
+
+    /**
+     * Description
+     * @method enableActionButton
+     * @param {} _actionId
+     * @memberOf module:CuidandoBem
+     */
+    function enableInteractiveObject(_ioId) {
+        var io = Scene.getInteractiveObject(_ioId);
+        io.setEnable(true);
+        InteractiveObject.enableActionButton(action);
+    }
+
 //Getters
 
     /**
@@ -427,6 +452,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         init: init,
 
         start: start,
+        restartLevel: restartLevel,
         changeScene: changeScene,
         changeLevelTo: changeLevelTo,
         openDialog: openDialog,
@@ -440,6 +466,9 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
 
         enableActionButton: enableActionButton,
         disableActionButton: disableActionButton,
+
+        enableActionButton: enableActionButton,
+        disableInteractiveObject: disableInteractiveObject,
 
         setActionEnable: setActionEnable,
 

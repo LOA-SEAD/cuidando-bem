@@ -97,7 +97,7 @@ module.exports = function(grunt) {
                         },
                         {
                             dest: libs + 'jquery.mask.js',
-                            src: ['./libs/jQuery-Mask-Plugin/dist/jquery.mask']
+                            src: ['./libs/jQuery-Mask-Plugin/dist/jquery.mask.js']
                         },
                         {
                             dest: libs + 'require.js' , 
