@@ -317,8 +317,17 @@ body {
   border-radius: 15px;
   border: 1px solid black;
 }
+.ui-tooltip {
+  z-index: 1;
+}
 .ui-dialog-titlebar {
   border-bottom: 1px black solid;
+}
+.ui-dialog.ui-widget {
+  z-index: 101;
+}
+.ui-widget-overlay.ui-front {
+  z-index: 100;
 }
 #game {
   border: solid 1px dimgray;
@@ -543,6 +552,12 @@ body {
   bottom: 22%;
   left: 37%;
 }
+.intObj-ir_leito-fase1 {
+  width: 18%;
+  height: 35%;
+  bottom: 22%;
+  left: 63%;
+}
 .intObj-bedroomToHallway {
   width: 12%;
   height: 35%;
@@ -575,6 +590,34 @@ body {
     height: 49.98px;
     bottom: 31%;
     left: 52%;
+  }
+}
+.intObj-paciente_02-checar_pulseira {
+  background-image: url(../../assets/images/interactiveObjects/pulseira-paciente02.png);
+  background-size: cover;
+}
+@media screen and (min-width: 768px) {
+  .intObj-paciente_02-checar_pulseira {
+    width: 29.93px;
+    height: 30.135px;
+    bottom: 22%;
+    left: 40%;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-paciente_02-checar_pulseira {
+    width: 39.42px;
+    height: 39.69px;
+    bottom: 22%;
+    left: 40%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-paciente_02-checar_pulseira {
+    width: 49.64px;
+    height: 49.98px;
+    bottom: 22%;
+    left: 40%;
   }
 }
 .intObj-braceletConfirmation,
@@ -739,12 +782,28 @@ body {
 }
 .intObj-cushion {
   background-image: url(../../assets/images/interactiveObjects/coxim.png);
-  background-repeat: no-repeat;
   background-size: contain;
-  top: 10%;
-  left: 34%;
-  width: 400px;
-  height: 400px;
+  background-repeat: no-repeat;
+  top: 30%;
+  left: 25%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-cushion {
+    width: 168px;
+    height: 168px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-cushion {
+    width: 192px;
+    height: 192px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-cushion {
+    width: 216px;
+    height: 216px;
+  }
 }
 .intObj-cushion:hover {
   box-shadow: none;
@@ -832,6 +891,14 @@ body {
   top: 0;
   left: 0;
 }
+.modalScene-freqRespiratoria {
+  background-color: rgba(0, 0, 0, 0.7);
+  background-position: center;
+  background-size: 80%;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
 .modalScene-pulseira {
   background-color: rgba(0, 0, 0, 0.7);
   background-image: url(../../assets/images/modalScenes/pulseira.png);
@@ -918,6 +985,21 @@ body {
   width: 100%;
   height: 100%;
 }
+.modalScene-oximetro .oximetro-st-text {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  font-size: 25px;
+  font-weight: bold;
+  color: cyan;
+}
+.modalScene-oximetro .oximetro-fc-text {
+  position: absolute;
+  top: 54%;
+  left: 45%;
+  font-size: 20px;
+  color: cyan;
+}
 .modalScene-drawer {
   background-color: rgba(0, 0, 0, 0.7);
   background-image: url(../../assets/images/modalScenes/gaveta.png);
@@ -957,6 +1039,16 @@ body {
 }
 #prontuario input {
   width: 100%;
+  border: none;
+  background-color: transparent;
+}
+#prontuario input[disabled] {
+  border: none;
+  background-color: white;
+}
+#prontuario #pront_alergia_divSim,
+#prontuario #pront_alergia_divNao {
+  cursor: pointer;
 }
 #prontuario .notbold,
 #prontuario span {
@@ -1115,6 +1207,26 @@ body {
 #prontuario .alergia_medicamentosa .inline {
   display: inline;
 }
+#prontuario #ssvv_tbody .ssvv_row .data {
+  text-align: center;
+  display: block;
+}
+#prontuario #prescMedica_tbody .relatorio {
+  cursor: pointer;
+  text-align: center;
+}
+#prontuario #anotacaoEnfermagem_table {
+  height: 80%;
+}
+#prontuario #anotacaoEnfermagem_tbody .data {
+  text-align: center;
+}
+#prontuario #anotacaoEnfermagem_tbody td {
+  vertical-align: top;
+}
+#prontuario #anotacaoEnfermagem_tbody .anotacao {
+  height: 100%;
+}
 .ui-widget-overlay {
   position: fixed;
   top: 0;
@@ -1199,6 +1311,7 @@ body {
 }
 #pulseira_modal input {
   border: none;
+  background-color: transparent;
 }
 #pulseira_modal #name_input {
   position: absolute;
@@ -1267,6 +1380,31 @@ body {
   #pulseira_modal #leito_input {
     left: 263px;
     top: 348px;
+  }
+}
+#freqRespiratoria {
+  display: none;
+  float: left;
+  position: relative;
+  width: 800;
+  height: 600;
+}
+@media (min-width: 768px) {
+  #freqRespiratoria {
+    left: 75px;
+    top: 25px;
+  }
+}
+@media (min-width: 992px) {
+  #freqRespiratoria {
+    left: 100px;
+    top: 45px;
+  }
+}
+@media (min-width: 1200px) {
+  #freqRespiratoria {
+    left: 160px;
+    top: 45px;
   }
 }
 #dialogBar {
@@ -1604,6 +1742,9 @@ body {
 .action-medir_freq_respiratoria {
   background-image: url(../../assets/images/action_buttons/relogio.jpg);
 }
+.action-largar_relogio {
+  background-image: url(../../assets/images/action_buttons/relogio.jpg);
+}
 .action-medir_saturacao_02 {
   background-image: url(../../assets/images/action_buttons/oximetro.jpg);
 }
@@ -1641,7 +1782,7 @@ body {
   background-image: url(../../assets/images/action_buttons/anotar_prontuario-disabled.jpg);
 }
 .action-ler_prontuario {
-  background-image: url(../../assets/images/action_buttons/prontuario.jpg);
+  background-image: url(../../assets/images/action_buttons/anotar_prontuario.jpg);
 }
 .action-ler_prontuario.disabled {
   background-image: url(../../assets/images/action_buttons/prontuario-disabled.jpg);
@@ -1673,55 +1814,85 @@ body {
 .action-voltar_menu {
   background-image: url(../../assets/images/action_buttons/voltar_menu.jpg);
 }
+.action-largar_termometro {
+  background-image: url(../../assets/images/action_buttons/termometro.jpg);
+}
+.action-largar_medidor_pressao {
+  background-image: url(../../assets/images/action_buttons/pressao.jpg);
+}
+.action-largar_oximetro {
+  background-image: url(../../assets/images/action_buttons/oximetro.jpg);
+}
+.action-perguntar_nome_char1 {
+  background-image: url(../../assets/images/action_buttons/leito-char-01.jpg);
+}
 #endOfLevel {
   position: relative;
-  top: 100px;
+  top: 50px;
   left: 165px;
   display: none;
   width: 70%;
   background-color: lightgrey;
   padding: 20px;
 }
-#endOfLevelContainer .title {
+#endOfLevelContainer .endOfLevel-title {
   padding: 10px;
   border-left: 1px solid black;
   border-right: 1px solid black;
   border-top: 1px solid black;
-  background-color: white;
 }
-#endOfLevelContainer #scoreList {
+#endOfLevelContainer #scoreContainer #scoreList {
   width: 100%;
   border: 1px solid black;
 }
-#endOfLevelContainer #scoreList thead tr {
+#endOfLevelContainer #scoreContainer #scoreList thead tr {
   height: 30px;
   background-color: grey;
   border-bottom: 1px solid black;
 }
-#endOfLevelContainer #scoreList thead th:not(:last-child) {
+#endOfLevelContainer #scoreContainer #scoreList thead th:not(:last-child) {
   border-right: 1px solid black;
 }
-#endOfLevelContainer #scoreList tbody tr:nth-child(odd) {
+#endOfLevelContainer #scoreContainer #scoreList tbody tr:nth-child(odd) {
   background-color: lightgrey;
 }
-#endOfLevelContainer #scoreList tbody tr:nth-child(even) {
+#endOfLevelContainer #scoreContainer #scoreList tbody tr:nth-child(even) {
   background-color: white;
 }
-#endOfLevelContainer #scoreList tbody tr:not(:last-child) {
+#endOfLevelContainer #scoreContainer #scoreList tbody tr {
   border-bottom: 1px solid black;
 }
-#endOfLevelContainer #scoreList tbody td:not(:last-child) {
+#endOfLevelContainer #scoreContainer #scoreList tbody td:not(:last-child) {
   border-right: 1px solid black;
 }
-#endOfLevelContainer #scoreList .actions {
+#endOfLevelContainer #scoreContainer .titles {
   width: 75%;
 }
-#endOfLevelContainer #scoreList .scores {
+#endOfLevelContainer #scoreContainer .scores {
   width: 25%;
 }
-#endOfLevelContainer #scoreList .action {
+#endOfLevelContainer #scoreContainer .title {
   width: 75%;
 }
-#endOfLevelContainer #scoreList .score {
+#endOfLevelContainer #scoreContainer .score {
   width: 25%;
+  text-align: center;
+}
+#scoreContainer {
+  height: 70%;
+  max-height: 70%;
+  overflow-y: scroll;
+}
+#endOfLevel-menu {
+  text-align: center;
+  height: 8%;
+}
+#endOfLevel-menu .button {
+  background-color: white;
+  width: 175px;
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  top: 10px;
+  display: inline-block;
 }
