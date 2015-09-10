@@ -89,7 +89,7 @@ define(function () {
             "./assets/images/modalScenes/pulseira.png",
             "./assets/images/modalScenes/relogioDigital.png",
             "./assets/images/modalScenes/termometro.png",
-            "./assets/images/scenes/abertura-provisoria.jpg",
+            // "./assets/images/scenes/abertura-provisoria.jpg",
             "./assets/images/scenes/ala_masculina-paciente-virado.jpg",
             "./assets/images/scenes/ala_masculina.jpg",
             "./assets/images/scenes/corredor.jpg",

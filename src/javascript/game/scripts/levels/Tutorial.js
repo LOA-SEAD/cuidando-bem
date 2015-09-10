@@ -531,10 +531,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("Action: medir_temperatura");
                     if(level.getFlag("lavar-maos").getValue() >= 1){
 
+                        core.setActionVisible("btn-medir_temperatura", false);
                         core.openModalScene("modalTermometro");
                         level.getFlag("termometro").setValue(true);
                         core.registerScoreItem(Scores.tutorial.verTemperatura);
-                        core.setActionVisible("btn-medir_temperatura", false);
 
                         if(level.getFlag("oximetro").getValue() == true
                             && level.getFlag("medidor-pressao").getValue() == true
@@ -553,10 +553,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("Action: medir_pulso");
                     if(level.getFlag("lavar-maos").getValue() >= 1){
 
+                        core.setActionVisible("btn-medir_pulso", false);
                         core.openModalScene("modalMedidor_pressao");
                         level.getFlag("medidor-pressao").setValue(true);
                         core.registerScoreItem(Scores.tutorial.verPressao);
-                        core.setActionVisible("btn-medir_pulso", false);
 
                         if(level.getFlag("termometro").getValue() == true
                             && level.getFlag("oximetro").getValue() == true
@@ -577,10 +577,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     if(level.getFlag("lavar-maos").getValue() >= 1){
 
 
+                        core.setActionVisible("btn-saturacao_02", false);
                         core.openModalScene("modalOximetro");
                         level.getFlag("oximetro").setValue(true);
                         core.registerScoreItem(Scores.tutorial.verSaturacao);
-                        core.setActionVisible("btn-saturacao_02", false);
 
                         if(level.getFlag("termometro").getValue() == true
                             && level.getFlag("medidor-pressao").getValue() == true

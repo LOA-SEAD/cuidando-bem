@@ -254,6 +254,6 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
         setNameRegExp: setNameRegExp,
         setDataRegExp: setDataRegExp,
         setLeitoRegExp: setLeitoRegExp
-    }
+    };
 
 });

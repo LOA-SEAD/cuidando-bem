@@ -1,6 +1,19 @@
+.levelSelect-backImage{
+  background: center no-repeat @screen-levelSelect;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
 #levelSelectContainer{
   width: 100%;
   height: 50%;
+  position: relative;
+  bottom: 165px;
+  right: 20px;
 }
 
 #levelSelector {
@@ -20,6 +33,10 @@
   cursor: hand;
 
   border-bottom: 3px solid #468b4a;
+}
+
+.level:first-child{
+  width: 94%;
 }
 
 .level.disabled{

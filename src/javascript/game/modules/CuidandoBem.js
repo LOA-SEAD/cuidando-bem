@@ -69,6 +69,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     function restartLevel () {
         console.info("Restarting current level");
 
+        closeEndOfLevel();
         changeLevel(game.getCurrentLevel());
         startLevel();
     }
@@ -216,6 +217,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
 
         disableAllActionButtons();
         disableAllInteractiveObjects();
+        closeCommandBar();
     }
 
     /**
@@ -228,6 +230,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
 
         updateAllActionButtons();
         updateAllInteractiveObjects();
+        openCommandBar();
     }
 
     //End Level
@@ -467,7 +470,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         enableActionButton: enableActionButton,
         disableActionButton: disableActionButton,
 
-        enableActionButton: enableActionButton,
+        enableInteractiveObject: enableInteractiveObject,
         disableInteractiveObject: disableInteractiveObject,
 
         setActionEnable: setActionEnable,
