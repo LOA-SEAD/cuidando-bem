@@ -486,6 +486,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         core.registerScoreItem(Scores.tutorial.identificarPaciente);
                         core.setActionVisible("btn-perguntar_nome_do_paciente", false);
                         core.changeScene(2);
+                        Pulseira.disable();
                     }else{
                         core.closeCommandBar();
                         core.openDialog(17);
@@ -697,9 +698,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick( function () {
                     console.log("Action: fechar_gaveta");
                     core.closeModalScene("Gaveta");
-                    if(level.getFlag("termometro").getValue() == true &&
+                    if( level.getFlag("termometro").getValue() == true &&
                         level.getFlag("oximetro").getValue() == true &&
-                        level.getFlag("medidor-pressao").getValue() == true){
+                        level.getFlag("medidor-pressao").getValue() == true &&
+                        level.getFlag("relogio").getValue() == true){
+
                         console.log("Btn ir corredor");
                         core.setActionVisible("btn-ir_corredor", true);
                         core.openCommandBar();
@@ -769,10 +772,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function (){
                     console.log("Action: Fechar prontuario");
                     Prontuario.close();
-                    //core.closeModalScene("Prontuario");
-                    //core.changeScene(5);
-                    // alert(Prontuario.isDataValid() + " Final da fase");
-                    core.registerScoreItem(Scores.tutorial.identificarPaciente);
                     core.closeCommandBar();
                     core.showEndOfLevel();
                 })

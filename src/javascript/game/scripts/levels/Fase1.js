@@ -664,11 +664,16 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             level.getFlag("coxim").setValue(false);
             level.getFlag("colocou_coxim").setValue(false);
 
-            Pulseira.setNameRegExp(/Carlos Esme Golv(e|ê)a/);
+            Pulseira.setNameRegExp(/Carlos Esme Gouv(e|ê)a/);
             Pulseira.setLeitoRegExp(/0*3/);
             Pulseira.setDataRegExp(/01\/12\/1945/);
 
-            Prontuario.setNome("Carlos Esme Golvêa");
+            Pulseira.setName("Carlos Esme Gouvêa");
+            Pulseira.setLeito("03");
+            Pulseira.setData("01/12/1945");
+            Pulseira.disable();
+
+            Prontuario.setNome("Carlos Esme Gouvêa");
             Prontuario.setSexo("M");
             Prontuario.setEstadoCivil("Viúvo");
             Prontuario.setDataNascimento("01/12/1945");
