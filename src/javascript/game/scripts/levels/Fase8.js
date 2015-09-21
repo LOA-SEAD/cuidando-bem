@@ -24,6 +24,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Pulseira.setNameRegExp(/João Manoel Ribeiro/);
             Pulseira.setLeitoRegExp(/0*2/);
             Pulseira.setDataRegExp(/07\/06\/1956/);
+            Pulseira.disable();
+            Pulseira.setName("Testando setName de pulseira");
 
             Prontuario.setNome("João Manoel Ribeiro");
             Prontuario.setSexo("M");
@@ -41,7 +43,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Prontuario.setAntecedentes("Ocorrência de internação em 2004, devido a suspeita de infarto agudo do miocárdio (IAM)");
             Prontuario.setHipotese("Crise hipertensiva");
             Prontuario.setObservacoes("");
-            
+
             Prontuario.setPeso("87");
             Prontuario.setAltura("1,62");
             Prontuario.setCircunferenciaAbdominal("115");
@@ -49,17 +51,17 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Prontuario.setPrescMedicaRowData(0, "15/03", "Captopril", "Oral", "comp 75 mg", "2x dia", "");
             Prontuario.setPrescMedicaRowData(1, "15/03", "Ácido acetilsalicílico (AAS)", "Oral", "comp 100 mg", "1x dia", "");
 
-            
+
             Prontuario.setSsvvRowData(0, '15/03', '', '', '', '', '', false);
             Prontuario.setSsvvRowData(1, '', '', '', '', '', '', true);
 
-            Prontuario.setSsvvRowRegExp(0, 
-                new RegExp(''), 
-                new RegExp(''), 
-                new RegExp(''), 
-                new RegExp(''), 
-                new RegExp(''), 
-                new RegExp('')              
+            Prontuario.setSsvvRowRegExp(0,
+                new RegExp(''),
+                new RegExp(''),
+                new RegExp(''),
+                new RegExp(''),
+                new RegExp(''),
+                new RegExp('')
                 );
 
             Prontuario.setAnotacaoEnfermagemRowData('15/03', '');
@@ -70,10 +72,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var recepcao = new Scene("recepcao", "scene-recepcao")
             .setCssClass("scene-lobby")
             .onLoad(function(){
-                //Pulseira.open();
+                Pulseira.open();
                 //core.openModalScene("modalOximetro");
-                Prontuario.open();
-                //freqRespiratoria.open();                
+                //Prontuario.open();
+                //freqRespiratoria.open();
 
                 //core.showEndOfLevel();
             });
