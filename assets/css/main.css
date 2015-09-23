@@ -218,14 +218,9 @@ body {
 }
 #menuContainer {
   position: absolute;
-  right: 10%;
+  right: 5%;
   width: 25%;
-  height: 50%;
-}
-#menuContainer {
-  position: absolute;
-  right: 10%;
-  width: 25%;
+  top: 40%;
   height: 50%;
 }
 #menuLogo {
@@ -375,9 +370,21 @@ body {
   overflow-y: hidden;
   white-space: nowrap;
 }
+.levelSelect-backImage {
+  background: center no-repeat url(../../assets/images/screens/tela_levelSelect.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
 #levelSelectContainer {
   width: 100%;
   height: 50%;
+  position: relative;
+  bottom: 165px;
+  right: 20px;
 }
 #levelSelector {
   width: 40%;
@@ -394,6 +401,9 @@ body {
   cursor: hand;
   border-bottom: 3px solid #468b4a;
 }
+.level:first-child {
+  width: 94%;
+}
 .level.disabled {
   background-color: #8E8F8E !important;
   border-bottom: 3px solid #5b5c5b !important;
@@ -401,6 +411,15 @@ body {
 .level:active {
   background-color: #b61f20;
   border-bottom: 3px solid #8b191a;
+}
+.slotSelect-backImage {
+  background: center no-repeat url(../../assets/images/screens/tela_carregarFundo.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 #saveSlotMain {
   width: 100%;
@@ -444,12 +463,23 @@ body {
 #slotsMenu .menuButton:first-child {
   margin-left: 0;
 }
-#stage {
-  background: center no-repeat url(../../assets/images/scenes/abertura-provisoria.jpg);
+#mainMenu-prancheta {
+  background: center no-repeat url(../../assets/images/misc/telaInicialPrancheta.png);
   background-size: cover;
+  width: 603px;
+  height: 645px;
   position: absolute;
-  height: 100%;
+  top: 30px;
+  left: 50px;
+}
+.mainMenu-backImage {
+  background: center no-repeat url(../../assets/images/screens/tela_inicial.jpg);
+  background-size: cover;
   width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 #interactiveObjects {
   position: absolute;
@@ -1044,7 +1074,7 @@ body {
 }
 #prontuario input[disabled] {
   border: none;
-  background-color: white;
+  background-color: transparent;
 }
 #prontuario #pront_alergia_divSim,
 #prontuario #pront_alergia_divNao {
@@ -1207,6 +1237,10 @@ body {
 #prontuario .alergia_medicamentosa .inline {
   display: inline;
 }
+#prontuario #ssvv_tbody input {
+  width: 50%;
+  text-align: right;
+}
 #prontuario #ssvv_tbody .ssvv_row .data {
   text-align: center;
   display: block;
@@ -1326,8 +1360,8 @@ body {
 }
 @media (min-width: 992px) {
   #pulseira_modal #name_input {
-    left: 215px;
-    top: 286px;
+    left: 226px;
+    top: 259px;
   }
 }
 @media (min-width: 1200px) {
@@ -1338,7 +1372,7 @@ body {
 }
 #pulseira_modal #data_input {
   position: absolute;
-  width: 75px;
+  width: 100px;
   height: 20px;
 }
 @media (min-width: 768px) {
