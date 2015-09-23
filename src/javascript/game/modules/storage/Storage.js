@@ -22,6 +22,7 @@ define(["SimpleStorage"], function(Storage){
             undefined,
             undefined,
             undefined,
+            undefined,
             undefined
 
         ];
@@ -199,6 +200,16 @@ define(["SimpleStorage"], function(Storage){
         return selectedId;
     }
 
+    function unlockLevel(_id) {
+        var sav = saves[loadedId];
+
+        if(sav.lastLevel < _id){
+            sav.lastLevel = _id - 1;
+        }
+
+        saveSlots();
+    }
+
     //region Test Slot
 
     Storage.flush();
@@ -220,6 +231,7 @@ define(["SimpleStorage"], function(Storage){
         setupSlot: setupSlot,
         reset: reset,
         resetAll: resetAll,
+        unlockLevel: unlockLevel,
 
         addScore: addScore,
         resetScore: resetScore,

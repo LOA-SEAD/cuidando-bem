@@ -532,7 +532,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("Action: medir_temperatura");
                     if(level.getFlag("lavar-maos").getValue() >= 1){
 
-                        core.setActionVisible("btn-medir_temperatura", false);
+                        //core.setActionVisible("btn-medir_temperatura", false);
                         core.openModalScene("modalTermometro");
                         level.getFlag("termometro").setValue(true);
                         core.registerScoreItem(Scores.tutorial.verTemperatura);
@@ -554,7 +554,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("Action: medir_pulso");
                     if(level.getFlag("lavar-maos").getValue() >= 1){
 
-                        core.setActionVisible("btn-medir_pulso", false);
+                        //core.setActionVisible("btn-medir_pulso", false);
                         core.openModalScene("modalMedidor_pressao");
                         level.getFlag("medidor-pressao").setValue(true);
                         core.registerScoreItem(Scores.tutorial.verPressao);
@@ -573,12 +573,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             new Action("btn-saturacao_02", "Ver saturação de O2")
                 .setCssClass("action-medir_saturacao_02")
                 .onClick( function (){
+                        //core.setActionVisible("btn-saturacao_02", false);
                     console.log("Action: medir_saturacao_02");
 
                     if(level.getFlag("lavar-maos").getValue() >= 1){
 
 
-                        core.setActionVisible("btn-saturacao_02", false);
                         core.openModalScene("modalOximetro");
                         level.getFlag("oximetro").setValue(true);
                         core.registerScoreItem(Scores.tutorial.verSaturacao);
@@ -600,12 +600,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("Action: medir_freq_respiratoria");
                     if(level.getFlag("lavar-maos").getValue() >= 1){
 
+                        //core.setActionVisible("btn-frequencia_respiratoria", false);
                         level.getFlag("relogio").setValue(true);
                         core.registerScoreItem(Scores.tutorial.verFrequenciaRespiratoria);
 
                         FreqRespiratoria.open();
                         core.openModalScene("freqRespiratoria");
-                        //core.setActionVisible("btn-frequencia_respiratoria", false);
                     }
                 })
                 .setVisibility(visibility),
@@ -774,6 +774,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     Prontuario.close();
                     core.closeCommandBar();
                     core.showEndOfLevel();
+                    core.unlockLevel(1);
                 })
         ]);
         //endregion
