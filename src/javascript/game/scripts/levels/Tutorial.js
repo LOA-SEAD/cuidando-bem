@@ -797,8 +797,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.closeModalScene("Pulseira");
                     if(level.getFlag("visita-leito").getValue() == 0)
                         core.setActionVisible("btn-ir_sala_leitos", true);
-                    // o correto era dar um disable aqui no pulseira paciente
-                    //core.setInteractiveObjectVisible("io-pulseira_paciente", false);
                     Pulseira.close();
                 })
                 .setVisibility(true)
@@ -874,6 +872,18 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Level
 
         level.setSetupScript(function(){
+
+            level.getFlag("conversar_recepcionista").setValue(false);
+            level.getFlag("conversar_mentor").setValue(false);
+            level.getFlag("passagem_corredor").setValue(0);
+            level.getFlag("passagem_sala-de-leitos").setValue(0);
+            level.getFlag("visita-leito").setValue(0);
+            level.getFlag("pulseira").setValue(false);
+            level.getFlag("lavar-maos").setValue(0);
+            level.getFlag("termometro").setValue(false);
+            level.getFlag("medidor-pressao").setValue(false);
+            level.getFlag("oximetro").setValue(false);
+            level.getFlag("relogio").setValue(false);
 
             Pulseira.setNameRegExp(/João Manoel Ribeiro/);
             Pulseira.setLeitoRegExp(/0*2/);
