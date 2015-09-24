@@ -455,7 +455,15 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             new Dialog(lib.characters.pacientes.joao)
                 .setText(Dialogs.leito.conversa1[12])
                 .registerOption("", function () {
-                    core.closeDialog(9);
+                    core.closeDialog();
+                    core.openCommandBar();
+                }),
+            //Dialog 20 - Final de fase, informações no prontuário incorretas.
+            new Dialog(lib.characters.mentor)
+                .setText("Algumas informações do prontuário estão incorretas. Verifique-as e volte a conversar comigo.")
+                .registerOption("", function() {
+                    core.closeDialog();
+                    Prontuario.open();
                     core.openCommandBar();
                 })
         ]);
@@ -770,13 +778,21 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             new Action("btn-terminar_fase", "Conversar com Mentor")
                 .setCssClass("action-abrir_dialogo")
                 .onClick(function (){
-                    console.log("Action: Fechar prontuario");
-                    Prontuario.close();
-                    core.closeCommandBar();
-                    core.showEndOfLevel();
-                    core.unlockLevel(1);
+                    console.log("Action: Finalizar fase");
+                    if(Prontuario.isDataValid()) {
+                        Prontuario.close();
+                        core.closeCommandBar();
+                        core.showEndOfLevel();
+                        core.unlockLevel(1);
+                    } else {
+                        //In casa form data is not valid
+                        Prontuario.close();
+                        core.closeCommandBar();
+                        core.openDialog(20);
+                    }
                 })
         ]);
+
         //endregion
 
         //region Pulseira
@@ -806,7 +822,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region termometro
         var termometro = new Scene("modalTermometro", "modalTermometro")
             .setCssClass("modalScene-termometro")
-            .setTemplate("<span class='temp_termometro'>37.5º</span>");
+            .setTemplate("<span class='temp_termometro'>37,5º</span>");
 
         termometro.registerActions([
             new Action("btn-largar_termometro", "Fechar termômetro")
@@ -837,8 +853,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var oximetro = new Scene("modalOximetro", "Oxímetro")
             .setCssClass("modalScene-oximetro")
             .setTemplate(
-                "<span class='oximetro-st-text'>94% Sat.O2</span>"
-                 +"<span class='oximetro-fc-text'>65 bpm</span>"
+                "<span class='oximetro-st-text'>97% Sat.O2</span>"
+                 +"<span class='oximetro-fc-text'>69 bpm</span>"
                 );
 
         oximetro.registerActions([
@@ -872,6 +888,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Level
 
         level.setSetupScript(function(){
+
+            FreqRespiratoria.setFr(17);
 
             level.getFlag("conversar_recepcionista").setValue(false);
             level.getFlag("conversar_mentor").setValue(false);
@@ -914,6 +932,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Prontuario.setPrescMedicaRowData(1, "15/03", "Ácido acetilsalicílico (AAS)", "Oral", "comp 100 mg", "1x dia", "");
 
             Prontuario.setSsvvRowData(0, '15/03', '', '', '', '', '', false);
+            Prontuario.setSsvvRowRegExp(0,
+                new RegExp('15/03'),
+                new RegExp('160x100'),
+                new RegExp('69'),
+                new RegExp('17'),
+                new RegExp('97'),
+                new RegExp('37,5')
+                );
             //Disable 2 row
             Prontuario.setSsvvRowData(1, '', '', '', '', '', '', true);
 

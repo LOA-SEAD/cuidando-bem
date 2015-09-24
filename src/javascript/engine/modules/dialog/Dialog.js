@@ -33,6 +33,7 @@ define([], function () {
              *
              * @memberOf Dialog#
              */
+            var speaker = _speaker;
             var speakerName = _speaker.getName();
             /**
              * @type {string}
@@ -75,11 +76,12 @@ define([], function () {
 
         //Getters
         function getClone(){
-            var dialog_clone = new Dialog()
+            var dialog_clone = new Dialog(speaker)
                 .setText(text)
                 .setRandomize(randomize)
-                .setSpeakerCssClass(speakerCssClass)
-                .setSpeakerName(speakerName);
+                .setSpeakerCssClass(speaker.getCssClass())
+                .setSpeakerName(speaker.getName());
+                //.setSpeakerName(speakerName);
 
 
             for(opt in options)
@@ -105,7 +107,7 @@ define([], function () {
          * @memberOf Dialog#
          */
         function getSpeakerName() {
-            return speakerName;
+            return speaker.getName();
         }
 
         /**
@@ -115,7 +117,7 @@ define([], function () {
          * @memberOf Dialog#
          */
         function getSpeakerCssClass() {
-            return speakerCssClass;
+            return speaker.getCssClass();
         }
 
         /**
@@ -146,12 +148,12 @@ define([], function () {
         }
 
         function setSpeakerName(_speakerName){
-            speakerName = _speakerName;
+            //speakerName = _speakerName;
             return this;
         }
 
         function setSpeakerCssClass(_speakerCssClass){
-            speakerCssClass = _speakerCssClass;
+            //speakerCssClass = _speakerCssClass;
             return this;
         }
         function setText(_text){

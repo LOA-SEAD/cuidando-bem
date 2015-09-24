@@ -1,6 +1,6 @@
 /**
  * This method adds all the events to the mainMenu screen
- * 
+ *
  * @name Screen_mainMenu_Controller
  * @module
  *
@@ -22,7 +22,8 @@ define(['Stage'], function (Stage) {
         //Player.setLoop(Player.audios.fundo, true);
         //Player.play(Player.audios.fundo);
 
-        //Player.playInLoop(Player.audios.loops.test2);
+        //Player.playInLoop(Player.audios.loops.recepcao);
+        Player.playInLoop(Player.audios.loops.background);
         //Player.playInRange(Player.audios.sfx.objeto);
 
         console.log("Configuring main menu listeners");
