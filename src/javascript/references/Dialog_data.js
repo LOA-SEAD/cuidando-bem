@@ -101,7 +101,7 @@ define({
         }
     },
     fase1: {
-        recepcionista: [
+        recepcao: [
             //0 Recepcionista
             "Oi! Parece que deu tudo certo com seu primeiro paciente. Parabéns!" +
             " O mentor já te espera para um novo caso.",
@@ -182,7 +182,7 @@ define({
         ]
     },
     fase2: {
-        recepcionista: [
+        recepcao: [
             //0 Recepcionista
             "Bom dia! Hoje o mentor não poderá te apresentar seu novo paciente, mas estará aqui no hospital" +
             " caso precise dele. Ele também pediu que você comece pela enfermaria masculina. Boa Sorte!"
@@ -235,7 +235,7 @@ define({
         ]
     },
     fase3: {
-        recepcionista: [
+        recepcao: [
             //0 Recepcionista
             "Bom dia! O mentor lhe espera no corredor.",
         ],
@@ -344,7 +344,65 @@ define({
         ],
     },
     fase4: {
-
+        corredor: [
+        //0 Jogador
+        "Bom dia, Clarice.",
+        //1 Clarice
+        "Bom dia! O paciente já está à sua espera.",
+        ],
+        ala_masculina: [
+        //0 Jogador
+        "Bom dia! Sou profissional de enfermagem e atenderei o senhor hoje. Deixe-me ver seu prontuário...",
+        //1 Paciente
+        "Bom dia. Hora da medicação? Qual é a de hoje?",
+        //2 Jogador op 1
+        "Sim senhor! Ainda é o segundo dia de uso do Keflin. Vou preparar sua medicação e já volto.",
+        //3 Jogador op 2
+        "Sim, mas o nome da medicação não é uma informação importante, não se preocupe.",
+        //4 Jogador op 3
+        "Não sei dizer, não há nada anotado no prontuário.",
+        ],
+        farmacia: [
+        //0 Paulo
+        "Bom dia! Do que precisa?",
+        //1 Jogador
+        "Bom dia, Paulo! Vim buscar o medicamento prescrito para um paciente da enfermaria masculina." +
+        " Aqui está o prontuário.",
+        //2 Paulo
+        "Pronto. Este é o frasco de Keflin, sua apresentação é de 1g.",
+        //3 Jogador
+        "Agradeço, Paulo! Preciso voltar ao paciente.",
+        ],
+        posto_enfermagem: [
+        //Cálculo de medicamente
+        //0 Jogador
+        "Acredito que peguei tudo o que precisava.",
+        //1 Mentor
+        "Muito bem! Vamos conferir se a medicação dispensada é a mesma prescrita.",
+        ],
+        leito_paciente: [
+        //0 Jogador
+        "Voltei. Antes da administração do medicamento, o senhor poderia me dizer seu nome e data de" +
+        " nascimento, por favor?",
+        //1 Paciente
+        "Claro. Pedro Alcídes Mendonça, nasci em 03 de junho de 1962.",
+        //2 Jogador op 1
+        "Senhor Pedro, este medicamento é o Keflin; sua ação é antimicrobiana e ele vai correr no período" +
+        " de uma hora, tudo bem?",
+        //3 Jogador op 2
+        "Senhor Pedro, vou administrar o medicamento. Tudo bem?",
+        //4 Jogador op 3
+        "Senhor Pedro, vou administrar o medicamento. Caso queira saber sua função, pergunte ao médico" +
+        " responsável e ele saberá te informar.",
+        //5 Paciente
+        "Muito obrigado. E me desculpe pelas perguntas, é mania de professor.",
+        //6 Jogador
+        "Hahaha. Sem problemas. Se sentir qualquer sensação estranha é só me comunicar." +
+        " Por favor, não abra a pinça do equipo e em breve poderá voltar para seus alunos."
+        //7 Mentor
+        "Lembre-se sempre de utilizar os nove certos na administração de medicamentos!" +
+        " Deste modo reduzimos a possibilidades de erros.",
+        ],
     },
     fase5: {
 
