@@ -107,6 +107,8 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
      */
     var dataRegExp;
 
+    var disabled = false;
+
 //Methods
     //Init
     /**
@@ -140,6 +142,22 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
         console.info("Close modal Scene");
         showing = false;
         $(divSelector).hide();
+    }
+
+    function disable() {
+        disable = true;
+
+        $(dataInputSelector).prop( "disabled", true );
+        $(leitoInputSelector).prop( "disabled", true );
+        $(nameInputSelector).prop( "disabled", true );
+    }
+
+    function enable() {
+        disable = false;
+
+        $(dataInputSelector).prop( "disabled", false );
+        $(leitoInputSelector).prop( "disabled", false );
+        $(nameInputSelector).prop( "disabled", false );
     }
 
 //Getters
@@ -210,6 +228,10 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
         return this;
     }
 
+    function setName(_name) {
+        $(nameInputSelector).val(_name);
+    }
+
     /**
      * Description
      * @method setDataRegExp
@@ -220,6 +242,10 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
     function setDataRegExp(_dataRegExp){
         dataRegExp = _dataRegExp;
         return this;
+    }
+
+    function setData(_data) {
+        $(dataInputSelector).val(_data);
     }
 
     /**
@@ -234,6 +260,10 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
         return this;
     }
 
+    function setLeito(_leito) {
+        $(leitoInputSelector).val(_leito);
+    }
+
 
 
 
@@ -244,6 +274,9 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
         close: close,
         open: open,
 
+        disable: disable,
+        enable: enable,
+
         isShowing: isShowing,
 
         isNameValid: isNameValid,
@@ -253,7 +286,11 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
 
         setNameRegExp: setNameRegExp,
         setDataRegExp: setDataRegExp,
-        setLeitoRegExp: setLeitoRegExp
+        setLeitoRegExp: setLeitoRegExp,
+
+        setName: setName,
+        setLeito: setLeito,
+        setData: setData
     };
 
 });

@@ -16,7 +16,7 @@ define(function(require){
 		passed: undefined,
 		now: undefined,
 		accumulator: 0,
-		
+
 		time: undefined,
 
 		rate: 60
@@ -44,7 +44,7 @@ define(function(require){
 		this.frameTotal;
 		this.frameCounter = 0;
 		this.cyclesPerMinute;
-		
+
 		this.img = [];
 		this.hasToDraw = false;
 
@@ -73,7 +73,7 @@ define(function(require){
 			if(this.hasToDraw){
 				var ctx = canvas.getContext('2d');
 
-				var fx = this.frameCounter * this.width; 
+				var fx = this.frameCounter * this.width;
 
 				var img = this.img[this.frameCounter];
 
@@ -97,7 +97,7 @@ define(function(require){
 	for(i=0; i<breathing.frameTotal; i++){
 		breathing.img.push(new Image());
 
-		breathing.img[i].onload = function(){ 
+		breathing.img[i].onload = function(){
 			console.log("Image "+i+" loaded");
 			imgsLoaded++;
 			// if(imgsLoaded==coin.frameTotal){
@@ -145,7 +145,7 @@ define(function(require){
 		tick.accumulator = 0;
 		tick.last = new Date().getTime();
 		state = STATES.playing;
-		
+
 		animationLoop();
 	}
 
@@ -182,13 +182,13 @@ define(function(require){
 
 		ctx.moveTo(clock.x, clock.y+clock.radius);
 		ctx.lineTo(clock.x, clock.y+clock.radius-clock.line);
-		
+
 		ctx.moveTo(clock.x-clock.radius, clock.y);
 		ctx.lineTo(clock.x-clock.radius+clock.line, clock.y);
-		
+
 		ctx.moveTo(clock.x+clock.radius, clock.y);
 		ctx.lineTo(clock.x+clock.radius-clock.line, clock.y);
-		
+
 		//ctx.arc(clock.x, clock.y, clock.radius, 0, Math.PI*2);
 		ctx.lineWidth = 2;
 		ctx.strokeStyle = "rgba(0,0,0,130)";
@@ -222,11 +222,19 @@ define(function(require){
 		draw($(canvasSelector)[0]);
 
 		if(state == STATES.playing)
-			window.requestAnimationFrame(animationLoop);	
+			window.requestAnimationFrame(animationLoop);
+	}
+
+	function setFr(_fr) {
+
+		breathing.cyclesPerMinute = _fr;
+		breathing.frameTime = 1000*60/breathing.cyclesPerMinute/breathing.frameTotal;
+
 	}
 
 	return{
 		init:init,
+		setFr: setFr,
 
 		open:open,
 		close:close

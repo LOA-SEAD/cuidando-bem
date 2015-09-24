@@ -10,8 +10,10 @@ define(['Stage', 'levelsData'], function (Stage, game) {
 
     var Player = require('Player');
     var Storage = require('Storage');
+    var Dialogs = require('Dialogs_data');
+    var Lib = require('Commons');
 
-    var save = Storage.getLoadedSlot();
+    var save;
 
     /**
      * This method is called when the screen levelSelect is loaded
@@ -22,6 +24,13 @@ define(['Stage', 'levelsData'], function (Stage, game) {
      * @memberOf module:Screen_levelSelect_Controller
      */
     function load() {
+
+        save = Storage.getLoadedSlot();
+
+        //Change player name to save slot name
+        Lib.characters.jogador.setName(save.name);
+
+
 
         var i;
         for(i in save.levels){
@@ -35,7 +44,7 @@ define(['Stage', 'levelsData'], function (Stage, game) {
         });
 
         $('.backButton').click(function () {
-            Stage.changeScreen(0);
+            Stage.changeScreen(5);
         });
 
         $('.level').click(function(){

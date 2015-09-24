@@ -582,7 +582,65 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
 
     }
 
+    function updateValues() {
+        nomeText = $(nomeDisplaySelector).text();
+        dataNascimentoText = $(dataNascimentoDisplaySelector).text();
+        idadeText = $(idadeDisplaySelector).text();
+        sexoText = $(sexoDisplaySelector).text();
+        estadoCivilText = $(estadoCivilDisplaySelector).text();
+        profissaoText = $(profissaoDisplaySelector).text();
+        paiText = $(paiDisplaySelector).text();
+        maeText = $(maeDisplaySelector).text();
+        dataInternacaoText = $(dataInternacaoDisplaySelector).text();
+        leitoText = $(leitoDisplaySelector).text();
+        antecedentesText = $(antecedentesHospitalaresDisplaySelector).text();
+        hipoteseText = $(hipoteseDiagnosticaDisplaySelector).text();
+        observacoesText = $(observacoesDisplaySelector).text();
+        pesoText = $(pesoDisplaySelector).text();
+        alturaText = $(alturaDisplaySelector).text();
+        circunferenciaAbdominalText = $(circunferenciaAbdominalSelector).text();
+
+        // alergiaMedicamentosa_disabled = $(alergiaMedicamentosa_textSelector).prop('disabled', );
+
+        // if(alergiaMedicamentosa_status){
+        //     alergiaMedicamentosa_status_x = $(alergiaMedicamentosa_spanSim).text();
+        //     alergiaMedicamentosa_status_empty = $(alergiaMedicamentosa_spanNao).text();
+
+        //     alergiaMedicamentosa_text = $(alergiaMedicamentosa_textSelector).val();
+        //     $(alergiaMedicamentosa_textSelector).show();
+        // }else{
+        //     alergiaMedicamentosa_status_empty = $(alergiaMedicamentosa_spanSim).text();
+        //     alergiaMedicamentosa_status_x = $(alergiaMedicamentosa_spanNao).text();
+
+        //     $(alergiaMedicamentosa_textSelector).hide();
+        // }
+
+        for(row = 0; row< prescMedica_data.length; row++){
+            prescMedica_data[row].data = $($(prescMedica_dataSelector, prescMedica_tbodySelector)[row]).text();
+            prescMedica_data[row].medicacao = $($(prescMedica_medicacaoSelector, prescMedica_tbodySelector)[row]).text();
+            prescMedica_data[row].via = $($(prescMedica_viaSelector, prescMedica_tbodySelector)[row]).text();
+            prescMedica_data[row].posologia = $($(prescMedica_posologiaSelector, prescMedica_tbodySelector)[row]).text();
+            prescMedica_data[row].horario = $($(prescMedica_horarioSelector, prescMedica_tbodySelector)[row]).text();
+        }
+
+        for(row = 0; row< ssvv_data.length; row++){
+            var _disabled = ssvv_data[row].disabled;
+
+            ssvv_data[row].data = $($(ssvv_dataSelector, ssvv_tbodySelector)[row]).text();
+            ssvv_data[row].pa = $($(ssvv_pressaoArterialSelector, ssvv_tbodySelector)[row]).val();
+            ssvv_data[row].fc = $($(ssvv_frequenciaCardiacaSelector, ssvv_tbodySelector)[row]).val();
+            ssvv_data[row].fr = $($(ssvv_frequenciaRespiratoriaSelector, ssvv_tbodySelector)[row]).val();
+            ssvv_data[row].sat = $($(ssvv_saturacaoSelector, ssvv_tbodySelector)[row]).val();
+            ssvv_data[row].temp = $($(ssvv_temperaturaSelector, ssvv_tbodySelector)[row]).val();
+        }
+
+
+        anotacaoEnfermagem_data = $($(anotacaoEnfermagem_dataSelector, anotacaoEnfermagem_tbodySelector)[0]).val();
+        anotacaoEnfermagem_text = $($(anotacaoEnfermagem_anotacaoSelector, anotacaoEnfermagem_tbodySelector)[0]).val();
+    }
+
     function close(){
+        updateValues();
         $(prontuarioSelector).hide();
     }
 

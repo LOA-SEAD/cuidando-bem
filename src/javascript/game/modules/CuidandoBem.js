@@ -449,6 +449,10 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         Scene.setCssClass(_cssClass);
     }
 
+    function unlockLevel(_levelId) {
+        Storage.unlockLevel(_levelId);
+    }
+
 
 //Public Interface
     var ret = {
@@ -466,6 +470,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         closeEndOfLevel: closeEndOfLevel,
         openCommandBar: openCommandBar,
         closeCommandBar: closeCommandBar,
+        unlockLevel: unlockLevel,
 
         enableActionButton: enableActionButton,
         disableActionButton: disableActionButton,

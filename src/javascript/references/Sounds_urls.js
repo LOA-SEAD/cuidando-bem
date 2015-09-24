@@ -2,7 +2,7 @@
  * @author Otho - Marcelo Lopes Lotufo
  */
 define(function () {
-	
+
 	var masterVolume = 1;
 	var baseDir = "./assets/sounds/";
 	var paths = {
@@ -14,7 +14,7 @@ define(function () {
 			abrir_porta: [
 				"porta_abrindo_1.mp3",
 				"porta_abrindo_2.mp3"
-			],			
+			],
 			bip: [
 				"bip_termometro_oximetro.mp3"
 			],
@@ -60,14 +60,15 @@ define(function () {
 			]
 		},
 		musics:[
-		
+
 		],
 		loops:{
-			recepcao: ["sons_ambiente_hospital_recepcao.mp3"]
+			recepcao: ["sons_ambiente_hospital_recepcao.mp3"],
+			background: ["class.mp3"],
             //test: ["teste.mp3"],
-            //test2: ["teste2.mp3"]
-		}		
-		
+            test2: ["teste2.mp3"]
+		}
+
 	};
 
 	return {

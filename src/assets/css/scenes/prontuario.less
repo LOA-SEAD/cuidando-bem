@@ -6,6 +6,7 @@
     width: 80%;
     position: relative;
     background-color: white;
+    //background-image: @bg-prontuario;
 
     @media (min-width:@screen-sm-min) {
         left: 75px;
@@ -30,7 +31,7 @@
 
     input[disabled]{
         border: none;
-        background-color: white;
+        background-color: transparent;
     }
 
     #pront_alergia_divSim, #pront_alergia_divNao{
@@ -231,7 +232,10 @@
     }
 
     #ssvv_tbody{
-
+        input {
+            width: 50%;
+            text-align: right;
+        }
         .ssvv_row{
 
             td{
