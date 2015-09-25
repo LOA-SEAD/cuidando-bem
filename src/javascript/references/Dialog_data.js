@@ -341,72 +341,248 @@ define({
     },
     fase4: {
         corredor: [
-        //0 Jogador
-        "Bom dia, Clarice.",
-        //1 Clarice
-        "Bom dia! O paciente já está à sua espera."
+            //0 Jogador
+            "Bom dia, Clarice.",
+            //1 Clarice
+            "Bom dia! O paciente já está à sua espera."
         ],
         ala_masculina: [
-        //0 Jogador
-        "Bom dia! Sou profissional de enfermagem e atenderei o senhor hoje. Deixe-me ver seu prontuário...",
-        //1 Paciente
-        "Bom dia. Hora da medicação? Qual é a de hoje?",
-        //2 Jogador op 1
-        "Sim senhor! Ainda é o segundo dia de uso do Keflin. Vou preparar sua medicação e já volto.",
-        //3 Jogador op 2
-        "Sim, mas o nome da medicação não é uma informação importante, não se preocupe.",
-        //4 Jogador op 3
-        "Não sei dizer, não há nada anotado no prontuário."
+            //0 Jogador
+            "Bom dia! Sou profissional de enfermagem e atenderei o senhor hoje. Deixe-me ver seu prontuário...",
+            //1 Paciente
+            "Bom dia. Hora da medicação? Qual é a de hoje?",
+            //2 Jogador op 1
+            "Sim senhor! Ainda é o segundo dia de uso do Keflin. Vou preparar sua medicação e já volto.",
+            //3 Jogador op 2
+            "Sim, mas o nome da medicação não é uma informação importante, não se preocupe.",
+            //4 Jogador op 3
+            "Não sei dizer, não há nada anotado no prontuário."
         ],
         farmacia: [
-        //0 Paulo
-        "Bom dia! Do que precisa?",
-        //1 Jogador
-        "Bom dia, Paulo! Vim buscar o medicamento prescrito para um paciente da enfermaria masculina." +
-        " Aqui está o prontuário.",
-        //2 Paulo
-        "Pronto. Este é o frasco de Keflin, sua apresentação é de 1g.",
-        //3 Jogador
-        "Agradeço, Paulo! Preciso voltar ao paciente."
+            //0 Paulo
+            "Bom dia! Do que precisa?",
+            //1 Jogador
+            "Bom dia, Paulo! Vim buscar o medicamento prescrito para um paciente da enfermaria masculina." +
+            " Aqui está o prontuário.",
+            //2 Paulo
+            "Pronto. Este é o frasco de Keflin, sua apresentação é de 1g.",
+            //3 Jogador
+            "Agradeço, Paulo! Preciso voltar ao paciente."
         ],
         posto_enfermagem: [
-        //Cálculo de medicamente
-        //0 Jogador
-        "Acredito que peguei tudo o que precisava.",
-        //1 Mentor
-        "Muito bem! Vamos conferir se a medicação dispensada é a mesma prescrita."
+            //Cálculo de medicamente
+            //0 Jogador
+            "Acredito que peguei tudo o que precisava.",
+            //1 Mentor
+            "Muito bem! Vamos conferir se a medicação dispensada é a mesma prescrita."
         ],
         leito_paciente: [
-        //0 Jogador
-        "Voltei. Antes da administração do medicamento, o senhor poderia me dizer"
-        " seu nome e data de nascimento, por favor?",
-        //1 Paciente
-        "Claro. Pedro Alcídes Mendonça, nasci em 03 de junho de 1962.",
-        //2 Jogador op 1
-        "Senhor Pedro, este medicamento é o Keflin; sua ação é antimicrobiana" +
-        " e ele vai correr no período de uma hora, tudo bem?",
-        //3 Jogador op 2
-        "Senhor Pedro, vou administrar o medicamento. Tudo bem?",
-        //4 Jogador op 3
-        "Senhor Pedro, vou administrar o medicamento. Caso queira saber sua função," +
-        " pergunte ao médico responsável e ele saberá te informar.",
-        //5 Paciente
-        "Muito obrigado. E me desculpe pelas perguntas, é mania de professor.",
-        //6 Jogador
-        "Hahaha. Sem problemas. Se sentir qualquer sensação estranha é só me comunicar." +
-        " Por favor, não abra a pinça do equipo e em breve poderá voltar para seus alunos."
-        //7 Mentor
-        "Lembre-se sempre de utilizar os nove certos na administração de medicamentos!" +
-        " Deste modo reduzimos a possibilidades de erros."
+            //0 Jogador
+            "Voltei. Antes da administração do medicamento, o senhor poderia me dizer"
+            " seu nome e data de nascimento, por favor?",
+            //1 Paciente
+            "Claro. Pedro Alcídes Mendonça, nasci em 03 de junho de 1962.",
+            //2 Jogador op 1
+            "Senhor Pedro, este medicamento é o Keflin; sua ação é antimicrobiana" +
+            " e ele vai correr no período de uma hora, tudo bem?",
+            //3 Jogador op 2
+            "Senhor Pedro, vou administrar o medicamento. Tudo bem?",
+            //4 Jogador op 3
+            "Senhor Pedro, vou administrar o medicamento. Caso queira saber sua função," +
+            " pergunte ao médico responsável e ele saberá te informar.",
+            //5 Paciente
+            "Muito obrigado. E me desculpe pelas perguntas, é mania de professor.",
+            //6 Jogador
+            "Hahaha. Sem problemas. Se sentir qualquer sensação estranha é só me comunicar." +
+            " Por favor, não abra a pinça do equipo e em breve poderá voltar para seus alunos."
+            //7 Mentor
+            "Lembre-se sempre de utilizar os nove certos na administração de medicamentos!" +
+            " Deste modo reduzimos a possibilidades de erros."
         ],
     },
     fase5: {
-
+        recepcao:[
+            //0 Recepcionista
+            "Bom tarde! Temos uma paciente à sua espera."
+        ],
+        corredor: [
+            //0 Jogador
+            "Boa tarde, Alberto!",
+            //1 Mentor
+            "Boa tarde! A paciente de hoje teve um Acidente Vascular Encefálico Isquêmico (AVE)." +
+            " Ela também sofreu uma queda, resultando em uma lesão. Vá até a enfermaria" +
+            " feminina para realizar os procedimentos necessários."
+        ],
+        ala_feminina: [
+            //0 Jogador
+            "Boa tarde!",
+            //1 Paciente
+            "Boa tarde!",
+            //2 Jogador
+            "Sou da equipe de enfermangem do hospital e realizarei os cuidados esta tarde."
+        ],
+        leito_paciente: {
+            fala1: [
+                //tabela
+            ],
+            fala2: [
+                //0 Jogador
+                "Antes de começarmos, a senhora poderia me dizer seu nome completo, por favor?",
+                //1 Paciente
+                "Esther Fidelis.",
+                //2 Jogador
+                "Senhora Esther, temos dois procedimentos a serem realizados: o primeiro será" +
+                " um teste de glicemia capilar. O segundo será um curativo no local machucado pela queda." +
+                " A senhora sofreu um acidente vascular, não é mesmo?",
+                //3 Paciente
+                "Sim. O estress e a correria no Consulado são diárias, eu já esperava que isso talvez" +
+                " pudesse acabar acontecendo. Ao menos os movimentos do meu lado direito estão voltando," +
+                " tudo  estava paralisado. E caso ajude, sou diabética e hipertensa.",
+                //4 Jogador op 1
+                "Realizarei alguns procedimentos, qualquer dúvida basta perguntar." +
+                " Além disso, deixarei sua grade sempre erguida; a senhora pode ter" +
+                " sensação de desequilíbrio devido à queda e a medicação.",
+                //5 Jogador op 2
+                "Vou começar a realizar os procedimentos!"
+            ],
+        },
     },
     fase6: {
-
+        recepcao: [
+            //0 Recepcionista
+            "Bom dia! O mentor te espera no corredor para a apresentação do seu próximo caso.",
+            //1 Jogador
+            "Estou indo encontrá-lo, Clarice."
+        ],
+        corredor: [
+            //0 Mentor
+            "Bom dia! Hoje seu paciente será o senhor Josivaldo Silva. A alimentação dele" +
+            " está sendo realizada através de uma sonda nasogástrica. Lembre-se de que os" +
+            " cuidados na administração de dietas são iguais aos da administração de medicamentos."
+            //1 Jogador op 1
+            "Sim, Alberto! Antes de administrar qualquer substância, sei que devo" +
+            " prestar atenção na conexão correta da sonda.",
+            //2 Jogador op 2
+            "Sim, Alberto! Não se preocupe, passar uma dieta é simples.",
+            //3 Mentor
+            "Boa sorte com seu novo paciente!"
+        ],
+        ala_masculina: [
+            //0 Jogador
+            "Bom dia! Sou profissional de enfermagem e acompanharei o senhor esta manhã." +
+            " Como está se sentindo?",
+            //1 Paciente
+            "Bom dia! Tô marromeno, mas nada que me aperreie.",
+            //2 Jogador op 1
+            "Senhor Josivaldo... Seu prontuário tem uma prescrição de dieta," +
+            " vou até a farmácia buscar os equipamentos necessários e já volto.",
+            //3 Jogador op 2
+            "Senhor Josivaldo... Além de sua sonda nasogástrica, por hora não há nada prescrito."
+        ],
+        farmacia: [
+            //0 Jogador op 1
+            "Oi, Paulo! Preciso de uma dieta para um paciente que está com sonda nasogástrica.",
+            //1 Jogador op 2
+            "Oi, Paulo! Me esqueci do que estava anotado na prescrição, aguarde um momento.",
+            //2 Farmaceutico
+            "A dieta dele foi solicitada ontem e já está preparada. Aqui está.",
+            //3 Mentor
+            "Você conferiu a dieta corretamente. Parabéns! A partir deste momento, tenha em mente que" +
+            " neste hospital usamos equipos de cores específicas para evitar possíveis erros de conexão."
+        ],
+        posto_enfermagem: [
+            //0 Jogador op 1
+            "A infusão da dieta ocorrerá em 67 gotas por minuto no período de uma hora.",
+            //1 Jogador op 2
+            "A infusão da dieta ocorrerá em 33 gotas por minuto no período de uma hora.",
+            //2 Jogador op 3
+            "A infusão da dieta ocorrerá em 67 gotas no período de uma hora."
+        ],
+        leite_paciente: [
+            //0 Jogador
+            "Vou começar a administrar sua dieta, mas antes, por favor, me diga seu nome completo e data de nascimento.",
+            //1 Paciente
+            "Ôxi! Craro! Mi chamo Josivaldo da Silva, mas não se avexe não, pódi chamá de Valdin." +
+            " Nasci no sértão da Paraíba dia 02 de féverero de 1961.",
+            //2 Jogador
+            "Nordestino, Josivaldo?",
+            //3 Paciente
+            "Nordéstino, da péxera e carni di sol paraibana, com muito órgulho!",
+            //4 Jogador
+            "Que legal! Sempre quis conhecer o nordeste brasileiro. Qualquer dúvida ou anormalidade na sonda" +
+            " durante a passagem da dieta, basta me avisar e resolverei o problema.",
+            //5 Paciente
+            "Sim sinhô! Brigado."
+        ],
     },
     fase7: {
+        recepcao:[
+            //0 Jogador
+            "Bom dia, Clarice.",
+            //1 Recepcionista
+            "Bom dia. Uma paciente te espera na enfermaria feminina."
+        ],
+        enfermaria_feminina: [
+            //0 Jogador op 1
+            "Bom dia! Faço parte da equipe de enfermagem do hospital e cuidarei de você hoje Como você se chama?",
+            //1 Jogador op 2
+            "Bom dia! Como se chama?",
+            //2 Paciente
+            "Ana Beatriz Galvão.",
+            //3 Jogador
+            "Muito prazer, Ana Beatriz. Você está recebendo medicação antes do café da manhã, certo?",
+            //4 Paciente
+            "Certo! São para controlar o diabetes.",
+            //5 Jogador
+            "Vou até a farmácia buscar sua dose de hoje e volto em breve."
+        ],
+        farmacia: [
+            //0 Jogador
+            "Bom dia, Paulo! Desta vez preciso de Clorpropamida 250mg para uma paciente diabética.",
+            //1 Farmacêutico
+            "Aqui está. Venha sempre que precisar.",
+            //2 Jogador op 1
+            "Desculpe, Paulo,  mas você me entregou Clorpromazina. Eu preciso da Clorpropamida de 250 mg.",
+            //3 Jogador op 2
+            "Voltarei sim! Até a próxima prescrição.",
+            //4 Farmacêutico
+            "Me desculpe! Verificarei com mais atenção a dispensação dos medicamentos realizados" +
+            " pela equipe aqui da farmácia e afirmo que isto não voltará a se repetir." +
+            " Esta é a medicação correta. Você se lembra  da diferença entre elas?",
+            //5 Jogador op 1
+            "Está tudo bem, sempre verifico a medicação antes de usá-la no paciente." +
+            " Não me lembro muito bem das funções, mas está na prescrição e preciso apenas aplicar.",
+            //6 Jogador op 2
+            "Está tudo bem, sempre verifico a medicação antes de usá-la no paciente." +
+            " A Clorpromazina é um antipsicótico que necessita de receituário de controle especial." +
+            " Já a clorpropamida é um hipoglicemiante oral."
+            ],
+        posto_enfermagem: [
+            //tabela
+        ],
+        leito_paciente: [
+            //0 Paciente
+            "Que bom que voltou, já estou ficando com fome.",
+            //1 Jogador
+            "Então pode ficar animada, Ana Beatriz. Eu trouxe sua medicação.",
+            //2 Paciente
+            "Animada vou ficar quando puder voltar para meu computador trabalhar." +
+            " Não terminei a edição de um comercial, meu chefe deve estar furioso!",
+            //3 Jogador op 1
+            "Você trabalha com publicidade? Muito legal! Agora lembre-se: A clorpropamida reduz" +
+            " o índice de glicose no seu organismo, caso sinta algo fora do comum me avise.",
+            //4 Jogador op 2
+            "Você trabalha com publicidade? Muito legal! Me chame se precisar de algo.",
+            //5 Paciente
+            "Ok! Te chamarei caso eu precise.",
+            //6 Jogador
+            "Em breve será liberada e poderá voltar para seu trabalho. Aproveite o café da manhã.",
+            //7 Paciente
+            "Obrigada."
+        ],
+        ala_feminina: [
+            //tabela
+        ],
 
     },
     fase8: {
