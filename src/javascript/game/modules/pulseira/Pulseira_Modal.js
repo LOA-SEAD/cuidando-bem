@@ -204,9 +204,9 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
     function isAllDataValid(){
         var valid = true;
 
-        var data = $(dataInputSelector).val();
-        var leito = $(leitoInputSelector).val();
-        var name = $(nameInputSelector).val();
+        var data = $(dataInputSelector).val().toLowerCase();
+        var leito = $(leitoInputSelector).val().toLowerCase();
+        var name = $(nameInputSelector).val().toLowerCase();
 
         valid = valid && nameRegExp.test(name);
         valid = valid && leitoRegExp.test(leito);

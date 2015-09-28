@@ -59,13 +59,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         recepcao.registerDialogs([
             new Dialog(lib.characters.recepcionista)
-                .setText(Dialogs.recepcionista[0])
+                .setText(Dialogs.recepcao[0])
                 .registerOption("", function(){
                     level.getFlag("conversar_recepcionista").setValue(true);
                     core.openDialog(1);
                 }),
             new Dialog(lib.characters.jogador)
-                .setText(Dialogs.recepcionista[1])
+                .setText(Dialogs.recepcao[1])
                 .registerOption("", function(){
                     core.closeDialog();
                 }),

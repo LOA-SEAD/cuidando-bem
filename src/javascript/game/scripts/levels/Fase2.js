@@ -31,10 +31,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         function recepcaoIrCorredor() {
             console.log("Funcao: recepcao_ir_corredor");
-            if ( level.getFlag("conversar_recepcionista").getValue() == true ) {  // wont check for flags                
+            if ( level.getFlag("conversar_recepcionista").getValue() == true ) {  // wont check for flags
                 core.changeScene(1);
                 console.log("Ir para o corredor");
-            } else {                
+            } else {
                 console.log("Necessita ação: conversar com a recepcionista");
             }
         }
@@ -52,12 +52,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         recepcao.registerDialogs([
             new Dialog(lib.characters.recepcionista)
-                .setText(Dialogs.recepcionista[0])
+                .setText(Dialogs.recepcao[0])
                 .registerOption("", function(){
-                    level.getFlag("conversar_recepcionista").setValue(true); 
+                    level.getFlag("conversar_recepcionista").setValue(true);
                     core.closeDialog();
                     //TODO: enable/disable IO
-                    //enable io de ir corredor                   
+                    //enable io de ir corredor
                 })
         ]);
 
@@ -81,14 +81,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //Corredor
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function () {
-                console.log("Entrando no corredor");               
+                console.log("Entrando no corredor");
             })
             .onUnload(function (){
                 console.log("Saindo do corredor");
             });
 
         corredor.registerDialogs([
-            
+
         ]);
 
         function corredorIrSalaLeitos () {
@@ -118,7 +118,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             //TODO: Adicionar ir ala feminina
             //TODO: Adicionar ir Farmácia
 
-           
+
         ]);
 
         //Sala de leitos
@@ -126,7 +126,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .setCssClass("scene-bedroom")
             .onLoad(function (){
                 console.log("Entrando na sala de leitos");
-               
+
                 core.openCommandBar();
             })
             .onUnload( function (){
@@ -182,7 +182,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         alert("Jogador perde pontos por não ter lavador as mãos antes de abrir prontuario");
                     }
                     Prontuario.open();
-                    core.openModalScene("Prontuario");                        
+                    core.openModalScene("Prontuario");
                 })
                 .setVisibility(false)
         ]);
@@ -207,7 +207,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .onLoad(function () {
                 core.openCommandBar();
                 console.log("Leito: Onload");
-               
+
             })
             .onUnload(function (){
                 console.log("Leito: OnUnload");
@@ -227,11 +227,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         ]);
 
         leito.registerDialogs([
-           
+
         ]);
 
         leito.registerActions([
-            
+
         ]);
 
         posto_de_enfermagem = lib.scenes.postoDeEnfermagem.getClone()
@@ -250,7 +250,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     if(level.getFlag().getValue() == true
                     && level.getFlag().getValue() == true
                     && level.getFlag().getValue() == true
-                    && level.getFlag().getValue() == true) {                     
+                    && level.getFlag().getValue() == true) {
                         core.changeScene(1);
                     }else{
                         alert("Você esqueceu de pegar algo. Tem que revisar se realmente deve travar aqui")
@@ -321,7 +321,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("Action: pegar kit de glicemia");
 
                     level.getFlag("pegou_kit_glicemia").setValue(true);
-                    
+
                     core.setInteractiveObjectVisible("io-kitGlicemia", false);
                 })
                 .setVisibility(true),

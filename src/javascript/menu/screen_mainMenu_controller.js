@@ -23,7 +23,7 @@ define(['Stage'], function (Stage) {
         //Player.play(Player.audios.fundo);
 
         //Player.playInLoop(Player.audios.loops.recepcao);
-        Player.playInLoop(Player.audios.loops.background);
+        //Player.playInLoop(Player.audios.loops.background);
         //Player.playInRange(Player.audios.sfx.objeto);
 
         console.log("Configuring main menu listeners");

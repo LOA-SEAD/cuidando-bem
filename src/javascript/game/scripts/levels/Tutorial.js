@@ -465,6 +465,22 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.closeDialog();
                     Prontuario.open();
                     core.openCommandBar();
+                }),
+            //Dialog 21 - Final de fase, não verificou aparelhos de ssvv.
+            new Dialog(lib.characters.mentor)
+                .setText("Você ainda não mediu algum dos SSVV. Meça-os antes de anotar no prontuário.")
+                .registerOption("", function() {
+                    core.closeDialog();
+                    Prontuario.open();
+                    core.openCommandBar();
+                }),
+            //Dialog 21 - Final de fase, não lavou as mãos após usar aparelho
+            new Dialog(lib.characters.mentor)
+                .setText("Você deve lavar as mãos após utilizar os aparelhos.")
+                .registerOption("", function() {
+                    core.closeDialog();
+                    Prontuario.open();
+                    core.openCommandBar();
                 })
         ]);
         //endregion
@@ -513,6 +529,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("action-lavar_maos")
                 .onClick(function (){
                     console.log("Action: lavar_maos");
+
+                    //TODO Clean this mess PLEASE
                     switch (level.getFlag("lavar-maos").getValue()){
                         case 0:
                             level.getFlag("lavar-maos").setValue(1);
@@ -525,12 +543,18 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                             //core.setActionVisible("btn-lavar_maos", false);
                             break;
                         case 2:
-                            level.getFlag("lavar-maos").setValue(3);
-                            core.registerScoreItem(Scores.tutorial.lavarMaosDepois);
-                            core.setActionVisible("btn-lavar_maos", false);
-                            core.setActionVisible("btn-ler_prontuario", true);
+                            // level.getFlag("lavar-maos").setValue(3);
+                            // core.registerScoreItem(Scores.tutorial.lavarMaosDepois);
+                            // core.setActionVisible("btn-lavar_maos", false);
+                            // core.setActionVisible("btn-ler_prontuario", true);
                             break;
                     }
+
+                    if(checouTodosAparelhos()) {
+                        level.getFlag("lavar-maosDepois").setValue(true);
+                        core.registerScoreItem(Scores.tutorial.lavarMaosDepois);
+                    }
+
                 })
                 .setVisibility(visibility),
 
@@ -543,15 +567,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         //core.setActionVisible("btn-medir_temperatura", false);
                         core.openModalScene("modalTermometro");
                         level.getFlag("termometro").setValue(true);
-                        core.registerScoreItem(Scores.tutorial.verTemperatura);
 
-                        if(level.getFlag("oximetro").getValue() == true
-                            && level.getFlag("medidor-pressao").getValue() == true
-                            && level.getFlag("relogio").getValue() == true)
-                        {
-                            core.setActionVisible("btn-lavar_maos", true);
-                            level.getFlag("lavar-maos").setValue(2);
+                        if(level.getFlag("mediuTemperatura").getValue() == false) {
+                            level.getFlag("mediuTemperatura").setValue(true);
+                            core.registerScoreItem(Scores.tutorial.verTemperatura);
                         }
+
+                        level.getFlag("lavar-maosDepois").setValue(false);
                     }
                 })
                 .setVisibility(visibility),
@@ -565,15 +587,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         //core.setActionVisible("btn-medir_pulso", false);
                         core.openModalScene("modalMedidor_pressao");
                         level.getFlag("medidor-pressao").setValue(true);
-                        core.registerScoreItem(Scores.tutorial.verPressao);
 
-                        if(level.getFlag("termometro").getValue() == true
-                            && level.getFlag("oximetro").getValue() == true
-                            && level.getFlag("relogio").getValue() == true)
-                        {
-                            core.setActionVisible("btn-lavar_maos", true);
-                            level.getFlag("lavar-maos").setValue(2);
+                        if(level.getFlag("mediuPressao").getValue() == false) {
+                            level.getFlag("mediuPressao").setValue(true);
+                            core.registerScoreItem(Scores.tutorial.verPressao);
                         }
+
+                        level.getFlag("lavar-maosDepois").setValue(false);
                     }
                 })
                 .setVisibility(visibility),
@@ -586,18 +606,15 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
                     if(level.getFlag("lavar-maos").getValue() >= 1){
 
-
                         core.openModalScene("modalOximetro");
                         level.getFlag("oximetro").setValue(true);
-                        core.registerScoreItem(Scores.tutorial.verSaturacao);
 
-                        if(level.getFlag("termometro").getValue() == true
-                            && level.getFlag("medidor-pressao").getValue() == true
-                            && level.getFlag("relogio").getValue() == true)
-                        {
-                            core.setActionVisible("btn-lavar_maos", true);
-                            level.getFlag("lavar-maos").setValue(2);
+                        if(level.getFlag("mediuBatimentosESaturacao").getValue() == false) {
+                            level.getFlag("mediuBatimentosESaturacao").setValue(true);
+                            core.registerScoreItem(Scores.tutorial.verSaturacao);
                         }
+
+                        level.getFlag("lavar-maosDepois").setValue(false);
                     }
                 })
                 .setVisibility(visibility),
@@ -610,7 +627,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
                         //core.setActionVisible("btn-frequencia_respiratoria", false);
                         level.getFlag("relogio").setValue(true);
-                        core.registerScoreItem(Scores.tutorial.verFrequenciaRespiratoria);
+
+                        if(level.getFlag("mediuFreqRespiratoria").getValue() == false) {
+                            level.getFlag("mediuFreqRespiratoria").setValue(true);
+                            core.registerScoreItem(Scores.tutorial.verFrequenciaRespiratoria);
+                        }
+
+                        level.getFlag("lavar-maosDepois").setValue(false);
 
                         FreqRespiratoria.open();
                         core.openModalScene("freqRespiratoria");
@@ -762,6 +785,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         ]);
         //endregion
 
+        function checouTodosAparelhos () {
+            debugger;
+            return  level.getFlag("mediuTemperatura").getValue() &&
+                    level.getFlag("mediuPressao").getValue() &&
+                    level.getFlag("mediuFreqRespiratoria").getValue() &&
+                    level.getFlag("mediuBatimentosESaturacao").getValue();
+        }
+
         //region Prontuario
         var prontuario = new Scene("Prontuario", "modalScene-prontuario_joao");
 
@@ -779,17 +810,31 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("action-abrir_dialogo")
                 .onClick(function (){
                     console.log("Action: Finalizar fase");
-                    if(Prontuario.isDataValid()) {
-                        Prontuario.close();
-                        core.closeCommandBar();
-                        core.showEndOfLevel();
-                        core.unlockLevel(1);
+                    if(level.getFlag("lavar-maosDepois").getValue() == true) {
+                        if(checouTodosAparelhos()) {
+                            if(Prontuario.isDataValid()) {
+                                core.registerScoreItem(Scores.tutorial.anotarNoProntuario);
+                                Prontuario.close();
+                                core.closeCommandBar();
+                                core.showEndOfLevel();
+                                core.unlockLevel(1);
+                            } else {
+                                //In casa form data is not valid
+                                Prontuario.close();
+                                core.closeCommandBar();
+                                core.openDialog(20);
+                            }
+                        } else {
+                            Prontuario.close();
+                            core.closeCommandBar();
+                            core.openDialog(21);
+                        }
                     } else {
-                        //In casa form data is not valid
                         Prontuario.close();
                         core.closeCommandBar();
-                        core.openDialog(20);
+                        core.openDialog(22);
                     }
+
                 })
         ]);
 
@@ -822,7 +867,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region termometro
         var termometro = new Scene("modalTermometro", "modalTermometro")
             .setCssClass("modalScene-termometro")
-            .setTemplate("<span class='temp_termometro'>37,5º</span>");
+            .setTemplate("<span class='temp_termometro'>37.5º</span>");
 
         termometro.registerActions([
             new Action("btn-largar_termometro", "Fechar termômetro")
@@ -898,12 +943,18 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             level.getFlag("visita-leito").setValue(0);
             level.getFlag("pulseira").setValue(false);
             level.getFlag("lavar-maos").setValue(0);
+            level.getFlag("lavar-maosDepois").setValue(false);
             level.getFlag("termometro").setValue(false);
             level.getFlag("medidor-pressao").setValue(false);
             level.getFlag("oximetro").setValue(false);
             level.getFlag("relogio").setValue(false);
 
-            Pulseira.setNameRegExp(/João Manoel Ribeiro/);
+            level.getFlag("mediuTemperatura").setValue(false);
+            level.getFlag("mediuPressao").setValue(false);
+            level.getFlag("mediuFreqRespiratoria").setValue(false);
+            level.getFlag("mediuBatimentosESaturacao").setValue(false);
+
+            Pulseira.setNameRegExp(/joão manoel ribeiro/);
             Pulseira.setLeitoRegExp(/0*2/);
             Pulseira.setDataRegExp(/07\/06\/1956/);
 
@@ -928,8 +979,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Prontuario.setAltura("1,62");
             Prontuario.setCircunferenciaAbdominal("115");
 
-            Prontuario.setPrescMedicaRowData(0, "15/03", "Captopril", "Oral", "comp 75 mg", "2x dia", "");
-            Prontuario.setPrescMedicaRowData(1, "15/03", "Ácido acetilsalicílico (AAS)", "Oral", "comp 100 mg", "1x dia", "");
+            Prontuario.setPrescMedicaRowData(0, "15/03", "Captopril", "Oral", "comp 75 mg", "2x dia", true, true);
+            Prontuario.setPrescMedicaRowData(1, "15/03", "Ácido acetilsalicílico (AAS)", "Oral", "comp 100 mg", "1x dia", true, true);
 
             Prontuario.setSsvvRowData(0, '15/03', '', '', '', '', '', false);
             Prontuario.setSsvvRowRegExp(0,
@@ -938,7 +989,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 new RegExp('69'),
                 new RegExp('17'),
                 new RegExp('97'),
-                new RegExp('37,5')
+                new RegExp('37.5')
                 );
             //Disable 2 row
             Prontuario.setSsvvRowData(1, '', '', '', '', '', '', true);
@@ -974,10 +1025,17 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("visita-leito", 0));
         level.registerFlag(new Flag("pulseira", false));
         level.registerFlag(new Flag("lavar-maos", 0));
+        level.registerFlag(new Flag("lavar-maosDepois", false));
         level.registerFlag(new Flag("termometro", false));
         level.registerFlag(new Flag("medidor-pressao", false));
         level.registerFlag(new Flag("oximetro", false));
         level.registerFlag(new Flag("relogio", false));
+
+        level.registerFlag(new Flag("mediuTemperatura", false));
+        level.registerFlag(new Flag("mediuPressao", false));
+        level.registerFlag(new Flag("mediuFreqRespiratoria", false));
+        level.registerFlag(new Flag("mediuBatimentosESaturacao", false));
+
         //endregion
 
         level.setInitialScene(0);

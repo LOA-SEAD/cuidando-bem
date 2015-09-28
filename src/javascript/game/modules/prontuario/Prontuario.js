@@ -424,11 +424,12 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
 
     }
 
-    function setPrescMedicaRowData(_row, _data, _medicacao, _via, _posologia, _horario, _relatorio){
+    function setPrescMedicaRowData(_row, _data, _medicacao, _via, _posologia, _horario, _relatorio, _disabled){
         if(_row < 0 || _row > prescMedica_data.length){
             throw new Error("Invalid row index");
         }
 
+        prescMedica_data[_row].disabled = _disabled;
         prescMedica_data[_row].data = _data;
         prescMedica_data[_row].medicacao = _medicacao;
         prescMedica_data[_row].via = _via;
@@ -490,13 +491,14 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
         $(prescMedica_relatorioSelector, prescMedica_tbodySelector).click(function(){
             // console.log(this);
             var row = $(prescMedica_relatorioSelector, prescMedica_tbodySelector).index(this);
+            if(!prescMedica_data[row].relatorio.disabled) {
+                prescMedica_data[row].relatorio = !prescMedica_data[row].relatorio;
 
-            prescMedica_data[row].relatorio = !prescMedica_data[row].relatorio;
-
-            if(prescMedica_data[row].relatorio){
-                $(this).text("(x)");
-            }else{
-                $(this).text("( )");
+                if(prescMedica_data[row].relatorio){
+                    $(this).text("(x)");
+                }else{
+                    $(this).text("( )");
+                }
             }
         });
 

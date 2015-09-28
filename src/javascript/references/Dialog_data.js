@@ -378,7 +378,7 @@ define({
         ],
         leito_paciente: [
         //0 Jogador
-        "Voltei. Antes da administração do medicamento, o senhor poderia me dizer"
+        "Voltei. Antes da administração do medicamento, o senhor poderia me dizer" +
         " seu nome e data de nascimento, por favor?",
         //1 Paciente
         "Claro. Pedro Alcídes Mendonça, nasci em 03 de junho de 1962.",
@@ -394,7 +394,7 @@ define({
         "Muito obrigado. E me desculpe pelas perguntas, é mania de professor.",
         //6 Jogador
         "Hahaha. Sem problemas. Se sentir qualquer sensação estranha é só me comunicar." +
-        " Por favor, não abra a pinça do equipo e em breve poderá voltar para seus alunos."
+        " Por favor, não abra a pinça do equipo e em breve poderá voltar para seus alunos.",
         //7 Mentor
         "Lembre-se sempre de utilizar os nove certos na administração de medicamentos!" +
         " Deste modo reduzimos a possibilidades de erros."
