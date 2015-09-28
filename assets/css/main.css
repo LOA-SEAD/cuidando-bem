@@ -412,6 +412,12 @@ body {
   background-color: #b61f20;
   border-bottom: 3px solid #8b191a;
 }
+.levelSelect-button {
+  bottom: -70px;
+  position: absolute;
+  width: 50%;
+  left: 55%;
+}
 .slotSelect-backImage {
   background: center no-repeat url(../../assets/images/screens/tela_carregarFundo.jpg);
   background-size: cover;
