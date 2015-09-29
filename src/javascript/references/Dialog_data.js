@@ -98,6 +98,7 @@ define({
             pulseira_incorreta: "Você tem certeza que as informações do paciente estão corretas?"
         }
     },
+
     fase1: {
         recepcao: [
             //0 Recepcionista
@@ -173,11 +174,9 @@ define({
             "Carlos Esme Gouvêa, nasci em 01-12-1945.",
             //12 Jogador
             "Vou verificar sua pulseira e depois examiná-lo, senhor Carlos. Com licença."
-        ],
-        Corredor: [
-
         ]
     },
+
     fase2: {
         recepcao: [
             //0 Recepcionista
@@ -231,6 +230,7 @@ define({
             " paciente para a diminuição das incidências de quedas. Parabéns pela avaliação."
         ]
     },
+    
     fase3: {
         recepcao: [
             //0 Recepcionista
@@ -258,7 +258,7 @@ define({
                 //1 Mentor
                 "Utilizar o protocolo de cirurgia segura é um ganho enorme para nosso hospital e todos os  pacientes." +
                 " Parabéns!"
-            ],
+            ]
         },
         centro_cirurgico: {
             fala1: [
@@ -316,7 +316,7 @@ define({
                 "Tudo certo até agora, Regina. Vamos para a sala de cirurgia?",
                 //18 Jogador op 3
                 "Desculpe, Regina, preciso fazer mais algumas perguntas."
-            ],
+            ]
         },
         ala_feminina: [
             //tabela
@@ -337,8 +337,9 @@ define({
             " A senhora não pode entrar no centro cirúrgico com adornos ou próteses. Está ou tem algo do gênero?",
             //5 Paciente
             "Num tô não! Minha filha já tá com tudinho lá fora."
-        ],
+        ]
     },
+    
     fase4: {
         corredor: [
             //0 Jogador
@@ -398,8 +399,9 @@ define({
         //7 Mentor
         "Lembre-se sempre de utilizar os nove certos na administração de medicamentos!" +
         " Deste modo reduzimos a possibilidades de erros."
-        ],
+        ]
     },
+
     fase5: {
         recepcao:[
             //0 Recepcionista
@@ -444,9 +446,10 @@ define({
                 " sensação de desequilíbrio devido à queda e a medicação.",
                 //5 Jogador op 2
                 "Vou começar a realizar os procedimentos!"
-            ],
-        },
+            ]
+        }
     },
+    
     fase6: {
         recepcao: [
             //0 Recepcionista
@@ -513,8 +516,9 @@ define({
             " durante a passagem da dieta, basta me avisar e resolverei o problema.",
             //5 Paciente
             "Sim sinhô! Brigado."
-        ],
+        ]
     },
+    
     fase7: {
         recepcao:[
             //0 Jogador
@@ -582,12 +586,163 @@ define({
         ],
         ala_feminina: [
             //tabela
+        ]
+    },
+    
+    fase_final: {
+        recepcao: [
+            //0 Recepcionista
+            "Boa noite! Hoje será seu último teste antes de oficialmente fazer parte da" +
+            " equipe do Cuidando Bem. Seu mentor não poderá lhe apresentar os dois" +
+            " pacientes que estão à sua espera. Vamos as informações?",
+            //1 Jogador
+            "Boa noite, Clarice! Pode começar.",
+            //2 Recepcionista
+            "Ambos pacientes estão na enfermaria masculina. Um é o Yuri, está aguardando a realização de uma" +
+            " cirurgia agendada para esta noite; o outro é o Francisco, tem reposição hidroeletrolítica" +
+            " prescrita. Sua contratação dependerá de sua escolha de prioridade e qualidade de atendimento." +
+            " Boa sorte!"
+        ]
+    },
+
+    fase8:{
+        ala_masculina: [
+            //0 Jogador
+            "Boa noite! Sou responsável por levá-lo até o centro cirúrgico. Como é o seu nome?",
+            //1 Paciente
+            "Boa noite! Sou Yuri.",
+            //2 Jogador
+            "O que aconteceu com você?",
+            //3 Paciente
+            "Bom... Parece que rompi o ligamento do joelho, mas foi mancada minha." +
+            " Cruzei o sinal no amarelo, uma van me fechou e caí da moto.",
+            //4 Jogador
+            "Por sorte foi apenas o joelho. Antes de irmos ao centro cirúrgico," +
+            " vou até a farmácia buscar o medicamento que você precisará tomar. Está nervoso?",
+            //5 Paciente
+            "Nervoso não, um pouco ansioso, eu diria. E talvez com um pouco de medo, nunca fiz uma cirurgia.",
+            //6 Jogador
+            "Fique calmo, Yuri, vai dar tudo certo!"
         ],
-
+        farmacia: [
+            //0 Farmaceutico
+            "Olá! Do que precisa hoje?",
+            //1 Jogador
+            "Oi, Paulo! Preciso de Midazolan de 15 mg.",
+            //2 Farmaceutico
+            "Aqui está!"
+        ],
+        leito_paciente: [
+            //0 Jogador
+            "Yuri, esta medicação se chama Midazolan. Ela serve para sedar o paciente" +
+            " antes de darmos início aos procedimentos cirúrgicos. Você poderia me falar" +
+            " seu nome completo e mostrar a pulseira de identificação, por favor?",
+            //1 Paciente
+            "Ok. Yuri de Souza Almeida.",
+            //2 Jogador
+            "Certo, Yuri. Por favor tome a medicação e iremos para o centro cirúrgico em seguida."
+        ],
+        centro_cirurgico: [
+            //0 Jogador op 1
+            "Boa noite, Aline! Trouxe o paciente da  próxima cirurgia. Você precisa de ajuda?",
+            //1 Jogador op 2
+            "Boa noite, Aline! Trouxe um paciente para cirurgia. Antes de começarmos os procedimentos" +
+            " cirúrgicos, posso checar os equipamentos e fazer a lista de verificação?",
+            //2 Circulante da sala
+            "Bom noite. Claro! Fique à vontade.",
+            //3 Jogador
+            "Yuri, vou te fazer algumas perguntas para verificar se está tudo em ordem" +
+            " antes da indução anestésica. Tudo bem?",
+            //4 Paciente
+            "Sem problemas. Pode mandar.",
+            //5 Jogador
+            "Nome completo?",
+            //6 Paciente
+            "Yuri de Souza Almeida.",
+            //7 Jogador
+            "Idade e profissão?",
+            //8 Paciente
+            "22, futuro engenheiro civil, se Deus quiser e o trânsito deixar.",
+            //9 Jogador
+            "Hahaha. Em qual parte do corpo será feita a cirurgia?",
+            //10 Paciente
+            "Na perna direita.",
+            //11 Jogador
+            "Qual procedimento?",
+            //12 Paciente
+            "Não tenho muita certeza….Acho que é uma cirurgia do ligamento ...cruzado anterior.",
+            //13 Jogador
+            "Você assinou o termo de consentimento?",
+            //14 Paciente
+            "Sim.",
+            //15 Jogador
+            "Você tem alguma alergia conhecida?",
+            //16 Paciente
+            "Sou... alér...gico a dipiro...na e …. sulfa.",
+            //17 Jogador
+            "A anestesia já começou a fazer efeito. Esta é a circulante de sala Aline," +
+            " ela cuidará de você a partir de agora. Boa cirurgia, Yuri!"
+        ]
     },
-    fase8: {
 
+    fase9: {
+        ala_masculina: [
+            //0 Jogador op 1
+            "Bom dia! Sou profissional de enfermagem deste hospital e cuidarei do senhor hoje." +
+            " Qual seu nome e como se sente esta manhã?",
+            //1 Jogador op 2
+            "Bom dia! Vim para cuidar do senhor esta manhã.",
+            //2 Paciente
+            "Francisco Rodrigues, ao seu dispor. Tô bem não, tô meio mole.",
+            //3 Jogador
+            "O senhor parece muito desidratado. Vou até a farmácia buscar o soro prescrito" +
+            " pelo médico e, assim que eu voltar, verificaremos seus sinais vitais.",
+            //4 Paciente
+            "Tá certo! Brigado."
+        ],
+        farmacia: [
+            //0 Farmaceutico
+            "Mais um paciente?",
+            //1 Jogador
+            "Sim, Paulo. E desta vez preciso de Soro glicosado  5% - 1000ml e NaCl 20 %- 20 ml.",
+            //2 Farmaceutico
+            "Aqui está. Boa sorte!"
+        ],
+        leito_paciente: [
+            //0 Jogador
+            "Senhor Francisco, antes de começarmos, o senhor poderia me dizer sua" +
+            " data de nascimento e me deixar verificar sua pulseira de identificação?",
+            //1 Paciente
+            "Sí. 02 de deciembro de 1937.",
+            //2 Jogador
+            "Opa! Senhor Raul? Porque está no leito do senhor Francisco?",
+            //3 Paciente
+            "Trocámos de cama, no és possible assistir a la pelicula daquele lado!",
+            //4 Jogador op 1
+            "Desculpe senhor Raul, mas por medidas de segurança os pacientes não podem trocar de leito." +
+            " Conseguiremos encontrar uma maneira em que o senhor consiga assistir" +
+            " à televisão daquela cama.Vamos destrocar?",
+            //5 Jogador op 2
+            "Tudo bem, senhor Raul, porém deixarei apenas desta vez, ok?!"
+        ],
+        ala_masculina: [
+            //0 Jogador
+            "Agora estamos no leito correto, senhor Francisco.",
+            //1 Paciente
+            "Desculpa aí pela confusão, pensei que pudia mudar de cama." +
+            " O argentino queria ver a novela e essa aqui tá me dando dor nas costas…" +
+            " ou pode ser por causa do caminhão. Achei melhor trocar pra ter certeza.",
+            //2 Jogador
+            "O senhor é caminhoneiro? Suas dores nas costas realmente podem ser consequência" +
+            " de sua posição lombar ao dirigir. Vou pedir para a manutenção verificar sua cama e," +
+            " caso seja necessário, ela será substituída. Vamos checar seus sinais vitais?",
+            //3 Paciente
+            "Sou sim. Brigada pela ajuda e pode medir o que precisar aí, tenho que ficar bom rápido.",
+            //4 Jogador
+            "Falta apenas a infusão do soro. Qualquer desconforto basta me avisar, ok?!"
+        ]
     },
+
     alertas: {
         generico: "Alerta do mentor",
         lavar_maos: {
