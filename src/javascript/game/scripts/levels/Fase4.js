@@ -166,7 +166,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         level.registerScene(recepcao);
         level.registerScene(corredor);
-        level.registerScene(sala_de_leitos);
+        // level.registerScene(sala_de_leitos);
         // level.registerScene(leito);
         // level.registerScene(farmacia);
         // level.registerScene(posto_de_enfermagem);

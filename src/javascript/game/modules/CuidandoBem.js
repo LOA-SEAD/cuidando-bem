@@ -7,7 +7,7 @@
  * @author Otho - Marcelo Lopes Lotufo
  */
 define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene', 'scene', 'endOfLevel', 'Prontuario', 'Pulseira', 'FreqRespiratoria'],
-    function (Stage, game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene_con, endOfLevel, prontuario, pulseira, freqRespiratoria) {
+    function (Stage, game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene_con, endOfLevel, prontuario, Pulseira, freqRespiratoria) {
 
 //Attributes
     var Storage = require('Storage');
@@ -40,7 +40,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         InteractiveObject.init(gameStageSelector);
         endOfLevel.init(gameStageSelector);
         prontuario.init(gameStageSelector);
-        pulseira.init(gameStageSelector);
+        Pulseira.init(gameStageSelector);
         freqRespiratoria.init(gameStageSelector);
 
         Dialog.init(gameStageSelector);
@@ -63,7 +63,6 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         console.group("Game Running:");
 
         changeLevelTo(_level);
-
     }
 
     function restartLevel () {
@@ -95,6 +94,10 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         console.group("Clone Level");
         Level = _newLevel.getClone();
         Level.setup();
+        //Ensure that the bracelet form is empty
+        Pulseira.resetData();
+        Dialog.close();
+
         console.groupEnd();
 
         cur_scene = Level.getCurrentSceneId();
@@ -437,7 +440,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     }
 
     function goBackToMenu(){
-        Stage.changeScreen(0);
+        Stage.changeScreen(6);
     }
 
     function changeSceneCssClassTo(_cssClass){

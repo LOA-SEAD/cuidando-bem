@@ -264,6 +264,12 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
         $(leitoInputSelector).val(_leito);
     }
 
+    function resetData() {
+        setName('');
+        setLeito('');
+        setData('');
+    }
+
 
 
 
@@ -283,6 +289,8 @@ define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
         isDataValid: isDataValid,
         isLeitoValid: isLeitoValid,
         isAllDataValid: isAllDataValid,
+
+        resetData: resetData,
 
         setNameRegExp: setNameRegExp,
         setDataRegExp: setDataRegExp,

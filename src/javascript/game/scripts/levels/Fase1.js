@@ -12,7 +12,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         // var Scores = require("Scores_data").tutorial;
         //endregion
 
-        var level = new Level("Level Fase1");
+        var level = new Level("Level 1");
         console.groupCollapsed(level.getName());
 
         var flags_on = true;    // if false it wont check for flags -- tests purpose
@@ -417,7 +417,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.openDialog(4);
                 }),
             // 4 Jogador responde
-            new Dialog(lib.characters.pacientes.jogador)
+            new Dialog(lib.characters.jogador)
                 .setText("")
                 .registerOption(Dialogs.enfermaria[6], function(){
                     core.openDialog(7);
