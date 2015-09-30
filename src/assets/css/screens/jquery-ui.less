@@ -1,25 +1,95 @@
-.ui-dialog{
-  background-color: #A9A9A9;
-  border-radius: 15px;
-
-  border: 1px solid black;
+.ui-widget-overlay {
+    background-color: black;
+    opacity: 0.5;
 }
 
-.ui-tooltip{
+.ui-dialog {
+    font-family: "Whipsmart";
+
+    background-color: #ECECEC;
+    border-radius: 14px !important;
+    /* border: 1px solid black; */
+    padding: 20px;
+}
+
+.ui-tooltip {
 	z-index: 1;
 	//top: 5% !important;
 }
 
-.ui-dialog-titlebar{
-  //background-color: #d9d9d9;
-  border-bottom: 1px black solid;
+.ui-dialog {
+    padding-bottom: 5px;
+}
 
+.ui-dialog-title {
+    font-size: 25px;
+    font-weight: bold;
+    position: relative;
+    bottom: 10px;
+}
+
+.ui-dialog-titlebar {
+    border-bottom: 3px #D0D0D0 solid;
+    border-radius: 0px !important;
+    font-size: 10px;
 }
 
 .ui-dialog.ui-widget {
-  z-index: 101;
+    z-index: 101;
 }
 
 .ui-widget-overlay.ui-front{
-  z-index: 100;
+    z-index: 100;
+}
+
+.ui-dialog-buttonpane {
+    margin-top: 110px;
+}
+
+#dialog-confirmDelete {
+    position: relative;
+    top: 37px;
+}
+
+#dialog-typeName {
+    position: relative;
+    // top: -10px;
+    p {
+        margin: 10px 0px;
+        width: 80%;
+        position: relative;
+        left: 10%;
+        font-size: 23px;
+    }
+
+    input {
+        border: none;
+        text-align: center;
+        height: 37px;
+        // border-radius: 5px;
+        width: 85%;
+    }
+}
+
+.dialogVoltarBtt {
+    margin-right: 40px;
+    background-color: @button-yellow;
+}
+.dialogConfirmarBtt {
+    background-color: @button-blue;
+}
+.dialogApagarBtt {
+    background-color: @button-red;
+}
+.dialogVoltarBtt, .dialogConfirmarBtt, .dialogApagarBtt {
+    /* background-color: red; */
+    color: white;
+    font-family: verdana;
+    border-radius: 12px !important;
+    width: 40%;
+    height: 55px;
+}
+.dialogVoltarBtt:hover, .dialogConfirmarBtt:hover, .dialogApagarBtt:hover {
+    position: relative;
+    top: 2px;
 }

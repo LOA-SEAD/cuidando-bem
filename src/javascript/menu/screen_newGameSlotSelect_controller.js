@@ -20,7 +20,8 @@ define(['Stage'], function (Stage) {
     var typeNameDialogSelector = "#dialog-typeName";
     var nameInputSelector = "#nameInput";
 
-    var defaultNameInputValue = 'Cuidando Bem';
+    // var defaultNameInputValue = 'Cuidando Bem';
+    var defaultNameInputValue = '';
 
 
 
@@ -39,27 +40,36 @@ define(['Stage'], function (Stage) {
         $(deleteDialogSelector).dialog({
             resizable: false,
             autoOpen: false,
-            height:140,
+            height: 200,
             modal: true,
             draggable: false,
-            buttons: {
-                "Voltar": function() {
-                    $( this ).dialog( "close" );
+            buttons: [
+                {
+                    text: "Voltar",
+                    "class": 'dialogVoltarBtt',
+                    click: function() {
+                        $( this ).dialog( "close" );
+                    }
                 },
-                "Apagar": function() {
-                    $( this ).dialog( "close" );
-                    Storage.reset(selectedId);
+                {
+                    text: "Apagar",
+                    "class": 'dialogApagarBtt',
+                    //"class": 'dialogConfirmarBtt menuButton menuButtonBlue',
+                    click: function() {
+                        $( this ).dialog( "close" );
+                        Storage.reset(selectedId);
 
-                    $(slotsSel[selectedId]).removeClass("filled");
-                    $(slotsSel[selectedId]).addClass("empty");
+                        $(slotsSel[selectedId]).removeClass("filled");
+                        $(slotsSel[selectedId]).addClass("empty");
 
-                    saves[selectedId] = Storage.loadSlot(selectedId);
-                    var save = saves[selectedId];
-                    isSelectedEmpty = save.empty;
-                    $(slotsSel[selectedId]).text(save.name);
-                    checkIfSlotIsEmpty();
+                        saves[selectedId] = Storage.loadSlot(selectedId);
+                        var save = saves[selectedId];
+                        isSelectedEmpty = save.empty;
+                        $(slotsSel[selectedId]).text(save.name);
+                        checkIfSlotIsEmpty();
+                    }
                 }
-            }
+            ]
         });
 
         $(deleteDialogSelector)
@@ -73,29 +83,38 @@ define(['Stage'], function (Stage) {
         $(typeNameDialogSelector).dialog({
             resizable: false,
             autoOpen: false,
-            height:140,
+            height: 210,
             modal: true,
             draggable: false,
-            buttons: {
-                "Voltar": function() {
-                    $( this ).dialog( "close" );
-                    $(nameInputSelector).val(defaultNameInputValue);
+            buttons: [
+                {
+                    text: "Voltar",
+                    "class": 'dialogVoltarBtt',
+                    click: function() {
+                        $( this ).dialog( "close" );
+                        $(nameInputSelector).val(defaultNameInputValue);
+                    }
                 },
-                "Confirmar": function() {
-                    $( this ).dialog( "close" );
-                     var name = $(nameInputSelector).val();
-                     if(name === null || name === undefined || name === '' || name === defaultNameInputValue)
-                        name = defaultNameInputValue +" "+ (selectedId + 1);
+                {
+                    text: "Confirmar",
+                    "class": 'dialogConfirmarBtt',
+                    //"class": 'dialogConfirmarBtt menuButton menuButtonBlue',
+                    click: function() {
+                        $( this ).dialog( "close" );
+                        var name = $(nameInputSelector).val();
+                        if(name === null || name === undefined || name === '' || name === defaultNameInputValue)
+                           name = defaultNameInputValue +" "+ (selectedId + 1);
 
-                     Storage.setupSlot(selectedId, name);
+                        Storage.setupSlot(selectedId, name);
 
-                     Storage.loadSlot(selectedId);
+                        Storage.loadSlot(selectedId);
 
-                     isSelectedEmpty = false;
-                     checkIfSlotIsEmpty();
-                     Stage.changeScreen(6);
+                        isSelectedEmpty = false;
+                        checkIfSlotIsEmpty();
+                        Stage.changeScreen(6);
+                    }
                 }
-            }
+            ]
         });
 
         $(typeNameDialogSelector)
