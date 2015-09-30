@@ -341,7 +341,7 @@ define({
     },
 
     fase4: {
-        corredor: [
+        recepcao: [
             //0 Jogador
             "Bom dia, Clarice.",
             //1 Clarice
