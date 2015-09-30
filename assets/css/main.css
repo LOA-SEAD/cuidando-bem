@@ -202,6 +202,18 @@ th {
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: "Whipsmart";
+  src: local("?"), url("../fonts/Whipsmart/Whipsmart.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Whipsmart-bold";
+  src: local("?"), url("../fonts/Whipsmart/WhipsmartBold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 html,
 body {
   -webkit-touch-callout: none;
@@ -215,6 +227,19 @@ body {
   height: 100%;
   width: 100%;
   text-align: center;
+}
+.menuBackImage,
+.levelSelect-backImage,
+.slotSelect-backImage,
+.mainMenu-backImage,
+.credits-backImage,
+.config-backImage {
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 #menuContainer {
   position: absolute;
@@ -258,22 +283,22 @@ body {
   }
 }
 .menuButtonBlue {
-  background-color: #3498DB;
+  background-color: #3498db;
   border-bottom: 5px solid #2980B9;
   text-shadow: 0px -2px #2980b9;
 }
 .menuButtonRed {
-  background-color: #E74C3C;
+  background-color: #e74c3c;
   border-bottom: 5px solid #BD3E31;
   text-shadow: 0px -2px #bd3e31;
 }
 .menuButtonGreen {
-  background-color: #82BF56;
+  background-color: #82bf56;
   border-bottom: 5px solid #669644;
   text-shadow: 0px -2px #669644;
 }
 .menuButtonYellow {
-  background-color: #E4BC47;
+  background-color: #e4bc47;
   border-bottom: 5px solid #A38426;
   text-shadow: 0px -2px #a38426;
 }
@@ -307,22 +332,88 @@ body {
   padding: 5px 45px;
   font-size: 22px;
 }
+.ui-widget-overlay {
+  background-color: black;
+  opacity: 0.5;
+}
 .ui-dialog {
-  background-color: #A9A9A9;
-  border-radius: 15px;
-  border: 1px solid black;
+  font-family: "Whipsmart";
+  background-color: #ECECEC;
+  border-radius: 14px !important;
+  
+  padding: 20px;
 }
 .ui-tooltip {
   z-index: 1;
 }
+.ui-dialog {
+  padding-bottom: 5px;
+}
+.ui-dialog-title {
+  font-size: 25px;
+  font-weight: bold;
+  position: relative;
+  bottom: 10px;
+}
 .ui-dialog-titlebar {
-  border-bottom: 1px black solid;
+  border-bottom: 3px #D0D0D0 solid;
+  border-radius: 0px !important;
+  font-size: 10px;
 }
 .ui-dialog.ui-widget {
   z-index: 101;
 }
 .ui-widget-overlay.ui-front {
   z-index: 100;
+}
+.ui-dialog-buttonpane {
+  margin-top: 110px;
+}
+#dialog-confirmDelete {
+  position: relative;
+  top: 37px;
+}
+#dialog-typeName {
+  position: relative;
+}
+#dialog-typeName p {
+  margin: 10px 0px;
+  width: 80%;
+  position: relative;
+  left: 10%;
+  font-size: 23px;
+}
+#dialog-typeName input {
+  border: none;
+  text-align: center;
+  height: 37px;
+  width: 85%;
+}
+.dialogVoltarBtt {
+  margin-right: 40px;
+  background-color: #e4bc47;
+}
+.dialogConfirmarBtt {
+  background-color: #3498db;
+}
+.dialogApagarBtt {
+  background-color: #e74c3c;
+}
+.dialogVoltarBtt,
+.dialogConfirmarBtt,
+.dialogApagarBtt {
+  
+  color: white;
+  font-family: verdana;
+  border-radius: 12px !important;
+  width: 40%;
+  height: 55px;
+}
+.dialogVoltarBtt:hover,
+.dialogConfirmarBtt:hover,
+.dialogApagarBtt:hover {
+  position: relative;
+  top: 2px;
 }
 #game {
   border: solid 1px dimgray;
@@ -372,12 +463,6 @@ body {
 }
 .levelSelect-backImage {
   background: center no-repeat url(../../assets/images/screens/tela_levelSelect.jpg);
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0px;
-  left: 0px;
 }
 #levelSelectContainer {
   width: 100%;
@@ -420,12 +505,6 @@ body {
 }
 .slotSelect-backImage {
   background: center no-repeat url(../../assets/images/screens/tela_carregarFundo.jpg);
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0px;
-  left: 0px;
 }
 #saveSlotMain {
   width: 100%;
@@ -480,12 +559,12 @@ body {
 }
 .mainMenu-backImage {
   background: center no-repeat url(../../assets/images/screens/tela_inicial.jpg);
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0px;
-  left: 0px;
+}
+.credits-backImage {
+  background: center no-repeat url(../../assets/images/screens/credits.jpg);
+}
+.config-backImage {
+  background: center no-repeat url(../../assets/images/screens/config.jpg);
 }
 #interactiveObjects {
   position: absolute;
