@@ -11,7 +11,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         // var Scores = require("Scores_data").tutorial;
         //endregion
 
-        var level = new Level("Level Tutorial");
+        var level = new Level("Level 0 - Tutorial");
         console.groupCollapsed(level.getName());
 
         var flags_on = true;    // if false it wont check for flags -- tests purpose

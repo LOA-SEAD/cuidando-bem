@@ -11,7 +11,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         // var Scores = require("Scores_data").tutorial;
         //endregion
 
-        var level = new Level("Level Fase2");
+        var level = new Level("Level 2");
         console.groupCollapsed(level.getName());
 
 

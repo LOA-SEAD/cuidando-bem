@@ -8,7 +8,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         // var Scores = require("Scores_data").fase3;
         //endregion
 
-        var level = new Level("Level 8");
+        var level = new Level("Level 9");
         console.groupCollapsed(level.getName());
 
         //region Scenes
@@ -61,7 +61,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.setInitialScene(0);
         //endregion
 
-        game.registerLevel(level, 8);
+        game.registerLevel(level, 9);
 
         console.groupEnd();
 
