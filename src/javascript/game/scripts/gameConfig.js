@@ -12,6 +12,7 @@ define(function () {
         "Tutorial",
         "Fase1",
         "Fase2",
+        "Fase4",
         "Fase8"
 
     ];
