@@ -230,7 +230,7 @@ define({
             " paciente para a diminuição das incidências de quedas. Parabéns pela avaliação."
         ]
     },
-    
+
     fase3: {
         recepcao: [
             //0 Recepcionista
@@ -339,7 +339,7 @@ define({
             "Num tô não! Minha filha já tá com tudinho lá fora."
         ]
     },
-    
+
     fase4: {
         corredor: [
             //0 Jogador
@@ -449,7 +449,7 @@ define({
             ]
         }
     },
-    
+
     fase6: {
         recepcao: [
             //0 Recepcionista
@@ -461,7 +461,7 @@ define({
             //0 Mentor
             "Bom dia! Hoje seu paciente será o senhor Josivaldo Silva. A alimentação dele" +
             " está sendo realizada através de uma sonda nasogástrica. Lembre-se de que os" +
-            " cuidados na administração de dietas são iguais aos da administração de medicamentos."
+            " cuidados na administração de dietas são iguais aos da administração de medicamentos.",
             //1 Jogador op 1
             "Sim, Alberto! Antes de administrar qualquer substância, sei que devo" +
             " prestar atenção na conexão correta da sonda.",
@@ -518,7 +518,7 @@ define({
             "Sim sinhô! Brigado."
         ]
     },
-    
+
     fase7: {
         recepcao:[
             //0 Jogador
@@ -588,7 +588,7 @@ define({
             //tabela
         ]
     },
-    
+
     fase_final: {
         recepcao: [
             //0 Recepcionista
