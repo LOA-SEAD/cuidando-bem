@@ -56,6 +56,8 @@ define(['Stage'], function (Stage) {
                     "class": 'dialogApagarBtt',
                     //"class": 'dialogConfirmarBtt menuButton menuButtonBlue',
                     click: function() {
+                        slotsSel = $('.slot');
+
                         $( this ).dialog( "close" );
                         Storage.reset(selectedId);
 

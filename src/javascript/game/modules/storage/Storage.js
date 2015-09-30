@@ -7,6 +7,11 @@
 define(["SimpleStorage"], function(Storage){
     console.info("SaveLoadGame - module loaded");
 
+    var
+        MINLEVEL = 0,
+        MAXLEVEL = 9;
+
+
     function SaveObject(name){
         this.name = name;
         this.empty = true;
@@ -24,7 +29,6 @@ define(["SimpleStorage"], function(Storage){
             undefined,
             undefined,
             undefined
-
         ];
 
         this.getClone = function(){
@@ -149,7 +153,7 @@ define(["SimpleStorage"], function(Storage){
     }
 
     function addScore(levelId, score){
-        if(levelId < 0 || levelId > 8)
+        if(levelId < MINLEVEL || levelId > MAXLEVEL)
             throw new Error("LevelId Failed");
 
         var level = saves[loadedId].levels[levelId];
@@ -166,7 +170,7 @@ define(["SimpleStorage"], function(Storage){
     }
 
     function resetScore(levelId){
-        if(levelId < 0 || levelId > 8)
+        if(levelId < MINLEVEL || levelId > MAXLEVEL)
             throw new Error("LevelId Failed");
 
         saves[loadedId].levels[levelId] = undefined;
@@ -215,7 +219,7 @@ define(["SimpleStorage"], function(Storage){
     Storage.flush();
 
     saves[0] = new SaveObject("Testing");
-    saves[0].lastLevel = 8;
+    saves[0].lastLevel = MAXLEVEL;
     saves[0].empty = false;
 
     saveSlots();
