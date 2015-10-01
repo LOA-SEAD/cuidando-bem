@@ -15,12 +15,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var level = new Level("Level 1");
         console.groupCollapsed(level.getName());
 
-        var flags_on = true;    // if false it wont check for flags -- tests purpose
-        var visibility = false;
-        if (!flags_on)
-            visibility = true;
-
-
         //Scenes
 
         var
@@ -32,12 +26,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         posto_de_enfermagem,
         gaveta,
         pulseira,
-        prontuario;
+        prontuario,
+        zoom;
 
 
         function recepcaoIrCorredor() {
             console.log("Funcao: recepcao_ir_corredor");
-            if ( !flags_on || level.getFlag("conversar_recepcionista").getValue() == true ) {  // wont check for flags
+            if ( level.getFlag("conversar_recepcionista").getValue() == true ) {  // wont check for flags
                 core.closeDialog();
                 core.changeScene(1);
                 console.log("Ir para o corredor");
@@ -471,7 +466,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("action-examinar_paciente")
                 .onClick(function () {
                     console.log("Action: btn-examinar_paciente");
-                    alert("Examinou Paciente. Como deve aparecer para o usuário que ele examinou realmente o paciente?");
+                    //alert("Examinou Paciente. Como deve aparecer para o usuário que ele examinou realmente o paciente?");
+                    core.openModalScene("zoomChar2");
                     level.getFlag("examinar_paciente").setValue(true);
                     core.setActionVisible("btn-ir_sala_leitos", true);
                 })
@@ -563,6 +559,18 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //Modal scenes
 
+        zoom = new Scene("zoomChar2", "Examinando paciente")
+            .setCssClass(".modalScene-zoom-char2");
+
+        zoom.registerActions([
+            new Action("btn-fechar_zoom", "Terminar exame")
+                .setCssClass("action-terminar_exame")
+                .onClick( function () {
+                    console.log("Action: fechar_gaveta");
+                    core.closeModalScene("zoomChar2");
+                })
+        ]);
+
         pulseira = new Scene("pulseira", "pulseira");
 
         pulseira.registerInteractiveObjects([
@@ -642,6 +650,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerModalScene(pulseira);
         level.registerModalScene(gaveta);
         level.registerModalScene(prontuario);
+        level.registerModalScene(zoom);
         //level init script
         level.setSetupScript(function(){
 

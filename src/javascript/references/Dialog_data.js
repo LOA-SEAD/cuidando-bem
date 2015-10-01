@@ -119,7 +119,7 @@ define({
                 //0 Mentor
                 "Você inspecionou a pele do paciente?",
                 //1 Jogador op 1
-                "Sim e encontrei algumas regiões hiperemiadas no calcanhar.",
+                "Sim e encontrei algumas regiões hiperemiadas no cotovelo.",
                 //2 Jogador op 2
                 "Sim, porém não encontrei nada.",
                 //3 Mentor
@@ -171,7 +171,7 @@ define({
             //10 Mentor
             "Não é ético dizer ao paciente sua percepção sobre o hospital.",
             //11 Paciente
-            "Carlos Esme Gouvêa, nasci em 01-12-1945.",
+            "Carlos Esme Gouvêa, nasci em 01/12/1945.",
             //12 Jogador
             "Vou verificar sua pulseira e depois examiná-lo, senhor Carlos. Com licença."
         ]
