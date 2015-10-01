@@ -93,9 +93,9 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     function changeLevel(_newLevel) {
         console.group("Clone Level");
         Level = _newLevel.getClone();
-        Level.setup();
         //Ensure that the bracelet form is empty
         Pulseira.resetData();
+        Level.setup();
         Dialog.close();
 
         console.groupEnd();

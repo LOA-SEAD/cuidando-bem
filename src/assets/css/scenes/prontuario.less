@@ -2,11 +2,14 @@
     display: none;
     z-index: 1;
 
-    height: 70%;
-    width: 80%;
+    height: 498px * 1.2;
+    width: 726px * 1.2;
     position: relative;
-    background-color: white;
-    //background-image: @bg-prontuario;
+    //background-color: white;
+    background-image: @bg-prontuario;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 
     @media (min-width:@screen-sm-min) {
         left: 75px;
@@ -29,6 +32,15 @@
         background-color: transparent;
     }
 
+    .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+        padding: 0px;
+        color: #008080;
+    }
+
+    .ui-tabs .ui-tabs-nav li:not(:last-child) {
+        margin-right: 14px;
+    }
+
     input[disabled]{
         border: none;
         background-color: transparent;
@@ -44,6 +56,9 @@
     .content{
         overflow-y: hidden;
         height: 95%;
+        padding-left: 120px;
+        padding-right: 55px;
+        padding-top: 60px;
     }
 
     .title{
@@ -285,7 +300,7 @@
     }
 
     #anotacaoEnfermagem_table{
-        height: 80%;
+        height: 65%;
     }
 
     #anotacaoEnfermagem_tbody{
@@ -330,7 +345,8 @@
 }
 .ui-tabs .ui-tabs-nav li:last-child{
     float: none;
-    background-color: blue;
+    clear: both;
+    background-color: transparent;
 }
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
     float: left;

@@ -18,7 +18,8 @@ define(function () {
         "Fase6",
         "Fase7",
         "Fase8",
-        "Fase9"
+        "FaseTeste",
+        // "Fase9"
 
     ];
 

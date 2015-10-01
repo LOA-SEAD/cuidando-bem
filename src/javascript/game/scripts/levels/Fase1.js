@@ -468,7 +468,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         leito.registerActions([
             new Action("btn-examinar_paciente", "Examinar Paciente")
-                .setCssClass("")
+                .setCssClass("action-examinar_paciente")
                 .onClick(function () {
                     console.log("Action: btn-examinar_paciente");
                     alert("Examinou Paciente. Como deve aparecer para o usuário que ele examinou realmente o paciente?");
@@ -477,7 +477,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 })
                 .setVisibility(false),
             new Action("btn-falar_paciente", "Conversar com Paciente")
-                .setCssClass("")
+                .setCssClass("action-leito-char-02")
                 .onClick(function () {
                     console.log("Action: btn-conversar_paciente");
                     core.openDialog(0);
@@ -485,7 +485,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 })
                 .setVisibility(true),
             new Action("btn-perguntar_nome", "Perguntar nome do paciente")
-                .setCssClass("")
+                .setCssClass("action-leito-char-02")
                 .onClick(function () {
                     console.log("Action: btn-perguntar_nome");
                     core.closeCommandBar();
@@ -495,17 +495,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
                 .setCssClass("action-ir_sala_de_leitos")
                 .onClick(function (){
-                    if(Pulseira.isAllDataValid()){
-                        console.log("Action: action-ir_sala_de_leitos");
-                        core.changeScene(2);
-                    }else{
-                        alert("Alguns dados da pulseira estão incorretos. Devo bloquear o caminho dele ou reduzir pontos?");
-                        core.changeScene(2);
-                    }
+                    core.changeScene(2);
                 })
                 .setVisibility(false),
             new Action("btn-mudar_posicao", "Mudar posição do paciente")
-                .setCssClass("")
+                .setCssClass("action-mudar_posicao_paciente")
                 .onClick(function () {
                     core.changeSceneCssClassTo("scene-bedChar02-turned");
                     core.setActionVisible("btn-mudar_posicao", false);
@@ -513,7 +507,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 })
                 .setVisibility(false),
             new Action("btn-posicionar_coxim_e_travesseiro", "Posicionar coxim e travesseiro")
-                .setCssClass("")
+                .setCssClass("action-posicionar_coxim")
                 .onClick(function () {
                     core.changeSceneCssClassTo("scene-bedChar02-cushion");
                     core.setActionVisible("btn-posicionar_coxim_e_travesseiro", false);

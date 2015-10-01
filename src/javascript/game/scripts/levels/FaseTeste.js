@@ -72,9 +72,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var recepcao = new Scene("recepcao", "scene-recepcao")
             .setCssClass("scene-lobby")
             .onLoad(function(){
-                Pulseira.open();
+                //Pulseira.open();
                 //core.openModalScene("modalOximetro");
-                //Prontuario.open();
+                Prontuario.open();
                 //freqRespiratoria.open();
 
                 //core.showEndOfLevel();
@@ -98,7 +98,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.setInitialScene(0);
         //endregion
 
-        game.registerLevel(level, 8);
+        game.registerLevel(level, 9);
 
         console.groupEnd();
     });
