@@ -346,6 +346,9 @@ body {
 .ui-tooltip {
   z-index: 1;
 }
+.interactiveObject-ui-tooltip {
+  top: 5% !important;
+}
 .ui-dialog {
   padding-bottom: 5px;
 }
@@ -451,15 +454,6 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-}
-#commandBar {
-  position: absolute;
-  width: 100%;
-  height: 20%;
-  bottom: 0;
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap;
 }
 .levelSelect-backImage {
   background: center no-repeat url(../../assets/images/screens/tela_levelSelect.jpg);
@@ -713,24 +707,24 @@ body {
 }
 @media screen and (min-width: 768px) {
   .intObj-paciente_02-checar_pulseira {
-    width: 29.93px;
-    height: 30.135px;
+    width: 41px;
+    height: 30.75px;
     bottom: 22%;
     left: 40%;
   }
 }
 @media screen and (min-width: 992px) {
   .intObj-paciente_02-checar_pulseira {
-    width: 39.42px;
-    height: 39.69px;
+    width: 54px;
+    height: 40.5px;
     bottom: 22%;
     left: 40%;
   }
 }
 @media screen and (min-width: 1200px) {
   .intObj-paciente_02-checar_pulseira {
-    width: 49.64px;
-    height: 49.98px;
+    width: 68px;
+    height: 51px;
     bottom: 22%;
     left: 40%;
   }
@@ -1125,13 +1119,26 @@ body {
   width: 100%;
   height: 100%;
 }
+.modalScene-zoom-char2 {
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: url(../../assets/images/modalScenes/zoom-char-02.png);
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  display: table;
+  width: 100%;
+  height: 100%;
+}
 #prontuario {
   display: none;
   z-index: 1;
-  height: 70%;
-  width: 80%;
+  height: 597.6px;
+  width: 871.2px;
   position: relative;
-  background-color: white;
+  background-image: url(../../assets/images/modalScenes/prontuario.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   text-align: left;
 }
 @media (min-width: 768px) {
@@ -1157,6 +1164,13 @@ body {
   border: none;
   background-color: transparent;
 }
+#prontuario .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+  padding: 0px;
+  color: #008080;
+}
+#prontuario .ui-tabs .ui-tabs-nav li:not(:last-child) {
+  margin-right: 14px;
+}
 #prontuario input[disabled] {
   border: none;
   background-color: transparent;
@@ -1172,6 +1186,9 @@ body {
 #prontuario .content {
   overflow-y: hidden;
   height: 95%;
+  padding-left: 120px;
+  padding-right: 55px;
+  padding-top: 60px;
 }
 #prontuario .title {
   height: 5%;
@@ -1335,7 +1352,7 @@ body {
   text-align: center;
 }
 #prontuario #anotacaoEnfermagem_table {
-  height: 80%;
+  height: 65%;
 }
 #prontuario #anotacaoEnfermagem_tbody .data {
   text-align: center;
@@ -1374,7 +1391,8 @@ body {
 }
 .ui-tabs .ui-tabs-nav li:last-child {
   float: none;
-  background-color: blue;
+  clear: both;
+  background-color: transparent;
 }
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
   float: left;
@@ -1426,7 +1444,7 @@ body {
 #pulseira_modal {
   display: none;
   float: left;
-  position: relative;
+  position: absolute;
 }
 #pulseira_modal input {
   border: none;
@@ -1894,6 +1912,12 @@ body {
 .action-examinar_paciente.disabled {
   background-image: url(../../assets/images/action_buttons/examinar_paciente-disabled.jpg);
 }
+.action-falar_com_paciente_ala {
+  background-image: url(../../assets/images/action_buttons/examinar_paciente.jpg);
+}
+.action-falar_com_paciente_ala.disabled {
+  background-image: url(../../assets/images/action_buttons/examinar_paciente-disabled.jpg);
+}
 .action-anotar_prontuario {
   background-image: url(../../assets/images/action_buttons/anotar_prontuario.jpg);
 }
@@ -1944,6 +1968,16 @@ body {
 }
 .action-perguntar_nome_char1 {
   background-image: url(../../assets/images/action_buttons/leito-char-01.jpg);
+}
+#commandBar {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 20%;
+  bottom: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
 }
 #endOfLevel {
   position: relative;
