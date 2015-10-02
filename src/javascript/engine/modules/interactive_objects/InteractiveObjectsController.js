@@ -53,6 +53,8 @@ define(['text!../assets/html/interactiveObject/interactiveObjects.html', 'text!.
         addAllInteractiveObjects(_interactiveObjects);
     }
 
+
+
     /**
      * Description
      * @method addInteractiveObject
@@ -63,12 +65,14 @@ define(['text!../assets/html/interactiveObject/interactiveObjects.html', 'text!.
     function addInteractiveObject(_interactiveObject) {
         var element = $($(interactiveObjectTemplate)[0]);
 
-        element.click(_interactiveObject.getFunction());
+
         element.attr('title', _interactiveObject.getName());
         element.attr('id', _interactiveObject.getId());
         element.addClass(_interactiveObject.getCssClass());
 
         element.tooltip({
+            //disabled: true,
+            tooltipClass: "interactiveObject-ui-tooltip",
             show: {
                 duration: 200
             },
@@ -79,10 +83,14 @@ define(['text!../assets/html/interactiveObject/interactiveObjects.html', 'text!.
                 at: "center top+20"
             }
         });
-        if (_interactiveObject.isEnabled())
+        if (_interactiveObject.isEnabled()) {
             element.addClass("enabled");
-        else
+            element.click(_interactiveObject.getFunction());
+            element.tooltip("option", "disabled", false);
+        } else {
             element.addClass("disabled");
+            element.tooltip("option", "disabled", true);
+        }
 
         $(divSelector).append(element);
         if (!_interactiveObject.isVisible())
@@ -123,7 +131,7 @@ define(['text!../assets/html/interactiveObject/interactiveObjects.html', 'text!.
         element.removeClass("disabled");
         element.addClass("enabled");
         element.click(_interactiveObject.getFunction());
-        element.tooltip("enable");
+        element.tooltip("option", "disabled", false);
     }
 
     /**
@@ -139,7 +147,7 @@ define(['text!../assets/html/interactiveObject/interactiveObjects.html', 'text!.
         element.removeClass("enabled");
         element.addClass("disabled");
         element.unbind("click");
-        element.tooltip("disable");
+        element.tooltip("option", "disabled", true);
 
     }
 

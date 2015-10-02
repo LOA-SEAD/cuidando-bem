@@ -302,7 +302,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     function disableActionButton(_actionId) {
         var action = Scene.getAction(_actionId);
         action.setEnable(false);
-        CommandBar.disableActionButton(action, _value);
+        CommandBar.disableActionButton(action);
     }
 
     /**
@@ -320,7 +320,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     function disableInteractiveObject(_ioId) {
         var io = Scene.getInteractiveObject(_ioId);
         io.setEnable(false);
-        InteractiveObject.disableActionButton(action, _value);
+        InteractiveObject.disableInteractiveObject(io);
     }
 
     /**
@@ -332,7 +332,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     function enableInteractiveObject(_ioId) {
         var io = Scene.getInteractiveObject(_ioId);
         io.setEnable(true);
-        InteractiveObject.enableActionButton(action);
+        InteractiveObject.enableInteractiveObject(io);
     }
 
 //Getters

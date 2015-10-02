@@ -243,7 +243,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         core.openDialog(0);
                     }else if(level.getFlag("examinar_paciente").getValue() == true){
                         core.openDialog(2);
-                        alert("O mentor deve sumir daqui ou deve continuar para repetição do dialogo?");
                     }
                 })
                 .setVisibility(true)
@@ -377,6 +376,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.openCommandBar();
                 })
                 .setVisibility(true)
+                .setEnable(false)
         ]);
 
         leito.registerDialogs([
@@ -442,9 +442,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .registerOption(Dialogs.enfermaria[12], function(){
                     core.openCommandBar();
                     core.closeDialog();
+                    // debugger;
                     //core.setActionVisible("btn-examinar_paciente", true);
                     level.getFlag("conversar_paciente").setValue(true);
-                    core.setActionVisible("btn-perguntar_nome", true);
+                    core.enableInteractiveObject("io-pulseira_paciente", true);
+                    core.setActionVisible("btn-ir_sala_leitos", true);
+                    // core.setActionVisible("btn-perguntar_nome", true);
                     core.setActionVisible("btn-falar_paciente", false);
                 }),
             // 8
@@ -466,7 +469,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("action-examinar_paciente")
                 .onClick(function () {
                     console.log("Action: btn-examinar_paciente");
-                    //alert("Examinou Paciente. Como deve aparecer para o usuário que ele examinou realmente o paciente?");
                     core.openModalScene("zoomChar2");
                     level.getFlag("examinar_paciente").setValue(true);
                     core.setActionVisible("btn-ir_sala_leitos", true);
@@ -491,6 +493,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
                 .setCssClass("action-ir_sala_de_leitos")
                 .onClick(function (){
+                    if(level.getFlag("examinar_paciente").getValue()) {
+                        core.disableInteractiveObject("io-pulseira_paciente");
+                    }
                     core.changeScene(2);
                 })
                 .setVisibility(false),
@@ -499,6 +504,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function () {
                     core.changeSceneCssClassTo("scene-bedChar02-turned");
                     core.setActionVisible("btn-mudar_posicao", false);
+                    core.setInteractiveObjectVisible("io-pulseira_paciente", false);
                     core.setActionVisible("btn-posicionar_coxim_e_travesseiro", true);
                 })
                 .setVisibility(false),
@@ -560,14 +566,15 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //Modal scenes
 
         zoom = new Scene("zoomChar2", "Examinando paciente")
-            .setCssClass(".modalScene-zoom-char2");
+            .setCssClass("modalScene-zoom-char2");
 
         zoom.registerActions([
             new Action("btn-fechar_zoom", "Terminar exame")
                 .setCssClass("action-terminar_exame")
                 .onClick( function () {
-                    console.log("Action: fechar_gaveta");
+                    console.log("Action: Terminar Exame");
                     core.closeModalScene("zoomChar2");
+                    core.setActionVisible("btn-ir_sala_leitos", true);
                 })
         ]);
 
@@ -632,9 +639,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("action-abrir_dialogo")
                 .onClick(function (){
                     console.log("Action: Fechar prontuario");
+                    //TODO Verificar se prontuario está preenchido
                     Prontuario.close();
-                    alert(Prontuario.isDataValid() + " Final da fase");
                     core.registerScoreItem(Scores.tutorial.identificarPaciente);
+                    core.unlockLevel(2);
                     core.closeCommandBar();
                     core.showEndOfLevel();
                 })

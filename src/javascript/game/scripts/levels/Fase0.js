@@ -786,7 +786,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         function checouTodosAparelhos () {
-            debugger;
             return  level.getFlag("mediuTemperatura").getValue() &&
                     level.getFlag("mediuPressao").getValue() &&
                     level.getFlag("mediuFreqRespiratoria").getValue() &&
