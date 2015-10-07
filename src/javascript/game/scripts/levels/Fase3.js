@@ -23,7 +23,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         recepcao.registerDialogs([
             // Dialog 0
-            new Dialog(lib.characters.recepcionista_unknow)
+            new Dialog(lib.characters.recepcionista)
                 .setText("Essa fase ainda está em construção, por favor volte mais tarde.")
                 .registerOption("", function(){
                     core.goBackToMenu();
