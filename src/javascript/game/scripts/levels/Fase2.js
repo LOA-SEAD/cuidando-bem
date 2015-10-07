@@ -163,13 +163,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function (){
                    core.openDialog(0);
                    core.closeCommandBar();
+                   level.getFlag("conversar_paciente").setValue(true);
                 })
                 .setVisibility(true),
 
             new Action("btn-lavar_maos", "Lavar as mãos")
                 .setCssClass("action-lavar_maos")
                 .onClick(function (){
-                   leve.getFlag("lavar_maos").setValue(true);
+                   level.getFlag("lavar_maos").setValue(true);
                 })
                 .setVisibility(false),
 
@@ -178,8 +179,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function (){
                     console.log("Action: ler prontuario");
                     if(level.getFlag("lavar_maos").getValue() == false){
-                    }else{
                         alert("Jogador perde pontos por não ter lavador as mãos antes de abrir prontuario");
+                    }else{
                     }
                     Prontuario.open();
                     core.openModalScene("Prontuario");
@@ -371,9 +372,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function (){
                     console.log("Action: Fechar prontuario");
                     level.getFlag("checar_prontuario").setValue(true);
-                    core.setActionVisible("io-ir_corredor", true);
                     Prontuario.close();
                     core.closeModalScene("Prontuario");
+                    core.setInteractiveObjectVisible("io-ir_corredor", true);
                 })
                 .setVisibility(true),
 

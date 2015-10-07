@@ -551,8 +551,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     }
 
                     if(checouTodosAparelhos()) {
-                        level.getFlag("lavar-maosDepois").setValue(true);
-                        core.registerScoreItem(Scores.tutorial.lavarMaosDepois);
+                        if(level.getFlag("lavar-maosDepois").getValue() == false) {
+                            level.getFlag("lavar-maosDepois").setValue(true);
+                            core.registerScoreItem(Scores.tutorial.lavarMaosDepois);
+                        }
                     }
 
                 })
@@ -866,7 +868,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region termometro
         var termometro = new Scene("modalTermometro", "modalTermometro")
             .setCssClass("modalScene-termometro")
-            .setTemplate("<span class='temp_termometro'>37.5º</span>");
+            .setTemplate("<span class='temp_termometro'>35.7º</span>");
 
         termometro.registerActions([
             new Action("btn-largar_termometro", "Fechar termômetro")
@@ -988,7 +990,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 new RegExp('69'),
                 new RegExp('17'),
                 new RegExp('97'),
-                new RegExp('37.5')
+                new RegExp('35.7')
                 );
             //Disable 2 row
             Prontuario.setSsvvRowData(1, '', '', '', '', '', '', true);
