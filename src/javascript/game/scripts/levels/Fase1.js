@@ -769,6 +769,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Prontuario.setHipotese("Pneumonia brônquica, insuficiência respiratória e anemia ferropriva.");
             Prontuario.setObservacoes("Possui incontinência urinária, acamado.");
 
+            Prontuario.setPrescEnfermagemState("decubito");
+
             Prontuario.setPeso("72");
             Prontuario.setAltura("1,68");
             Prontuario.setCircunferenciaAbdominal("135");

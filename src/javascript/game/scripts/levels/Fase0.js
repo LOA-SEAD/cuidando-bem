@@ -996,6 +996,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Prontuario.setSsvvRowData(1, '', '', '', '', '', '', true);
 
             Prontuario.setAnotacaoEnfermagemRowData('15/03', '');
+
+            Prontuario.setPrescEnfermagemState("vazio");
         });
 
         //region Register Scenes

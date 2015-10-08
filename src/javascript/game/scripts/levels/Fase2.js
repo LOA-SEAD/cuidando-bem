@@ -179,7 +179,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function (){
                     console.log("Action: ler prontuario");
                     if(level.getFlag("lavar_maos").getValue() == false){
-                        alert("Jogador perde pontos por não ter lavador as mãos antes de abrir prontuario");
+                        //alert("Jogador perde pontos por não ter lavador as mãos antes de abrir prontuario");
                     }else{
                     }
                     Prontuario.open();

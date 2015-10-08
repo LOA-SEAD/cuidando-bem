@@ -40,9 +40,9 @@ define(['Stage'], function (Stage) {
         });
 
         //Carregar Jogo
-        $('#loadGame_btn').click(function () {
+        $('#conteudo_btn').click(function () {
             console.log(this);
-            Stage.changeScreen(2);
+            Stage.changeScreen(7);
         });
 
         //Configurações
