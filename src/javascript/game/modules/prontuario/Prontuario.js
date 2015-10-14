@@ -116,6 +116,18 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
     ];
 
     //TODO: Prescrição de Enfermagem
+    var prescEnfermagemStates = {
+        "vazio" : false,
+        "decubito" : true
+    }
+
+    var prescEnfermagemState = "vazio";
+
+    //Enfermagem: virarDecubito
+    var prescEnfermagemVirouDecubito = false;
+    var prescEnfermagemCheckSelector = "";
+
+
     var ssvv_tbodySelector = "#ssvv_tbody";
 
     var ssvv_dataSelector = ".data";
@@ -242,6 +254,9 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
         return circunferenciaAbdominalText;
     }
 
+    function getPrescEnfermagemState() {
+        return prescEnfermagemState;
+    }
     //endregion
 
     //region Sets
@@ -450,6 +465,8 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
             $($(prescMedica_relatorioSelector, prescMedica_tbodySelector)[_row]).text("( )");
         }
 
+        $('tr', prescEnfermagem_tbody).hide();
+        $('.'+prescEnfermagemState, prescEnfermagem_tbody).show();
     }
 
     function setPrescMedicaRowRegExp(_row, _relatorio){
@@ -458,6 +475,13 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
         }
 
         prescMedica_relatorioRegExp[_row] = _relatorio;
+    }
+
+    function setPrescEnfermagemState(_prescEnfermagemState) {
+        prescEnfermagemState = _prescEnfermagemState;
+
+        $('tr', prescEnfermagem_tbody).hide();
+        $('.'+prescEnfermagemState, prescEnfermagem_tbody).show();
     }
     //endregion
 
@@ -756,6 +780,9 @@ define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
         setPeso: setPeso,
         setAltura: setAltura,
         setCircunferenciaAbdominal: setCircunferenciaAbdominal,
+
+        getPrescEnfermagemState: getPrescEnfermagemState,
+        setPrescEnfermagemState: setPrescEnfermagemState,
 
         addToRelatorio:addToRelatorio,
 

@@ -9,7 +9,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Imports
         var Dialogs = require("Dialogs_data").fase1;
         var Alertas = require("Dialogs_data").alertas;
-        // var Scores = require("Scores_data").tutorial;
+        Scores = Scores.level1;
         //endregion
 
         var level = new Level("Level 1");
@@ -160,6 +160,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.closeDialog();
                     core.openCommandBar();
                     level.getFlag("conversar_mentor2").setValue(true);
+
+                    if(level.getFlag("score_falar_com_mentor").getValue() == false) {
+                        core.registerScoreItem(Scores.falarComMentorApos);
+                        level.getFlag("score_falar_com_mentor").setValue(true);
+                    }
                 })
                 .registerOption(Dialogs.corredor.fala2[8], function(){
                     core.openDialog(8);
@@ -199,6 +204,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             if(level.getFlag("examinar_paciente").getValue() == false){
                 //aviso de caminho errado
                 core.openDialog(10);
+                if(level.getFlag("score_ir_posto_hora_errada").getValue() == false) {
+                    core.registerScoreItem(Scores.irPostoEnfermagem_horaErrada);
+                    level.getFlag("score_ir_posto_hora_errada").setValue(true);
+                }
             }else{
                 //va para posto de enfermagem
                 core.changeScene(4);
@@ -300,14 +309,29 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     if(level.getFlag("lavar_maos").getValue() == false){
                         console.log("Action: lavar_maos");
                         level.getFlag("lavar_maos").setValue(true);
+
+                        if(level.getFlag("score_lavar_maos_antes_exame").getValue() == false) {
+                            core.registerScoreItem(Scores.lavarMaosAntes);
+                            level.getFlag("score_lavar_maos_antes_exame").setValue(true);
+                        }
                         //core.setInteractiveObjectVisible("io-ir_leito", true);
                     }else if(level.getFlag("lavar_maos2").getValue() == false && level.getFlag("examinar_paciente").getValue() == true){
                         console.log("Action: lavar_maos2");
                         level.getFlag("lavar_maos2").setValue(true);
+
+                        if(level.getFlag("score_lavar_maos_depois_exame").getValue() == false) {
+                            core.registerScoreItem(Scores.lavarMaosDepois);
+                            level.getFlag("score_lavar_maos_depois_exame").setValue(true);
+                        }
                         //core.setActionVisible("ir_corredor", true);
                     }else if(level.getFlag("lavar_maos3").getValue() == false && level.getFlag("colocou_coxim").getValue() == true){
                         console.log("Action: lavar_maos3");
                         level.getFlag("lavar_maos3").setValue(true);
+
+                        if(level.getFlag("score_lavar_maos_prontuario").getValue() == false) {
+                            core.registerScoreItem(Scores.lavarMaosProntuario);
+                            level.getFlag("score_lavar_maos_prontuario").setValue(true);
+                        }
                     }
                 })
                 .setVisibility(true),
@@ -357,7 +381,17 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.setActionVisible("btn-examinar_paciente", false);
 
                     if(level.getFlag("coxim").getValue() == true) {
-                        core.setActionVisible("btn-mudar_posicao", true);
+                        if(level.getFlag("mudar_posicao_paciente").getValue() == false) {
+                            core.setActionVisible("btn-mudar_posicao", true);
+                        } else {
+                            if(level.getFlag("colocou_coxim").getValue() == false) {
+                                core.setActionVisible("btn-mudar_posicao", false);
+                                core.setInteractiveObjectVisible("io-pulseira_paciente", false);
+                                core.setActionVisible("btn-posicionar_coxim_e_travesseiro", true);
+                            } else {
+
+                            }
+                        }
                     }
                 }
             })
@@ -478,6 +512,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("action-leito-char-02")
                 .onClick(function () {
                     console.log("Action: btn-conversar_paciente");
+
+                    if(level.getFlag("score_falar_paciente").getValue() == false) {
+                        core.registerScoreItem(Scores.falarComPaciente);
+                        level.getFlag("score_falar_paciente").setValue(true);
+                    }
+
                     core.openDialog(0);
                     core.closeCommandBar();
                 })
@@ -506,6 +546,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.setActionVisible("btn-mudar_posicao", false);
                     core.setInteractiveObjectVisible("io-pulseira_paciente", false);
                     core.setActionVisible("btn-posicionar_coxim_e_travesseiro", true);
+                    level.getFlag("mudar_posicao_paciente").setValue(true);
                 })
                 .setVisibility(false),
             new Action("btn-posicionar_coxim_e_travesseiro", "Posicionar coxim e travesseiro")
@@ -575,6 +616,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("Action: Terminar Exame");
                     core.closeModalScene("zoomChar2");
                     core.setActionVisible("btn-ir_sala_leitos", true);
+
+                    if(level.getFlag("score_examinar_paciente").getValue() == false) {
+                        core.registerScoreItem(Scores.examinarPaciente);
+                        level.getFlag("score_examinar_paciente").setValue(true);
+                    }
                 })
         ]);
 
@@ -593,6 +639,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     if(level.getFlag("confirmou_pulseira").getValue() == false && level.getFlag("conversar_paciente").getValue() == true) {
                         level.getFlag("confirmou_pulseira").setValue(true);
                         core.setActionVisible("btn-examinar_paciente", true);
+
+                        if(level.getFlag("score_verificar_pulseira").getValue() == false) {
+                            core.registerScoreItem(Scores.verificarPulseira);
+                            level.getFlag("score_verificar_pulseira").setValue(true);
+                        }
                     }
 
                     Pulseira.close();
@@ -620,6 +671,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("IntObj: io-coxim");
                     level.getFlag("coxim").setValue(true);
                     core.setInteractiveObjectVisible("io-coxim", false);
+
+                    if(level.getFlag("score_pegar_coxim").getValue() == false) {
+                        core.registerScoreItem(Scores.pegarCoxim);
+                        level.getFlag("score_pegar_coxim").setValue(true);
+                    }
                 })
                 .setVisibility(true)
         ]);
@@ -640,8 +696,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function (){
                     console.log("Action: Fechar prontuario");
                     //TODO Verificar se prontuario está preenchido
+                    core.registerScoreItem(Scores.anotarNoProntuario);
                     Prontuario.close();
-                    core.registerScoreItem(Scores.tutorial.identificarPaciente);
                     core.unlockLevel(2);
                     core.closeCommandBar();
                     core.showEndOfLevel();
@@ -669,11 +725,23 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             level.getFlag("conversar_paciente").setValue(false);
             level.getFlag("confirmou_pulseira").setValue(false);
             level.getFlag("examinar_paciente").setValue(false);
+            level.getFlag("mudar_posicao_paciente").setValue(false);
             level.getFlag("lavar_maos").setValue(false);
             level.getFlag("lavar_maos2").setValue(false);
             level.getFlag("lavar_maos3").setValue(false);
             level.getFlag("coxim").setValue(false);
             level.getFlag("colocou_coxim").setValue(false);
+            level.getFlag("score_lavar_maos_antes_exame").setValue(false);
+            level.getFlag("score_lavar_maos_depois_exame").setValue(false);
+            level.getFlag("score_lavar_maos_prontuario").setValue(false);
+            level.getFlag("score_ir_posto_hora_errada").setValue(false);
+            level.getFlag("score_falar_paciente").setValue(false);
+            level.getFlag("score_verificar_pulseira").setValue(false);
+            level.getFlag("score_examinar_paciente").setValue(false);
+            level.getFlag("score_falar_com_mentor").setValue(false);
+            level.getFlag("score_pegar_coxim").setValue(false);
+            level.getFlag("score_anotar_prontuario").setValue(false);
+            level.getFlag("score_nao_lavar_maos_prontuario").setValue(false);
 
             Pulseira.setNameRegExp(/Carlos Esme Gouv(e|ê)a/);
             Pulseira.setLeitoRegExp(/0*3/);
@@ -701,6 +769,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Prontuario.setHipotese("Pneumonia brônquica, insuficiência respiratória e anemia ferropriva.");
             Prontuario.setObservacoes("Possui incontinência urinária, acamado.");
 
+            Prontuario.setPrescEnfermagemState("decubito");
+
             Prontuario.setPeso("72");
             Prontuario.setAltura("1,68");
             Prontuario.setCircunferenciaAbdominal("135");
@@ -724,11 +794,23 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("conversar_paciente"), false);
         level.registerFlag(new Flag("confirmou_pulseira"), false);
         level.registerFlag(new Flag("examinar_paciente"), false);
+        level.registerFlag(new Flag("mudar_posicao_paciente"), false);
         level.registerFlag(new Flag("lavar_maos"), false);
         level.registerFlag(new Flag("lavar_maos2"), false);
         level.registerFlag(new Flag("lavar_maos3"), false);
         level.registerFlag(new Flag("coxim"), false);
         level.registerFlag(new Flag("colocou_coxim"), false);
+        level.registerFlag(new Flag("score_lavar_maos_antes_exame"), false);
+        level.registerFlag(new Flag("score_lavar_maos_depois_exame"), false);
+        level.registerFlag(new Flag("score_lavar_maos_prontuario"), false);
+        level.registerFlag(new Flag("score_ir_posto_hora_errada"), false);
+        level.registerFlag(new Flag("score_falar_paciente"), false);
+        level.registerFlag(new Flag("score_verificar_pulseira"), false);
+        level.registerFlag(new Flag("score_examinar_paciente"), false);
+        level.registerFlag(new Flag("score_falar_com_mentor"), false);
+        level.registerFlag(new Flag("score_pegar_coxim"), false);
+        level.registerFlag(new Flag("score_anotar_prontuario"), false);
+        level.registerFlag(new Flag("score_nao_lavar_maos_prontuario"), false);
 
 
         level.setInitialScene(0);
