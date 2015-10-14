@@ -45,10 +45,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
                 //Default object of "leito"
                 leitos:{
-                    joao: new Scene("leito", "scene-leito-char-01")
+                    joao:  new Scene("leito", "scene-leito-char-01")
                         .setCssClass("scene-bedChar01"),
                     char2: new Scene("leito", "scene-leito-char-02")
-                        .setCssClass("scene-bedChar02")
+                        .setCssClass("scene-bedChar02"),
+                    pedro: new Scene("leito", "scene-leito-char-04")
+                        .setCssClass("scene-bedChar04")
                 }
             },
             //endregion
@@ -75,9 +77,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
                 pacientes: {
                     joao: new Character("Sr. João", "char-paciente_01"),
-                    carlos : new Character("Paciente Carlos", "char-paciente-02"),
-                    raul_unknow : new Character("Paciente", "char-paciente-03"),
-                    raul : new Character("Paciente Raul", "char-paciente-03")
+                    carlos: new Character("Paciente Carlos", "char-paciente-02"),
+                    raul_unknow: new Character("Paciente", "char-paciente-03"),
+                    raul: new Character("Paciente Raul", "char-paciente-03"),
+                    pedro: new Character("Sr. Pedro", "char-paciente_04")
                 }
 
 

@@ -122,45 +122,29 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region Sala de Leitos
         var sala_de_leitos = new Scene("sala_de_leitos", "scene-sala_de_leitos")
+
             .setCssClass("scene-bedroom")
             .onLoad(function (){
                 console.log("Load scene: " + sala_de_leitos.getName());
-                switch (level.getFlag("passagem_sala-de-leitos").getValue()){
-                    case 0:
-                        core.setInteractiveObjectVisible("io-ir_leito", true);
-                        core.setInteractiveObjectVisible("io-ir_corredor", false);
-                        break;
-                    case 1:
-                        core.setInteractiveObjectVisible("io-ir_leito", false);
-                        core.setInteractiveObjectVisible("io-ir_corredor", true);
-                        break;
-                }
+                    core.setInteractiveObjectVisible("io-ir_leito", true);
+                    core.setInteractiveObjectVisible("io-ir_corredor", true);
+
             })
-            .onUnload( function (){
-                switch (level.getFlag("passagem_sala-de-leitos").getValue()){
-                    case 0:
-                        level.getFlag("passagem_sala-de-leitos").setValue(1);
-                        break;
-                    case 1:
-                        level.getFlag("passagem_sala-de-leitos").setValue(0);
-                        break;
-                }
-            });
 
         sala_de_leitos.registerActions([
-            new Action("btn-falar_com_paciente_ala", "Falar com paciente")
-                .setCssClass("action-falar_com_paciente_ala")
+            /*new Action("btn-falar_com_paciente_ala", "Falar com paciente")
+                .setCssClass("action-falar_com_paciente_pedro")
                 .onClick(function (){
-                   core.openDialog(0);
+                   
                 })
-                .setVisibility(true),
+                .setVisibility(true),*/
 
             new Action("btn-lavar_maos", "Lavar as mãos")
                 .setCssClass("action-lavar_maos")
                 .onClick(function (){
                     console.log("Action: lavar_maos");
-                    if(level.getFlag("lavar_maos").getValue() == false){
-                        leve.getFlag("lavar_maos").setValue(true);
+                    if(level.getFlag("lavar-maos").getValue() == false){
+                        level.getFlag("lavar-maos").setValue(true);
 
                         //temp
                         alert("Lavou a mão uma vez");
@@ -170,57 +154,48 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     }
                    
                 })
-                .setVisibility(true),
+                .setVisibility(true)
 
-            new Action("btn-ler_prontuario", "Ler prontuario")
-                .setCssClass("action-ler_prontuario")
+        ]);
+
+        sala_de_leitos.registerDialogs([
+
+        ]);
+
+        sala_de_leitos.registerInteractiveObjects([
+            new InteractiveObject("io-ir_leito", "Ir ao leito")
+                .setCssClass("intObj-ir_leito-fase4")
                 .onClick(function (){
+                    core.changeScene(3);
+                })
+                .setVisibility(visibility),
+
+            new InteractiveObject("io-ir_corredor", "Ir ao Corredor")
+                .setCssClass("intObj-bedroomToHallway")
+                .onClick(function () {
+                    core.changeScene(1);
+                })
+                .setVisibility(visibility),
+
+            new InteractiveObject("io-ler_prontuario", "Ler prontuário")
+                .setCssClass("intObj-prontuario-leito1-fase4")
+                .onClick(function () {
                     console.log("Action: ler prontuario");
-                    if(level.getFlag("lavar_maos").getValue() == false){
-                    }else{
-                        alert("Jogador perde pontos por não ter lavador as mãos antes de abrir prontuario");
-                    }
                     Prontuario.open();
                     core.openModalScene("Prontuario");
                 })
                 .setVisibility(true)
-        ]);
 
-        sala_de_leitos.registerDialogs([
-            // Dialog 0
-            new Dialog(lib.characters.jogador)
-                .setText("")
-                .registerOption(Dialogs.ala_masculina[0], function(){
-                    core.openDialog(1);
-                }),
-            // Dialog 1
-            new Dialog(lib.characters.pacientes.joao)
-                .setText(Dialogs.ala_masculina[1])
-                .registerOption("", function () {
-                    core.openDialog(2);
-                }),
-            // Dialog 2
-            new Dialog(lib.characters.jogador)
-                .setText("")
-                .registerOption(Dialogs.ala_masculina[2], function () {
-                    core.closeDialog();
-                })
-                .registerOption(Dialogs.ala_masculina[3], function () {
-                    core.closeDialog();
-                })
-                .registerOption(Dialogs.ala_masculina[4], function () {
-                    core.closeDialog();
-                })
-                .setRandomize(true)
         ]);
 
         //endregion
 
         //region Leito
-        var leito = lib.scenes.leitos.joao.getClone()
+        var leito = lib.scenes.leitos.pedro.getClone()
             .onLoad(function () {
                 console.log("Leito: Onload");
                 core.setInteractiveObjectVisible("io-pulseira_paciente", true);
+                core.openDialog(0);
 
                 //force case 1
                 //level.getFlag("visita-leito").setValue(1);
@@ -245,25 +220,34 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 level.getFlag("visita-leito").setValue(1);
                 core.closeCommandBar();
             });
-        sala_de_leitos.registerInteractiveObjects([
-            new InteractiveObject("io-ir_leito", "Ir ao leito")
-                .setCssClass("intObj-ir_leito-tutorial")
-                .onClick(function (){
-                    core.changeScene(3);
-                })
-                .setVisibility(visibility),
-
-            new InteractiveObject("io-ir_corredor", "Ir ao Corredor")
-                .setCssClass("intObj-bedroomToHallway")
-                .onClick(function () {
-                    core.changeScene(1);
-                })
-                .setVisibility(visibility)
-        ]);
 
         //region Leito - Dialogs
         leito.registerDialogs([
-            
+            // Dialog 0
+            new Dialog(lib.characters.jogador)
+                .setText("")
+                .registerOption(Dialogs.ala_masculina[0], function(){
+                    core.openDialog(1);
+                }),
+            // Dialog 1
+            new Dialog(lib.characters.pacientes.pedro)
+                .setText(Dialogs.ala_masculina[1])
+                .registerOption("", function () {
+                    core.openDialog(2);
+                }),
+            // Dialog 2
+            new Dialog(lib.characters.jogador)
+                .setText("")
+                .registerOption(Dialogs.ala_masculina[2], function () {
+                    core.closeDialog();
+                })
+                .registerOption(Dialogs.ala_masculina[3], function () {
+                    core.closeDialog();
+                })
+                .registerOption(Dialogs.ala_masculina[4], function () {
+                    core.closeDialog();
+                })
+                .setRandomize(true)
         ]);
         //endregion
 
@@ -284,6 +268,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         ]);
 
         leito.registerActions([
+
             new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
                 .setCssClass("action-ir_sala_de_leitos")
                 .onClick(function (){
@@ -299,7 +284,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         console.log("Alguns dados da pulseira estão incorretos");
                     }
                 })
-                .setVisibility(visibility),
+                .setVisibility(true),
+
             new Action("btn-perguntar_nome_do_paciente", "Perguntar nome do paciente")
                 .setCssClass("action-perguntar_nome_char1")
                 .onClick(function (){
@@ -340,89 +326,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 })
                 .setVisibility(visibility),
 
-            new Action("btn-medir_temperatura", "Ver temperatura")
-                .setCssClass("action-medir_temperatura")
-                .onClick(function (){
-                    console.log("Action: medir_temperatura");
-                    if(level.getFlag("lavar-maos").getValue() >= 1){
-
-                        //core.setActionVisible("btn-medir_temperatura", false);
-                        core.openModalScene("modalTermometro");
-                        level.getFlag("termometro").setValue(true);
-
-                        if(level.getFlag("mediuTemperatura").getValue() == false) {
-                            level.getFlag("mediuTemperatura").setValue(true);
-                            core.registerScoreItem(Scores.tutorial.verTemperatura);
-                        }
-
-                        level.getFlag("lavar-maosDepois").setValue(false);
-                    }
-                })
-                .setVisibility(visibility),
-
-            new Action("btn-medir_pulso", "Ver pressão")
-                .setCssClass("action-medir_pulso")
-                .onClick(function (){
-                    console.log("Action: medir_pulso");
-                    if(level.getFlag("lavar-maos").getValue() >= 1){
-
-                        //core.setActionVisible("btn-medir_pulso", false);
-                        core.openModalScene("modalMedidor_pressao");
-                        level.getFlag("medidor-pressao").setValue(true);
-
-                        if(level.getFlag("mediuPressao").getValue() == false) {
-                            level.getFlag("mediuPressao").setValue(true);
-                            core.registerScoreItem(Scores.tutorial.verPressao);
-                        }
-
-                        level.getFlag("lavar-maosDepois").setValue(false);
-                    }
-                })
-                .setVisibility(visibility),
-
-            new Action("btn-saturacao_02", "Ver saturação de O2")
-                .setCssClass("action-medir_saturacao_02")
-                .onClick( function (){
-                        //core.setActionVisible("btn-saturacao_02", false);
-                    console.log("Action: medir_saturacao_02");
-
-                    if(level.getFlag("lavar-maos").getValue() >= 1){
-
-                        core.openModalScene("modalOximetro");
-                        level.getFlag("oximetro").setValue(true);
-
-                        if(level.getFlag("mediuBatimentosESaturacao").getValue() == false) {
-                            level.getFlag("mediuBatimentosESaturacao").setValue(true);
-                            core.registerScoreItem(Scores.tutorial.verSaturacao);
-                        }
-
-                        level.getFlag("lavar-maosDepois").setValue(false);
-                    }
-                })
-                .setVisibility(visibility),
-
-            new Action("btn-frequencia_respiratoria", "Ver frequência respiratória")
-                .setCssClass("action-medir_freq_respiratoria")
-                .onClick( function (){
-                    console.log("Action: medir_freq_respiratoria");
-                    if(level.getFlag("lavar-maos").getValue() >= 1){
-
-                        //core.setActionVisible("btn-frequencia_respiratoria", false);
-                        level.getFlag("relogio").setValue(true);
-
-                        if(level.getFlag("mediuFreqRespiratoria").getValue() == false) {
-                            level.getFlag("mediuFreqRespiratoria").setValue(true);
-                            core.registerScoreItem(Scores.tutorial.verFrequenciaRespiratoria);
-                        }
-
-                        level.getFlag("lavar-maosDepois").setValue(false);
-
-                        FreqRespiratoria.open();
-                        core.openModalScene("freqRespiratoria");
-                    }
-                })
-                .setVisibility(visibility),
-
             new Action("btn-ler_prontuario", "Ler prontuario")
                 .setCssClass("action-ler_prontuario")
                 .onClick(function (){
@@ -430,9 +333,58 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     Prontuario.open();
                     core.openModalScene("Prontuario");
                 })
-                .setVisibility(visibility)
+                .setVisibility(true)
         ]);
         //endregion
+
+        // region prontuario
+        prontuario = new Scene("Prontuario", "modalScene-prontuario_pedro");
+
+        prontuario.registerActions([
+            new Action("btn-fechar_prontuario", "Fechar prontuário")
+                .setCssClass("action-ler_prontuario")
+                .onClick(function (){
+                    console.log("Action: Fechar prontuario");
+                    Prontuario.close();
+                    core.closeModalScene("Prontuario");
+                })
+
+        ]);
+        //endregion
+
+        level.setSetupScript(function(){
+
+            Prontuario.setNome("Pedro Alcídes Mendonça");
+            Prontuario.setSexo("M");
+            Prontuario.setEstadoCivil("Solteiro");
+            Prontuario.setDataNascimento("03/06/1962");
+            Prontuario.setIdade("62 anos");
+            Prontuario.setProfissao("Professor");
+            Prontuario.setPai("Aldair Mendonça");
+            Prontuario.setMae("Ana Laura Alcídes Mendonça ");
+
+            Prontuario.setAlergiaMedicamentosa(false, "");
+            Prontuario.setDisableAlergiaMedicamentosa(true);
+            Prontuario.setDataInternacao("10/10/2015");
+            Prontuario.setLeito("01 - Leito Masculino");
+            Prontuario.setAntecedentes("Nenhum");
+            Prontuario.setHipotese("Infecção no trato respiratório por Streptococcus sp.  e desconforto respiratório.");
+            Prontuario.setObservacoes("Está no 2.º dia de uso de Cefalotina Sódica (Keflin®)");
+
+            Prontuario.setPeso("62");
+            Prontuario.setAltura("1,77");
+            Prontuario.setCircunferenciaAbdominal("91");
+
+            Prontuario.setPrescEnfermagemState("decubito");
+
+            Prontuario.setPrescMedicaRowData(0, "15/03", "Cefalotina sódica (Keflin®)", "Endovenosa", "800 mg diluído em 100 ml de SF (soro fisiológico) 0,9% em 01 hora", "6/6h", "Administrado medicação sem intercorrência<br />(X) Administrado medicação com intercorrência", true);
+            Prontuario.setPrescMedicaRowData(1, '', '', '', '', '', '', false);
+
+            Prontuario.setSsvvRowData(0, '15/03', '110x70', '55', '16', '96', '37.3', true);
+            Prontuario.setSsvvRowData(1, '', '', '', '', '', '', true);
+
+            Prontuario.setAnotacaoEnfermagemRowData('15/03', '');
+        });
 
         //region Register Scenes
 
@@ -460,10 +412,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Flags
         level.registerFlag(new Flag("folheto_dos_nove_certos", false));
         level.registerFlag(new Flag("passagem_sala-de-leitos", 0));
-        // level.registerFlag(new Flag("visita-leito", 0));
+        level.registerFlag(new Flag("visita-leito", 0));
         // level.registerFlag(new Flag("pulseira", false));
         level.registerFlag(new Flag("lavar-maos", false));
-        // level.registerFlag(new Flag("lavar-maosDepois", false));
+        level.registerFlag(new Flag("lavar-maosDepois", false));
         // level.registerFlag(new Flag("termometro", false));
         // level.registerFlag(new Flag("medidor-pressao", false));
         // level.registerFlag(new Flag("oximetro", false));
