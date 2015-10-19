@@ -4,7 +4,7 @@
 
  */
 define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons', 'Pulseira', 'Prontuario', 'FreqRespiratoria'],
-    function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, Commons, Pulseira, Prontuario, freqRespiratoria) {
+    function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, freqRespiratoria) {
 
         //region Imports
         var Dialogs = require('Dialogs_data').fase1;
@@ -76,12 +76,24 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .onLoad(function(){
                 //Pulseira.open();
                 //core.openModalScene("modalOximetro");
-                Prontuario.open();
+                //Prontuario.open();
                 //freqRespiratoria.open();
 
                 //core.showEndOfLevel();
             });
         //endregion
+
+        recepcao.registerActions([
+            new Action("btn-ir_corredor", "Ir ao corredor")
+                .setCssClass("action-ir_corredor")
+                .onClick(function (){
+                    console.log("Action: ir_corredor");
+                    core.changeScene(1);
+                })
+                .setVisibility(true)
+        ]);
+
+        var corredor = lib.scenes.corredor;
 
         var oximetro = new Scene("modalOximetro", "Oxímetro")
             .setCssClass("modalScene-oximetro")
