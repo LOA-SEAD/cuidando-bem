@@ -87,5 +87,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             }
         };
         console.groupEnd();
+
         return lib;
     });
