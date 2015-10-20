@@ -11,7 +11,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         var level = new Level("Level 5");
         console.groupCollapsed(level.getName());
-        
+
         //var flags_on = true;    // if false it wont check for flags -- tests purpose
         //var visibility = false;
         //if (!flags_on)
@@ -19,10 +19,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region Scenes
 
-	    var
+        var
         recepcao,
         corredor;
-		//alaMasculina,
+        //alaMasculina,
         //sala_de_leitos,
         //leito,
         //posto_de_enfermagem,
@@ -30,14 +30,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //pulseira,
         //prontuario;
 
-		//region Recepcao
-		function recepcaoIrCorredor() {
+        //region Recepcao
+        function recepcaoIrCorredor() {
             console.log("Funcao: recepcao_ir_corredor");
             if ( level.getFlag("conversar_recepcionista").getValue() == true ) {  // wont check for flags
                 core.changeScene(1);
                 console.log("Ir para o corredor");
             } else {
-                console.log("Necessita aÃ§Ã£o: conversar com a recepcionista");
+                console.log("Necessita ação: conversar com a recepcionista");
             }
         }
 
@@ -53,7 +53,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             });
 
         recepcao.registerDialogs([
-			// Dialog 0
+            // Dialog 0
             new Dialog(lib.characters.recepcionista)
                 .setText(Dialogs.recepcao[0])
                 .registerOption("", function(){
@@ -62,7 +62,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 })
         ]);
 
-		recepcao.registerInteractiveObjects([
+        recepcao.registerInteractiveObjects([
             new InteractiveObject("intObj-conversar_recepcionista", "Conversar com a Recepcionista")
                 .setCssClass("intObj-talkToReceptionist")
                 .setVisibility(true)
@@ -72,24 +72,24 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
                 .setCssClass("intObj-lobbyToHallway-left")
                 .onClick(recepcaoIrCorredor)
-                .setVisibility(visibility),
+                .setVisibility(true),
 
 
             new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
                 .setCssClass("intObj-lobbyToHallway-right")
                 .onClick(recepcaoIrCorredor)
-                .setVisibility(visibility)
+                .setVisibility(true)
         ]);
         //endregion
 
-		//region Corredor
+        //region Corredor
         function conversarMentor() {
             console.log("Entrando no corredor");
             /*if(level.getFlag("conversar_mentor").getValue() == false){
                 level.getFlag("conversar_mentor").setValue(true);*/
                 core.openDialog(0);
         }
-    
+
         function corredorIrAlaFeminina() {
             //if (level.getFlag("conversar_mentor").getValue() == true) {
                 /*if(level.getFlag("examinar_paciente").getValue() == false) {
@@ -103,10 +103,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 }
                 console.log("Action: corredorIrSalaLeitos");*/
             /*} else {
-                console.log("Necessita aÃ§Ã£o: falar com mentor");
+                console.log("Necessita ação: falar com mentor");
             }*/
         }
-        
+
         corredor = lib.scenes.corredor.getClone()
             .onLoad( function () {
                 switch (level.getFlag("passagem_corredor").getValue()){
@@ -143,7 +143,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         break;
                 }
             });
-        
+
         corredor.registerDialogs([
             // Dialog 0
             new Dialog(lib.characters.jogador)
@@ -182,7 +182,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Flags
-        
+
         level.registerFlag(new Flag("conversar_recepcionista"), false);
         //level.registerFlag(new Flag("conversar_mentor"), false);
         level.registerFlag(new Flag("passagem_corredor", 0));
