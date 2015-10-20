@@ -189,7 +189,7 @@ define({
             //1 Paciente
             "Bom dia.",
             // Ação - pegar o prontuário
-            //3 Jogador
+            //2 Jogador
             "Parece que temos um procedimento para ser realizado, vou até o posto de enfermagem e já volto."
         ],
         leito_paciente: [
@@ -206,8 +206,9 @@ define({
             //4 Jogador
             "Justo a Argentina, senhor Raul? Hahaha. Vou verificar sua glicemia para que possamos acompanhar" +
             " a diabetes. Quando precisar se levantar, aperte a campainha e terá auxílio imediato.",
-            //5 Mentor
+            //5 Paciente
             "Gracias! Soy velho e últimamente já no consigo estar de pie.",
+            //Ação - medir a glicemia
             //6 Paciente
             "Cuál foi el resultado?",
             //7 Jogador op 1
@@ -421,7 +422,7 @@ define({
             //1 Paciente
             "Boa tarde!",
             //2 Jogador
-            "Sou da equipe de enfermangem do hospital e realizarei os cuidados esta tarde."
+            "Sou da equipe de enfermagem do hospital e realizarei os cuidados esta tarde."
         ],
         leito_paciente: {
             fala1: [
@@ -439,7 +440,7 @@ define({
                 //3 Paciente
                 "Sim. O estress e a correria no Consulado são diárias, eu já esperava que isso talvez" +
                 " pudesse acabar acontecendo. Ao menos os movimentos do meu lado direito estão voltando," +
-                " tudo  estava paralisado. E caso ajude, sou diabética e hipertensa.",
+                " tudo estava paralisado. E caso ajude, sou diabética e hipertensa.",
                 //4 Jogador op 1
                 "Realizarei alguns procedimentos, qualquer dúvida basta perguntar." +
                 " Além disso, deixarei sua grade sempre erguida; a senhora pode ter" +
@@ -761,7 +762,9 @@ define({
         ],
         perdido: {
             enfermagem: [
+                // 0 op 1
                 "Está perdido? O lugar correto é o posto de enfermagem.",
+                // 1 op 2
                 "Você tem certeza  de que este é o lugar certo?"
             ],
             ala_feminina:[
