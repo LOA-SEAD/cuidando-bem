@@ -371,7 +371,7 @@ define({
             "Agradeço, Paulo! Preciso voltar ao paciente."
         ],
         posto_enfermagem: [
-            //Cálculo de medicamente
+            //Cálculo de medicamento
             //0 Jogador
             "Acredito que peguei tudo o que precisava.",
             //1 Mentor
