@@ -687,7 +687,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Prontuario.setIdade("78 anos");
             Prontuario.setProfissao("Operário Aposentado");
 
-            //TODO: Atualizar isso com informaçõµes corretas dos pacientes
+            //TODO: Atualizar isso com informações corretas dos pacientes
             Prontuario.setPai("Leonardo Gouvêa");
             Prontuario.setMae("Maria Clara Esme Gouvêa");
 
