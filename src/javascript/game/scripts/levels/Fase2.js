@@ -1,4 +1,4 @@
-/*
+﻿/*
  This module has every wrold variable from each game level so it can be easily loaded inside the game.
  New levels can easily be made by adding new game levels.
  */
@@ -210,16 +210,30 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .onLoad(function (){
                 console.log("Entrando na sala de leitos");
                 core.openCommandBar();
+                //Na primeira vez o leito vai estar desabilitado
+                if (level.getFlag("segunda_ida_leito_paciente").getValue() == false){
+                    core.setInteractiveObjectVisible("io-ir_leito", false);
+                }
+                else{
+                    core.setInteractiveObjectVisible("io-ir_leito", true);
+                }
             })
             .onUnload( function (){
                 console.log("Saindo da sala de leitos");
+                //Habilitar o fato de que a proxima ida ao leito do paciente seja no mínimo a segunda
+                level.getFlag("segunda_ida_leito_paciente").setValue(true);
+                // [duvida] Vai precisar desabilitar a segunda vez que lavou as mãos 
                 core.closeCommandBar();
             });
 
         sala_de_leitos.registerInteractiveObjects([
             new InteractiveObject("io-ir_leito", "Ir ao leito")
-                .setCssClass("intObj-ir_leito-fase1")
+                .setCssClass("intObj-ir_leito-fase1") // verificar onde conserta
                 .onClick(function (){
+                    if (level.getFlag("lavar_maos2").getValue() == false){
+                        //Mentor apenas corrige
+                        core.openDialog(3);
+                    }
                     core.changeScene(3);
                 })
                 .setVisibility(false),
@@ -251,12 +265,24 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             new Action("btn-lavar_maos", "Lavar as mãos")
                 .setCssClass("action-lavar_maos")
                 .onClick(function (){
-                    if(level.getFlag("lavar_maos").getValue() == false) {
-                        level.getFlag("lavar_maos").setValue(true);
+                    //verifica se é a primeira vez que está indo verificar o paciente
+                    if(level.getFlag("segunda_ida_leito_paciente").getValue() == false) {
+                        if(level.getFlag("lavar_maos").getValue() == false) {
+                            level.getFlag("lavar_maos").setValue(true);
+                        }
+                        if(level.getFlag("score_lavar_maos_antes_do_prontuario").getValue() == false) {
+                            core.registerScoreItem(Scores.lavaMaosAntes);
+                            level.getFlag("score_lavar_maos_antes_do_prontuario").setValue(true);
+                        }
                     }
-                    if(level.getFlag("score_lavar_maos_antes_do_prontuario").getValue() == false) {
-                        core.registerScoreItem(Scores.lavaMaosAntes);
-                        level.getFlag("score_lavar_maos_antes_do_prontuario").setValue(true);
+                    else {
+                        if(level.getFlag("lavar_maos2").getValue() == false) {
+                            level.getFlag("lavar_maos2").setValue(true);
+                        }
+                        if(level.getFlag("score_lavar_maos_antes_de_ir_no_leito").getValue() == false) {
+                            core.registerScoreItem(Scores.lavarMaosAntesLeito);
+                            level.getFlag("score_lavar_maos_antes_de_ir_no_leito").setValue(true);
+                        }
                     }
                 })
                 .setVisibility(false),
@@ -284,11 +310,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         ]);
 
         sala_de_leitos.registerDialogs([
+            // 0
             new Dialog(lib.characters.jogador)
                 .setText(Dialogs.ala_masculina[0])
                 .registerOption("", function() {
                     core.openDialog(1);
                 }),
+            // 1
             new Dialog(lib.characters.pacientes.raul_unknow)
                 .setText(Dialogs.ala_masculina[1])
                 .registerOption("", function() {
@@ -297,9 +325,15 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.closeDialog();
                     core.openCommandBar();
                 }),
-            //Verificar se fechou o prontuario pra abrir a fala
+            // 2 - Verificar se fechou o prontuario pra abrir a fala
             new Dialog(lib.characters.jogador)
                 .setText(Dialogs.ala_masculina[2])
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
+            // 3 - Mentor corrigindo o fato de não lavar as mãos antes de ir ao leito do paciente
+            new Dialog(lib.characters.mentor)
+                .setText(Alertas.lavar_maos.tipo3)
                 .registerOption("", function() {
                     core.closeDialog();
                 })
@@ -311,7 +345,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .onLoad(function () {
                 core.openCommandBar();
                 console.log("Leito: Onload");
-
+                core.setInteractiveObjectVisible("io-pulseira_paciente", true);
             })
             .onUnload(function (){
                 console.log("Leito: OnUnload");
@@ -326,8 +360,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.openModalScene("pulseira");
                     Pulseira.open();
                     core.openCommandBar();
+                    if(level.getFlag("pulseira").getValue() == false)
+                        core.setInteractiveObjectVisible("io-confirmar_pulseira", true);
                 })
-                .setVisibility(true)
+                .setVisibility(visibility)
         ]);
 
         leito.registerDialogs([
@@ -385,17 +421,33 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("action-leito-char-02") //Vai ser outro
                 .onClick(function () {
                     console.log("Action: btn-conversar_paciente");
-
                     if(level.getFlag("score_falar_paciente").getValue() == false) {
                         core.registerScoreItem(Scores.falarComPaciente);
                         level.getFlag("score_falar_paciente").setValue(true);
                     }
-
                     core.openDialog(0);
                     core.closeCommandBar();
                 })
                 .setVisibility(true),
                 //Mais actions
+            //A ordem será mantida por flags
+            // CUIDADO COM OS CSS ERRADOS
+            new Action("btn-selecionar_bandeja", "Selecionar Bandeja")
+                .setCssClass("action-selecionar_bandeja")
+                .onClick(function (){
+                    if(Pulseira.isAllDataValid()){
+                        console.log("Action: selecionar_bandeja");
+                        // [duvida] uma flag pra pulseira
+                        core.registerScoreItem(Scores.verificarPulseira);
+                        //core.setActionVisible("btn-perguntar_nome_do_paciente", false);
+                        //core.changeScene(2);
+                        Pulseira.disable();
+                    }else{
+                        core.closeCommandBar();
+                        alert("Mentor corrige");
+                        console.log("Alguns dados da pulseira estão incorretos");
+                })
+                .setVisibility(visibility),
         ]);
         //endregion
 
@@ -422,7 +474,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         }
                         core.changeScene(1);
                     }else{
-                        alert("Você esqueceu de pegar algo. Tem que revisar se realmente deve travar aqui")
+                        alert("Você esqueceu de pegar algo. Tem que revisar se realmente deve travar aqui");
                         //Aparentemente pode sair caso nao pegou tudo mas não pode ir pra ala masculina
                         level.getFlag("pegou_tudo_gaveta").setValue(false);
                         core.changeScene(1);
@@ -595,7 +647,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             level.getFlag("lavar_maos").setValue(false);
             level.getFlag("checar_prontuario").setValue(false);
             level.getFlag("pegou_tudo_gaveta").setValue(true);
+            level.getFlag("segunda_ida_leito_paciente").setValue(false);
             level.getFlag("lavar_maos2").setValue(false);
+            level.getFlag("pulseira").setValue(false);
             level.getFlag("conversar_paciente2").setValue(false);
             level.getFlag("usou_bandeja").setValue(false);
             level.getFlag("usou_luvas").setValue(false);
@@ -620,6 +674,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             level.getFlag("score_pegou_algodao").setValue(false);
             level.getFlag("score_pegou_luvas").setValue(false);
             level.getFlag("score_pegou_bandeja").setValue(false);
+            level.getFlag("score_lavar_maos_antes_de_ir_no_leito").setValue(true);
 
             Pulseira.setNameRegExp(/Raul Gonzales Rodrigues/);
             Pulseira.setLeitoRegExp(/0*1/);
@@ -666,7 +721,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("lavar_maos"), false);
         level.registerFlag(new Flag("checar_prontuario"), false);
         level.registerFlag(new Flag("pegou_tudo_gaveta"), true);
+        level.registerFlag(new Flag("segunda_ida_leito_paciente"), false);
         level.registerFlag(new Flag("lavar_maos2"), false);
+        level.registerFlag(new Flag("pulseira"), false);
         level.registerFlag(new Flag("conversar_paciente2"), false);
         level.registerFlag(new Flag("usou_bandeja"), false);
         level.registerFlag(new Flag("usou_luvas"), false);
@@ -691,6 +748,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("score_pegou_algodao"), false);
         level.registerFlag(new Flag("score_pegou_luvas"), false);
         level.registerFlag(new Flag("score_pegou_bandeja"), false);
+        level.registerFlag(new Flag("score_lavar_maos_antes_de_ir_no_leito"), false);
 
         level.setInitialScene(0);
         //endregion
