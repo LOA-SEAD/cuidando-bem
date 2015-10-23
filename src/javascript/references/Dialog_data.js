@@ -250,7 +250,20 @@ define({
                 "É  apenas um papel a ser preenchido, sem muita importância.",
                 //4 Mentor
                 "Muito bem! Antes de levar a paciente para a cirurgia, você deve ir ao centro cirúrgico" +
-                " e verificar com a circulante de sala se todos os equipamentos estão em ordem?"
+                " e verificar com a circulante de sala se todos os equipamentos estão em ordem.",
+                
+                // mensagem do mentor em caso de resposta incorreta
+                
+            // 5 - resposta a OP2    
+            "Imagine  todos  os  riscos  existentes  nos" +
+            "procedimentos  cirúrgicos!  A  lista  é  um  das" +
+            "estratégias para tentar amenizá-los.",
+                
+            // 6 - resposta a OP3
+            "A lista  é  uma  estratégia muito  importante  para" +
+            "evitar  erros  durante  todo  o  procedimento" +
+            "cirúrgico.  É  um  documento  de  extrema importância!"
+                
             ],
             fala2: [
                 //0 Jogador
