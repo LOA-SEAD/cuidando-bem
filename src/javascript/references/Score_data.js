@@ -47,6 +47,7 @@
             lavarMaosAntesLeito: new Score("Lavar mãos antes de ir para o leito do paciente", 200),
             falarComPaciente: new Score("Conversar com paciente", 50),
             verificarPulseira: new Score("Verificar Pulseira", 50),
+            selecionarBandeja: new Score("Selecionar Bandeja", 50),
             porLuvas: new Score("Vestir luvas", 50),
             usarAlgodao: new Score("Usar Algodão", 50),
             realizarTesteGlicemia: new Score("Realizar teste de glicemia", 100),

@@ -252,6 +252,15 @@ define({
                 //4 Mentor
                 "Muito bem! Antes de levar a paciente para a cirurgia, você deve ir ao centro cirúrgico" +
                 " e verificar com a circulante de sala se todos os equipamentos estão em ordem?"
+                // mensagem do mentor em caso de resposta incorreta
+                // 5 - resposta a OP2    
+                "Imagine  todos  os  riscos  existentes  nos" +
+                "procedimentos  cirúrgicos!  A  lista  é  um  das" +
+                "estratégias para tentar amenizá-los.",
+                // 6 - resposta a OP3
+                "A lista  é  uma  estratégia muito  importante  para" +
+                "evitar  erros  durante  todo  o  procedimento" +
+                "cirúrgico.  É  um  documento  de  extrema importância!"
             ],
             fala2: [
                 //0 Jogador
@@ -790,6 +799,12 @@ define({
             paciente: [
                 "O paciente precisa de informações"
             ]
+            objeto_qualquer[
+                "Você está se esquecendo de algo. Volte e tente se lembrar."
+            ]
         }
+        pulseira: [
+            "Você tem certeza que as informações do paciente estão corretas?"
+        ]
     }
 });
