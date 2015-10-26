@@ -284,7 +284,14 @@ define({
                 //3 Jogador op 3
                 "Sim, já vou buscá-la.",
                 //4 Jogador
-                "Terminamos, Aline. Vou buscar a paciente."
+                "Terminamos, Aline. Vou buscar a paciente.",
+                //5 op errada1
+                "Você  ainda  irá  conhecer  a  paciente  e  é  o" +
+                "responsável por levá-la ao centro cirúrgico!",
+                //6 op errada2
+                "Nunca  se  esqueça  de  verificar  todos  os" +
+                "equipamento, pois  assim  evitamos  a ocorrência" +
+                "de imprevistos na cirurgia!"
             ],
             fala2: [
                 //0 Aline
@@ -328,7 +335,24 @@ define({
                 //17 Jogador op 2
                 "Tudo certo até agora, Regina. Vamos para a sala de cirurgia?",
                 //18 Jogador op 3
-                "Desculpe, Regina, preciso fazer mais algumas perguntas."
+                "Desculpe, Regina, preciso fazer mais algumas perguntas.",
+                
+                //19 op2 - primeira parte
+                "Tem certeza? Talvez a primeira fase deva ser" +
+                "aplicada em um procedimento anterior.",
+                
+                //20 op3 - primeira parte
+                "Você tem certeza de que irá verificar o paciente" +
+"apenas no fim do procedimento?",
+                
+                //21 op2 - segunda parte
+                "O oxímetro de pulso do paciente e a indicação" +
+"do local cirúrgico devem ser verificados!",
+                
+                //22 op3 - segunda parte
+                "Você já possui todas informações necessárias!"
+                
+                
             ]
         },
         ala_feminina: [

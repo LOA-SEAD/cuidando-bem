@@ -74,6 +74,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 recepcionista: new Character("Clarice", "char-receptionist"),
                 mentor: new Character("Mentor", "char-mentor"),
                 jogador: new Character("Jogador", "char-player"),
+                circulante: new Character("Circulante", "char-player"),
 
                 pacientes: {
                     joao: new Character("Sr. João", "char-paciente_01"),
