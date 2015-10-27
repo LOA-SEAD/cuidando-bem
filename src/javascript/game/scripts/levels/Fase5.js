@@ -8,8 +8,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region Imports
         var Dialogs = require("Dialogs_data").fase5;
-        //var Alertas = require("Dialogs_data").alertas;
-        // var Scores = require("Scores_data").fase5;
+        var Alertas = require("Dialogs_data").alertas;
+        var Scores = require("Scores_data").level5;
         //endregion
 
         var level = new Level("Level 5");
@@ -86,28 +86,42 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Corredor
-        function conversarMentor() {
-            console.log("Entrando no corredor");
-            /*if(level.getFlag("conversar_mentor").getValue() == false){
-                level.getFlag("conversar_mentor").setValue(true);*/
-                core.openDialog(0);
+        
+
+        function corredorIrPostoEnfermagem () {
+            //if(level.getFlag("checar_prontuario").getValue() == false) {
+                core.openDialog(2);
+                if(level.getFlag("score_ir_posto_hora_errada").getValue() == false) {
+                    core.registerScoreItem(Scores.irPostoEnfermagem_horaErrada);
+                    level.getFlag("score_ir_posto_hora_errada").setValue(true);
+                }
+            //} else {
+            //    core.changeScene(4);
+            //}
         }
 
-        function corredorIrAlaFeminina() {
-            //if (level.getFlag("conversar_mentor").getValue() == true) {
-                /*if(level.getFlag("examinar_paciente").getValue() == false) {
-                    core.changeScene(2);
-                } else {
-                    if(level.getFlag("coxim").getValue() == true) {
-                        core.changeScene(2);
-                    }else{
-                        core.openDialog(11);
-                    }
-                }
-                console.log("Action: corredorIrSalaLeitos");*/
-            /*} else {
-                console.log("Necessita ação: falar com mentor");
-            }*/
+        function corredorIrAlaFeminina () {
+            core.openDialog(3);
+            if(level.getFlag("score_ir_ala_feminina_hora_errada").getValue() == false) {
+                core.registerScoreItem(Scores.irAlaFeminina_horaErrada);
+                level.getFlag("score_ir_posto_hora_errada").setValue(true);
+            }
+        }
+
+        function corredorIrFarmacia () {
+            core.openDialog(4);
+            if(level.getFlag("score_ir_farmacia_hora_errada").getValue() == false) {
+                core.registerScoreItem(Scores.irFarmacia_horaErrada);
+                level.getFlag("score_ir_posto_hora_errada").setValue(true);
+            }
+        }
+
+        function corredorIrCentroCirurgico() {
+            core.openDialog(5);
+            if(level.getFlag("score_ir_farmacia_hora_errada").getValue() == false) {
+                core.registerScoreItem(Scores.irCentroCirurgico_horaErrada);
+                level.getFlag("score_ir_posto_hora_errada").setValue(true);
+            }        
         }
 
         corredor = lib.scenes.corredor.getClone()
@@ -157,12 +171,66 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             // Dialog 1
             new Dialog(lib.characters.mentor)
                 .setText(Dialogs.corredor[1])
-                // resposta correta
                 .registerOption("", function () {
                     core.closeDialog();
-                })
+                }),
+            // 2 Mentor Ação errada: Ir ao posto de enfermagem
+            new Dialog(lib.characters.mentor)
+                .setText(Alertas.perdido.enfermagem[1])
+                .registerOption("", function (){
+                    core.closeDialog();
+                }),
+            // 3 - Mentor Ação errada: Ir a ala feminina
+            new Dialog(lib.characters.mentor)
+                .setText(Alertas.perdido.ala_feminina)
+                .registerOption("", function (){
+                    core.closeDialog();
+                }),
+            // 4 - Mentor Ação errada: Ir a farmacia
+            new Dialog(lib.characters.mentor)
+                .setText(Alertas.perdido.farmácia)
+                .registerOption("", function (){
+                    core.closeDialog();
+                }),
         ]);
 
+        corredor.registerInteractiveObjects([
+            new InteractiveObject("io-ir_sala_leitos","Ir para a sala de Leitos Masculino")
+                .setCssClass("intObj-goToBedroom")
+                .onClick(corredorIrSalaLeitos)
+                .setVisibility(true),
+
+            new InteractiveObject("io-ir_posto_enfermagem","Ir para o Posto de Enfermagem")
+                .setCssClass("intObj-goToNursingStation")
+                .onClick(corredorIrPostoEnfermagem)
+                .setVisibility(true),
+
+            //TODO: Adicionar ir ala feminina
+            new InteractiveObject("io-ir_ala_feminina","Ir para a Ala Feminina")
+                .setCssClass("intObj-goToFemaleRoom")
+                .onClick(corredorIrFarmacia)
+                .setVisibility(true),
+
+            //TODO: Adicionar ir Farmácia
+            new InteractiveObject("io-ir_farmacia","Ir para a Farmacia")
+                .setCssClass("intObj-goToPharmacy")
+                .onClick(corredorIrAlaFeminina)
+                .setVisibility(true),
+
+            //TODO: Adicionar ir Centro Cirurgico
+            new InteractiveObject("io-ir_centro_cirurgico","Ir para o Centro Cirurgico")
+                .setCssClass("intObj-goToBedroom")   //arrumar
+                .onClick(corredorIrCentroCirurgico)      
+                .setVisibility(true),
+
+            new InteractiveObject("io-conversar_mentor","Conversar com Mentor")
+                .setCssClass("intObj-talkToMentor")
+                .onClick(function (){
+                    core.openDialog(0);
+                })
+                .setVisibility(false)
+
+        ]);
         //endregion
 
         //endregion
@@ -175,7 +243,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region Register Scenes
 
+        //0
         level.registerScene(recepcao);
+        //1
         level.registerScene(corredor);
 
         // endregion
@@ -184,23 +254,73 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //endregion
 
+
+
+        level.setSetupScript(function () {
+            
+            level.getFlag("conversar_recepcionista").setValue(false);
+            level.getFlag("passagem_corredor").setValue(0);
+            //level.getFlag("conversar_mentor").setValue(false);
+            level.getFlag("score_ir_posto_hora_errada").setValue(false);
+            level.getFlag("score_ir_farmacia_hora_errada").setValue(false);
+            level.getFlag("score_ir_ala_feminina_hora_errada").setValue(false);
+
+            Pulseira.setNameRegExp(/Esther Fidelis/);
+            Pulseira.setLeitoRegExp(/0*2/);
+            Pulseira.setDataRegExp(/05\/12\/1955/);
+
+            Prontuario.setNome("Esther Fidelis");
+            Prontuario.setSexo("F");
+            Prontuario.setEstadoCivil("Casada");
+            Prontuario.setDataNascimento("05/12/1955");
+            Prontuario.setIdade("60 anos");
+            Prontuario.setProfissao("Relações Internacionais (Doutorado Completo)");
+
+            Prontuario.setPai("Apolo Zovadelli Fidelis");
+            Prontuario.setMae("Laura Rodrigues Fidelis");
+
+            Prontuario.setAlergiaMedicamentosa(false, "");
+            Prontuario.setDisableAlergiaMedicamentosa(true);
+            Prontuario.setDataInternacao("02/11/2015");
+            Prontuario.setLeito("02 - Enfermaria Feminina");
+            Prontuario.setAntecedentes("Quatro internações devido à quadro de hiperglicemia entre os anos de 2012 à 2013.");
+            Prontuario.setHipotese("Acidente vascular encefálico isquêmico (AVCI).");
+            Prontuario.setObservacoes("Teve trombose venosa profunda, diabetes mellitus tipo II e pressão arterial sistêmica. Tabagista há 40 anos.");
+
+            Prontuario.setPeso("56");
+            Prontuario.setAltura("1,70");
+            Prontuario.setCircunferenciaAbdominal("82");
+
+            Prontuario.setPrescMedicaRowData(0, "02/11", "Fondaparinux Sódico", "Oral", "7,5 mg (1x ao dia)", "07h", true, true);
+            Prontuario.setPrescMedicaRowData(1, "02/11", "Atenolol", "Oral", "100 mg (2x ao dia)", "08h - 18h", true, true);
+            Prontuario.setPrescMedicaRowData(2, "02/11", "Metmorfina", "Oral", "750 mg (2x ao dia)", "06h - 17h", true, true);
+            Prontuario.setPrescMedicaRowData(3, "02/11", "Glibenclamida", "Oral", "4 mg (2x ao dia)", "07:30h - 17:30h", true, true);
+
+            Prontuario.setPrescEnfermagemState("decubito");
+            //Prontuario.setPrescEnfermagemState("verificar glicemia");
+            //Prontuario.setPrescEnfermagemState("levantar grade");
+            //Prontuario.setPrescEnfermagemState("troca curativo");
+
+            Prontuario.setSsvvRowData(0, '02/11', '120x70', '46', '15', '96', '35', true);
+            Prontuario.setSsvvRowData(1, '02/11', '130x80', '52', '18', '94', '36', true);
+            //Disable 2 row
+            Prontuario.setSsvvRowData(2, '', '', '', '', '', '', true);
+
+            Prontuario.setAnotacaoEnfermagemRowData('02/11', '');
+        });
+
         //region Flags
 
         level.registerFlag(new Flag("conversar_recepcionista"), false);
         //level.registerFlag(new Flag("conversar_mentor"), false);
         level.registerFlag(new Flag("passagem_corredor", 0));
+        level.registerFlag(new Flag("score_ir_posto_hora_errada"), false);
+        level.registerFlag(new Flag("score_ir_farmacia_hora_errada"), false);
+        level.registerFlag(new Flag("score_ir_ala_feminina_hora_errada"), false);
 
         //endregion
-
-        level.setSetupScript(function () {
-            //Script that runs once when the level is loaded or reloaded
-            level.getFlag("conversar_recepcionista").setValue(false);
-            level.getFlag("passagem_corredor").setValue(0);
-            //level.getFlag("conversar_mentor").setValue(false);
-        });
 
         level.setInitialScene(0);
-        //endregion
 
         game.registerLevel(level, 5);
 

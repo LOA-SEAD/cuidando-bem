@@ -251,7 +251,7 @@ define({
                 "É  apenas um papel a ser preenchido, sem muita importância.",
                 //4 Mentor
                 "Muito bem! Antes de levar a paciente para a cirurgia, você deve ir ao centro cirúrgico" +
-                " e verificar com a circulante de sala se todos os equipamentos estão em ordem?"
+                " e verificar com a circulante de sala se todos os equipamentos estão em ordem?",
                 // mensagem do mentor em caso de resposta incorreta
                 // 5 - resposta a OP2    
                 "Imagine  todos  os  riscos  existentes  nos" +
@@ -434,29 +434,26 @@ define({
             "Sou da equipe de enfermagem do hospital e realizarei os cuidados esta tarde."
         ],
         leito_paciente: {
-            fala1: [
-                //tabela
-            ],
-            fala2: [
-                //0 Jogador
-                "Antes de começarmos, a senhora poderia me dizer seu nome completo, por favor?",
-                //1 Paciente
-                "Esther Fidelis.",
-                //2 Jogador
-                "Senhora Esther, temos dois procedimentos a serem realizados: o primeiro será" +
-                " um teste de glicemia capilar. O segundo será um curativo no local machucado pela queda." +
-                " A senhora sofreu um acidente vascular, não é mesmo?",
-                //3 Paciente
-                "Sim. O estress e a correria no Consulado são diárias, eu já esperava que isso talvez" +
-                " pudesse acabar acontecendo. Ao menos os movimentos do meu lado direito estão voltando," +
-                " tudo estava paralisado. E caso ajude, sou diabética e hipertensa.",
-                //4 Jogador op 1
-                "Realizarei alguns procedimentos, qualquer dúvida basta perguntar." +
-                " Além disso, deixarei sua grade sempre erguida; a senhora pode ter" +
-                " sensação de desequilíbrio devido à queda e a medicação.",
-                //5 Jogador op 2
-                "Vou começar a realizar os procedimentos!"
-            ]
+            //0 Jogador
+            "Antes de começarmos, a senhora poderia me dizer seu nome completo, por favor?",
+            //1 Paciente
+            "Esther Fidelis.",
+            //2 Jogador
+            "Senhora Esther, temos dois procedimentos a serem realizados: o primeiro será" +
+            " um teste de glicemia capilar. O segundo será um curativo no local machucado pela queda." +
+            " A senhora sofreu um acidente vascular, não é mesmo?",
+            //3 Paciente
+            "Sim. O estress e a correria no Consulado são diárias, eu já esperava que isso talvez" +
+            " pudesse acabar acontecendo. Ao menos os movimentos do meu lado direito estão voltando," +
+            " tudo estava paralisado. E caso ajude, sou diabética e hipertensa.",
+            //4 Jogador op 1 - Certa
+            "Realizarei alguns procedimentos, qualquer dúvida basta perguntar." +
+            " Além disso, deixarei sua grade sempre erguida; a senhora pode ter" +
+            " sensação de desequilíbrio devido à queda e a medicação.",
+            //5 Jogador op 2
+            "Vou começar a realizar os procedimentos!",
+            //6 Mentor - Resposta op 2
+            "Você pode fornecer mais informações à paciente."
         }
     },
 
@@ -794,17 +791,56 @@ define({
                 "O algodão seco precisa ser utilizado"
             ],
             teste: [
-                "Lembre-se do procedimento a ser realizado"
+                // 0 - Fase 2
+                "Lembre-se do procedimento a ser realizado",
+                // 1 - Fase 5 (Tanto o de glicemia como fazer o curativo)
+                "Falta um item da prescrição de enfermagem. Tente novamente."
             ],
             paciente: [
                 "O paciente precisa de informações"
+            ],
+            objeto_qualquer: [
+                "Volte ao posto de enfermagem, você se esqueceu de alguns instrumentos."
+            ],
+            elevar_grade: [
+                //0 - Paciente homem
+                "Previna o paciente de futuras quedas! Pense e encontre a solução.",
+                //1 - Paciente mulher
+                "Previna a paciente de futuras quedas! Pense e encontre a solução."
+            ],
+            falar_paciente: [
+                "Tente conversar com a paciente."
+            ],
+            ver_pulseira: [
+                "Nunca se esqueça de verificar a identificação da paciente!"
+            ],
+            materiais_curativo: [
+                "Onde estão os materiais do curativo?"
+            ],
+            luvas_estereis: [
+                "Luvas estéreis são essenciais!"
+            ],
+            identificar_curativo: [
+                "Todo curativo precisa ser identificado!"
+            ],
+            anotar_prontuario: [
+                "O prontuário está vazio. Que tal fazer algumas anotações?"
             ]
-            objeto_qualquer[
-                "Você está se esquecendo de algo. Volte e tente se lembrar."
+            //informar_paciente (Level 5) -> Este ainda não encontrei onde será utilizado
+        },
+        descarte: {
+            algodão: [
+                // 0 Descarte na bandeja
+                "O algodão deve ser descartado na bandeja antes de ir para um depósito mais adequado."
+                // 1 Descarte no lixo branco
+
+            ],
+            agulha: [
+                "Faça o descarte da agulha em local adequado para evitar acidentes de trabalho."
             ]
-        }
-        pulseira: [
-            "Você tem certeza que as informações do paciente estão corretas?"
+        },
+        luvas_erradas: [
+            "Esta realmente é a luva utilizada para curativos?"
         ]
     }
 });
