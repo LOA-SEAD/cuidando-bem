@@ -433,7 +433,7 @@ define({
             //2 Jogador
             "Sou da equipe de enfermagem do hospital e realizarei os cuidados esta tarde."
         ],
-        leito_paciente: {
+        leito_paciente: [
             //0 Jogador
             "Antes de começarmos, a senhora poderia me dizer seu nome completo, por favor?",
             //1 Paciente
@@ -454,7 +454,7 @@ define({
             "Vou começar a realizar os procedimentos!",
             //6 Mentor - Resposta op 2
             "Você pode fornecer mais informações à paciente."
-        }
+        ]
     },
 
     fase6: {

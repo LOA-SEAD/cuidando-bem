@@ -29,6 +29,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         gaveta,
         pulseira,
         prontuario;
+        //glicosimetro
 
         //region Recepcao
         function recepcaoIrCorredor() {
@@ -228,7 +229,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .setCssClass("scene-bedroom")
             .onLoad(function (){
                 console.log("Entrando na sala de leitos");
-                core.openCommandBar();
+                //core.openCommandBar();
                 //Na primeira vez o leito vai estar desabilitado e ocorrerá uma conversa com o paciente
                 if (level.getFlag("segunda_ida_leito_paciente").getValue() == false){
                     core.setInteractiveObjectVisible("io-ir_leito", false);
@@ -236,6 +237,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 }
                 else{
                     core.setInteractiveObjectVisible("io-ir_leito", true);
+                    core.setActionVisible("btn-lavar_maos", true);
                 }
                 //Caso ele já tenha realizado os procedimentos, é habilitado os botões de descarte dos itens utilizados
                 if((level.getFlag("voltar_ala_masculina").getValue() == true)){
@@ -254,7 +256,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         sala_de_leitos.registerInteractiveObjects([
             new InteractiveObject("io-ir_leito", "Ir ao leito")
-                .setCssClass("intObj-ir_leito-fase2") // verificar onde conserta
+                .setCssClass("intObj-ir_leito-tutorial") // verificar onde conserta
                 .onClick(function (){
                     if (level.getFlag("lavar_maos2").getValue() == false){
                         //Mentor apenas corrige
@@ -336,7 +338,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function (){
                     console.log("Action: ler prontuario");
                     if((level.getFlag("lavar_maos").getValue() == false) ||
-                        ((level.getFlag("voltar_ala_masculina").getValue() == true) && (level.getFlag("lavar_maos_apos_lixo").getValue() == false)){
+                        ((level.getFlag("voltar_ala_masculina").getValue() == true) && (level.getFlag("lavar_maos_apos_lixo").getValue() == false))){
                         core.closeCommandBar();
                         core.openDialog(6);
                     } else {
@@ -383,11 +385,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                             level.getFlag("score_jogou_agulha_perfuro").setValue(true);
                             core.registerScoreItem(Scores.agulhaLixoCerto);
                         }
-                    }else{
-                    //ESPERAR REUNIÃO DE QUARTA PARA DECIDIR SE VAI PODER CRIAR UMA MENSAGEM PRO ALGODÃO
+                    }//else{
+                    //Não vai utilizar uma mensagem avisando que não jogou fora o algodão
                     //    core.closeCommandBar();
-                    //    core.openDialog(12);
-                    }
+                    //    core.openDialog(7);
+                    //}
 
                 })
                 .setVisibility(false),
@@ -442,20 +444,19 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setText(Alertas.descarte.agulha)
                 .registerOption("", function() {
                     core.closeDialog();
-                })
+                }),
             // 5 - Mentor corrigindo o fato de não elevar a grade
             new Dialog(lib.characters.mentor)
                 .setText(Alertas.esqueceu.elevar_grade[0])
                 .registerOption("", function() {
                     core.closeDialog();
-                })
+                }),
             // 6 - Mentor corrigindo o fato de não lavar as mãos antes de verificar o prontuario
             new Dialog(lib.characters.mentor)
                 .setText(Alertas.lavar_maos.tipo3)
                 .registerOption("", function() {
                     core.closeDialog();
                 })
-            // 7 - Mentor corrigindo o fato de não descartar o algodão
         ]);
         //endregion
 
@@ -478,6 +479,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function () {
                     //Desabilita o primeiro diálogo com o paciente
                     level.getFlag("conversar_paciente2").setValue(false);
+                    level.getFlag("selecionar_bandeja").setValue(true);
                     console.log("IO: pulseira_paciente");
                     core.openModalScene("pulseira");
                     Pulseira.open();
@@ -581,7 +583,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .registerOption("", function (){
                     core.closeDialog();
                 })
-            //15 - Possivel fala para a utilização da bandeja
         ]);
 
         leito.registerActions([
@@ -617,7 +618,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             new Action("btn-selecionar_bandeja", "Selecionar Bandeja")
                 .setCssClass("action-selecionar_bandeja")
                 .onClick(function (){
-                    if(level.getFlag("selecionar_bandeja").getValue() == false){
+                    if(level.getFlag("selecionar_bandeja").getValue() == true){
                         console.log("Action: Selecionar Bandeja");
                         //Desabilita acesso a pulseira
                         Pulseira.disable();
@@ -645,11 +646,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                             core.registerScoreItem(Scores.porLuvas);
                         }
                         level.getFlag("por_luvas").setValue(false);
-                    }else{
-                        //ESPERAR A REUNIÃO DE QUARTA PARA VER SE SERÁ CRIADA UMA FALA PRA BANDEJA
+                    }//else{
+                        //Não será utilizada uma fala casonão selecione a bandeja
                         /*core.closeCommandBar();
                         core.openDialog(15);*/
-                    }
+                    //}
                 })
                 .setVisibility(false),
 
@@ -660,7 +661,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         (level.getFlag("utilizar_algodao2").getValue() == true)) {
                         console.log("Action: Utilizar Algodão");
                         //Verifica qual é a vez que está utilizando o algodão
-                        if(level.getFlag("utilizar_algodao1").getValue() == false) {
+                        if(level.getFlag("utilizar_algodao1").getValue() == true) {
                             level.getFlag("realizar_teste_glicemia").setValue(true);
                             if(level.getFlag("score_utilizou_algodao1").getValue() == false) {
                                 level.getFlag("score_utilizou_algodao1").setValue(true);
@@ -752,8 +753,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         }
                         core.changeScene(1);
                     }else{
-                        alert("Você esqueceu de pegar algo. Tem que revisar se realmente deve travar aqui");
-                        //Aparentemente pode sair caso nao pegou tudo mas não pode ir pra ala masculina
+                        //Pode sair caso nao pegou tudo mas não pode ir pra ala masculina
                         level.getFlag("pegou_tudo_gaveta").setValue(false);
                         core.changeScene(1);
                     }
@@ -807,7 +807,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         level.getFlag("score_verificar_pulseira").setValue(true);
                         core.registerScoreItem(Scores.verificarPulseira);
                     }
-                    level.getFlag("selecionar_bandeja").setValue(true);
                     core.setActionVisible("btn-selecionar_bandeja", true);
                     core.setActionVisible("btn-por_luvas", true);
                     core.setActionVisible("btn-utilizar_algodao", true);
@@ -917,6 +916,16 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         ]);
         //endregion
 
+        //region Glicosimetro
+        /*
+        glicosimetro = new Scene("Glicosimetro", "Glicosimetro");
+
+        glicosimetro.registerActions([
+        */
+        ]);
+
+        //endregion
+
         //Register in level
         //0
         level.registerScene(recepcao);
@@ -1008,11 +1017,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Prontuario.setAltura("1,63");
             Prontuario.setCircunferenciaAbdominal("147");
 
-            Prontuario.setPrescMedicaRowData(0, "17/06", "Metmorfina", "Oral", "500 mg (2x ao dia)", "07h - 17h", true, true);
+            Prontuario.setPrescMedicaRowData(1, "17/06", "Metmorfina", "Oral", "500 mg (2x ao dia)", "07h - 17h", true, true);
             Prontuario.setPrescMedicaRowData(1, "17/06", "Glibenclamida", "Oral", "4 mg (2x ao dia)", "08h - 18h", true, true);
-            Prontuario.setPrescMedicaRowData(2, "17/06", "Bicarbonato de sódio", "Endovenoso", "8,4 g + Água destilada 100 ml", "Tempo de 4 horas", true, true);
+            Prontuario.setPrescMedicaRowData(1, "17/06", "Bicarbonato de sódio", "Endovenoso", "8,4 g + Água destilada 100 ml", "Tempo de 4 horas", true, true);
 
-            Prontuario.setPrescEnfermagemState("decubito");
+            //Prontuario.setPrescEnfermagemState("decubito");
             //Prontuario.setPrescEnfermagemState("verificar glicemia");
             //Prontuario.setPrescEnfermagemState("levantar grade");
 
