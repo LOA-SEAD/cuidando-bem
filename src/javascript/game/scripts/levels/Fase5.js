@@ -101,10 +101,20 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         }
 
         function corredorIrAlaFeminina () {
+            //CRIAR CONDIÇÃO PARA LIBERAR A ALA FEMININA APÓS FALA COM O MENTOR
             core.openDialog(3);
             if(level.getFlag("score_ir_ala_feminina_hora_errada").getValue() == false) {
                 core.registerScoreItem(Scores.irAlaFeminina_horaErrada);
                 level.getFlag("score_ir_posto_hora_errada").setValue(true);
+            }
+        }
+
+        function corredorIrAlaMasculina () {
+            //CRIAR FLAG DE FALA DO MENTOR
+            core.openDialog(3);
+            if(level.getFlag("score_ir_ala_masculina_hora_errada").getValue() == false) {
+                core.registerScoreItem(Scores.irAlaMasculina_horaErrada);
+                level.getFlag("score_ir_ala_masculina_hora_errada").setValue(true);
             }
         }
 
@@ -192,6 +202,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .registerOption("", function (){
                     core.closeDialog();
                 }),
+            // 5 - Mentor Ação errada: Ir ao centro cirurgico
+            new Dialog(lib.characters.mentor)
+                .setText(Alertas.perdido.enfermagem[1])
+                .registerOption("", function (){
+                    core.closeDialog();
+                }),
         ]);
 
         corredor.registerInteractiveObjects([
@@ -264,10 +280,16 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             level.getFlag("score_ir_posto_hora_errada").setValue(false);
             level.getFlag("score_ir_farmacia_hora_errada").setValue(false);
             level.getFlag("score_ir_ala_feminina_hora_errada").setValue(false);
+            level.getFlag("score_ir_ala_masculina_hora_errada").setValue(false);
 
             Pulseira.setNameRegExp(/Esther Fidelis/);
             Pulseira.setLeitoRegExp(/0*2/);
             Pulseira.setDataRegExp(/05\/12\/1955/);
+
+            Pulseira.setName("Esther Fidelis");
+            Pulseira.setLeito("02");
+            Pulseira.setData("05/12/1955");
+            Pulseira.disable();
 
             Prontuario.setNome("Esther Fidelis");
             Prontuario.setSexo("F");
@@ -293,8 +315,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             Prontuario.setPrescMedicaRowData(0, "02/11", "Fondaparinux Sódico", "Oral", "7,5 mg (1x ao dia)", "07h", true, true);
             Prontuario.setPrescMedicaRowData(1, "02/11", "Atenolol", "Oral", "100 mg (2x ao dia)", "08h - 18h", true, true);
-            Prontuario.setPrescMedicaRowData(2, "02/11", "Metmorfina", "Oral", "750 mg (2x ao dia)", "06h - 17h", true, true);
-            Prontuario.setPrescMedicaRowData(3, "02/11", "Glibenclamida", "Oral", "4 mg (2x ao dia)", "07:30h - 17:30h", true, true);
+            //Prescrição 2 e 3 ainda não funciona
+            //Prontuario.setPrescMedicaRowData(2, "02/11", "Metmorfina", "Oral", "750 mg (2x ao dia)", "06h - 17h", true, true);
+            //Prontuario.setPrescMedicaRowData(3, "02/11", "Glibenclamida", "Oral", "4 mg (2x ao dia)", "07:30h - 17:30h", true, true);
 
             Prontuario.setPrescEnfermagemState("decubito");
             //Prontuario.setPrescEnfermagemState("verificar glicemia");
@@ -317,6 +340,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("score_ir_posto_hora_errada"), false);
         level.registerFlag(new Flag("score_ir_farmacia_hora_errada"), false);
         level.registerFlag(new Flag("score_ir_ala_feminina_hora_errada"), false);
+        level.registerFlag(new Flag("score_ir_ala_masculina_hora_errada"), false);
 
         //endregion
 

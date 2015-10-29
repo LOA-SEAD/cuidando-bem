@@ -771,7 +771,7 @@ define({
                 // 0 op 1
                 "Está perdido? O lugar correto é o posto de enfermagem.",
                 // 1 op 2
-                "Você tem certeza  de que este é o lugar certo?"
+                "Você tem certeza de que este é o lugar certo?"
             ],
             ala_feminina:[
                 "Esta é a enfermaria correta?"

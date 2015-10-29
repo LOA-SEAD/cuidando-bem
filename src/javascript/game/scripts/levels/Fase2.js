@@ -10,7 +10,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var Dialogs = require("Dialogs_data").fase2;
         var Alertas = require("Dialogs_data").alertas;
         var Scores = require("Scores_data").level2;
-        //var Scores = Scores.level1;
         //endregion
 
         var level = new Level("Level 2");
@@ -229,7 +228,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .setCssClass("scene-bedroom")
             .onLoad(function (){
                 console.log("Entrando na sala de leitos");
-                //core.openCommandBar();
                 //Na primeira vez o leito vai estar desabilitado e ocorrerá uma conversa com o paciente
                 if (level.getFlag("segunda_ida_leito_paciente").getValue() == false){
                     core.setInteractiveObjectVisible("io-ir_leito", false);
@@ -238,12 +236,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 else{
                     core.setInteractiveObjectVisible("io-ir_leito", true);
                     core.setActionVisible("btn-lavar_maos", true);
+                    core.openCommandBar();
                 }
                 //Caso ele já tenha realizado os procedimentos, é habilitado os botões de descarte dos itens utilizados
                 if((level.getFlag("voltar_ala_masculina").getValue() == true)){
                     core.setActionVisible("btn-jogar_algodao_lixo", true);
                     core.setActionVisible("btn-jogar_agulha_perfuro", true);
                     core.setActionVisible("btn-elevar_grade_cama", true);
+                    core.openCommandBar();
                 }
             })
             .onUnload( function (){
@@ -259,10 +259,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("intObj-ir_leito-tutorial") // verificar onde conserta
                 .onClick(function (){
                     if (level.getFlag("lavar_maos2").getValue() == false){
-                        //Mentor apenas corrige
+                        //Mentor corrige
                         core.openDialog(3);
                     }
-                    core.changeScene(3);
+                    else{
+                        core.changeScene(3);
+                    }
                 })
                 .setVisibility(false),
 
@@ -281,14 +283,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         ]);
 
         sala_de_leitos.registerActions([
-            /*new Action("btn-falar_com_paciente_ala", "Falar com paciente")
-                .setCssClass("action-leito-char-02") //Vai ser outro
-                .onClick(function (){
-                   core.openDialog(0);
-                   core.closeCommandBar();
-                   level.getFlag("conversar_paciente").setValue(true);
-                })
-                .setVisibility(true),*/
 
             new Action("btn-lavar_maos", "Lavar as mãos")
                 .setCssClass("action-lavar_maos")
@@ -517,8 +511,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             new Dialog(lib.characters.pacientes.raul)
                 .setText(Dialogs.leito_paciente[5])
                 .registerOption("", function() {
-                    //core.setActionVisible("btn-ler_prontuario", true);
-                    //core.setActionVisible("btn-lavar_maos", true);
                     core.closeDialog();
                     core.openCommandBar();
                 }),
@@ -553,7 +545,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .registerOption("", function () {
                     core.openDialog(7);
                 }),
-            //10 - Pulseira incorreta
+            //10 - Pulseira não verificada
             new Dialog(lib.characters.mentor)
                 .setText(Alertas.esqueceu.ver_pulseira)
                 .registerOption("", function (){
@@ -606,6 +598,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                                 core.registerScoreItem(Scores.explicarResultado);
                             }
                             level.getFlag("explicar_resultado").setValue(false);
+                            core.openDialog(6);
                         }else{
                             core.closeCommandBar();
                             core.openDialog(12);
@@ -647,7 +640,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         }
                         level.getFlag("por_luvas").setValue(false);
                     }//else{
-                        //Não será utilizada uma fala casonão selecione a bandeja
+                        //Não será utilizada uma fala caso não selecione a bandeja
                         /*core.closeCommandBar();
                         core.openDialog(15);*/
                     //}
@@ -712,13 +705,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("action-ir_sala_de_leitos")
                 .onClick(function (){
                     if((level.getFlag("voltar_ala_masculina").getValue() == true)){
-                        //Torna falsa pois não é mais necessário ir no leito do paciente
-                        //level.getFlag("segunda_ida_leito_paciente").setValue(false);
                         core.disableInteractiveObject("io-pulseira_paciente");
                         core.changeScene(2);
-                        /*core.registerScoreItem(Scores.tutorial.identificarPaciente);
-                        core.setActionVisible("btn-perguntar_nome_do_paciente", false);
-                        Pulseira.disable();*/
                     }else{
                         core.closeCommandBar();
                         core.openDialog(14);
@@ -811,7 +799,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.setActionVisible("btn-por_luvas", true);
                     core.setActionVisible("btn-utilizar_algodao", true);
                     core.setActionVisible("btn-realizar_teste_glicemia", true);
-                    //core.setActionVisible("btn-falar_paciente", true); -> Já vai estar ativo
                     core.setActionVisible("btn-ir_sala_leitos", true);
                     Pulseira.close();
                 })
@@ -892,6 +879,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         prontuario = new Scene("Prontuario", "Prontuario");
 
         prontuario.registerActions([
+            //TODO Verificar se prontuario está preenchido
             new Action("btn-fechar_prontuario", "Fechar prontuário")
                 .setCssClass("action-ler_prontuario")
                 .onClick(function (){
@@ -921,8 +909,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         glicosimetro = new Scene("Glicosimetro", "Glicosimetro");
 
         glicosimetro.registerActions([
-        */
-        ]);
+        
+        ]);*/
 
         //endregion
 
@@ -995,6 +983,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Pulseira.setLeitoRegExp(/0*3/);
             Pulseira.setDataRegExp(/24\/07\/1937/);
 
+            Pulseira.setName("Raul Gonzales Rodrigues");
+            Pulseira.setLeito("03");
+            Pulseira.setData("24/07/1937");
+            Pulseira.disable();
+
             Prontuario.setNome("Raul Gonzales Rodrigues");
             Prontuario.setSexo("M");
             Prontuario.setEstadoCivil("Casado");
@@ -1017,9 +1010,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Prontuario.setAltura("1,63");
             Prontuario.setCircunferenciaAbdominal("147");
 
-            Prontuario.setPrescMedicaRowData(1, "17/06", "Metmorfina", "Oral", "500 mg (2x ao dia)", "07h - 17h", true, true);
+            Prontuario.setPrescMedicaRowData(0, "17/06", "Metmorfina", "Oral", "500 mg (2x ao dia)", "07h - 17h", true, true);
             Prontuario.setPrescMedicaRowData(1, "17/06", "Glibenclamida", "Oral", "4 mg (2x ao dia)", "08h - 18h", true, true);
-            Prontuario.setPrescMedicaRowData(1, "17/06", "Bicarbonato de sódio", "Endovenoso", "8,4 g + Água destilada 100 ml", "Tempo de 4 horas", true, true);
+            //Prescricao 2 ainda não está funcionando
+            //Prontuario.setPrescMedicaRowData(1, "17/06", "Bicarbonato de sódio", "Endovenoso", "8,4 g + Água destilada 100 ml", "Tempo de 4 horas", true, true);
 
             //Prontuario.setPrescEnfermagemState("decubito");
             //Prontuario.setPrescEnfermagemState("verificar glicemia");
