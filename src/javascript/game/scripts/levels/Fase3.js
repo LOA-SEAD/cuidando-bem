@@ -616,6 +616,33 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 //
             });
     
+    
+    
+      alaFeminina.registerInteractiveObjects([
+    
+         new InteractiveObject("io-conversar_com_paciente","Ir ao leito")
+                .setCssClass("intObj-ir_leito_fase3")
+                .onClick(function (){
+                    console.log("Abrir diálogo com paciente 4");
+               //     if(level.getFlag("testar_equipamentos").getValue() == false)
+                      core.changeScene(4);
+                    
+      })   
+           .setVisibility(true),
+        
+          
+    
+    
+          
+          
+          
+    ]);
+    
+    
+    
+    
+    
+    
            
     
          var farmacia = lib.scenes.farmacia.getClone()
@@ -633,7 +660,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
      
      
     
-      var leito = lib.scenes.leitos.char2.getClone()
+      var leito = lib.scenes.leitos.regina.getClone()
             .onLoad(function () {
                 console.log("Load scene: " + leito.getName());
                 //

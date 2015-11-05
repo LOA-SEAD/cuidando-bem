@@ -1,4 +1,4 @@
-﻿/*
+/*
  This module has every wrold variable from each game level so it can be easily loaded inside the game.
  New levels can easily be made by adding new game levels.
 
@@ -50,7 +50,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     char2: new Scene("leito", "scene-leito-char-02")
                         .setCssClass("scene-bedChar02"),
                     pedro: new Scene("leito", "scene-leito-char-04")
-                        .setCssClass("scene-bedChar04")
+                        .setCssClass("scene-bedChar04"),
+                    regina: new Scene("leito", "scene-leito-fase3")
+                        .setCssClass("scene-bedPhase3")
                 }
             },
             //endregion
