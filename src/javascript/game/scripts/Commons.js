@@ -38,7 +38,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
                 //Default object of "farmacia"
                 farmacia: new Scene("farmacia", "Farmácia")
-                    .setCssClass("scene-none"),
+                    .setCssClass("scene-pharmacy"),
 
                 finalDeFase: new Scene("Fim da fase", "scene-fim-level")
                     .setCssClass("scene-fim-level"),
@@ -74,7 +74,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 recepcionista: new Character("Clarice", "char-receptionist"),
                 mentor: new Character("Mentor", "char-mentor"),
                 jogador: new Character("Jogador", "char-player"),
+
                 circulante: new Character("Circulante", "char-player"),
+                // farmácia
+                paulo: new Character("Paulo", "char-paulo"),
 
                 pacientes: {
                     joao: new Character("Sr. João", "char-paciente_01"),
