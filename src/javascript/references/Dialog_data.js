@@ -263,7 +263,7 @@ define({
             // 6 - resposta a OP3
             "A lista  é  uma  estratégia muito  importante  para" +
             "evitar  erros  durante  todo  o  procedimento " +
-            "cirúrgico.  É  um  documento  de  extrema importância!"
+            "cirúrgico.  É  um  documento  de  extrema importância!",
 
                 " e verificar com a circulante de sala se todos os equipamentos estão em ordem?",
                 // mensagem do mentor em caso de resposta incorreta

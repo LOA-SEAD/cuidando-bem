@@ -36,7 +36,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Recepcao
         function recepcaoIrCorredor() {
             console.log("Funcao: recepcao_ir_corredor");
-            if ( level.getFlag("conversar_recepcionista").getValue() == true ) { 
+            if ( level.getFlag("conversar_recepcionista").getValue() == true ) {
                 core.changeScene(1);
                 console.log("Ir para o corredor");
             } else {
@@ -141,7 +141,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             if(level.getFlag("score_ir_farmacia_hora_errada").getValue() == false) {
                 core.registerScoreItem(Scores.irCentroCirurgico_horaErrada);
                 level.getFlag("score_ir_posto_hora_errada").setValue(true);
-            }        
+            }
         }
 
         corredor = lib.scenes.corredor.getClone()
@@ -199,7 +199,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         corredor.registerInteractiveObjects([
             new InteractiveObject("io-ir_sala_leitos","Ir para a sala de Leitos Masculino")
                 .setCssClass("intObj-goToBedroom")
-                .onClick(corredorIrSalaLeitos)
+                .onClick(function corredorIrSalaLeitos () {})
                 .setVisibility(true),
 
             new InteractiveObject("io-ir_posto_enfermagem","Ir para o Posto de Enfermagem")
@@ -222,7 +222,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             //TODO: Adicionar ir Centro Cirurgico
             new InteractiveObject("io-ir_centro_cirurgico","Ir para o Centro Cirurgico")
                 .setCssClass("intObj-goToBedroom")   //arrumar
-                .onClick(corredorIrCentroCirurgico)      
+                .onClick(corredorIrCentroCirurgico)
                 .setVisibility(true),
 
             new InteractiveObject("io-conversar_mentor","Conversar com Mentor")
@@ -239,7 +239,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         alaFeminina = lib.scenes.alaFeminina.getClone()
             .onLoad(function () {
                 console.log("Load scene: Ala feminina");
-                /*O fato de já ter verificado o prontuario é o que determina se é a primeira ou segunda vez 
+                /*O fato de já ter verificado o prontuario é o que determina se é a primeira ou segunda vez
                 que o jogador veio até a ala feminina*/
                 if(level.getFlag("score_ver_prontuario").getValue() == false){
                     core.openDialog(0);
@@ -247,7 +247,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 else{
                     core.setInteractiveObjectVisible("io-ir_leito", true);
                 }
-            });
+            })
             .onUnload(function (){
                 console.log("Leito: OnUnload");
                 core.closeCommandBar();
@@ -323,7 +323,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         level.getFlag("score_ver_prontuario").setValue(true);
                     }
                     Prontuario.open();
-                    core.openModalScene("Prontuario");                
+                    core.openModalScene("Prontuario");
                 })
                 .setVisibility(true)
         ]);
@@ -390,7 +390,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setText(Dialogs.leito_paciente[6])
                 .registerOption("", function () {
                     core.openDialog(4);
-                }),
+                })
+        ]);
 
         leito.registerActions([
             new Action("btn-falar_paciente", "Conversar com Paciente")
@@ -699,7 +700,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         glicosimetro = new Scene("Glicosimetro", "Glicosimetro");
 
         glicosimetro.registerActions([
-        
+
         ]);*/
 
         //endregion
@@ -726,7 +727,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //level init script
         level.setSetupScript(function () {
-            
+
             level.getFlag("conversar_recepcionista").setValue(false);
             level.getFlag("conversar_mentor").setValue(false);
             level.getFlag("score_ir_posto_hora_errada").setValue(false);
@@ -796,7 +797,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Prontuario.setSsvvRowData(0, '02/11', '120x70', '46', '15', '96', '35', true);
             Prontuario.setSsvvRowData(1, '02/11', '130x80', '52', '18', '94', '36', true);
             //Disable 2 row
-            Prontuario.setSsvvRowData(2, '', '', '', '', '', '', true);
+            //Prontuario.setSsvvRowData(2, '', '', '', '', '', '', true);
 
             Prontuario.setAnotacaoEnfermagemRowData('02/11', '');
         });

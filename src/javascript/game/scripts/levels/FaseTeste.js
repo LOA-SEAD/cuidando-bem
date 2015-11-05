@@ -11,7 +11,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var Alerts = require('Dialogs_data').alertas;
         //endregion
 
-        var level = new Level("Level 8");
+        var level = new Level("Level TESTE");
         console.groupCollapsed(level.getName());
 
         var flags_on = true;
