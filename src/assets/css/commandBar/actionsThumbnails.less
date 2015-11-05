@@ -22,6 +22,7 @@
 .actionButton-ui-tooltip, .arrow:after {
   background: rgba(0, 0, 0, 0.75);
 }
+
 .actionButton-ui-tooltip {
   padding: 10px 20px;
   color: white;
@@ -30,6 +31,7 @@
   font-size: 22px;
   box-shadow: 0 0 7px black;
 }
+
 .arrow {
   width: 70px;
   height: 16px;
@@ -39,13 +41,16 @@
   margin-left: -35px;
   bottom: -16px;
 }
+
 .arrow.top {
   top: -16px;
   bottom: auto;
 }
+
 .arrow.left {
   left: 20%;
 }
+
 .arrow:after {
   content: "";
   position: absolute;
@@ -58,176 +63,142 @@
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
 .arrow.top:after {
   bottom: -20px;
   top: auto;
 }
+
 .action_button.enabled:hover {
   border-color: #2d7c2f;
   box-shadow: 0 0 10px #000000;
-}
-.action_button.disabled{
-  background-image: @no_image-disabled;
-  border-color: black;
-}
-.action_button.disabled:hover{
-  border-color: red;
 }
 //endregion
 
 .action-ir_corredor {
   background-image: @ir_corredor;
 }
-.action-ir_corredor.disabled {
-  background-image: @ir_corredor-disabled;
-}
 
 .action-ir_recepcao {
   background-image: @ir_recepcao;
-}
-.action-ir_recepcao.disabled {
-  background-image: @ir_recepcao-disabled;
 }
 
 .action-ir_posto_de_enfermagem {
   background-image: @ir_posto_de_enfermagem;
 }
-.action-ir_posto_de_enfermagem.disabled {
-  background-image: @ir_posto_de_enfermagem-disabled;
-}
 
 .action-ir_sala_de_leitos {
   background-image: @ir_sala_de_leitos;
-}
-.action-ir_sala_de_leitos.disabled {
-  background-image: @ir_sala_de_leitos-disabled;
 }
 
 .action-leito-char-01 {
   background-image: @leito-char-01;
 }
-.action-leito-char-01.disabled {
-  background-image: @leito-char-01-disabled;
-}
 
 .action-leito-char-02 {
   background-image: @leito-char-02;
-}
-.action-leito-char-02.disabled {
-  background-image: @leito-char-02-disabled;
 }
 
 .action-pulseira_paciente {
   background-image: @pulseira_paciente;
 }
-.action-pulseira_paciente.disabled {
-  background-image: @pulseira_paciente-disabled;
-}
+
 .action-confirmar_paciente {
   background-image: @confirmar_paciente;
 }
+
 .action-fechar_pulseira {
   background-image: @fechar_pulseira;
 }
+
 .action-confirmar_pulseira {
   background-image: @confirmar_pulseira;
 }
-.action-confirmar_pulseira-disabled {
-  background-image: @confirmar_pulseira-disabled;
-}
+
 .action-lavar_maos {
   background-image: @lavar_maos;
 }
+
 .action-lavar_maos_escova {
   background-image: @lavar_maos_escova;
 }
-.action-lavar_maos.disabled {
-  background-image: @lavar_maos-disabled;
-}
+
 .action-medir_temperatura {
   background-image: @medir_temperatura;
 }
+
 .action-medir_pulso {
   background-image: @medir_pulso;
 }
+
 .action-medir_freq_respiratoria {
   background-image: @medir_freq_respiratoria;
 }
+
 .action-largar_relogio {
   background-image: @medir_freq_respiratoria;
 }
+
 .action-medir_saturacao_02 {
   background-image: @medir_saturacao_02;
 }
+
 .action-abrir_gaveta {
   background-image: @gaveta;
 }
+
 .action-fechar_gaveta {
   background-image: @gaveta;
 }
+
 .action-pegar_termometro {
   background-image: @pegar_termometro;
 }
+
 .action-pegar_medidor_pressao {
   background-image: @pegar_medidor_pressao;
 }
+
 .action-pegar_oximetro {
   background-image: @pegar_oximetro;
 }
+
 .action-abrir_dialogo {
   background-image: @abrir_dialogo;
 }
-.action-abrir_dialogo.disabled {
-  background-image: @abrir_dialogo-disabled;
-}
+
 .action-examinar_paciente {
   background-image: @examinar_paciente;
 }
-.action-examinar_paciente.disabled {
-  background-image: @examinar_paciente-disabled;
-}
+
 .action-falar_com_paciente_ala {
   background-image: @examinar_paciente;
 }
-.action-falar_com_paciente_ala.disabled {
-  background-image: @examinar_paciente-disabled;
-}
+
 .action-anotar_prontuario {
   background-image: @anotar_prontuario;
 }
-.action-anotar_prontuario.disabled {
-  background-image: @anotar_prontuario-disabled;
-}
+
 .action-ler_prontuario {
   background-image: @anotar_prontuario;
 }
-.action-ler_prontuario.disabled {
-  background-image: @ler_prontuario-disabled;
-}
+
 .action-confirmar_prontuario {
   background-image: @confirmar_prontuario;
 }
-.action-confirmar_prontuario.disabled {
-  background-image: @confirmar_prontuario-disabled;
-}
+
 .action-posicionar_coxim {
   background-image: @posicionar_coxim;
 }
-.action-posicionar_coxim.disabled {
-  background-image: @posicionar_coxim-disabled;
-}
+
 .action-pegar_coxim {
   background-image: @posicionar_coxim;
 }
-.action-pegar_coxim.disabled {
-  background-image: @posicionar_coxim-disabled;
-}
+
 .action-mudar_posicao_paciente {
   background-image: @mudar_posicao_paciente;
 }
-.action-mudar_posicao_paciente.disabled {
-  background-image: @mudar_posicao_paciente-disabled;
-}
+
 .action-voltar_menu{
   background-image: @voltar_menu;
 }
@@ -235,9 +206,11 @@
 .action-largar_termometro{
   background-image: @pegar_termometro;
 }
+
 .action-largar_medidor_pressao{
   background-image: @pegar_medidor_pressao;
 }
+
 .action-largar_oximetro{
   background-image: @pegar_oximetro;
 }
@@ -246,22 +219,158 @@
   background-image: @leito-char-01;
 }
 
-.action-algodao {
-
+.action-agulha_40x12 {
+ background-image: @agulha_40x12;
 }
 
-.action-luvas {
-
+.action-algodao_seco {
+ background-image: @algodao_seco;
 }
 
-.action-bandeja {
-
+.action-carrinho_anestesico {
+ background-image: @carrinho_anestesico;
 }
 
-.action-teste_de_glicemia {
-
+.action-cloreto_sodio_10_10ml {
+ background-image: @cloreto_sodio_10_10ml;
 }
 
-.action-agulha {
+.action-cloreto_sodio_20_10ml {
+ background-image: @cloreto_sodio_20_10ml;
+}
 
+.action-clorpromazina_medicamento {
+ background-image: @clorpromazina_medicamento;
+}
+
+.action-clorpropamida_medicamento {
+ background-image: @clorpropamida_medicamento;
+}
+
+.action-copo_descartavel {
+ background-image: @copo_descartavel;
+}
+
+.action-equipo {
+ background-image: @equipo;
+}
+
+.action-equipode_infusao_alimentos {
+ background-image: @equipode_infusao_alimentos;
+}
+
+.action-fita_adesiva_hipoalergica {
+ background-image: @fita_adesiva_hipoalergica;
+}
+
+.action-frasco_dieta {
+ background-image: @frasco_dieta;
+}
+
+.action-garrafa_agua_potavel {
+ background-image: @garrafa_agua_potavel;
+}
+
+.action-gaze_esteril {
+ background-image: @gaze_esteril;
+}
+
+.action-glicose_30_10ml {
+ background-image: @glicose_30_10ml;
+}
+
+.action-ir_leito {
+ background-image: @ir_leito;
+}
+
+.action-keflin_medicamento {
+ background-image: @keflin_medicamento;
+}
+
+.action-luvas_de_procedimento {
+ background-image: @luvas_de_procedimento;
+}
+
+.action-luvas_estereis {
+ background-image: @luvas_estereis;
+}
+
+.action-mentor {
+ background-image: @mentor;
+}
+
+.action-midazolam_medicamento {
+ background-image: @midazolam_medicamento;
+}
+
+.action-paciente1 {
+ background-image: @paciente1;
+}
+
+.action-paciente2 {
+ background-image: @paciente2;
+}
+
+.action-paciente3 {
+ background-image: @paciente3;
+}
+
+.action-paciente4 {
+ background-image: @paciente4;
+}
+
+.action-paciente5 {
+ background-image: @paciente5;
+}
+
+.action-paciente6 {
+ background-image: @paciente6;
+}
+
+.action-paciente7 {
+ background-image: @paciente7;
+}
+
+.action-paciente8 {
+ background-image: @paciente8;
+}
+
+.action-paciente9 {
+ background-image: @paciente9;
+}
+
+.action-placa_neutra {
+ background-image: @placa_neutra;
+}
+
+.action-prontuario-original {
+ background-image: @prontuario-original;
+}
+
+.action-recepcionista {
+ background-image: @recepcionista;
+}
+
+.action-seringa_10ml {
+ background-image: @seringa_10ml;
+}
+
+.action-seringa_5ml {
+ background-image: @seringa_5ml;
+}
+
+.action-soro_fisiologico_1000ml {
+ background-image: @soro_fisiologico_1000ml;
+}
+
+.action-soro_fisiologico_100ml {
+ background-image: @soro_fisiologico_100ml;
+}
+
+.action-soro_fisiologico_250ml {
+ background-image: @soro_fisiologico_250ml;
+}
+
+.action-soro_glicofisiologico_1000ml {
+ background-image: @soro_glicofisiologico_1000ml;
 }
