@@ -81,7 +81,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     carlos: new Character("Paciente Carlos", "char-paciente-02"),
                     raul_unknow: new Character("Paciente", "char-paciente-03"),
                     raul: new Character("Paciente Raul", "char-paciente-03"),
-                    pedro: new Character("Sr. Pedro", "char-paciente_04")
+                    pedro: new Character("Sr. Pedro", "char-paciente_04"),
+                    regina: new Character("Sra. Regina", "char-paciente_05")
                 }
 
 
