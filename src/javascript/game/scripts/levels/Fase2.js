@@ -187,7 +187,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setText(Alertas.esqueceu.objeto_qualquer)
                 .registerOption("", function (){
                     core.closeDialog();
-                }),
+                })
         ]);
 
         corredor.registerInteractiveObjects([
@@ -931,6 +931,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerModalScene(pulseira);
         level.registerModalScene(gaveta);
         level.registerModalScene(prontuario);
+        //level.registerModalScene(glicosimetro);
+
         //level init script
         level.setSetupScript(function(){
 

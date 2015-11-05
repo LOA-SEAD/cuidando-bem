@@ -825,6 +825,12 @@ define({
             ],
             anotar_prontuario: [
                 "O prontuário está vazio. Que tal fazer algumas anotações?"
+            ],
+            ver_prontuario: [
+                //0 - Paciente homem
+                "Você precisa verificar o prontuário do paciente.",
+                //1 - Paciente mulher
+                "Você precisa verificar o prontuário da paciente."
             ]
             //informar_paciente (Level 5) -> Este ainda não encontrei onde será utilizado
         },
