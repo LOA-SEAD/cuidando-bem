@@ -1,4 +1,4 @@
-#Cuidando Bem
+Cuidando Bem
 
 ## Setup
 
