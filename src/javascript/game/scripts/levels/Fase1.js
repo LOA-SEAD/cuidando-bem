@@ -370,7 +370,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 })
         ]);
 
-        leito = lib.scenes.leitos.char2.getClone()
+        leito = lib.scenes.leitos.carlos.getClone()
             .onLoad(function () {
                 core.openCommandBar();
                 console.log("Leito: Onload");
