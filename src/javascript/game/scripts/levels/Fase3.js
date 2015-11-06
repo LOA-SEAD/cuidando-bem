@@ -226,21 +226,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
     
           function corredorIrPostoEnfermagem() {
             console.log("Action: corredorIrPostoEnfermagem");
-            if(level.getFlag("ir_corredor_posto_enfermagem_hora_errada").getValue() == false){
+         //   if(level.getFlag("ir_corredor_posto_enfermagem_hora_errada").getValue() == false){
                 //level.getFlag("ir_corredor_posto_enfermagem_hora_errada").setValue(true);
                   //core.registerScoreItem(Scores.irPostoEnfermagem_horaErrada);
                  core.changeScene(6);             
-            } //,
+        //    } 
                 
           }
-    
-    
-    
-    // FALTA CHECAR FUNCOES E SCORES
-    
-    
-    
-    //OBJETOS INTERATIVOS
     
           corredor.registerInteractiveObjects([
               
@@ -608,7 +600,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
              
                             
                    
-        // ala feminina    
+        // ALA FEMININA
    
             var alaFeminina = lib.scenes.alaFeminina.getClone()
             .onLoad(function () {
@@ -617,6 +609,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             });
     
     
+    
+    // INTERATIVOS
     
       alaFeminina.registerInteractiveObjects([
     
@@ -628,22 +622,23 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                       core.changeScene(4);
                     
       })   
-           .setVisibility(true),
-        
+           .setVisibility(true),  
           
-    
-    
           
+           new InteractiveObject("io-ir_corredor","Ir ao corredor")
+                .setCssClass("intObj-ir_corredor_fase3")
+                .onClick(function (){
+                    console.log("voltando para corredor");
+               //     if(level.getFlag("testar_equipamentos").getValue() == false)
+                      core.changeScene(1);
+                    
+      })
           
           
     ]);
+              
     
-    
-    
-    
-    
-    
-           
+    // FARMACIA
     
          var farmacia = lib.scenes.farmacia.getClone()
             .onLoad(function () {
@@ -652,19 +647,68 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             });
     
     
+       farmacia.registerActions([
+    
+             new Action("btn-ir_corredor", "Ir ao corredor")
+                .setCssClass("action-ir_corredor")
+                .onClick(function (){
+                       core.changeScene(1);
+                }),
+    
+        ]);
+        
+    
+    
+    
+    
+    // POSTO DE ENFERMAGEM
+    
          var posto_de_enfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function () {
                 console.log("Load scene: " + posto_de_enfermagem.getName());
                 //
             });
+    
+    // ACOES
+    
+    posto_de_enfermagem.registerActions([
+    
+             new Action("btn-ir_corredor", "Ir ao corredor")
+                .setCssClass("action-ir_corredor")
+                .onClick(function (){
+                        postoEnfermagem_IrCorredor();
+                })
+    
+        ]);
+    
+    // FUNCOES
+    
+      function postoEnfermagem_IrCorredor() {
+            core.changeScene(1);
+      }
      
      
+    
+    // LEITO
     
       var leito = lib.scenes.leitos.regina.getClone()
             .onLoad(function () {
                 console.log("Load scene: " + leito.getName());
-                //
+                
             });
+    
+    
+    
+    
+    leito.registerActions([
+        
+       new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
+                .setCssClass("action-ir_sala_de_leitos")
+                .onClick(function (){
+                     core.changeScene(3);           
+                })
+                   
+    ]);
     
     
      
