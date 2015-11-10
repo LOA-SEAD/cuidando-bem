@@ -25,6 +25,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         leito,
         posto_de_enfermagem,
         farmacia,
+        alaFeminina,
         gaveta,
         pulseira,
         prontuario;
@@ -178,7 +179,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 }),
             // 4 - Mentor Ação errada: Ir a farmacia
             new Dialog(lib.characters.mentor)
-                .setText(Alertas.perdido.farmácia)
+                .setText(Alertas.perdido.farmacia)
                 .registerOption("", function (){
                     core.closeDialog();
                 }),
@@ -204,13 +205,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             //TODO: Adicionar ir ala feminina
             new InteractiveObject("io-ir_ala_feminina","Ir para a Ala Feminina")
                 .setCssClass("intObj-goToFemaleRoom")
-                .onClick(corredorIrFarmacia)
+                .onClick(corredorIrAlaFeminina)
                 .setVisibility(true),
 
-            //TODO: Adicionar ir Farmácia
-            new InteractiveObject("io-ir_farmacia","Ir para a Farmacia")
+            new InteractiveObject("io-ir_farmacia","Ir para a Farmácia")
                 .setCssClass("intObj-goToPharmacy")
-                .onClick(corredorIrAlaFeminina)
+                .onClick(corredorIrFarmacia)
                 .setVisibility(true),
 
             new InteractiveObject("io-conversar_mentor","Conversar com Mentor")
@@ -243,6 +243,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.setActionVisible("btn-jogar_algodao_lixo", true);
                     core.setActionVisible("btn-jogar_agulha_perfuro", true);
                     core.setActionVisible("btn-elevar_grade_cama", true);
+                    core.setActionVisible("btn-ler_prontuario", false);
+                    core.setActionVisible("btn-anotar_prontuario", true);
                     core.openCommandBar();
                 }
             })
@@ -331,17 +333,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("action-ler_prontuario")
                 .onClick(function (){
                     console.log("Action: ler prontuario");
-                    if((level.getFlag("lavar_maos").getValue() == false) ||
-                        ((level.getFlag("voltar_ala_masculina").getValue() == true) && (level.getFlag("lavar_maos_apos_lixo").getValue() == false))){
+                    if(level.getFlag("lavar_maos").getValue() == false){
                         core.closeCommandBar();
                         core.openDialog(6);
                     } else {
-                        if(level.getFlag("lavar_maos_apos_lixo").getValue() == true){
-                            if(level.getFlag("score_anotar_prontuario").getValue() == false) {
-                                core.registerScoreItem(Scores.anotarNoProntuario);
-                                level.getFlag("score_anotar_prontuario").setValue(true);
-                            }
-                        }
                         if(level.getFlag("score_checar_prontuario").getValue() == false) {
                             core.registerScoreItem(Scores.checarProntuario);
                             level.getFlag("score_checar_prontuario").setValue(true);
@@ -351,8 +346,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         Prontuario.open();
                         core.openModalScene("Prontuario");
                         //Verificou o prontuario na primeira vez, realiza a fala
-                        if((level.getFlag("checar_prontuario").getValue() == true) &&
-                            (level.getFlag("lavar_maos_apos_lixo").getValue() == false)) {
+                        if(level.getFlag("checar_prontuario").getValue() == true) {
                             core.openDialog(2);
                         }
                     }
@@ -360,7 +354,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisibility(false),
 
             new Action("btn-jogar_algodao_lixo", "Jogar algodão no lixo branco")
-                .setCssClass("action-jogar_algodao_lixo")
+                .setCssClass("action-jogar_algodao_lixo") //CONSERTAR
                 .onClick(function (){
                     console.log("Action: Jogar algodão no lixo branco");
                     if(level.getFlag("score_jogou_algodao_lixo").getValue() == false) {
@@ -371,7 +365,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisibility(false),
 
             new Action("btn-jogar_agulha_perfuro", "Jogar agulha no perfuro cortante")
-                .setCssClass("action-jogar_agulha_perfuro")
+                .setCssClass("action-jogar_agulha_perfuro") //CONSERTAR
                 .onClick(function (){
                     if(level.getFlag("score_jogou_algodao_lixo").getValue() == true) {
                         console.log("Action: Jogar agulha no perfuro cortante");
@@ -389,7 +383,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisibility(false),
 
             new Action("btn-elevar_grade_cama", "Elevar a grade da cama")
-                .setCssClass("action-elevar_grade_cama")
+                .setCssClass("action-elevar_grade_cama") //CONSERTAR
                 .onClick(function (){
                     if(level.getFlag("score_jogou_agulha_perfuro").getValue() == true) {
                         console.log("Action: Elevar a grade da cama");
@@ -400,6 +394,24 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     }else{
                         core.closeCommandBar();
                         core.openDialog(4);
+                    }
+                })
+                .setVisibility(false),
+
+            new Action("btn-anotar_prontuario", "Anotar prontuario")
+                .setCssClass("action-anotar_prontuario")
+                .onClick(function (){
+                    console.log("Action: Anotar prontuario");
+                    if(level.getFlag("lavar_maos_apos_lixo").getValue() == false){
+                        core.closeCommandBar();
+                        core.openDialog(6);
+                    } else {
+                        if(level.getFlag("score_anotar_prontuario").getValue() == false) {
+                            core.registerScoreItem(Scores.anotarNoProntuario);
+                            level.getFlag("score_anotar_prontuario").setValue(true);
+                        }
+                        Prontuario.open();
+                        core.openModalScene("Prontuario");
                     }
                 })
                 .setVisibility(false)
@@ -609,7 +621,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             // CUIDADO COM OS CSS ERRADOS
 
             new Action("btn-selecionar_bandeja", "Selecionar Bandeja")
-                .setCssClass("action-selecionar_bandeja")
+                .setCssClass("action-selecionar_bandeja") //CONSERTAR
                 .onClick(function (){
                     if(level.getFlag("selecionar_bandeja").getValue() == true){
                         console.log("Action: Selecionar Bandeja");
@@ -629,7 +641,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisibility(false),
 
             new Action("btn-por_luvas", "Por Luvas")
-                .setCssClass("action-por_luvas")
+                .setCssClass("action-luvas_de_procedimento")
                 .onClick(function (){
                     if(level.getFlag("por_luvas").getValue() == true) {
                         console.log("Action: Por Luvas");
@@ -648,7 +660,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisibility(false),
 
             new Action("btn-utilizar_algodao", "Utilizar Algodão")
-                .setCssClass("action-utilizar_algodao")
+                .setCssClass("action-algodao_seco")
                 .onClick(function (){
                     if((level.getFlag("utilizar_algodao1").getValue() == true) ||
                         (level.getFlag("utilizar_algodao2").getValue() == true)) {
@@ -684,7 +696,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisibility(false),
 
             new Action("btn-realizar_teste_glicemia", "Realizar teste de glicemia capilar")
-                .setCssClass("action-realizar_teste_glicemia")
+                .setCssClass("action-realizar_teste_glicemia") // CONSERTAR
                 .onClick(function (){
                     if(level.getFlag("realizar_teste_glicemia").getValue() == true) {
                         console.log("Action: Realizar teste de glicemia capilar");
@@ -768,6 +780,16 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //farmacia - não será feito nada aqui mas é necessário ter
         farmacia = lib.scenes.farmacia.getClone()
+            .onLoad(function (){
+                core.openCommandBar();
+            })
+            .onUnload(function() {
+                core.closeCommandBar();
+            });
+        //endregion
+
+        //ala feminina - não será feito nada aqui mas é necessário ter
+        alaFeminina = lib.scenes.alaFeminina.getClone()
             .onLoad(function (){
                 core.openCommandBar();
             })
@@ -927,6 +949,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerScene(posto_de_enfermagem);
         //5
         level.registerScene(farmacia);
+        //6
+        level.registerScene(alaFeminina);
 
         level.registerModalScene(pulseira);
         level.registerModalScene(gaveta);
