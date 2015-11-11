@@ -4,7 +4,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Imports
         var Dialogs = require("Dialogs_data").fase3;
         var Alertas = require("Dialogs_data").alertas;
-        // var Scores = require("Scores_data").fase3;
+        Scores = Scores.level3;
         //endregion
 
         var level = new Level("Level 3");
@@ -202,37 +202,41 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         function corredorIrAlaFeminina() {
             console.log("Action: corredorIrAlaFeminina");
-            //      if(level.getFlag("testar_equipamentos").getValue() == false){
-            // level.getFlag("ir_corredor_ala_feminina").setValue(true);
-            //core.registerScoreItem(Scores.irPostoEnfermagem_horaErrada);
-            core.changeScene(3);
-            //    }
-            //    else  {
-            //              level.getFlag("ir_corredor_ala_feminina").setValue(true);
-            //       core.changeScene(3);
-            //        }
+            if(level.getFlag("ir_alaFeminina_horaErrada").getValue() == false){
+                core.registerScoreItem(Scores.irAlaFeminina_horaErrada);
+                level.getFlag("ir_alaFeminina_horaErrada").setValue(true);
+                core.changeScene(3);
+            }
+             else  
+                 core.changeScene(3);
+      
         }
 
 
         function corredorIrFarmacia() {
             console.log("Action: corredorIrFarmaciaHoraErrada");
-            //    if(level.getFlag("ir_corredor_farmacia_hora_errada").getValue() == false){
-            //    level.getFlag("ir_corredor_farmacia_hora_errada").setValue(true);
-            //core.registerScoreItem(Scores.irPostoEnfermagem_horaErrada);
-            core.changeScene(5);
-
-            //}
+            if(level.getFlag("ir_farmacia_horaErrada").getValue() == false){
+                core.registerScoreItem(Scores.irFarmacia_horaErrada);
+                level.getFlag("ir_farmacia_horaErrada").setValue(true);
+                core.changeScene(5);
+            }
+             else  
+                 core.changeScene(5);
+      
 
         }
 
 
         function corredorIrPostoEnfermagem() {
             console.log("Action: corredorIrPostoEnfermagem");
-            //   if(level.getFlag("ir_corredor_posto_enfermagem_hora_errada").getValue() == false){
-            //level.getFlag("ir_corredor_posto_enfermagem_hora_errada").setValue(true);
-            //core.registerScoreItem(Scores.irPostoEnfermagem_horaErrada);
-            core.changeScene(6);
-            //    } 
+             if(level.getFlag("ir_postoEnfermagem_horaErrada").getValue() == false){
+                core.registerScoreItem(Scores.irPostoEnfermagem_horaErrada);
+                level.getFlag("ir_postoEnfermagem_horaErrada").setValue(true);
+                core.changeScene(6);
+            }
+             else  
+                 core.changeScene(6);
+      
 
         }
 
@@ -358,7 +362,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                  new Dialog(lib.characters.jogador)
                 .setText("")
                 .registerOption(Dialogs.centro_cirurgico.fala2[1], function () {
-                core.closeDialog();
+                core.openDialog(7);
             })
                 .registerOption(Dialogs.centro_cirurgico.fala2[2], function () {
                 core.openDialog(20);
@@ -562,8 +566,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("intObj-talkToCirculante")
                 .onClick(function () {
                 console.log("Abrir diálogo com a circulante");
-                //     if(level.getFlag("testar_equipamentos").getValue() == false)
-                core.openDialog(0);
+                   if(level.getFlag("conversar_paciente").getValue() == false || level.getFlag("testar_equipamentos").getValue() == false )
+                        core.openDialog(0);
+                    else
+                        core.openDialog(5);
 
             })
         .setVisibility(true)
@@ -737,8 +743,16 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
        new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
                 .setCssClass("action-ir_sala_de_leitos")
                 .onClick(function () {
-                core.changeScene(3);
-            })
+                if(level.getFlag("conversar_paciente").getValue() == false)
+                   core.openDialog(6);
+                else
+                   core.changeScene(3);
+                    
+                }),
+                
+                    
+                    
+            
 
     ]);
 
@@ -748,7 +762,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("intObj-conversar_paciente05")
                 .onClick(function () {
                 console.log("Abrindo dialogo com paciente");
-                //     if(level.getFlag("testar_equipamentos").getValue() == false)
+                level.getFlag("conversar_paciente").setValue(true);
                 core.openDialog(0);
 
             })
@@ -802,6 +816,15 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .registerOption("", function () {
                 core.closeDialog();
             }),
+            
+            //6
+             new Dialog(lib.characters.mentor)
+                .setText(Alertas.esqueceu.informar_paciente)
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
+            
+            
 
 
 
@@ -907,6 +930,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             level.getFlag("lavar_maos").setValue(false);
             level.getFlag("lavar_maos2").setValue(false);
             level.getFlag("primeira_saida_centro_cirurgico").setValue(false);
+            level.getFlag("conversar_paciente").setValue(false);
+            level.getFlag("ir_alaFeminina_horaErrada").setValue(false);
+            level.getFlag("ir_farmacia_horaErrada").setValue(false);
+            level.getFlag("ir_postoEnfermagem_horaErrada").setValue(false);
         });
 
 
@@ -920,6 +947,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("lavar_maos"), false);
         level.registerFlag(new Flag("lavar_maos2"), false);
         level.registerFlag(new Flag("primeira_saida_centro_cirurgico"), false);
+        level.registerFlag(new Flag("conversar_paciente"), false);
+        level.registerFlag(new Flag("ir_alaFeminina_horaErrada"), false);
+        level.registerFlag(new Flag("ir_farmacia_horaErrada"), false);
+        level.registerFlag(new Flag("ir_postoEnfermagem_horaErrada"), false);
 
 
         level.setInitialScene(0);

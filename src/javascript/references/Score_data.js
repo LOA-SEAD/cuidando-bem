@@ -1,4 +1,4 @@
-﻿define(function ()
+define(function ()
 {
     function Score(_title, _score){
         this.title = _title;
@@ -67,6 +67,9 @@
             anotarNoProntuario: new Score("Anotar no prontuário", 250)
         },
         level3: {
+            irPostoEnfermagem_horaErrada: new Score("Ir ao posto de enfermagem sem precisar", -25),
+            irFarmacia_horaErrada: new Score("Ir ao posto de enfermagem sem precisar", -25),
+            irAlaFeminina_horaErrada: new Score("Ir ao posto de enfermagem sem precisar", -25),
 
         },
         level4: {
