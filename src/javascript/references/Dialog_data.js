@@ -820,7 +820,7 @@ define({
             ala_feminina:[
                 "Esta é a enfermaria correta?"
             ],
-            farmácia: [
+            farmacia: [
                 "Você precisa encontrar seu paciente primeiro!"
             ]
         },
@@ -875,15 +875,16 @@ define({
                 "Você precisa verificar o prontuário do paciente.",
                 //1 - Paciente mulher
                 "Você precisa verificar o prontuário da paciente."
-            ]
-            //informar_paciente (Level 5) -> Este ainda não encontrei onde será utilizado
+            ],
+            informar_paciente: [
+                "Você precisa explicar todo procedimento realizado à paciente, é direito dela!"
+            ] 
         },
         descarte: {
             algodão: [
                 // 0 Descarte na bandeja
                 "O algodão deve ser descartado na bandeja antes de ir para um depósito mais adequado."
                 // 1 Descarte no lixo branco
-
             ],
             agulha: [
                 "Faça o descarte da agulha em local adequado para evitar acidentes de trabalho."
