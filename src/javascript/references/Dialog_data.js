@@ -1,4 +1,4 @@
-﻿/**
+/**
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
@@ -254,27 +254,19 @@ define({
                 "e verificar com a circulante de sala se todos os equipamentos estão em ordem.",
 
                 // mensagem do mentor em caso de resposta incorreta
-
-            // 5 - resposta a OP2
-            "Imagine  todos  os  riscos  existentes  nos" +
-            "procedimentos  cirúrgicos!  A  lista  é  um  das" +
-            "estratégias para tentar amenizá-los.",
-
-            // 6 - resposta a OP3
-            "A lista  é  uma  estratégia muito  importante  para" +
-            "evitar  erros  durante  todo  o  procedimento " +
-            "cirúrgico.  É  um  documento  de  extrema importância!",
-
-                " e verificar com a circulante de sala se todos os equipamentos estão em ordem?",
-                // mensagem do mentor em caso de resposta incorreta
+                
                 // 5 - resposta a OP2
                 "Imagine  todos  os  riscos  existentes  nos" +
                 "procedimentos  cirúrgicos!  A  lista  é  um  das" +
                 "estratégias para tentar amenizá-los.",
+                
                 // 6 - resposta a OP3
                 "A lista  é  uma  estratégia muito  importante  para" +
                 "evitar  erros  durante  todo  o  procedimento" +
-                "cirúrgico.  É  um  documento  de  extrema importância!"
+                "cirúrgico.  É  um  documento  de  extrema importância!",
+                
+                // 7 
+                "A paciente o espera na sala de leitos"
             ],
             fala2: [
                 //0 Jogador
@@ -302,7 +294,21 @@ define({
                 //6 op errada2
                 "Nunca  se  esqueça  de  verificar  todos  os" +
                 "equipamento, pois  assim  evitamos  a ocorrência" +
-                "de imprevistos na cirurgia!"
+                "de imprevistos na cirurgia!",
+                
+                //7 ALERTA LAVAR MAOS CIRURGICA
+                "Higienize suas mãos utilizando as técnicas" +
+                " cirúrgicas.",
+                
+                // 8 ALERTA LAVAR MAOS
+                "Não se esqueça do procedimento mais frequente" +
+                "e vital de um hospital. Você já o realizou várias" + 
+                "vezes até aqui. Consegue lembrar qual é ele?",
+                
+                // 9 ALERTA TESTAR EQUIPAMENTOS
+                
+                "Você está se esquecendo de algo importante!"
+                
             ],
             fala2: [
                 //0 Aline
