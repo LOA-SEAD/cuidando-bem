@@ -389,16 +389,17 @@ define({
     },
 
     fase4: {
+
         recepcao: [
             //0 Jogador
             "Bom dia, Clarice.",
-            //1 Clarice
+            //1 Recepcionista Clarice
             "Bom dia! O paciente já está à sua espera."
         ],
         ala_masculina: [
             //0 Jogador
             "Bom dia! Sou profissional de enfermagem e atenderei o senhor hoje. Deixe-me ver seu prontuário...",
-            //1 Paciente
+            //1 Paciente Pedro
             "Bom dia. Hora da medicação? Qual é a de hoje?",
             //2 Jogador op 1
             "Sim senhor! Ainda é o segundo dia de uso do Keflin. Vou preparar sua medicação e já volto.",
@@ -418,35 +419,54 @@ define({
             //3 Jogador
             "Agradeço, Paulo! Preciso voltar ao paciente."
         ],
-        posto_enfermagem: [
-            //Cálculo de medicamento
+        posto_de_enfermagem: [
             //0 Jogador
+            "No prontuário estava prescrita uma dose de 800 mg," +
+            " portanto o valor a ser aspirado é de 4 ml do frasco de 1g.",
+            //1 Jogador
+            "Deverá ser aspirado apenas 2 ml.",
+            //2 Jogador
+            "No prontuário estava prescrita uma dose de 800 mg," +
+            " portanto o valor a ser aspirado é de 8 ml do frasco de 1 g.",
+            //3 Jogador
+            "Você tem certeza desse resultado?",
+            //4 Jogador
             "Acredito que peguei tudo o que precisava.",
-            //1 Mentor
-            "Muito bem! Vamos conferir se a medicação dispensada é a mesma prescrita."
+            //5 Mentor
+            "Muito bem! Vamos conferir se a medicação dispensada é a mesma prescrita.",
+            //6 Mentor (se o jogador esquece de algum item)
+            "Você está se esquecendo de algo. Volte e tente se lembrar."
         ],
         leito_paciente: [
-        //0 Jogador
-        "Voltei. Antes da administração do medicamento, o senhor poderia me dizer" +
-        " seu nome e data de nascimento, por favor?",
-        //1 Paciente
-        "Claro. Pedro Alcídes Mendonça, nasci em 03 de junho de 1962.",
-        //2 Jogador op 1
-        "Senhor Pedro, este medicamento é o Keflin; sua ação é antimicrobiana" +
-        " e ele vai correr no período de uma hora, tudo bem?",
-        //3 Jogador op 2
-        "Senhor Pedro, vou administrar o medicamento. Tudo bem?",
-        //4 Jogador op 3
-        "Senhor Pedro, vou administrar o medicamento. Caso queira saber sua função," +
-        " pergunte ao médico responsável e ele saberá te informar.",
-        //5 Paciente
-        "Muito obrigado. E me desculpe pelas perguntas, é mania de professor.",
-        //6 Jogador
-        "Hahaha. Sem problemas. Se sentir qualquer sensação estranha é só me comunicar." +
-        " Por favor, não abra a pinça do equipo e em breve poderá voltar para seus alunos.",
-        //7 Mentor
-        "Lembre-se sempre de utilizar os nove certos na administração de medicamentos!" +
-        " Deste modo reduzimos a possibilidades de erros."
+            //0 Jogador
+            "Voltei. Antes da administração do medicamento, o senhor poderia me dizer" +
+            " seu nome e data de nascimento, por favor?",
+            //1 Paciente Pedro
+            "Claro. Pedro Alcídes Mendonça, nasci em 03 de junho de 1962.",
+            //2 Jogador op 1
+            "Senhor Pedro, este medicamento é o Keflin; sua ação é antimicrobiana" +
+            " e ele vai correr no período de uma hora, tudo bem?",
+            //3 Jogador op 2
+            "Senhor Pedro, vou administrar o medicamento. Tudo bem?",
+            //4 Jogador op 3
+            "Senhor Pedro, vou administrar o medicamento. Caso queira saber sua função," +
+            " pergunte ao médico responsável e ele saberá te informar.",
+            //5 Paciente Pedro
+            "Muito obrigado. E me desculpe pelas perguntas, é mania de professor.",
+            //6 Jogador
+            "Hahaha. Sem problemas. Se sentir qualquer sensação estranha é só me comunicar." +
+            " Por favor, não abra a pinça do equipo e em breve poderá voltar para seus alunos.",
+            //7 Mentor
+            "Lembre-se sempre de utilizar os nove certos na administração de medicamentos!" +
+            " Deste modo reduzimos a possibilidades de erros."
+        ],
+        lugar_incorreto: [
+            // 0 Mentor
+            "Está perdido? O lugar certo é a Ala Masculina.",
+            // 1 Mentor
+            "Está perdido? O lugar certo é a Farmácia.",
+            // 2 Mentor
+            "Está perdido? O lugar certo é o Posto de Enfermagem."
         ]
     },
 
