@@ -82,6 +82,7 @@
             pegarSeringa10: new Score("Pegar seringa de 10ml", 50),
             pegarAmpolaSF: new Score("Pegar ampola de soro fisiológico 0,9% 10ml", 50),
             pegarBandeja: new Score("Pegar bandeja", 50),
+            pegarInstrumentos: new Score("Pegar todos os instrumentos", 350),
             confirmarMedicacao: new Score("Confirmar medicação com mentor", 150),
             prepararMedicacao: new Score("Preparar medicação", 150),
             calcularGotejamento: new Score("Calcular gotejamento de soro", 350),
