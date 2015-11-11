@@ -432,84 +432,72 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setText(Alertas.esqueceu.informar_paciente)
                 .registerOption("", function () {
                     core.closeDialog();
-                    core.openCommandBar();
                 }),
             // 8 - Não verificar a pulseira
             new Dialog(lib.characters.mentor)
                 .setText(Alertas.esqueceu.ver_pulseira)
                 .registerOption("", function () {
                     core.closeDialog();
-                    core.openCommandBar();
                 }),
             // 9 - Não fazer o teste de glicemia capilar
             new Dialog(lib.characters.mentor)
                 .setText(Alertas.esqueceu.teste[1])
                 .registerOption("", function () {
                     core.closeDialog();
-                    core.openCommandBar();
                 }),
             // 10 - Não descartar a agulha
             new Dialog(lib.characters.mentor)
                 .setText(Alertas.descarte.agulha)
                 .registerOption("", function () {
                     core.closeDialog();
-                    core.openCommandBar();
                 }),
             // 11 - Não jogar o algodão
             new Dialog(lib.characters.mentor)
                 .setText(Alertas.descarte.algodão)
                 .registerOption("", function () {
                     core.closeDialog();
-                    core.openCommandBar();
                 }),
             // 12 - Não selecionar os materiais do curativo
             new Dialog(lib.characters.mentor)
                 .setText(Alertas.esqueceu.materiais_curativo)
                 .registerOption("", function () {
                     core.closeDialog();
-                    core.openCommandBar();
                 }),
             // 13 - Não lavar as mãos
             new Dialog(lib.characters.mentor)
                 .setText(Alertas.lavar_maos.tipo3)
                 .registerOption("", function () {
                     core.closeDialog();
-                    core.openCommandBar();
                 }),
             // 14 - Calçar luvas de procedimento
             new Dialog(lib.characters.mentor)
                 .setText(Alertas.luvas_erradas)
                 .registerOption("", function () {
                     core.closeDialog();
-                    core.openCommandBar();
                 }),
             // 15 - Não calçar luva estéril
             new Dialog(lib.characters.mentor)
                 .setText(Alertas.esqueceu.luvas_estereis)
                 .registerOption("", function () {
                     core.closeDialog();
-                    core.openCommandBar();
                 }),
             // 16 - Não fazer o curativo
             new Dialog(lib.characters.mentor)
                 .setText(Alertas.esqueceu.teste[1])
                 .registerOption("", function () {
                     core.closeDialog();
-                    core.openCommandBar();
                 }),
             // 17 - Não identificar o curativo
             new Dialog(lib.characters.mentor)
                 .setText(Alertas.esqueceu.identificar_curativo)
                 .registerOption("", function () {
                     core.closeDialog();
-                    core.openCommandBar();
                 }),
             // 18 - Não erguer a grade
             new Dialog(lib.characters.mentor)
                 .setText(Alertas.esqueceu.elevar_grade[1])
                 .registerOption("", function () {
                     core.closeDialog();
-                    core.openCommandBar();
                 })
         ]);
 
@@ -722,7 +710,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                             level.getFlag("score_nao_ergueu_grade").setValue(true);
                         }
                         core.closeCommandBar();
-                        core.openDialog(17);
+                        core.openDialog(18);
                     }
                     if(level.getFlag("score_anotar_prontuario").getValue() == false) {
                         core.registerScoreItem(Scores.anotarNoProntuario);
