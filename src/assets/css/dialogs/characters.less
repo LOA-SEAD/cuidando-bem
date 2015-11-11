@@ -1,7 +1,4 @@
-
-//region Recepcao - Lobby
-.char-receptionist {
-  background: @char-receptionist no-repeat top;
+.character {
   background-size: cover;
   float: right;
   position: absolute;
@@ -30,54 +27,48 @@
     right: 50px;
   }
 }
-//endregion
+.char-receptionist {
+  background: @char-receptionist no-repeat top;
+  &:extend(.character);
+}
 
-//region Corredor - Hallway
 .char-mentor {
   background: @char-mentor no-repeat top;
-  background-size: cover;
-  float: right;
-  position: absolute;
-
-  @char-mentor-width: 283px;
-  @char-mentor-height: 419px;
-
-  @media screen and (min-width: @screen-sm-min) {
-    width: 0.60 * @char-mentor-width;
-    height: 0.60 * @char-mentor-height;
-    top: -220px;
-    right: 50px;
-  }
-
-  @media screen and (min-width: @screen-md-min) {
-    width: 0.77 * @char-mentor-width;
-    height: 0.77 * @char-mentor-height;
-    top: -280px;
-    right: 50px;
-  }
-
-  @media screen and (min-width: @screen-lg-min) {
-    width: 0.95 * @char-mentor-width;
-    height: 0.95 * @char-mentor-height;
-    top: -340px;
-    right: 50px;
-  }
+  &:extend(.character);
 }
-//endregion
-
-//region Sala de Leitos - Bedroom
-.char-patient01 {
-  background: @char-patient01 no-repeat top;
-  background-size: cover;
+.char-paciente_01 {
+  background-image: @char-paciente1;
+  &:extend(.character);
 }
-
-.char-patient02 {
-  background: @char-patient02 no-repeat top;
-  background-size: cover;
+.char-paciente_02 {
+  background-image: @char-paciente2;
+  &:extend(.character);
 }
-//endregion
-
-.char-player {
-  background: @char-player no-repeat top;
-  background-size: cover;
+.char-paciente_03 {
+  background-image: @char-paciente3;
+  &:extend(.character);
+}
+.char-paciente_04 {
+  background-image: @char-paciente4;
+  &:extend(.character);
+}
+.char-paciente_05 {
+  background-image: @char-paciente5;
+  &:extend(.character);
+}
+.char-paciente_06 {
+  background-image: @char-paciente6;
+  &:extend(.character);
+}
+.char-paciente_07 {
+  background-image: @char-paciente7;
+  &:extend(.character);
+}
+.char-paciente_08 {
+  background-image: @char-paciente8;
+  &:extend(.character);
+}
+.char-paciente_09 {
+  background-image: @char-paciente9;
+  &:extend(.character);
 }

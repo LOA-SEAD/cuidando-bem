@@ -45,14 +45,35 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
                 //Default object of "leito"
                 leitos:{
-                    joao:  new Scene("leito", "scene-leito-char-01")
+                    joao: new Scene("leito_01", "scene-leito-char-01")
                         .setCssClass("scene-bedChar01"),
-                    char2: new Scene("leito", "scene-leito-char-02")
+
+                    carlos: new Scene("leito_02", "scene-leito-char-02")
                         .setCssClass("scene-bedChar02"),
-                    pedro: new Scene("leito", "scene-leito-char-04")
+
+                    raul: new Scene("leito_03", "scene-leito-char-03")
+                        .setCssClass("scene-bedChar03"),
+
+                    regina: new Scene("leito_04", "scene-leito-char-04")
                         .setCssClass("scene-bedChar04"),
-                    regina: new Scene("leito", "scene-leito-fase3")
-                        .setCssClass("scene-bedPhase3")
+
+                    pedro: new Scene("leito_05", "scene-leito-char-05")
+                        .setCssClass("scene-bedChar05"),
+
+                    esther: new Scene("leito_06", "scene-leito-char-06")
+                        .setCssClass("scene-bedChar06"),
+
+                    josivaldo: new Scene("leito_07", "scene-leito-char-07")
+                        .setCssClass("scene-bedChar07"),
+
+                    ana: new Scene("leito_08", "scene-leito-char-08")
+                        .setCssClass("scene-bedChar08"),
+
+                    yuri: new Scene("leito_09", "scene-leito-char-09")
+                        .setCssClass("scene-bedChar09"),
+
+                    francisco: new Scene("leito_10", "scene-leito-char-10")
+                        .setCssClass("scene-bedChar10"),
                 }
             },
             //endregion
@@ -78,19 +99,32 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 jogador: new Character("Jogador", "char-player"),
 
                 circulante: new Character("Circulante", "char-player"),
-                // farmácia
+                // TODO: mudar 'paulo:' para 'farmaceutico:'
                 paulo: new Character("Paulo", "char-paulo"),
 
                 pacientes: {
                     joao: new Character("Sr. João", "char-paciente_01"),
-                    carlos: new Character("Paciente Carlos", "char-paciente-02"),
-                    raul_unknow: new Character("Paciente", "char-paciente-03"),
-                    raul: new Character("Paciente Raul", "char-paciente-03"),
-                    pedro: new Character("Sr. Pedro", "char-paciente_04"),
-                    regina: new Character("Sra. Regina", "char-paciente_05")
+                    carlos: new Character("Paciente Carlos", "char-paciente_02"),
+                    raul: new Character("Paciente Raul", "char-paciente_03"),
+                    regina: new Character("Sr. Pedro", "char-paciente_04"),
+                    pedro: new Character("Sr. Pedro", "char-paciente_05"),
+                    esther: new Character("Sr. Pedro", "char-paciente_06"),
+                    josivaldo: new Character("Sr. Pedro", "char-paciente_07"),
+                    ana: new Character("Sr. Pedro", "char-paciente_08"),
+                    yuri: new Character("Sr. Pedro", "char-paciente_09"),
+                    francisco: new Character("Sr. Pedro", "char-paciente_10"),
+
+                    joao_unknow: new Character("Paciente", "char-paciente_01"),
+                    carlos_unknow: new Character("Paciente", "char-paciente_02"),
+                    raul_unknow: new Character("Paciente", "char-paciente_03"),
+                    regina_unknow: new Character("Paciente", "char-paciente_04"),
+                    pedro_unknow: new Character("Paciente", "char-paciente_05"),
+                    esther_unknow: new Character("Paciente", "char-paciente_06"),
+                    josivaldo_unknow: new Character("Paciente", "char-paciente_07"),
+                    ana_unknow: new Character("Paciente", "char-paciente_08"),
+                    yuri_unknow: new Character("Paciente", "char-paciente_09"),
+                    francisco_unknow: new Character("Paciente", "char-paciente_10")
                 }
-
-
             }
         };
         console.groupEnd();
