@@ -221,7 +221,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 core.changeScene(5);
             }
              else  
-                 core.changeScene(5);
+                core.changeScene(5);
       
 
         }
@@ -585,8 +585,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function () {
 
                     if(level.getFlag("lavar_maos").getValue() == false){
-                console.log("Action: lavar_maos");
+                            console.log("Action: lavar_maos");
                             level.getFlag("lavar_maos").setValue(true);
+                             core.registerScoreItem(Scores.lavarMaosHoraErrada);
+                             console.log("Perdendo 200 pontos");
+                             core.openDialog(24);
+                            
 
                         }
             }),
@@ -599,6 +603,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
                 if (level.getFlag("lavar_maos_cirurgica").getValue() == false) {
                     console.log("Action: lavar_maos cirurgica");
+                    core.registerScoreItem(Scores.lavarMaosCirurgica);
                     level.getFlag("lavar_maos_cirurgica").setValue(true);
 
                 }
@@ -616,6 +621,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                  else { 
                         console.log("Action: testar equipamentos");
                         level.getFlag("testar_equipamentos").setValue(true);
+                        core.registerScoreItem(Scores.testarEquipamentos);
                         core.openDialog(4);
 
                 }
@@ -659,9 +665,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function () {
 
                     if(level.getFlag("lavar_maos2").getValue() == false){
-                console.log("Action: lavar_maos2");
+                            console.log("Action: lavar_maos2");
                             level.getFlag("lavar_maos2").setValue(true);
-
+                             core.registerScoreItem(Scores.lavarMaos2);
                         }
             }),
             
@@ -706,6 +712,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.openDialog(2);
                 else {
                 console.log("Abrir diálogo com paciente 4");
+                core.registerScoreItem(Scores.irAoLeitoCorreto);
                 core.changeScene(4);
                 }
 

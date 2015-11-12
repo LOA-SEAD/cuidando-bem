@@ -70,6 +70,11 @@ define(function ()
             irPostoEnfermagem_horaErrada: new Score("Ir ao posto de enfermagem sem precisar", -25),
             irFarmacia_horaErrada: new Score("Ir ao posto de enfermagem sem precisar", -25),
             irAlaFeminina_horaErrada: new Score("Ir ao posto de enfermagem sem precisar", -25),
+            lavarMaosHoraErrada: new Score("Lavar mãos ao inves de lavar mãos técnica cirúrgica", -200),
+            lavarMaosCirurgica: new Score("Lavar mãos tecnica cirurgica", 200),
+            testarEquipamentos: new Score("Lavar mãos tecnica cirurgica", 250),
+            lavarMaos2: new Score("Lavar mãos antes de ir ao leito", 200),
+            irAoLeitoCorreto: new Score("Ir ao leito correto", 150),
 
         },
         level4: {

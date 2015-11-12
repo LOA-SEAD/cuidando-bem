@@ -307,8 +307,9 @@ define({
                 
                 // 9 ALERTA TESTAR EQUIPAMENTOS
                 
-                "Você está se esquecendo de algo importante!"
+                "Você está se esquecendo de algo importante!",
                 
+               
             ],
             fala2: [
                 //0 Aline
