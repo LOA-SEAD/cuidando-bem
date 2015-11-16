@@ -159,6 +159,10 @@ define(function ()
 
         },
         level7: {
+               irFarmacia_horaErrada: new Score("Ir para a Farmacia sem precisar", -25),
+               irPostoEnfermagem_horaErrada: new Score("Ir para o Posto Enfermagem sem precisar", -25),
+               irCentroCirurgico_horaErrada: new Score("Ir para o Centro Cirugico sem precisar", -25),
+               irAlaMasculina_horaErrada: new Score("Ir para a Ala Masculina sem precisar", -25),
 
         },
         level8: {

@@ -275,7 +275,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 console.log("Abrir diálogo com o mentor");
                 if(level.getFlag("testar_equipamentos").getValue() == false)
                     core.openDialog(0);
-                else if(level.getFlag("testar_equipamentos").getValue() == true && level.getFlag("primeira_saida_centro_cirurgico").getValue() == true)  //segunda passada
+                else if(level.getFlag("testar_equipamentos").getValue() == true && level.getFlag("conversar_paciente").getValue() == false)  //segunda passada
                     core.openDialog(5);
                 //else if
                 
@@ -292,6 +292,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var centroCirurgico = lib.scenes.centroCirurgico.getClone()
             .onLoad(function () {
                 console.log("Load scene: " + centroCirurgico.getName());
+                if(level.getFlag("conversar_mentor").getValue() == true && level.getFlag("conversar_paciente").getValue() == false)
+                    core.openDialog(0);
+                else if(level.getFlag("conversar_paciente").getValue() == true)
+                        core.openDialog(5);
             });
 
 
@@ -771,7 +775,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 console.log("Abrindo dialogo com paciente");
                 level.getFlag("conversar_paciente").setValue(true);
                 core.openDialog(0);
-
             })
 
           ]);
