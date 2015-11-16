@@ -590,7 +590,10 @@ define({
             //4 Paciente
             "Certo! São para controlar o diabetes.",
             //5 Jogador
-            "Vou até a farmácia buscar sua dose de hoje e volto em breve."
+            "Vou até a farmácia buscar sua dose de hoje e volto em breve.",
+            // 6 MENTOR
+            "Sua apresentação profissional é a parte mais importante do diálogo com" +
+            " o paciente. Tente novamente."
         ],
         farmacia: [
             //0 Jogador

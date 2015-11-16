@@ -243,26 +243,26 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         corredor.registerInteractiveObjects([
 
             new InteractiveObject("io-ir_centro_cirurgico", "Ir para o Centro Cirurgico")
-                .setCssClass("intObj-goToCentroCirurgico_fase3")
+                .setCssClass("intObj-goToCentroCirurgico")
                 .onClick(corredorIrCentroCirurgico)
                 .setVisibility(true),
 
 
 
             new InteractiveObject("io-ir_farmacia", "Ir para a Farmacia")
-                .setCssClass("intObj-goToFarmacia_fase3")
+                .setCssClass("intObj-goToFarmacia")
                 .onClick(corredorIrFarmacia)
                 .setVisibility(true),
 
 
             new InteractiveObject("io-ir_posto_enfermagem", "Ir para o Posto de Enfermagem")
-                .setCssClass("intObj-goToPostoEnfermagem_fase3")
+                .setCssClass("intObj-goToPostoEnfermagem")
                 .onClick(corredorIrPostoEnfermagem)
                 .setVisibility(true),
 
 
             new InteractiveObject("io-ir_ala_feminina", "Ir para a Ala Feminina")
-                .setCssClass("intObj-goToAlaFeminina_fase3")
+                .setCssClass("intObj-goToAlaFeminina")
                 .onClick(corredorIrAlaFeminina)
                 .setVisibility(true),
 
@@ -725,7 +725,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
 
            new InteractiveObject("io-ir_corredor", "Ir ao corredor")
-                .setCssClass("intObj-ir_corredor_fase3")
+                .setCssClass("intObj-irAlaFeminina_corredor")
                 .onClick(function () {
                 console.log("voltando para corredor");
 

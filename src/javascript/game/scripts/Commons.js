@@ -110,7 +110,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     pedro: new Character("Sr. Pedro", "char-paciente_05"),
                     esther: new Character("Sr. Pedro", "char-paciente_06"),
                     josivaldo: new Character("Sr. Pedro", "char-paciente_07"),
-                    ana: new Character("Sr. Pedro", "char-paciente_08"),
+                    ana: new Character("Sra. Ana", "char-paciente_08"),
                     yuri: new Character("Sr. Pedro", "char-paciente_09"),
                     francisco: new Character("Sr. Pedro", "char-paciente_10"),
 

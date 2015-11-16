@@ -90,10 +90,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
       corredor = lib.scenes.corredor.getClone()
             .onLoad(function () {
                 console.log("Entrando no corredor");
-                if (level.getFlag("conversar_mentor").getValue() == false) {
-                    level.getFlag("conversar_mentor").setValue(true);
-                    core.openDialog(0);
-                } 
             })
             .onUnload(function () {
                 console.log("Saindo do corredor");
@@ -127,6 +123,18 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                  core.changeScene(5);
         }
     
+     function corredorIrAlaFeminina() {
+            console.log("Action: corredorIrAlaFeminina");
+             if(level.getFlag("ir_AlaFeminina_horaErrada").getValue() == false){
+                core.registerScoreItem(Scores.irAlaFeminina_horaErrada);
+                level.getFlag("ir_AlaFeminina_horaErrada").setValue(true);
+                core.changeScene(2);
+            }
+             else  
+                 core.changeScene(2);
+        }
+    
+    
         function corredorIrCentroCirurgico() {
             console.log("Action: corredorIrCentroCirurgicoHoraErrada");
             if(level.getFlag("ir_centroCirurgico_horaErrada").getValue() == false){
@@ -142,7 +150,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
 
         function corredorIrAlaMasculina() {
-            console.log("Action: corredorIrAlaFemininaHoraErrada");
+            console.log("Action: corredorIrAlaMasculinaHoraErrada");
              if(level.getFlag("ir_AlaMasculina_horaErrada").getValue() == false){
                 core.registerScoreItem(Scores.irAlaMasculina_horaErrada);
                 level.getFlag("ir_AlaMasculina_horaErrada").setValue(true);
@@ -154,8 +162,46 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
     
     
     
-    // ------------------------------------- continuar Corredor --------------------------------------------
+      corredor.registerInteractiveObjects([
+
+            new InteractiveObject("io-ir_centro_cirurgico", "Ir para o Centro Cirurgico")
+                .setCssClass("intObj-goToCentroCirurgico")
+                .onClick(corredorIrCentroCirurgico)
+                .setVisibility(true),
+
+
+
+            new InteractiveObject("io-ir_farmacia", "Ir para a Farmacia")
+                .setCssClass("intObj-goToFarmacia")
+                .onClick(corredorIrFarmacia)
+                .setVisibility(true),
+
+
+            new InteractiveObject("io-ir_posto_enfermagem", "Ir para o Posto de Enfermagem")
+                .setCssClass("intObj-goToPostoEnfermagem")
+                .onClick(corredorIrPostoEnfermagem)
+                .setVisibility(true),
+
+
+            new InteractiveObject("io-ir_ala_feminina", "Ir para a Ala Feminina")
+                .setCssClass("intObj-goToAlaFeminina")
+                .onClick(corredorIrAlaFeminina)
+                .setVisibility(true),
+          
+            new InteractiveObject("io-ir_ala_masculina", "Ir para a Ala Masculina")
+                .setCssClass("intObj-goToAlaMasculina")
+                .onClick(corredorIrAlaMasculina)
+                .setVisibility(true),
+
+
+
+            
+    ]);
     
+    
+    
+  
+        // region ALA FEMININA
     
     
     
@@ -164,15 +210,108 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 console.log("Load scene: " + alaFeminina.getName());
             });
     
+    
+    
+    alaFeminina.registerDialogs([
+        
+        // 0
+        
+                // 1 Jogador responde
+            new Dialog(lib.characters.jogador)
+                .setText("")
+                .registerOption(Dialogs.enfermaria_feminina[0], function () {
+                core.openDialog(1);
+            })
+                .registerOption(Dialogs.enfermaria_feminina[1], function () {
+                core.openDialog(5);
+            })
+                .setRandomize(true),
+        
+        // 1
+        
+            new Dialog(lib.characters.pacientes.ana)
+                    .setText(Dialogs.enfermaria_feminina[2])
+                    .registerOption("", function () {
+                core.openDialog(2);
+            }),
+        
+        // 2
+        
+              new Dialog(lib.characters.jogador)
+                    .setText(Dialogs.enfermaria_feminina[3])
+                    .registerOption("", function () {
+                core.openDialog(3);
+            }),
+        
+        // 3
+         new Dialog(lib.characters.pacientes.ana)
+                    .setText(Dialogs.enfermaria_feminina[4])
+                    .registerOption("", function () {
+                core.openDialog(4);
+            }),
+        
+        // 4
+        
+         new Dialog(lib.characters.jogador)
+                    .setText(Dialogs.enfermaria_feminina[5])
+                    .registerOption("", function () {
+                core.closeDialog();
+            }),
+        
+        // 5
+        
+         new Dialog(lib.characters.mentor)
+                    .setText(Dialogs.enfermaria_feminina[6])
+                    .registerOption("", function () {
+                core.openDialog(0);
+            }),
+    ]);
+    
+    
+    
+        alaFeminina.registerActions([
+
+       new Action("btn-falar_paciente", "Conversar com a Paciente")
+                .setCssClass("action-leito-char-02")
+                .onClick(function () {
+                    level.getFlag("conversar_paciente").setValue(true);
+                    core.openDialog(0);
+                }),
+    ]);
+    
+    
+    
+    alaFeminina.registerInteractiveObjects([
+
+             new InteractiveObject("io-ir_corredor", "Ir ao corredor")
+                .setCssClass("intObj-irAlaFeminina_corredor")
+                .onClick(function () {
+                console.log("voltando para corredor");
+                core.changeScene(1);
+
+            }),
+
+          ]);
+    
+    
+    
+    
+    
+    //  region LEITO
+    
             var leito = lib.scenes.leitos.ana.getClone()
             .onLoad(function () {
                 console.log("Load scene: " + leito.getName());
             });
     
+    //  region FARMACIA
+    
             var farmacia = lib.scenes.farmacia.getClone()
             .onLoad(function () {
                 console.log("Load scene: " + farmacia.getName());
             });
+    
+    //  region POSTO DE ENFERMAGEM
     
             var posto_de_enfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function () {
@@ -180,10 +319,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 //
             });
     
+    //  region ALA MASCULINA
+    
             var alaMasculina = lib.scenes.alaMasculina.getClone()
             .onLoad(function () {
                 console.log("Load scene: " + alaMasculina.getName());
             });
+    
+    //  region CENTRO CIRURGICO
     
             var centroCirurgico = lib.scenes.centroCirurgico.getClone()
             .onLoad(function () {
@@ -241,6 +384,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             level.getFlag("postoEnfermagem_horaErrada").setValue(false);
             level.getFlag("ir_centroCirurgico_horaErrada").setValue(false);
             level.getFlag("ir_AlaMasculina_horaErrada").setValue(false);
+            level.getFlag("ir_AlaFeminina_horaErrada").setValue(false);
+            level.getFlag("ir_postoEnfermagem_horaErrada").setValue(false);
+            level.getFlag("conversar_paciente").setValue(false);
             
             
             
@@ -255,6 +401,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             level.registerFlag(new Flag("postoEnfermagem_horaErrada"), false);
             level.registerFlag(new Flag("ir_centroCirurgico_horaErrada"), false);
             level.registerFlag(new Flag("ir_AlaMasculina_horaErrada"), false);
+            level.registerFlag(new Flag("ir_AlaFeminina_horaErrada"), false);
+            level.registerFlag(new Flag("ir_postoEnfermagem_horaErrada"), false);
+            level.registerFlag(new Flag("conversar_paciente"), false);
     
     
     
