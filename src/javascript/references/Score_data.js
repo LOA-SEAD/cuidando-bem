@@ -7,6 +7,7 @@
 
     return {
         general: {},
+
         tutorial: {
             identificarPaciente: new Score("Ver pulseira/identificação do paciente", 100),
             pegarOximetro: new Score("Pegar oxímetro", 50),
@@ -21,6 +22,7 @@
             lavarMaosDepois: new Score("Lavar as mãos após procedimento", 200),
             anotarNoProntuario: new Score("Anotar no prontuário", 250)
         },
+
         level1: {
             irPostoEnfermagem_horaErrada: new Score("Ir ao posto de enfermagem em hora indevida", -50),
             lavarMaosAntes: new Score("Lavar as mãos antes de examinar paciente", 200),
@@ -34,6 +36,7 @@
             naoLavarMaosProntuario: new Score("Não lavar as mãos antes de pegar prontuario", -100),
             anotarNoProntuario: new Score("Anotar no prontuário", 50)
         },
+
         level2: {
             irPostoEnfermagem_horaErrada: new Score("Ir ao posto de enfermagem em hora indevida", -25),
             irFarmacia_horaErrada: new Score("Ir à farmácia sem precisar", -25),
@@ -100,6 +103,7 @@
             gotejarSoroEquipo: new Score("Realizar gotejamento de soro no equipamento", 350),
             anotarNoProntuario: new Score("Anotar no prontuário", 200)
         },
+
         level5: {
             irPostoEnfermagem_horaErrada: new Score("Ir ao posto de enfermagem em hora indevida", -25),
             irFarmacia_horaErrada: new Score("Ir à farmácia sem precisar", -25),
@@ -147,15 +151,19 @@
             naoElevarGradeDaCama: new Score("Não elevar a grade da cama no momemto correto", -350),
             anotarNoProntuario: new Score("Anotar no prontuário", 350)
         },
+
         level6: {
 
         },
+
         level7: {
 
         },
+
         level8: {
 
         },
+
         level9: {
 
         }
