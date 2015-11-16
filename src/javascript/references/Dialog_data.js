@@ -1,4 +1,4 @@
-﻿/**
+/**
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
@@ -254,27 +254,19 @@ define({
                 "e verificar com a circulante de sala se todos os equipamentos estão em ordem.",
 
                 // mensagem do mentor em caso de resposta incorreta
-
-            // 5 - resposta a OP2
-            "Imagine  todos  os  riscos  existentes  nos" +
-            "procedimentos  cirúrgicos!  A  lista  é  um  das" +
-            "estratégias para tentar amenizá-los.",
-
-            // 6 - resposta a OP3
-            "A lista  é  uma  estratégia muito  importante  para" +
-            "evitar  erros  durante  todo  o  procedimento " +
-            "cirúrgico.  É  um  documento  de  extrema importância!",
-
-                " e verificar com a circulante de sala se todos os equipamentos estão em ordem?",
-                // mensagem do mentor em caso de resposta incorreta
+                
                 // 5 - resposta a OP2
                 "Imagine  todos  os  riscos  existentes  nos" +
                 "procedimentos  cirúrgicos!  A  lista  é  um  das" +
                 "estratégias para tentar amenizá-los.",
+                
                 // 6 - resposta a OP3
                 "A lista  é  uma  estratégia muito  importante  para" +
                 "evitar  erros  durante  todo  o  procedimento" +
-                "cirúrgico.  É  um  documento  de  extrema importância!"
+                "cirúrgico.  É  um  documento  de  extrema importância!",
+                
+                // 7 
+                "A paciente o espera na sala de leitos"
             ],
             fala2: [
                 //0 Jogador
@@ -302,7 +294,21 @@ define({
                 //6 op errada2
                 "Nunca  se  esqueça  de  verificar  todos  os" +
                 "equipamento, pois  assim  evitamos  a ocorrência" +
-                "de imprevistos na cirurgia!"
+                "de imprevistos na cirurgia!",
+                
+                //7 ALERTA LAVAR MAOS CIRURGICA
+                "Higienize suas mãos utilizando as técnicas" +
+                " cirúrgicas.",
+                
+                // 8 ALERTA LAVAR MAOS
+                "Não se esqueça do procedimento mais frequente" +
+                "e vital de um hospital. Você já o realizou várias" + 
+                "vezes até aqui. Consegue lembrar qual é ele?",
+                
+                // 9 ALERTA TESTAR EQUIPAMENTOS
+                
+                "Você está se esquecendo de algo importante!"
+                
             ],
             fala2: [
                 //0 Aline
@@ -834,7 +840,7 @@ define({
             ala_feminina:[
                 "Esta é a enfermaria correta?"
             ],
-            farmácia: [
+            farmacia: [
                 "Você precisa encontrar seu paciente primeiro!"
             ]
         },
@@ -889,15 +895,16 @@ define({
                 "Você precisa verificar o prontuário do paciente.",
                 //1 - Paciente mulher
                 "Você precisa verificar o prontuário da paciente."
-            ]
-            //informar_paciente (Level 5) -> Este ainda não encontrei onde será utilizado
+            ],
+            informar_paciente: [
+                "Você precisa explicar todo procedimento realizado à paciente, é direito dela!"
+            ] 
         },
         descarte: {
             algodão: [
                 // 0 Descarte na bandeja
                 "O algodão deve ser descartado na bandeja antes de ir para um depósito mais adequado."
                 // 1 Descarte no lixo branco
-
             ],
             agulha: [
                 "Faça o descarte da agulha em local adequado para evitar acidentes de trabalho."

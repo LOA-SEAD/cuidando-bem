@@ -25,6 +25,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         leito,
         posto_de_enfermagem,
         farmacia,
+        alaFeminina,
         gaveta,
         pulseira,
         prontuario;
@@ -178,7 +179,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 }),
             // 4 - Mentor Ação errada: Ir a farmacia
             new Dialog(lib.characters.mentor)
-                .setText(Alertas.perdido.farmácia)
+                .setText(Alertas.perdido.farmacia)
                 .registerOption("", function (){
                     core.closeDialog();
                 }),
@@ -204,13 +205,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             //TODO: Adicionar ir ala feminina
             new InteractiveObject("io-ir_ala_feminina","Ir para a Ala Feminina")
                 .setCssClass("intObj-goToFemaleRoom")
-                .onClick(corredorIrFarmacia)
+                .onClick(corredorIrAlaFeminina)
                 .setVisibility(true),
 
-            //TODO: Adicionar ir Farmácia
-            new InteractiveObject("io-ir_farmacia","Ir para a Farmacia")
+            new InteractiveObject("io-ir_farmacia","Ir para a Farmácia")
                 .setCssClass("intObj-goToPharmacy")
-                .onClick(corredorIrAlaFeminina)
+                .onClick(corredorIrFarmacia)
                 .setVisibility(true),
 
             new InteractiveObject("io-conversar_mentor","Conversar com Mentor")
@@ -236,13 +236,17 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 else{
                     core.setInteractiveObjectVisible("io-ir_leito", true);
                     core.setActionVisible("btn-lavar_maos", true);
-                    core.openCommandBar();
+                    if (level.getFlag("tem_fala").getValue() == false){
+                        core.openCommandBar();
+                    }
                 }
-                //Caso ele já tenha realizado os procedimentos, é habilitado os botões de descarte dos itens utilizados
-                if((level.getFlag("voltar_ala_masculina").getValue() == true)){
+                //Caso ele já tenha realizado os procedimentos, são habilitados os botões de descarte dos itens utilizados
+                if((level.getFlag("score_explicou_resultado").getValue() == true)){
                     core.setActionVisible("btn-jogar_algodao_lixo", true);
                     core.setActionVisible("btn-jogar_agulha_perfuro", true);
                     core.setActionVisible("btn-elevar_grade_cama", true);
+                    core.setActionVisible("btn-ler_prontuario", false);
+                    core.setActionVisible("btn-anotar_prontuario", true);
                     core.openCommandBar();
                 }
             })
@@ -283,7 +287,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         ]);
 
         sala_de_leitos.registerActions([
-
             new Action("btn-lavar_maos", "Lavar as mãos")
                 .setCssClass("action-lavar_maos")
                 .onClick(function (){
@@ -299,7 +302,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     }
                     else {
                         //Verifica se os procedimentos já foram realizados
-                        if((level.getFlag("voltar_ala_masculina").getValue() == false)){
+                        if((level.getFlag("score_explicou_resultado").getValue() == false)){
                             if(level.getFlag("lavar_maos2").getValue() == false) {
                                 level.getFlag("lavar_maos2").setValue(true);
                             }
@@ -331,17 +334,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("action-ler_prontuario")
                 .onClick(function (){
                     console.log("Action: ler prontuario");
-                    if((level.getFlag("lavar_maos").getValue() == false) ||
-                        ((level.getFlag("voltar_ala_masculina").getValue() == true) && (level.getFlag("lavar_maos_apos_lixo").getValue() == false))){
+                    if(level.getFlag("lavar_maos").getValue() == false){
                         core.closeCommandBar();
                         core.openDialog(6);
                     } else {
-                        if(level.getFlag("lavar_maos_apos_lixo").getValue() == true){
-                            if(level.getFlag("score_anotar_prontuario").getValue() == false) {
-                                core.registerScoreItem(Scores.anotarNoProntuario);
-                                level.getFlag("score_anotar_prontuario").setValue(true);
-                            }
-                        }
                         if(level.getFlag("score_checar_prontuario").getValue() == false) {
                             core.registerScoreItem(Scores.checarProntuario);
                             level.getFlag("score_checar_prontuario").setValue(true);
@@ -351,8 +347,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         Prontuario.open();
                         core.openModalScene("Prontuario");
                         //Verificou o prontuario na primeira vez, realiza a fala
-                        if((level.getFlag("checar_prontuario").getValue() == true) &&
-                            (level.getFlag("lavar_maos_apos_lixo").getValue() == false)) {
+                        if(level.getFlag("checar_prontuario").getValue() == true) {
                             core.openDialog(2);
                         }
                     }
@@ -360,7 +355,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisibility(false),
 
             new Action("btn-jogar_algodao_lixo", "Jogar algodão no lixo branco")
-                .setCssClass("action-jogar_algodao_lixo")
+                .setCssClass("action-jogar_algodao_lixo") //CONSERTAR
                 .onClick(function (){
                     console.log("Action: Jogar algodão no lixo branco");
                     if(level.getFlag("score_jogou_algodao_lixo").getValue() == false) {
@@ -371,7 +366,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisibility(false),
 
             new Action("btn-jogar_agulha_perfuro", "Jogar agulha no perfuro cortante")
-                .setCssClass("action-jogar_agulha_perfuro")
+                .setCssClass("action-jogar_agulha_perfuro") //CONSERTAR
                 .onClick(function (){
                     if(level.getFlag("score_jogou_algodao_lixo").getValue() == true) {
                         console.log("Action: Jogar agulha no perfuro cortante");
@@ -389,7 +384,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisibility(false),
 
             new Action("btn-elevar_grade_cama", "Elevar a grade da cama")
-                .setCssClass("action-elevar_grade_cama")
+                .setCssClass("action-elevar_grade_cama") //CONSERTAR
                 .onClick(function (){
                     if(level.getFlag("score_jogou_agulha_perfuro").getValue() == true) {
                         console.log("Action: Elevar a grade da cama");
@@ -400,6 +395,24 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     }else{
                         core.closeCommandBar();
                         core.openDialog(4);
+                    }
+                })
+                .setVisibility(false),
+
+            new Action("btn-anotar_prontuario", "Anotar prontuario")
+                .setCssClass("action-anotar_prontuario")
+                .onClick(function (){
+                    console.log("Action: Anotar prontuario");
+                    if(level.getFlag("lavar_maos_apos_lixo").getValue() == false){
+                        core.closeCommandBar();
+                        core.openDialog(6);
+                    } else {
+                        if(level.getFlag("score_anotar_prontuario").getValue() == false) {
+                            core.registerScoreItem(Scores.anotarNoProntuario);
+                            level.getFlag("score_anotar_prontuario").setValue(true);
+                        }
+                        Prontuario.open();
+                        core.openModalScene("Prontuario");
                     }
                 })
                 .setVisibility(false)
@@ -512,6 +525,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setText(Dialogs.leito_paciente[5])
                 .registerOption("", function() {
                     core.closeDialog();
+                    core.setActionVisible("btn-selecionar_bandeja", true);
+                    core.setActionVisible("btn-por_luvas", true);
+                    core.setActionVisible("btn-utilizar_algodao", true);
+                    core.setActionVisible("btn-realizar_teste_glicemia", true);
+                    core.setActionVisible("btn-ir_sala_leitos", true);
                     core.openCommandBar();
                 }),
             //Apos os exames
@@ -590,113 +608,126 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         core.openDialog(0);
                         core.closeCommandBar();
                     } else { //Já realizou os procedimentos
-                        if(level.getFlag("explicar_resultado").getValue() == true) {
-                            console.log("Action: Explicar o resultado");
-                            level.getFlag("voltar_ala_masculina").setValue(true);
+                        console.log("Action: Explicar o resultado");
+                        if(level.getFlag("score_realizou_teste_glicemia").getValue() == false){
+                            if(level.getFlag("score_nao_realizou_teste_glicemia").getValue() == false) {
+                                core.registerScoreItem(Scores.naoUsarAlgodao2);
+                                level.getFlag("score_nao_realizou_teste_glicemia").setValue(true);
+                            }
+                            core.closeCommandBar();
+                            core.openDialog(12);
+                        } else {
                             if(level.getFlag("score_explicou_resultado").getValue() == false) {
                                 level.getFlag("score_explicou_resultado").setValue(true);
                                 core.registerScoreItem(Scores.explicarResultado);
                             }
-                            level.getFlag("explicar_resultado").setValue(false);
                             core.openDialog(6);
-                        }else{
-                            core.closeCommandBar();
-                            core.openDialog(12);
-                        }
+                            //Para o caso dele ter tentado sair sem explicar o resultado para o paciente antes
+                            level.getFlag("tem_fala").setValue(false);
+                        }                        
                     }
                 })
                 .setVisibility(true),
             // CUIDADO COM OS CSS ERRADOS
 
             new Action("btn-selecionar_bandeja", "Selecionar Bandeja")
-                .setCssClass("action-selecionar_bandeja")
+                .setCssClass("action-selecionar_bandeja") //CONSERTAR
                 .onClick(function (){
-                    if(level.getFlag("selecionar_bandeja").getValue() == true){
-                        console.log("Action: Selecionar Bandeja");
-                        //Desabilita acesso a pulseira
-                        Pulseira.disable();
-                        level.getFlag("por_luvas").setValue(true);
+                    console.log("Action: Fazer teste de glicemia capilar");
+                    //Desabilita acesso a pulseira
+                    Pulseira.disable();
+                    if(level.getFlag("score_verificar_pulseira").getValue() == false){
+                        if(level.getFlag("score_nao_verificar_pulseira").getValue() == false) {
+                            core.registerScoreItem(Scores.naoVerificarPulseira);
+                            level.getFlag("score_nao_verificar_pulseira").setValue(true);
+                        }
+                        core.closeCommandBar();
+                        core.openDialog(10);
+                    } else {
                         if(level.getFlag("score_selecionou_bandeja").getValue() == false) {
                             level.getFlag("score_selecionou_bandeja").setValue(true);
                             core.registerScoreItem(Scores.selecionarBandeja);
                         }
-                        level.getFlag("selecionar_bandeja").setValue(false);
-                    }else{
-                        core.closeCommandBar();
-                        core.openDialog(10);
                     }
                 })
                 .setVisibility(false),
 
             new Action("btn-por_luvas", "Por Luvas")
-                .setCssClass("action-por_luvas")
+                .setCssClass("action-luvas_de_procedimento")
                 .onClick(function (){
-                    if(level.getFlag("por_luvas").getValue() == true) {
-                        console.log("Action: Por Luvas");
-                        level.getFlag("utilizar_algodao1").setValue(true);
+                    console.log("Action: Por Luvas");
+                    if(level.getFlag("score_selecionou_bandeja").getValue() == false){
+                        if(level.getFlag("score_nao_selecionou_bandeja").getValue() == false) {
+                            core.registerScoreItem(Scores.naoSelecionarBandeja);
+                            level.getFlag("score_nao_selecionou_bandeja").setValue(true);
+                        }
+                        //Não será utilizada uma fala caso não selecione a bandeja
+                        /*core.closeCommandBar();
+                        core.openDialog(15);*/
+                    } else {
                         if(level.getFlag("score_vestiu_luvas").getValue() == false) {
                             level.getFlag("score_vestiu_luvas").setValue(true);
                             core.registerScoreItem(Scores.porLuvas);
                         }
-                        level.getFlag("por_luvas").setValue(false);
-                    }//else{
-                        //Não será utilizada uma fala caso não selecione a bandeja
-                        /*core.closeCommandBar();
-                        core.openDialog(15);*/
-                    //}
+                    }
                 })
                 .setVisibility(false),
 
             new Action("btn-utilizar_algodao", "Utilizar Algodão")
-                .setCssClass("action-utilizar_algodao")
+                .setCssClass("action-algodao_seco")
                 .onClick(function (){
-                    if((level.getFlag("utilizar_algodao1").getValue() == true) ||
-                        (level.getFlag("utilizar_algodao2").getValue() == true)) {
-                        console.log("Action: Utilizar Algodão");
-                        //Verifica qual é a vez que está utilizando o algodão
-                        if(level.getFlag("utilizar_algodao1").getValue() == true) {
-                            level.getFlag("realizar_teste_glicemia").setValue(true);
-                            if(level.getFlag("score_utilizou_algodao1").getValue() == false) {
-                                level.getFlag("score_utilizou_algodao1").setValue(true);
-                                core.registerScoreItem(Scores.usarAlgodao);
+                    console.log("Action: Utilizar Algodão");
+                    //Verifica qual é a vez que está utilizando o algodão
+                    if(level.getFlag("utilizar_algodao2").getValue() == true) {
+                        if(level.getFlag("score_realizou_teste_glicemia").getValue() == false){
+                            if(level.getFlag("score_nao_realizou_teste_glicemia").getValue() == false) {
+                                core.registerScoreItem(Scores.naoRealizarTesteGlicemia);
+                                level.getFlag("score_nao_realizou_teste_glicemia").setValue(true);
                             }
-                            level.getFlag("utilizar_algodao1").setValue(false);
-                        }else{
-                            level.getFlag("explicar_resultado").setValue(true);
+                            core.closeCommandBar();
+                            core.openDialog(13);
+                        } else {
                             if(level.getFlag("score_utilizou_algodao2").getValue() == false) {
                                 level.getFlag("score_utilizou_algodao2").setValue(true);
                                 core.registerScoreItem(Scores.usarAlgodao2);
                             }
-                            level.getFlag("utilizar_algodao2").setValue(false);
                         }
                     }else{
-                        //Ainda não realizou algum dos passos anteriores a utilizar o algodão pela primeira vez
-                        if((level.getFlag("selecionar_bandeja").getValue() == true) ||
-                            (level.getFlag("por_luvas").getValue() == true)) {
+                        if(level.getFlag("score_vestiu_luvas").getValue() == false){
+                            if(level.getFlag("score_nao_vestiu_luvas").getValue() == false) {
+                                core.registerScoreItem(Scores.naoPorLuvas);
+                                level.getFlag("score_nao_vestiu_luvas").setValue(true);
+                            }
                             core.closeCommandBar();
                             core.openDialog(11);
                         } else {
-                            core.closeCommandBar();
-                            core.openDialog(13);
+                            if(level.getFlag("score_utilizou_algodao1").getValue() == false) {
+                                level.getFlag("score_utilizou_algodao1").setValue(true);
+                                core.registerScoreItem(Scores.usarAlgodao);
+                            }
+                            //A próxima vez que se utilizar o algodão será a segunda vez
+                            level.getFlag("utilizar_algodao2").setValue(true);
                         }
                     }
                 })
                 .setVisibility(false),
 
             new Action("btn-realizar_teste_glicemia", "Realizar teste de glicemia capilar")
-                .setCssClass("action-realizar_teste_glicemia")
+                .setCssClass("action-realizar_teste_glicemia") // CONSERTAR
                 .onClick(function (){
-                    if(level.getFlag("realizar_teste_glicemia").getValue() == true) {
-                        console.log("Action: Realizar teste de glicemia capilar");
-                        level.getFlag("utilizar_algodao2").setValue(true);
+                    console.log("Action: Realizar teste de glicemia capilar");
+                    if(level.getFlag("score_utilizou_algodao1").getValue() == false){
+                        if(level.getFlag("score_nao_utilizou_algodao1").getValue() == false) {
+                            core.registerScoreItem(Scores.naoUsarAlgodao);
+                            level.getFlag("score_nao_utilizou_algodao1").setValue(true);
+                        }
+                        core.closeCommandBar();
+                        core.openDialog(12);
+                    } else {
                         if(level.getFlag("score_realizou_teste_glicemia").getValue() == false) {
                             level.getFlag("score_realizou_teste_glicemia").setValue(true);
                             core.registerScoreItem(Scores.realizarTesteGlicemia);
                         }
-                        level.getFlag("realizar_teste_glicemia").setValue(false);
-                    }else{
-                        core.closeCommandBar();
-                        core.openDialog(12);
                     }
                 })
                 .setVisibility(false),
@@ -704,13 +735,27 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
                 .setCssClass("action-ir_sala_de_leitos")
                 .onClick(function (){
-                    if((level.getFlag("voltar_ala_masculina").getValue() == true)){
-                        core.disableInteractiveObject("io-pulseira_paciente");
-                        core.changeScene(2);
-                    }else{
+                    console.log("Action: Voltar para a ala masculina");
+                    if(level.getFlag("score_explicou_resultado").getValue() == false){
+                        //Uma flag apenas para evitar o erro de abrir a commandBar durante o alerta do mentor
+                        level.getFlag("tem_fala").setValue(true);
+                        if(level.getFlag("score_nao_explicou_resultado").getValue() == false) {
+                            core.registerScoreItem(Scores.naoExplicarResultado);
+                            level.getFlag("score_nao_explicou_resultado").setValue(true);
+                        }
                         core.closeCommandBar();
                         core.openDialog(14);
                     }
+                    //core.disableInteractiveObject("io-pulseira_paciente");
+                    core.changeScene(2);
+
+                    /*if((level.getFlag("voltar_ala_masculina").getValue() == true)){
+                        
+                        
+                    }else{
+                        core.closeCommandBar();
+                        core.openDialog(14);
+                    }*/
                 })
                 .setVisibility(true)
         ]);
@@ -776,6 +821,16 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             });
         //endregion
 
+        //ala feminina - não será feito nada aqui mas é necessário ter
+        alaFeminina = lib.scenes.alaFeminina.getClone()
+            .onLoad(function (){
+                core.openCommandBar();
+            })
+            .onUnload(function() {
+                core.closeCommandBar();
+            });
+        //endregion
+
         //Modal scenes
 
         //region Pulseira
@@ -795,11 +850,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         level.getFlag("score_verificar_pulseira").setValue(true);
                         core.registerScoreItem(Scores.verificarPulseira);
                     }
-                    core.setActionVisible("btn-selecionar_bandeja", true);
-                    core.setActionVisible("btn-por_luvas", true);
-                    core.setActionVisible("btn-utilizar_algodao", true);
-                    core.setActionVisible("btn-realizar_teste_glicemia", true);
-                    core.setActionVisible("btn-ir_sala_leitos", true);
                     Pulseira.close();
                 })
                 .setVisibility(true)
@@ -927,6 +977,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerScene(posto_de_enfermagem);
         //5
         level.registerScene(farmacia);
+        //6
+        level.registerScene(alaFeminina);
 
         level.registerModalScene(pulseira);
         level.registerModalScene(gaveta);
@@ -957,6 +1009,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             level.getFlag("lixo_agulha").setValue(false);
             level.getFlag("elevar_grade").setValue(false);
             level.getFlag("lavar_maos_apos_lixo").setValue(false);
+            level.getFlag("tem_fala").setValue(false);
             level.getFlag("score_ir_posto_hora_errada").setValue(false);
             level.getFlag("score_ir_farmacia_hora_errada").setValue(false);
             level.getFlag("score_ir_ala_feminina_hora_errada").setValue(false);
@@ -975,6 +1028,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             level.getFlag("score_realizou_teste_glicemia").setValue(false);
             level.getFlag("score_utilizou_algodao2").setValue(false);
             level.getFlag("score_explicou_resultado").setValue(false);
+            level.getFlag("score_nao_verificar_pulseira").setValue(false);
+            level.getFlag("score_nao_selecionou_bandeja").setValue(false);
+            level.getFlag("score_nao_vestiu_luvas").setValue(false);
+            level.getFlag("score_nao_utilizou_algodao1").setValue(false);
+            level.getFlag("score_nao_realizou_teste_glicemia").setValue(false);
+            level.getFlag("score_nao_utilizou_algodao2").setValue(false);
+            level.getFlag("score_nao_explicou_resultado").setValue(false);
             level.getFlag("score_jogou_algodao_lixo").setValue(false);
             level.getFlag("score_jogou_agulha_perfuro").setValue(false);
             level.getFlag("score_elevou_grade_cama").setValue(false);
@@ -1051,6 +1111,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("lixo_agulha"), false);
         level.registerFlag(new Flag("elevar_grade"), false);
         level.registerFlag(new Flag("lavar_maos_apos_lixo"), false);
+        level.registerFlag(new Flag("tem_fala"), false);
         level.registerFlag(new Flag("score_ir_posto_hora_errada"), false);
         level.registerFlag(new Flag("score_ir_farmacia_hora_errada"), false);
         level.registerFlag(new Flag("score_ir_ala_feminina_hora_errada"), false);
@@ -1069,6 +1130,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("score_realizou_teste_glicemia"), false);
         level.registerFlag(new Flag("score_utilizou_algodao2"), false);
         level.registerFlag(new Flag("score_explicou_resultado"), false);
+        level.registerFlag(new Flag("score_nao_verificar_pulseira"), false);
+        level.registerFlag(new Flag("score_nao_selecionou_bandeja"), false);
+        level.registerFlag(new Flag("score_nao_vestiu_luvas"), false);
+        level.registerFlag(new Flag("score_nao_utilizou_algodao1"), false);
+        level.registerFlag(new Flag("score_nao_realizou_teste_glicemia"), false);
+        level.registerFlag(new Flag("score_nao_utilizou_algodao2"), false);
+        level.registerFlag(new Flag("score_nao_explicou_resultado"), false);
         level.registerFlag(new Flag("score_jogou_algodao_lixo"), false);
         level.registerFlag(new Flag("score_jogou_agulha_perfuro"), false);
         level.registerFlag(new Flag("score_elevou_grade_cama"), false);
