@@ -102,7 +102,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 core.openDialog(3);
                 if(level.getFlag("score_ir_ala_feminina_hora_errada").getValue() == false) {
                     core.registerScoreItem(Scores.irAlaFeminina_horaErrada);
-                    level.getFlag("score_ir_posto_hora_errada").setValue(true);
+                    level.getFlag("score_ir_ala_feminina_hora_errada").setValue(true);
                 }
             }
             else{
@@ -130,15 +130,15 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             core.openDialog(4);
             if(level.getFlag("score_ir_farmacia_hora_errada").getValue() == false) {
                 core.registerScoreItem(Scores.irFarmacia_horaErrada);
-                level.getFlag("score_ir_posto_hora_errada").setValue(true);
+                level.getFlag("score_ir_farmacia_hora_errada").setValue(true);
             }
         }
 
         function corredorIrCentroCirurgico() {
             core.openDialog(5);
-            if(level.getFlag("score_ir_farmacia_hora_errada").getValue() == false) {
+            if(level.getFlag("score_ir_centro_cirurgico_hora_errada").getValue() == false) {
                 core.registerScoreItem(Scores.irCentroCirurgico_horaErrada);
-                level.getFlag("score_ir_posto_hora_errada").setValue(true);
+                level.getFlag("score_ir_centro_cirurgico_hora_errada").setValue(true);
             }
         }
 
@@ -146,7 +146,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .onLoad( function () {
                 console.log("Entrando no corredor");
                 //Mentor só aparece no começo da fase
-                if (level.getFlag("score_ver_prontuario").getValue() == true){
+                if (level.getFlag("entrou_ala_feminina").getValue() == true){
                     core.setInteractiveObjectVisible("io-conversar_mentor", false);
                 }
             })
@@ -205,19 +205,16 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(corredorIrPostoEnfermagem)
                 .setVisibility(true),
 
-            //TODO: Adicionar ir ala feminina
             new InteractiveObject("io-ir_ala_feminina","Ir para a Ala Feminina")
                 .setCssClass("intObj-goToAlaFeminina_fase3")
                 .onClick(corredorIrAlaFeminina)
                 .setVisibility(true),
 
-            //TODO: Adicionar ir Farmácia
             new InteractiveObject("io-ir_farmacia","Ir para a Farmácia")
                 .setCssClass("intObj-goToPharmacy")
                 .onClick(corredorIrFarmacia)
                 .setVisibility(true),
 
-            //TODO: Adicionar ir Centro Cirurgico
             new InteractiveObject("io-ir_centro_cirurgico","Ir para o Centro Cirurgico")
                 .setCssClass("intObj-goToCentroCirurgico_fase3")
                 .onClick(corredorIrCentroCirurgico)
@@ -237,9 +234,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         alaFeminina = lib.scenes.alaFeminina.getClone()
             .onLoad(function () {
                 console.log("Load scene: Ala feminina");
-                /*O fato de já ter verificado o prontuario é o que determina se é a primeira ou segunda vez
-                que o jogador veio até a ala feminina*/
-                if(level.getFlag("score_ver_prontuario").getValue() == false){
+                //Apenas para desaparecer com o mentor do corredor
+                if(level.getFlag("entrou_ala_feminina").getValue() == false) {
+                    level.getFlag("entrou_ala_feminina").setValue(true);
+                }
+                /*O fato de já ter verificado o prontuario ou ter tentado sair sem vê-lo é o que
+                determina se é a primeira ou segunda vez que o jogador veio até a ala feminina*/
+                if((level.getFlag("score_ver_prontuario").getValue() == false) &&
+                   (level.getFlag("score_nao_viu_prontuario").getValue() == false)){
                     core.openDialog(0);
                 }
                 else{
@@ -258,12 +260,15 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setCssClass("intObj-bedroomToHallway")
                 .onClick(function () {
                     //Já checou o prontuario
-                    if(level.getFlag("score_ver_prontuario").getValue() == true){
-                        //Voltar para o corredor
-                        core.changeScene(1);
-                    } else {
+                    if(level.getFlag("score_ver_prontuario").getValue() == false){
                         core.openDialog(3);
+                        if (level.getFlag("score_nao_viu_prontuario").getValue() == false){
+                            core.registerScoreItem(Scores.naoVerProntuario);
+                            level.getFlag("score_nao_viu_prontuario").setValue(true);
+                        }
                     }
+                    //Voltar para o corredor
+                    core.changeScene(1);
                 })
                 .setVisibility(true),
 
@@ -280,7 +285,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         }
                     }
                 })
-                .setVisibility(false),
+                .setVisibility(false)
         ]);
 
         alaFeminina.registerDialogs([
@@ -499,6 +504,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setText(Alertas.esqueceu.elevar_grade[1])
                 .registerOption("", function () {
                     core.closeDialog();
+                    Prontuario.open();
+                    core.openModalScene("Prontuario");
                 })
         ]);
 
@@ -621,7 +628,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         level.getFlag("score_luvas_de_procedimento").setValue(true);
                     }
                     core.closeCommandBar();
-                    core.openDialog(12);
+                    core.openDialog(13);
                 })
                 .setVisibility(false),
 
@@ -635,7 +642,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                             level.getFlag("score_nao_lavou_maos_antes_calcar_luva").setValue(true);
                         }
                         core.closeCommandBar();
-                        core.openDialog(13);
+                        core.openDialog(12);
                     }
                     if(level.getFlag("score_luva_esteril").getValue() == false) {
                         level.getFlag("score_luva_esteril").setValue(true);
@@ -713,12 +720,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         core.closeCommandBar();
                         core.openDialog(17);
                     }
-                    if(level.getFlag("score_anotar_prontuario").getValue() == false) {
-                        core.registerScoreItem(Scores.anotarNoProntuario);
-                        level.getFlag("score_anotar_prontuario").setValue(true);
+                    else{
+                        if(level.getFlag("score_anotar_prontuario").getValue() == false) {
+                            core.registerScoreItem(Scores.anotarNoProntuario);
+                            level.getFlag("score_anotar_prontuario").setValue(true);
+                        }
+                        Prontuario.open();
+                        core.openModalScene("Prontuario");
                     }
-                    Prontuario.open();
-                    core.openModalScene("Prontuario");
                 })
                 .setVisibility(false)
         ]);
@@ -748,11 +757,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     && level.getFlag("score_pegou_soro").getValue() == true
                     && level.getFlag("score_pegou_seringa").getValue() == true
                     && level.getFlag("score_pegou_agulha").getValue() == true) {
-                        //Libera para dialogo com o paciente
-                        //level.getFlag("conversar_paciente2").setValue(true);
-                        /*if (level.getFlag("pegou_tudo_gaveta").getValue() == false){
-                            level.getFlag("pegou_tudo_gaveta").setValue(true);
-                        }*/
                         if (level.getFlag("pegou_todos_instrumentos").getValue() == false){
                             core.registerScoreItem(Scores.pegarTodosInstrumentos);
                             level.getFlag("pegou_todos_instrumentos").setValue(true);
@@ -760,7 +764,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         core.changeScene(1);
                     }else{
                         //Pode sair caso nao pegou tudo mas não pode ir pra ala feminina
-                        //level.getFlag("pegou_tudo_gaveta").setValue(false);
                         core.changeScene(1);
                     }
                 })
@@ -992,27 +995,20 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function (){
                     console.log("Action: Fechar prontuario");
                     Prontuario.close();
-                    core.closeModalScene("Prontuario");
-                    core.setInteractiveObjectVisible("io-ir_corredor", true);
-                    if (level.getFlag("pegou_todos_instrumentos").getValue() == true){
-                        //Já estava no momento de realizar os procedimentos, termina a fase //
+                    //Já estava no momento de realizar os procedimentos, portanto pode terminar a fase
+                    if (level.getFlag("score_falar_paciente").getValue() == true){
                         core.unlockLevel(6);
                         core.closeCommandBar();
                         core.showEndOfLevel();
                     }
+                    else{
+                        core.closeModalScene("Prontuario");
+                        core.setInteractiveObjectVisible("io-ir_corredor", true);
+                    }
                 })
                 .setVisibility(true)
 
-            // new Action("btn-terminar_fase", "Conversar com Mentor")
-            //     .setCssClass("action-abrir_dialogo")
-            //     .onClick(function (){
-            //         console.log("Action: Fechar prontuario");
-            //         Prontuario.close();
-            //         alert(Prontuario.isDataValid() + " Final da fase");
-            //         core.registerScoreItem(Scores.tutorial.identificarPaciente);
-            //         core.closeCommandBar();
-            //         core.showEndOfLevel();
-            //     })
+            //  alert(Prontuario.isDataValid() + " Final da fase");
         ]);
         //endregion
 
@@ -1051,14 +1047,16 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             level.getFlag("conversar_recepcionista").setValue(false);
             level.getFlag("conversar_mentor").setValue(false);
-            //level.getFlag("pegou_tudo_gaveta").setValue(true);
+            level.getFlag("entrou_ala_feminina").setValue(false);
             level.getFlag("pegou_todos_instrumentos").setValue(false);
             level.getFlag("score_ir_posto_hora_errada").setValue(false);
             level.getFlag("score_ir_farmacia_hora_errada").setValue(false);
             level.getFlag("score_ir_ala_feminina_hora_errada").setValue(false);
             level.getFlag("score_ir_ala_masculina_hora_errada").setValue(false);
             level.getFlag("score_ir_ala_masculina_apos_fala_mentor").setValue(false);
+            level.getFlag("score_ir_centro_cirurgico_hora_errada").setValue(false);
             level.getFlag("score_ver_prontuario").setValue(false);
+            level.getFlag("score_nao_viu_prontuario").setValue(false);
             level.getFlag("score_lavar_maos_posto_enfermagem").setValue(false);
             level.getFlag("score_pegou_kit_glicemia").setValue(false);
             level.getFlag("score_pegou_algodao").setValue(false);
@@ -1149,14 +1147,16 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Flags
         level.registerFlag(new Flag("conversar_recepcionista"), false);
         level.registerFlag(new Flag("conversar_mentor"), false);
-        //level.registerFlag(new Flag("pegou_tudo_gaveta"), true);
+        level.registerFlag(new Flag("entrou_ala_feminina"), false);
         level.registerFlag(new Flag("pegou_todos_instrumentos"), false);
         level.registerFlag(new Flag("score_ir_posto_hora_errada"), false);
         level.registerFlag(new Flag("score_ir_farmacia_hora_errada"), false);
         level.registerFlag(new Flag("score_ir_ala_feminina_hora_errada"), false);
         level.registerFlag(new Flag("score_ir_ala_masculina_hora_errada"), false);
         level.registerFlag(new Flag("score_ir_ala_masculina_apos_fala_mentor"), false);
+        level.registerFlag(new Flag("score_ir_centro_cirurgico_hora_errada"), false);
         level.registerFlag(new Flag("score_ver_prontuario"), false);
+        level.registerFlag(new Flag("score_nao_viu_prontuario"), false);
         level.registerFlag(new Flag("score_lavar_maos_posto_enfermagem"), false);
         level.registerFlag(new Flag("score_pegou_kit_glicemia"), false);
         level.registerFlag(new Flag("score_pegou_algodao"), false);

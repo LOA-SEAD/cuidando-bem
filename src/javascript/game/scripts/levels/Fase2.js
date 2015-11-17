@@ -20,14 +20,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var
         recepcao,
         corredor,
-        alaMasculina,
         sala_de_leitos,
         leito,
         posto_de_enfermagem,
         gaveta,
         pulseira,
         prontuario;
-        //glicosimetro
+        //glicosimetro;
 
         //region Recepcao
         function recepcaoIrCorredor() {
@@ -80,7 +79,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         ]);
         //endregion
 
-        //region Corredor -> permitir ir pra farmacia e ala feminina
+        //region Corredor
         function corredorIrSalaLeitos () {
             if(level.getFlag("pegou_tudo_gaveta").getValue() == false) {
                 core.openDialog(5);
@@ -182,7 +181,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(corredorIrPostoEnfermagem)
                 .setVisibility(true),
 
-            //TODO: Adicionar ir ala feminina
             new InteractiveObject("io-ir_ala_feminina","Ir para a Ala Feminina")
                 .setCssClass("intObj-goToAlaFeminina_fase3")
                 .onClick(corredorIrAlaFeminina)
@@ -203,7 +201,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         ]);
         //endregion
 
-        //region Sala de leitos -> botao de falar com paciente
+        //region Sala de leitos
         sala_de_leitos = new Scene("sala_de_leitos", "scene-sala_de_leitos")
             .setCssClass("scene-bedroom")
             .onLoad(function (){
@@ -234,7 +232,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 console.log("Saindo da sala de leitos");
                 //Habilitar o fato de que a proxima ida ao leito do paciente seja no mínimo a segunda
                 level.getFlag("segunda_ida_leito_paciente").setValue(true);
-                // [duvida] Vai precisar desabilitar a segunda vez que lavou as mãos 
                 core.closeCommandBar();
             });
 
@@ -324,10 +321,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         }
                         Prontuario.open();
                         core.openModalScene("Prontuario");
-                        //Verificou o prontuario na primeira vez, realiza a fala
-                        //if(level.getFlag("checar_prontuario").getValue() == true) {
-                            
-                        //}
                     }
                 })
                 .setVisibility(false),
@@ -947,7 +940,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.setSetupScript(function(){
 
             level.getFlag("conversar_recepcionista").setValue(false);
-            //level.getFlag("passagem_corredor").setValue(0);
             level.getFlag("conversar_paciente").setValue(false);
             level.getFlag("lavar_maos").setValue(false);
             level.getFlag("checar_prontuario").setValue(false);
@@ -1049,7 +1041,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //Flags
 
         level.registerFlag(new Flag("conversar_recepcionista"), false);
-        //level.registerFlag(new Flag("passagem_corredor"), 0);
         level.registerFlag(new Flag("conversar_paciente"), false);
         level.registerFlag(new Flag("lavar_maos"), false);
         level.registerFlag(new Flag("checar_prontuario"), false);
