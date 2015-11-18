@@ -1,4 +1,4 @@
-﻿define(function ()
+define(function ()
 {
     function Score(_title, _score){
         this.title = _title;
@@ -70,7 +70,16 @@
             anotarNoProntuario: new Score("Anotar no prontuário", 250)
         },
         level3: {
-
+            irPostoEnfermagem_horaErrada: new Score("Ir ao posto de enfermagem sem precisar", -25),
+            irFarmacia_horaErrada: new Score("Ir ao posto de enfermagem sem precisar", -25),
+            irAlaFeminina_horaErrada: new Score("Ir ao posto de enfermagem sem precisar", -25),
+            lavarMaosHoraErrada: new Score("Lavar mãos ao inves de lavar mãos técnica cirúrgica", -200),
+            lavarMaosCirurgica: new Score("Lavar mãos tecnica cirurgica", 200),
+            testarEquipamentos: new Score("Lavar mãos tecnica cirurgica", 250),
+            lavarMaos2: new Score("Lavar mãos antes de ir ao leito", 200),
+            irAoLeitoCorreto: new Score("Ir ao leito correto", 150),
+            pegarProntuario: new Score("Ver e pegar prontuário", 150),
+            encaminharPacienteCentroCirurgico: new Score("Encaminhar Paciente ao Centro Cirurgico", 150),
         },
         level4: {
             irLugarErrado: new Score("Ir ao lugar errado", -25),
@@ -99,7 +108,11 @@
             notChecarPulseira: new Score("Verificar Pulseira", -50),
             administrarMedicacao: new Score("Administrar medicação", 250),
             gotejarSoroEquipo: new Score("Realizar gotejamento de soro no equipamento", 350),
-            anotarNoProntuario: new Score("Anotar no prontuário", 200)
+            anotarNoProntuario: new Score("Anotar no prontuário", 200),
+            
+            
+            
+            
         },
 
         level5: {
@@ -155,6 +168,11 @@
         },
 
         level7: {
+               irFarmacia_horaErrada: new Score("Ir para a Farmacia sem precisar", -25),
+               irPostoEnfermagem_horaErrada: new Score("Ir para o Posto Enfermagem sem precisar", -25),
+               irCentroCirurgico_horaErrada: new Score("Ir para o Centro Cirugico sem precisar", -25),
+               irAlaMasculina_horaErrada: new Score("Ir para a Ala Masculina sem precisar", -25),
+               irAlaFeminina_horaErrada: new Score("Ir para a Ala Feminina sem precisar", -25),
 
         },
 

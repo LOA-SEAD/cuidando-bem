@@ -341,7 +341,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Leito
-        leito = lib.scenes.leitos.char2.getClone() //CORRIGIR PARA O LEITO DA ESTHER QUANDO ELE SE ENCONTRAR NO Commons.js
+        leito = lib.scenes.leitos.esther.getClone() 
             .onLoad(function () {
                 core.openCommandBar();
                 console.log("Leito: Onload");

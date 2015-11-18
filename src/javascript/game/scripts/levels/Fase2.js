@@ -1,4 +1,4 @@
-﻿/*
+/*
  This module has every wrold variable from each game level so it can be easily loaded inside the game.
  New levels can easily be made by adding new game levels.
  */
@@ -468,7 +468,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region Leito
-        leito = lib.scenes.leitos.char2.getClone()
+        leito = lib.scenes.leitos.raul.getClone()
             .onLoad(function () {
                 core.openCommandBar();
                 console.log("Leito: Onload");
