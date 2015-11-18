@@ -75,7 +75,8 @@ define(function ()
             testarEquipamentos: new Score("Lavar mãos tecnica cirurgica", 250),
             lavarMaos2: new Score("Lavar mãos antes de ir ao leito", 200),
             irAoLeitoCorreto: new Score("Ir ao leito correto", 150),
-
+            pegarProntuario: new Score("Ver e pegar prontuário", 150),
+            encaminharPacienteCentroCirurgico: new Score("Encaminhar Paciente ao Centro Cirurgico", 150),
         },
         level4: {
             irPostoEnfermagem_horaErrada: new Score("Ir ao posto de enfermagem em hora indevida", -25),
@@ -106,7 +107,11 @@ define(function ()
             checarPulseira: new Score("Verificar Pulseira", 50),
             administrarMedicacao: new Score("Administrar medicação", 250),
             gotejarSoroEquipo: new Score("Realizar gotejamento de soro no equipamento", 350),
-            anotarNoProntuario: new Score("Anotar no prontuário", 200)
+            anotarNoProntuario: new Score("Anotar no prontuário", 200),
+            
+            
+            
+            
         },
         level5: {
             irPostoEnfermagem_horaErrada: new Score("Ir ao posto de enfermagem em hora indevida", -25),

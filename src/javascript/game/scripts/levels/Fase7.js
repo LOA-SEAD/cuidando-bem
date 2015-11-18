@@ -265,6 +265,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     .registerOption("", function () {
                 core.openDialog(0);
             }),
+        
+        // 6 - ALERTA CONVERSAR PACIENTE
+            new Dialog(lib.characters.mentor)
+                .setText(Alertas.esqueceu.conversar_paciente)
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
+        
     ]);
     
     
@@ -286,12 +294,38 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
              new InteractiveObject("io-ir_corredor", "Ir ao corredor")
                 .setCssClass("intObj-irAlaFeminina_corredor")
                 .onClick(function () {
+                    if(level.getFlag("conversar_paciente").getValue() == false)
+                        core.openDialog(6);
+                    else {
                 console.log("voltando para corredor");
-                core.changeScene(1);
-
+                core.changeScene(1);  
+                    
+                    } 
+                
             }),
 
           ]);
+    
+    
+    
+    
+     //  region FARMACIA
+    
+            var farmacia = lib.scenes.farmacia.getClone()
+            .onLoad(function () {
+                console.log("Load scene: " + farmacia.getName());
+            });
+    
+    
+     farmacia.registerActions([
+
+             new Action("btn-ir_corredor", "Ir ao corredor")
+                .setCssClass("action-ir_corredor")
+                .onClick(function () {
+                core.changeScene(1);
+            }),
+
+        ]);
     
     
     
@@ -304,12 +338,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 console.log("Load scene: " + leito.getName());
             });
     
-    //  region FARMACIA
-    
-            var farmacia = lib.scenes.farmacia.getClone()
-            .onLoad(function () {
-                console.log("Load scene: " + farmacia.getName());
-            });
+   
     
     //  region POSTO DE ENFERMAGEM
     

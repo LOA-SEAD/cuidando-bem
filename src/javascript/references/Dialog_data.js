@@ -593,7 +593,9 @@ define({
             "Vou até a farmácia buscar sua dose de hoje e volto em breve.",
             // 6 MENTOR
             "Sua apresentação profissional é a parte mais importante do diálogo com" +
-            " o paciente. Tente novamente."
+            " o paciente. Tente novamente.",
+      
+            
         ],
         farmacia: [
             //0 Jogador
@@ -837,6 +839,9 @@ define({
             ],
             algodão: [
                 "O algodão seco precisa ser utilizado"
+            ],
+            conversar_paciente: [
+                "A comunicação com o paciente é essencial na assistência de enfermagem!"
             ],
             teste: [
                 // 0 - Fase 2
