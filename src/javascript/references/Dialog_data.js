@@ -307,8 +307,9 @@ define({
                 
                 // 9 ALERTA TESTAR EQUIPAMENTOS
                 
-                "Você está se esquecendo de algo importante!"
+                "Você está se esquecendo de algo importante!",
                 
+               
             ],
             fala2: [
                 //0 Aline
@@ -609,7 +610,12 @@ define({
             //4 Paciente
             "Certo! São para controlar o diabetes.",
             //5 Jogador
-            "Vou até a farmácia buscar sua dose de hoje e volto em breve."
+            "Vou até a farmácia buscar sua dose de hoje e volto em breve.",
+            // 6 MENTOR
+            "Sua apresentação profissional é a parte mais importante do diálogo com" +
+            " o paciente. Tente novamente.",
+      
+            
         ],
         farmacia: [
             //0 Jogador
@@ -699,7 +705,7 @@ define({
             //0 Farmaceutico
             "Olá! Do que precisa hoje?",
             //1 Jogador
-            "Oi, Paulo! Preciso de Midazolan de 15 mg.",
+            "Oi, Paulo! Preciso de Midazolam de 15 mg.",
             //2 Farmaceutico
             "Aqui está!"
         ],
@@ -715,42 +721,44 @@ define({
         ],
         centro_cirurgico: [
             //0 Jogador op 1
-            "Boa noite, Aline! Trouxe o paciente da  próxima cirurgia. Você precisa de ajuda?",
+            "Boa noite, Aline! Trouxe o paciente da próxima cirurgia. Você precisa de ajuda?",
             //1 Jogador op 2
             "Boa noite, Aline! Trouxe um paciente para cirurgia. Antes de começarmos os procedimentos" +
             " cirúrgicos, posso checar os equipamentos e fazer a lista de verificação?",
-            //2 Circulante da sala
-            "Bom noite. Claro! Fique à vontade.",
-            //3 Jogador
+            //2 Mentor resposta op 1 
+            "Atenha-se à sua função! Seu trabalho ainda não está terminado.",
+            //3 Circulante da sala
+            "Boa noite. Claro! Fique à vontade.",
+            //4 Jogador
             "Yuri, vou te fazer algumas perguntas para verificar se está tudo em ordem" +
             " antes da indução anestésica. Tudo bem?",
-            //4 Paciente
+            //5 Paciente
             "Sem problemas. Pode mandar.",
-            //5 Jogador
+            //6 Jogador
             "Nome completo?",
-            //6 Paciente
+            //7 Paciente
             "Yuri de Souza Almeida.",
-            //7 Jogador
+            //8 Jogador
             "Idade e profissão?",
-            //8 Paciente
+            //9 Paciente
             "22, futuro engenheiro civil, se Deus quiser e o trânsito deixar.",
-            //9 Jogador
+            //10 Jogador
             "Hahaha. Em qual parte do corpo será feita a cirurgia?",
-            //10 Paciente
+            //11 Paciente
             "Na perna direita.",
-            //11 Jogador
+            //12 Jogador
             "Qual procedimento?",
-            //12 Paciente
-            "Não tenho muita certeza….Acho que é uma cirurgia do ligamento ...cruzado anterior.",
-            //13 Jogador
+            //13 Paciente
+            "Não tenho muita certeza... Acho que é uma cirurgia do ligamento ...cruzado anterior.",
+            //14 Jogador
             "Você assinou o termo de consentimento?",
-            //14 Paciente
+            //15 Paciente
             "Sim.",
-            //15 Jogador
+            //16 Jogador
             "Você tem alguma alergia conhecida?",
-            //16 Paciente
-            "Sou... alér...gico a dipiro...na e …. sulfa.",
-            //17 Jogador
+            //17 Paciente
+            "Sou... alér...gico a dipiro...na e... sulfa.",
+            //18 Jogador
             "A anestesia já começou a fazer efeito. Esta é a circulante de sala Aline," +
             " ela cuidará de você a partir de agora. Boa cirurgia, Yuri!"
         ]
@@ -853,6 +861,9 @@ define({
             ],
             algodão: [
                 "O algodão seco precisa ser utilizado"
+            ],
+            conversar_paciente: [
+                "A comunicação com o paciente é essencial na assistência de enfermagem!"
             ],
             teste: [
                 // 0 - Fase 2
