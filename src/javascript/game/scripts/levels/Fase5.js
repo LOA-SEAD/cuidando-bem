@@ -342,7 +342,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         level.getFlag("score_lavar_maos_antes_leito").setValue(true);
                     }
                 })
-                .setVisibility(false),
+                .setVisibility(false)
         ]);
         //endregion
 

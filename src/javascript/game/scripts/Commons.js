@@ -36,6 +36,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 centroCirurgico: new Scene("centroCirurgico", "Centro Cirúrgico")
                     .setCssClass("scene-surgeryCenter"),
 
+                //Default object of "centroCirurgico"
+                centroCirurgico_yuri: new Scene("centroCirurgico_yuri", "Centro Cirúrgico Yuri")
+                    .setCssClass("scene-surgeryCenter-yuri"),
+
                 //Default object of "farmacia"
                 farmacia: new Scene("farmacia", "Farmácia")
                     .setCssClass("scene-pharmacy"),

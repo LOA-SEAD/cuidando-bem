@@ -679,7 +679,7 @@ define({
             //0 Farmaceutico
             "Olá! Do que precisa hoje?",
             //1 Jogador
-            "Oi, Paulo! Preciso de Midazolan de 15 mg.",
+            "Oi, Paulo! Preciso de Midazolam de 15 mg.",
             //2 Farmaceutico
             "Aqui está!"
         ],
