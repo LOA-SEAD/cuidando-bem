@@ -707,10 +707,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         // region prontuario
         prontuario = new Scene("Prontuário", "modalScene-prontuario_pedro");            
 
-            .onLoad(function(){
-                core.openCommandBar();
-            })
-
             prontuario.registerActions([
                 new Action("btn-fechar_prontuario", "Fechar prontuário")
                     .setCssClass("action-ler_prontuario")
