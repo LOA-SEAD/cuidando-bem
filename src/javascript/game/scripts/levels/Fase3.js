@@ -594,6 +594,11 @@ leito.registerActions([
                 })
                 .setVisibility(true)
     
+    
+    
+    
+    
+    
 
     ]);
 
@@ -919,7 +924,7 @@ leito.registerActions([
             // region PRONTUARIO
     
     
-        prontuario = new Scene("Prontuario", "modalScene-prontuario_regina");            
+        prontuario = new Scene("Prontuario", "Prontuario");            
 
              prontuario.registerActions([
                 new Action("btn-fechar_prontuario", "Fechar prontuário")
@@ -940,6 +945,9 @@ leito.registerActions([
         //endregion
 
         //region ModalScenes
+    
+         level.registerModalScene(prontuario);
+    
 
         //endregion
 

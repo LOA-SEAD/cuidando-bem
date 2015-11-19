@@ -317,6 +317,17 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             });
     
     
+    farmacia.registerDialogs([
+        
+          new Dialog(lib.characters.jogador)
+                    .setText(Dialogs.farmacia[0])
+                    .registerOption("", function () {
+                core.closeDialog();
+            }),
+        
+    ]);
+    
+    
      farmacia.registerActions([
 
              new Action("btn-ir_corredor", "Ir ao corredor")
@@ -326,6 +337,21 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             }),
 
         ]);
+    
+    
+    farmacia.registerInteractiveObjects([
+        
+        
+             new InteractiveObject("io-falar_farmaceutico", "Falar com o farmacêutico")
+                .setCssClass("intObj-talkToFarmaceutico")
+                .onClick(function () {
+                console.log("Abrindo dialogo com farmaceutico");
+                core.openDialog(0);
+                    
+         }),
+        
+        
+    ]);
     
     
     
@@ -348,12 +374,43 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 //
             });
     
+    
+    
+        posto_de_enfermagem.registerActions([
+
+             new Action("btn-ir_corredor", "Ir ao corredor")
+                .setCssClass("action-ir_corredor")
+                .onClick(function () {
+                 core.changeScene(1);
+            })
+
+        ]);
+    
     //  region ALA MASCULINA
     
             var alaMasculina = lib.scenes.alaMasculina.getClone()
             .onLoad(function () {
                 console.log("Load scene: " + alaMasculina.getName());
             });
+    
+    
+    
+        alaMasculina.registerInteractiveObjects([
+
+           new InteractiveObject("io-ir_corredor", "Ir ao corredor")
+                .setCssClass("intObj-irAlaMasculina_corredor")
+                .onClick(function () {
+                console.log("voltando para corredor");
+
+                core.changeScene(1);
+
+            })
+
+
+    ]);
+
+    
+    
     
     //  region CENTRO CIRURGICO
     
@@ -362,6 +419,25 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 console.log("Load scene: " + centroCirurgico.getName());
                 //
             });
+    
+    
+    centroCirurgico.registerActions([
+        
+        
+         new Action("btn-ir_corredor", "Ir ao corredor")
+                .setCssClass("action-ir_corredor")
+                .onClick(function () {  
+                        centroCirurgicoIrCorredor(); 
+                    })
+           
+        
+    ]);
+    
+     function centroCirurgicoIrCorredor() {
+            console.log("Action: centroCirurgicoIrCorredor");
+                core.changeScene(1);
+        }
+
     
     
     
