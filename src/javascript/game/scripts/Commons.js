@@ -36,6 +36,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 centroCirurgico: new Scene("centroCirurgico", "Centro Cirúrgico")
                     .setCssClass("scene-surgeryCenter"),
 
+                //Default object of "centroCirurgico"
+                centroCirurgico_yuri: new Scene("centroCirurgico_yuri", "Centro Cirúrgico Yuri")
+                    .setCssClass("scene-surgeryCenter-yuri"),
+
                 //Default object of "farmacia"
                 farmacia: new Scene("farmacia", "Farmácia")
                     .setCssClass("scene-pharmacy"),
@@ -104,15 +108,15 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
                 pacientes: {
                     joao: new Character("Sr. João", "char-paciente_01"),
-                    carlos: new Character("Paciente Carlos", "char-paciente_02"),
-                    raul: new Character("Paciente Raul", "char-paciente_03"),
+                    carlos: new Character("Sr. Carlos", "char-paciente_02"),
+                    raul: new Character("Sr. Raul", "char-paciente_03"),
                     regina: new Character("Sra. Regina", "char-paciente_04"),
                     pedro: new Character("Sr. Pedro", "char-paciente_05"),
-                    esther: new Character("Sr. Pedro", "char-paciente_06"),
-                    josivaldo: new Character("Sr. Pedro", "char-paciente_07"),
+                    esther: new Character("Sra. Esther", "char-paciente_06"),
+                    josivaldo: new Character("Sr. Josivaldo", "char-paciente_07"),
                     ana: new Character("Sra. Ana", "char-paciente_08"),
-                    yuri: new Character("Sr. Pedro", "char-paciente_09"),
-                    francisco: new Character("Sr. Pedro", "char-paciente_10"),
+                    yuri: new Character("Sr. Yuri", "char-paciente_09"),
+                    francisco: new Character("Sr. Francisco", "char-paciente_10"),
 
                     joao_unknow: new Character("Paciente", "char-paciente_01"),
                     carlos_unknow: new Character("Paciente", "char-paciente_02"),

@@ -396,16 +396,17 @@ define({
     },
 
     fase4: {
+
         recepcao: [
             //0 Jogador
             "Bom dia, Clarice.",
-            //1 Clarice
+            //1 Recepcionista Clarice
             "Bom dia! O paciente já está à sua espera."
         ],
         ala_masculina: [
             //0 Jogador
             "Bom dia! Sou profissional de enfermagem e atenderei o senhor hoje. Deixe-me ver seu prontuário...",
-            //1 Paciente
+            //1 Paciente Pedro
             "Bom dia. Hora da medicação? Qual é a de hoje?",
             //2 Jogador op 1
             "Sim senhor! Ainda é o segundo dia de uso do Keflin. Vou preparar sua medicação e já volto.",
@@ -425,35 +426,54 @@ define({
             //3 Jogador
             "Agradeço, Paulo! Preciso voltar ao paciente."
         ],
-        posto_enfermagem: [
-            //Cálculo de medicamento
+        posto_de_enfermagem: [
             //0 Jogador
+            "No prontuário estava prescrita uma dose de 800 mg," +
+            " portanto o valor a ser aspirado é de 4 ml do frasco de 1g.",
+            //1 Jogador
+            "Deverá ser aspirado apenas 2 ml.",
+            //2 Jogador
+            "No prontuário estava prescrita uma dose de 800 mg," +
+            " portanto o valor a ser aspirado é de 8 ml do frasco de 1 g.",
+            //3 Jogador
+            "Você tem certeza desse resultado?",
+            //4 Jogador
             "Acredito que peguei tudo o que precisava.",
-            //1 Mentor
-            "Muito bem! Vamos conferir se a medicação dispensada é a mesma prescrita."
+            //5 Mentor
+            "Muito bem! Vamos conferir se a medicação dispensada é a mesma prescrita.",
+            //6 Mentor (se o jogador esquece de algum item)
+            "Você está se esquecendo de algo. Volte e tente se lembrar."
         ],
         leito_paciente: [
-        //0 Jogador
-        "Voltei. Antes da administração do medicamento, o senhor poderia me dizer" +
-        " seu nome e data de nascimento, por favor?",
-        //1 Paciente
-        "Claro. Pedro Alcídes Mendonça, nasci em 03 de junho de 1962.",
-        //2 Jogador op 1
-        "Senhor Pedro, este medicamento é o Keflin; sua ação é antimicrobiana" +
-        " e ele vai correr no período de uma hora, tudo bem?",
-        //3 Jogador op 2
-        "Senhor Pedro, vou administrar o medicamento. Tudo bem?",
-        //4 Jogador op 3
-        "Senhor Pedro, vou administrar o medicamento. Caso queira saber sua função," +
-        " pergunte ao médico responsável e ele saberá te informar.",
-        //5 Paciente
-        "Muito obrigado. E me desculpe pelas perguntas, é mania de professor.",
-        //6 Jogador
-        "Hahaha. Sem problemas. Se sentir qualquer sensação estranha é só me comunicar." +
-        " Por favor, não abra a pinça do equipo e em breve poderá voltar para seus alunos.",
-        //7 Mentor
-        "Lembre-se sempre de utilizar os nove certos na administração de medicamentos!" +
-        " Deste modo reduzimos a possibilidades de erros."
+            //0 Jogador
+            "Voltei. Antes da administração do medicamento, o senhor poderia me dizer" +
+            " seu nome e data de nascimento, por favor?",
+            //1 Paciente Pedro
+            "Claro. Pedro Alcídes Mendonça, nasci em 03 de junho de 1962.",
+            //2 Jogador op 1
+            "Senhor Pedro, este medicamento é o Keflin; sua ação é antimicrobiana" +
+            " e ele vai correr no período de uma hora, tudo bem?",
+            //3 Jogador op 2
+            "Senhor Pedro, vou administrar o medicamento. Tudo bem?",
+            //4 Jogador op 3
+            "Senhor Pedro, vou administrar o medicamento. Caso queira saber sua função," +
+            " pergunte ao médico responsável e ele saberá te informar.",
+            //5 Paciente Pedro
+            "Muito obrigado. E me desculpe pelas perguntas, é mania de professor.",
+            //6 Jogador
+            "Hahaha. Sem problemas. Se sentir qualquer sensação estranha é só me comunicar." +
+            " Por favor, não abra a pinça do equipo e em breve poderá voltar para seus alunos.",
+            //7 Mentor
+            "Lembre-se sempre de utilizar os nove certos na administração de medicamentos!" +
+            " Deste modo reduzimos a possibilidades de erros."
+        ],
+        lugar_incorreto: [
+            // 0 Mentor
+            "Está perdido? O lugar certo é a Ala Masculina.",
+            // 1 Mentor
+            "Está perdido? O lugar certo é a Farmácia.",
+            // 2 Mentor
+            "Está perdido? O lugar certo é o Posto de Enfermagem."
         ]
     },
 
@@ -685,7 +705,7 @@ define({
             //0 Farmaceutico
             "Olá! Do que precisa hoje?",
             //1 Jogador
-            "Oi, Paulo! Preciso de Midazolan de 15 mg.",
+            "Oi, Paulo! Preciso de Midazolam de 15 mg.",
             //2 Farmaceutico
             "Aqui está!"
         ],
@@ -701,42 +721,44 @@ define({
         ],
         centro_cirurgico: [
             //0 Jogador op 1
-            "Boa noite, Aline! Trouxe o paciente da  próxima cirurgia. Você precisa de ajuda?",
+            "Boa noite, Aline! Trouxe o paciente da próxima cirurgia. Você precisa de ajuda?",
             //1 Jogador op 2
             "Boa noite, Aline! Trouxe um paciente para cirurgia. Antes de começarmos os procedimentos" +
             " cirúrgicos, posso checar os equipamentos e fazer a lista de verificação?",
-            //2 Circulante da sala
-            "Bom noite. Claro! Fique à vontade.",
-            //3 Jogador
+            //2 Mentor resposta op 1 
+            "Atenha-se à sua função! Seu trabalho ainda não está terminado.",
+            //3 Circulante da sala
+            "Boa noite. Claro! Fique à vontade.",
+            //4 Jogador
             "Yuri, vou te fazer algumas perguntas para verificar se está tudo em ordem" +
             " antes da indução anestésica. Tudo bem?",
-            //4 Paciente
+            //5 Paciente
             "Sem problemas. Pode mandar.",
-            //5 Jogador
+            //6 Jogador
             "Nome completo?",
-            //6 Paciente
+            //7 Paciente
             "Yuri de Souza Almeida.",
-            //7 Jogador
+            //8 Jogador
             "Idade e profissão?",
-            //8 Paciente
+            //9 Paciente
             "22, futuro engenheiro civil, se Deus quiser e o trânsito deixar.",
-            //9 Jogador
+            //10 Jogador
             "Hahaha. Em qual parte do corpo será feita a cirurgia?",
-            //10 Paciente
+            //11 Paciente
             "Na perna direita.",
-            //11 Jogador
+            //12 Jogador
             "Qual procedimento?",
-            //12 Paciente
-            "Não tenho muita certeza….Acho que é uma cirurgia do ligamento ...cruzado anterior.",
-            //13 Jogador
+            //13 Paciente
+            "Não tenho muita certeza... Acho que é uma cirurgia do ligamento ...cruzado anterior.",
+            //14 Jogador
             "Você assinou o termo de consentimento?",
-            //14 Paciente
+            //15 Paciente
             "Sim.",
-            //15 Jogador
+            //16 Jogador
             "Você tem alguma alergia conhecida?",
-            //16 Paciente
-            "Sou... alér...gico a dipiro...na e …. sulfa.",
-            //17 Jogador
+            //17 Paciente
+            "Sou... alér...gico a dipiro...na e... sulfa.",
+            //18 Jogador
             "A anestesia já começou a fazer efeito. Esta é a circulante de sala Aline," +
             " ela cuidará de você a partir de agora. Boa cirurgia, Yuri!"
         ]
