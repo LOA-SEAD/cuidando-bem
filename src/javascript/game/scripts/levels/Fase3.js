@@ -1008,7 +1008,7 @@ leito.registerActions([
             Prontuario.setAlergiaMedicamentosa(false, "");
             Prontuario.setDisableAlergiaMedicamentosa(true);
             Prontuario.setDataInternacao("09/12/2015");
-            Prontuario.setLeito("01 - Leito Feminino");
+            Prontuario.setLeito("01 - Enfermaria Feminina");
             Prontuario.setAntecedentes("Nenhum");
             Prontuario.setHipotese("Insuficiência arterial periférica em membro inferior esquerdo. Procedimento cirúrgico a ser realizado: Cirurgia de Enxerto Poplíteo e Amputação transmetatársica à esquerda");
             Prontuario.setObservacoes("Diabetes Mellitus II e Hipertensão Arterial Sistêmica");

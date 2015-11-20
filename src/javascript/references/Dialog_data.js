@@ -600,7 +600,7 @@ define({
         ],
         enfermaria_feminina: [
             //0 Jogador op 1
-            "Bom dia! Faço parte da equipe de enfermagem do hospital e cuidarei de você hoje Como você se chama?",
+            "Bom dia! Faço parte da equipe de enfermagem do hospital e cuidarei de você hoje. Como você se chama?",
             //1 Jogador op 2
             "Bom dia! Como se chama?",
             //2 Paciente

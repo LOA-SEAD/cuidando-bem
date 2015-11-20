@@ -173,6 +173,9 @@ define(function ()
                irCentroCirurgico_horaErrada: new Score("Ir para o Centro Cirugico sem precisar", -25),
                irAlaMasculina_horaErrada: new Score("Ir para a Ala Masculina sem precisar", -25),
                irAlaFeminina_horaErrada: new Score("Ir para a Ala Feminina sem precisar", -25),
+               verProntuario: new Score("Ver o prontuário", 150),
+               falarComPaciente: new Score("Falar com o paciente", 150),
+            
 
         },
 
