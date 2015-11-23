@@ -182,7 +182,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisibility(true),
 
             new InteractiveObject("io-ir_ala_feminina","Ir para a Ala Feminina")
-                .setCssClass("intObj-goToAlaFeminina_fase3")
+                .setCssClass("intObj-goToAlaFeminina")
                 .onClick(corredorIrAlaFeminina)
                 .setVisibility(true),
 
@@ -846,8 +846,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             //Algodao
             new InteractiveObject("io-algodao","Pegar algodao")
-                //Ainda nao disponivel imagem correta
-                .setCssClass("intObj-bloodPressureMonitor")
+                .setCssClass("intObj-algodao_seco")
                 .onClick(function () {
                     console.log("Action: pegar algodao ");
                     core.registerScoreItem(Scores.pegarAlgodao);
@@ -858,8 +857,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             //Luvas
             new InteractiveObject("io-luvas","Pegar luvas")
-                //Ainda nao disponivel imagem correta
-                .setCssClass("intObj-oximeter")
+                .setCssClass("intObj-luvas_de_procedimento")
                 .onClick(function () {
                     console.log("Action: pegar luvas");
                     core.registerScoreItem(Scores.pegarLuvas);
@@ -870,8 +868,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             //Bandeja
             new InteractiveObject("io-bandeja","Pegar bandeja")
-                //Ainda nao disponivel imagem correta
-                .setCssClass("intObj-watch")
+                .setCssClass("intObj-bandeja")
                 .onClick(function () {
                     console.log("Action: pegar bandeja");
                     core.registerScoreItem(Scores.pegarBandeja);

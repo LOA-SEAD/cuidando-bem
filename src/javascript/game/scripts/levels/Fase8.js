@@ -24,7 +24,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         centrocirurgico,
         alaFeminina,
         centroCirurgico_yuri,
-        //pulseira,
+        pulseira,
         prontuario;
 
         //region Recepcao
@@ -126,7 +126,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisibility(true),
 
             new InteractiveObject("io-ir_ala_feminina","Ir para a Ala Feminina")
-                .setCssClass("intObj-goToAlaFeminina_fase3")
+                .setCssClass("intObj-goToAlaFeminina")
                 .onClick(corredorIrAlaFeminina)
                 .setVisibility(true),
 
@@ -136,7 +136,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisibility(true),
 
             new InteractiveObject("io-ir_centro_cirurgico","Ir para o Centro Cirurgico")
-                .setCssClass("intObj-goToCentroCirurgico_fase3")
+                .setCssClass("intObj-goToCentroCirurgico")
                 .onClick(corredorIrCentroCirurgico)
                 .setVisibility(true)
 
@@ -158,9 +158,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.openDialog(0);
                 }
                 //Libera para ir ao leito após conversar com o farmacêutico
-                if(level.getFlag("ja_falou_farmaceutico").getValue() == true){
+                if((level.getFlag("ja_falou_farmaceutico").getValue() == true) &&
+                   (level.getFlag("levou_yuri_centro_cirurgico").getValue() == false)){
                     core.setActionVisible("btn-lavar_maos", true);
+                    core.setInteractiveObjectVisible("io-ir_leito", true);
                     core.openCommandBar();
+                }
+                if(level.getFlag("levou_yuri_centro_cirurgico").getValue() == true){
+                    core.setInteractiveObjectVisible("io-ir_leito", false);
                 }
             })
             .onUnload(function (){
@@ -175,7 +180,20 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     //Voltar para o corredor
                     core.changeScene(1);
                 })
-                .setVisibility(true)
+                .setVisibility(true),
+
+            new InteractiveObject("io-ir_leito", "Ir ao leito")
+                .setCssClass("intObj-ir_leito-fase4")
+                .onClick(function (){
+                    if(level.getFlag("score_lavar_maos_antes_leito").getValue() == false) {
+                        if(level.getFlag("score_nao_lavar_maos_antes_leito").getValue() == false) {
+                            core.registerScoreItem(Scores.naoLavarMaosAntesLeito);
+                            level.getFlag("score_nao_lavar_maos_antes_leito").setValue(true);
+                        }
+                    }
+                    core.changeScene(3);
+                })
+                .setVisibility(false),
         ]);
 
         sala_de_leitos.registerActions([
@@ -255,17 +273,152 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             .onLoad(function () {
                 core.openCommandBar();
                 console.log("Leito: Onload");
+                //Verificações de se o botão de oferecer copo com água e o medicamento estarão ativados
+                if ((level.getFlag("score_pegou_agua").getValue() == true) &&
+                    (level.getFlag("score_pegou_copo").getValue() == true)){
+                        core.setActionVisible("btn-oferecer_copo", true);
+                }
+                if (level.getFlag("score_pegou_medicamento").getValue() == true){
+                    core.setActionVisible("btn-administrar_medicamento", true);
+                }
             })
             .onUnload(function (){
                 console.log("Leito: OnUnload");
                 core.closeCommandBar();
             });
 
+        leito.registerInteractiveObjects([
+            new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
+                .setCssClass("intObj-paciente_02-checar_pulseira") //VAI MUDAR
+                .onClick(function () {
+                    console.log("IO: pulseira_paciente");
+                    if (level.getFlag("score_verificar_pulseira").getValue() == false){
+                        level.getFlag("score_verificar_pulseira").setValue(true);
+                        core.registerScoreItem(Scores.verificarPulseira);
+                    }
+                    core.openModalScene("pulseira");
+                    Pulseira.open();
+                })
+                .setVisibility(true)
+        ]);
+
+        leito.registerDialogs([
+            new Dialog(lib.characters.jogador)
+                .setText(Dialogs.leito_paciente[0])
+                .registerOption("", function() {
+                    core.openDialog(1);
+                }),
+            new Dialog(lib.characters.pacientes.yuri)
+                .setText(Dialogs.leito_paciente[1])
+                .registerOption("", function() {
+                    core.openDialog(2);
+                }),
+            new Dialog(lib.characters.jogador)
+                .setText(Dialogs.leito_paciente[2])
+                .registerOption("", function () {
+                    core.closeDialog();
+                })
+        ]);
+
         leito.registerActions([
+            new Action("btn-falar_paciente", "Conversar com Paciente")
+                .setCssClass("action-leito-char-02") //Será outro
+                .onClick(function () {
+                    core.openDialog(0);
+                    core.closeCommandBar();
+                })
+                .setVisibility(true),
+
+            new Action("btn-oferecer_copo", "Oferecer copo com água para o paciente")
+                .setCssClass("action-copo_descartavel")
+                .onClick(function () {
+                    console.log("Action: Oferecer copo com água para o paciente");
+                    if(level.getFlag("score_ofereceu_copo").getValue() == false) {
+                        core.registerScoreItem(Scores.oferecerCopo);
+                        level.getFlag("score_ofereceu_copo").setValue(true);
+                    }
+                })
+                .setVisibility(false),
+
+            new Action("btn-administrar_medicamento", "Administrar o medicamento")
+                .setCssClass("action-midazolam_medicamento")
+                .onClick(function (){
+                    console.log("Action: Administrar o medicamento");
+                    if(level.getFlag("score_ofereceu_copo").getValue() == false) {
+                        if(level.getFlag("score_nao_ofereceu_copo").getValue() == false) {
+                            core.registerScoreItem(Scores.naoOferecerCopo);
+                            level.getFlag("score_nao_ofereceu_copo").setValue(true);
+                        }
+                    }
+                    if(level.getFlag("score_administrou_medicamento").getValue() == false) {
+                        core.registerScoreItem(Scores.administrarMedicamento);
+                        level.getFlag("score_administrou_medicamento").setValue(true);
+                    }
+                })
+                .setVisibility(false),
+
+            new Action("btn-anotar_prontuario", "Anotar prontuario")
+                .setCssClass("action-anotar_prontuario")
+                .onClick(function (){
+                    console.log("Action: Anotar prontuario");
+                    if(level.getFlag("score_administrou_medicamento").getValue() == false) {
+                        if(level.getFlag("score_nao_administrou_medicamento").getValue() == false) {
+                            core.registerScoreItem(Scores.naoAdministrarMedicamento);
+                            level.getFlag("score_nao_administrou_medicamento").setValue(true);
+                        }
+                    }
+                    if(level.getFlag("score_anotar_prontuario").getValue() == false) {
+                        core.registerScoreItem(Scores.anotarProntuario);
+                        level.getFlag("score_anotar_prontuario").setValue(true);
+                    }
+                    Prontuario.open();
+                    core.openModalScene("Prontuario");
+                })
+                .setVisibility(true),
+
+            new Action("btn-levar_yuri_cc", "Levar paciente ao Centro Cirurgico")
+                .setCssClass("action-paciente9")
+                .onClick(function (){
+                    console.log("Action: Jogar algodão na bandeja");
+                    //Como o paciente vai se tornar indisponivel, tudo o que poderia ser feito com ele será descontado
+                    if(level.getFlag("score_verificar_pulseira").getValue() == false) {
+                        if(level.getFlag("score_nao_verificar_pulseira").getValue() == false) {
+                            core.registerScoreItem(Scores.naoVerificarPulseira);
+                            level.getFlag("score_nao_verificar_pulseira").setValue(true);
+                        }
+                    }
+                    //Repete pois precisa descontar os pontos no medicamento também
+                    if(level.getFlag("score_ofereceu_copo").getValue() == false) {
+                        if(level.getFlag("score_nao_ofereceu_copo").getValue() == false) {
+                            core.registerScoreItem(Scores.naoOferecerCopo);
+                            level.getFlag("score_nao_ofereceu_copo").setValue(true);
+                        }
+                    }
+                    if(level.getFlag("score_administrou_medicamento").getValue() == false) {
+                        if(level.getFlag("score_nao_administrou_medicamento").getValue() == false) {
+                            core.registerScoreItem(Scores.naoAdministrarMedicamento);
+                            level.getFlag("score_nao_administrou_medicamento").setValue(true);
+                        }
+                    }
+                    if(level.getFlag("levou_yuri_centro_cirurgico").getValue() == false) {
+                        level.getFlag("levou_yuri_centro_cirurgico").setValue(true);
+                    }
+                    core.setActionVisible("btn-falar_paciente", false);
+                    core.setActionVisible("btn-oferecer_copo", false);
+                    core.setActionVisible("btn-administrar_medicamento", false);
+                })
+                .setVisibility(true),
+
             new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
                 .setCssClass("action-ir_sala_de_leitos")
                 .onClick(function (){
                     console.log("Action: Voltar para a ala masculina");
+                    if(level.getFlag("score_anotar_prontuario").getValue() == false) {
+                        if(level.getFlag("score_nao_anotar_prontuario").getValue() == false) {
+                            core.registerScoreItem(Scores.naoAnotarProntuario);
+                            level.getFlag("score_nao_anotar_prontuario").setValue(true);
+                        }
+                    }
                     core.changeScene(2);
                 })
                 .setVisibility(true)
@@ -293,7 +446,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 console.log("Load scene: Ala Masculina");
                 //Depois que falou com o farmacêutico, é ativado os botões
                 if (level.getFlag("ja_falou_farmaceutico").getValue() == true){
-                    core.setActionVisible("btn-midazolam_medicamento", true);
+                    core.setInteractiveObjectVisible("io-midazolam_medicamento", !(level.getFlag("score_pegou_medicamento").getValue()));
                     core.setActionVisible("btn-conferir_midazolam", true);
                     core.openCommandBar();
                 }
@@ -322,18 +475,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             ]);
 
         farmacia.registerActions([
-            //Um desses dois botões pode trocar de imagem
-            new Action("btn-midazolam_medicamento", "Pegar Medicamento")
-                .setCssClass("action-midazolam_medicamento")
-                .onClick(function (){
-                    console.log("Action: Pegar Medicamento");
-                    if(level.getFlag("score_pegou_medicamento").getValue() == false) {
-                        core.registerScoreItem(Scores.pegarMedicamento);
-                        level.getFlag("score_pegou_medicamento").setValue(true);
-                    }
-                })
-                .setVisibility(false),
-
             new Action("btn-conferir_midazolam", "Conferir Medicamento")
                 .setCssClass("action-midazolam_medicamento")
                 .onClick(function (){
@@ -348,6 +489,20 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         core.registerScoreItem(Scores.conferirMedicacao);
                         level.getFlag("score_conferiu_medicacao").setValue(true);
                     }
+                })
+                .setVisibility(false)
+        ]);
+
+        //Acertar posicoes
+        farmacia.registerInteractiveObjects([
+            //Midazolam
+            new InteractiveObject("io-midazolam_medicamento", "Pegar Medicamento")
+                .setCssClass("intObj-midazolam_medicamento")
+                .onClick(function (){
+                    console.log("Action: Pegar Medicamento");
+                    core.registerScoreItem(Scores.pegarMedicamento);
+                    level.getFlag("score_pegou_medicamento").setValue(true);
+                    core.setInteractiveObjectVisible("io-midazolam_medicamento", false);
                 })
                 .setVisibility(false)
         ]);
@@ -370,8 +525,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setText(Dialogs.farmacia[2])
                 .registerOption("", function() {
                     core.closeDialog();
-                    //Ativando os botões
-                    core.setActionVisible("btn-midazolam_medicamento", true);
+                    //Ativando o midazolam e o seu botao para conferí-lo
+                    core.setInteractiveObjectVisible("io-midazolam_medicamento", true);
                     core.setActionVisible("btn-conferir_midazolam", true);
                     core.openCommandBar();
                 })
@@ -386,8 +541,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 //Depois que pegou o medicamento, é ativado os botões
                 if (level.getFlag("score_pegou_medicamento").getValue() == true){
                     core.setActionVisible("btn-lavar_maos", true);
-                    core.setActionVisible("btn-pegar_agua", true);
-                    core.setActionVisible("btn-pegar_copo", true);
+                    core.setInteractiveObjectVisible("io-pegar_agua", !(level.getFlag("score_pegou_agua").getValue()));
+                    core.setInteractiveObjectVisible("io-pegar_copo", !(level.getFlag("score_pegou_copo").getValue()));
                     core.openCommandBar();
                 }
             })
@@ -430,43 +585,44 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         level.getFlag("score_lavar_maos_posto_enfermagem").setValue(true);
                     }
                 })
-                .setVisibility(false),
+                .setVisibility(false)
+        ]);
 
-            //Água e copo descartavel não ficam na gaveta
-            new Action("btn-pegar_agua", "Pegar água potável")
-                .setCssClass("action-garrafa_agua_potavel")
+        //Acertar posicoes
+        postoDeEnfermagem.registerInteractiveObjects([
+            //Agua
+            new InteractiveObject("io-pegar_agua", "Pegar água potável")
+                .setCssClass("intObj-garrafa_agua_potavel")
                 .onClick(function (){
-                    console.log("Action: ir_corredor");
+                    console.log("Action: Pegar água potável");
                     if(level.getFlag("score_lavar_maos_posto_enfermagem").getValue() == false) {
                         if(level.getFlag("score_nao_lavar_maos_posto_enfermagem").getValue() == false) {
                             core.registerScoreItem(Scores.naoLavarMaosPostoEnfermagem);
                             level.getFlag("score_nao_lavar_maos_posto_enfermagem").setValue(true);
                         }
                     }
-                    if(level.getFlag("score_pegou_agua").getValue() == false) {
-                        core.registerScoreItem(Scores.pegarAguaPotavel);
-                        level.getFlag("score_pegou_agua").setValue(true);
-                    }
+                    core.registerScoreItem(Scores.pegarAguaPotavel);
+                    level.getFlag("score_pegou_agua").setValue(true);
+                    core.setInteractiveObjectVisible("io-pegar_agua", false);
                 })
                 .setVisibility(false),
 
-            new Action("btn-pegar_copo", "Pegar copo descartavel")
-                .setCssClass("action-copo_descartavel")
+            //Copo
+            new InteractiveObject("io-pegar_copo", "Pegar copo descartavel")
+                .setCssClass("intObj-copo_descartavel")
                 .onClick(function (){
-                    console.log("Action: ir_corredor");
+                    console.log("Action: Pegar copo descartavel");
                     if(level.getFlag("score_lavar_maos_posto_enfermagem").getValue() == false) {
                         if(level.getFlag("score_nao_lavar_maos_posto_enfermagem").getValue() == false) {
                             core.registerScoreItem(Scores.naoLavarMaosPostoEnfermagem);
                             level.getFlag("score_nao_lavar_maos_posto_enfermagem").setValue(true);
                         }
                     }
-                    if(level.getFlag("score_pegou_copo").getValue() == false) {
-                        core.registerScoreItem(Scores.pegarCopoDescartavel);
-                        level.getFlag("score_pegou_copo").setValue(true);
-                    }
+                    core.registerScoreItem(Scores.pegarCopoDescartavel);
+                    level.getFlag("score_pegou_copo").setValue(true);
+                    core.setInteractiveObjectVisible("io-pegar_copo", false);
                 })
                 .setVisibility(false)
-
         ]);
         //endregion
 
@@ -536,6 +692,117 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     //Voltar para o corredor
                     core.changeScene(1);
                 })
+                .setVisibility(true),
+
+            //Corrigir esses oito botões
+            new Action("btn-falar_paciente", "Conversar com Paciente")
+                .setCssClass("action-leito-char-02") //Será outro
+                .onClick(function () {
+                    core.openDialog(0);
+                    core.closeCommandBar();
+                })
+                .setVisibility(true),
+
+            new Action("btn-oferecer_copo", "Oferecer copo com água para o paciente")
+                .setCssClass("action-copo_descartavel")
+                .onClick(function () {
+                    console.log("Action: Oferecer copo com água para o paciente");
+                    if(level.getFlag("score_ofereceu_copo").getValue() == false) {
+                        core.registerScoreItem(Scores.oferecerCopo);
+                        level.getFlag("score_ofereceu_copo").setValue(true);
+                    }
+                })
+                .setVisibility(true),
+
+            new Action("btn-administrar_medicamento", "Administrar o medicamento")
+                .setCssClass("action-midazolam_medicamento")
+                .onClick(function (){
+                    console.log("Action: Administrar o medicamento");
+                    if(level.getFlag("score_ofereceu_copo").getValue() == false) {
+                        if(level.getFlag("score_nao_ofereceu_copo").getValue() == false) {
+                            core.registerScoreItem(Scores.naoOferecerCopo);
+                            level.getFlag("score_nao_ofereceu_copo").setValue(true);
+                        }
+                    }
+                    if(level.getFlag("score_administrou_medicamento").getValue() == false) {
+                        core.registerScoreItem(Scores.administrarMedicamento);
+                        level.getFlag("score_administrou_medicamento").setValue(true);
+                    }
+                })
+                .setVisibility(true),
+
+            new Action("btn-anotar_prontuario", "Anotar prontuario")
+                .setCssClass("action-anotar_prontuario")
+                .onClick(function (){
+                    console.log("Action: Anotar prontuario");
+                    if(level.getFlag("score_administrou_medicamento").getValue() == false) {
+                        if(level.getFlag("score_nao_administrou_medicamento").getValue() == false) {
+                            core.registerScoreItem(Scores.naoAdministrarMedicamento);
+                            level.getFlag("score_nao_administrou_medicamento").setValue(true);
+                        }
+                    }
+                    if(level.getFlag("score_anotar_prontuario").getValue() == false) {
+                        core.registerScoreItem(Scores.anotarProntuario);
+                        level.getFlag("score_anotar_prontuario").setValue(true);
+                    }
+                    Prontuario.open();
+                    core.openModalScene("Prontuario");
+                })
+                .setVisibility(true),
+
+                new Action("btn-falar_paciente", "Conversar com Paciente")
+                .setCssClass("action-leito-char-02") //Será outro
+                .onClick(function () {
+                    core.openDialog(0);
+                    core.closeCommandBar();
+                })
+                .setVisibility(true),
+
+            new Action("btn-oferecer_copo", "Oferecer copo com água para o paciente")
+                .setCssClass("action-copo_descartavel")
+                .onClick(function () {
+                    console.log("Action: Oferecer copo com água para o paciente");
+                    if(level.getFlag("score_ofereceu_copo").getValue() == false) {
+                        core.registerScoreItem(Scores.oferecerCopo);
+                        level.getFlag("score_ofereceu_copo").setValue(true);
+                    }
+                })
+                .setVisibility(true),
+
+            new Action("btn-administrar_medicamento", "Administrar o medicamento")
+                .setCssClass("action-midazolam_medicamento")
+                .onClick(function (){
+                    console.log("Action: Administrar o medicamento");
+                    if(level.getFlag("score_ofereceu_copo").getValue() == false) {
+                        if(level.getFlag("score_nao_ofereceu_copo").getValue() == false) {
+                            core.registerScoreItem(Scores.naoOferecerCopo);
+                            level.getFlag("score_nao_ofereceu_copo").setValue(true);
+                        }
+                    }
+                    if(level.getFlag("score_administrou_medicamento").getValue() == false) {
+                        core.registerScoreItem(Scores.administrarMedicamento);
+                        level.getFlag("score_administrou_medicamento").setValue(true);
+                    }
+                })
+                .setVisibility(true),
+
+            new Action("btn-anotar_prontuario", "Anotar prontuario")
+                .setCssClass("action-anotar_prontuario")
+                .onClick(function (){
+                    console.log("Action: Anotar prontuario");
+                    if(level.getFlag("score_administrou_medicamento").getValue() == false) {
+                        if(level.getFlag("score_nao_administrou_medicamento").getValue() == false) {
+                            core.registerScoreItem(Scores.naoAdministrarMedicamento);
+                            level.getFlag("score_nao_administrou_medicamento").setValue(true);
+                        }
+                    }
+                    if(level.getFlag("score_anotar_prontuario").getValue() == false) {
+                        core.registerScoreItem(Scores.anotarProntuario);
+                        level.getFlag("score_anotar_prontuario").setValue(true);
+                    }
+                    Prontuario.open();
+                    core.openModalScene("Prontuario");
+                })
                 .setVisibility(true)
         ]);
         //endregion
@@ -543,6 +810,25 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //endregion
 
         //region ModalScenes
+
+        //region Pulseira
+        pulseira = new Scene("pulseira", "pulseira");
+
+        pulseira.registerInteractiveObjects([
+
+        ]);
+
+        pulseira.registerActions([
+            new Action("btn-largar_pulseira", "Fechar pulseira")
+                .setCssClass("action-pulseira_paciente")
+                .onClick(function () {
+                    console.log("Ação: Fechar modal pulseira");
+                    core.closeModalScene("Pulseira");
+                    Pulseira.close();
+                })
+                .setVisibility(true)
+        ]);
+        //endregion
 
         //region Prontuario
         prontuario = new Scene("Prontuario", "Prontuario");
@@ -597,6 +883,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         // endregion
 
         //region Register Modal Scenes
+        level.registerModalScene(pulseira);
         level.registerModalScene(prontuario);
         //endregion
 
@@ -606,6 +893,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             level.getFlag("ja_falou_farmaceutico").setValue(false);
             level.getFlag("ja_falou_paciente").setValue(false);
+            level.getFlag("ja_falou_paciente_leito").setValue(false);
             level.getFlag("levou_yuri_centro_cirurgico").setValue(false);
             level.getFlag("entrou_centro_cirurgico").setValue(false);
             level.getFlag("score_ir_posto_hora_errada").setValue(false);
@@ -697,6 +985,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         //region Flags
         level.registerFlag(new Flag("ja_falou_farmaceutico"), false);
         level.registerFlag(new Flag("ja_falou_paciente"), false);
+        level.registerFlag(new Flag("ja_falou_paciente_leito"), false);
         level.registerFlag(new Flag("levou_yuri_centro_cirurgico"), false);
         level.registerFlag(new Flag("entrou_centro_cirurgico"), false);
         level.registerFlag(new Flag("score_ir_posto_hora_errada"), false);

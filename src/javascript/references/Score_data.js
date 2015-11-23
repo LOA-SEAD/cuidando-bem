@@ -146,7 +146,7 @@ define(function ()
             jogarAgulhaLixoCerto: new Score("Jogar agulha no descarpax", 50),
             naoJogarAgulhaLixoCerto: new Score("Não jogar agulha no descarpax no momento correto", -50),
             jogarAlgodaoBandeja: new Score("Jogar agulha na bandeja", 50),
-            naoJogarAlgodaoBandeja: new Score("Não jogar agulha na bandeja no momento correto", -50),
+            naoJogarAlgodaoBandeja: new Score("Não jogar o algodão na bandeja no momento correto", -50),
             selecionarMateriaisCurativo: new Score("Selecionar todos os materiais do curativo", 350),
             naoSelecionarMateriaisCurativo: new Score("Não selecionar todos os materiais do curativo no momento correto", -350),
             lavarMaosAntesLuva: new Score("Lavar as mãos antes de calçar a luva estéril", 200),

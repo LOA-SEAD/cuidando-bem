@@ -206,7 +206,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisibility(true),
 
             new InteractiveObject("io-ir_ala_feminina","Ir para a Ala Feminina")
-                .setCssClass("intObj-goToAlaFeminina_fase3")
+                .setCssClass("intObj-goToAlaFeminina")
                 .onClick(corredorIrAlaFeminina)
                 .setVisibility(true),
 
@@ -216,7 +216,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisibility(true),
 
             new InteractiveObject("io-ir_centro_cirurgico","Ir para o Centro Cirurgico")
-                .setCssClass("intObj-goToCentroCirurgico_fase3")
+                .setCssClass("intObj-goToCentroCirurgico")
                 .onClick(corredorIrCentroCirurgico)
                 .setVisibility(true),
 
@@ -352,7 +352,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 core.openCommandBar();
                 console.log("Leito: Onload");
                 core.setInteractiveObjectVisible("io-pulseira_paciente", true);
-                //core.setActionVisible("btn-falar_paciente", true);
             })
             .onUnload(function (){
                 console.log("Leito: OnUnload");
@@ -360,7 +359,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             });
 
         leito.registerInteractiveObjects([
-            //COLOCAR PONTUAÇÃO
             new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
                 .setCssClass("intObj-paciente_02-checar_pulseira") //VAI MUDAR
                 .onClick(function () {
@@ -379,7 +377,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     }
                     core.openModalScene("pulseira");
                     Pulseira.open();
-                    //core.openCommandBar();
                 })
                 .setVisibility(true)
         ]);
@@ -563,7 +560,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisibility(false),
 
             new Action("btn-jogar_algodao", "Jogar algodão na bandeja")
-                .setCssClass("action-jogar_algodao") //CONSERTAR
+                .setCssClass("action-algodao_seco")
                 .onClick(function (){
                     console.log("Action: Jogar algodão na bandeja");
                     if(level.getFlag("score_jogou_agulha_lixo_certo").getValue() == false){
@@ -854,8 +851,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             //Algodao
             new InteractiveObject("io-algodao","Pegar algodao")
-                //Ainda nao disponivel imagem correta
-                .setCssClass("intObj-bloodPressureMonitor")
+                .setCssClass("intObj-algodao_seco")
                 .onClick(function () {
                     console.log("Action: pegar algodao ");
                     core.registerScoreItem(Scores.pegarAlgodao);
@@ -866,8 +862,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             //Luvas
             new InteractiveObject("io-luvas","Pegar luvas")
-                //Ainda nao disponivel imagem correta
-                .setCssClass("intObj-oximeter")
+                .setCssClass("intObj-luvas_de_procedimento")
                 .onClick(function () {
                     console.log("Action: pegar luvas");
                     core.registerScoreItem(Scores.pegarLuvas);
@@ -878,8 +873,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             //Bandeja
             new InteractiveObject("io-bandeja","Pegar bandeja")
-                //Ainda nao disponivel imagem correta
-                .setCssClass("intObj-watch")
+                .setCssClass("intObj-bandeja")
                 .onClick(function () {
                     console.log("Action: pegar bandeja");
                     core.registerScoreItem(Scores.pegarBandeja);
@@ -890,8 +884,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             //Luvas estéreis
             new InteractiveObject("io-luvas_estereis","Pegar luvas estéreis")
-                //Ainda nao disponivel imagem correta
-                .setCssClass("intObj-thermometer")
+                .setCssClass("intObj-luvas_estereis")
                 .onClick(function () {
                     console.log("Action: pegar luvas estéreis");
                     core.registerScoreItem(Scores.pegarLuvasEstereis);
@@ -902,8 +895,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             //Gaze esterelizada
             new InteractiveObject("io-gaze","Pegar gaze esterelizada")
-                //Ainda nao disponivel imagem correta
-                .setCssClass("intObj-bloodPressureMonitor")
+                .setCssClass("intObj-gaze_esteril")
                 .onClick(function () {
                     console.log("Action: pegar gaze ");
                     core.registerScoreItem(Scores.pegarGaze);
@@ -914,8 +906,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             //Fita adesiva hipoalergênica
             new InteractiveObject("io-fita_hipoalergenica","Pegar fita adesiva hipoalergênica")
-                //Ainda nao disponivel imagem correta
-                .setCssClass("intObj-oximeter")
+                .setCssClass("intObj-fita_adesiva_hipoalergenica_micropore")
                 .onClick(function () {
                     console.log("Action: pegar fita adesiva hipoalergênica");
                     core.registerScoreItem(Scores.pegarFitaHipoalergenica);
@@ -938,8 +929,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             //Seringa de 20 ml
             new InteractiveObject("io-seringa","Pegar seringa de 20 ml")
-                //Ainda nao disponivel imagem correta
-                .setCssClass("intObj-thermometer")
+                .setCssClass("intObj-seringa_20_ml")
                 .onClick(function () {
                     console.log("Action: pegar seringa de 20 ml");
                     core.registerScoreItem(Scores.pegarSeringa);
@@ -950,8 +940,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             //Agulha 40X12
             new InteractiveObject("io-agulha","Pegar agulha 40X12")
-                //Ainda nao disponivel imagem correta
-                .setCssClass("intObj-bloodPressureMonitor")
+                .setCssClass("intObj-agulha_40x12")
                 .onClick(function () {
                     console.log("Action: pegar agulha 40X12 ");
                     core.registerScoreItem(Scores.pegarAgulha);
@@ -975,10 +964,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function () {
                     console.log("Ação: Fechar modal pulseira");
                     core.closeModalScene("Pulseira");
-                    if (level.getFlag("score_verificar_pulseira").getValue() == false){
-                        level.getFlag("score_verificar_pulseira").setValue(true);
-                        core.registerScoreItem(Scores.verificarPulseira);
-                    }
                     Pulseira.close();
                 })
                 .setVisibility(true)
