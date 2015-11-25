@@ -705,7 +705,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             ]);
 
         // region prontuario
-        prontuario = new Scene("Prontuario", "modalScene-prontuario_pedro");            
+        prontuario = new Scene("Prontuário", "modalScene-prontuario_pedro");            
+
+            .onLoad(function(){
+                core.openCommandBar();
+            })
 
             prontuario.registerActions([
                 new Action("btn-fechar_prontuario", "Fechar prontuário")
@@ -733,7 +737,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             pulseira.registerActions([
                 new Action("btn-largar_pulseira", "Fechar pulseira")
-                    .setCssClass("action-pulseira_paciente")
+                    .setCssClass("action-pulseira_pedro")
                     .onClick(function(){
                         console.log("Ação: Fechar modal pulseira");
                         core.closeModalScene("Pulseira");
