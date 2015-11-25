@@ -480,7 +480,7 @@ define({
     fase5: {
         recepcao:[
             //0 Recepcionista
-            "Bom tarde! Temos uma paciente à sua espera."
+            "Boa tarde! Temos uma paciente à sua espera."
         ],
         corredor: [
             //0 Jogador
