@@ -233,7 +233,8 @@ body {
 .slotSelect-backImage,
 .mainMenu-backImage,
 .credits-backImage,
-.config-backImage {
+.config-backImage,
+#screenConteudo-backImage {
   background-size: cover;
   width: 100%;
   height: 100%;
@@ -497,24 +498,65 @@ body {
   width: 50%;
   left: 55%;
 }
+#slotSelect {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#slotSelect #menuContainer {
+  top: 10%;
+  width: 20%;
+}
+#slotSelect #menuContainer .menuButton:first-child {
+  margin: 0px;
+}
+#slotSelect #menuContainer .menuSeparator {
+  width: 100%;
+  height: 3px;
+  background-color: rgba(145, 145, 145, 0.5);
+  margin: 10px 0px;
+  border-radius: 20px;
+}
+.slotSelect-logo {
+  background: center no-repeat url(../../assets/images/misc/logo.png);
+  width: 450px;
+  height: 150px;
+  position: relative;
+  top: -195px;
+  left: 95px;
+}
 .slotSelect-backImage {
   background: center no-repeat url(../../assets/images/screens/tela_carregarFundo.jpg);
 }
+.slotSelect-prontuario {
+  background: center no-repeat url(../../assets/images/misc/prontuario.png);
+  background-size: cover;
+  width: 647.4px;
+  height: 943.8px;
+  position: absolute;
+  top: -15px;
+  left: 50px;
+}
 #saveSlotMain {
-  width: 100%;
-  height: 50%;
+  position: relative;
+  
+  
+  top: 240px;
 }
 #slotsContainer {
-  width: 40%;
+  width: 80%;
   height: 80%;
   position: relative;
-  margin-left: 30%;
+  margin-left: 10%;
 }
 #slotsContainer .slot {
   width: 70%;
+  height: 45px;
+  line-height: 45px;
   margin-left: 15%;
   padding: 5px;
-  margin-bottom: 25px;
+  margin-bottom: 50px;
   background-color: cadetblue;
   border-radius: 12px;
   font-family: 'Pacifico', cursive;
@@ -542,6 +584,15 @@ body {
 #slotsMenu .menuButton:first-child {
   margin-left: 0;
 }
+#mainMenu {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#mainMenu #menuContainer {
+  top: 34%;
+}
 #mainMenu-prancheta {
   background: center no-repeat url(../../assets/images/misc/telaInicialPrancheta.png);
   background-size: cover;
@@ -560,6 +611,15 @@ body {
 .config-backImage {
   background: center no-repeat url(../../assets/images/screens/config.jpg);
 }
+#screenConteudo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#screenConteudo-backImage {
+  background: center no-repeat url(../../assets/images/screens/conteudo.jpg);
+}
 #interactiveObjects {
   position: absolute;
   width: 100%;
@@ -568,6 +628,9 @@ body {
 .interactiveObject {
   position: absolute;
   cursor: hand;
+}
+.interactiveObject.disabled {
+  cursor: default;
 }
 .intObj-talkToReceptionist {
   background-image: url(../images/interactiveObjects/intObj-receptionist.png);
@@ -596,6 +659,14 @@ body {
     top: 157px;
     right: 448px;
   }
+}
+.intObj-9Certos {
+  background: red;
+  position: absolute;
+  width: 11%;
+  height: 8%;
+  top: 45%;
+  right: 17%;
 }
 .intObj-lobbyToHallway-left {
   left: 0;
@@ -643,11 +714,111 @@ body {
     height: 471.6px;
   }
 }
+.intObj-goToCentroCirurgico {
+  top: 41%;
+  left: 53%;
+  width: 6%;
+  height: 9%;
+}
+.intObj-goToFarmacia {
+  top: 9%;
+  left: 8%;
+  width: 14%;
+  height: 15%;
+}
+.intObj-goToPostoEnfermagem {
+  top: 33%;
+  left: 43%;
+  width: 5%;
+  height: 5%;
+}
+.intObj-goToAlaFeminina {
+  top: 33%;
+  left: 62%;
+  width: 5%;
+  height: 5%;
+}
+.intObj-goToAlaMasculina {
+  top: 23%;
+  left: 70%;
+  width: 8%;
+  height: 8%;
+}
+.intObj-talkToCirculante {
+  background-image: url(../../assets/images/interactiveObjects/char-mentor.png);
+  background-size: contain;
+}
+@media screen and (min-width: 768px) {
+  .intObj-talkToCirculante {
+    bottom: 6%;
+    left: 4%;
+    width: 110.2px;
+    height: 303.92px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-talkToCirculante {
+    bottom: 6%;
+    left: 4%;
+    width: 140.6px;
+    height: 387.76px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-talkToCirculante {
+    bottom: 6%;
+    left: 4%;
+    width: 171px;
+    height: 471.6px;
+  }
+}
+.intObj-ir_leito_fase3 {
+  top: 48%;
+  left: 67%;
+  width: 11%;
+  height: 15%;
+}
+.intObj-talkToPacienteRegina {
+  top: 35%;
+  left: 44%;
+  width: 17%;
+  height: 20%;
+}
+.intObj-talkToFarmaceutico {
+  top: 22%;
+  left: 58%;
+  width: 14%;
+  height: 38%;
+}
+.intObj-irAlaFeminina_corredor {
+  left: 80%;
+  top: 13%;
+  width: 12%;
+  height: 28%;
+}
+.intObj-irAlaMasculina_corredor {
+  left: 80%;
+  top: 13%;
+  width: 12%;
+  height: 28%;
+}
+.intObj-ir_farmacia_corredor {
+  left: 72%;
+  top: 7%;
+  width: 8%;
+  height: 60%;
+}
 .intObj-goToNursingStation {
   top: 32%;
   left: 42%;
   width: 7%;
   height: 8%;
+}
+.intObj-goToPharmacy {
+  top: 8%;
+  left: 7%;
+  width: 15%;
+  height: 16%;
 }
 .intObj-goToBedroom {
   top: 22%;
@@ -666,6 +837,20 @@ body {
   height: 35%;
   bottom: 22%;
   left: 63%;
+}
+.intObj-ir_leito-fase4 {
+  width: 25%;
+  height: 35%;
+  bottom: 22%;
+  left: 9%;
+  zoom: 1;
+}
+.intObj-prontuario-leito1-fase4 {
+  width: 5%;
+  height: 8%;
+  bottom: 26%;
+  left: 13%;
+  zoom: 2;
 }
 .intObj-bedroomToHallway {
   width: 12%;
@@ -772,6 +957,18 @@ body {
 }
 .intObj-openDrawer {
   width: 30%;
+  height: 29%;
+  top: 33%;
+  right: 2%;
+}
+.intObj-openDrawer_left {
+  width: 9%;
+  height: 29%;
+  top: 33%;
+  right: 22%;
+}
+.intObj-openDrawer_right {
+  width: 9%;
   height: 29%;
   top: 33%;
   right: 2%;
@@ -918,6 +1115,906 @@ body {
   box-shadow: none;
   background-image: url(../../assets/images/interactiveObjects/coxim-hover.png);
 }
+.intObj-agulha_40x12 {
+  background-image: url(../../assets/images/interactiveObjects/agulha_40x12.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 38%;
+  left: 45%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-agulha_40x12 {
+    width: 118.1952px;
+    height: 106.6014px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-agulha_40x12 {
+    width: 139.968px;
+    height: 126.2385px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-agulha_40x12 {
+    width: 155.52px;
+    height: 140.265px;
+  }
+}
+.intObj-algodao_seco {
+  background-image: url(../../assets/images/interactiveObjects/algodao_seco.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 12%;
+  left: 29%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-algodao_seco {
+    width: 166.041px;
+    height: 105.336px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-algodao_seco {
+    width: 196.6275px;
+    height: 124.74px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-algodao_seco {
+    width: 218.475px;
+    height: 138.6px;
+  }
+}
+.intObj-aparelhodepressao_frontal {
+  background-image: url(../../assets/images/interactiveObjects/aparelhodepressao_frontal.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-aparelhodepressao_frontal {
+    width: 187.25px;
+    height: 229.6px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-aparelhodepressao_frontal {
+    width: 214px;
+    height: 262.4px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-aparelhodepressao_frontal {
+    width: 240.75px;
+    height: 295.2px;
+  }
+}
+.intObj-aparelhodepressao_lateral {
+  background-image: url(../../assets/images/interactiveObjects/aparelhodepressao_lateral.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-aparelhodepressao_lateral {
+    width: 263.55px;
+    height: 273.35px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-aparelhodepressao_lateral {
+    width: 301.2px;
+    height: 312.4px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-aparelhodepressao_lateral {
+    width: 338.85px;
+    height: 351.45px;
+  }
+}
+.intObj-bandeja {
+  background-image: url(../../assets/images/interactiveObjects/bandeja.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 12%;
+  left: 68%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-bandeja {
+    width: 174.8px;
+    height: 63.84px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-bandeja {
+    width: 207px;
+    height: 75.6px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-bandeja {
+    width: 230px;
+    height: 84px;
+  }
+}
+.intObj-carrinho_anestesico {
+  background-image: url(../../assets/images/interactiveObjects/carrinho_anestesico.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-carrinho_anestesico {
+    width: 354.9px;
+    height: 188.3px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-carrinho_anestesico {
+    width: 405.6px;
+    height: 215.2px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-carrinho_anestesico {
+    width: 456.3px;
+    height: 242.1px;
+  }
+}
+.intObj-cloreto_de_sodio_20__10_ml_ {
+  background-image: url(../../assets/images/interactiveObjects/cloreto_de_sodio_20__10_ml_.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-cloreto_de_sodio_20__10_ml_ {
+    width: 180.25px;
+    height: 334.25px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-cloreto_de_sodio_20__10_ml_ {
+    width: 206px;
+    height: 382px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-cloreto_de_sodio_20__10_ml_ {
+    width: 231.75px;
+    height: 429.75px;
+  }
+}
+.intObj-clorpromazina_medicamento {
+  background-image: url(../../assets/images/interactiveObjects/clorpromazina_medicamento.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-clorpromazina_medicamento {
+    width: 221.2px;
+    height: 173.95px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-clorpromazina_medicamento {
+    width: 252.8px;
+    height: 198.8px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-clorpromazina_medicamento {
+    width: 284.4px;
+    height: 223.65px;
+  }
+}
+.intObj-copo_descartavel {
+  background-image: url(../../assets/images/interactiveObjects/copo_descartavel.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 14%;
+  left: 38%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-copo_descartavel {
+    width: 66.8382px;
+    height: 89.4102px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-copo_descartavel {
+    width: 79.1505px;
+    height: 105.8805px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-copo_descartavel {
+    width: 87.945px;
+    height: 117.645px;
+  }
+}
+.intObj-coxim {
+  background-image: url(../../assets/images/interactiveObjects/coxim.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-coxim {
+    width: 416.15px;
+    height: 253.4px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-coxim {
+    width: 475.6px;
+    height: 289.6px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-coxim {
+    width: 535.05px;
+    height: 325.8px;
+  }
+}
+.intObj-equipo_de_infusao_de_dieta {
+  background-image: url(../../assets/images/interactiveObjects/equipo_de_infusao_de_dieta.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-equipo_de_infusao_de_dieta {
+    width: 337.75px;
+    height: 200.9px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-equipo_de_infusao_de_dieta {
+    width: 386px;
+    height: 229.6px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-equipo_de_infusao_de_dieta {
+    width: 434.25px;
+    height: 258.3px;
+  }
+}
+.intObj-fita_adesiva_hipoalergenica_micropore {
+  background-image: url(../../assets/images/interactiveObjects/fita_adesiva_hipoalergenica_micropore.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 39%;
+  left: 60%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-fita_adesiva_hipoalergenica_micropore {
+    width: 167.58px;
+    height: 109.1664px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-fita_adesiva_hipoalergenica_micropore {
+    width: 198.45px;
+    height: 129.276px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-fita_adesiva_hipoalergenica_micropore {
+    width: 220.5px;
+    height: 143.64px;
+  }
+}
+.intObj-frasco_de_alcool {
+  background-image: url(../../assets/images/interactiveObjects/frasco_de_alcool.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-frasco_de_alcool {
+    width: 102.9px;
+    height: 301.7px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-frasco_de_alcool {
+    width: 117.6px;
+    height: 344.8px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-frasco_de_alcool {
+    width: 132.3px;
+    height: 387.9px;
+  }
+}
+.intObj-frasco_de_dieta {
+  background-image: url(../../assets/images/interactiveObjects/frasco_de_dieta.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-frasco_de_dieta {
+    width: 158.2px;
+    height: 287.35px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-frasco_de_dieta {
+    width: 180.8px;
+    height: 328.4px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-frasco_de_dieta {
+    width: 203.4px;
+    height: 369.45px;
+  }
+}
+.intObj-garrafa_agua_potavel {
+  background-image: url(../../assets/images/interactiveObjects/garrafa_agua_potavel.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 9%;
+  left: 48%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-garrafa_agua_potavel {
+    width: 38.4256px;
+    height: 114.912px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-garrafa_agua_potavel {
+    width: 45.504px;
+    height: 136.08px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-garrafa_agua_potavel {
+    width: 50.56px;
+    height: 151.2px;
+  }
+}
+.intObj-gaveta {
+  background-image: url(../../assets/images/interactiveObjects/gaveta.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-gaveta {
+    width: 520.1px;
+    height: 320.95px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-gaveta {
+    width: 594.4px;
+    height: 366.8px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-gaveta {
+    width: 668.7px;
+    height: 412.65px;
+  }
+}
+.intObj-gaze_esteril {
+  background-image: url(../../assets/images/interactiveObjects/gaze_esteril.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 38%;
+  left: 20%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-gaze_esteril {
+    width: 114.266px;
+    height: 108.6116px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-gaze_esteril {
+    width: 135.315px;
+    height: 128.619px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-gaze_esteril {
+    width: 150.35px;
+    height: 142.91px;
+  }
+}
+.intObj-keflin_medicamento {
+  background-image: url(../../assets/images/interactiveObjects/keflin_medicamento.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-keflin_medicamento {
+    width: 141.75px;
+    height: 330.05px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-keflin_medicamento {
+    width: 162px;
+    height: 377.2px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-keflin_medicamento {
+    width: 182.25px;
+    height: 424.35px;
+  }
+}
+.intObj-lixo_comum {
+  background-image: url(../../assets/images/interactiveObjects/lixo_comum.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-lixo_comum {
+    width: 129.85px;
+    height: 184.45px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-lixo_comum {
+    width: 148.4px;
+    height: 210.8px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-lixo_comum {
+    width: 166.95px;
+    height: 237.15px;
+  }
+}
+.intObj-lixo_infectante {
+  background-image: url(../../assets/images/interactiveObjects/lixo_infectante.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-lixo_infectante {
+    width: 139.3px;
+    height: 172.2px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-lixo_infectante {
+    width: 159.2px;
+    height: 196.8px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-lixo_infectante {
+    width: 179.1px;
+    height: 221.4px;
+  }
+}
+.intObj-lixo_perfuro_cortante {
+  background-image: url(../../assets/images/interactiveObjects/lixo_perfuro_cortante.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-lixo_perfuro_cortante {
+    width: 202.3px;
+    height: 296.1px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-lixo_perfuro_cortante {
+    width: 231.2px;
+    height: 338.4px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-lixo_perfuro_cortante {
+    width: 260.1px;
+    height: 380.7px;
+  }
+}
+.intObj-luvas_de_procedimento {
+  background-image: url(../../assets/images/interactiveObjects/luvas_de_procedimento.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 12%;
+  left: 49%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-luvas_de_procedimento {
+    width: 170.088px;
+    height: 111.112px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-luvas_de_procedimento {
+    width: 201.42px;
+    height: 131.58px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-luvas_de_procedimento {
+    width: 223.8px;
+    height: 146.2px;
+  }
+}
+.intObj-luvas_estereis {
+  background-image: url(../../assets/images/interactiveObjects/luvas_estereis.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 40%;
+  left: 10%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-luvas_estereis {
+    width: 56.43px;
+    height: 104.652px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-luvas_estereis {
+    width: 66.825px;
+    height: 123.93px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-luvas_estereis {
+    width: 74.25px;
+    height: 137.7px;
+  }
+}
+.intObj-midazolam_medicamento {
+  background-image: url(../../assets/images/interactiveObjects/midazolam_medicamento.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 50%;
+  left: 38%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-midazolam_medicamento {
+    width: 98.952px;
+    height: 112.632px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-midazolam_medicamento {
+    width: 117.18px;
+    height: 133.38px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-midazolam_medicamento {
+    width: 130.2px;
+    height: 148.2px;
+  }
+}
+.intObj-oximetro_frontal {
+  background-image: url(../../assets/images/interactiveObjects/oximetro_frontal.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-oximetro_frontal {
+    width: 158.55px;
+    height: 93.1px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-oximetro_frontal {
+    width: 181.2px;
+    height: 106.4px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-oximetro_frontal {
+    width: 203.85px;
+    height: 119.7px;
+  }
+}
+.intObj-oximetro_lateral {
+  background-image: url(../../assets/images/interactiveObjects/oximetro_lateral.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-oximetro_lateral {
+    width: 189.35px;
+    height: 172.9px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-oximetro_lateral {
+    width: 216.4px;
+    height: 197.6px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-oximetro_lateral {
+    width: 243.45px;
+    height: 222.3px;
+  }
+}
+.intObj-placa_neutra {
+  background-image: url(../../assets/images/interactiveObjects/placa_neutra.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-placa_neutra {
+    width: 672px;
+    height: 403.2px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-placa_neutra {
+    width: 768px;
+    height: 460.8px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-placa_neutra {
+    width: 864px;
+    height: 518.4px;
+  }
+}
+.intObj-prancheta {
+  background-image: url(../../assets/images/interactiveObjects/prancheta.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-prancheta {
+    width: 154px;
+    height: 211.4px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-prancheta {
+    width: 176px;
+    height: 241.6px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-prancheta {
+    width: 198px;
+    height: 271.8px;
+  }
+}
+.intObj-prancheta_horizontal {
+  background-image: url(../../assets/images/interactiveObjects/prancheta_horizontal.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-prancheta_horizontal {
+    width: 254.1px;
+    height: 174.3px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-prancheta_horizontal {
+    width: 290.4px;
+    height: 199.2px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-prancheta_horizontal {
+    width: 326.7px;
+    height: 224.1px;
+  }
+}
+.intObj-prontuario {
+  background-image: url(../../assets/images/interactiveObjects/prontuario.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-prontuario {
+    width: 413.35px;
+    height: 401.1px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-prontuario {
+    width: 472.4px;
+    height: 458.4px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-prontuario {
+    width: 531.45px;
+    height: 515.7px;
+  }
+}
+.intObj-relogiodigital {
+  background-image: url(../../assets/images/interactiveObjects/relogiodigital.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-relogiodigital {
+    width: 108.5px;
+    height: 205.45px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-relogiodigital {
+    width: 124px;
+    height: 234.8px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-relogiodigital {
+    width: 139.5px;
+    height: 264.15px;
+  }
+}
+.intObj-relogiodigital_lateral {
+  background-image: url(../../assets/images/interactiveObjects/relogiodigital_lateral.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-relogiodigital_lateral {
+    width: 136.15px;
+    height: 202.3px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-relogiodigital_lateral {
+    width: 155.6px;
+    height: 231.2px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-relogiodigital_lateral {
+    width: 175.05px;
+    height: 260.1px;
+  }
+}
+.intObj-seringa_20_ml {
+  background-image: url(../../assets/images/interactiveObjects/seringa_20_ml.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 40%;
+  left: 35%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-seringa_20_ml {
+    width: 65.7324px;
+    height: 105.3132px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-seringa_20_ml {
+    width: 77.841px;
+    height: 124.713px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-seringa_20_ml {
+    width: 86.49px;
+    height: 138.57px;
+  }
+}
+.intObj-seringa_de_10_ml {
+  background-image: url(../../assets/images/interactiveObjects/seringa_de_10_ml.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-seringa_de_10_ml {
+    width: 172.55px;
+    height: 317.1px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-seringa_de_10_ml {
+    width: 197.2px;
+    height: 362.4px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-seringa_de_10_ml {
+    width: 221.85px;
+    height: 407.7px;
+  }
+}
+.intObj-soro_glicofisiologico_1000_ml {
+  background-image: url(../../assets/images/interactiveObjects/soro_glicofisiologico_1000_ml.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-soro_glicofisiologico_1000_ml {
+    width: 141.75px;
+    height: 370.3px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-soro_glicofisiologico_1000_ml {
+    width: 162px;
+    height: 423.2px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-soro_glicofisiologico_1000_ml {
+    width: 182.25px;
+    height: 476.1px;
+  }
+}
+.intObj-termometro_frontal {
+  background-image: url(../../assets/images/interactiveObjects/termometro_frontal.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  left: 0%;
+}
+@media screen and (min-width: 768px) {
+  .intObj-termometro_frontal {
+    width: 551.6px;
+    height: 81.2px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .intObj-termometro_frontal {
+    width: 630.4px;
+    height: 92.8px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .intObj-termometro_frontal {
+    width: 709.2px;
+    height: 104.4px;
+  }
+}
 .scene,
 .scene-maleRoom,
 .scene-maleRoom-cushion,
@@ -927,13 +2024,27 @@ body {
 .scene-bedChar02,
 .scene-bedChar02-turned,
 .scene-bedChar02-cushion,
+.scene-bedChar03,
+.scene-bedChar04,
+.scene-bedChar05,
+.scene-bedChar06,
+.scene-bedChar07,
+.scene-bedChar08,
+.scene-bedChar09,
+.scene-bedChar10,
 .scene-surgeryCenter,
+.scene-surgeryCenter-regina,
+.scene-surgeryCenter-yuri,
 .scene-hallway,
 .scene-infirmary,
 .scene-nursingStation,
 .scene-lobby,
 .scene-levelTransition,
-.scene-endAlpha {
+.scene-endAlpha,
+.scene-pharmacy,
+.scene-surgeryCenter,
+.scene-femaleRoom,
+.scene-centroCirurgicoRegina {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -946,7 +2057,7 @@ body {
   background-image: url(../../assets/images/scenes/ala_masculina-paciente-virado.jpg);
 }
 .scene-femaleRoom {
-  background-image: url('');
+  background-image: url(../../assets/images/scenes/ala_feminina.png);
 }
 .scene-bedroom {
   background-image: url(../../assets/images/scenes/sala_de_leitos.jpg);
@@ -963,8 +2074,38 @@ body {
 .scene-bedChar02-cushion {
   background-image: url(../../assets/images/scenes/leito-char-02-coxim.jpg);
 }
+.scene-bedChar03 {
+  background-image: url(../../assets/images/scenes/leito-char-03.jpg);
+}
+.scene-bedChar04 {
+  background-image: url(../../assets/images/scenes/leito-char-04.jpg);
+}
+.scene-bedChar05 {
+  background-image: url(../../assets/images/scenes/leito-char-05.jpg);
+}
+.scene-bedChar06 {
+  background-image: url(../../assets/images/scenes/leito-char-06.jpg);
+}
+.scene-bedChar07 {
+  background-image: url(../../assets/images/scenes/leito-char-07.jpg);
+}
+.scene-bedChar08 {
+  background-image: url(../../assets/images/scenes/leito-char-08.jpg);
+}
+.scene-bedChar09 {
+  background-image: url(../../assets/images/scenes/leito-char-09.jpg);
+}
+.scene-bedChar10 {
+  background-image: url(../../assets/images/scenes/leito-char-10.jpg);
+}
 .scene-surgeryCenter {
-  background-image: url('');
+  background-image: url(../../assets/images/scenes/centro_cirurgico.jpg);
+}
+.scene-surgeryCenter-regina {
+  background-image: url(../../assets/images/scenes/centro_cirurgico_regina.jpg);
+}
+.scene-surgeryCenter-yuri {
+  background-image: url(../../assets/images/scenes/centro_cirurgico_yuri.jpg);
 }
 .scene-hallway {
   background-image: url(../../assets/images/scenes/corredor.jpg);
@@ -986,6 +2127,18 @@ body {
 }
 .scene-none {
   background-color: #d3d3d3;
+}
+.scene-pharmacy {
+  background-image: url(../../assets/images/scenes/farmacia.jpg);
+}
+.scene-surgeryCenter {
+  background-image: url(../../assets/images/scenes/centro_cirurgico.jpg);
+}
+.scene-femaleRoom {
+  background-image: url(../../assets/images/scenes/ala_feminina.png);
+}
+.scene-centroCirurgicoRegina {
+  background-image: url(../../assets/images/scenes/centro_cirurgico_regina.jpg);
 }
 #modalScene {
   position: absolute;
@@ -1347,6 +2500,12 @@ body {
   text-align: center;
   display: block;
 }
+#prontuario #prescEnfermagem_tbody tr {
+  display: none;
+}
+#prontuario #prescEnfermagem_tbody td {
+  padding: 10px;
+}
 #prontuario #prescMedica_tbody .relatorio {
   cursor: pointer;
   text-align: center;
@@ -1668,14 +2827,35 @@ body {
   color: black;
   text-shadow: -1px -1px #666666, 1px 1px #ffffff;
 }
-.char-receptionist {
-  background: url(../../assets/images/characters/recepcionista.png) no-repeat top;
+.character,
+.char-receptionist,
+.char-mentor,
+.char-paciente_01,
+.char-paciente_02,
+.char-paciente_03,
+.char-paciente_04,
+.char-paciente_05,
+.char-paciente_06,
+.char-paciente_07,
+.char-paciente_08,
+.char-paciente_09 {
   background-size: cover;
   float: right;
   position: absolute;
 }
 @media screen and (min-width: 768px) {
-  .char-receptionist {
+  .character,
+  .char-receptionist,
+  .char-mentor,
+  .char-paciente_01,
+  .char-paciente_02,
+  .char-paciente_03,
+  .char-paciente_04,
+  .char-paciente_05,
+  .char-paciente_06,
+  .char-paciente_07,
+  .char-paciente_08,
+  .char-paciente_09 {
     width: 148px;
     height: 209.5px;
     top: -180px;
@@ -1683,7 +2863,18 @@ body {
   }
 }
 @media screen and (min-width: 992px) {
-  .char-receptionist {
+  .character,
+  .char-receptionist,
+  .char-mentor,
+  .char-paciente_01,
+  .char-paciente_02,
+  .char-paciente_03,
+  .char-paciente_04,
+  .char-paciente_05,
+  .char-paciente_06,
+  .char-paciente_07,
+  .char-paciente_08,
+  .char-paciente_09 {
     width: 207.2px;
     height: 293.3px;
     top: -255px;
@@ -1691,54 +2882,56 @@ body {
   }
 }
 @media screen and (min-width: 1200px) {
-  .char-receptionist {
+  .character,
+  .char-receptionist,
+  .char-mentor,
+  .char-paciente_01,
+  .char-paciente_02,
+  .char-paciente_03,
+  .char-paciente_04,
+  .char-paciente_05,
+  .char-paciente_06,
+  .char-paciente_07,
+  .char-paciente_08,
+  .char-paciente_09 {
     width: 296px;
     height: 419px;
     top: -370px;
     right: 50px;
   }
 }
+.char-receptionist {
+  background: url(../../assets/images/characters/recepcionista.png) no-repeat top;
+}
 .char-mentor {
   background: url(../../assets/images/characters/mentor.png) no-repeat top;
-  background-size: cover;
-  float: right;
-  position: absolute;
 }
-@media screen and (min-width: 768px) {
-  .char-mentor {
-    width: 169.8px;
-    height: 251.4px;
-    top: -220px;
-    right: 50px;
-  }
+.char-paciente_01 {
+  background-image: url(../../assets/images/characters/paciente1.png);
 }
-@media screen and (min-width: 992px) {
-  .char-mentor {
-    width: 217.91px;
-    height: 322.63px;
-    top: -280px;
-    right: 50px;
-  }
+.char-paciente_02 {
+  background-image: url(../../assets/images/characters/paciente2.png);
 }
-@media screen and (min-width: 1200px) {
-  .char-mentor {
-    width: 268.85px;
-    height: 398.05px;
-    top: -340px;
-    right: 50px;
-  }
+.char-paciente_03 {
+  background-image: url(../../assets/images/characters/paciente3.png);
 }
-.char-patient01 {
-  background: url(../../assets/images/characters/char-paciente-01.jpg) no-repeat top;
-  background-size: cover;
+.char-paciente_04 {
+  background-image: url(../../assets/images/characters/paciente4.png);
 }
-.char-patient02 {
-  background: url(../../assets/images/characters/char-paciente-02.jpg) no-repeat top;
-  background-size: cover;
+.char-paciente_05 {
+  background-image: url(../../assets/images/characters/paciente5.png);
 }
-.char-player {
-  background: url(../../assets/images/characters/char-jogador.jpg) no-repeat top;
-  background-size: cover;
+.char-paciente_06 {
+  background-image: url(../../assets/images/characters/paciente6.png);
+}
+.char-paciente_07 {
+  background-image: url(../../assets/images/characters/paciente7.png);
+}
+.char-paciente_08 {
+  background-image: url(../../assets/images/characters/paciente8.png);
+}
+.char-paciente_09 {
+  background-image: url(../../assets/images/characters/paciente9.png);
 }
 .action_button {
   cursor: hand;
@@ -1803,54 +2996,26 @@ body {
   border-color: #2d7c2f;
   box-shadow: 0 0 10px #000000;
 }
-.action_button.disabled {
-  background-image: url(../../assets/images/action_buttons/sem-imagem-disabled.jpg);
-  border-color: black;
-}
-.action_button.disabled:hover {
-  border-color: red;
-}
 .action-ir_corredor {
   background-image: url(../../assets/images/action_buttons/ir_corredor.jpg);
-}
-.action-ir_corredor.disabled {
-  background-image: url(../../assets/images/action_buttons/ir_corredor-disabled.jpg);
 }
 .action-ir_recepcao {
   background-image: url(../../assets/images/action_buttons/ir_recepcao.jpg);
 }
-.action-ir_recepcao.disabled {
-  background-image: url(../../assets/images/action_buttons/ir_recepcao-disabled.jpg);
-}
 .action-ir_posto_de_enfermagem {
   background-image: url(../../assets/images/action_buttons/ir_posto_de_enfermagem.jpg);
-}
-.action-ir_posto_de_enfermagem.disabled {
-  background-image: url(../../assets/images/action_buttons/ir_posto_de_enfermagem-disabled.jpg);
 }
 .action-ir_sala_de_leitos {
   background-image: url(../../assets/images/action_buttons/ir_sala_de_leitos.jpg);
 }
-.action-ir_sala_de_leitos.disabled {
-  background-image: url(../../assets/images/action_buttons/ir_sala_de_leitos-disabled.jpg);
-}
 .action-leito-char-01 {
   background-image: url(../../assets/images/action_buttons/leito-char-01.jpg);
-}
-.action-leito-char-01.disabled {
-  background-image: url(../../assets/images/action_buttons/leito-char-01-disabled.jpg);
 }
 .action-leito-char-02 {
   background-image: url(../../assets/images/action_buttons/leito-char-02.jpg);
 }
-.action-leito-char-02.disabled {
-  background-image: url(../../assets/images/action_buttons/leito-char-02-disabled.jpg);
-}
 .action-pulseira_paciente {
   background-image: url(../../assets/images/action_buttons/pulseira.jpg);
-}
-.action-pulseira_paciente.disabled {
-  background-image: url(../../assets/images/action_buttons/pulseira-disabled.jpg);
 }
 .action-confirmar_paciente {
   background-image: url(../../assets/images/action_buttons/sem-imagem.jpg);
@@ -1861,14 +3026,11 @@ body {
 .action-confirmar_pulseira {
   background-image: url(../../assets/images/action_buttons/confirmar_pulseira.jpg);
 }
-.action-confirmar_pulseira-disabled {
-  background-image: url(../../assets/images/action_buttons/confirmar_pulseira-disabled.jpg);
-}
 .action-lavar_maos {
   background-image: url(../../assets/images/action_buttons/lavar_maos.jpg);
 }
-.action-lavar_maos.disabled {
-  background-image: url(../../assets/images/action_buttons/lavar_maos-disabled.jpg);
+.action-lavar_maos_escova {
+  background-image: url(../../assets/images/action_buttons/lavar_maos_escova.png);
 }
 .action-medir_temperatura {
   background-image: url(../../assets/images/action_buttons/termometro.jpg);
@@ -1903,56 +3065,29 @@ body {
 .action-abrir_dialogo {
   background-image: url(../../assets/images/action_buttons/abrir_dialogo.jpg);
 }
-.action-abrir_dialogo.disabled {
-  background-image: url(../../assets/images/action_buttons/abrir_dialogo-disabled.jpg);
-}
 .action-examinar_paciente {
   background-image: url(../../assets/images/action_buttons/examinar_paciente.jpg);
-}
-.action-examinar_paciente.disabled {
-  background-image: url(../../assets/images/action_buttons/examinar_paciente-disabled.jpg);
 }
 .action-falar_com_paciente_ala {
   background-image: url(../../assets/images/action_buttons/examinar_paciente.jpg);
 }
-.action-falar_com_paciente_ala.disabled {
-  background-image: url(../../assets/images/action_buttons/examinar_paciente-disabled.jpg);
-}
 .action-anotar_prontuario {
   background-image: url(../../assets/images/action_buttons/anotar_prontuario.jpg);
-}
-.action-anotar_prontuario.disabled {
-  background-image: url(../../assets/images/action_buttons/anotar_prontuario-disabled.jpg);
 }
 .action-ler_prontuario {
   background-image: url(../../assets/images/action_buttons/anotar_prontuario.jpg);
 }
-.action-ler_prontuario.disabled {
-  background-image: url(../../assets/images/action_buttons/prontuario-disabled.jpg);
-}
 .action-confirmar_prontuario {
   background-image: url(../../assets/images/action_buttons/prontuario-confirma.jpg);
-}
-.action-confirmar_prontuario.disabled {
-  background-image: url(../../assets/images/action_buttons/prontuario-confirma-disabled.jpg);
 }
 .action-posicionar_coxim {
   background-image: url(../../assets/images/action_buttons/posicionar_coxim.jpg);
 }
-.action-posicionar_coxim.disabled {
-  background-image: url(../../assets/images/action_buttons/posicionar_coxim-disabled.jpg);
-}
 .action-pegar_coxim {
   background-image: url(../../assets/images/action_buttons/posicionar_coxim.jpg);
 }
-.action-pegar_coxim.disabled {
-  background-image: url(../../assets/images/action_buttons/posicionar_coxim-disabled.jpg);
-}
 .action-mudar_posicao_paciente {
   background-image: url(../../assets/images/action_buttons/mudar_posicao_paciente.jpg);
-}
-.action-mudar_posicao_paciente.disabled {
-  background-image: url(../../assets/images/action_buttons/mudar_posicao_paciente-disabled.jpg);
 }
 .action-voltar_menu {
   background-image: url(../../assets/images/action_buttons/voltar_menu.jpg);
@@ -1968,6 +3103,123 @@ body {
 }
 .action-perguntar_nome_char1 {
   background-image: url(../../assets/images/action_buttons/leito-char-01.jpg);
+}
+.action-agulha_40x12 {
+  background-image: url(../../assets/images/action_buttons/agulha_40x12.jpg);
+}
+.action-algodao_seco {
+  background-image: url(../../assets/images/action_buttons/algodao_seco.jpg);
+}
+.action-carrinho_anestesico {
+  background-image: url(../../assets/images/action_buttons/carrinho_anestesico.jpg);
+}
+.action-cloreto_sodio_10_10ml {
+  background-image: url(../../assets/images/action_buttons/cloreto_sodio_10_10ml.jpg);
+}
+.action-cloreto_sodio_20_10ml {
+  background-image: url(../../assets/images/action_buttons/cloreto_sodio_20_10ml.jpg);
+}
+.action-clorpromazina_medicamento {
+  background-image: url(../../assets/images/action_buttons/clorpromazina_medicamento.jpg);
+}
+.action-clorpropamida_medicamento {
+  background-image: url(../../assets/images/action_buttons/clorpropamida_medicamento.jpg);
+}
+.action-copo_descartavel {
+  background-image: url(../../assets/images/action_buttons/copo_descartavel.jpg);
+}
+.action-equipo {
+  background-image: url(../../assets/images/action_buttons/equipo.jpg);
+}
+.action-equipode_infusao_alimentos {
+  background-image: url(../../assets/images/action_buttons/equipode_infusao_alimentos.jpg);
+}
+.action-fita_adesiva_hipoalergica {
+  background-image: url(../../assets/images/action_buttons/fita_adesiva_hipoalergica.jpg);
+}
+.action-frasco_dieta {
+  background-image: url(../../assets/images/action_buttons/frasco_dieta.jpg);
+}
+.action-garrafa_agua_potavel {
+  background-image: url(../../assets/images/action_buttons/garrafa_agua_potavel.jpg);
+}
+.action-gaze_esteril {
+  background-image: url(../../assets/images/action_buttons/gaze_esteril.jpg);
+}
+.action-glicose_30_10ml {
+  background-image: url(../../assets/images/action_buttons/glicose_30_10ml.jpg);
+}
+.action-ir_leito {
+  background-image: url(../../assets/images/action_buttons/ir_leito.jpg);
+}
+.action-keflin_medicamento {
+  background-image: url(../../assets/images/action_buttons/keflin_medicamento.jpg);
+}
+.action-luvas_de_procedimento {
+  background-image: url(../../assets/images/action_buttons/luvas_de_procedimento.jpg);
+}
+.action-luvas_estereis {
+  background-image: url(../../assets/images/action_buttons/luvas_estereis.jpg);
+}
+.action-mentor {
+  background-image: url(../../assets/images/action_buttons/mentor.jpg);
+}
+.action-midazolam_medicamento {
+  background-image: url(../../assets/images/action_buttons/midazolam_medicamento.jpg);
+}
+.action-paciente1 {
+  background-image: url(../../assets/images/action_buttons/paciente1.jpg);
+}
+.action-paciente2 {
+  background-image: url(../../assets/images/action_buttons/paciente2.jpg);
+}
+.action-paciente3 {
+  background-image: url(../../assets/images/action_buttons/paciente3.jpg);
+}
+.action-paciente4 {
+  background-image: url(../../assets/images/action_buttons/paciente4.jpg);
+}
+.action-paciente5 {
+  background-image: url(../../assets/images/action_buttons/paciente5.jpg);
+}
+.action-paciente6 {
+  background-image: url(../../assets/images/action_buttons/paciente6.jpg);
+}
+.action-paciente7 {
+  background-image: url(../../assets/images/action_buttons/paciente7.jpg);
+}
+.action-paciente8 {
+  background-image: url(../../assets/images/action_buttons/paciente8.jpg);
+}
+.action-paciente9 {
+  background-image: url(../../assets/images/action_buttons/paciente9.jpg);
+}
+.action-placa_neutra {
+  background-image: url(../../assets/images/action_buttons/placa_neutra.jpg);
+}
+.action-prontuario-original {
+  background-image: url(../../assets/images/action_buttons/prontuario-original.jpg);
+}
+.action-recepcionista {
+  background-image: url(../../assets/images/action_buttons/recepcionista.jpg);
+}
+.action-seringa_10ml {
+  background-image: url(../../assets/images/action_buttons/seringa_10ml.jpg);
+}
+.action-seringa_5ml {
+  background-image: url(../../assets/images/action_buttons/seringa_5ml.jpg);
+}
+.action-soro_fisiologico_1000ml {
+  background-image: url(../../assets/images/action_buttons/soro_fisiologico_1000ml.jpg);
+}
+.action-soro_fisiologico_100ml {
+  background-image: url(../../assets/images/action_buttons/soro_fisiologico_100ml.jpg);
+}
+.action-soro_fisiologico_250ml {
+  background-image: url(../../assets/images/action_buttons/soro_fisiologico_250ml.jpg);
+}
+.action-soro_glicofisiologico_1000ml {
+  background-image: url(../../assets/images/action_buttons/soro_glicofisiologico_1000 ml.jpg);
 }
 #commandBar {
   position: absolute;
