@@ -15,11 +15,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var level = new Level("Level 5");
         console.groupCollapsed(level.getName());
 
-        //var flags_on = true;    // if false it wont check for flags -- tests purpose
-        //var visibility = false;
-        //if (!flags_on)
-        //    visibility = true;
-
         //region Scenes
 
         var
@@ -273,7 +268,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisibility(true),
 
             new InteractiveObject("io-ir_leito", "Ir ao leito")
-                .setCssClass("intObj-ir_leito-tutorial") // verificar onde conserta
+                .setCssClass("intObj-ir_leito-tutorial")
                 .onClick(function (){
                     if (level.getFlag("pegou_todos_instrumentos").getValue() == false){
                         //Mentor corrige
@@ -303,7 +298,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setText(Dialogs.ala_feminina[2])
                 .registerOption("", function() {
                     core.closeDialog();
-                    //core.setActionVisible("btn-falar_paciente", true);
                     core.openCommandBar();
                 }),
             //3 - Não ver o prontuario
@@ -754,15 +748,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     && level.getFlag("score_pegou_soro").getValue() == true
                     && level.getFlag("score_pegou_seringa").getValue() == true
                     && level.getFlag("score_pegou_agulha").getValue() == true) {
+                        // Libera o acesso ao leito da Esther
                         if (level.getFlag("pegou_todos_instrumentos").getValue() == false){
                             core.registerScoreItem(Scores.pegarTodosInstrumentos);
                             level.getFlag("pegou_todos_instrumentos").setValue(true);
                         }
-                        core.changeScene(1);
-                    }else{
-                        //Pode sair caso nao pegou tudo mas não pode ir pra ala feminina
-                        core.changeScene(1);
                     }
+                    core.changeScene(1);
                 })
                 .setVisibility(true),
 
@@ -778,7 +770,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         ]);
 
         posto_de_enfermagem.registerInteractiveObjects([
-            //VERIFICAR QUAIS ITENS VÃO PARA UMA GAVETA E QUAIS VÃO PARA OUTRA GAVETA
             new InteractiveObject("io-abrir_gaveta","Abrir gaveta")
                 .setCssClass("intObj-openDrawer")
                 .onClick(function () {
@@ -797,20 +788,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.setInteractiveObjectVisible("io-agulha", !(level.getFlag("score_pegou_agulha").getValue()));
                 })
                 .setVisibility(true),
-
-            /*new InteractiveObject("io-abrir_gaveta2","Abrir gaveta2")
-                .setCssClass("intObj-openDrawer")
-                .onClick(function () {
-                    console.log("Action: abrir_gaveta2");
-                    core.openModalScene("gaveta");
-                    core.openCommandBar();
-                    core.setInteractiveObjectVisible("io-gaze", !(level.getFlag("score_pegou_gaze").getValue()));
-                    core.setInteractiveObjectVisible("io-fita_hipoalergenica", !(level.getFlag("score_pegou_fita_hipoalergenica").getValue()));
-                    core.setInteractiveObjectVisible("io-soro", !(level.getFlag("score_pegou_soro").getValue()));
-                    core.setInteractiveObjectVisible("io-seringa", !(level.getFlag("score_pegou_seringa").getValue()));
-                    core.setInteractiveObjectVisible("io-agulha", !(level.getFlag("score_pegou_agulha").getValue()));
-                })
-                .setVisibility(true)*/
         ]);
         //endregion
 
@@ -828,8 +805,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick( function () {
                     console.log("Action: fechar_gaveta");
                     core.closeModalScene("Gaveta");
-                    //console.log("Btn ir corredor");
-                    //core.setActionVisible("btn-ir_corredor", true);
                     core.openCommandBar();
                 })
                 .setVisibility(true)
@@ -1112,7 +1087,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             Prontuario.setPrescMedicaRowData(0, "02/11", "Fondaparinux Sódico", "Oral", "7,5 mg (1x ao dia)", "07h", true, true);
             Prontuario.setPrescMedicaRowData(1, "02/11", "Atenolol", "Oral", "100 mg (2x ao dia)", "08h - 18h", true, true);
-            //Prescrição 2 e 3 ainda não funciona
+            //Prescrição 2 e 3 ainda não funcionam
             //Prontuario.setPrescMedicaRowData(2, "02/11", "Metmorfina", "Oral", "750 mg (2x ao dia)", "06h - 17h", true, true);
             //Prontuario.setPrescMedicaRowData(3, "02/11", "Glibenclamida", "Oral", "4 mg (2x ao dia)", "07:30h - 17:30h", true, true);
 
@@ -1123,8 +1098,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             Prontuario.setSsvvRowData(0, '02/11', '120x70', '46', '15', '96', '35', true);
             Prontuario.setSsvvRowData(1, '02/11', '130x80', '52', '18', '94', '36', true);
-            //Disable 2 row
-            //Prontuario.setSsvvRowData(2, '', '', '', '', '', '', true);
 
             Prontuario.setAnotacaoEnfermagemRowData('02/11', '');
         });

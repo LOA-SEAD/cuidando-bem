@@ -611,7 +611,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     }
                 })
                 .setVisibility(true),
-            // CUIDADO COM OS CSS ERRADOS
 
             new Action("btn-selecionar_bandeja", "Selecionar Bandeja")
                 .setCssClass("action-selecionar_bandeja") //CONSERTAR
@@ -729,7 +728,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         core.closeCommandBar();
                         core.openDialog(14);
                     }
-                    //core.disableInteractiveObject("io-pulseira_paciente");
                     core.changeScene(2);
                 })
                 .setVisibility(true)
@@ -951,7 +949,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             level.getFlag("utilizar_algodao2").setValue(false);
             level.getFlag("explicar_resultado").setValue(false);
             level.getFlag("voltar_ala_masculina").setValue(false);
-            //Jogar fora itens usados nos devidos lixos
             level.getFlag("lixo_algodao").setValue(false);
             level.getFlag("lixo_agulha").setValue(false);
             level.getFlag("elevar_grade").setValue(false);
@@ -1022,7 +1019,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Prontuario.setPrescMedicaRowData(0, "17/06", "Metmorfina", "Oral", "500 mg (2x ao dia)", "07h - 17h", true, true);
             Prontuario.setPrescMedicaRowData(1, "17/06", "Glibenclamida", "Oral", "4 mg (2x ao dia)", "08h - 18h", true, true);
             //Prescricao 2 ainda não está funcionando
-            //Prontuario.setPrescMedicaRowData(1, "17/06", "Bicarbonato de sódio", "Endovenoso", "8,4 g + Água destilada 100 ml", "Tempo de 4 horas", true, true);
+            //Prontuario.setPrescMedicaRowData(2, "17/06", "Bicarbonato de sódio", "Endovenoso", "8,4 g + Água destilada 100 ml", "Tempo de 4 horas", true, true);
+            //Necessário para evitar que valores antigos apareçam no prontuário
+            //Prontuario.setPrescMedicaRowData(3, '', '', '', '', '', true, true);
 
             //Prontuario.setPrescEnfermagemState("decubito");
             //Prontuario.setPrescEnfermagemState("verificar glicemia");
@@ -1052,7 +1051,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("utilizar_algodao2"), false);
         level.registerFlag(new Flag("explicar_resultado"), false);
         level.registerFlag(new Flag("voltar_ala_masculina"), false);
-        //Jogar fora itens usados nos devidos lixos
         level.registerFlag(new Flag("lixo_algodao"), false);
         level.registerFlag(new Flag("lixo_agulha"), false);
         level.registerFlag(new Flag("elevar_grade"), false);
