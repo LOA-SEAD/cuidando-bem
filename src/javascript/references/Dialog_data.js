@@ -636,7 +636,12 @@ define({
             //6 Jogador op 2
             "Está tudo bem, sempre verifico a medicação antes de usá-la no paciente." +
             " A Clorpromazina é um antipsicótico que necessita de receituário de controle especial." +
-            " Já a clorpropamida é um hipoglicemiante oral."
+            " Já a clorpropamida é um hipoglicemiante oral.",
+            // 7 - mentor
+            "Parece que há algo errado com sua medicação. Verifique para ter certeza.",
+            // 8 - mentor
+            "Atenção! É muito importante saber a finalidade e indicação de uso de cada medicação. Além disso, cuidado com medicações de nomes semelhantes."
+    
             ],
         posto_enfermagem: [
             //tabela
@@ -909,7 +914,16 @@ define({
             ],
             informar_paciente: [
                 "Você precisa explicar todo procedimento realizado à paciente, é direito dela!"
-            ] 
+            ],
+            verificar_medicamento: [
+                "Toda medicação precisa ser conferida!"
+            ],
+            verificar_medicamento2: [
+                "Você tem certeza que esta é a medicação correta?"
+            ],
+            pegar_medicamento: [
+                "Você já pegou a medicação solicitado pela paciente?"
+            ],
         },
         descarte: {
             algodão: [

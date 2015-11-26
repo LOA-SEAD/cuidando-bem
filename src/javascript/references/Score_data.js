@@ -175,6 +175,10 @@ define(function ()
                irAlaFeminina_horaErrada: new Score("Ir para a Ala Feminina sem precisar", -25),
                verProntuario: new Score("Ver o prontuário", 150),
                falarComPaciente: new Score("Falar com o paciente", 150),
+               pegarMedicamento: new Score("Pegar medicamento na farmácia", 50),
+               conferirMedicamentoErrado: new Score("Verificar o medicamento fornecido pelo farmacêutico", 350),
+               trocarMedicamento: new Score("Trocar o medicamento equivocado", 150),
+               conferirMedicamentoCorreto: new Score("Verificar o medicamento fornecido pelo farmacêutico", 150),
             
 
         },

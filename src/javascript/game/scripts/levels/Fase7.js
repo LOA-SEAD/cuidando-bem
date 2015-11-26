@@ -336,6 +336,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
           ]);
 
 
+    ;
 
 
         //  region FARMACIA
@@ -343,47 +344,137 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var farmacia = lib.scenes.farmacia.getClone()
             .onLoad(function () {
                 console.log("Load scene: " + farmacia.getName());
+                console.log("Abrindo dialogo com farmaceutico");
+                core.openDialog(0);
             });
 
 
         farmacia.registerDialogs([
 
+            
+                // 0
           new Dialog(lib.characters.jogador)
                     .setText(Dialogs.farmacia[0])
+                    .registerOption("", function () {
+                core.openDialog(1);
+            }),
+            
+            // 1
+              new Dialog(lib.characters.paulo)
+                    .setText(Dialogs.farmacia[1])
+                    .registerOption("", function () {
+                core.closeDialog();
+            }),
+            
+            // 2
+               new Dialog(lib.characters.jogador)
+                     .setText("")
+                .registerOption(Dialogs.farmacia[2], function () {
+                core.openDialog(3);
+            })
+                .registerOption(Dialogs.farmacia[3], function () {
+                core.openDialog(5);
+            })
+                .setRandomize(true),
+            
+            // 3
+              new Dialog(lib.characters.paulo)
+                    .setText(Dialogs.farmacia[4])
+                    .registerOption("", function () {
+                core.openDialog(4);
+            }),
+            
+            // 4
+             new Dialog(lib.characters.jogador)
+                     .setText("")
+                .registerOption(Dialogs.farmacia[5], function () {
+                core.openDialog(6);
+            })
+                .registerOption(Dialogs.farmacia[6], function () {
+                core.registerScoreItem(Scores.trocarMedicamento);
+                core.closeDialog();
+            })
+                .setRandomize(true),
+            
+            // 5
+              new Dialog(lib.characters.mentor)
+                    .setText(Dialogs.farmacia[7])
+                    .registerOption("", function () {
+                core.openDialog(2);
+            }),
+            
+            // 6
+              new Dialog(lib.characters.mentor)
+                    .setText(Dialogs.farmacia[8])
+                    .registerOption("", function () {
+                core.openDialog(4);
+            }),
+            
+            // 7 - ALERTA VERIFICAR MEDICAMENTO
+              new Dialog(lib.characters.mentor)
+                    .setText(Alertas.esqueceu.verificar_medicamento)
+                    .registerOption("", function () {
+                core.closeDialog();
+            }),
+            
+             // 8 - ALERTA PEGAR MEDICAMENTO
+              new Dialog(lib.characters.mentor)
+                    .setText(Alertas.esqueceu.pegar_medicamento)
                     .registerOption("", function () {
                 core.closeDialog();
             }),
 
     ]);
-
+    
+     
 
         farmacia.registerActions([
 
              new Action("btn-ir_corredor", "Ir ao corredor")
                 .setCssClass("action-ir_corredor")
                 .onClick(function () {
-                core.changeScene(1);
+                    if(level.getFlag("pegar_medicamento").getValue() == false) {       
+                        core.openDialog(8);  
+                    }
+                    else
+                        if(level.getFlag("verificar_medicamento_correto").getValue() == false)
+                            core.openDialog(7);
+                        else
+                            core.changeScene(1);
+            }),
+            
+            
+                         new Action("btn-pegarMedicamento", "Pegar Medicamento")
+                .setCssClass("action-pegar_medicamento")
+                .onClick(function () {
+                    level.getFlag("pegar_medicamento").setValue(true);
+                    core.registerScoreItem(Scores.pegarMedicamento);
+                    
+            }),
+            
+            
+            
+                         new Action("btn-conferirMedicamento", "Conferir Medicamento")
+                .setCssClass("action-conferir_medicamento")
+                .onClick(function () {
+                    if(level.getFlag("pegar_medicamento").getValue() == false)
+                        ; // nao faz nada
+                    else if(level.getFlag("conferir_medicamento_errado").getValue() == false) {
+                    level.getFlag("conferir_medicamento_errado").setValue(true);    
+                    core.registerScoreItem(Scores.conferirMedicamentoErrado);
+                    core.openDialog(2);  
+                    }
+                    else
+                        {
+                             level.getFlag("conferir_medicamento_correto").setValue(true); 
+                             core.registerScoreItem(Scores.conferirMedicamentoCorreto);
+                            
+                        }
+                    
+                    
             }),
 
         ]);
-
-
-        farmacia.registerInteractiveObjects([
-
-
-             new InteractiveObject("io-falar_farmaceutico", "Falar com o farmacêutico")
-                .setCssClass("intObj-talkToFarmaceutico")
-                .onClick(function () {
-                console.log("Abrindo dialogo com farmaceutico");
-                core.openDialog(0);
-
-            }),
-
-
-    ]);
-
-
-
 
 
         //  region LEITO
@@ -539,6 +630,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             level.getFlag("ir_postoEnfermagem_horaErrada").setValue(false);
             level.getFlag("conversar_paciente").setValue(false);
             level.getFlag("ler_prontuario").setValue(false);
+            level.getFlag("conferir_medicamento_errado").setValue(false);
+            level.getFlag("pegar_medicamento").setValue(false);
+            level.getFlag("conferir_medicamento_correto").setValue(false);
 
               //  dados do prontuario
             Prontuario.setNome("Ana Beatriz Galvão");
@@ -580,6 +674,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("ir_postoEnfermagem_horaErrada"), false);
         level.registerFlag(new Flag("conversar_paciente"), false);
         level.registerFlag(new Flag("ler_prontuario"), false);
+        level.registerFlag(new Flag("conferir_medicamento_errado"), false);
+        level.registerFlag(new Flag("pegar_medicamento"), false);
+        level.registerFlag(new Flag("conferir_medicamento_correto"), false);
 
 
 
