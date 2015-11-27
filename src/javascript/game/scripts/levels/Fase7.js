@@ -437,7 +437,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         core.openDialog(8);  
                     }
                     else
-                        if(level.getFlag("verificar_medicamento_correto").getValue() == false)
+                        if(level.getFlag("conferir_medicamento_correto").getValue() == false)
                             core.openDialog(7);
                         else
                             core.changeScene(1);
@@ -493,6 +493,58 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 console.log("Load scene: " + posto_de_enfermagem.getName());
                 //
             });
+    
+    posto_de_enfermagem.registerDialogs([
+        
+
+        
+        
+        // 0 
+        
+         new Dialog(lib.characters.mentor)
+                    .setText(Alertas.esqueceu.pegar_objetos_gaveta)
+                    .registerOption("", function () {
+                core.closeDialog();
+            }),
+        
+        
+              new Dialog(lib.characters.mentor)
+                    .setText(Alertas.esqueceu.pegar_bandeja)
+                    .registerOption("", function () {
+                core.closeDialog();
+            })
+        
+        
+    ]);
+    
+    
+     posto_de_enfermagem.registerInteractiveObjects([
+         
+            new InteractiveObject("io-abrir_gaveta","Abrir gaveta")
+                .setCssClass("intObj-openDrawer")
+                .onClick(function () {
+                    console.log("Action: abrir_gaveta");
+                    core.openModalScene("gaveta");
+                    core.openCommandBar();
+                    
+
+                //    core.setInteractiveObjectVisible("io-coxim", !(level.getFlag("coxim").getValue()));
+                })
+                .setVisibility(true),
+         
+         
+         
+             new InteractiveObject("io-pegar_bandeja","Pegar Bandeja")
+                .setCssClass("intObj-bandeja")
+                .onClick(function () {
+                    console.log("Action: Pegar bandeja");
+                    level.getFlag("pegar_bandeja").setValue(true);
+                    core.setInteractiveObjectVisible("io-pegar_bandeja", false);
+        
+                })
+                .setVisibility(true)
+         
+         ]);
 
 
 
@@ -501,9 +553,12 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
              new Action("btn-ir_corredor", "Ir ao corredor")
                 .setCssClass("action-ir_corredor")
                 .onClick(function () {
-                core.changeScene(1);
-            })
-
+                    if(level.getFlag("pegar_copo_descartavel").getValue() == false || level.getFlag("pegar_agua_potavel").getValue() == false)
+                        core.openDialog(0);
+                    else
+                        core.changeScene(1);
+            }),
+            
         ]);
 
         //  region ALA MASCULINA
@@ -574,6 +629,71 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     .setVisibility(true),
 
                 ]);
+    
+    
+     gaveta = new Scene("gaveta", "Gaveta")
+            .setCssClass("modalScene-drawer");
+
+        gaveta.registerActions([
+            new Action("btn-fechar_gaveta", "Fechar gaveta")
+                .setCssClass("action-fechar_gaveta")
+                .onClick( function () {
+                    console.log("Action: fechar_gaveta");
+                    core.closeModalScene("Gaveta");
+                })
+                .setVisibility(true)
+        ]);
+    
+   
+    
+    
+       gaveta.registerInteractiveObjects([
+           
+            new InteractiveObject("io-copo_descartavel", "Copo Descartável")
+                .setCssClass("intObj-copoDescartavel")
+                .onClick(function () {
+                    if(level.getFlag("pegar_bandeja").getValue() == false){
+                        
+                        core.openDialog(1);
+                    }
+                    else{
+                    console.log("IntObj: io-copo_descartavel");
+                    level.getFlag("pegar_copo_descartavel").setValue(true);
+                    core.setInteractiveObjectVisible("io-copo_descartavel", false);
+
+                    if(level.getFlag("score_pegar_copo_descartavel").getValue() == false) {
+                        core.registerScoreItem(Scores.pegarCopoDescartavel);
+                       level.getFlag("score_pegar_copo_descartavel").setValue(true);
+                    }
+                    }
+                })
+                .setVisibility(true),
+           
+           
+            new InteractiveObject("io-agua_potavel", "Água Potável")
+                .setCssClass("intObj-aguaPotavel")
+                .onClick(function () {
+                    
+                    if(level.getFlag("pegar_bandeja").getValue() == false){
+                        
+                        core.openDialog(1);
+                    }
+                    else{
+                    console.log("IntObj: io-agua_potavel");
+                    level.getFlag("pegar_agua_potavel").setValue(true);
+                    core.setInteractiveObjectVisible("io-agua_potavel", false);
+
+                    if(level.getFlag("score_pegar_agua_potavel").getValue() == false) {
+                        core.registerScoreItem(Scores.pegarAguaPotavel);
+                        level.getFlag("score_pegar_agua_potavel").setValue(true);
+                    }
+                     }
+                })
+                .setVisibility(true),
+           
+           
+           
+        ]);
 
 
 
@@ -589,6 +709,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region ModalScenes
         level.registerModalScene(prontuario);
+        level.registerModalScene(gaveta);
         //endregion
 
         //region Level
@@ -603,7 +724,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerScene(posto_de_enfermagem); //id 5
         level.registerScene(alaMasculina); //id 6
         level.registerScene(centroCirurgico); //id 7
-        level.registerScene(prontuario); //id 7
+        level.registerScene(prontuario); //id 8
+        level.registerScene(gaveta); //id 9
 
 
 
@@ -633,6 +755,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             level.getFlag("conferir_medicamento_errado").setValue(false);
             level.getFlag("pegar_medicamento").setValue(false);
             level.getFlag("conferir_medicamento_correto").setValue(false);
+            level.getFlag("pegar_copo_descartavel").setValue(false);
+            level.getFlag("pegar_agua_potavel").setValue(false);
+            level.getFlag("pegar_bandeja").setValue(false);
+            level.getFlag("score_pegar_agua_potavel").setValue(false);
+            level.getFlag("score_pegar_copo_descartavel").setValue(false);
 
               //  dados do prontuario
             Prontuario.setNome("Ana Beatriz Galvão");
@@ -677,6 +804,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("conferir_medicamento_errado"), false);
         level.registerFlag(new Flag("pegar_medicamento"), false);
         level.registerFlag(new Flag("conferir_medicamento_correto"), false);
+        level.registerFlag(new Flag("pegar_copo_descartavel"), false);
+        level.registerFlag(new Flag("pegar_agua_potavel"), false);
+        level.registerFlag(new Flag("pegar_bandeja"), false);
+        level.registerFlag(new Flag("score_pegar_agua_potavel"), false);
+        level.registerFlag(new Flag("score_pegar_copo_descartavel"), false);
 
 
 

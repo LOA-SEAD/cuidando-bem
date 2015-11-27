@@ -644,7 +644,8 @@ define({
     
             ],
         posto_enfermagem: [
-            //tabela
+    
+            
         ],
         leito_paciente: [
             //0 Paciente
@@ -924,6 +925,13 @@ define({
             pegar_medicamento: [
                 "Você já pegou a medicação solicitado pela paciente?"
             ],
+              pegar_bandeja: [
+                "Objetos devem ser colocadas na bandeja!"
+            ],
+              pegar_objetos_gaveta: [
+                "Caso o paciente não possua restrição hídrica, medicações de via oral devem ser acompanhadas de líquido para facilitar na deglutição."
+            ],
+            
         },
         descarte: {
             algodão: [

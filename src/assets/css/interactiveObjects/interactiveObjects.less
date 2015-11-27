@@ -390,6 +390,7 @@
 
 //region Posto de Enfermagem - nursingStation
 
+
 // gavetas em 1 objeto interativo
 .intObj-openDrawer{
   width: 30%;
@@ -523,6 +524,60 @@
   box-shadow: none;
   background-image: @intObj-watch-hover;
 }
+
+.intObj-aguaPotavel{ 
+  background-image: @intObj-aguaPotavel;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  top: 28%;
+  left: 55%;
+
+  @intObj-cushion-height: 0.6 * 400px;
+  @intObj-cushion-width: 0.6 * 400px;
+
+  @media screen and (min-width: @screen-sm-min) {
+    width: 0.7 * @intObj-cushion-width;
+    height: 0.7 * @intObj-cushion-height;
+  }
+  @media screen and (min-width: @screen-md-min) {
+    width: 0.8 * @intObj-cushion-width;
+    height: 0.8 * @intObj-cushion-height;
+  }
+  @media screen and (min-width: @screen-lg-min) {
+    width: 0.9 * @intObj-cushion-width;
+    height: 0.9 * @intObj-cushion-height;
+  }
+
+}
+
+.intObj-copoDescartavel {
+  background-image: @intObj-copoDescartavel;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  top: 30%;
+  left: 30%;
+
+  @intObj-cushion-height: 0.4 * 400px;
+  @intObj-cushion-width: 0.4 * 400px;
+
+  @media screen and (min-width: @screen-sm-min) {
+    width: 0.7 * @intObj-cushion-width;
+    height: 0.7 * @intObj-cushion-height;
+  }
+  @media screen and (min-width: @screen-md-min) {
+    width: 0.8 * @intObj-cushion-width;
+    height: 0.8 * @intObj-cushion-height;
+  }
+  @media screen and (min-width: @screen-lg-min) {
+    width: 0.9 * @intObj-cushion-width;
+    height: 0.9 * @intObj-cushion-height;
+  }
+}
+
 
 
 .intObj-cushion {
@@ -658,10 +713,10 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
-   @bandeja-width: 0.5 * 1150px;
-   @bandeja-height: 0.5 * 420px;
+   top: 25%;
+   left: 35%;
+   @bandeja-width: 0.15 * 1150px;
+   @bandeja-height: 0.15 * 420px;
 
    @media screen and (min-width: @screen-sm-min) {
        width: 0.7 * @bandeja-width;

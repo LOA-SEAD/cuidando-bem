@@ -179,6 +179,8 @@ define(function ()
                conferirMedicamentoErrado: new Score("Verificar o medicamento fornecido pelo farmacêutico", 350),
                trocarMedicamento: new Score("Trocar o medicamento equivocado", 150),
                conferirMedicamentoCorreto: new Score("Verificar o medicamento fornecido pelo farmacêutico", 150),
+               pegarAguaPotavel: new Score("Pegar água potável no posto de enfermagem", 50),
+               pegarCopoDescartavel: new Score("Pegar copo descartável no posto de enfermagem", 50),
             
 
         },
