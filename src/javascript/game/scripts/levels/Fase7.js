@@ -1,5 +1,3 @@
-/* by Wellyson */
-
 define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons', 'Pulseira', 'Prontuario', 'FreqRespiratoria', 'Scores_data'],
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores) {
 
@@ -267,6 +265,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .registerOption("", function () {
                 core.closeDialog();
             }),
+            
+            // 7 - ALERTA LAVAR MAOS
+            new Dialog(lib.characters.mentor)
+                .setText(Alertas.lavar_maos.tipo3)
+                .registerOption("", function () {
+                core.closeDialog();
+            }),
 
     ]);
 
@@ -309,7 +314,24 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
               
                 }
             })
-                .setVisibility(true)
+                .setVisibility(true),
+            
+            
+            new Action("btn-lavar_maos", "Lavar as mãos")
+                .setCssClass("action-lavar_maos")
+                .onClick(function () {
+                    
+                if(level.getFlag("lavar_maos").getValue() == false){
+                    level.getFlag("lavar_maos").setValue(true);
+                     core.registerScoreItem(Scores.lavarMaos);      
+                    level.getFlag("score_lavar_maos").setValue(true);
+                    
+                }
+                   
+            })
+            .setVisibility(true),
+            
+            
 
 
 
@@ -332,11 +354,24 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 }
 
             }),
+            
+            
+              new InteractiveObject("io-conversar_paciente2", "Ir ao leito")
+                .setCssClass("intObj-irLeitoDaEsquerda")
+                .onClick(function () {
+                    if(level.getFlag("lavar_maos").getValue() == false)
+                        core.openDialog(7);
+                    else
+                        core.changeScene(3);
+                })
+                .setVisibility(true),
+            
+            
 
           ]);
 
 
-    ;
+    
 
 
         //  region FARMACIA
@@ -482,7 +517,80 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         var leito = lib.scenes.leitos.ana.getClone()
             .onLoad(function () {
                 console.log("Load scene: " + leito.getName());
+                core.openDialog(0);
             });
+    
+    leito.registerDialogs([
+        
+        // 0 
+          new Dialog(lib.characters.pacientes.ana)
+                    .setText(Dialogs.leito_paciente[0])
+                    .registerOption("", function () {
+                core.openDialog(1);
+            }),
+        // 1
+        new Dialog(lib.characters.jogador)
+                    .setText(Dialogs.leito_paciente[1])
+                    .registerOption("", function () {
+                core.openDialog(2);
+            }),
+        // 2
+          new Dialog(lib.characters.pacientes.ana)
+                    .setText(Dialogs.leito_paciente[2])
+                    .registerOption("", function () {
+                core.openDialog(3);
+            }),
+        
+        // 3
+             new Dialog(lib.characters.jogador)
+                     .setText("")
+                .registerOption(Dialogs.leito_paciente[3], function () {
+                core.openDialog(4);
+            })
+                .registerOption(Dialogs.leito_paciente[4], function () {
+                    core.openDialog(7);
+                
+            })
+                .setRandomize(true),
+        
+        
+          // 4
+          new Dialog(lib.characters.pacientes.ana)
+                    .setText(Dialogs.leito_paciente[5])
+                    .registerOption("", function () {
+                core.openDialog(5);
+            }),
+        
+        
+         // 5
+        new Dialog(lib.characters.jogador)
+                    .setText(Dialogs.leito_paciente[6])
+                    .registerOption("", function () {
+                core.openDialog(6);
+            }),
+        
+        // 6
+          new Dialog(lib.characters.pacientes.ana)
+                    .setText(Dialogs.leito_paciente[7])
+                    .registerOption("", function () {
+                core.closeDialog();
+            }),
+        
+        // 7 ALERTA MENTOR
+         new Dialog(lib.characters.mentor)
+                    .setText(Dialogs.leito_paciente[8])
+                    .registerOption("", function () {
+                core.openDialog(3);
+            }),
+        
+        
+        
+        
+    
+         
+          
+    
+    ]);
 
 
 
@@ -760,6 +868,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             level.getFlag("pegar_bandeja").setValue(false);
             level.getFlag("score_pegar_agua_potavel").setValue(false);
             level.getFlag("score_pegar_copo_descartavel").setValue(false);
+            level.getFlag("lavar_maos").setValue(false);
+            level.getFlag("score_lavar_maos").setValue(false);
 
               //  dados do prontuario
             Prontuario.setNome("Ana Beatriz Galvão");
@@ -809,6 +919,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("pegar_bandeja"), false);
         level.registerFlag(new Flag("score_pegar_agua_potavel"), false);
         level.registerFlag(new Flag("score_pegar_copo_descartavel"), false);
+        level.registerFlag(new Flag("lavar_maos"), false);
+        level.registerFlag(new Flag("score_lavar_maos"), false);
 
 
 

@@ -665,7 +665,9 @@ define({
             //6 Jogador
             "Em breve será liberada e poderá voltar para seu trabalho. Aproveite o café da manhã.",
             //7 Paciente
-            "Obrigada."
+            "Obrigada.",
+            //8 MENTOR CORRIGE
+            "Forneça ao paciente toda informação possível sobre o medicamento que será admnistrado."
         ],
         ala_feminina: [
             //tabela
