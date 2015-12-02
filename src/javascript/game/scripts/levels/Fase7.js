@@ -100,11 +100,6 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         function corredorIrFarmacia() {
             console.log("Action: corredorIrFarmaciaHoraErrada");
-            if (level.getFlag("ir_farmacia_horaErrada").getValue() == false) {
-                core.registerScoreItem(Scores.irFarmacia_horaErrada);
-                level.getFlag("ir_farmacia_horaErrada").setValue(true);
-                core.changeScene(4);
-            } else
                 core.changeScene(4);
 
 
@@ -123,11 +118,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         function corredorIrAlaFeminina() {
             console.log("Action: corredorIrAlaFeminina");
-            if (level.getFlag("ir_AlaFeminina_horaErrada").getValue() == false) {
-                core.registerScoreItem(Scores.irAlaFeminina_horaErrada);
-                level.getFlag("ir_AlaFeminina_horaErrada").setValue(true);
-                core.changeScene(2);
-            } else
+
                 core.changeScene(2);
         }
 
@@ -202,6 +193,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         var alaFeminina = lib.scenes.alaFeminina.getClone()
             .onLoad(function () {
+                level.getFlag("ir_ala_feminina_primeira_vez").setValue(true);
                 console.log("Load scene: " + alaFeminina.getName());
             });
 
@@ -267,6 +259,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .registerOption("", function () {
                 core.closeDialog();
             }),
+            
+               // 7 - ALERTA LAVAR MAOS
+            new Dialog(lib.characters.mentor)
+                .setText(Alertas.lavar_maos.tipo3)
+                .registerOption("", function () {
+                core.closeDialog();
+            }),
 
     ]);
 
@@ -274,18 +273,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         alaFeminina.registerActions([
 
-       new Action("btn-falar_paciente", "Conversar com a Paciente")
-                .setCssClass("action-leito-char-02")
-                .onClick(function () {
-                if(level.getFlag("conversar_paciente").getValue() == false){
-                    level.getFlag("conversar_paciente").setValue(true);
-                    core.registerScoreItem(Scores.falarComPaciente);
-                    core.openDialog(0);
-                }
-                    else
-                        core.openDialog(0);
-                
-            }),
+    
 
                    new Action("btn-ler_prontuario", "Ler prontuario")
                 .setCssClass("action-ler_prontuario")
@@ -309,7 +297,22 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
               
                 }
             })
-                .setVisibility(true)
+                .setVisibility(true),
+            
+            
+              new Action("btn-lavar_maos", "Lavar as mãos")
+                .setCssClass("action-lavar_maos")
+                .onClick(function () {
+                    
+                if(level.getFlag("lavar_maos").getValue() == false){
+                    level.getFlag("lavar_maos").setValue(true);
+                     core.registerScoreItem(Scores.lavarMaos);      
+                    level.getFlag("score_lavar_maos").setValue(true);
+                    
+                }
+                   
+            })
+            .setVisibility(true),
 
 
 
@@ -332,20 +335,55 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 }
 
             }),
+            
+           
+            
+             
+              new InteractiveObject("io-conversar_paciente2", "Ir ao leito")
+                .setCssClass("intObj-irLeitoEsquerda")
+                .onClick(function () {
+                    if(level.getFlag("lavar_maos").getValue() == false)
+                        core.openDialog(7);
+                    else
+                        if(level.getFlag("conversar_paciente").getValue() == false){
+                        level.getFlag("conversar_paciente").setValue(true);
+                        core.registerScoreItem(Scores.falarComPaciente);
+                        core.openDialog(0);
+                        }
+                    
+                        else{
+                              core.changeScene(3);
+                            }
+                      
+                })
+                .setVisibility(true),
+            
+            
 
           ]);
 
 
-    ;
+    
 
 
         //  region FARMACIA
 
         var farmacia = lib.scenes.farmacia.getClone()
             .onLoad(function () {
+                if(level.getFlag("ir_ala_feminina_primeira_vez").getValue() == true){
                 console.log("Load scene: " + farmacia.getName());
                 console.log("Abrindo dialogo com farmaceutico");
                 core.openDialog(0);
+                }
+                else
+                    {
+                        console.log("Hora Errada!"); 
+                        if(level.getFlag("ir_farmacia_horaErrada").getValue() == false)
+                            core.registerScoreItem(Scores.irFarmacia_horaErrada);                    
+                        level.getFlag("ir_farmacia_horaErrada").setValue(true);
+                        core.openDialog(9);
+                        core.changeScene(1);
+                    }
             });
 
 
@@ -423,13 +461,22 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     .registerOption("", function () {
                 core.closeDialog();
             }),
+            
+            // 9 - Alerta Hora Errada
 
+             new Dialog(lib.characters.mentor)
+                    .setText(Alertas.perdido.farmacia)
+                    .registerOption("", function () {
+                core.closeDialog();
+            }),
+            
     ]);
     
      
 
         farmacia.registerActions([
 
+        
              new Action("btn-ir_corredor", "Ir ao corredor")
                 .setCssClass("action-ir_corredor")
                 .onClick(function () {
@@ -442,6 +489,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         else
                             core.changeScene(1);
             }),
+            
             
             
                          new Action("btn-pegarMedicamento", "Pegar Medicamento")
@@ -477,21 +525,101 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         ]);
 
 
-        //  region LEITO
+         //  region LEITO
 
         var leito = lib.scenes.leitos.ana.getClone()
             .onLoad(function () {
                 console.log("Load scene: " + leito.getName());
+                core.openDialog(0);
             });
-
+    
+    leito.registerDialogs([
+        
+        // 0 
+          new Dialog(lib.characters.pacientes.ana)
+                    .setText(Dialogs.leito_paciente[0])
+                    .registerOption("", function () {
+                core.openDialog(1);
+            }),
+        // 1
+        new Dialog(lib.characters.jogador)
+                    .setText(Dialogs.leito_paciente[1])
+                    .registerOption("", function () {
+                core.openDialog(2);
+            }),
+        // 2
+          new Dialog(lib.characters.pacientes.ana)
+                    .setText(Dialogs.leito_paciente[2])
+                    .registerOption("", function () {
+                core.openDialog(3);
+            }),
+        
+        // 3
+             new Dialog(lib.characters.jogador)
+                     .setText("")
+                .registerOption(Dialogs.leito_paciente[3], function () {
+                core.openDialog(4);
+            })
+                .registerOption(Dialogs.leito_paciente[4], function () {
+                    core.openDialog(7);
+                
+            })
+                .setRandomize(true),
+        
+        
+          // 4
+          new Dialog(lib.characters.pacientes.ana)
+                    .setText(Dialogs.leito_paciente[5])
+                    .registerOption("", function () {
+                core.openDialog(5);
+            }),
+        
+        
+         // 5
+        new Dialog(lib.characters.jogador)
+                    .setText(Dialogs.leito_paciente[6])
+                    .registerOption("", function () {
+                core.openDialog(6);
+            }),
+        
+        // 6
+          new Dialog(lib.characters.pacientes.ana)
+                    .setText(Dialogs.leito_paciente[7])
+                    .registerOption("", function () {
+                core.closeDialog();
+            }),
+        
+        // 7 ALERTA MENTOR
+         new Dialog(lib.characters.mentor)
+                    .setText(Dialogs.leito_paciente[8])
+                    .registerOption("", function () {
+                core.openDialog(3);
+            }),
+        
+        ]);
+        
 
 
         //  region POSTO DE ENFERMAGEM
 
         var posto_de_enfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function () {
-                console.log("Load scene: " + posto_de_enfermagem.getName());
-                //
+                if(level.getFlag("ir_ala_feminina_primeira_vez").getValue() == true){
+               console.log("Load scene: " + posto_de_enfermagem.getName());
+                }
+                else
+                    {
+                        console.log("Hora Errada!"); 
+                        if(level.getFlag("ir_postoEnfermagem_horaErrada").getValue() == false)
+                            core.registerScoreItem(Scores.irFarmacia_horaErrada);                    
+                        level.getFlag("ir_postoEnfermagem_horaErrada").setValue(true);
+                        core.openDialog(2);
+                        core.changeScene(1);
+                    }
+                
+                
+             
+                
             });
     
     posto_de_enfermagem.registerDialogs([
@@ -507,13 +635,22 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 core.closeDialog();
             }),
         
-        
+        // 1
               new Dialog(lib.characters.mentor)
                     .setText(Alertas.esqueceu.pegar_bandeja)
                     .registerOption("", function () {
                 core.closeDialog();
-            })
+            }),
         
+        // 2
+        
+         new Dialog(lib.characters.mentor)
+                    .setText(Alertas.perdido.farmacia)
+                    .registerOption("", function () {
+                core.closeDialog();
+            }),
+
+    
         
     ]);
     
@@ -745,7 +882,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             level.getFlag("conversar_recepcionista").setValue(false);
             level.getFlag("conversar_mentor").setValue(false);
             level.getFlag("ir_farmacia_horaErrada").setValue(false);
-            level.getFlag("postoEnfermagem_horaErrada").setValue(false);
+            level.getFlag("ir_postoEnfermagem_horaErrada").setValue(false);
             level.getFlag("ir_centroCirurgico_horaErrada").setValue(false);
             level.getFlag("ir_AlaMasculina_horaErrada").setValue(false);
             level.getFlag("ir_AlaFeminina_horaErrada").setValue(false);
@@ -760,6 +897,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             level.getFlag("pegar_bandeja").setValue(false);
             level.getFlag("score_pegar_agua_potavel").setValue(false);
             level.getFlag("score_pegar_copo_descartavel").setValue(false);
+            level.getFlag("ir_ala_feminina_primeira_vez").setValue(false);
+            level.getFlag("lavar_maos").setValue(false);
 
               //  dados do prontuario
             Prontuario.setNome("Ana Beatriz Galvão");
@@ -794,7 +933,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("conversar_recepcionista"), false);
         level.registerFlag(new Flag("conversar_mentor"), false);
         level.registerFlag(new Flag("ir_farmacia_horaErrada"), false);
-        level.registerFlag(new Flag("postoEnfermagem_horaErrada"), false);
+        level.registerFlag(new Flag("ir_postoEnfermagem_horaErrada"), false);
         level.registerFlag(new Flag("ir_centroCirurgico_horaErrada"), false);
         level.registerFlag(new Flag("ir_AlaMasculina_horaErrada"), false);
         level.registerFlag(new Flag("ir_AlaFeminina_horaErrada"), false);
@@ -809,6 +948,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("pegar_bandeja"), false);
         level.registerFlag(new Flag("score_pegar_agua_potavel"), false);
         level.registerFlag(new Flag("score_pegar_copo_descartavel"), false);
+        level.registerFlag(new Flag("ir_ala_feminina_primeira_vez"), false);
+        level.registerFlag(new Flag("lavar_maos"), false);
 
 
 
