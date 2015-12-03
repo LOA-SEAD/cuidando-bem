@@ -858,6 +858,10 @@ define({
             ],
             farmacia: [
                 "Você precisa encontrar seu paciente primeiro!"
+            ],
+            
+            centroCirurgico: [
+                "Primeiro teste os equipamentos que serão utilizados na cirurgia."
             ]
         },
         esqueceu: {
