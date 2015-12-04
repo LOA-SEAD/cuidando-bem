@@ -1,5 +1,3 @@
-/* by Wellyson */
-
 define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Commons', 'Pulseira', 'Prontuario', 'FreqRespiratoria', 'Scores_data'],
     function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores) {
 
@@ -260,7 +258,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 core.closeDialog();
             }),
             
+<<<<<<< HEAD
                // 7 - ALERTA LAVAR MAOS
+=======
+            // 7 - ALERTA LAVAR MAOS
+>>>>>>> 828e8bd78f38e60394de8aa69b9403fcf54c0041
             new Dialog(lib.characters.mentor)
                 .setText(Alertas.lavar_maos.tipo3)
                 .registerOption("", function () {
@@ -300,7 +302,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .setVisibility(true),
             
             
+<<<<<<< HEAD
               new Action("btn-lavar_maos", "Lavar as mãos")
+=======
+            new Action("btn-lavar_maos", "Lavar as mãos")
+>>>>>>> 828e8bd78f38e60394de8aa69b9403fcf54c0041
                 .setCssClass("action-lavar_maos")
                 .onClick(function () {
                     
@@ -313,6 +319,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                    
             })
             .setVisibility(true),
+<<<<<<< HEAD
+=======
+            
+            
+>>>>>>> 828e8bd78f38e60394de8aa69b9403fcf54c0041
 
 
 
@@ -336,15 +347,22 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
             }),
             
+<<<<<<< HEAD
            
             
              
               new InteractiveObject("io-conversar_paciente2", "Ir ao leito")
                 .setCssClass("intObj-irLeitoEsquerda")
+=======
+            
+              new InteractiveObject("io-conversar_paciente2", "Ir ao leito")
+                .setCssClass("intObj-irLeitoDaEsquerda")
+>>>>>>> 828e8bd78f38e60394de8aa69b9403fcf54c0041
                 .onClick(function () {
                     if(level.getFlag("lavar_maos").getValue() == false)
                         core.openDialog(7);
                     else
+<<<<<<< HEAD
                         if(level.getFlag("conversar_paciente").getValue() == false){
                         level.getFlag("conversar_paciente").setValue(true);
                         core.registerScoreItem(Scores.falarComPaciente);
@@ -355,6 +373,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                               core.changeScene(3);
                             }
                       
+=======
+                        core.changeScene(3);
+>>>>>>> 828e8bd78f38e60394de8aa69b9403fcf54c0041
                 })
                 .setVisibility(true),
             
@@ -596,8 +617,20 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 core.openDialog(3);
             }),
         
+<<<<<<< HEAD
         ]);
         
+=======
+        
+        
+        
+    
+         
+          
+    
+    ]);
+
+>>>>>>> 828e8bd78f38e60394de8aa69b9403fcf54c0041
 
 
         //  region POSTO DE ENFERMAGEM
@@ -897,8 +930,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             level.getFlag("pegar_bandeja").setValue(false);
             level.getFlag("score_pegar_agua_potavel").setValue(false);
             level.getFlag("score_pegar_copo_descartavel").setValue(false);
+<<<<<<< HEAD
             level.getFlag("ir_ala_feminina_primeira_vez").setValue(false);
             level.getFlag("lavar_maos").setValue(false);
+=======
+            level.getFlag("lavar_maos").setValue(false);
+            level.getFlag("score_lavar_maos").setValue(false);
+>>>>>>> 828e8bd78f38e60394de8aa69b9403fcf54c0041
 
               //  dados do prontuario
             Prontuario.setNome("Ana Beatriz Galvão");
@@ -948,8 +986,13 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("pegar_bandeja"), false);
         level.registerFlag(new Flag("score_pegar_agua_potavel"), false);
         level.registerFlag(new Flag("score_pegar_copo_descartavel"), false);
+<<<<<<< HEAD
         level.registerFlag(new Flag("ir_ala_feminina_primeira_vez"), false);
         level.registerFlag(new Flag("lavar_maos"), false);
+=======
+        level.registerFlag(new Flag("lavar_maos"), false);
+        level.registerFlag(new Flag("score_lavar_maos"), false);
+>>>>>>> 828e8bd78f38e60394de8aa69b9403fcf54c0041
 
 
 

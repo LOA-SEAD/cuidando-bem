@@ -177,7 +177,24 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     .registerOption("", function () {
                 level.getFlag("conversar_mentor2").setValue(true);
                 core.closeDialog();
-            })
+            }),
+            
+        
+            
+            //8 - alerta farmacia
+            new Dialog(lib.characters.mentor)
+                    .setText(Alertas.perdido.enfermagem[1])
+                    .registerOption("", function () {
+                     core.closeDialog();
+            }),
+            
+            //9 - alerta centro Cirurgico
+            new Dialog(lib.characters.mentor)
+                    .setText(Alertas.perdido.centroCirugico)
+                    .registerOption("", function () {
+                     core.closeDialog();
+            }),
+            
 
              ]);
 
@@ -200,42 +217,37 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         function corredorIrAlaFeminina() {
             console.log("Action: corredorIrAlaFeminina");
-            if(level.getFlag("ir_alaFeminina_horaErrada").getValue() == false){
+            if(level.getFlag("testar_equipamentos").getValue() == true)
+                     core.changeScene(3);
+            else 
+                if(level.getFlag("ir_alaFeminina_horaErrada").getValue() == false){
                 core.registerScoreItem(Scores.irAlaFeminina_horaErrada);
                 level.getFlag("ir_alaFeminina_horaErrada").setValue(true);
-                core.changeScene(3);
+                core.openDialog(9);                       // ??????????????????????????????                            
             }
-             else  
-                 core.changeScene(3);
+
       
         }
 
 
         function corredorIrFarmacia() {
             console.log("Action: corredorIrFarmaciaHoraErrada");
+            core.openDialog(8);
             if(level.getFlag("ir_farmacia_horaErrada").getValue() == false){
                 core.registerScoreItem(Scores.irFarmacia_horaErrada);
                 level.getFlag("ir_farmacia_horaErrada").setValue(true);
-                core.changeScene(5);
+                
             }
-             else  
-                core.changeScene(5);
-      
-
         }
 
 
         function corredorIrPostoEnfermagem() {
             console.log("Action: corredorIrPostoEnfermagem");
+              core.openDialog(8);
              if(level.getFlag("ir_postoEnfermagem_horaErrada").getValue() == false){
                 core.registerScoreItem(Scores.irPostoEnfermagem_horaErrada);
                 level.getFlag("ir_postoEnfermagem_horaErrada").setValue(true);
-                core.changeScene(6);
             }
-             else  
-                 core.changeScene(6);
-      
-
         }
 
         corredor.registerInteractiveObjects([
@@ -674,18 +686,6 @@ leito.registerActions([
                 //
             });
 
-
-        farmacia.registerActions([
-
-             new Action("btn-ir_corredor", "Ir ao corredor")
-                .setCssClass("action-ir_corredor")
-                .onClick(function () {
-                core.changeScene(1);
-            }),
-
-        ]);
-
-
         // POSTO DE ENFERMAGEM
 
         var posto_de_enfermagem = lib.scenes.postoDeEnfermagem.getClone()
@@ -693,17 +693,7 @@ leito.registerActions([
                 console.log("Load scene: " + posto_de_enfermagem.getName());
                 //
             });
-
-        posto_de_enfermagem.registerActions([
-
-             new Action("btn-ir_corredor", "Ir ao corredor")
-                .setCssClass("action-ir_corredor")
-                .onClick(function () {
-                 core.changeScene(1);
-            })
-
-        ]);
-            
+          
             
         // region CENTRO CIRURGICO c/ PACIENTE REGINA
             var centroCirurgicoRegina =  new Scene("centroCirurgicoRegina", "scene-centroCirurgicoRegina")
