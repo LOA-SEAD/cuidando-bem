@@ -219,14 +219,16 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             console.log("Action: corredorIrAlaFeminina");
             if(level.getFlag("testar_equipamentos").getValue() == true)
                      core.changeScene(3);
-            else 
-                if(level.getFlag("ir_alaFeminina_horaErrada").getValue() == false){
+            else
+                     core.openDialog(9); 
+            
+            
+                if(level.getFlag("ir_alaFeminina_horaErrada").getValue() == false) {
                 core.registerScoreItem(Scores.irAlaFeminina_horaErrada);
                 level.getFlag("ir_alaFeminina_horaErrada").setValue(true);
-                core.openDialog(9);                       // ??????????????????????????????                            
-            }
-
-      
+                 
+                     }       
+    
         }
 
 
@@ -522,7 +524,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.closeDialog();
                 }),
             // 1 - Mentor
-            new Dialog(lib.characters.mentor)
+            new Dialog(lib.characters.mentor)   
                 .setText(Alertas.lavar_maos.tipo2)
                 .registerOption("", function() {
                     core.closeDialog();
@@ -708,6 +710,48 @@ leito.registerActions([
                     });
     
     
+    
+    centroCirurgicoRegina.registerActions ([
+    
+         new Action("btn-anotar_prontuario", "Anotar prontuario")
+                .setCssClass("action-anotar_prontuario")
+                .onClick(function (){
+                    console.log("Action: Anotar prontuario");
+                    if(level.getFlag("lavar_maos3").getValue() == false){
+                        core.openDialog(19);
+                    } else {
+                        if(level.getFlag("score_anotar_prontuario").getValue() == false) {
+                            core.registerScoreItem(Scores.anotarNoProntuario);
+                            level.getFlag("score_anotar_prontuario").setValue(true);
+                        }
+                        
+                        if(level.getFlag("colocar_placa_neutra").getValue() == false)
+                                core.openDialog(20);
+                        else{
+                        Prontuario.open();
+                        core.openModalScene("Prontuario"); 
+                        }
+                    }
+                })
+                .setVisibility(true),
+        
+        
+         new Action("btn-colocar_placa_neutra", "Colocar Placa Neutra")
+                .setCssClass("action-colocar_placa_neutra")
+                .onClick(function (){
+                    console.log("Action: Colocando placa neutra");
+                    level.getFlag("colocar_placa_neutra").setValue(true);
+                    if(level.getFlag("score_placa_neutra").getValue() == false) {
+                            core.registerScoreItem(Scores.colocarPlacaNeutra);
+                            level.getFlag("score_placa_neutra").setValue(true);
+                        }
+                
+                })
+                .setVisibility(true)
+    
+    ]);
+    
+    
     centroCirurgicoRegina.registerDialogs([  
         
                 // 0
@@ -883,6 +927,23 @@ leito.registerActions([
                         core.openDialog(14); 
                       }),   
         
+        // 19 Alertar Lavar maos
+        
+          new Dialog(lib.characters.circulante)
+                    .setText(Alertas.lavar_maos.tipo2)
+                    .registerOption("", function(){
+                        core.openDialog(14); 
+                      }), 
+        
+        // 20 - alerta colocar placa neutra
+        new Dialog(lib.characters.circulante)
+                    .setText(Alertas.esqueceu.coxim)
+                    .registerOption("", function(){
+                        core.closeDialog(); 
+                      })
+        
+        
+        
     
     
     ]);
@@ -979,11 +1040,15 @@ leito.registerActions([
             level.getFlag("lavar_maos_cirurgica").setValue(false);
             level.getFlag("lavar_maos").setValue(false);
             level.getFlag("lavar_maos2").setValue(false);
+            level.getFlag("lavar_maos3").setValue(false);
             level.getFlag("primeira_saida_centro_cirurgico").setValue(false);
             level.getFlag("conversar_paciente").setValue(false);
             level.getFlag("ir_alaFeminina_horaErrada").setValue(false);
             level.getFlag("ir_farmacia_horaErrada").setValue(false);
             level.getFlag("ir_postoEnfermagem_horaErrada").setValue(false);
+            level.getFlag("score_anotar_prontuario").setValue(false);
+            level.getFlag("colocar_placa_neutra").setValue(false);
+            level.getFlag("score_placa_neutra").setValue(false);
             
    
              //  dados do prontuario
@@ -1022,11 +1087,15 @@ leito.registerActions([
         level.registerFlag(new Flag("lavar_maos_cirurgica"), false);
         level.registerFlag(new Flag("lavar_maos"), false);
         level.registerFlag(new Flag("lavar_maos2"), false);
+        level.registerFlag(new Flag("lavar_maos3"), false);
         level.registerFlag(new Flag("primeira_saida_centro_cirurgico"), false);
         level.registerFlag(new Flag("conversar_paciente"), false);
         level.registerFlag(new Flag("ir_alaFeminina_horaErrada"), false);
         level.registerFlag(new Flag("ir_farmacia_horaErrada"), false);
         level.registerFlag(new Flag("ir_postoEnfermagem_horaErrada"), false);
+        level.registerFlag(new Flag("score_anotar_prontuario"), false);
+        level.registerFlag(new Flag("colocar_placa_neutra"), false);
+        level.registerFlag(new Flag("score_placa_neutra"), false);
 
 
         level.setInitialScene(0);

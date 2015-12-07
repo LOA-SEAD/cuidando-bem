@@ -266,7 +266,7 @@ define({
                 "cirúrgico.  É  um  documento  de  extrema importância!",
                 
                 // 7 
-                "A paciente o espera na sala de leitos"
+                "A paciente o espera na sala de leitos."
             ],
             fala2: [
                 //0 Jogador
