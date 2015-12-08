@@ -1,0 +1,1 @@
+define([],function(){function e(t,n){function s(){return new e(r,i)}function o(){return r}function u(){return i}function a(e){r=e}function f(e){i=e}var r=t,i=n;return{getClone:s,getName:o,getValue:u,setName:a,setValue:f}}return e});

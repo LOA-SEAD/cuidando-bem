@@ -1,0 +1,1 @@
+define([],function(){var e="./game/scripts/levels/",t=["Fase0","Fase1","Fase2","Fase3","Fase4","Fase5","Fase6","Fase7","Fase8","FaseTeste"],n;for(n=0;n<t.length;n++)require([e+t[n]])});
