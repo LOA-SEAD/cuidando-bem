@@ -937,6 +937,9 @@ define({
               pegar_objetos_gaveta: [
                 "Caso o paciente não possua restrição hídrica, medicações de via oral devem ser acompanhadas de líquido para facilitar na deglutição."
             ],
+             verificar_oximetro: [
+                "Lembre-se de verificar o oxímetro e o local da cirurgia antes de colocar a placa neutra."
+            ],
             
         },
         descarte: {
