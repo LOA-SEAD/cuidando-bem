@@ -518,8 +518,26 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 new Action("btn-ir_corredor", "Ir ao corredor")
                     .setCssClass("action-ir_corredor")
                     .onClick(function(){
-                        console.log("Action: ir_corredor");
-                        core.changeScene(1);
+                        if (     level.getFlag("pegarSoroFisiológico").getValue()      == true &&
+                                 level.getFlag("pegarSeringa5").getValue()             == true &&
+                                 level.getFlag("pegarAgulha").getValue()               == true &&
+                                 level.getFlag("pegarAlcool").getValue()               == true &&
+                                 level.getFlag("pegarAlgodao").getValue()              == true &&
+                                 level.getFlag("pegarEquipoSoroMacrogotas").getValue() == true &&
+                                 level.getFlag("pegarLuvas").getValue()                == true &&
+                                 level.getFlag("pegarSeringa10").getValue()            == true &&
+                                 level.getFlag("pegarAmpolaSF").getValue()             == true &&
+                                 level.getFlag("pegarBandeja").getValue()              == true    ) {
+                                
+                            level.getFlag("pegarInstrumentos").setValue(true);
+                            console.log("Action: ir_corredor");
+                            core.changeScene(1);
+                            
+                        }
+                        else{
+                            core.openDialog(4);
+                        }
+                        
                     })
                     .setVisibility(true),
 
@@ -626,30 +644,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 new Action("btn-fechar_gaveta", "Fechar gaveta")
                     .setCssClass("action-fechar_gaveta")
                     .onClick(function(){
-
-                        if(level.getFlag("pegarMedicamento").getValue() == true){
-                            if ( level.getFlag("pegarSoroFisiológico").getValue()      == true &&
-                                 level.getFlag("pegarSeringa5").getValue()             == true &&
-                                 level.getFlag("pegarAgulha").getValue()               == true &&
-                                 level.getFlag("pegarAlcool").getValue()               == true &&
-                                 level.getFlag("pegarAlgodao").getValue()              == true &&
-                                 level.getFlag("pegarEquipoSoroMacrogotas").getValue() == true &&
-                                 level.getFlag("pegarLuvas").getValue()                == true &&
-                                 level.getFlag("pegarSeringa10").getValue()            == true &&
-                                 level.getFlag("pegarAmpolaSF").getValue()             == true &&
-                                 level.getFlag("pegarBandeja").getValue()              == true    ) {
-                                
-                                level.getFlag("pegarInstrumentos").setValue(true);
-                            
-                            }
-
-                            // using registered dialogue in posto_de_enfermagem scene "Você está se esquecendo de algo. Volte e tente se lembrar."
-                            core.openDialog(6);
-                        }
-                        else{
-                            core.closeModalScene("Gaveta esquerda");
-                        }
-                        console.log("Action: fechar_gaveta");
+                        console.log("Action: fechar_gaveta_esquerda");
+                        core.closeModalScene("Gaveta esquerda");
                     })
                     .setVisibility(true)
             ]);
@@ -678,7 +674,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 new Action("btn-fechar_gaveta", "Fechar gaveta")
                     .setCssClass("action-fechar_gaveta")
                     .onClick(function(){
-                        console.log("Action: fechar_gaveta");
+                        console.log("Action: fechar_gaveta_direita");
                         core.closeModalScene("Gaveta direita");
                     })
                     .setVisibility(true)
