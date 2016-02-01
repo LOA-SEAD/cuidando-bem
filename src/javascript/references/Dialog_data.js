@@ -266,7 +266,7 @@ define({
                 "cirúrgico.  É  um  documento  de  extrema importância!",
                 
                 // 7 
-                "A paciente o espera na sala de leitos"
+                "A paciente o espera na sala de leitos."
             ],
             fala2: [
                 //0 Jogador
@@ -636,10 +636,16 @@ define({
             //6 Jogador op 2
             "Está tudo bem, sempre verifico a medicação antes de usá-la no paciente." +
             " A Clorpromazina é um antipsicótico que necessita de receituário de controle especial." +
-            " Já a clorpropamida é um hipoglicemiante oral."
+            " Já a clorpropamida é um hipoglicemiante oral.",
+            // 7 - mentor
+            "Parece que há algo errado com sua medicação. Verifique para ter certeza.",
+            // 8 - mentor
+            "Atenção! É muito importante saber a finalidade e indicação de uso de cada medicação. Além disso, cuidado com medicações de nomes semelhantes."
+    
             ],
         posto_enfermagem: [
-            //tabela
+    
+            
         ],
         leito_paciente: [
             //0 Paciente
@@ -659,7 +665,9 @@ define({
             //6 Jogador
             "Em breve será liberada e poderá voltar para seu trabalho. Aproveite o café da manhã.",
             //7 Paciente
-            "Obrigada."
+            "Obrigada.",
+            //8 MENTOR CORRIGE
+            "Forneça ao paciente toda informação possível sobre o medicamento que será admnistrado."
         ],
         ala_feminina: [
             //tabela
@@ -850,6 +858,10 @@ define({
             ],
             farmacia: [
                 "Você precisa encontrar seu paciente primeiro!"
+            ],
+            
+            centroCirurgico: [
+                "Primeiro teste os equipamentos que serão utilizados na cirurgia."
             ]
         },
         esqueceu: {
@@ -909,7 +921,26 @@ define({
             ],
             informar_paciente: [
                 "Você precisa explicar todo procedimento realizado à paciente, é direito dela!"
-            ] 
+            ],
+            verificar_medicamento: [
+                "Toda medicação precisa ser conferida!"
+            ],
+            verificar_medicamento2: [
+                "Você tem certeza que esta é a medicação correta?"
+            ],
+            pegar_medicamento: [
+                "Você já pegou a medicação solicitado pela paciente?"
+            ],
+              pegar_bandeja: [
+                "Objetos devem ser colocadas na bandeja!"
+            ],
+              pegar_objetos_gaveta: [
+                "Caso o paciente não possua restrição hídrica, medicações de via oral devem ser acompanhadas de líquido para facilitar na deglutição."
+            ],
+             verificar_oximetro: [
+                "Lembre-se de verificar o oxímetro e o local da cirurgia antes de colocar a placa neutra."
+            ],
+            
         },
         descarte: {
             algodão: [

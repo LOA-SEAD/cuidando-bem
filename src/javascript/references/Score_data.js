@@ -75,11 +75,13 @@ define(function ()
             irAlaFeminina_horaErrada: new Score("Ir ao posto de enfermagem sem precisar", -25),
             lavarMaosHoraErrada: new Score("Lavar mãos ao inves de lavar mãos técnica cirúrgica", -200),
             lavarMaosCirurgica: new Score("Lavar mãos tecnica cirurgica", 200),
-            testarEquipamentos: new Score("Lavar mãos tecnica cirurgica", 250),
+            testarEquipamentos: new Score("Testar Equipamentos", 250),
             lavarMaos2: new Score("Lavar mãos antes de ir ao leito", 200),
             irAoLeitoCorreto: new Score("Ir ao leito correto", 150),
             pegarProntuario: new Score("Ver e pegar prontuário", 150),
             encaminharPacienteCentroCirurgico: new Score("Encaminhar Paciente ao Centro Cirurgico", 150),
+            anotarNoProntuario: new Score("Anotar no prontuário", 250),
+            colocarPlacaNeutra: new Score("Colocar placa neutra antes da cirurgia no paciente", 250),
         },
         level4: {
             irLugarErrado: new Score("Ir ao lugar errado", -25),
@@ -175,6 +177,15 @@ define(function ()
                irAlaFeminina_horaErrada: new Score("Ir para a Ala Feminina sem precisar", -25),
                verProntuario: new Score("Ver o prontuário", 150),
                falarComPaciente: new Score("Falar com o paciente", 150),
+               pegarMedicamento: new Score("Pegar medicamento na farmácia", 50),
+               conferirMedicamentoErrado: new Score("Verificar o medicamento fornecido pelo farmacêutico", 350),
+               trocarMedicamento: new Score("Trocar o medicamento equivocado", 150),
+               conferirMedicamentoCorreto: new Score("Verificar o medicamento fornecido pelo farmacêutico", 150),
+               pegarAguaPotavel: new Score("Pegar água potável no posto de enfermagem", 50),
+               pegarCopoDescartavel: new Score("Pegar copo descartável no posto de enfermagem", 50),
+               lavarMaos: new Score("Lavar as mãos antes de ir ao leito do paciente", 200),
+            
+
             
 
         },

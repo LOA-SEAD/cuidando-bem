@@ -150,6 +150,22 @@
 
 }
 
+.intObj-irLeitoDaEsquerda {
+
+    width: 7%;
+    height: 16%;
+    top: 46%;
+    left: 20%;
+}
+
+
+.intObj-irLeitoEsquerda {
+    
+    width: 25%;
+  height: 35%;
+  bottom: 22%;
+  left: 9%;
+}
 
 
 .intObj-talkToCirculante {
@@ -390,6 +406,7 @@
 
 //region Posto de Enfermagem - nursingStation
 
+
 // gavetas em 1 objeto interativo
 .intObj-openDrawer{
   width: 30%;
@@ -524,6 +541,60 @@
   background-image: @intObj-watch-hover;
 }
 
+.intObj-aguaPotavel{ 
+  background-image: @intObj-aguaPotavel;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  top: 28%;
+  left: 55%;
+
+  @intObj-cushion-height: 0.6 * 400px;
+  @intObj-cushion-width: 0.6 * 400px;
+
+  @media screen and (min-width: @screen-sm-min) {
+    width: 0.7 * @intObj-cushion-width;
+    height: 0.7 * @intObj-cushion-height;
+  }
+  @media screen and (min-width: @screen-md-min) {
+    width: 0.8 * @intObj-cushion-width;
+    height: 0.8 * @intObj-cushion-height;
+  }
+  @media screen and (min-width: @screen-lg-min) {
+    width: 0.9 * @intObj-cushion-width;
+    height: 0.9 * @intObj-cushion-height;
+  }
+
+}
+
+.intObj-copoDescartavel {
+  background-image: @intObj-copoDescartavel;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  top: 30%;
+  left: 30%;
+
+  @intObj-cushion-height: 0.4 * 400px;
+  @intObj-cushion-width: 0.4 * 400px;
+
+  @media screen and (min-width: @screen-sm-min) {
+    width: 0.7 * @intObj-cushion-width;
+    height: 0.7 * @intObj-cushion-height;
+  }
+  @media screen and (min-width: @screen-md-min) {
+    width: 0.8 * @intObj-cushion-width;
+    height: 0.8 * @intObj-cushion-height;
+  }
+  @media screen and (min-width: @screen-lg-min) {
+    width: 0.9 * @intObj-cushion-width;
+    height: 0.9 * @intObj-cushion-height;
+  }
+}
+
+
 
 .intObj-cushion {
   background-image: @intObj-cushion;
@@ -610,8 +681,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @aparelhodepressao_frontal-width: 0.5 * 535px;
    @aparelhodepressao_frontal-height: 0.5 * 656px;
 
@@ -634,8 +705,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @aparelhodepressao_lateral-width: 0.5 * 753px;
    @aparelhodepressao_lateral-height: 0.5 * 781px;
 
@@ -657,11 +728,11 @@
 
    background-size: contain;
    background-repeat: no-repeat;
-
-   top: 12%;
-   left: 68%;
-   @bandeja-width: 0.4 * 1150px;
-   @bandeja-height: 0.4 * 420px;
+  
+   top: 25%;
+   left: 35%;
+   @bandeja-width: 0.15 * 1150px;
+   @bandeja-height: 0.15 * 420px;
 
    @media screen and (min-width: @screen-sm-min) {
        width: 0.38 * @bandeja-width;
@@ -682,8 +753,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @carrinho_anestesico-width: 0.5 * 1014px;
    @carrinho_anestesico-height: 0.5 * 538px;
 
@@ -706,8 +777,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @cloreto_de_sodio_20__10_ml_-width: 0.5 * 515px;
    @cloreto_de_sodio_20__10_ml_-height: 0.5 * 955px;
 
@@ -730,8 +801,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @clorpromazina_medicamento-width: 0.5 * 632px;
    @clorpromazina_medicamento-height: 0.5 * 497px;
 
@@ -778,8 +849,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @coxim-width: 0.5 * 1189px;
    @coxim-height: 0.5 * 724px;
 
@@ -802,8 +873,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @equipo_de_infusao_de_dieta-width: 0.5 * 965px;
    @equipo_de_infusao_de_dieta-height: 0.5 * 574px;
 
@@ -850,8 +921,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @frasco_de_alcool-width: 0.5 * 294px;
    @frasco_de_alcool-height: 0.5 * 862px;
 
@@ -874,8 +945,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @frasco_de_dieta-width: 0.5 * 452px;
    @frasco_de_dieta-height: 0.5 * 821px;
 
@@ -922,8 +993,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @gaveta-width: 0.5 * 1486px;
    @gaveta-height: 0.5 * 917px;
 
@@ -970,8 +1041,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @keflin_medicamento-width: 0.5 * 405px;
    @keflin_medicamento-height: 0.5 * 943px;
 
@@ -994,8 +1065,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @lixo_comum-width: 0.5 * 371px;
    @lixo_comum-height: 0.5 * 527px;
 
@@ -1018,8 +1089,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @lixo_infectante-width: 0.5 * 398px;
    @lixo_infectante-height: 0.5 * 492px;
 
@@ -1042,8 +1113,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @lixo_perfuro_cortante-width: 0.5 * 578px;
    @lixo_perfuro_cortante-height: 0.5 * 846px;
 
@@ -1138,8 +1209,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @oximetro_frontal-width: 0.5 * 453px;
    @oximetro_frontal-height: 0.5 * 266px;
 
@@ -1162,8 +1233,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @oximetro_lateral-width: 0.5 * 541px;
    @oximetro_lateral-height: 0.5 * 494px;
 
@@ -1186,8 +1257,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @placa_neutra-width: 0.5 * 1920px;
    @placa_neutra-height: 0.5 * 1152px;
 
@@ -1210,8 +1281,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @prancheta-width: 0.5 * 440px;
    @prancheta-height: 0.5 * 604px;
 
@@ -1234,8 +1305,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @prancheta_horizontal-width: 0.5 * 726px;
    @prancheta_horizontal-height: 0.5 * 498px;
 
@@ -1258,8 +1329,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @prontuario-width: 0.5 * 1181px;
    @prontuario-height: 0.5 * 1146px;
 
@@ -1282,8 +1353,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @relogiodigital-width: 0.5 * 310px;
    @relogiodigital-height: 0.5 * 587px;
 
@@ -1306,8 +1377,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @relogiodigital_lateral-width: 0.5 * 389px;
    @relogiodigital_lateral-height: 0.5 * 578px;
 
@@ -1354,8 +1425,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @seringa_de_10_ml-width: 0.5 * 493px;
    @seringa_de_10_ml-height: 0.5 * 906px;
 
@@ -1378,8 +1449,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @soro_glicofisiologico_1000_ml-width: 0.5 * 405px;
    @soro_glicofisiologico_1000_ml-height: 0.5 * 1058px;
 
@@ -1402,8 +1473,8 @@
    background-size: contain;
    background-repeat: no-repeat;
 
-   top: 0%;
-   left: 0%;
+   top: 0;
+   left: 0;
    @termometro_frontal-width: 0.5 * 1576px;
    @termometro_frontal-height: 0.5 * 232px;
 
