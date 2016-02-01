@@ -104,7 +104,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             core.openDialog(3);
             if(level.getFlag("score_ir_ala_feminina_hora_errada").getValue() == false) {
                 core.registerScoreItem(Scores.irAlaFeminina_horaErrada);
-                level.getFlag("score_ir_posto_hora_errada").setValue(true);
+                level.getFlag("score_ir_ala_feminina_hora_errada").setValue(true);
             }
         }
 
@@ -112,7 +112,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             core.openDialog(4);
             if(level.getFlag("score_ir_farmacia_hora_errada").getValue() == false) {
                 core.registerScoreItem(Scores.irFarmacia_horaErrada);
-                level.getFlag("score_ir_posto_hora_errada").setValue(true);
+                level.getFlag("score_ir_farmacia_hora_errada").setValue(true);
             }
         }
 
