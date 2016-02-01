@@ -59,9 +59,9 @@ define(function () {
 
 			]
 		},
-		musics:[
-
-		],
+		musics:{
+			test: ["CuidandoBemDoMenu.mp3"]
+		},
 		loops:{
 			recepcao: ["sons_ambiente_hospital_recepcao.mp3"]
 		}

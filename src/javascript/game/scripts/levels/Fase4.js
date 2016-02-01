@@ -241,7 +241,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 core.setInteractiveObjectVisible("io-pulseira_paciente", true);
                 core.setActionVisible("btn-ir_sala_leitos", true);
                 core.setActionVisible("btn-lavar_maos", true);
-                core.setActionVisible("btn-ler_prontuario", true);                
+                core.setActionVisible("btn-ler_prontuario", true);
 
                 if( level.getFlag("pegarPrescricaoMedica").getValue() == true &&
                     level.getFlag("pegarMedicamento").getValue()      == true &&
@@ -254,7 +254,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     level.getFlag("falarComPaciente").setValue(true);
                     core.openDialog(0);
                 }
-                    
+
             })
             .onUnload(function(){
                 console.log("Leito: OnUnload");
@@ -508,7 +508,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     core.openDialog(6);
                     core.registerScoreItem(Scores.irLugarErrado);
                 }
-                
+
                 core.openDialog(0);
 
             })
@@ -535,7 +535,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                             level.getFlag("lavarMaosPostoEnfermagem").setValue(true);
                             core.setActionVisible("btn-lavar_maos", false);
                         }
-                       
+
                     })
                     .setVisibility(true)
             ]);
@@ -642,9 +642,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                                  level.getFlag("pegarSeringa10").getValue()            == true &&
                                  level.getFlag("pegarAmpolaSF").getValue()             == true &&
                                  level.getFlag("pegarBandeja").getValue()              == true    ) {
-                                
+
                                 level.getFlag("pegarInstrumentos").setValue(true);
-                            
+
                             }
 
                             // using registered dialogue in posto_de_enfermagem scene "Você está se esquecendo de algo. Volte e tente se lembrar."
@@ -705,8 +705,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             ]);
 
         // region prontuario
-        prontuario = new Scene("Prontuário", "modalScene-prontuario_pedro");            
-
+        prontuario = new Scene("Prontuário", "modalScene-prontuario_pedro")
             .onLoad(function(){
                 core.openCommandBar();
             })
@@ -746,7 +745,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                                 core.registerScoreItem(Scores.checarPulseira);
                                 level.getFlag("checarPulseira").setValue(true);
                             }
-                        
+
 
                         Pulseira.close();
                     })
@@ -790,7 +789,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             Pulseira.setName("Pedro Alcides Mendonça");
             Pulseira.setLeito("13");
             Pulseira.setData("03/06/1962");
-            Pulseira.disable(); 
+            Pulseira.disable();
         });
 
         // region Register Scenes
@@ -834,7 +833,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("pegarBandeja", false));
         level.registerFlag(new Flag("pegarInstrumentos", false));
 
-        /* MORE FLAGS FROM SCORES DATA 
+        /* MORE FLAGS FROM SCORES DATA
         confirmarMedicacao
         calcularGotejamento
         identificarMedicacao
