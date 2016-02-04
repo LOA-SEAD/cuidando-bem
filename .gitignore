@@ -1,21 +1,19 @@
-# Content as image sources, docs, etc
-projeto/
-
 #   IDE
 .idea/
 
 #   NODE
 node_modules
 
-#   Production
-build/
+#   BOWER
 libs/
-tests/
+
+#   Production
+dev/
+prod/
+dist/
 
 #   JsDoc Documentation
-documentation/
 docs/
-doc_src/
 
 #   Example files
 *.example

@@ -9,12 +9,11 @@ require.config({
     baseUrl: 'javascript/',
     paths: {
         //Libs
-        jquery: '../../libs/jquery/dist/jquery.min',
-        jqueryui: '../../libs/jquery-ui/jquery-ui.min',
-        jquerymask: '../../libs/jQuery-Mask-Plugin/dist/jquery.mask',
-        text: '../../libs/requirejs-text/text',
-        less: '../../libs/less/dist/less.min',
-        SimpleStorage: '../../libs/simpleStorage/simpleStorage',
+        jquery: './libs/jquery',
+        jqueryui: './libs/jquery-ui',
+        jquerymask: './libs/jquery.mask',
+        text: './libs/text',
+        SimpleStorage: './libs/simpleStorage',
 
         //Engine
         Stage: 'engine/core/Stage',

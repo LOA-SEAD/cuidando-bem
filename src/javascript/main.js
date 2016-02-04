@@ -27,7 +27,7 @@ require(['requireConfig'], function(){
                     player.load(sounds.baseDir, sounds.paths);
 
                     //Load jquery and less libs
-                    require(["jquery", "less"], function () {
+                    require(["jquery"], function () {
 
                         //Load jqueryui
                         require(['jqueryui', 'jquerymask'], function() {
