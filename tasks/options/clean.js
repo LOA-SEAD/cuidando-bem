@@ -1,4 +1,5 @@
-//clean: {
+//clean
+'use strict';
 module.exports = {
 
     dev : {

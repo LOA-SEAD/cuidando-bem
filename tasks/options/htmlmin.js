@@ -1,4 +1,5 @@
 //htmlmin
+'use strict';
 module.exports = {
     prod : {
         options : {

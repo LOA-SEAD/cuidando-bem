@@ -5,6 +5,7 @@ This gruntfile minifies html, css and js of CuidandoBem, a html5 game
 
 @author Otho - Marcelo Lopes Lotufo
 */
+'use strict';
 module.exports = function(grunt) {
 
     // Time how long tasks take to be completed

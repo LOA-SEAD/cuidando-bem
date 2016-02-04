@@ -1,4 +1,5 @@
 //copy
+'use strict';
 module.exports = {
     dev: {
         options:{

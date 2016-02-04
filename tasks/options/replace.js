@@ -1,4 +1,5 @@
 //replace
+'use strict';
 module.exports = {
 
     /*

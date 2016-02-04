@@ -5,7 +5,7 @@ module.exports = function (grunt) {
 
         var target = grunt.option('target') || 'dev'
 
-        grunt.log.write('Building ' + pkg.name + ' ' + target);
+        grunt.log.write('Building ' + pkg.name + ':' + target);
 
         //Build for development
         grunt.task.run([
@@ -27,17 +27,3 @@ module.exports = function (grunt) {
         }
     });
 };
-//     [
-//         'clean:build',
-//         'copy:build',
-//         'htmlmin:build',
-//         'less:build',
-//         'clean:build_less',
-//         'replace',
-//         'cssmin:build',
-//         'clean:final',
-//         'requirejs:compile',
-//         'clean:build',
-//         'rename:build'
-//     ]
-// );

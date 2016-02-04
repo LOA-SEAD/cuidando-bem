@@ -1,4 +1,5 @@
 //jsdoc
+'use strict';
 module.exports = {
     docs : {
         src: [

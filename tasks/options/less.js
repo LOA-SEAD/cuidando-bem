@@ -1,4 +1,5 @@
 //less
+'use strict';
 module.exports = {
     dev: {
         files: [

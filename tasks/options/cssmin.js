@@ -1,4 +1,5 @@
 //cssmin
+'use strict';
 module.exports = {
     prod : {
         options : {

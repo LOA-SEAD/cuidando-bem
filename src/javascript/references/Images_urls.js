@@ -3,7 +3,7 @@
  */
 define(function () {
 
-	var baseDir = "./assets/images/";
+	var baseDir = "./images/";
 	var paths = {
         others: [
             // "./assets/images/misc/arrow-icon_button-hover.png",
@@ -78,7 +78,7 @@ define(function () {
             // "./assets/images/scenes/leito-char-02.jpg",
             // "./assets/images/scenes/posto_de_enfermagem.jpg",
             // "./assets/images/scenes/recepcao.jpg",
-            "./assets/images/scenes/sala_de_leitos.jpg"
+            "./images/scenes/sala_de_leitos.jpg"
         ]
 	};
 

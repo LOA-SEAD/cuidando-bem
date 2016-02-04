@@ -1,4 +1,5 @@
 //requirejs
+'use strict';
 module.exports = {
     prod: {
         options: {
