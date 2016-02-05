@@ -17,13 +17,15 @@ module.exports = function (grunt) {
             //Build and serve development
             grunt.task.run([
                 'build',
-                'connect:dev'
+                'connect:dev',
+                'watch'
             ]);
         } else if(target == 'prod') {
             //Build and serve production
             grunt.task.run([
                 'build',
-                'connect:prod'
+                'connect:prod',
+                'watch'
             ]);
         }
     });

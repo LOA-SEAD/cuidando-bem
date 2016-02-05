@@ -3,13 +3,21 @@
 module.exports = {
 
     dev : {
-        port: '<%= pkg.port %>',
-        base: '<%= pkg.development %>'
+        options : {
+            livereload: true,
+            open: true,
+            port: '<%= pkg.port %>',
+            hostname: 'localhost',
+            base: '<%= pkg.development %>'
+        }
     },
 
     prod : {
         port: '<%= pkg.port %>',
-        base: '<%= pkg.production %>'
+        base: '<%= pkg.production %>',
+        open: {
+          target: 'http://localhost:' + '<%= pkg.port %>'
+        }
     },
 
     docs : {
