@@ -4,7 +4,7 @@
 define(function () {
 
 	var masterVolume = 1;
-	var baseDir = "./assets/sounds/";
+	var baseDir = "./sounds/";
 	var paths = {
 		sfx: {
 			abrir_gaveta: [

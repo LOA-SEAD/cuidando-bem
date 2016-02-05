@@ -5,7 +5,7 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['text!../assets/html/end_of_level/endOfLevel.html', 'text!../assets/html/end_of_level/scoreItemTemplate.html'], function (html, scoreItemHtml) {
+define(['text!../html/end_of_level/endOfLevel.html', 'text!../html/end_of_level/scoreItemTemplate.html'], function (html, scoreItemHtml) {
 
 //Attributes
 

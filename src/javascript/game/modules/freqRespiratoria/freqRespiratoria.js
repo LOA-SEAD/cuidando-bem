@@ -1,6 +1,6 @@
 define(function(require){
 
-	var html = require('text!../assets/html/freqRespiratoria/freqRespiratoria.html');
+	var html = require('text!../html/freqRespiratoria/freqRespiratoria.html');
 
 	var canvasSelector = "#freqRespiratoria";
 
@@ -111,12 +111,12 @@ define(function(require){
 			i = "0"+i;
 		}
 
-		img.src = "./assets/images/modalScenes/01_"+i+".png";
+		img.src = "./images/modalScenes/01_"+i+".png";
 	}
 
 	clock.img = new Image();
 
-	clock.img.src = "./assets/images/modalScenes/relogioDigital.png";
+	clock.img.src = "./images/modalScenes/relogioDigital.png";
 
 	clock.img.onLoad = function(){
 		console.log("Clock ('watch') image loaded");

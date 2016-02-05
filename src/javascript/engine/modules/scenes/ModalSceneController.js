@@ -5,7 +5,7 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['text!../assets/html/scenes/modalScene.html'], function (html) {
+define(['text!../html/scenes/modalScene.html'], function (html) {
 
 //Attributes
 

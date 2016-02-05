@@ -6,7 +6,7 @@ This module is responsible to register every screen used in this application, in
 define(['Stage'], function (Stage) {
     console.groupCollapsed("Stage Config:");
 
-    Stage.setHtmlPath('../assets/html/screens/');
+    Stage.setHtmlPath('../html/screens/');
     Stage.setControllersPath('./menu/');
     Stage.setStartingScreenId(0);
 

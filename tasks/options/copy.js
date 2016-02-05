@@ -10,6 +10,7 @@ module.exports = {
                 cwd: '<%= pkg.source %>',
                 dest: '<%= pkg.development %>',
                 src: [
+                    'css/**.css',
                     'fonts/**',
                     'html/**',
                     'images/**',

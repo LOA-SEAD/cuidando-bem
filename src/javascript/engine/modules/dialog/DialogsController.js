@@ -5,7 +5,7 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['text!../assets/html/dialog/dialog.html', 'text!../assets/html/dialog/dialogButtonTemplate.html'],
+define(['text!../html/dialog/dialog.html', 'text!../html/dialog/dialogButtonTemplate.html'],
     function (html, dialogButtonTemplate) {
 
 //Attributes

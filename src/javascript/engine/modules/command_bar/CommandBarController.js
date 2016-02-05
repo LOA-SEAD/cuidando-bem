@@ -5,7 +5,7 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['text!../assets/html/command_bar/commandBar.html', 'text!../assets/html/command_bar/actionButtonTemplate.html'], function (html, actionButtonTemplate) {
+define(['text!../html/command_bar/commandBar.html', 'text!../html/command_bar/actionButtonTemplate.html'], function (html, actionButtonTemplate) {
 
 //Attributes
     /**

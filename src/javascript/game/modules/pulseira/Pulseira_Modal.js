@@ -5,7 +5,7 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['text!../assets/html/pulseira/pulseira.html'], function (html) {
+define(['text!../html/pulseira/pulseira.html'], function (html) {
 
 //Attributes
     /**

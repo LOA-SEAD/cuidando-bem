@@ -5,7 +5,7 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['text!../assets/html/prontuario/prontuario.html'], function (html) {
+define(['text!../html/prontuario/prontuario.html'], function (html) {
 
     //region Attributes
 
