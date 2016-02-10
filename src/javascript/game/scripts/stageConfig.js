@@ -8,7 +8,7 @@ define(['Stage'], function (Stage) {
 
     Stage.setHtmlPath('../html/screens/');
     Stage.setControllersPath('./menu/');
-    Stage.setStartingScreenId(0);
+    Stage.setStartingScreenId(4);
 
 //0
     Stage.registerScreen('mainMenu', 'mainMenu.html', 'screen_mainMenu_controller');

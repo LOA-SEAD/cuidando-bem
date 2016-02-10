@@ -30,6 +30,8 @@ define(['Stage'], function (Stage) {
         $('.backButton').click(function () {
             Stage.changeScreen(0);
         });
+
+        $('.slider').slider();
     }
 
     /**

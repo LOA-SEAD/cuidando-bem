@@ -10,7 +10,7 @@
     text-align: center;
 
     .menuButton {
-        display: inline-block;
+        display: inline;
         padding: 0 25px;
     }
 }
@@ -22,8 +22,41 @@
     text-align: center;
 
     .titleText {
-        display: inline-block;
+        display: inline;
         padding: 10px;
         background-color: rgba(0, 200, 250, 0.21);
     }
+}
+
+#configContent {
+    position: absolute;
+    top: 20%;
+    height: 55%;
+    //background-color: yellow;
+    width: 100%;
+
+    .controlRow{
+        > div {
+            display: inline-block;
+        }
+        .title {
+            position: absolute;
+            left: 5%;
+        }
+        .slider {
+            background-color: white;
+            width: 50%;
+            span {
+                background-color: orange;
+                border-radius: 25px;
+            }
+        }
+        .mute {
+            background-color: red;
+            width: 10px;
+            height: 10px;
+        }
+    }
+
+
 }
