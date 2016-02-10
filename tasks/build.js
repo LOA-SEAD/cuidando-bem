@@ -11,6 +11,7 @@ module.exports = function (grunt) {
         grunt.task.run([
             'clean:dev',
             'copy:dev',
+            'copy:libs',
             'less:dev'
         ]);
 

@@ -1,6 +1,19 @@
 //copy
 'use strict';
 module.exports = {
+
+    js: {
+        cwd: '<%= pkg.source %>' + '/javascript',
+        dest: '<%= pkg.development %>' + '/javascript',
+        src: ['**'],
+        expand: true
+    },
+    html: {
+        cwd: '<%= pkg.source %>' + '/html',
+        dest: '<%= pkg.development %>' + '/html',
+        src: ['**'],
+        expand: true
+    },
     dev: {
         options:{
 
@@ -19,7 +32,14 @@ module.exports = {
                     'index.html'
                 ],
                 expand: true
-            },
+            }
+        ]
+    },
+    libs: {
+        options:{
+
+        },
+        files: [
             [
                 {
                     dest: '<%= pkg.development %>'+'/javascript/libs/jquery.js',
@@ -48,7 +68,6 @@ module.exports = {
             ]
         ]
     },
-
     prod: {
         options:{
             cwd: '<%= pkg.development %>',

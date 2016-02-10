@@ -3,7 +3,7 @@ module.exports = function (grunt) {
     grunt.registerTask('serve', 'Creates simple http server', function (n) {
         var pkg = grunt.file.readJSON('package.json');
 
-        var target = grunt.option('target') || 'dev'
+        var target = grunt.option('target') || 'dev';
 
         grunt.log.write('Building and serving ' + pkg.name + ':' + target);
 
