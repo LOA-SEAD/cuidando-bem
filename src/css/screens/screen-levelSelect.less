@@ -5,33 +5,76 @@
 
 #levelSelectContainer{
   width: 100%;
-  height: 50%;
-  position: relative;
-  bottom: 165px;
-  right: 20px;
+  height: 100%;
+  position: absolute;
+  top: 0;
 }
 
 #levelSelector {
-  width: 40%;
-  height: 70%;
-  margin-left: 32%;
+  top: 40%;
+  position: relative;
 }
 
 .level {
-  width: 30%;
-  height: 30%;
+  width: 9%;
+  height: 10%;
   background-color: #58CA85;
-  float: left;
-  margin: 5px;
-  border-radius: 15px;
-
+  display: inline-block;
   cursor: hand;
 
-  border-bottom: 3px solid #468b4a;
+  //position: absolute;
 }
 
-.level:first-child{
-  width: 94%;
+.l0 {
+  background: center no-repeat @bg-bracelet;
+  background-size: contain;
+
+
+}
+
+.l1 {
+  background: center no-repeat @intObj-cushion;
+  background-size: contain;
+}
+
+.l2 {
+  background: center no-repeat @intObj-aparelhoGlicemia;
+  background-size: contain;
+}
+
+.l3 {
+  background: center no-repeat @intObj-placa_neutra;
+  background-size: contain;
+}
+
+.l4 {
+  background: center no-repeat @intObj-seringa_20_ml;
+  background-size: contain;
+}
+
+.l5 {
+  background: center no-repeat @intObj-gaze_esteril;
+  background-size: contain;
+}
+
+.l6 {
+  background: center no-repeat @intObj-equipo_de_infusao_de_dieta;
+  background-size: contain;
+}
+
+.l7 {
+  background: center no-repeat @intObj-clorpromazina_medicamento;
+  background-size: contain;
+}
+
+.l8 {
+  background: center no-repeat @intObj-carrinho_anestesico;
+  background-size: contain;
+}
+
+.l9 {
+  background: center no-repeat @intObj-soro_glicofisiologico_1000_ml;
+  background-size: contain;
 }
 
 .level.disabled{
@@ -39,10 +82,10 @@
   border-bottom: 3px solid #5b5c5b !important;
 }
 
-.level:active {
-  background-color: #b61f20;
-  border-bottom: 3px solid #8b191a;
-}
+//.level:active {
+//  background-color: #b61f20;
+//  border-bottom: 3px solid #8b191a;
+//}
 
 .levelSelect-button {
   bottom: -70px;
