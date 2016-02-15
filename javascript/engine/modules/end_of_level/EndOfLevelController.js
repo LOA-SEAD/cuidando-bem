@@ -1,1 +1,78 @@
-define(["text!../assets/html/end_of_level/endOfLevel.html","text!../assets/html/end_of_level/scoreItemTemplate.html"],function(e,t){function f(t){$(t).append(e),$(".goToMenu").click(function(){a=!1,n.changeScreen(6)}),$(".playAgain").click(function(){var e=require("CuidandoBem");e.restartLevel()})}function l(e){if(!a){$(r).show();for(i=0;i<e.length;i++){var n=e[i],f=$($(t)[0]),l=$(u,f),c=$(o,f);l.html(n.score),c.html(n.title),$(s).append(f)}a=!0}}function c(){$(s).empty(),$(r).hide(),a=!1}var n=require("Stage"),r="#endOfLevel",s="#scoreList",o=".title",u=".score",a=!1;return{init:f,show:l,close:c}});
+/**
+ *
+ * @name EndOfLevel
+ * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
+ */
+define(['text!../html/end_of_level/endOfLevel.html', 'text!../html/end_of_level/scoreItemTemplate.html'], function (html, scoreItemHtml) {
+
+//Attributes
+
+    var Stage = require('Stage');
+    var modalSelector = "#endOfLevel";
+    var scoreListSelector = "#scoreList";
+
+    var titleSelector = ".title";
+    var scoreSelector = ".score";
+
+    var isOpen = false;
+//Methods
+    //Init
+    /**
+     * Description
+     * @method init
+     * @memberOf module:EndOfLevel
+     */
+    function init(selector) {
+        $(selector).append(html);
+
+        $('.goToMenu').click(function() {
+            isOpen = false;
+            Stage.changeScreen(6);
+        });
+
+        $('.playAgain').click(function() {
+            var core = require('CuidandoBem');
+
+            core.restartLevel();
+        });
+    }
+
+    function show(_scoreList) {
+        if(!isOpen) {
+            $(modalSelector).show();
+
+            for (i = 0; i < _scoreList.length; i++) {
+                var scoreItem = _scoreList[i];
+
+                var element = $($(scoreItemHtml)[0]);
+                var score = $(scoreSelector, element);
+                var title = $(titleSelector, element);
+
+                score.html(scoreItem.score);
+                title.html(scoreItem.title);
+
+                $(scoreListSelector).append(element);
+            }
+
+            isOpen = true;
+        }
+    }
+
+    function close(){
+        $(scoreListSelector).empty();
+        $(modalSelector).hide();
+        isOpen = false;
+    }
+
+//Getters
+//Setters
+//Public Interface
+    return {
+        init: init,
+        show: show,
+        close: close
+    }
+
+});

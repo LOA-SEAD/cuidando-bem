@@ -1,1 +1,525 @@
-define(["Stage","levelsData","commandBar","dialogModal","interactiveObjects","modalScene","scene","endOfLevel","Prontuario","Pulseira","FreqRespiratoria"],function(e,t,n,r,i,s,o,u,a,f,l){function E(e,t){this.title=e,this.score=t}function S(){o.init(h),s.init(h),i.init(h),u.init(h),a.init(h),f.init(h),l.init(h),r.init(h),n.init(h),C(t.getCurrentLevel()),L(),n.hide()}function x(e){k(e)}function T(){j(),C(t.getCurrentLevel()),L()}function N(){return p}function C(e){p=e.getClone(),f.resetData(),p.setup(),r.close(),b=p.getCurrentSceneId()}function k(e){t.setCurrentLevel(e),C(t.getCurrentLevel()),L()}function L(){p.setCurrentSceneById(b),d=p.getCurrentScene(),v=p.getActions(b),g=p.getDialogs(b),m=p.getInteractiveObjects(b),y=p.getFlags(),w=[],o.setScene(d),n.changeToActionsButtons(v),i.changeToInteractiveObjects(m),d.load()}function A(e){var t=d;p.setCurrentSceneById(e),d=p.getCurrentScene(),b=e,v=p.getActions(b),g=p.getDialogs(b),m=p.getInteractiveObjects(b),y=p.getFlags(),t.unload(),o.changeScene(d),n.changeToActionsButtons(v),i.changeToInteractiveObjects(m),d.load()}function O(e){var t=p.getModalScene(e);d=t,s.open(t),n.changeToActionsButtons(t.getActions()),i.changeToInteractiveObjects(t.getInteractiveObjects())}function M(){s.close(),n.changeToActionsButtons(v),i.changeToInteractiveObjects(m),d=p.getCurrentScene()}function _(){n.show()}function D(){n.hide()}function P(e){var t=g[e];r.show(t),F(),I(),D()}function H(){r.close(),R(),q(),_()}function B(){u.show(w)}function j(){u.close()}function F(){n.disableAllActionButtons(v)}function I(){i.disableAllInteractiveObjects(m)}function q(){i.updateAllInteractiveObjects(m)}function R(){n.updateAllActionButtons(v)}function U(e){var t=d.getAction(e);t.setEnable(!1),n.disableActionButton(t)}function z(e){var t=d.getAction(e);t.setEnable(!0),n.enableActionButton(t)}function W(e){var t=d.getInteractiveObject(e);t.setEnable(!1),i.disableInteractiveObject(t)}function X(e){var t=d.getInteractiveObject(e);t.setEnable(!0),i.enableInteractiveObject(t)}function V(e){return p.getFlag(e)}function J(e,t){p.setFlag(e,t)}function K(e,t){var n=d.getAction(e);t?z(n):U(n)}function Q(e,t){var r=d.getAction(e);r.setVisibility(t),n.setActionVisible(r,t)}function G(e){var t=d.getAction(e);t.isVisible()?t.setVisibility(!1):t.setVisibility(!0),n.setActionVisible(t,t.isVisible())}function Y(e,t){var n=d.getInteractiveObject(e);n.setVisibility(t),i.setInteractiveObjectVisible(n,t)}function Z(e){var t=d.getInteractiveObject(e);t.isVisible()?t.setVisibility(!1):t.setVisibility(!0),i.setInteractiveObjectVisible(t,t.isVisible())}function et(e){w.push(e),c.addScore(t.getCurrentLevelId(),e)}function tt(){e.changeScreen(6)}function nt(e){var t="."+d.getCssClass(),n="."+e;$(t).addClass(e),$(n).removeClass(d.getCssClass()),d.setCssClass(e)}function rt(e){c.unlockLevel(e)}var c=require("Storage"),h="#gameStage",p,d,v,m,g,y,b,w,it={init:S,start:x,restartLevel:T,changeScene:A,changeLevelTo:k,openDialog:P,closeDialog:H,openModalScene:O,closeModalScene:M,showEndOfLevel:B,closeEndOfLevel:j,openCommandBar:_,closeCommandBar:D,unlockLevel:rt,enableActionButton:z,disableActionButton:U,enableInteractiveObject:X,disableInteractiveObject:W,setActionEnable:K,getCurrentLevel:N,getFlag:V,setFlag:J,setActionVisible:Q,toggleActionVisible:G,setInteractiveObjectVisible:Y,toggleInteractiveObjectVisible:Z,registerScoreItem:et,disableAllActionButtons:F,updateAllActionButtons:R,disableAllInteractiveObjects:I,updateAllInteractiveObjects:q,goBackToMenu:tt,changeSceneCssClassTo:nt};return window.gameShark={Stage:e,game:t,CommandBar:n,Dialog:r,InteractiveObject:i,ModalScene:s,Scene_con:o,endOfLevel:u,Player:require("Player"),core:it},it});
+/**
+ * This module is the core module for the game CuidandoBem. It's intention is to provide methods that communicate between all the other modules used in game
+ *
+ * @name CuidandoBem
+ * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
+ */
+define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene', 'scene', 'endOfLevel', 'Prontuario', 'Pulseira', 'FreqRespiratoria'],
+    function (Stage, game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene_con, endOfLevel, prontuario, Pulseira, freqRespiratoria) {
+
+//Attributes
+    var Storage = require('Storage');
+    var gameStageSelector = "#gameStage";
+
+    var Level;
+    var Scene;
+    var Actions;
+    var InteractiveObjects;
+    var Dialogs;
+    var Flags;
+    var cur_scene;
+
+    var scoreList;
+
+
+    function ScoreItem (_title, _score){
+        this.title = _title;
+        this.score = _score;
+    }
+
+
+//Methods
+    function init(){
+
+        Scene_con.init(gameStageSelector);
+
+        ModalScene.init(gameStageSelector);
+
+        InteractiveObject.init(gameStageSelector);
+        endOfLevel.init(gameStageSelector);
+        prontuario.init(gameStageSelector);
+        Pulseira.init(gameStageSelector);
+        freqRespiratoria.init(gameStageSelector);
+
+        Dialog.init(gameStageSelector);
+
+        CommandBar.init(gameStageSelector);
+
+        changeLevel(game.getCurrentLevel());
+        startLevel();
+
+        CommandBar.hide();
+    }
+
+    /**
+     * Description
+     * @method start
+     * @param {} _gameState
+     * @memberOf module:CuidandoBem
+     */
+    function start(_level) {
+        console.group("Game Running:");
+
+        changeLevelTo(_level);
+    }
+
+    function restartLevel () {
+        console.info("Restarting current level");
+
+        closeEndOfLevel();
+        changeLevel(game.getCurrentLevel());
+        startLevel();
+    }
+
+    //Level
+    /**
+     * Description
+     * @method getCurrentLevel
+     * @return Level
+     * @memberOf module:CuidandoBem
+     */
+    function getCurrentLevel() {
+        return Level;
+    }
+
+    /**
+     * Description
+     * @method changeLevel
+     * @param {} _newLevel
+     * @memberOf module:CuidandoBem
+     */
+    function changeLevel(_newLevel) {
+        console.group("Clone Level");
+        Level = _newLevel.getClone();
+        //Ensure that the bracelet form is empty
+        Pulseira.resetData();
+        Level.setup();
+        Dialog.close();
+
+        console.groupEnd();
+
+        cur_scene = Level.getCurrentSceneId();
+    }
+
+    function changeLevelTo(_levelId){
+        game.setCurrentLevel(_levelId);
+        changeLevel(game.getCurrentLevel());
+
+        startLevel();
+    }
+
+    /**
+     * Description
+     * @method startLevel
+     * @memberOf module:CuidandoBem
+     */
+    function startLevel() {
+        console.group('Starting level:' + Level.getName(), true);
+
+        Level.setCurrentSceneById(cur_scene);
+        Scene = Level.getCurrentScene();
+
+        Actions = Level.getActions(cur_scene);
+        Dialogs = Level.getDialogs(cur_scene);
+        InteractiveObjects = Level.getInteractiveObjects(cur_scene);
+
+        Flags = Level.getFlags();
+        scoreList = [];
+
+        Scene_con.setScene(Scene);
+        CommandBar.changeToActionsButtons(Actions);
+        InteractiveObject.changeToInteractiveObjects(InteractiveObjects);
+
+        Scene.load();
+        console.groupEnd();
+    }
+
+    //Scene
+    /**
+     * Description
+     * @method changeScene
+     * @param {} _newSceneId
+     * @memberOf module:CuidandoBem
+     */
+    function changeScene(_newSceneId) {
+
+
+        var oldScene = Scene;
+        Level.setCurrentSceneById(_newSceneId);
+        Scene = Level.getCurrentScene();
+
+        console.group("Change Scene to: " + Scene.getName(), true);
+
+        cur_scene = _newSceneId;
+        Actions = Level.getActions(cur_scene);
+        Dialogs = Level.getDialogs(cur_scene);
+        InteractiveObjects = Level.getInteractiveObjects(cur_scene);
+
+        Flags = Level.getFlags();
+
+        oldScene.unload();
+        Scene_con.changeScene(Scene);
+
+        CommandBar.changeToActionsButtons(Actions);
+        InteractiveObject.changeToInteractiveObjects(InteractiveObjects);
+
+        Scene.load();
+
+        console.groupEnd();
+    }
+
+    //ModalScene
+    /**
+     * Description
+     * @method openModalScene
+     * @param {} _modalSceneId
+     * @memberOf module:CuidandoBem
+     */
+    function openModalScene(_modalSceneId) {
+        var modalScene = Level.getModalScene(_modalSceneId);
+        Scene = modalScene;
+
+        ModalScene.open(modalScene);
+        CommandBar.changeToActionsButtons(modalScene.getActions());
+        InteractiveObject.changeToInteractiveObjects(modalScene.getInteractiveObjects());
+    }
+
+    /**
+     * Description
+     * @method closeModalScene
+     * @memberOf module:CuidandoBem
+     */
+    function closeModalScene() {
+        ModalScene.close();
+
+        CommandBar.changeToActionsButtons(Actions);
+        InteractiveObject.changeToInteractiveObjects(InteractiveObjects);
+        Scene = Level.getCurrentScene();
+    }
+
+
+    //CommandBar
+    function openCommandBar(){
+        CommandBar.show();
+    }
+    function closeCommandBar(){
+        CommandBar.hide();
+    }
+    //Dialog
+    /**
+     * Description
+     * @method openDialog
+     * @param {} _dialogId
+     * @memberOf module:CuidandoBem
+     */
+    function openDialog(_dialogId) {
+        var dialog = Dialogs[_dialogId];
+        Dialog.show(dialog);
+
+        disableAllActionButtons();
+        disableAllInteractiveObjects();
+        closeCommandBar();
+    }
+
+    /**
+     * Description
+     * @method closeDialog
+     * @memberOf module:CuidandoBem
+     */
+    function closeDialog() {
+        Dialog.close();
+
+        updateAllActionButtons();
+        updateAllInteractiveObjects();
+        openCommandBar();
+    }
+
+    //End Level
+    /**
+     * Description
+     * @method openEndLevel
+     * @memberOf module:CuidandoBem
+     */
+    function showEndOfLevel() {
+        endOfLevel.show(scoreList);
+    }
+
+    /**
+     * Description
+     * @method closeEndLevel
+     * @memberOf module:CuidandoBem
+     */
+    function closeEndOfLevel() {
+        endOfLevel.close();
+    }
+
+    /**
+     * Description
+     * @method deactivateAllActionButtons
+     * @memberOf module:CuidandoBem
+     */
+    function disableAllActionButtons() {
+        CommandBar.disableAllActionButtons(Actions);
+    }
+
+    /**
+     * Description
+     * @method deactivateAllInteractiveObjects
+     *
+     * @memberof module:CuidandoBem
+     */
+    function disableAllInteractiveObjects(){
+        InteractiveObject.disableAllInteractiveObjects(InteractiveObjects);
+    }
+
+    /**
+     * Description
+     * @method updateAllInteractiveObjects
+     *
+     * @memberof module:CuidandoBem
+     */
+    function updateAllInteractiveObjects(){
+        InteractiveObject.updateAllInteractiveObjects(InteractiveObjects);
+    }
+
+    /**
+     * Description
+     * @method updateAllActionButtons
+     * @memberOf module:CuidandoBem
+     */
+    function updateAllActionButtons() {
+        CommandBar.updateAllActionButtons(Actions);
+    }
+
+    /**
+     * Description
+     * @method disableActionButton
+     * @param {} _actionId
+     * @memberOf module:CuidandoBem
+     */
+    function disableActionButton(_actionId) {
+        var action = Scene.getAction(_actionId);
+        action.setEnable(false);
+        CommandBar.disableActionButton(action);
+    }
+
+    /**
+     * Description
+     * @method enableActionButton
+     * @param {} _actionId
+     * @memberOf module:CuidandoBem
+     */
+    function enableActionButton(_actionId) {
+        var action = Scene.getAction(_actionId);
+        action.setEnable(true);
+        CommandBar.enableActionButton(action);
+    }
+
+    function disableInteractiveObject(_ioId) {
+        var io = Scene.getInteractiveObject(_ioId);
+        io.setEnable(false);
+        InteractiveObject.disableInteractiveObject(io);
+    }
+
+    /**
+     * Description
+     * @method enableActionButton
+     * @param {} _actionId
+     * @memberOf module:CuidandoBem
+     */
+    function enableInteractiveObject(_ioId) {
+        var io = Scene.getInteractiveObject(_ioId);
+        io.setEnable(true);
+        InteractiveObject.enableInteractiveObject(io);
+    }
+
+//Getters
+
+    /**
+     * Description
+     * @method getFlag
+     * @param {} _flagId
+     * @return CallExpression
+     * @memberOf module:CuidandoBem
+     */
+    function getFlag(_flagId) {
+        return Level.getFlag(_flagId);
+    }
+
+//Setters
+
+    /**
+     * Description
+     * @method setFlag
+     * @param {} _flagId
+     * @param {} _value
+     * @memberOf module:CuidandoBem
+     */
+    function setFlag(_flagId, _value) {
+        Level.setFlag(_flagId, _value)
+    }
+
+    /**
+     * Description
+     * @method setActionEnable
+     * @param {} _actionId
+     * @param {} _value
+     * @memberOf module:CuidandoBem
+     */
+    function setActionEnable(_actionId, _value) {
+        var action = Scene.getAction(_actionId);
+        if (_value)
+            enableActionButton(action);
+        else
+            disableActionButton(action);
+    }
+
+    /**
+     * Description
+     * @method setActionVisible
+     * @param {} _actionId
+     * @param {} _value
+     * @memberOf module:CuidandoBem
+     */
+    function setActionVisible(_actionId, _value) {
+        var action = Scene.getAction(_actionId);
+        action.setVisibility(_value);
+        CommandBar.setActionVisible(action, _value);
+    }
+
+    /**
+     * Description
+     * @method toggleActionVisible
+     * @param {} _actionId
+     * @memberOf module:CuidandoBem
+     */
+    function toggleActionVisible(_actionId) {
+        var action = Scene.getAction(_actionId);
+        if (action.isVisible())
+            action.setVisibility(false);
+        else
+            action.setVisibility(true);
+
+        CommandBar.setActionVisible(action, action.isVisible());
+    }
+
+    /**
+     * Description
+     * @method setInteractiveObjectVisible
+     * @param {} _interactiveObjectId
+     * @param {} _value
+     * @memberOf module:CuidandoBem
+     */
+    function setInteractiveObjectVisible(_interactiveObjectId, _value) {
+        var interactiveObject = Scene.getInteractiveObject(_interactiveObjectId);
+        interactiveObject.setVisibility(_value);
+        InteractiveObject.setInteractiveObjectVisible(interactiveObject, _value);
+    }
+
+    /**
+     * Description
+     * @method toggleInteractiveObjectVisible
+     * @param {} _interactiveObjectId
+     * @memberOf module:CuidandoBem
+     */
+    function toggleInteractiveObjectVisible(_interactiveObjectId) {
+        var interactiveObject = Scene.getInteractiveObject(_interactiveObjectId);
+        if (interactiveObject.isVisible())
+            interactiveObject.setVisibility(false);
+        else
+            interactiveObject.setVisibility(true);
+
+        InteractiveObject.setInteractiveObjectVisible(interactiveObject, interactiveObject.isVisible());
+    }
+
+    function registerScoreItem(score){
+        scoreList.push(score);
+        Storage.addScore(game.getCurrentLevelId(), score);
+    }
+
+    function goBackToMenu(){
+        Stage.changeScreen(6);
+    }
+
+    function changeSceneCssClassTo(_cssClass){
+        var oldSelector = '.' + Scene.getCssClass();
+        var selector = '.' + _cssClass;
+        $(oldSelector).addClass(_cssClass);
+        $(selector).removeClass(Scene.getCssClass());
+
+        Scene.setCssClass(_cssClass);
+    }
+
+    function unlockLevel(_levelId) {
+        Storage.unlockLevel(_levelId);
+    }
+
+
+//Public Interface
+    var ret = {
+        init: init,
+
+        start: start,
+        restartLevel: restartLevel,
+        changeScene: changeScene,
+        changeLevelTo: changeLevelTo,
+        openDialog: openDialog,
+        closeDialog: closeDialog,
+        openModalScene: openModalScene,
+        closeModalScene: closeModalScene,
+        showEndOfLevel: showEndOfLevel,
+        closeEndOfLevel: closeEndOfLevel,
+        openCommandBar: openCommandBar,
+        closeCommandBar: closeCommandBar,
+        unlockLevel: unlockLevel,
+
+        enableActionButton: enableActionButton,
+        disableActionButton: disableActionButton,
+
+        enableInteractiveObject: enableInteractiveObject,
+        disableInteractiveObject: disableInteractiveObject,
+
+        setActionEnable: setActionEnable,
+
+        getCurrentLevel: getCurrentLevel,
+        getFlag: getFlag,
+
+        setFlag: setFlag,
+
+        setActionVisible: setActionVisible,
+        toggleActionVisible: toggleActionVisible,
+
+        setInteractiveObjectVisible: setInteractiveObjectVisible,
+        toggleInteractiveObjectVisible: toggleInteractiveObjectVisible,
+
+        registerScoreItem: registerScoreItem,
+
+        disableAllActionButtons: disableAllActionButtons,
+        updateAllActionButtons: updateAllActionButtons,
+
+        disableAllInteractiveObjects: disableAllInteractiveObjects,
+        updateAllInteractiveObjects: updateAllInteractiveObjects,
+
+        goBackToMenu: goBackToMenu,
+
+        changeSceneCssClassTo: changeSceneCssClassTo
+    };
+
+
+    window.gameShark = {
+        Stage:Stage,
+        game:game,
+        CommandBar: CommandBar,
+        Dialog:Dialog,
+        InteractiveObject:InteractiveObject,
+        ModalScene: ModalScene,
+        Scene_con:Scene_con,
+        endOfLevel:endOfLevel,
+        Player: require('Player'),
+        core: ret
+    };
+
+    return ret;
+});

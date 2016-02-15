@@ -1,1 +1,48 @@
-define(["Stage"],function(e){function n(){$(".menuButton").click(function(){t.play(t.audios.sfx.selecionar_menu)}),$(".backButton").click(function(){e.changeScreen(0)})}function r(){}var t=require("Player");return{load:n,unload:r}});
+/**
+ * This method adds all the events to the loadGame screen
+ * 
+ * @name Screen_loadGame_Controller
+ * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
+ */
+define(['Stage'], function (Stage) {
+
+    var Player = require('Player');
+
+    /**
+     * This method is called when the screen loadGame is loaded
+     *
+     * @method load
+     * @public
+     *
+     * @memberOf module:Screen_loadGame_Controller
+     */
+    function load() {
+        $('.menuButton').click(function(){
+            Player.play(Player.audios.sfx.selecionar_menu);
+        });
+
+        $('.backButton').click(function () {
+            Stage.changeScreen(0);
+        });
+    }
+
+    /**
+     * This method is called when the screen loadGame is unloaded
+     *
+     * @method unload
+     * @public
+     *
+     * @memberOf module:Screen_loadGame_Controller
+     */
+    function unload() {
+
+    }
+
+    return {
+        load: load,
+        unload: unload
+    }
+
+});

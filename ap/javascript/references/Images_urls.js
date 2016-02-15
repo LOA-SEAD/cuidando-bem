@@ -1,1 +1,0 @@
-define([],function(){var e="./assets/images/",t={others:["./assets/images/scenes/sala_de_leitos.jpg"]};return{paths:t,baseDir:e}});
