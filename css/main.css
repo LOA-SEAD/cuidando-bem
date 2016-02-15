@@ -61,7 +61,7 @@ body {
   -ms-user-select: none;
   user-select: none;
   position: absolute;
-  background-image: url(../../images/misc/shattered.png);
+  background-image: url(../images/misc/shattered.png);
   height: 100%;
   width: 100%;
   text-align: center;
@@ -356,7 +356,7 @@ body {
   height: 100%;
 }
 .levelSelect-backImage {
-  background: center no-repeat url(../../images/screens/tela_levelSelect.jpg);
+  background: center no-repeat url(../images/screens/tela_levelSelect.jpg);
 }
 #levelSelectContainer {
   width: 100%;
@@ -431,67 +431,67 @@ p.title {
   background-color: #ce5b5b;
 }
 .level.disabled > .image:not(.next) {
-  background-image: url(../../images/misc/locker.png);
+  background-image: url(../images/misc/locker.png);
 }
 .l0 {
   transform: rotate(-90deg) translate(260px) rotate(90deg);
 }
 .l0 > .image {
-  background-image: url(../../images/modalScenes/pulseira.png);
+  background-image: url(../images/modalScenes/pulseira.png);
 }
 .l1 {
   transform: rotate(-54deg) translate(260px) rotate(54deg);
 }
 .l1 > .image {
-  background-image: url(../../images/interactiveObjects/coxim.png);
+  background-image: url(../images/interactiveObjects/coxim.png);
 }
 .l2 {
   transform: rotate(-18deg) translate(260px) rotate(18deg);
 }
 .l2 > .image {
-  background-image: url(../../images/interactiveObjects/aparelhodepressao_lateral.png);
+  background-image: url(../images/interactiveObjects/aparelhodepressao_lateral.png);
 }
 .l3 {
   transform: rotate(18deg) translate(260px) rotate(-18deg);
 }
 .l3 > .image {
-  background-image: url(../../images/interactiveObjects/placa_neutra.png);
+  background-image: url(../images/interactiveObjects/placa_neutra.png);
 }
 .l4 {
   transform: rotate(54deg) translate(260px) rotate(-54deg);
 }
 .l4 > .image {
-  background-image: url(../../images/interactiveObjects/seringa_20_ml.png);
+  background-image: url(../images/interactiveObjects/seringa_20_ml.png);
 }
 .l5 {
   transform: rotate(90deg) translate(260px) rotate(-90deg);
 }
 .l5 > .image {
-  background-image: url(../../images/interactiveObjects/gaze_esteril.png);
+  background-image: url(../images/interactiveObjects/gaze_esteril.png);
 }
 .l6 {
   transform: rotate(126deg) translate(260px) rotate(-126deg);
 }
 .l6 > .image {
-  background-image: url(../../images/interactiveObjects/equipo_de_infusao_de_dieta.png);
+  background-image: url(../images/interactiveObjects/equipo_de_infusao_de_dieta.png);
 }
 .l7 {
   transform: rotate(162deg) translate(260px) rotate(-162deg);
 }
 .l7 > .image {
-  background-image: url(../../images/interactiveObjects/clorpromazina_medicamento.png);
+  background-image: url(../images/interactiveObjects/clorpromazina_medicamento.png);
 }
 .l8 {
   transform: rotate(198deg) translate(260px) rotate(-198deg);
 }
 .l8 > .image {
-  background-image: url(../../images/interactiveObjects/carrinho_anestesico.png);
+  background-image: url(../images/interactiveObjects/carrinho_anestesico.png);
 }
 .l9 {
   transform: rotate(234deg) translate(260px) rotate(-234deg);
 }
 .l9 > .image {
-  background-image: url(../../images/interactiveObjects/soro_glicofisiologico_1000_ml.png);
+  background-image: url(../images/interactiveObjects/soro_glicofisiologico_1000_ml.png);
 }
 .levelSelect-button {
   bottom: -50px;
@@ -520,7 +520,7 @@ p.title {
   border-radius: 20px;
 }
 .slotSelect-logo {
-  background: center no-repeat url(../../images/misc/logo.png);
+  background: center no-repeat url(../images/misc/logo.png);
   width: 450px;
   height: 150px;
   position: relative;
@@ -528,10 +528,10 @@ p.title {
   left: 95px;
 }
 .slotSelect-backImage {
-  background: center no-repeat url(../../images/screens/tela_carregarFundo.jpg);
+  background: center no-repeat url(../images/screens/tela_carregarFundo.jpg);
 }
 .slotSelect-prontuario {
-  background: center no-repeat url(../../images/misc/prontuario.png);
+  background: center no-repeat url(../images/misc/prontuario.png);
   background-size: cover;
   width: 647.4px;
   height: 943.8px;
@@ -595,7 +595,7 @@ p.title {
   top: 34%;
 }
 #mainMenu-prancheta {
-  background: center no-repeat url(../../images/misc/telaInicialPrancheta.png);
+  background: center no-repeat url(../images/misc/telaInicialPrancheta.png);
   background-size: cover;
   width: 603px;
   height: 645px;
@@ -604,13 +604,13 @@ p.title {
   left: 50px;
 }
 .mainMenu-backImage {
-  background: center no-repeat url(../../images/screens/tela_inicial.jpg);
+  background: center no-repeat url(../images/screens/tela_inicial.jpg);
 }
 .credits-backImage {
-  background: center no-repeat url(../../images/screens/credits.jpg);
+  background: center no-repeat url(../images/screens/credits.jpg);
 }
 .config-backImage {
-  background: center no-repeat url(../../images/screens/config.jpg);
+  background: center no-repeat url(../images/screens/config.jpg);
 }
 .config.menuHorizontal {
   bottom: 12%;
@@ -676,11 +676,11 @@ p.title {
   top: -10px;
 }
 #configContent .controlRow .control .mute.desactive {
-  background: url(../../images/misc/muteButtonDesativado.png);
+  background: url(../images/misc/muteButtonDesativado.png);
   background-size: cover;
 }
 #configContent .controlRow .control .mute {
-  background: url(../../images/misc/muteButtonAtivo.png);
+  background: url(../images/misc/muteButtonAtivo.png);
   background-size: cover;
   width: 30px;
   height: 30px;
@@ -703,7 +703,7 @@ p.title {
   overflow: hidden;
 }
 #screenConteudo-backImage {
-  background: center no-repeat url(../../images/screens/conteudo.jpg);
+  background: center no-repeat url(../images/screens/conteudo.jpg);
 }
 #interactiveObjects {
   position: absolute;
@@ -718,7 +718,7 @@ p.title {
   cursor: default;
 }
 .intObj-talkToReceptionist {
-  background-image: url(../images/interactiveObjects/intObj-receptionist.png);
+  background-image: url(images/interactiveObjects/intObj-receptionist.png);
   background-size: cover;
 }
 @media screen and (min-width: 768px) {
@@ -772,7 +772,7 @@ p.title {
   background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwIi8+PHN0b3Agb2Zmc2V0PSI3NSUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMC4yIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZmZmZmZmIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvbGluZWFyR3JhZGllbnQ+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkaWVudCkiIC8+PC9zdmc+');
 }
 .intObj-talkToMentor {
-  background-image: url(../../images/interactiveObjects/char-mentor.png);
+  background-image: url(../images/interactiveObjects/char-mentor.png);
   background-size: contain;
 }
 @media screen and (min-width: 768px) {
@@ -842,7 +842,7 @@ p.title {
   left: 9%;
 }
 .intObj-talkToCirculante {
-  background-image: url(../../images/interactiveObjects/char-mentor.png);
+  background-image: url(../images/interactiveObjects/char-mentor.png);
   background-size: contain;
 }
 @media screen and (min-width: 768px) {
@@ -956,7 +956,7 @@ p.title {
   right: 8%;
 }
 .intObj-paciente_01-checar_pulseira {
-  background-image: url(../../images/interactiveObjects/pulseira-paciente01.png);
+  background-image: url(../images/interactiveObjects/pulseira-paciente01.png);
   background-size: cover;
 }
 @media screen and (min-width: 768px) {
@@ -984,7 +984,7 @@ p.title {
   }
 }
 .intObj-paciente_02-checar_pulseira {
-  background-image: url(../../images/interactiveObjects/pulseira-paciente02.png);
+  background-image: url(../images/interactiveObjects/pulseira-paciente02.png);
   background-size: cover;
 }
 @media screen and (min-width: 768px) {
@@ -1013,7 +1013,7 @@ p.title {
 }
 .intObj-braceletConfirmation,
 .intObj-braceletConfirmed {
-  background-image: url(../../images/interactiveObjects/checkmark-gray.png);
+  background-image: url(../images/interactiveObjects/checkmark-gray.png);
   background-size: contain;
 }
 @media screen and (min-width: 768px) {
@@ -1044,12 +1044,12 @@ p.title {
   }
 }
 .intObj-braceletConfirmation:hover {
-  background-image: url(../../images/interactiveObjects/checkmark.png);
+  background-image: url(../images/interactiveObjects/checkmark.png);
   background-size: contain;
 }
 .intObj-braceletConfirmed {
   cursor: default;
-  background-image: url(../../images/interactiveObjects/checkmark.png);
+  background-image: url(../images/interactiveObjects/checkmark.png);
   background-size: contain;
 }
 .intObj-openDrawer {
@@ -1071,7 +1071,7 @@ p.title {
   right: 2%;
 }
 .intObj-thermometer {
-  background-image: url(../../images/interactiveObjects/termometro.png);
+  background-image: url(../images/interactiveObjects/termometro.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 12%;
@@ -1097,10 +1097,10 @@ p.title {
 }
 .intObj-thermometer:hover {
   box-shadow: none;
-  background-image: url(../../images/interactiveObjects/termometro-hover.png);
+  background-image: url(../images/interactiveObjects/termometro-hover.png);
 }
 .intObj-bloodPressureMonitor {
-  background-image: url(../../images/interactiveObjects/pressao.png);
+  background-image: url(../images/interactiveObjects/pressao.png);
   background-size: contain;
   top: 12%;
   left: 33%;
@@ -1125,10 +1125,10 @@ p.title {
 }
 .intObj-bloodPressureMonitor:hover {
   box-shadow: none;
-  background-image: url(../../images/interactiveObjects/pressao-hover.png);
+  background-image: url(../images/interactiveObjects/pressao-hover.png);
 }
 .intObj-oximeter {
-  background-image: url(../../images/interactiveObjects/oximetro.png);
+  background-image: url(../images/interactiveObjects/oximetro.png);
   background-size: contain;
   top: 12%;
   left: 53%;
@@ -1153,10 +1153,10 @@ p.title {
 }
 .intObj-oximeter:hover {
   box-shadow: none;
-  background-image: url(../../images/interactiveObjects/oximetro-hover.png);
+  background-image: url(../images/interactiveObjects/oximetro-hover.png);
 }
 .intObj-watch {
-  background-image: url(../../images/interactiveObjects/relogio.png);
+  background-image: url(../images/interactiveObjects/relogio.png);
   background-size: contain;
   top: 12%;
   left: 68%;
@@ -1181,10 +1181,10 @@ p.title {
 }
 .intObj-watch:hover {
   box-shadow: none;
-  background-image: url(../../images/interactiveObjects/relogio-hover.png);
+  background-image: url(../images/interactiveObjects/relogio-hover.png);
 }
 .intObj-aguaPotavel {
-  background-image: url(../../images/interactiveObjects/garrafa_agua_potavel.png);
+  background-image: url(../images/interactiveObjects/garrafa_agua_potavel.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 28%;
@@ -1209,7 +1209,7 @@ p.title {
   }
 }
 .intObj-copoDescartavel {
-  background-image: url(../../images/interactiveObjects/copo_descartavel.png);
+  background-image: url(../images/interactiveObjects/copo_descartavel.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 30%;
@@ -1234,7 +1234,7 @@ p.title {
   }
 }
 .intObj-cushion {
-  background-image: url(../../images/interactiveObjects/coxim.png);
+  background-image: url(../images/interactiveObjects/coxim.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 30%;
@@ -1260,10 +1260,10 @@ p.title {
 }
 .intObj-cushion:hover {
   box-shadow: none;
-  background-image: url(../../images/interactiveObjects/coxim-hover.png);
+  background-image: url(../images/interactiveObjects/coxim-hover.png);
 }
 .intObj-agulha_40x12 {
-  background-image: url(../../images/interactiveObjects/agulha_40x12.png);
+  background-image: url(../images/interactiveObjects/agulha_40x12.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 38%;
@@ -1288,7 +1288,7 @@ p.title {
   }
 }
 .intObj-algodao_seco {
-  background-image: url(../../images/interactiveObjects/algodao_seco.png);
+  background-image: url(../images/interactiveObjects/algodao_seco.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 12%;
@@ -1313,7 +1313,7 @@ p.title {
   }
 }
 .intObj-aparelhodepressao_frontal {
-  background-image: url(../../images/interactiveObjects/aparelhodepressao_frontal.png);
+  background-image: url(../images/interactiveObjects/aparelhodepressao_frontal.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -1338,7 +1338,7 @@ p.title {
   }
 }
 .intObj-aparelhodepressao_lateral {
-  background-image: url(../../images/interactiveObjects/aparelhodepressao_lateral.png);
+  background-image: url(../images/interactiveObjects/aparelhodepressao_lateral.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -1363,7 +1363,7 @@ p.title {
   }
 }
 .intObj-bandeja {
-  background-image: url(../../images/interactiveObjects/bandeja.png);
+  background-image: url(../images/interactiveObjects/bandeja.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 25%;
@@ -1388,7 +1388,7 @@ p.title {
   }
 }
 .intObj-carrinho_anestesico {
-  background-image: url(../../images/interactiveObjects/carrinho_anestesico.png);
+  background-image: url(../images/interactiveObjects/carrinho_anestesico.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -1413,7 +1413,7 @@ p.title {
   }
 }
 .intObj-cloreto_de_sodio_20__10_ml_ {
-  background-image: url(../../images/interactiveObjects/cloreto_de_sodio_20__10_ml_.png);
+  background-image: url(../images/interactiveObjects/cloreto_de_sodio_20__10_ml_.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -1438,7 +1438,7 @@ p.title {
   }
 }
 .intObj-clorpromazina_medicamento {
-  background-image: url(../../images/interactiveObjects/clorpromazina_medicamento.png);
+  background-image: url(../images/interactiveObjects/clorpromazina_medicamento.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -1463,7 +1463,7 @@ p.title {
   }
 }
 .intObj-copo_descartavel {
-  background-image: url(../../images/interactiveObjects/copo_descartavel.png);
+  background-image: url(../images/interactiveObjects/copo_descartavel.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 14%;
@@ -1488,7 +1488,7 @@ p.title {
   }
 }
 .intObj-coxim {
-  background-image: url(../../images/interactiveObjects/coxim.png);
+  background-image: url(../images/interactiveObjects/coxim.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -1513,7 +1513,7 @@ p.title {
   }
 }
 .intObj-equipo_de_infusao_de_dieta {
-  background-image: url(../../images/interactiveObjects/equipo_de_infusao_de_dieta.png);
+  background-image: url(../images/interactiveObjects/equipo_de_infusao_de_dieta.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -1538,7 +1538,7 @@ p.title {
   }
 }
 .intObj-fita_adesiva_hipoalergenica_micropore {
-  background-image: url(../../images/interactiveObjects/fita_adesiva_hipoalergenica_micropore.png);
+  background-image: url(../images/interactiveObjects/fita_adesiva_hipoalergenica_micropore.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 39%;
@@ -1563,7 +1563,7 @@ p.title {
   }
 }
 .intObj-frasco_de_alcool {
-  background-image: url(../../images/interactiveObjects/frasco_de_alcool.png);
+  background-image: url(../images/interactiveObjects/frasco_de_alcool.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -1588,7 +1588,7 @@ p.title {
   }
 }
 .intObj-frasco_de_dieta {
-  background-image: url(../../images/interactiveObjects/frasco_de_dieta.png);
+  background-image: url(../images/interactiveObjects/frasco_de_dieta.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -1613,7 +1613,7 @@ p.title {
   }
 }
 .intObj-garrafa_agua_potavel {
-  background-image: url(../../images/interactiveObjects/garrafa_agua_potavel.png);
+  background-image: url(../images/interactiveObjects/garrafa_agua_potavel.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 9%;
@@ -1638,7 +1638,7 @@ p.title {
   }
 }
 .intObj-gaveta {
-  background-image: url(../../images/interactiveObjects/gaveta.png);
+  background-image: url(../images/interactiveObjects/gaveta.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -1663,7 +1663,7 @@ p.title {
   }
 }
 .intObj-gaze_esteril {
-  background-image: url(../../images/interactiveObjects/gaze_esteril.png);
+  background-image: url(../images/interactiveObjects/gaze_esteril.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 38%;
@@ -1688,7 +1688,7 @@ p.title {
   }
 }
 .intObj-keflin_medicamento {
-  background-image: url(../../images/interactiveObjects/keflin_medicamento.png);
+  background-image: url(../images/interactiveObjects/keflin_medicamento.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -1713,7 +1713,7 @@ p.title {
   }
 }
 .intObj-lixo_comum {
-  background-image: url(../../images/interactiveObjects/lixo_comum.png);
+  background-image: url(../images/interactiveObjects/lixo_comum.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -1738,7 +1738,7 @@ p.title {
   }
 }
 .intObj-lixo_infectante {
-  background-image: url(../../images/interactiveObjects/lixo_infectante.png);
+  background-image: url(../images/interactiveObjects/lixo_infectante.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -1763,7 +1763,7 @@ p.title {
   }
 }
 .intObj-lixo_perfuro_cortante {
-  background-image: url(../../images/interactiveObjects/lixo_perfuro_cortante.png);
+  background-image: url(../images/interactiveObjects/lixo_perfuro_cortante.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -1788,7 +1788,7 @@ p.title {
   }
 }
 .intObj-luvas_de_procedimento {
-  background-image: url(../../images/interactiveObjects/luvas_de_procedimento.png);
+  background-image: url(../images/interactiveObjects/luvas_de_procedimento.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 12%;
@@ -1813,7 +1813,7 @@ p.title {
   }
 }
 .intObj-luvas_estereis {
-  background-image: url(../../images/interactiveObjects/luvas_estereis.png);
+  background-image: url(../images/interactiveObjects/luvas_estereis.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 40%;
@@ -1838,7 +1838,7 @@ p.title {
   }
 }
 .intObj-midazolam_medicamento {
-  background-image: url(../../images/interactiveObjects/midazolam_medicamento.png);
+  background-image: url(../images/interactiveObjects/midazolam_medicamento.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 50%;
@@ -1863,7 +1863,7 @@ p.title {
   }
 }
 .intObj-oximetro_frontal {
-  background-image: url(../../images/interactiveObjects/oximetro_frontal.png);
+  background-image: url(../images/interactiveObjects/oximetro_frontal.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -1888,7 +1888,7 @@ p.title {
   }
 }
 .intObj-oximetro_lateral {
-  background-image: url(../../images/interactiveObjects/oximetro_lateral.png);
+  background-image: url(../images/interactiveObjects/oximetro_lateral.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -1913,7 +1913,7 @@ p.title {
   }
 }
 .intObj-placa_neutra {
-  background-image: url(../../images/interactiveObjects/placa_neutra.png);
+  background-image: url(../images/interactiveObjects/placa_neutra.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -1938,7 +1938,7 @@ p.title {
   }
 }
 .intObj-prancheta {
-  background-image: url(../../images/interactiveObjects/prancheta.png);
+  background-image: url(../images/interactiveObjects/prancheta.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -1963,7 +1963,7 @@ p.title {
   }
 }
 .intObj-prancheta_horizontal {
-  background-image: url(../../images/interactiveObjects/prancheta_horizontal.png);
+  background-image: url(../images/interactiveObjects/prancheta_horizontal.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -1988,7 +1988,7 @@ p.title {
   }
 }
 .intObj-prontuario {
-  background-image: url(../../images/interactiveObjects/prontuario.png);
+  background-image: url(../images/interactiveObjects/prontuario.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -2013,7 +2013,7 @@ p.title {
   }
 }
 .intObj-relogiodigital {
-  background-image: url(../../images/interactiveObjects/relogiodigital.png);
+  background-image: url(../images/interactiveObjects/relogiodigital.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -2038,7 +2038,7 @@ p.title {
   }
 }
 .intObj-relogiodigital_lateral {
-  background-image: url(../../images/interactiveObjects/relogiodigital_lateral.png);
+  background-image: url(../images/interactiveObjects/relogiodigital_lateral.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -2063,7 +2063,7 @@ p.title {
   }
 }
 .intObj-seringa_20_ml {
-  background-image: url(../../images/interactiveObjects/seringa_20_ml.png);
+  background-image: url(../images/interactiveObjects/seringa_20_ml.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 40%;
@@ -2088,7 +2088,7 @@ p.title {
   }
 }
 .intObj-seringa_de_10_ml {
-  background-image: url(../../images/interactiveObjects/seringa_de_10_ml.png);
+  background-image: url(../images/interactiveObjects/seringa_de_10_ml.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -2113,7 +2113,7 @@ p.title {
   }
 }
 .intObj-soro_glicofisiologico_1000_ml {
-  background-image: url(../../images/interactiveObjects/soro_glicofisiologico_1000_ml.png);
+  background-image: url(../images/interactiveObjects/soro_glicofisiologico_1000_ml.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -2138,7 +2138,7 @@ p.title {
   }
 }
 .intObj-termometro_frontal {
-  background-image: url(../../images/interactiveObjects/termometro_frontal.png);
+  background-image: url(../images/interactiveObjects/termometro_frontal.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 0;
@@ -2198,94 +2198,94 @@ p.title {
   background-color: #808080;
 }
 .scene-maleRoom {
-  background-image: url(../../images/scenes/ala_masculina.jpg);
+  background-image: url(../images/scenes/ala_masculina.jpg);
 }
 .scene-maleRoom-cushion {
-  background-image: url(../../images/scenes/ala_masculina-paciente-virado.jpg);
+  background-image: url(../images/scenes/ala_masculina-paciente-virado.jpg);
 }
 .scene-femaleRoom {
-  background-image: url(../../images/scenes/ala_feminina.png);
+  background-image: url(../images/scenes/ala_feminina.png);
 }
 .scene-bedroom {
-  background-image: url(../../images/scenes/sala_de_leitos.jpg);
+  background-image: url(../images/scenes/sala_de_leitos.jpg);
 }
 .scene-bedChar01 {
-  background-image: url(../../images/scenes/leito-char-01.jpg);
+  background-image: url(../images/scenes/leito-char-01.jpg);
 }
 .scene-bedChar02 {
-  background-image: url(../../images/scenes/leito-char-02.jpg);
+  background-image: url(../images/scenes/leito-char-02.jpg);
 }
 .scene-bedChar02-turned {
-  background-image: url(../../images/scenes/leito-char-02-virado.jpg);
+  background-image: url(../images/scenes/leito-char-02-virado.jpg);
 }
 .scene-bedChar02-cushion {
-  background-image: url(../../images/scenes/leito-char-02-coxim.jpg);
+  background-image: url(../images/scenes/leito-char-02-coxim.jpg);
 }
 .scene-bedChar03 {
-  background-image: url(../../images/scenes/leito-char-03.jpg);
+  background-image: url(../images/scenes/leito-char-03.jpg);
 }
 .scene-bedChar04 {
-  background-image: url(../../images/scenes/leito-char-04.jpg);
+  background-image: url(../images/scenes/leito-char-04.jpg);
 }
 .scene-bedChar05 {
-  background-image: url(../../images/scenes/leito-char-05.jpg);
+  background-image: url(../images/scenes/leito-char-05.jpg);
 }
 .scene-bedChar06 {
-  background-image: url(../../images/scenes/leito-char-06.jpg);
+  background-image: url(../images/scenes/leito-char-06.jpg);
 }
 .scene-bedChar07 {
-  background-image: url(../../images/scenes/leito-char-07.jpg);
+  background-image: url(../images/scenes/leito-char-07.jpg);
 }
 .scene-bedChar08 {
-  background-image: url(../../images/scenes/leito-char-08.jpg);
+  background-image: url(../images/scenes/leito-char-08.jpg);
 }
 .scene-bedChar09 {
-  background-image: url(../../images/scenes/leito-char-09.jpg);
+  background-image: url(../images/scenes/leito-char-09.jpg);
 }
 .scene-bedChar10 {
-  background-image: url(../../images/scenes/leito-char-10.jpg);
+  background-image: url(../images/scenes/leito-char-10.jpg);
 }
 .scene-surgeryCenter {
-  background-image: url(../../images/scenes/centro_cirurgico.jpg);
+  background-image: url(../images/scenes/centro_cirurgico.jpg);
 }
 .scene-surgeryCenter-regina {
-  background-image: url(../../images/scenes/centro_cirurgico_regina.jpg);
+  background-image: url(../images/scenes/centro_cirurgico_regina.jpg);
 }
 .scene-surgeryCenter-yuri {
-  background-image: url(../../images/scenes/centro_cirurgico_yuri.jpg);
+  background-image: url(../images/scenes/centro_cirurgico_yuri.jpg);
 }
 .scene-hallway {
-  background-image: url(../../images/scenes/corredor.jpg);
+  background-image: url(../images/scenes/corredor.jpg);
 }
 .scene-infirmary {
   background-image: url('');
 }
 .scene-nursingStation {
-  background-image: url(../../images/scenes/posto_de_enfermagem.jpg);
+  background-image: url(../images/scenes/posto_de_enfermagem.jpg);
 }
 .scene-lobby {
-  background-image: url(../../images/scenes/recepcao.jpg);
+  background-image: url(../images/scenes/recepcao.jpg);
 }
 .scene-levelTransition {
-  background-image: url(../../images/scenes/fim-level.jpg);
+  background-image: url(../images/scenes/fim-level.jpg);
 }
 .scene-endAlpha {
-  background-image: url(../../images/scenes/encerra-provisoria-alfa.jpg);
+  background-image: url(../images/scenes/encerra-provisoria-alfa.jpg);
 }
 .scene-none {
   background-color: #d3d3d3;
 }
 .scene-pharmacy {
-  background-image: url(../../images/scenes/farmacia.jpg);
+  background-image: url(../images/scenes/farmacia.jpg);
 }
 .scene-surgeryCenter {
-  background-image: url(../../images/scenes/centro_cirurgico.jpg);
+  background-image: url(../images/scenes/centro_cirurgico.jpg);
 }
 .scene-femaleRoom {
-  background-image: url(../../images/scenes/ala_feminina.png);
+  background-image: url(../images/scenes/ala_feminina.png);
 }
 .scene-centroCirurgicoRegina {
-  background-image: url(../../images/scenes/centro_cirurgico_regina.jpg);
+  background-image: url(../images/scenes/centro_cirurgico_regina.jpg);
 }
 #modalScene {
   position: absolute;
@@ -2310,7 +2310,7 @@ p.title {
 }
 .modalScene-pulseira {
   background-color: rgba(0, 0, 0, 0.7);
-  background-image: url(../../images/modalScenes/pulseira.png);
+  background-image: url(../images/modalScenes/pulseira.png);
   background-position: center;
   background-size: 80%;
   background-repeat: no-repeat;
@@ -2319,7 +2319,7 @@ p.title {
 }
 .modalScene-termometro {
   background-color: rgba(0, 0, 0, 0.7);
-  background-image: url(../../images/modalScenes/termometro.png);
+  background-image: url(../images/modalScenes/termometro.png);
   background-position: center;
   background-size: 80%;
   background-repeat: no-repeat;
@@ -2353,7 +2353,7 @@ p.title {
 }
 .modalScene-medidor_pressao {
   background-color: rgba(0, 0, 0, 0.7);
-  background-image: url(../../images/modalScenes/medidorPressao.png);
+  background-image: url(../images/modalScenes/medidorPressao.png);
   background-position: center;
   background-size: 40%;
   background-repeat: no-repeat;
@@ -2387,7 +2387,7 @@ p.title {
 }
 .modalScene-oximetro {
   background-color: rgba(0, 0, 0, 0.7);
-  background-image: url(../../images/modalScenes/oximetro.png);
+  background-image: url(../images/modalScenes/oximetro.png);
   background-position: center;
   background-size: 40%;
   background-repeat: no-repeat;
@@ -2411,7 +2411,7 @@ p.title {
 }
 .modalScene-drawer {
   background-color: rgba(0, 0, 0, 0.7);
-  background-image: url(../../images/modalScenes/gaveta.png);
+  background-image: url(../images/modalScenes/gaveta.png);
   background-position: center;
   background-size: 100%;
   background-repeat: no-repeat;
@@ -2421,7 +2421,7 @@ p.title {
 }
 .modalScene-zoom-char2 {
   background-color: rgba(0, 0, 0, 0.7);
-  background-image: url(../../images/modalScenes/zoom-char-02.png);
+  background-image: url(../images/modalScenes/zoom-char-02.png);
   background-position: center;
   background-size: 100%;
   background-repeat: no-repeat;
@@ -2435,7 +2435,7 @@ p.title {
   height: 597.6px;
   width: 871.2px;
   position: relative;
-  background-image: url(../../images/modalScenes/prontuario.png);
+  background-image: url(../images/modalScenes/prontuario.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -2911,10 +2911,10 @@ p.title {
   height: 75%;
 }
 .on {
-  background: url(../../images/misc/arrow-icon_button.png) no-repeat center;
+  background: url(../images/misc/arrow-icon_button.png) no-repeat center;
 }
 .on:hover {
-  background-image: url(../../images/misc/arrow-icon_button-hover.png);
+  background-image: url(../images/misc/arrow-icon_button-hover.png);
 }
 .off {
   background-image: none;
@@ -3049,37 +3049,37 @@ p.title {
   }
 }
 .char-receptionist {
-  background: url(../../images/characters/recepcionista.png) no-repeat top;
+  background: url(../images/characters/recepcionista.png) no-repeat top;
 }
 .char-mentor {
-  background: url(../../images/characters/mentor.png) no-repeat top;
+  background: url(../images/characters/mentor.png) no-repeat top;
 }
 .char-paciente_01 {
-  background-image: url(../../images/characters/paciente1.png);
+  background-image: url(../images/characters/paciente1.png);
 }
 .char-paciente_02 {
-  background-image: url(../../images/characters/paciente2.png);
+  background-image: url(../images/characters/paciente2.png);
 }
 .char-paciente_03 {
-  background-image: url(../../images/characters/paciente3.png);
+  background-image: url(../images/characters/paciente3.png);
 }
 .char-paciente_04 {
-  background-image: url(../../images/characters/paciente4.png);
+  background-image: url(../images/characters/paciente4.png);
 }
 .char-paciente_05 {
-  background-image: url(../../images/characters/paciente5.png);
+  background-image: url(../images/characters/paciente5.png);
 }
 .char-paciente_06 {
-  background-image: url(../../images/characters/paciente6.png);
+  background-image: url(../images/characters/paciente6.png);
 }
 .char-paciente_07 {
-  background-image: url(../../images/characters/paciente7.png);
+  background-image: url(../images/characters/paciente7.png);
 }
 .char-paciente_08 {
-  background-image: url(../../images/characters/paciente8.png);
+  background-image: url(../images/characters/paciente8.png);
 }
 .char-paciente_09 {
-  background-image: url(../../images/characters/paciente9.png);
+  background-image: url(../images/characters/paciente9.png);
 }
 .action_button {
   cursor: hand;
@@ -3090,7 +3090,7 @@ p.title {
   position: relative;
   border: 2px solid #FFF;
   border-radius: 100%;
-  background-image: url(../../images/action_buttons/sem-imagem.jpg);
+  background-image: url(../images/action_buttons/sem-imagem.jpg);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.75);
   width: 10%;
   height: 80%;
@@ -3145,229 +3145,229 @@ p.title {
   box-shadow: 0 0 10px #000000;
 }
 .action-ir_corredor {
-  background-image: url(../../images/action_buttons/ir_corredor.jpg);
+  background-image: url(../images/action_buttons/ir_corredor.jpg);
 }
 .action-ir_recepcao {
-  background-image: url(../../images/action_buttons/ir_recepcao.jpg);
+  background-image: url(../images/action_buttons/ir_recepcao.jpg);
 }
 .action-ir_posto_de_enfermagem {
-  background-image: url(../../images/action_buttons/ir_posto_de_enfermagem.jpg);
+  background-image: url(../images/action_buttons/ir_posto_de_enfermagem.jpg);
 }
 .action-ir_sala_de_leitos {
-  background-image: url(../../images/action_buttons/ir_sala_de_leitos.jpg);
+  background-image: url(../images/action_buttons/ir_sala_de_leitos.jpg);
 }
 .action-leito-char-01 {
-  background-image: url(../../images/action_buttons/leito-char-01.jpg);
+  background-image: url(../images/action_buttons/leito-char-01.jpg);
 }
 .action-leito-char-02 {
-  background-image: url(../../images/action_buttons/leito-char-02.jpg);
+  background-image: url(../images/action_buttons/leito-char-02.jpg);
 }
 .action-pulseira_paciente {
-  background-image: url(../../images/action_buttons/pulseira.jpg);
+  background-image: url(../images/action_buttons/pulseira.jpg);
 }
 .action-confirmar_paciente {
-  background-image: url(../../images/action_buttons/sem-imagem.jpg);
+  background-image: url(../images/action_buttons/sem-imagem.jpg);
 }
 .action-fechar_pulseira {
-  background-image: url(../../images/action_buttons/sem-imagem.jpg);
+  background-image: url(../images/action_buttons/sem-imagem.jpg);
 }
 .action-confirmar_pulseira {
-  background-image: url(../../images/action_buttons/confirmar_pulseira.jpg);
+  background-image: url(../images/action_buttons/confirmar_pulseira.jpg);
 }
 .action-lavar_maos {
-  background-image: url(../../images/action_buttons/lavar_maos.jpg);
+  background-image: url(../images/action_buttons/lavar_maos.jpg);
 }
 .action-lavar_maos_escova {
-  background-image: url(../../images/action_buttons/lavar_maos_escova.png);
+  background-image: url(../images/action_buttons/lavar_maos_escova.png);
 }
 .action-medir_temperatura {
-  background-image: url(../../images/action_buttons/termometro.jpg);
+  background-image: url(../images/action_buttons/termometro.jpg);
 }
 .action-medir_pulso {
-  background-image: url(../../images/action_buttons/pressao.jpg);
+  background-image: url(../images/action_buttons/pressao.jpg);
 }
 .action-medir_freq_respiratoria {
-  background-image: url(../../images/action_buttons/relogio.jpg);
+  background-image: url(../images/action_buttons/relogio.jpg);
 }
 .action-largar_relogio {
-  background-image: url(../../images/action_buttons/relogio.jpg);
+  background-image: url(../images/action_buttons/relogio.jpg);
 }
 .action-medir_saturacao_02 {
-  background-image: url(../../images/action_buttons/oximetro.jpg);
+  background-image: url(../images/action_buttons/oximetro.jpg);
 }
 .action-abrir_gaveta {
-  background-image: url(../../images/action_buttons/gaveta.jpg);
+  background-image: url(../images/action_buttons/gaveta.jpg);
 }
 .action-fechar_gaveta {
-  background-image: url(../../images/action_buttons/gaveta.jpg);
+  background-image: url(../images/action_buttons/gaveta.jpg);
 }
 .action-pegar_termometro {
-  background-image: url(../../images/action_buttons/termometro.jpg);
+  background-image: url(../images/action_buttons/termometro.jpg);
 }
 .action-pegar_medidor_pressao {
-  background-image: url(../../images/action_buttons/pressao.jpg);
+  background-image: url(../images/action_buttons/pressao.jpg);
 }
 .action-pegar_oximetro {
-  background-image: url(../../images/action_buttons/oximetro.jpg);
+  background-image: url(../images/action_buttons/oximetro.jpg);
 }
 .action-abrir_dialogo {
-  background-image: url(../../images/action_buttons/abrir_dialogo.jpg);
+  background-image: url(../images/action_buttons/abrir_dialogo.jpg);
 }
 .action-examinar_paciente {
-  background-image: url(../../images/action_buttons/examinar_paciente.jpg);
+  background-image: url(../images/action_buttons/examinar_paciente.jpg);
 }
 .action-falar_com_paciente_ala {
-  background-image: url(../../images/action_buttons/examinar_paciente.jpg);
+  background-image: url(../images/action_buttons/examinar_paciente.jpg);
 }
 .action-anotar_prontuario {
-  background-image: url(../../images/action_buttons/anotar_prontuario.jpg);
+  background-image: url(../images/action_buttons/anotar_prontuario.jpg);
 }
 .action-ler_prontuario {
-  background-image: url(../../images/action_buttons/anotar_prontuario.jpg);
+  background-image: url(../images/action_buttons/anotar_prontuario.jpg);
 }
 .action-confirmar_prontuario {
-  background-image: url(../../images/action_buttons/prontuario-confirma.jpg);
+  background-image: url(../images/action_buttons/prontuario-confirma.jpg);
 }
 .action-posicionar_coxim {
-  background-image: url(../../images/action_buttons/posicionar_coxim.jpg);
+  background-image: url(../images/action_buttons/posicionar_coxim.jpg);
 }
 .action-pegar_coxim {
-  background-image: url(../../images/action_buttons/posicionar_coxim.jpg);
+  background-image: url(../images/action_buttons/posicionar_coxim.jpg);
 }
 .action-mudar_posicao_paciente {
-  background-image: url(../../images/action_buttons/mudar_posicao_paciente.jpg);
+  background-image: url(../images/action_buttons/mudar_posicao_paciente.jpg);
 }
 .action-voltar_menu {
-  background-image: url(../../images/action_buttons/voltar_menu.jpg);
+  background-image: url(../images/action_buttons/voltar_menu.jpg);
 }
 .action-largar_termometro {
-  background-image: url(../../images/action_buttons/termometro.jpg);
+  background-image: url(../images/action_buttons/termometro.jpg);
 }
 .action-largar_medidor_pressao {
-  background-image: url(../../images/action_buttons/pressao.jpg);
+  background-image: url(../images/action_buttons/pressao.jpg);
 }
 .action-largar_oximetro {
-  background-image: url(../../images/action_buttons/oximetro.jpg);
+  background-image: url(../images/action_buttons/oximetro.jpg);
 }
 .action-perguntar_nome_char1 {
-  background-image: url(../../images/action_buttons/leito-char-01.jpg);
+  background-image: url(../images/action_buttons/leito-char-01.jpg);
 }
 .action-agulha_40x12 {
-  background-image: url(../../images/action_buttons/agulha_40x12.jpg);
+  background-image: url(../images/action_buttons/agulha_40x12.jpg);
 }
 .action-algodao_seco {
-  background-image: url(../../images/action_buttons/algodao_seco.jpg);
+  background-image: url(../images/action_buttons/algodao_seco.jpg);
 }
 .action-carrinho_anestesico {
-  background-image: url(../../images/action_buttons/carrinho_anestesico.jpg);
+  background-image: url(../images/action_buttons/carrinho_anestesico.jpg);
 }
 .action-cloreto_sodio_10_10ml {
-  background-image: url(../../images/action_buttons/cloreto_sodio_10_10ml.jpg);
+  background-image: url(../images/action_buttons/cloreto_sodio_10_10ml.jpg);
 }
 .action-cloreto_sodio_20_10ml {
-  background-image: url(../../images/action_buttons/cloreto_sodio_20_10ml.jpg);
+  background-image: url(../images/action_buttons/cloreto_sodio_20_10ml.jpg);
 }
 .action-clorpromazina_medicamento {
-  background-image: url(../../images/action_buttons/clorpromazina_medicamento.jpg);
+  background-image: url(../images/action_buttons/clorpromazina_medicamento.jpg);
 }
 .action-clorpropamida_medicamento {
-  background-image: url(../../images/action_buttons/clorpropamida_medicamento.jpg);
+  background-image: url(../images/action_buttons/clorpropamida_medicamento.jpg);
 }
 .action-copo_descartavel {
-  background-image: url(../../images/action_buttons/copo_descartavel.jpg);
+  background-image: url(../images/action_buttons/copo_descartavel.jpg);
 }
 .action-equipo {
-  background-image: url(../../images/action_buttons/equipo.jpg);
+  background-image: url(../images/action_buttons/equipo.jpg);
 }
 .action-equipode_infusao_alimentos {
-  background-image: url(../../images/action_buttons/equipode_infusao_alimentos.jpg);
+  background-image: url(../images/action_buttons/equipode_infusao_alimentos.jpg);
 }
 .action-fita_adesiva_hipoalergica {
-  background-image: url(../../images/action_buttons/fita_adesiva_hipoalergica.jpg);
+  background-image: url(../images/action_buttons/fita_adesiva_hipoalergica.jpg);
 }
 .action-frasco_dieta {
-  background-image: url(../../images/action_buttons/frasco_dieta.jpg);
+  background-image: url(../images/action_buttons/frasco_dieta.jpg);
 }
 .action-garrafa_agua_potavel {
-  background-image: url(../../images/action_buttons/garrafa_agua_potavel.jpg);
+  background-image: url(../images/action_buttons/garrafa_agua_potavel.jpg);
 }
 .action-gaze_esteril {
-  background-image: url(../../images/action_buttons/gaze_esteril.jpg);
+  background-image: url(../images/action_buttons/gaze_esteril.jpg);
 }
 .action-glicose_30_10ml {
-  background-image: url(../../images/action_buttons/glicose_30_10ml.jpg);
+  background-image: url(../images/action_buttons/glicose_30_10ml.jpg);
 }
 .action-ir_leito {
-  background-image: url(../../images/action_buttons/ir_leito.jpg);
+  background-image: url(../images/action_buttons/ir_leito.jpg);
 }
 .action-keflin_medicamento {
-  background-image: url(../../images/action_buttons/keflin_medicamento.jpg);
+  background-image: url(../images/action_buttons/keflin_medicamento.jpg);
 }
 .action-luvas_de_procedimento {
-  background-image: url(../../images/action_buttons/luvas_de_procedimento.jpg);
+  background-image: url(../images/action_buttons/luvas_de_procedimento.jpg);
 }
 .action-luvas_estereis {
-  background-image: url(../../images/action_buttons/luvas_estereis.jpg);
+  background-image: url(../images/action_buttons/luvas_estereis.jpg);
 }
 .action-mentor {
-  background-image: url(../../images/action_buttons/mentor.jpg);
+  background-image: url(../images/action_buttons/mentor.jpg);
 }
 .action-midazolam_medicamento {
-  background-image: url(../../images/action_buttons/midazolam_medicamento.jpg);
+  background-image: url(../images/action_buttons/midazolam_medicamento.jpg);
 }
 .action-paciente1 {
-  background-image: url(../../images/action_buttons/paciente1.jpg);
+  background-image: url(../images/action_buttons/paciente1.jpg);
 }
 .action-paciente2 {
-  background-image: url(../../images/action_buttons/paciente2.jpg);
+  background-image: url(../images/action_buttons/paciente2.jpg);
 }
 .action-paciente3 {
-  background-image: url(../../images/action_buttons/paciente3.jpg);
+  background-image: url(../images/action_buttons/paciente3.jpg);
 }
 .action-paciente4 {
-  background-image: url(../../images/action_buttons/paciente4.jpg);
+  background-image: url(../images/action_buttons/paciente4.jpg);
 }
 .action-paciente5 {
-  background-image: url(../../images/action_buttons/paciente5.jpg);
+  background-image: url(../images/action_buttons/paciente5.jpg);
 }
 .action-paciente6 {
-  background-image: url(../../images/action_buttons/paciente6.jpg);
+  background-image: url(../images/action_buttons/paciente6.jpg);
 }
 .action-paciente7 {
-  background-image: url(../../images/action_buttons/paciente7.jpg);
+  background-image: url(../images/action_buttons/paciente7.jpg);
 }
 .action-paciente8 {
-  background-image: url(../../images/action_buttons/paciente8.jpg);
+  background-image: url(../images/action_buttons/paciente8.jpg);
 }
 .action-paciente9 {
-  background-image: url(../../images/action_buttons/paciente9.jpg);
+  background-image: url(../images/action_buttons/paciente9.jpg);
 }
 .action-placa_neutra {
-  background-image: url(../../images/action_buttons/placa_neutra.jpg);
+  background-image: url(../images/action_buttons/placa_neutra.jpg);
 }
 .action-prontuario-original {
-  background-image: url(../../images/action_buttons/prontuario-original.jpg);
+  background-image: url(../images/action_buttons/prontuario-original.jpg);
 }
 .action-recepcionista {
-  background-image: url(../../images/action_buttons/recepcionista.jpg);
+  background-image: url(../images/action_buttons/recepcionista.jpg);
 }
 .action-seringa_10ml {
-  background-image: url(../../images/action_buttons/seringa_10ml.jpg);
+  background-image: url(../images/action_buttons/seringa_10ml.jpg);
 }
 .action-seringa_5ml {
-  background-image: url(../../images/action_buttons/seringa_5ml.jpg);
+  background-image: url(../images/action_buttons/seringa_5ml.jpg);
 }
 .action-soro_fisiologico_1000ml {
-  background-image: url(../../images/action_buttons/soro_fisiologico_1000ml.jpg);
+  background-image: url(../images/action_buttons/soro_fisiologico_1000ml.jpg);
 }
 .action-soro_fisiologico_100ml {
-  background-image: url(../../images/action_buttons/soro_fisiologico_100ml.jpg);
+  background-image: url(../images/action_buttons/soro_fisiologico_100ml.jpg);
 }
 .action-soro_fisiologico_250ml {
-  background-image: url(../../images/action_buttons/soro_fisiologico_250ml.jpg);
+  background-image: url(../images/action_buttons/soro_fisiologico_250ml.jpg);
 }
 .action-soro_glicofisiologico_1000ml {
-  background-image: url(../../images/action_buttons/soro_glicofisiologico_1000 ml.jpg);
+  background-image: url(../images/action_buttons/soro_glicofisiologico_1000 ml.jpg);
 }
 #commandBar {
   position: absolute;
