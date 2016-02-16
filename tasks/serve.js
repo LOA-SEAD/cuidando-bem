@@ -24,8 +24,7 @@ module.exports = function (grunt) {
             //Build and serve production
             grunt.task.run([
                 'build',
-                'connect:prod',
-                'watch'
+                'connect:prod'
             ]);
         }
     });

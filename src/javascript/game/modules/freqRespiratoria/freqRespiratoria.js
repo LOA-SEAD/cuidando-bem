@@ -7,7 +7,7 @@ define(function(require){
 	var STATES = {
 		playing: 0,
 		stopped: 1
-	}
+	};
 
 	var state = STATES.stopped;
 
@@ -120,7 +120,7 @@ define(function(require){
 
 	clock.img.onLoad = function(){
 		console.log("Clock ('watch') image loaded");
-	}
+	};
 
 
 

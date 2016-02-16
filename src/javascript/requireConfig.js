@@ -47,7 +47,7 @@ require.config({
         Pulseira: 'game/modules/pulseira/Pulseira_Modal',
         Prontuario: 'game/modules/prontuario/Prontuario',
         levelsData: 'game/modules/levelsData',
-        FreqRespiratoria: 'game/modules/freqRespiratoria/FreqRespiratoria',
+        FreqRespiratoria: 'game/modules/freqRespiratoria/freqRespiratoria',
 
         //Configs
         gameConfig: 'game/scripts/gameConfig',

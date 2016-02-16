@@ -7,7 +7,6 @@ module.exports = {
     so code on production won't fill console.
     */
     prod: {
-        //overwrite: true,
         src: ['<%= pkg.development %>' + '**/*.js'],
         dest: ['<%= pkg.production %>'],
 
@@ -79,6 +78,20 @@ module.exports = {
             {
                 from: /(console.warn)(.)*\)/g,
                 to: ''
+            }
+        ]
+    },
+    /*
+        Put game name and version in html title
+    */
+    version: {
+        src: ['<%= pkg.src %>' + '/index.html'],
+        dest: ['<%= pkg.development %>'],
+
+        replacements: [
+            {
+                from: '<title>Cuidando Bem</title>',
+                to: '<title>'+'Cuidando Bem '+'<%= pkg.version %>'+'</title>'
             }
         ]
     }

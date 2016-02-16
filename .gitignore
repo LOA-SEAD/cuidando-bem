@@ -7,6 +7,9 @@ node_modules
 #   BOWER
 libs/
 
+#   GRUNT
+.grunt/
+
 #   Production
 dev/
 prod/

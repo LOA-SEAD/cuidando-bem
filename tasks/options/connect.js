@@ -4,19 +4,19 @@ module.exports = {
 
     dev : {
         options : {
-            livereload: true,
             open: true,
+            livereload: true,
             port: '<%= pkg.port %>',
-            hostname: 'localhost',
             base: '<%= pkg.development %>'
         }
     },
 
     prod : {
-        port: '<%= pkg.port %>',
-        base: '<%= pkg.production %>',
-        open: {
-          target: 'http://localhost:' + '<%= pkg.port %>'
+        options : {
+            open: true,
+            keepalive: true,
+            port: '<%= pkg.port %>',
+            base: '<%= pkg.production %>'
         }
     },
 

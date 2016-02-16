@@ -6,23 +6,27 @@ module.exports = {
             removeComments : true,
             collapseWhitespace : true,
             collapseBooleanAttributes : true,
-            removeAttributeQuots : true,
+            removeAttributeQuotes : true,
+            removeEmptyAttributes : true,
             removeRedundantAttributes : true,
             caseSensitive : true
         },
 
-        files :  [
-            {
-                src : '<%= pkg.development %>' + "index.html",
-                dest: '<%= pkg.production %>' + "index.html"
-            },
+        prod : {
+            files :  [
+                {
+                    src : '<%= pkg.development %>' + "index.html",
+                    dest: '<%= pkg.production %>' + "index.html"
+                },
 
-            {
-                expand : true,
-                cwd: '<%= pkg.development %>',
-                dest : '<%= pkg.production %>',
-                src: "assets/html/**/*.html"
-            }
-        ]
+                {
+                    expand : true,
+                    cwd: '<%= pkg.development %>',
+                    dest : '<%= pkg.production %>',
+                    src: "assets/html/**/*.html"
+                }
+            ]
+        }
+
     }
 };
