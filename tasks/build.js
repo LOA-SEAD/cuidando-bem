@@ -60,6 +60,7 @@ module.exports = function (grunt) {
 
         if(target == 'rel') {
             grunt.task.run([
+                'compress:rel',
                 'gh-pages'
             ]);
         }
