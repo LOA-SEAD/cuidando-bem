@@ -396,10 +396,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
        //endregion ALA MASCULINA
    
+  
+    
     // region FARMACIA
     
-    
-       //  region FARMACIA
 
         var farmacia = lib.scenes.farmacia.getClone()
             .onLoad(function () {
@@ -423,7 +423,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     
                     }
             });
-
+    
+     
 
         farmacia.registerDialogs([
 
@@ -431,7 +432,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             
                  new Dialog(lib.characters.jogador)
                 .setText("")
-                .registerOption(Dialogs.farmacio[0], function () {
+                .registerOption(Dialogs.farmacia[0], function () {
                 core.openDialog(1);
             })
                 .registerOption(Dialogs.farmacia[1], function () {
@@ -481,7 +482,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                  
     ]);
     
-     
+        
 
         farmacia.registerActions([
 
@@ -672,10 +673,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
     
          //  region LEITO
 
-        var leito = lib.scenes.leitos.ana.getClone()
+        var leito = lib.scenes.leitos.josivaldo.getClone()
             .onLoad(function () {
                     core.openDialog(0);
             });
+    
+    
+    
+     
     
     leito.registerDialogs([
         
@@ -715,7 +720,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             }),
         
         // 5
-          new Dialog(lib.characters.pacientes.ana)
+          new Dialog(lib.characters.pacientes.josivaldo)
                     .setText(Dialogs.leito_paciente[5])
                     .registerOption("", function () {
                 core.closeDialog();
@@ -725,21 +730,17 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         
     
         
-        
-        
-        
-        
-        
     //endregion LEITO
     
     
     
+        
+
     
     
     
     
-    
-    
+    /*
         // region PRONTUARIO
 
 
@@ -778,7 +779,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
     
        gaveta.registerInteractiveObjects([
            
-       /*     new InteractiveObject("io-copo_descartavel", "Copo Descartável")
+            new InteractiveObject("io-copo_descartavel", "Copo Descartável")
                 .setCssClass("intObj-copoDescartavel")
                 .onClick(function () {
                     if(level.getFlag("pegar_bandeja").getValue() == false){
@@ -820,21 +821,24 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 })
                 .setVisibility(true),
            
-           */
+       
            
-        ]);
-
+        ]);*/
+    
 
     
 
        
-
+            
         //endregion
 
         //region ModalScenes
-        level.registerModalScene(prontuario);
-        level.registerModalScene(gaveta);
+    
+   //     level.registerModalScene(prontuario);
+   //     level.registerModalScene(gaveta);
+    
         //endregion
+  
 
         //region Level
 
@@ -846,8 +850,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerScene(leito);  //04
         level.registerScene(farmacia);  //05
         level.registerScene(posto_de_enfermagem);  //06
-        level.registerScene(centroCirurgico);  //07
-        level.registerScene(alaFeminina);  //08
+    //    level.registerScene(centroCirurgico);  //07
+    //    level.registerScene(alaFeminina);  //08
 
 
         // endregion
