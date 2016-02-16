@@ -7,7 +7,6 @@ module.exports = {
     rel : {
         options: {
             base: '<%= pkg.production %>',
-            tag: 'v'+'<%= pkg.version %>',
             message: 'Auto-generated commit v'+'<%= pkg.version %>'
         },
         src: ['**/*']
