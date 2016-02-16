@@ -33,7 +33,7 @@ define({
         leito: {
             perguntarNome: "Me desculpe, mas poderia repetir seu nome completo e sua data de nascimento?",
             conversa1: [
-                // 0 Mentor
+                //0 Mentor
                 "Este é o Sr. João, seu primeiro paciente. Um dos principais protocolos de segurança" +
                 " é a sua apresentação ao paciente e a certificação de que a identificação dele está correta.",
                 // 1 Jogador op 1
