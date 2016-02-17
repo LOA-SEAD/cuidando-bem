@@ -16,14 +16,14 @@ module.exports = function (grunt) {
         } else if(target == 'dev') {
             //Build and serve development
             grunt.task.run([
-                'build',
+                //'build',
                 'connect:dev',
                 'watch'
             ]);
         } else if(target == 'prod') {
             //Build and serve production
             grunt.task.run([
-                'build',
+                //'build',
                 'connect:prod'
             ]);
         }

@@ -18,7 +18,7 @@ require.config({
         //Engine
         Stage: 'engine/core/Stage',
         Player: 'engine/core/Player',
-        ImageLoader: 'engine/core/ImageLoader',
+        ImageLoader: 'engine/core/imageLoader',
 
         commandBar: 'engine/modules/command_bar/CommandBarController',
         Action: 'engine/modules/command_bar/Action',

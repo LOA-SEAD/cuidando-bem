@@ -18,7 +18,7 @@ module.exports = function (grunt) {
                 autoPubilishing :   false,
                 autoVersioning :    false
 
-            'prod' - Takes the game builded in 'prod' publishs it and updates the game version
+            'rel' - Takes the game builded in 'prod' publishs it and updates the game version
                 minifications :     true,
                 removeLogs :        true,
                 autoPubilishing :   true,
@@ -26,7 +26,7 @@ module.exports = function (grunt) {
         */
 
         var target = grunt.option('target') || 'dev';
-        var ver = grunt.option('v') || 'minor';
+        var ver = grunt.option('ver') || 'minor';
 
         grunt.log.write('Building ' + pkg.name + ':' + target);
 
@@ -39,8 +39,8 @@ module.exports = function (grunt) {
         //Build for development
         grunt.task.run([
             //'clean:dev',
-            'newer:copy:dev',
-            'newer:copy:libs',
+            'copy:dev',
+            'copy:libs',
             'replace:version',
             'newer:less:dev'
         ]);
@@ -49,10 +49,10 @@ module.exports = function (grunt) {
             //Take what was built for development and treat it for production
             grunt.task.run([
                 //'clean:prod',
-                'newer:copy:prod',
+                'copy:prod',
                 'newer:htmlmin:prod',
                 'newer:cssmin:prod',
-                'newer:replace:prod',
+                'replace:prod',
                 'newer:requirejs:prod'
             ]);
         }
@@ -60,8 +60,7 @@ module.exports = function (grunt) {
         if(target == 'rel') {
             grunt.task.run([
                 'imagemin:prod',
-                'compress:rel',
-                'gh-pages'
+                'compress:rel'
             ]);
         }
     });
