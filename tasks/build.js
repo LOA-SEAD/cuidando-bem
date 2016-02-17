@@ -39,9 +39,9 @@ module.exports = function (grunt) {
         //Build for development
         grunt.task.run([
             'clean:dev',
-            'replace:version',
             'copy:dev',
             'copy:libs',
+            'replace:version',
             'less:dev'
         ]);
 
