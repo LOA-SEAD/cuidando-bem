@@ -39,7 +39,7 @@ define(['Stage', 'levelsData'], function (Stage, game) {
      * @memberOf module:Screen_levelSelect_Controller
      */
     function load() {
-
+        text = "Selecione uma fase";
         save = Storage.getLoadedSlot();
 
         //Change player name to save slot name
