@@ -1,1 +1,0 @@
-define(["text!../html/scenes/scene.html"],function(e){function t(t){$(t).append(e)}function n(e){r(e)}function r(e){$("#backgroundScene").attr("class",e.getCssClass())}return{init:t,changeScene:n,setScene:r}});
