@@ -8,12 +8,21 @@ module.exports = {
         src: ['**'],
         expand: true
     },
+
     html: {
         cwd: '<%= pkg.source %>' + '/html',
         dest: '<%= pkg.development %>' + '/html',
         src: ['**'],
         expand: true
     },
+
+    images: {
+        cwd: '<%= pkg.source %>' + '/images',
+        dest: '<%= pkg.development %>' + '/images',
+        src: ['**'],
+        expand: true
+    },
+
     dev: {
         options:{
 
@@ -35,6 +44,7 @@ module.exports = {
             }
         ]
     },
+
     libs: {
         options:{
 
@@ -68,6 +78,7 @@ module.exports = {
             ]
         ]
     },
+    
     prod: {
         options:{
             cwd: '<%= pkg.development %>',
