@@ -38,28 +38,28 @@ module.exports = function (grunt) {
 
         //Build for development
         grunt.task.run([
-            'clean:dev',
-            'copy:dev',
-            'copy:libs',
+            //'clean:dev',
+            'newer:copy:dev',
+            'newer:copy:libs',
             'replace:version',
-            'less:dev'
+            'newer:less:dev'
         ]);
 
         if(target == 'prod' || target == 'rel') {
             //Take what was built for development and treat it for production
             grunt.task.run([
-                'clean:prod',
-                'copy:prod',
-                'htmlmin:prod',
-                'cssmin:prod',
-                'imagemin:prod',
-                'replace:prod',
-                'requirejs:prod'
+                //'clean:prod',
+                'newer:copy:prod',
+                'newer:htmlmin:prod',
+                'newer:cssmin:prod',
+                'newer:replace:prod',
+                'newer:requirejs:prod'
             ]);
         }
 
         if(target == 'rel') {
             grunt.task.run([
+                'imagemin:prod',
                 'compress:rel',
                 'gh-pages'
             ]);

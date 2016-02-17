@@ -85,7 +85,7 @@ module.exports = {
         Put game name and version in html title
     */
     version: {
-        src: ['<%= pkg.development %>' + '/index.html'],
+        src: ['<%= pkg.source %>' + '/index.html'],
         dest: ['<%= pkg.development %>' + '/index.html'],
 
         replacements: [

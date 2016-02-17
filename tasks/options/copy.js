@@ -20,6 +20,7 @@ module.exports = {
         },
         files: [
             {
+                expand: true,
                 cwd: '<%= pkg.source %>',
                 dest: '<%= pkg.development %>',
                 src: [
@@ -30,8 +31,7 @@ module.exports = {
                     'javascript/**',
                     'sounds/**',
                     'index.html'
-                ],
-                expand: true
+                ]
             }
         ]
     },
