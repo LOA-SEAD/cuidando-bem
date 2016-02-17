@@ -1,6 +1,10 @@
 //htmlmin
 'use strict';
 module.exports = {
+    options: {
+
+    },
+    
     prod : {
         options : {
             removeComments : true,
@@ -27,6 +31,5 @@ module.exports = {
                 }
             ]
         }
-
     }
 };

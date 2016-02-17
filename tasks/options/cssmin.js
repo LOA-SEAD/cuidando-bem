@@ -1,6 +1,10 @@
 //cssmin
 'use strict';
 module.exports = {
+	options: {
+
+    },
+    
     prod : {
         options : {
             keepSpecialComments : 0

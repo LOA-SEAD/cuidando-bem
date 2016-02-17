@@ -1,6 +1,9 @@
 //replace
 'use strict';
 module.exports = {
+    options: {
+
+    },    
 
     /*
         Remove console stuff from code before minification,

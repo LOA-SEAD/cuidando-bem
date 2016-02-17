@@ -1,6 +1,10 @@
 //less
 'use strict';
 module.exports = {
+    options: {
+
+    },
+    
     dev: {
         files: [
             {

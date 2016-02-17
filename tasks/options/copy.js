@@ -1,26 +1,29 @@
 //copy
 'use strict';
 module.exports = {
+    options: {
 
+    },
+    
     js: {
+        expand: true,
         cwd: '<%= pkg.source %>' + '/javascript',
         dest: '<%= pkg.development %>' + '/javascript',
-        src: ['**'],
-        expand: true
+        src: ['**']
     },
 
     html: {
+        expand: true,
         cwd: '<%= pkg.source %>' + '/html',
         dest: '<%= pkg.development %>' + '/html',
-        src: ['**'],
-        expand: true
+        src: ['**']
     },
 
     images: {
+        expand: true,
         cwd: '<%= pkg.source %>' + '/images',
         dest: '<%= pkg.development %>' + '/images',
-        src: ['**'],
-        expand: true
+        src: ['**']
     },
 
     dev: {
@@ -78,7 +81,7 @@ module.exports = {
             ]
         ]
     },
-    
+
     prod: {
         options:{
             cwd: '<%= pkg.development %>',
@@ -88,6 +91,7 @@ module.exports = {
     },
 
     docs: {
+        expand: true,
         cwd: '<%= pkg.source %>',
         dest: '<%= pkg.documentation %>',
         src: [
@@ -97,7 +101,6 @@ module.exports = {
             '!scripts/stageConfig/*.js',
             '!scripts/main.js',
             '!scripts/requireJsBootstrap.js'
-        ],
-        expand: true
+        ]
     }
 };

@@ -4,6 +4,7 @@ module.exports = {
     options : {
 
     },
+    
     rel : {
         options: {
             base: '<%= pkg.production %>',

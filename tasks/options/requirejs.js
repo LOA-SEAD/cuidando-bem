@@ -1,6 +1,10 @@
 //requirejs
 'use strict';
 module.exports = {
+    options: {
+
+    },
+    
     prod: {
         options: {
             appDir: '<%= pkg.development %>',

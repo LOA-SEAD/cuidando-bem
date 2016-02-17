@@ -1,7 +1,10 @@
 //clean
 'use strict';
 module.exports = {
+    options: {
 
+    },
+    
     dev : {
         options : {
             open: true,

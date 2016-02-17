@@ -1,6 +1,10 @@
 //compress
 'use strict';
 module.exports = {
+    options: {
+
+    },
+    
     rel : {
         options : {
             mode: 'zip',
@@ -9,10 +13,9 @@ module.exports = {
         files :[
             {
                 expand: true,
-
                 cwd: '<%= pkg.production %>',
-                src: ['**/*'],
-                dest: '<%= pkg.name %>'+'-'+'<%= pkg.version %>'
+                dest: '<%= pkg.name %>'+'-'+'<%= pkg.version %>',
+                src: ['**/*']
             }
         ]
     }

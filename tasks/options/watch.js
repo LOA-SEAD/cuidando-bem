@@ -1,7 +1,11 @@
 //watch
 'use strict';
 module.exports = {
-    js : {
+    options: {
+        livereload: false
+    },
+    
+    js : {        
         files: [
             '<%= pkg.source %>' + '/javascript/**/*.js'
         ],
@@ -9,41 +13,29 @@ module.exports = {
             //'clean:js', 
             'newer:copy:js', 
             'newer:copy:libs'
-        ],
-        options: {
-            livereload: false
-        }
+        ]        
     },
 
-    html : {
+    html : {        
         files: [
             '<%= pkg.source %>' + '/html/**/*.html'
         ],
         tasks: [
             //'clean:html', 
             'newer:copy:html'
-        ],
-        options: {
-            livereload: false
-        }
+        ]        
     },
 
-    less : {
+    less : {        
         files: [
             '<%= pkg.source %>' + '/css/**/*.less'
         ],
         tasks: [
             'newer:less:dev'
-        ],
-        options: {
-            livereload: false
-        }
+        ]        
     },
 
-    images : {
-        options: {
-            livereload: false,
-        },
+    images : {        
         files: [
             '<%= pkg.source %>' + '/images/**/*.{png,jpg,jpeg,gif}'
         ],
@@ -53,11 +45,11 @@ module.exports = {
     },
 
     livereload : {
-        files: [
-            '<%= pkg.development %>' + '/**/*'
-        ],
         options: {
             livereload: true
-        }
+        },
+        files: [
+            '<%= pkg.development %>' + '/**/*'
+        ]        
     }
 };

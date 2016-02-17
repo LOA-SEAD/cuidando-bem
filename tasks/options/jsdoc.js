@@ -1,6 +1,10 @@
 //jsdoc
 'use strict';
 module.exports = {
+    options: {
+
+    },
+    
     docs : {
         src: [
             '<%= pkg.source %>'+'/**/*.js',
