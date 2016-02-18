@@ -4,10 +4,9 @@ module.exports = {
     options: {
 
     },
-    
+
     dev : {
         options : {
-            open: true,
             livereload: true,
             port: '<%= pkg.port %>',
             base: '<%= pkg.development %>'
@@ -16,7 +15,6 @@ module.exports = {
 
     prod : {
         options : {
-            open: true,
             keepalive: true,
             port: '<%= pkg.port %>',
             base: '<%= pkg.production %>'
