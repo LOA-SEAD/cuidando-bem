@@ -125,10 +125,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
              new Dialog(lib.characters.jogador)
                 .setText("")
                 .registerOption(Dialogs.corredor[1], function () {
-                core.openDialog(3);
+                core.openDialog(2);
             })
                 .registerOption(Dialogs.corredor[2], function () {
-                core.openDialog(2);
+                core.openDialog(3);
             })
                 .setRandomize(true),
             
@@ -136,17 +136,17 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             // 2 Mentor Corrige
             
             new Dialog(lib.characters.mentor)
-                .setText(Dialogs.corredor[4])
+                .setText(Dialogs.corredor[3])
                 .registerOption("", function () {
-                core.openDialog(1);
+                core.closeDialog();
             }),
             
             // 3
         
               new Dialog(lib.characters.mentor)
-                .setText(Dialogs.corredor[3])
+                .setText(Dialogs.corredor[4])
                 .registerOption("", function () {
-                core.closeDialog();
+                core.openDialog(1);
             })
     ]);
     
@@ -289,7 +289,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         function corredorIrAlaMasculina() {
             
             console.log("Action: coredorirAlaMasculina");
-            core.changeScene(3);
+        
+            core.changeScene(2);
             
             if(level.getFlag("ir_AlaMasculina_primeiraVez").getValue() == false) 
                 level.getFlag("ir_AlaMasculina_primeiraVez").setValue(true);
@@ -305,18 +306,21 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
       //region ALA MASCULINA
 
 
-        var alaMasculina = lib.scenes.alaMasculina.getClone()
+      var alaMasculina = lib.scenes.alaMasculina.getClone()
             .onLoad(function () {
                 console.log("Load scene: " + alaMasculina.getName());
-                //
+                core.openDialog(0);
             });
     
+
     
+        
+            
      alaMasculina.registerDialogs([
 
                         // 0
             
-            new Dialog(lib.characters.jogador)
+             new Dialog(lib.characters.jogador)
                 .setText(Dialogs.ala_masculina[0])
                 .registerOption("", function () {
                 core.openDialog(1);
@@ -328,7 +332,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             new Dialog(lib.characters.pacientes.josivaldo)
                 .setText(Dialogs.ala_masculina[1])
                 .registerOption("", function () {
-                core.openDialog(2);
+                core.closeDialog();
             }),
          
          
@@ -354,8 +358,17 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 core.openDialog(2);
             }),
          
+         // 4
+         
+           new Dialog(lib.characters.mentor)
+                    .setText(Alertas.lavar_maos.tipo3)
+                    .registerOption("", function () {
+                core.closeDialog();
+            }),
+         
         
-        ]);
+    ]);
+         
 
     alaMasculina.registerInteractiveObjects([  
     
@@ -374,24 +387,45 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
  ]);
     
-     alaMasculina.registerActions([  
+     alaMasculina.registerActions([   
 
     
-      new Action("btn-ler_prontuario", "Ler prontuario")
+   
+            new Action("btn-ler_prontuario", "Ler prontuario")
                 .setCssClass("action-ler_prontuario")
                 .onClick(function () {
-                console.log("Action: ler prontuario");
-                Prontuario.open();
-                core.openModalScene("Prontuario");
-
-                if (level.getFlag("ler_prontuario").getValue() == false) 
-                    level.getFlag("ler_prontuario").setValue(true);
-                   
-                
+                if(level.getFlag("lavar_maos").getValue() == false)
+                    core.openDialog(4);   
+                else {
+                        
+                        level.getFlag("ler_prontuario").setValue(true);
+                        console.log("Action: ler prontuario");
+                        Prontuario.open();
+                        core.openModalScene("Prontuario");
+                //        core.registerScoreItem(Scores.verProntuario);         
+                 
+                }
             })
-                .setVisibility(true)
+                .setVisibility(true),
+            
+            
+              new Action("btn-lavar_maos", "Lavar as mãos")
+                .setCssClass("action-lavar_maos")
+                .onClick(function () {
+                    
+                if(level.getFlag("lavar_maos").getValue() == false){
+                    level.getFlag("lavar_maos").setValue(true);
+                  //   core.registerScoreItem(Scores.lavarMaos);      
+                 
+                    
+                }
+                   
+            })
+            .setVisibility(true),
          
-          ]);
+         
+         ]);  
+
     
 
        //endregion ALA MASCULINA
@@ -740,7 +774,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
     
     
     
-    /*
+    
         // region PRONTUARIO
 
 
@@ -758,7 +792,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
                 ]);
     
-    
+    /*
     // region GAVETA
     
      gaveta = new Scene("gaveta", "Gaveta")
@@ -823,7 +857,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
            
        
            
-        ]);*/
+        ]);    */
     
 
     
@@ -834,7 +868,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region ModalScenes
     
-   //     level.registerModalScene(prontuario);
+        level.registerModalScene(prontuario);
    //     level.registerModalScene(gaveta);
     
         //endregion
@@ -844,14 +878,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
 
         //region Register Scenes
 
-        level.registerScene(recepcao);  //01
-        level.registerScene(corredor);  //02
-        level.registerScene(alaMasculina);  //03
-        level.registerScene(leito);  //04
-        level.registerScene(farmacia);  //05
-        level.registerScene(posto_de_enfermagem);  //06
-    //    level.registerScene(centroCirurgico);  //07
-    //    level.registerScene(alaFeminina);  //08
+        level.registerScene(recepcao);  //00
+        level.registerScene(corredor);  //01
+        level.registerScene(alaMasculina);  //02
+        level.registerScene(leito);  //03
+        level.registerScene(farmacia);  //04
+        level.registerScene(posto_de_enfermagem);  //05
+    //    level.registerScene(centroCirurgico);  //06
+    //    level.registerScene(alaFeminina);  //07
 
 
         // endregion
@@ -876,7 +910,8 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             level.getFlag("ir_AlaMasculina_primeiraVez").setValue(false);
             level.getFlag("ler_prontuario").setValue(false);
             level.getFlag("pegar_dieta").setValue(false);
-            level.getFlag("conferir_dieta").setValue(false);
+            level.getFlag("pegar_dieta").setValue(false);
+            level.getFlag("lavar_maos").setValue(false);
             
     /*        
               //  dados do prontuario
@@ -919,6 +954,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("ler_prontuario"), false);
         level.registerFlag(new Flag("pegar_dieta"), false);
         level.registerFlag(new Flag("conferir_dieta"), false);
+        level.registerFlag(new Flag("lavar_maos"), false);
                     
                     
                     

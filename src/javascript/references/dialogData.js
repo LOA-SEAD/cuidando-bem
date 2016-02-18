@@ -539,8 +539,10 @@ define({
             " prestar atenção na conexão correta da sonda.",
             // 2 Jogador op 2
             "Sim, Alberto! Não se preocupe, passar uma dieta é simples.",
-            // 3 Mentor
-            "Boa sorte com seu novo paciente!"
+            //3 Mentor
+            "Boa sorte com seu novo paciente!",
+            //4 Mentor Corrige
+            "A administração de dieta é um procedimento que requer muita atenção para um tratamento efetivo!"
         ],
         alaMasculina: [
             // 0 Jogador
@@ -551,8 +553,10 @@ define({
             // 2 Jogador op 1
             "Senhor Josivaldo... Seu prontuário tem uma prescrição de dieta," +
             " vou até a farmácia buscar os equipamentos necessários e já volto.",
-            // 3 Jogador op 2
-            "Senhor Josivaldo... Além de sua sonda nasogástrica, por hora não há nada prescrito."
+            //3 Jogador op 2
+            "Senhor Josivaldo... Além de sua sonda nasogástrica, por hora não há nada prescrito.",
+            // 4 Mentor Corrige
+            "O prontuário do paciente precisa ser consultado!"
         ],
         farmacia: [
             // 0 Jogador op 1
