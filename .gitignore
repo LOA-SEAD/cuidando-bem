@@ -15,6 +15,9 @@ dev/
 prod/
 dist/
 
+#   JS LINTING
+jscs.log
+
 #   JsDoc Documentation
 docs/
 
