@@ -11,7 +11,7 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(function () {
+define(function() {
     console.info("Stage - module loaded");
 
     var Errors = {
@@ -64,10 +64,10 @@ define(function () {
      * @memberOf module:Stage
      */
     function start() {
-        if(containerSelector == undefined)
-            throw new Error(Errors.undefinedContainer);
+        if ( containerSelector == undefined )
+            throw new Error( Errors.undefinedContainer );
 
-        changeScreen(startingScreenId);
+        changeScreen( startingScreenId );
     }
 
     /**
@@ -80,7 +80,7 @@ define(function () {
      *
      * @memberOf module:Stage
      */
-    function Screen(_name, _htmlPage, _controllerName) {
+    function Screen( _name, _htmlPage, _controllerName ) {
 
         /**
          * The screen name
@@ -132,7 +132,7 @@ define(function () {
         return {
             getHtmlPage: getHtmlPage,
             getControllerName: getControllerName
-        }
+        };
     }
 
     /**
@@ -145,9 +145,9 @@ define(function () {
      *
      * @memberOf module:Stage
      */
-    function registerScreen(_name, _htmlPage, _controller) {
-        console.log('\tAdding Screen: ', _name, _htmlPage, _controller);
-        screens.push(new Screen(_name, _htmlPage, _controller));
+    function registerScreen( _name, _htmlPage, _controller ) {
+        console.log( "\tAdding Screen: ", _name, _htmlPage, _controller );
+        screens.push( new Screen( _name, _htmlPage, _controller ) );
     }
 
     /**
@@ -158,16 +158,16 @@ define(function () {
      *
      * @memberOf module:Stage
      */
-    function changeScreen(nextScreenId) {
-        var nextScreen = screens[nextScreenId];
+    function changeScreen( nextScreenId ) {
+        var nextScreen = screens[ nextScreenId ];
 
         //console.log('text!'+htmlPath+nextScreen.getHtmlPage());
 
 
-        require(['text!' + htmlPath + nextScreen.getHtmlPage(), controllerPath + nextScreen.getControllerName()], function (page, controller) {
-            console.log("Actual Screen Name: " + nextScreen.getControllerName());
-            $(containerSelector).empty();
-            $(containerSelector).append(page);
+        require([ "text!" + htmlPath + nextScreen.getHtmlPage(), controllerPath + nextScreen.getControllerName() ], function( page, controller ) {
+            console.log("Actual Screen Name: " + nextScreen.getControllerName() );
+            $( containerSelector ).empty();
+            $( containerSelector ).append( page );
             controller.load();
         });
     }
@@ -180,7 +180,7 @@ define(function () {
      *
      * @memberOf module:Stage
      */
-    function setHtmlPath(_path) {
+    function setHtmlPath( _path ) {
         htmlPath = _path;
     }
 
@@ -193,7 +193,7 @@ define(function () {
      *
      * @memberOf module:Stage
      */
-    function setContainer(_id){
+    function setContainer( _id ) {
         containerSelector = _id;
     }
 
@@ -206,7 +206,7 @@ define(function () {
      *
      * @memberOf module:Stage
      */
-    function setStartingScreenId(_id){
+    function setStartingScreenId( _id ) {
         startingScreenId = _id;
     }
 
@@ -218,7 +218,7 @@ define(function () {
      *
      * @memberOf module:Stage
      */
-    function getContainer(){
+    function getContainer() {
         return containerSelector;
     }
 
@@ -230,7 +230,7 @@ define(function () {
      *
      * @memberOf module:Stage
      */
-    function setControllersPath(_path) {
+    function setControllersPath( _path ) {
         controllerPath = _path;
     }
 
@@ -245,5 +245,5 @@ define(function () {
 
         setContainer: setContainer,
         getContainer: getContainer
-    }
+    };
 });

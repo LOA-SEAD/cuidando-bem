@@ -5,7 +5,7 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['text!../html/pulseira/pulseira.html'], function (html) {
+define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
 
 //Attributes
     /**
@@ -116,8 +116,8 @@ define(['text!../html/pulseira/pulseira.html'], function (html) {
      * @method init
      * @memberOf module:Pulseira_Controller
      */
-    function init(selector) {
-        $(selector).append(html);
+    function init( selector ) {
+        $( selector ).append( html );
     }
 
     /**
@@ -129,8 +129,8 @@ define(['text!../html/pulseira/pulseira.html'], function (html) {
     function open() {
         console.info("Show Modal Scene");
         showing = true;
-        $(divSelector).show();
-        $(dataInputSelector).mask('00/00/0000');
+        $( divSelector ).show();
+        $( dataInputSelector ).mask( "00/00/0000" );
     }
 
     /**
@@ -141,23 +141,23 @@ define(['text!../html/pulseira/pulseira.html'], function (html) {
     function close() {
         console.info("Close modal Scene");
         showing = false;
-        $(divSelector).hide();
+        $( divSelector ).hide();
     }
 
     function disable() {
         disable = true;
 
-        $(dataInputSelector).prop( "disabled", true );
-        $(leitoInputSelector).prop( "disabled", true );
-        $(nameInputSelector).prop( "disabled", true );
+        $( dataInputSelector ).prop( "disabled", true );
+        $( leitoInputSelector ).prop( "disabled", true );
+        $( nameInputSelector ).prop( "disabled", true );
     }
 
     function enable() {
         disable = false;
 
-        $(dataInputSelector).prop( "disabled", false );
-        $(leitoInputSelector).prop( "disabled", false );
-        $(nameInputSelector).prop( "disabled", false );
+        $( dataInputSelector ).prop( "disabled", false );
+        $( leitoInputSelector ).prop( "disabled", false );
+        $( nameInputSelector ).prop( "disabled", false );
     }
 
 //Getters
@@ -177,7 +177,7 @@ define(['text!../html/pulseira/pulseira.html'], function (html) {
      * @return validName
      * @memberOf module:Pulseira_Controller
      */
-    function isNameValid(){
+    function isNameValid() {
         return validName;
     }
 
@@ -187,7 +187,7 @@ define(['text!../html/pulseira/pulseira.html'], function (html) {
      * @return validData
      * @memberOf module:Pulseira_Controller
      */
-    function isDataValid(){
+    function isDataValid() {
         return validData;
     }
 
@@ -197,20 +197,20 @@ define(['text!../html/pulseira/pulseira.html'], function (html) {
      * @return validLeito
      * @memberOf module:Pulseira_Controller
      */
-    function isLeitoValid(){
+    function isLeitoValid() {
         return validLeito;
     }
 
-    function isAllDataValid(){
+    function isAllDataValid() {
         var valid = true;
 
-        var data = $(dataInputSelector).val().toLowerCase();
-        var leito = $(leitoInputSelector).val().toLowerCase();
-        var name = $(nameInputSelector).val().toLowerCase();
+        var data = $( dataInputSelector ).val().toLowerCase();
+        var leito = $( leitoInputSelector ).val().toLowerCase();
+        var name = $( nameInputSelector ).val().toLowerCase();
 
-        valid = valid && nameRegExp.test(name);
-        valid = valid && leitoRegExp.test(leito);
-        valid = valid && dataRegExp.test(data);
+        valid = valid && nameRegExp.test( name );
+        valid = valid && leitoRegExp.test( leito );
+        valid = valid && dataRegExp.test( data );
 
         return valid;
     }
@@ -223,13 +223,13 @@ define(['text!../html/pulseira/pulseira.html'], function (html) {
      *
      * @memberOf module:Pulseira_Controller
      */
-    function setNameRegExp(_nameRegExp) {
+    function setNameRegExp( _nameRegExp ) {
         nameRegExp = _nameRegExp;
         return this;
     }
 
-    function setName(_name) {
-        $(nameInputSelector).val(_name);
+    function setName( _name ) {
+        $( nameInputSelector ).val( _name );
     }
 
     /**
@@ -239,13 +239,13 @@ define(['text!../html/pulseira/pulseira.html'], function (html) {
      *
      * @memberOf module:Pulseira_Controller
      */
-    function setDataRegExp(_dataRegExp){
+    function setDataRegExp( _dataRegExp ) {
         dataRegExp = _dataRegExp;
         return this;
     }
 
-    function setData(_data) {
-        $(dataInputSelector).val(_data);
+    function setData( _data ) {
+        $( dataInputSelector ).val( _data );
     }
 
     /**
@@ -255,19 +255,19 @@ define(['text!../html/pulseira/pulseira.html'], function (html) {
      *
      * @memberOf module:Pulseira_Controller
      */
-    function setLeitoRegExp(_leitoRegExp){
+    function setLeitoRegExp( _leitoRegExp ) {
         leitoRegExp = _leitoRegExp;
         return this;
     }
 
-    function setLeito(_leito) {
-        $(leitoInputSelector).val(_leito);
+    function setLeito( _leito ) {
+        $( leitoInputSelector ).val( _leito );
     }
 
     function resetData() {
-        setName('');
-        setLeito('');
-        setData('');
+        setName( "" );
+        setLeito( "" );
+        setData( "" );
     }
 
 

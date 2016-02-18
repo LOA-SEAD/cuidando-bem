@@ -6,9 +6,9 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['Stage', 'CuidandoBem'], function (Stage, Core) {
+define([ "Stage", "CuidandoBem" ], function( Stage, Core ) {
 
-    var Player = require('Player');
+    var Player = require( "Player" );
 
     /**
      * This method is called when the screen Game is loaded
@@ -19,12 +19,12 @@ define(['Stage', 'CuidandoBem'], function (Stage, Core) {
      * @memberOf module:Screen_game_Controller
      */
     function load() {
-        $('.menuButton').click(function(){
-            Player.play(Player.audios.sfx.selecionar_menu);
+        $( ".menuButton" ).click(function() {
+            Player.play( Player.audios.sfx.selecionar_menu );
         });
 
-        $('.backButton').click(function () {
-            Stage.changeScreen(0);
+        $( ".backButton" ).click(function() {
+            Stage.changeScreen( 0 );
         });
 
         Core.init();
@@ -45,6 +45,6 @@ define(['Stage', 'CuidandoBem'], function (Stage, Core) {
     return {
         load: load,
         unload: unload
-    }
+    };
 
 });

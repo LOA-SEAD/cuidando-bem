@@ -6,22 +6,22 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['Stage'], function (Stage) {
+define([ "Stage" ], function( Stage ) {
 
-    var Player = require('Player');
-    var Storage = require('Storage');
+    var Player = require( "Player" );
+    var Storage = require( "Storage" );
     var saves = Storage.load();
 
     var selectedId = Storage.getSelectedId();
 
-    var isSelectedEmpty = saves[selectedId].empty;
+    var isSelectedEmpty = saves[ selectedId ].empty;
 
     var deleteDialogSelector = "#dialog-confirmDelete";
     var typeNameDialogSelector = "#dialog-typeName";
     var nameInputSelector = "#nameInput";
 
     // var defaultNameInputValue = 'Cuidando Bem';
-    var defaultNameInputValue = '';
+    var defaultNameInputValue = "";
 
 
 
@@ -37,7 +37,7 @@ define(['Stage'], function (Stage) {
 
         //region Setup Dialogs
         //region Delete Slot
-        $(deleteDialogSelector).dialog({
+        $( deleteDialogSelector ).dialog({
             resizable: false,
             autoOpen: false,
             height: 200,
@@ -46,35 +46,35 @@ define(['Stage'], function (Stage) {
             buttons: [
                 {
                     text: "Voltar",
-                    "class": 'dialogVoltarBtt',
+                    "class": "dialogVoltarBtt",
                     click: function() {
                         $( this ).dialog( "close" );
                     }
                 },
                 {
                     text: "Apagar",
-                    "class": 'dialogApagarBtt',
+                    "class": "dialogApagarBtt",
                     //"class": 'dialogConfirmarBtt menuButton menuButtonBlue',
                     click: function() {
-                        slotsSel = $('.slot');
+                        slotsSel = $( ".slot" );
 
                         $( this ).dialog( "close" );
-                        Storage.reset(selectedId);
+                        Storage.reset( selectedId );
 
-                        $(slotsSel[selectedId]).removeClass("filled");
-                        $(slotsSel[selectedId]).addClass("empty");
+                        $( slotsSel[ selectedId ] ).removeClass("filled");
+                        $( slotsSel[ selectedId ] ).addClass("empty");
 
-                        saves[selectedId] = Storage.loadSlot(selectedId);
-                        var save = saves[selectedId];
+                        saves[ selectedId ] = Storage.loadSlot( selectedId );
+                        var save = saves[ selectedId ];
                         isSelectedEmpty = save.empty;
-                        $(slotsSel[selectedId]).text(save.name);
+                        $( slotsSel[ selectedId ] ).text( save.name );
                         checkIfSlotIsEmpty();
                     }
                 }
             ]
         });
 
-        $(deleteDialogSelector)
+        $( deleteDialogSelector )
             .dialog()
             .dialog( "widget" )
             .find( ".ui-dialog-titlebar-close" )
@@ -82,7 +82,7 @@ define(['Stage'], function (Stage) {
 
         //endregion
         //region Type Name
-        $(typeNameDialogSelector).dialog({
+        $( typeNameDialogSelector ).dialog({
             resizable: false,
             autoOpen: false,
             height: 210,
@@ -91,35 +91,35 @@ define(['Stage'], function (Stage) {
             buttons: [
                 {
                     text: "Voltar",
-                    "class": 'dialogVoltarBtt',
+                    "class": "dialogVoltarBtt",
                     click: function() {
                         $( this ).dialog( "close" );
-                        $(nameInputSelector).val(defaultNameInputValue);
+                        $( nameInputSelector ).val( defaultNameInputValue );
                     }
                 },
                 {
                     text: "Confirmar",
-                    "class": 'dialogConfirmarBtt',
+                    "class": "dialogConfirmarBtt",
                     //"class": 'dialogConfirmarBtt menuButton menuButtonBlue',
                     click: function() {
                         $( this ).dialog( "close" );
-                        var name = $(nameInputSelector).val();
-                        if(name === null || name === undefined || name === '' || name === defaultNameInputValue)
-                           name = defaultNameInputValue +" "+ (selectedId + 1);
+                        var name = $( nameInputSelector ).val();
+                        if ( name === null || name === undefined || name === "" || name === defaultNameInputValue )
+                           name = defaultNameInputValue + " " + (selectedId + 1);
 
-                        Storage.setupSlot(selectedId, name);
+                        Storage.setupSlot( selectedId, name );
 
-                        Storage.loadSlot(selectedId);
+                        Storage.loadSlot( selectedId );
 
                         isSelectedEmpty = false;
                         checkIfSlotIsEmpty();
-                        Stage.changeScreen(6);
+                        Stage.changeScreen( 6 );
                     }
                 }
             ]
         });
 
-        $(typeNameDialogSelector)
+        $( typeNameDialogSelector )
             .dialog()
             .dialog( "widget" )
             .find( ".ui-dialog-titlebar-close" )
@@ -129,61 +129,61 @@ define(['Stage'], function (Stage) {
 
 
 
-        var slotsSel = $('.slot');
+        var slotsSel = $( ".slot" );
 
-        $(slotsSel[selectedId]).addClass("selected");
+        $( slotsSel[ selectedId ] ).addClass("selected");
 
         checkIfSlotIsEmpty();
 
         var i;
-        for(i in saves){
-            var save = saves[i];
+        for ( i in saves ) {
+            var save = saves[ i ];
 
-            if(save.empty){
-                $(slotsSel[i]).addClass("empty");
-            }else{
-                $(slotsSel[i]).addClass("filled");
+            if ( save.empty ) {
+                $( slotsSel[ i ] ).addClass("empty");
+            }else {
+                $( slotsSel[ i ] ).addClass("filled");
             }
 
-            $(slotsSel[i]).text(save.name);
+            $( slotsSel[ i ] ).text( save.name );
         }
 
-        $('.menuButton').click(function(){
-            Player.play(Player.audios.sfx.selecionar_menu);
+        $( ".menuButton" ).click(function() {
+            Player.play( Player.audios.sfx.selecionar_menu );
         });
 
-        $('.backButton').click(function () {
-            Stage.changeScreen(0);
+        $( ".backButton" ).click(function() {
+            Stage.changeScreen( 0 );
         });
 
-        $('#deleteSlot').click(function(){
-            if(!isSelectedEmpty) {
+        $( "#deleteSlot" ).click(function() {
+            if ( !isSelectedEmpty ) {
                 $("#dialog-confirmDelete")
                     .dialog("open");
             }
         });
 
-        $('#loadSlot').click(function(){
-            if(!isSelectedEmpty) {
-                Storage.loadSlot(selectedId);
-                Stage.changeScreen(6);
-            }else{
-                $(typeNameDialogSelector)
+        $( "#loadSlot" ).click(function() {
+            if ( !isSelectedEmpty ) {
+                Storage.loadSlot( selectedId );
+                Stage.changeScreen( 6 );
+            }else {
+                $( typeNameDialogSelector )
                     .dialog("open");
             }
         });
 
-        slotsSel.click(function () {
-            var slotsSel = $('.slot');
-            selectedId = slotsSel.index(this);
-            slotsSel.removeClass('selected');
+        slotsSel.click(function() {
+            var slotsSel = $( ".slot" );
+            selectedId = slotsSel.index( this );
+            slotsSel.removeClass( "selected" );
 
-            $(this).addClass('selected');
-            var save = saves[selectedId];
+            $( this ).addClass( "selected" );
+            var save = saves[ selectedId ];
             isSelectedEmpty = save.empty;
             checkIfSlotIsEmpty();
 
-            Storage.setSelectedId(selectedId);
+            Storage.setSelectedId( selectedId );
         });
     }
 
@@ -196,14 +196,14 @@ define(['Stage'], function (Stage) {
      * @memberOf module:Screen_newGameSlotSelect_Controller
      */
     function checkIfSlotIsEmpty() {
-        if(isSelectedEmpty) {
-            $('#deleteSlot').addClass('disabled');
+        if ( isSelectedEmpty ) {
+            $( "#deleteSlot" ).addClass( "disabled" );
 
-            $('#loadSlot').text('Iniciar');
-        }else{
-            $('#deleteSlot').removeClass('disabled');
+            $( "#loadSlot" ).text( "Iniciar" );
+        }else {
+            $( "#deleteSlot" ).removeClass( "disabled" );
 
-            $('#loadSlot').text('Carregar');
+            $( "#loadSlot" ).text( "Carregar" );
         }
     }
 
@@ -222,6 +222,6 @@ define(['Stage'], function (Stage) {
     return {
         load: load,
         unload: unload
-    }
+    };
 
 });

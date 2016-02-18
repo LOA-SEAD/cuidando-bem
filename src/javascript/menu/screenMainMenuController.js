@@ -6,9 +6,9 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['Stage'], function (Stage) {
+define([ "Stage" ], function( Stage ) {
 
-    var Player = require('Player');
+    var Player = require( "Player" );
 
     /**
      * This method is called when the screen mainMenu is loaded
@@ -23,39 +23,39 @@ define(['Stage'], function (Stage) {
         //Player.play(Player.audios.fundo);
 
         //Player.playInLoop(Player.audios.loops.recepcao);
-        Player.playInLoop(Player.audios.musics.test);
+        Player.playInLoop( Player.audios.musics.test );
         //Player.playInLoop(Player.audios.loops.background);
         //Player.playInRange(Player.audios.sfx.objeto);
 
         console.log("Configuring main menu listeners");
         //var menuButtons = $('.menuButton');
 
-        $('.menuButton').click(function(){
-           Player.play(Player.audios.sfx.selecionar_menu);
+        $( ".menuButton" ).click(function() {
+           Player.play( Player.audios.sfx.selecionar_menu );
         });
 
         //Iniciar Jogo
-        $('#initGame_btn').click(function () {
-            console.log(this);
-            Stage.changeScreen(5);
+        $( "#initGame_btn" ).click(function() {
+            console.log( this );
+            Stage.changeScreen( 5 );
         });
 
         //Carregar Jogo
-        $('#conteudo_btn').click(function () {
-            console.log(this);
-            Stage.changeScreen(7);
+        $( "#conteudo_btn" ).click(function() {
+            console.log( this );
+            Stage.changeScreen( 7 );
         });
 
         //Configurações
-        $('#config_btn').click(function () {
-            console.log(this);
-            Stage.changeScreen(4);
+        $( "#config_btn" ).click(function() {
+            console.log( this );
+            Stage.changeScreen( 4 );
         });
 
         //Créditos
-        $('#credits_btn').click(function () {
-            console.log(this);
-            Stage.changeScreen(3);
+        $( "#credits_btn" ).click(function() {
+            console.log( this );
+            Stage.changeScreen( 3 );
         });
     }
 
@@ -75,6 +75,6 @@ define(['Stage'], function (Stage) {
     return {
         load: load,
         unload: unload
-    }
+    };
 
 });

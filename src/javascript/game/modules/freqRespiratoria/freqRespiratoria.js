@@ -1,6 +1,6 @@
-define(function(require){
+define(function( require ) {
 
-	var html = require('text!../html/freqRespiratoria/freqRespiratoria.html');
+	var html = require( "text!../html/freqRespiratoria/freqRespiratoria.html" );
 
 	var canvasSelector = "#freqRespiratoria";
 
@@ -32,10 +32,10 @@ define(function(require){
 
 		accumulator: 0,
 		time: 1
-	}
-	tick.time = 1000/tick.rate;
+	};
+	tick.time = 1000 / tick.rate;
 
-	function Animation (){
+	function Animation () {
 		this.x;
 		this.y;
 
@@ -55,11 +55,11 @@ define(function(require){
 		this.srHeight;
 
 
-		this.update = function(){
+		this.update = function() {
 
 			this.accumulator += tick.time;
 
-			while(this.accumulator >= this.frameTime){
+			while ( this.accumulator >= this.frameTime ) {
 
 				this.frameCounter++;
 				this.frameCounter = this.frameCounter % this.frameTotal;
@@ -67,19 +67,19 @@ define(function(require){
 
 				this.accumulator -= this.frameTime;
 			}
-		}
+		};
 
-		this.draw = function(canvas){
-			if(this.hasToDraw){
-				var ctx = canvas.getContext('2d');
+		this.draw = function( canvas ) {
+			if ( this.hasToDraw ) {
+				var ctx = canvas.getContext( "2d" );
 
 				var fx = this.frameCounter * this.width;
 
-				var img = this.img[this.frameCounter];
+				var img = this.img[ this.frameCounter ];
 
-				ctx.drawImage(img, 0, 0, this.srWidth, this.srHeight, this.x, this.y, this.width, this.height);
+				ctx.drawImage( img, 0, 0, this.srWidth, this.srHeight, this.x, this.y, this.width, this.height );
 			}
-		}
+		};
 	}
 
 	var breathing = new Animation();
@@ -91,53 +91,53 @@ define(function(require){
 	breathing.srHeight = 1152;
 	breathing.frameTotal = 12;
 	breathing.cyclesPerMinute = 18;
-	breathing.frameTime = 1000*60/breathing.cyclesPerMinute/breathing.frameTotal;
+	breathing.frameTime = 1000 * 60 / breathing.cyclesPerMinute / breathing.frameTotal;
 
 	var imgsLoaded = 0;
-	for(i=0; i<breathing.frameTotal; i++){
-		breathing.img.push(new Image());
+	for ( i = 0; i < breathing.frameTotal; i++ ) {
+		breathing.img.push( new Image() );
 
-		breathing.img[i].onload = function(){
-			console.log("Image "+i+" loaded");
+		breathing.img[ i ].onload = function() {
+			console.log("Image " + i + " loaded");
 			imgsLoaded++;
 			// if(imgsLoaded==coin.frameTotal){
 			// 	gameLoop();
 			// }
 		};
 
-		var img = breathing.img[i];
+		var img = breathing.img[ i ];
 
-		if(i<10){
-			i = "0"+i;
+		if ( i < 10 ) {
+			i = "0" + i;
 		}
 
-		img.src = "./images/modalScenes/01_"+i+".png";
+		img.src = "./images/modalScenes/01_" + i + ".png";
 	}
 
 	clock.img = new Image();
 
 	clock.img.src = "./images/modalScenes/relogioDigital.png";
 
-	clock.img.onLoad = function(){
+	clock.img.onLoad = function() {
 		console.log("Clock ('watch') image loaded");
 	};
 
 
 
-	function init(selector){
-		$(selector).append(html);
+	function init( selector ) {
+		$( selector ).append( html );
 
-		var canvas = $(canvasSelector)[0];
-		canvas.setAttribute("width", 800);
-		canvas.setAttribute("height", 600);
+		var canvas = $( canvasSelector )[ 0 ];
+		canvas.setAttribute("width", 800 );
+		canvas.setAttribute("height", 600 );
 
 		console.info("FreqRespiratoria added to stage");
 	}
 
-	function open(){
-		$(canvasSelector).show();
+	function open() {
+		$( canvasSelector ).show();
 
-		clock.angle = -Math.PI/2;
+		clock.angle = -Math.PI / 2;
 		clock.accumulator = 0;
 
 		breathing.frameCounter = 0;
@@ -149,45 +149,45 @@ define(function(require){
 		animationLoop();
 	}
 
-	function close(){
-		$(canvasSelector).hide();
+	function close() {
+		$( canvasSelector ).hide();
 
 		state = STATES.stopped;
 	}
 
 
 
-	function update(){
+	function update() {
 		breathing.update();
 
 		clock.accumulator += tick.time;
-		while(clock.accumulator >= clock.time){
-			clock.angle += Math.PI*2/1000/60;
+		while ( clock.accumulator >= clock.time ) {
+			clock.angle += Math.PI * 2 / 1000 / 60;
 
 			clock.accumulator -= clock.time;
 		}
 	}
 
-	function draw(canvas){
-		ctx = canvas.getContext('2d');
-		ctx.clearRect(0, 0, 800, 600);
+	function draw( canvas ) {
+		ctx = canvas.getContext( "2d" );
+		ctx.clearRect( 0, 0, 800, 600 );
 
-		breathing.draw(canvas);
+		breathing.draw( canvas );
 
-		ctx.drawImage(clock.img, 0, 0, 350, 600, 601, 135, 200, 330);
+		ctx.drawImage( clock.img, 0, 0, 350, 600, 601, 135, 200, 330 );
 
 		ctx.beginPath();
-		ctx.moveTo(clock.x, clock.y-clock.radius);
-		ctx.lineTo(clock.x, clock.y-clock.radius+clock.line);
+		ctx.moveTo( clock.x, clock.y - clock.radius );
+		ctx.lineTo( clock.x, clock.y - clock.radius + clock.line );
 
-		ctx.moveTo(clock.x, clock.y+clock.radius);
-		ctx.lineTo(clock.x, clock.y+clock.radius-clock.line);
+		ctx.moveTo( clock.x, clock.y + clock.radius );
+		ctx.lineTo( clock.x, clock.y + clock.radius - clock.line );
 
-		ctx.moveTo(clock.x-clock.radius, clock.y);
-		ctx.lineTo(clock.x-clock.radius+clock.line, clock.y);
+		ctx.moveTo( clock.x - clock.radius, clock.y );
+		ctx.lineTo( clock.x - clock.radius + clock.line, clock.y );
 
-		ctx.moveTo(clock.x+clock.radius, clock.y);
-		ctx.lineTo(clock.x+clock.radius-clock.line, clock.y);
+		ctx.moveTo( clock.x + clock.radius, clock.y );
+		ctx.lineTo( clock.x + clock.radius - clock.line, clock.y );
 
 		//ctx.arc(clock.x, clock.y, clock.radius, 0, Math.PI*2);
 		ctx.lineWidth = 2;
@@ -195,48 +195,48 @@ define(function(require){
 		ctx.stroke();
 
 		ctx.beginPath();
-		px = Math.cos(clock.angle)*clock.radius + clock.x;
-		py = Math.sin(clock.angle)*clock.radius + clock.y;
+		px = Math.cos( clock.angle ) * clock.radius + clock.x;
+		py = Math.sin( clock.angle ) * clock.radius + clock.y;
 
-		ctx.moveTo(clock.x, clock.y);
-		ctx.lineTo(px, py);
+		ctx.moveTo( clock.x, clock.y );
+		ctx.lineTo( px, py );
 
 		ctx.lineWidth = 5;
 		ctx.strokeStyle = "rgba(0,0,0,255)";
 		ctx.stroke();
 	}
 
-	function animationLoop(){
+	function animationLoop() {
 		tick.now = new Date().getTime();
 		tick.passed = tick.now - tick.last;
 		tick.last = tick.now;
 
 		tick.accumulator += tick.passed;
 
-		while(tick.accumulator >= tick.time){
+		while ( tick.accumulator >= tick.time ) {
 			update();
 
 			tick.accumulator -= tick.time;
 		}
 
-		draw($(canvasSelector)[0]);
+		draw( $( canvasSelector )[ 0 ] );
 
-		if(state == STATES.playing)
-			window.requestAnimationFrame(animationLoop);
+		if ( state == STATES.playing )
+			window.requestAnimationFrame( animationLoop );
 	}
 
-	function setFr(_fr) {
+	function setFr( _fr ) {
 
 		breathing.cyclesPerMinute = _fr;
-		breathing.frameTime = 1000*60/breathing.cyclesPerMinute/breathing.frameTotal;
+		breathing.frameTime = 1000 * 60 / breathing.cyclesPerMinute / breathing.frameTotal;
 
 	}
 
-	return{
+	return {
 		init:init,
 		setFr: setFr,
 
 		open:open,
 		close:close
-	}
+	};
 });

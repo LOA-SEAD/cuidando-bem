@@ -6,12 +6,12 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['Stage', 'levelsData'], function (Stage, game) {
+define([ "Stage", "levelsData" ], function( Stage, game ) {
 
-    var Player = require('Player');
-    var Storage = require('Storage');
-    var Dialogs = require('Dialogs_data');
-    var Lib = require('Commons');
+    var Player = require( "Player" );
+    var Storage = require( "Storage" );
+    var Dialogs = require( "Dialogs_data" );
+    var Lib = require( "Commons" );
 
     var save;
 
@@ -43,60 +43,60 @@ define(['Stage', 'levelsData'], function (Stage, game) {
         save = Storage.getLoadedSlot();
 
         //Change player name to save slot name
-        Lib.characters.jogador.setName(save.name);
+        Lib.characters.jogador.setName( save.name );
 
 
 
         var i;
-        for(i in save.levels){
-            if(i > save.lastLevel + 1) {
-                $($('.level')[i]).addClass('disabled');
+        for ( i in save.levels ) {
+            if ( i > save.lastLevel + 1 ) {
+                $( $( ".level" )[ i ] ).addClass( "disabled" );
             }
         }
 
-        $('.image', $('.level')[save.lastLevel+2]).addClass('next');
+        $( ".image", $( ".level" )[ save.lastLevel + 2 ] ).addClass( "next" );
 
-        $('.menuButton').click(function(){
-            Player.play(Player.audios.sfx.selecionar_menu);
+        $( ".menuButton" ).click(function() {
+            Player.play( Player.audios.sfx.selecionar_menu );
         });
 
-        $('.backButton').click(function () {
-            Stage.changeScreen(5);
+        $( ".backButton" ).click(function() {
+            Stage.changeScreen( 5 );
         });
 
-        $('.level').click(function(){
-            var index = $('.level').index(this);
+        $( ".level" ).click(function() {
+            var index = $( ".level" ).index( this );
             var levelId = index;
 
-            if(levelId <= save.lastLevel + 1){
-                text = levelNames[index];
-                $('p.title').text(text);
+            if ( levelId <= save.lastLevel + 1 ) {
+                text = levelNames[ index ];
+                $( "p.title" ).text( text );
 
-                if($(this).hasClass('selected')) {
-                    game.setCurrentLevel(levelId);
-                    Stage.changeScreen(1);
+                if ( $( this ).hasClass( "selected" ) ) {
+                    game.setCurrentLevel( levelId );
+                    Stage.changeScreen( 1 );
                 } else {
-                    $('.level').removeClass('selected');
-                    $(this).addClass('selected');
+                    $( ".level" ).removeClass( "selected" );
+                    $( this ).addClass( "selected" );
                 }
             }
         });
 
-        $('.level').hover(
-            function(){
-                var index = $('.level').index(this);
+        $( ".level" ).hover(
+            function() {
+                var index = $( ".level" ).index( this );
                 var levelId = index;
 
-                if(levelId <= save.lastLevel + 1){
-                    $('p.title').text(levelNames[index]);
+                if ( levelId <= save.lastLevel + 1 ) {
+                    $( "p.title" ).text( levelNames[ index ] );
                 }
             },
-            function(){
-                var index = $('.level').index(this);
+            function() {
+                var index = $( ".level" ).index( this );
                 var levelId = index;
 
-                if(levelId <= save.lastLevel + 1){
-                    $('p.title').text(text);
+                if ( levelId <= save.lastLevel + 1 ) {
+                    $( "p.title" ).text( text );
                 }
             }
         );
@@ -119,6 +119,6 @@ define(['Stage', 'levelsData'], function (Stage, game) {
     return {
         load: load,
         unload: unload
-    }
+    };
 
 });

@@ -5,7 +5,7 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['text!../html/scenes/modalScene.html'], function (html) {
+define([ "text!../html/scenes/modalScene.html" ], function( html ) {
 
 //Attributes
 
@@ -20,8 +20,8 @@ define(['text!../html/scenes/modalScene.html'], function (html) {
      * @method init
      * @memberOf module:ModalScene
      */
-    function init(selector) {
-        $(selector).append(html);
+    function init( selector ) {
+        $( selector ).append( html );
     }
 
     /**
@@ -30,16 +30,16 @@ define(['text!../html/scenes/modalScene.html'], function (html) {
      * @param {} _modalScene
      * @memberOf module:ModalScene
      */
-    function open(_modalScene) {
-        if (lastSceneClass == "") {
-            $(divSelector).addClass(_modalScene.getCssClass());
+    function open( _modalScene ) {
+        if ( lastSceneClass == "") {
+            $( divSelector ).addClass( _modalScene.getCssClass() );
         } else {
-            $(divSelector).removeClass(lastSceneClass);
-            $(divSelector).addClass(_modalScene.getCssClass());
+            $( divSelector ).removeClass( lastSceneClass );
+            $( divSelector ).addClass( _modalScene.getCssClass() );
         }
 
-        $(divSelector).empty();
-        $(divSelector).append(_modalScene.getTemplate());
+        $( divSelector ).empty();
+        $( divSelector ).append( _modalScene.getTemplate() );
 
 
         lastSceneClass = _modalScene.getCssClass();
@@ -47,7 +47,7 @@ define(['text!../html/scenes/modalScene.html'], function (html) {
 
         console.info("Show Modal Scene");
         showing = true;
-        $(divSelector).show();
+        $( divSelector ).show();
     }
 
     /**
@@ -58,7 +58,7 @@ define(['text!../html/scenes/modalScene.html'], function (html) {
     function close() {
         console.info("Close modal Scene");
         showing = false;
-        $(divSelector).hide();
+        $( divSelector ).hide();
     }
 
 //Getters
@@ -84,6 +84,6 @@ define(['text!../html/scenes/modalScene.html'], function (html) {
 
         isShowing: isShowing
 
-    }
+    };
 
 });

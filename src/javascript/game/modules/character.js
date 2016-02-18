@@ -1,4 +1,4 @@
-define([], function(){
+define([], function() {
 
     /**
 	 * Stores a character name and cssClass
@@ -13,7 +13,7 @@ define([], function(){
 	 *
 	 * @author Otho - Marcelo Lopes Lotufo
      */
-	function Character(_name, _cssClass){
+	function Character( _name, _cssClass ) {
 
         /**
          * Character name that will be displayed in the Dialog Modal
@@ -40,7 +40,7 @@ define([], function(){
          *
          * @memberOf Character#
          */
-		function getCssClass(){
+		function getCssClass() {
 			return cssClass;
 		}
 
@@ -51,7 +51,7 @@ define([], function(){
          *
          * @memberOf Character#
          */
-		function setCssClass(_cssClass){
+		function setCssClass( _cssClass ) {
 			cssClass = _cssClass;
 			return this;
 		}
@@ -63,7 +63,7 @@ define([], function(){
          *
          * @memberOf Character#
          */
-		function getName(){
+		function getName() {
 			return name;
 		}
 
@@ -74,8 +74,8 @@ define([], function(){
          *
          * @memberOf Character#
          */
-		function setName(_name){
-			name = _name
+		function setName( _name ) {
+			name = _name;
 			return this;
 		}
 
@@ -85,7 +85,7 @@ define([], function(){
 
 			getCssClass: getCssClass,
 			setCssClass: setCssClass
-		}
+		};
 	}
 
 	return Character;

@@ -5,13 +5,13 @@
  @author Otho - Marcelo Lopes Lotufo
  */
 
-define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject', 'Flag', 'CuidandoBem', 'Character'],
-    function (game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, Character) {
+define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Character" ],
+    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, Character ) {
         console.groupCollapsed("Commons:");
 
         var lib = {
             //region Scenes
-            scenes : {
+            scenes: {
                 //Default object of "recepcao"
                 recepcao: new Scene("recepcao", "scene-recepcao")
                     .setCssClass("scene-lobby"),
@@ -77,19 +77,19 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                         .setCssClass("scene-bedChar09"),
 
                     francisco: new Scene("leito_10", "scene-leito-char-10")
-                        .setCssClass("scene-bedChar10"),
+                        .setCssClass("scene-bedChar10")
                 }
             },
             //endregion
-            modalScenes : {
+            modalScenes: {
 
             },
             actions: {
                 irCorredor: new Action("btn-ir_corredor", "Ir ao corredor")
                     .setCssClass("action-ir_corredor")
-                    .onClick(function(){
+                    .onClick(function() {
                         console.log("Action: 'Ir ao corredor'");
-                        core.changeScene(1);
+                        core.changeScene( 1 );
                     })
             },
             objects: {

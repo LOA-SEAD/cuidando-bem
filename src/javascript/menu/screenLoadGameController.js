@@ -1,14 +1,14 @@
 /**
  * This method adds all the events to the loadGame screen
- * 
+ *
  * @name Screen_loadGame_Controller
  * @module
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['Stage'], function (Stage) {
+define([ "Stage" ], function( Stage ) {
 
-    var Player = require('Player');
+    var Player = require( "Player" );
 
     /**
      * This method is called when the screen loadGame is loaded
@@ -19,12 +19,12 @@ define(['Stage'], function (Stage) {
      * @memberOf module:Screen_loadGame_Controller
      */
     function load() {
-        $('.menuButton').click(function(){
-            Player.play(Player.audios.sfx.selecionar_menu);
+        $( ".menuButton" ).click(function() {
+            Player.play( Player.audios.sfx.selecionar_menu );
         });
 
-        $('.backButton').click(function () {
-            Stage.changeScreen(0);
+        $( ".backButton" ).click(function() {
+            Stage.changeScreen( 0 );
         });
     }
 
@@ -43,6 +43,6 @@ define(['Stage'], function (Stage) {
     return {
         load: load,
         unload: unload
-    }
+    };
 
 });

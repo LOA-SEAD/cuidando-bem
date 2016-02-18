@@ -1,4 +1,4 @@
-define([], function () {
+define([], function() {
 
     /**
      * @class
@@ -8,7 +8,7 @@ define([], function () {
      *
      * @author Otho - Marcelo Lopes Lotufo
      */
-    function Dialog(_speaker) {
+    function Dialog( _speaker ) {
 
 
         //Inner Class
@@ -20,13 +20,13 @@ define([], function () {
          *
          * @memberOf Dialog
          */
-        function DialogOption(_text, _actionFunction) {
+        function DialogOption( _text, _actionFunction ) {
             this.text = _text;
             this.actionFunction = _actionFunction;
         }
         //Attributes
 
-        if(_speaker != null) {
+        if ( _speaker != null ) {
             /**
              * @type {string}
              * @private
@@ -70,22 +70,22 @@ define([], function () {
          *
          * @memberOf Dialog#
          */
-        function executeOption(_optionIndex) {
-            options[_optionIndex].actionFunction();
+        function executeOption( _optionIndex ) {
+            options[ _optionIndex ].actionFunction();
         }
 
         //Getters
-        function getClone(){
-            var dialog_clone = new Dialog(speaker)
-                .setText(text)
-                .setRandomize(randomize)
-                .setSpeakerCssClass(speaker.getCssClass())
-                .setSpeakerName(speaker.getName());
+        function getClone() {
+            var dialog_clone = new Dialog( speaker )
+                .setText( text )
+                .setRandomize( randomize )
+                .setSpeakerCssClass( speaker.getCssClass() )
+                .setSpeakerName( speaker.getName() );
                 //.setSpeakerName(speakerName);
 
 
-            for(opt in options)
-                dialog_clone.registerOption(options[opt].text, options[opt].actionFunction);
+            for ( opt in options )
+                dialog_clone.registerOption( options[ opt ].text, options[ opt ].actionFunction );
 
             return dialog_clone;
         }
@@ -131,7 +131,7 @@ define([], function () {
             return text;
         }
 
-        function getRandomize(){
+        function getRandomize() {
             return randomize;
         }
 
@@ -143,24 +143,24 @@ define([], function () {
          *
          * @memberOf Dialog#
          */
-        function getOptionText(_optionIndex) {
-            return options[_optionIndex].text;
+        function getOptionText( _optionIndex ) {
+            return options[ _optionIndex ].text;
         }
 
-        function setSpeakerName(_speakerName){
+        function setSpeakerName( _speakerName ) {
             //speakerName = _speakerName;
             return this;
         }
 
-        function setSpeakerCssClass(_speakerCssClass){
+        function setSpeakerCssClass( _speakerCssClass ) {
             //speakerCssClass = _speakerCssClass;
             return this;
         }
-        function setText(_text){
+        function setText( _text ) {
             text = _text;
             return this;
         }
-        function setRandomize(_randomize){
+        function setRandomize( _randomize ) {
             randomize = _randomize;
             return this;
         }
@@ -173,10 +173,10 @@ define([], function () {
          *
          * @memberOf Dialog#
          */
-        function registerOption(_text, _actionFunction) {
-            var opt = new DialogOption(_text, _actionFunction);
+        function registerOption( _text, _actionFunction ) {
+            var opt = new DialogOption( _text, _actionFunction );
 
-            options.push(opt);
+            options.push( opt );
             return this;
         }
 
@@ -200,7 +200,7 @@ define([], function () {
             setRandomize: setRandomize,
 
             registerOption: registerOption
-        }
+        };
     }
 
     return Dialog;

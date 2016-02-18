@@ -1,4 +1,4 @@
-define([], function () {
+define([], function() {
     /**
      * @class
      * @name Level
@@ -7,7 +7,7 @@ define([], function () {
      *
      * @author Otho - Marcelo Lopes Lotufo
      */
-    function Level(_name) {
+    function Level( _name ) {
         //Attributes
 
         /**
@@ -87,27 +87,27 @@ define([], function () {
          */
         var initialScene = 0;
 
-        var setupScript = function(){};
+        var setupScript = function() {};
 
         //Methods
 
         //Getters
 
-        function getClone(){
-            var newLevel = new Level(name);
+        function getClone() {
+            var newLevel = new Level( name );
 
-            for(scene in scenes)
-                newLevel.registerScene(scenes[scene].getClone());
+            for ( scene in scenes )
+                newLevel.registerScene( scenes[ scene ].getClone() );
 
-            for(modal in modalScenes)
-                newLevel.registerModalScene(modalScenes[modal].getClone());
+            for ( modal in modalScenes )
+                newLevel.registerModalScene( modalScenes[ modal ].getClone() );
 
-            for(flag in flags)
-                newLevel.registerFlag(flags[flag].getClone());
+            for ( flag in flags )
+                newLevel.registerFlag( flags[ flag ].getClone() );
 
-            newLevel.setInitialScene(initialScene);
-            newLevel.setCurrentSceneById(currentScene);
-            newLevel.setSetupScript(setupScript);
+            newLevel.setInitialScene( initialScene );
+            newLevel.setCurrentSceneById( currentScene );
+            newLevel.setSetupScript( setupScript );
 
             return newLevel;
         }
@@ -131,8 +131,8 @@ define([], function () {
          *
          * @memberOf Level#
          */
-        function getActions(_sceneId) {
-            return getScene(_sceneId).getActions();
+        function getActions( _sceneId ) {
+            return getScene( _sceneId ).getActions();
         }
 
         /**
@@ -143,8 +143,8 @@ define([], function () {
          *
          * @memberOf Level#
          */
-        function getDialogs(_sceneId) {
-            return getScene(_sceneId).getDialogs();
+        function getDialogs( _sceneId ) {
+            return getScene( _sceneId ).getDialogs();
         }
 
         /**
@@ -155,8 +155,8 @@ define([], function () {
          *
          * @memberOf Level#
          */
-        function getInteractiveObjects(_sceneId) {
-            return getScene(_sceneId).getInteractiveObjects();
+        function getInteractiveObjects( _sceneId ) {
+            return getScene( _sceneId ).getInteractiveObjects();
         }
 
         /**
@@ -166,11 +166,11 @@ define([], function () {
          *
          * @memberOf Level#
          */
-        function getScene(_sceneId) {
-            if (typeof _sceneId == "string") {
-                return scenes[scenes_aux[_sceneId]];
+        function getScene( _sceneId ) {
+            if ( typeof _sceneId == "string") {
+                return scenes[ scenes_aux[ _sceneId ] ];
             } else {
-                return scenes[_sceneId];
+                return scenes[ _sceneId ];
             }
         }
 
@@ -181,11 +181,11 @@ define([], function () {
          *
          * @memberOf Level#
          */
-        function getModalScene(_modalSceneId) {
-            if (typeof _modalSceneId == "string") {
-                return modalScenes[modalScenes_aux[_modalSceneId]];
+        function getModalScene( _modalSceneId ) {
+            if ( typeof _modalSceneId == "string") {
+                return modalScenes[ modalScenes_aux[ _modalSceneId ] ];
             } else {
-                return modalScenes[_modalSceneId];
+                return modalScenes[ _modalSceneId ];
             }
         }
 
@@ -207,11 +207,11 @@ define([], function () {
          *
          * @memberOf Level#
          */
-        function getFlag(_flagId) {
-            if (typeof _flagId == "string") {
-                return flags[flags_aux[_flagId]];
+        function getFlag( _flagId ) {
+            if ( typeof _flagId == "string") {
+                return flags[ flags_aux[ _flagId ] ];
             } else {
-                return flags[_flagId];
+                return flags[ _flagId ];
             }
         }
 
@@ -223,7 +223,7 @@ define([], function () {
          * @memberOf Level#
          */
         function getInitialScene() {
-            return scenes[initialScene];
+            return scenes[ initialScene ];
         }
 
         /**
@@ -234,7 +234,7 @@ define([], function () {
          * @memberOf Level#
          */
         function getCurrentScene() {
-            return scenes[currentScene];
+            return scenes[ currentScene ];
         }
 
         /**
@@ -257,7 +257,7 @@ define([], function () {
          *
          * @memberOf Level#
          */
-        function setInitialScene(_initialSceneId) {
+        function setInitialScene( _initialSceneId ) {
             initialScene = _initialSceneId;
             currentScene = _initialSceneId;
         }
@@ -269,7 +269,7 @@ define([], function () {
          *
          * @memberOf Level#
          */
-        function setCurrentSceneById(_newSceneId) {
+        function setCurrentSceneById( _newSceneId ) {
             currentScene = _newSceneId;
         }
 
@@ -280,10 +280,10 @@ define([], function () {
          *
          * @memberOf Level#
          */
-        function registerScene(_scene) {
-            scenes_aux[_scene.getId()] = scenes.length;
-            scenes.push(_scene);
-            console.log("Registering scene: ", _scene.getName());
+        function registerScene( _scene ) {
+            scenes_aux[ _scene.getId() ] = scenes.length;
+            scenes.push( _scene );
+            console.log("Registering scene: ", _scene.getName() );
         }
 
         /**
@@ -293,10 +293,10 @@ define([], function () {
          *
          * @memberOf Level#
          */
-        function registerModalScene(_modalScene) {
-            modalScenes_aux[_modalScene.getId()] = modalScenes.length;
-            modalScenes.push(_modalScene);
-            console.log("Registering modalScene: ", _modalScene.getName());
+        function registerModalScene( _modalScene ) {
+            modalScenes_aux[ _modalScene.getId() ] = modalScenes.length;
+            modalScenes.push( _modalScene );
+            console.log("Registering modalScene: ", _modalScene.getName() );
         }
 
         /**
@@ -307,8 +307,8 @@ define([], function () {
          *
          * @memberOf Level#
          */
-        function registerAction(_action, _sceneId) {
-            scenes[_sceneId].registerAction(_action);
+        function registerAction( _action, _sceneId ) {
+            scenes[ _sceneId ].registerAction( _action );
         }
 
         /**
@@ -319,8 +319,8 @@ define([], function () {
          *
          * @memberOf Level#
          */
-        function registerInteractiveObject(_interactiveObject, _sceneId) {
-            scenes[_sceneId].registerInteractiveObject(_interactiveObject);
+        function registerInteractiveObject( _interactiveObject, _sceneId ) {
+            scenes[ _sceneId ].registerInteractiveObject( _interactiveObject );
         }
 
         /**
@@ -331,8 +331,8 @@ define([], function () {
          *
          * @memberOf Level#
          */
-        function registerDialog(_dialog, _sceneId) {
-            scenes[_sceneId].registerDialog(_dialog);
+        function registerDialog( _dialog, _sceneId ) {
+            scenes[ _sceneId ].registerDialog( _dialog );
         }
 
         /**
@@ -342,10 +342,10 @@ define([], function () {
          *
          * @memberOf Level#
          */
-        function registerFlag(_flag) {
-            flags_aux[_flag.getName()] = flags.length;
-            flags.push(_flag);
-            console.log("Registering flag: ", _flag.getName());
+        function registerFlag( _flag ) {
+            flags_aux[ _flag.getName() ] = flags.length;
+            flags.push( _flag );
+            console.log("Registering flag: ", _flag.getName() );
         }
 
 
@@ -368,10 +368,10 @@ define([], function () {
 
             setInitialScene: setInitialScene,
             setCurrentSceneById: setCurrentSceneById,
-            setSetupScript: function(script){
+            setSetupScript: function( script ) {
                 setupScript = script;
             },
-            setup: function(){setupScript()},
+            setup: function() {setupScript();},
 
 
             registerScene: registerScene,
@@ -380,7 +380,7 @@ define([], function () {
             registerDialog: registerDialog,
             registerFlag: registerFlag,
             registerInteractiveObject: registerInteractiveObject
-        }
+        };
     }
 
     return Level;

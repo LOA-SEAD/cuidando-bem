@@ -1,7 +1,7 @@
 /**
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(function () {
+define(function() {
 
 	var baseDir = "./images/";
 	var paths = {

@@ -4,7 +4,7 @@ This module register which files to load. Each of these files should contain a L
 
 @author Otho - Marcelo Lopes Lotufo
  */
-define(function () {
+define(function() {
     console.info("GameConfig - module loaded");
     var generalPath = "./game/scripts/levels/";
     var filePaths = [
@@ -24,8 +24,8 @@ define(function () {
     ];
 
     var i;
-    for (i = 0; i < filePaths.length; i++) {
-        console.log("\tRequiring Level module: ", filePaths[i]);
-        require([generalPath + filePaths[i]]);
+    for ( i = 0; i < filePaths.length; i++ ) {
+        console.log("\tRequiring Level module: ", filePaths[ i ] );
+        require([ generalPath + filePaths[ i ] ]);
     }
 });

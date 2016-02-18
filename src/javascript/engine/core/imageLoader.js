@@ -8,7 +8,7 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define([], function(){
+define([], function() {
     console.info("ImageLoader - module loaded");
 
     /**
@@ -62,19 +62,19 @@ define([], function(){
      *
      * @memberOf module:Image Loader
      */
-    function getAsArray(baseDir, obj){
+    function getAsArray( baseDir, obj ) {
         var arr = [];
         var x;
-        if(typeof obj === "object"){
-            if(obj instanceof Array){
-                arr = arr.concat(obj);
+        if ( typeof obj === "object") {
+            if ( obj instanceof Array ) {
+                arr = arr.concat( obj );
             }else {
-                for (x in obj) {
-                    arr = arr.concat(getAsArray(baseDir, obj[x]));
+                for ( x in obj ) {
+                    arr = arr.concat( getAsArray( baseDir, obj[ x ] ) );
                 }
             }
-        }else{
-            arr.push(baseDir + obj);
+        }else {
+            arr.push( baseDir + obj );
         }
 
         return arr;
@@ -88,14 +88,14 @@ define([], function(){
      *
      * @memberOf module:Image Loader
      */
-    function onLoad(){
-        var evt = arguments[0];
+    function onLoad() {
+        var evt = arguments[ 0 ];
 
         loaded++;
         //console.log(arguments.length, arguments[0]);
-        console.log("Loaded Image: " + evt.target.src);
+        console.log("Loaded Image: " + evt.target.src );
 
-        if(loaded == imagesToLoad) {
+        if ( loaded == imagesToLoad ) {
             console.groupEnd();
             loading = false;
             callback();
@@ -114,11 +114,10 @@ define([], function(){
      *
      * @memberOf module:Image Loader
      */
-    function load(baseDir, pathObject, _callback){
-        if(loading){
+    function load( baseDir, pathObject, _callback ) {
+        if ( loading ) {
             throw new Error("Can't load two path objects at the same time");
-        }
-        else{
+        } else {
             var id;
 
             loading = true;
@@ -127,15 +126,15 @@ define([], function(){
 
             callback = _callback;
 
-            var paths = getAsArray(baseDir, pathObject);
+            var paths = getAsArray( baseDir, pathObject );
             imagesToLoad = paths.length;
 
-            console.info("Images to load: ", imagesToLoad);
+            console.info("Images to load: ", imagesToLoad );
             console.groupCollapsed("Loading Images: ");
 
 
-            for(id in paths){
-                var path = paths[id];
+            for ( id in paths ) {
+                var path = paths[ id ];
                 var image = new Image();
 
 
@@ -147,5 +146,5 @@ define([], function(){
 
     return {
         load: load
-    }
+    };
 });

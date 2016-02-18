@@ -1,4 +1,4 @@
-/* 
+/*
  This module declares the object type scene that represents one of the rooms inside the game.
 
  Each scene may have more than one interactive Object that will be declared later.
@@ -8,7 +8,7 @@
 
  @author Otho - Marcelo Lopes Lotufo
  */
-define(function () {
+define(function() {
 
     var counter = -1;
     /**
@@ -22,13 +22,13 @@ define(function () {
      *
      * @author Otho - Marcelo Lopes Lotufo
      */
-    function Scene(_id, _name) {
+    function Scene( _id, _name ) {
         //Attributes
 
-        if(_id == null)
-            _id = "Scene_"+counter;
+        if ( _id == null )
+            _id = "Scene_" + counter;
 
-        if(_name == null)
+        if ( _name == null )
             _name = "";
 
         var id = _id;
@@ -36,8 +36,8 @@ define(function () {
         var name = _name;
         var cssClass = "noTexture";
 
-        var onLoadFunction = function(){};
-        var onUnloadFunction = function(){};
+        var onLoadFunction = function() {};
+        var onUnloadFunction = function() {};
 
         var dialogs = [];
 
@@ -74,26 +74,26 @@ define(function () {
         }
 
         //Getters
-        function getClone(){
-            var scene_clone = new Scene(id, name)
-                .setCssClass(getCssClass())
-                .onLoad(onLoadFunction)
-                .onUnload(onUnloadFunction)
-                .setTemplate(getTemplate());
+        function getClone() {
+            var scene_clone = new Scene( id, name )
+                .setCssClass( getCssClass() )
+                .onLoad( onLoadFunction )
+                .onUnload( onUnloadFunction )
+                .setTemplate( getTemplate() );
 
-            for(dialog in dialogs)
-                scene_clone.registerDialog(dialogs[dialog].getClone());
+            for ( dialog in dialogs )
+                scene_clone.registerDialog( dialogs[ dialog ].getClone() );
 
-            for(interactiveObject in interactiveObjects)
-                scene_clone.registerInteractiveObject(interactiveObjects[interactiveObject].getClone());
+            for ( interactiveObject in interactiveObjects )
+                scene_clone.registerInteractiveObject( interactiveObjects[ interactiveObject ].getClone() );
 
-            for(action in actions)
-                scene_clone.registerAction(actions[action].getClone());
+            for ( action in actions )
+                scene_clone.registerAction( actions[ action ].getClone() );
 
             return scene_clone;
         }
 
-        function getId(){
+        function getId() {
             return id;
         }
 
@@ -137,11 +137,11 @@ define(function () {
          *
          * @memberOf Scene#
          */
-        function getAction(_actionId) {
-            if (typeof _actionId == "string") {
-                return actions[actions_aux[_actionId]];
+        function getAction( _actionId ) {
+            if ( typeof _actionId == "string") {
+                return actions[ actions_aux[ _actionId ] ];
             } else {
-                return actions[_actionId];
+                return actions[ _actionId ];
             }
         }
 
@@ -174,45 +174,45 @@ define(function () {
          *
          * @memberOf Scene#
          */
-        function getInteractiveObject(_intObjId) {
-            if (typeof _intObjId == "string") {
-                return interactiveObjects[interactiveObjects_aux[_intObjId]];
+        function getInteractiveObject( _intObjId ) {
+            if ( typeof _intObjId == "string") {
+                return interactiveObjects[ interactiveObjects_aux[ _intObjId ] ];
             } else {
-                return interactiveObjects[_intObjId];
+                return interactiveObjects[ _intObjId ];
             }
         }
 
-        function getTemplate(){
+        function getTemplate() {
             return template;
         }
 
         //Setters
-        function setId(_id){
+        function setId( _id ) {
             id = _id;
             return this;
         }
 
-        function setName(_name){
+        function setName( _name ) {
             name = _name;
             return this;
         }
 
-        function setCssClass(_cssClass){
+        function setCssClass( _cssClass ) {
             cssClass = _cssClass;
             return this;
         }
 
-        function onLoad(_load){
+        function onLoad( _load ) {
             onLoadFunction = _load;
             return this;
         }
 
-        function onUnload(_unload){
+        function onUnload( _unload ) {
             onUnloadFunction = _unload;
             return this;
         }
 
-        function setTemplate(_template){
+        function setTemplate( _template ) {
             template = _template;
             return this;
         }
@@ -224,17 +224,17 @@ define(function () {
          *
          * @memberOf Scene#
          */
-        function registerAction(_action) {
-            actions_aux[_action.getId()] = actions.length;
-            actions.push(_action);
+        function registerAction( _action ) {
+            actions_aux[ _action.getId() ] = actions.length;
+            actions.push( _action );
 
-            console.log("Registering Action: ", _action.getName(), "on Scene:" + name);
+            console.log("Registering Action: ", _action.getName(), "on Scene:" + name );
         }
 
-        function registerActions(_actions){
+        function registerActions( _actions ) {
             var i;
-            for (i = 0; i < _actions.length; i++) {
-                registerAction(_actions[i]);
+            for ( i = 0; i < _actions.length; i++ ) {
+                registerAction( _actions[ i ] );
             }
         }
 
@@ -245,9 +245,9 @@ define(function () {
          *
          * @memberOf Scene#
          */
-        function registerDialog(_dialog) {
-            dialogs.push(_dialog);
-            console.log("Registering Dialog: ", _dialog.getSpeakerName(), "on Scene:" + name);
+        function registerDialog( _dialog ) {
+            dialogs.push( _dialog );
+            console.log("Registering Dialog: ", _dialog.getSpeakerName(), "on Scene:" + name );
         }
 
         /**
@@ -257,10 +257,10 @@ define(function () {
          *
          * @memberOf Scene#
          */
-        function registerDialogs(_dialogs) {
+        function registerDialogs( _dialogs ) {
             var i;
-            for (i = 0; i < _dialogs.length; i++) {
-                registerDialog(_dialogs[i]);
+            for ( i = 0; i < _dialogs.length; i++ ) {
+                registerDialog( _dialogs[ i ] );
             }
         }
 
@@ -271,17 +271,17 @@ define(function () {
          *
          * @memberOf Scene#
          */
-        function registerInteractiveObject(_interactiveObject) {
-            interactiveObjects_aux[_interactiveObject.getId()] = interactiveObjects.length;
-            interactiveObjects.push(_interactiveObject);
+        function registerInteractiveObject( _interactiveObject ) {
+            interactiveObjects_aux[ _interactiveObject.getId() ] = interactiveObjects.length;
+            interactiveObjects.push( _interactiveObject );
 
-            console.log("Registering Interactive Object: ", _interactiveObject.getName(), "on Scene:" + name);
+            console.log("Registering Interactive Object: ", _interactiveObject.getName(), "on Scene:" + name );
         }
 
-        function registerInteractiveObjects(_interactiveObjects) {
+        function registerInteractiveObjects( _interactiveObjects ) {
             var i;
-            for (i = 0; i < _interactiveObjects.length; i++) {
-                registerInteractiveObject(_interactiveObjects[i]);
+            for ( i = 0; i < _interactiveObjects.length; i++ ) {
+                registerInteractiveObject( _interactiveObjects[ i ] );
             }
         }
 
@@ -315,7 +315,7 @@ define(function () {
             registerDialogs: registerDialogs,
             registerInteractiveObject: registerInteractiveObject,
             registerInteractiveObjects: registerInteractiveObjects
-        }
+        };
 
     }
 

@@ -1,7 +1,7 @@
 /**
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(function () {
+define(function() {
 
 	var masterVolume = 1;
 	var baseDir = "./sounds/";
@@ -60,10 +60,10 @@ define(function () {
 			]
 		},
 		musics:{
-			test: ["CuidandoBemDoMenu.mp3"]
+			test: [ "CuidandoBemDoMenu.mp3" ]
 		},
 		loops:{
-			recepcao: ["sons_ambiente_hospital_recepcao.mp3"]
+			recepcao: [ "sons_ambiente_hospital_recepcao.mp3" ]
 		}
 
 	};

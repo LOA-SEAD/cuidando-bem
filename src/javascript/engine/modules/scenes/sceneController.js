@@ -5,13 +5,13 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['text!../html/scenes/scene.html'], function (html) {
+define([ "text!../html/scenes/scene.html" ], function( html ) {
 
 
 //Attributes
 //Methods
-    function init(selector) {
-        $(selector).append(html);
+    function init( selector ) {
+        $( selector ).append( html );
     }
 
     /**
@@ -20,8 +20,8 @@ define(['text!../html/scenes/scene.html'], function (html) {
      * @param {} _newScene
      * @memberOf module:Scene
      */
-    function changeScene(_newScene) {
-        setScene(_newScene);
+    function changeScene( _newScene ) {
+        setScene( _newScene );
     }
 
     /**
@@ -30,8 +30,8 @@ define(['text!../html/scenes/scene.html'], function (html) {
      * @param {} _scene
      * @memberOf module:Scene
      */
-    function setScene(_scene) {
-        $('#backgroundScene').attr('class', _scene.getCssClass());
+    function setScene( _scene ) {
+        $( "#backgroundScene" ).attr( "class", _scene.getCssClass() );
     }
 
 //Getters
@@ -41,6 +41,6 @@ define(['text!../html/scenes/scene.html'], function (html) {
         init: init,
         changeScene: changeScene,
         setScene: setScene
-    }
+    };
 
 });

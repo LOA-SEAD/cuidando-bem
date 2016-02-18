@@ -5,11 +5,11 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['text!../html/end_of_level/endOfLevel.html', 'text!../html/end_of_level/scoreItemTemplate.html'], function (html, scoreItemHtml) {
+define([ "text!../html/end_of_level/endOfLevel.html", "text!../html/end_of_level/scoreItemTemplate.html" ], function( html, scoreItemHtml ) {
 
 //Attributes
 
-    var Stage = require('Stage');
+    var Stage = require( "Stage" );
     var modalSelector = "#endOfLevel";
     var scoreListSelector = "#scoreList";
 
@@ -24,45 +24,45 @@ define(['text!../html/end_of_level/endOfLevel.html', 'text!../html/end_of_level/
      * @method init
      * @memberOf module:EndOfLevel
      */
-    function init(selector) {
-        $(selector).append(html);
+    function init( selector ) {
+        $( selector ).append( html );
 
-        $('.goToMenu').click(function() {
+        $( ".goToMenu" ).click(function() {
             isOpen = false;
-            Stage.changeScreen(6);
+            Stage.changeScreen( 6 );
         });
 
-        $('.playAgain').click(function() {
-            var core = require('CuidandoBem');
+        $( ".playAgain" ).click(function() {
+            var core = require( "CuidandoBem" );
 
             core.restartLevel();
         });
     }
 
-    function show(_scoreList) {
-        if(!isOpen) {
-            $(modalSelector).show();
+    function show( _scoreList ) {
+        if ( !isOpen ) {
+            $( modalSelector ).show();
 
-            for (i = 0; i < _scoreList.length; i++) {
-                var scoreItem = _scoreList[i];
+            for ( i = 0; i < _scoreList.length; i++ ) {
+                var scoreItem = _scoreList[ i ];
 
-                var element = $($(scoreItemHtml)[0]);
-                var score = $(scoreSelector, element);
-                var title = $(titleSelector, element);
+                var element = $( $( scoreItemHtml )[ 0 ] );
+                var score = $( scoreSelector, element );
+                var title = $( titleSelector, element );
 
-                score.html(scoreItem.score);
-                title.html(scoreItem.title);
+                score.html( scoreItem.score );
+                title.html( scoreItem.title );
 
-                $(scoreListSelector).append(element);
+                $( scoreListSelector ).append( element );
             }
 
             isOpen = true;
         }
     }
 
-    function close(){
-        $(scoreListSelector).empty();
-        $(modalSelector).hide();
+    function close() {
+        $( scoreListSelector ).empty();
+        $( modalSelector ).hide();
         isOpen = false;
     }
 
@@ -73,6 +73,6 @@ define(['text!../html/end_of_level/endOfLevel.html', 'text!../html/end_of_level/
         init: init,
         show: show,
         close: close
-    }
+    };
 
 });

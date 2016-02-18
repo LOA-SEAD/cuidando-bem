@@ -1,4 +1,4 @@
-define([], function () {
+define([], function() {
 
     var counter = -1;
 
@@ -12,14 +12,14 @@ define([], function () {
      * @author Otho - Marcelo Lopes Lotufo
      */
     "use strict";
-    function Action(_id, _name) {
+    function Action( _id, _name ) {
         counter++;
         //Attributes
 
-        if(_id == null)
-            _id = "action_"+counter;
+        if ( _id == null )
+            _id = "action_" + counter;
 
-        if(_name == null)
+        if ( _name == null )
             _name = "";
 
         var id = _id;
@@ -50,7 +50,7 @@ define([], function () {
          *
          * @memberOf Action#
          */
-        var onClickFunction = function(){};
+        var onClickFunction = function() {};
         /**
          * @type {boolean}
          * @private
@@ -88,15 +88,15 @@ define([], function () {
             return onClickFunction;
         }
 
-        function getClone(){
-            return new Action(id, name)
-                .setCssClass(cssClass)
-                .setVisibility(visible)
-                .onClick(onClickFunction)
-                .setEnable(enable);
+        function getClone() {
+            return new Action( id, name )
+                .setCssClass( cssClass )
+                .setVisibility( visible )
+                .onClick( onClickFunction )
+                .setEnable( enable );
         }
 
-        function getId(){
+        function getId() {
             return id;
         }
 
@@ -157,7 +157,7 @@ define([], function () {
          *
          * @memberOf Action#
          */
-        function setEnable(_enable) {
+        function setEnable( _enable ) {
             enable = _enable;
             return this;
         }
@@ -170,27 +170,27 @@ define([], function () {
          *
          * @memberOf Action#
          */
-        function setVisibility(_visible) {
+        function setVisibility( _visible ) {
             visible = _visible;
             return this;
         }
 
-        function setCssClass(_cssClass){
+        function setCssClass( _cssClass ) {
             cssClass = _cssClass;
             return this;
         }
 
-        function setId(_id){
+        function setId( _id ) {
             id = _id;
             return this;
         }
 
-        function setName(_name){
+        function setName( _name ) {
             name = _name;
             return this;
         }
 
-        function onClick(_function){
+        function onClick( _function ) {
             onClickFunction = _function;
             return this;
         }

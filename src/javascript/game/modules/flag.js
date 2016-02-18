@@ -1,4 +1,4 @@
-define([], function () {
+define([], function() {
     /**
      * @class
      * @name Flag
@@ -8,7 +8,7 @@ define([], function () {
      *
      * @author Otho - Marcelo Lopes Lotufo
      */
-    function Flag(_name, _value) {
+    function Flag( _name, _value ) {
         //Attributes
 
         /**
@@ -31,8 +31,8 @@ define([], function () {
         //Methods
 
         //Getters
-        function getClone(){
-            return new Flag(name, value);
+        function getClone() {
+            return new Flag( name, value );
         }
 
         /**
@@ -66,7 +66,7 @@ define([], function () {
          *
          * @memberOf Flag#
          */
-        function setName(_name) {
+        function setName( _name ) {
             name = _name;
         }
 
@@ -77,7 +77,7 @@ define([], function () {
          *
          * @memberOf Flag#
          */
-        function setValue(_value) {
+        function setValue( _value ) {
             value = _value;
         }
 
@@ -90,7 +90,7 @@ define([], function () {
 
             setName: setName,
             setValue: setValue
-        }
+        };
 
     }
 

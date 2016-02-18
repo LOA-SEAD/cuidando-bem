@@ -1,4 +1,4 @@
-define([], function () {
+define([], function() {
     /**
      * @module LevelsData
      *
@@ -32,15 +32,15 @@ define([], function () {
      *
      * @memberOf module:LevelsData
      */
-    function registerLevel(_level, _id) {
-        if(levels[_id] != null){
+    function registerLevel( _level, _id ) {
+        if ( levels[ _id ] != null ) {
             console.warn("O id: " + _id + " já está em uso. O level anterior com esse mesmo id vai ser reescrito.");
         }
 
-        levels[_id] = _level;
+        levels[ _id ] = _level;
 
         //Log
-        console.log('\nAdding new Level:', _level.getName());
+        console.log( "\nAdding new Level:", _level.getName() );
     }
 
 //Getters
@@ -52,10 +52,10 @@ define([], function () {
      * @memberOf module:LevelsData
      */
     function getCurrentLevel() {
-        return levels[currentLevel];
+        return levels[ currentLevel ];
     }
 
-    function getCurrentLevelId(){
+    function getCurrentLevelId() {
       return currentLevel;
     }
 
@@ -67,7 +67,7 @@ define([], function () {
      *
      * @memberOf module:LevelsData
      */
-    function setCurrentLevel(_level) {
+    function setCurrentLevel( _level ) {
         currentLevel = _level;
     }
 
@@ -79,5 +79,5 @@ define([], function () {
         getCurrentLevelId: getCurrentLevelId,
 
         setCurrentLevel: setCurrentLevel
-    }
+    };
 });

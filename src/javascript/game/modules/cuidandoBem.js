@@ -6,11 +6,11 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects', 'modalScene', 'scene', 'endOfLevel', 'Prontuario', 'Pulseira', 'FreqRespiratoria'],
-    function (Stage, game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene_con, endOfLevel, prontuario, Pulseira, freqRespiratoria) {
+define([ "Stage", "levelsData", "commandBar", "dialogModal", "interactiveObjects", "modalScene", "scene", "endOfLevel", "Prontuario", "Pulseira", "FreqRespiratoria" ],
+    function( Stage, game, CommandBar, Dialog, InteractiveObject, ModalScene, Scene_con, endOfLevel, prontuario, Pulseira, freqRespiratoria ) {
 
 //Attributes
-    var Storage = require('Storage');
+    var Storage = require( "Storage" );
     var gameStageSelector = "#gameStage";
 
     var Level;
@@ -24,30 +24,30 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     var scoreList;
 
 
-    function ScoreItem (_title, _score){
+    function ScoreItem ( _title, _score ) {
         this.title = _title;
         this.score = _score;
     }
 
 
 //Methods
-    function init(){
+    function init() {
 
-        Scene_con.init(gameStageSelector);
+        Scene_con.init( gameStageSelector );
 
-        ModalScene.init(gameStageSelector);
+        ModalScene.init( gameStageSelector );
 
-        InteractiveObject.init(gameStageSelector);
-        endOfLevel.init(gameStageSelector);
-        prontuario.init(gameStageSelector);
-        Pulseira.init(gameStageSelector);
-        freqRespiratoria.init(gameStageSelector);
+        InteractiveObject.init( gameStageSelector );
+        endOfLevel.init( gameStageSelector );
+        prontuario.init( gameStageSelector );
+        Pulseira.init( gameStageSelector );
+        freqRespiratoria.init( gameStageSelector );
 
-        Dialog.init(gameStageSelector);
+        Dialog.init( gameStageSelector );
 
-        CommandBar.init(gameStageSelector);
+        CommandBar.init( gameStageSelector );
 
-        changeLevel(game.getCurrentLevel());
+        changeLevel( game.getCurrentLevel() );
         startLevel();
 
         CommandBar.hide();
@@ -59,17 +59,17 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @param {} _gameState
      * @memberOf module:CuidandoBem
      */
-    function start(_level) {
+    function start( _level ) {
         console.group("Game Running:");
 
-        changeLevelTo(_level);
+        changeLevelTo( _level );
     }
 
     function restartLevel () {
         console.info("Restarting current level");
 
         closeEndOfLevel();
-        changeLevel(game.getCurrentLevel());
+        changeLevel( game.getCurrentLevel() );
         startLevel();
     }
 
@@ -90,7 +90,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @param {} _newLevel
      * @memberOf module:CuidandoBem
      */
-    function changeLevel(_newLevel) {
+    function changeLevel( _newLevel ) {
         console.group("Clone Level");
         Level = _newLevel.getClone();
         //Ensure that the bracelet form is empty
@@ -103,9 +103,9 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         cur_scene = Level.getCurrentSceneId();
     }
 
-    function changeLevelTo(_levelId){
-        game.setCurrentLevel(_levelId);
-        changeLevel(game.getCurrentLevel());
+    function changeLevelTo( _levelId ) {
+        game.setCurrentLevel( _levelId );
+        changeLevel( game.getCurrentLevel() );
 
         startLevel();
     }
@@ -116,21 +116,21 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @memberOf module:CuidandoBem
      */
     function startLevel() {
-        console.group('Starting level:' + Level.getName(), true);
+        console.group( "Starting level:" + Level.getName(), true );
 
-        Level.setCurrentSceneById(cur_scene);
+        Level.setCurrentSceneById( cur_scene );
         Scene = Level.getCurrentScene();
 
-        Actions = Level.getActions(cur_scene);
-        Dialogs = Level.getDialogs(cur_scene);
-        InteractiveObjects = Level.getInteractiveObjects(cur_scene);
+        Actions = Level.getActions( cur_scene );
+        Dialogs = Level.getDialogs( cur_scene );
+        InteractiveObjects = Level.getInteractiveObjects( cur_scene );
 
         Flags = Level.getFlags();
         scoreList = [];
 
-        Scene_con.setScene(Scene);
-        CommandBar.changeToActionsButtons(Actions);
-        InteractiveObject.changeToInteractiveObjects(InteractiveObjects);
+        Scene_con.setScene( Scene );
+        CommandBar.changeToActionsButtons( Actions );
+        InteractiveObject.changeToInteractiveObjects( InteractiveObjects );
 
         Scene.load();
         console.groupEnd();
@@ -143,27 +143,27 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @param {} _newSceneId
      * @memberOf module:CuidandoBem
      */
-    function changeScene(_newSceneId) {
+    function changeScene( _newSceneId ) {
 
 
         var oldScene = Scene;
-        Level.setCurrentSceneById(_newSceneId);
+        Level.setCurrentSceneById( _newSceneId );
         Scene = Level.getCurrentScene();
 
-        console.group("Change Scene to: " + Scene.getName(), true);
+        console.group("Change Scene to: " + Scene.getName(), true );
 
         cur_scene = _newSceneId;
-        Actions = Level.getActions(cur_scene);
-        Dialogs = Level.getDialogs(cur_scene);
-        InteractiveObjects = Level.getInteractiveObjects(cur_scene);
+        Actions = Level.getActions( cur_scene );
+        Dialogs = Level.getDialogs( cur_scene );
+        InteractiveObjects = Level.getInteractiveObjects( cur_scene );
 
         Flags = Level.getFlags();
 
         oldScene.unload();
-        Scene_con.changeScene(Scene);
+        Scene_con.changeScene( Scene );
 
-        CommandBar.changeToActionsButtons(Actions);
-        InteractiveObject.changeToInteractiveObjects(InteractiveObjects);
+        CommandBar.changeToActionsButtons( Actions );
+        InteractiveObject.changeToInteractiveObjects( InteractiveObjects );
 
         Scene.load();
 
@@ -177,13 +177,13 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @param {} _modalSceneId
      * @memberOf module:CuidandoBem
      */
-    function openModalScene(_modalSceneId) {
-        var modalScene = Level.getModalScene(_modalSceneId);
+    function openModalScene( _modalSceneId ) {
+        var modalScene = Level.getModalScene( _modalSceneId );
         Scene = modalScene;
 
-        ModalScene.open(modalScene);
-        CommandBar.changeToActionsButtons(modalScene.getActions());
-        InteractiveObject.changeToInteractiveObjects(modalScene.getInteractiveObjects());
+        ModalScene.open( modalScene );
+        CommandBar.changeToActionsButtons( modalScene.getActions() );
+        InteractiveObject.changeToInteractiveObjects( modalScene.getInteractiveObjects() );
     }
 
     /**
@@ -194,17 +194,17 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
     function closeModalScene() {
         ModalScene.close();
 
-        CommandBar.changeToActionsButtons(Actions);
-        InteractiveObject.changeToInteractiveObjects(InteractiveObjects);
+        CommandBar.changeToActionsButtons( Actions );
+        InteractiveObject.changeToInteractiveObjects( InteractiveObjects );
         Scene = Level.getCurrentScene();
     }
 
 
     //CommandBar
-    function openCommandBar(){
+    function openCommandBar() {
         CommandBar.show();
     }
-    function closeCommandBar(){
+    function closeCommandBar() {
         CommandBar.hide();
     }
     //Dialog
@@ -214,9 +214,9 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @param {} _dialogId
      * @memberOf module:CuidandoBem
      */
-    function openDialog(_dialogId) {
-        var dialog = Dialogs[_dialogId];
-        Dialog.show(dialog);
+    function openDialog( _dialogId ) {
+        var dialog = Dialogs[ _dialogId ];
+        Dialog.show( dialog );
 
         disableAllActionButtons();
         disableAllInteractiveObjects();
@@ -243,7 +243,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @memberOf module:CuidandoBem
      */
     function showEndOfLevel() {
-        endOfLevel.show(scoreList);
+        endOfLevel.show( scoreList );
     }
 
     /**
@@ -261,7 +261,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @memberOf module:CuidandoBem
      */
     function disableAllActionButtons() {
-        CommandBar.disableAllActionButtons(Actions);
+        CommandBar.disableAllActionButtons( Actions );
     }
 
     /**
@@ -270,8 +270,8 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      *
      * @memberof module:CuidandoBem
      */
-    function disableAllInteractiveObjects(){
-        InteractiveObject.disableAllInteractiveObjects(InteractiveObjects);
+    function disableAllInteractiveObjects() {
+        InteractiveObject.disableAllInteractiveObjects( InteractiveObjects );
     }
 
     /**
@@ -280,8 +280,8 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      *
      * @memberof module:CuidandoBem
      */
-    function updateAllInteractiveObjects(){
-        InteractiveObject.updateAllInteractiveObjects(InteractiveObjects);
+    function updateAllInteractiveObjects() {
+        InteractiveObject.updateAllInteractiveObjects( InteractiveObjects );
     }
 
     /**
@@ -290,7 +290,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @memberOf module:CuidandoBem
      */
     function updateAllActionButtons() {
-        CommandBar.updateAllActionButtons(Actions);
+        CommandBar.updateAllActionButtons( Actions );
     }
 
     /**
@@ -299,10 +299,10 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @param {} _actionId
      * @memberOf module:CuidandoBem
      */
-    function disableActionButton(_actionId) {
-        var action = Scene.getAction(_actionId);
-        action.setEnable(false);
-        CommandBar.disableActionButton(action);
+    function disableActionButton( _actionId ) {
+        var action = Scene.getAction( _actionId );
+        action.setEnable( false );
+        CommandBar.disableActionButton( action );
     }
 
     /**
@@ -311,16 +311,16 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @param {} _actionId
      * @memberOf module:CuidandoBem
      */
-    function enableActionButton(_actionId) {
-        var action = Scene.getAction(_actionId);
-        action.setEnable(true);
-        CommandBar.enableActionButton(action);
+    function enableActionButton( _actionId ) {
+        var action = Scene.getAction( _actionId );
+        action.setEnable( true );
+        CommandBar.enableActionButton( action );
     }
 
-    function disableInteractiveObject(_ioId) {
-        var io = Scene.getInteractiveObject(_ioId);
-        io.setEnable(false);
-        InteractiveObject.disableInteractiveObject(io);
+    function disableInteractiveObject( _ioId ) {
+        var io = Scene.getInteractiveObject( _ioId );
+        io.setEnable( false );
+        InteractiveObject.disableInteractiveObject( io );
     }
 
     /**
@@ -329,10 +329,10 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @param {} _actionId
      * @memberOf module:CuidandoBem
      */
-    function enableInteractiveObject(_ioId) {
-        var io = Scene.getInteractiveObject(_ioId);
-        io.setEnable(true);
-        InteractiveObject.enableInteractiveObject(io);
+    function enableInteractiveObject( _ioId ) {
+        var io = Scene.getInteractiveObject( _ioId );
+        io.setEnable( true );
+        InteractiveObject.enableInteractiveObject( io );
     }
 
 //Getters
@@ -344,8 +344,8 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @return CallExpression
      * @memberOf module:CuidandoBem
      */
-    function getFlag(_flagId) {
-        return Level.getFlag(_flagId);
+    function getFlag( _flagId ) {
+        return Level.getFlag( _flagId );
     }
 
 //Setters
@@ -357,8 +357,8 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @param {} _value
      * @memberOf module:CuidandoBem
      */
-    function setFlag(_flagId, _value) {
-        Level.setFlag(_flagId, _value)
+    function setFlag( _flagId, _value ) {
+        Level.setFlag( _flagId, _value );
     }
 
     /**
@@ -368,12 +368,12 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @param {} _value
      * @memberOf module:CuidandoBem
      */
-    function setActionEnable(_actionId, _value) {
-        var action = Scene.getAction(_actionId);
-        if (_value)
-            enableActionButton(action);
+    function setActionEnable( _actionId, _value ) {
+        var action = Scene.getAction( _actionId );
+        if ( _value )
+            enableActionButton( action );
         else
-            disableActionButton(action);
+            disableActionButton( action );
     }
 
     /**
@@ -383,10 +383,10 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @param {} _value
      * @memberOf module:CuidandoBem
      */
-    function setActionVisible(_actionId, _value) {
-        var action = Scene.getAction(_actionId);
-        action.setVisibility(_value);
-        CommandBar.setActionVisible(action, _value);
+    function setActionVisible( _actionId, _value ) {
+        var action = Scene.getAction( _actionId );
+        action.setVisibility( _value );
+        CommandBar.setActionVisible( action, _value );
     }
 
     /**
@@ -395,14 +395,14 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @param {} _actionId
      * @memberOf module:CuidandoBem
      */
-    function toggleActionVisible(_actionId) {
-        var action = Scene.getAction(_actionId);
-        if (action.isVisible())
-            action.setVisibility(false);
+    function toggleActionVisible( _actionId ) {
+        var action = Scene.getAction( _actionId );
+        if ( action.isVisible() )
+            action.setVisibility( false );
         else
-            action.setVisibility(true);
+            action.setVisibility( true );
 
-        CommandBar.setActionVisible(action, action.isVisible());
+        CommandBar.setActionVisible( action, action.isVisible() );
     }
 
     /**
@@ -412,10 +412,10 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @param {} _value
      * @memberOf module:CuidandoBem
      */
-    function setInteractiveObjectVisible(_interactiveObjectId, _value) {
-        var interactiveObject = Scene.getInteractiveObject(_interactiveObjectId);
-        interactiveObject.setVisibility(_value);
-        InteractiveObject.setInteractiveObjectVisible(interactiveObject, _value);
+    function setInteractiveObjectVisible( _interactiveObjectId, _value ) {
+        var interactiveObject = Scene.getInteractiveObject( _interactiveObjectId );
+        interactiveObject.setVisibility( _value );
+        InteractiveObject.setInteractiveObjectVisible( interactiveObject, _value );
     }
 
     /**
@@ -424,36 +424,36 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
      * @param {} _interactiveObjectId
      * @memberOf module:CuidandoBem
      */
-    function toggleInteractiveObjectVisible(_interactiveObjectId) {
-        var interactiveObject = Scene.getInteractiveObject(_interactiveObjectId);
-        if (interactiveObject.isVisible())
-            interactiveObject.setVisibility(false);
+    function toggleInteractiveObjectVisible( _interactiveObjectId ) {
+        var interactiveObject = Scene.getInteractiveObject( _interactiveObjectId );
+        if ( interactiveObject.isVisible() )
+            interactiveObject.setVisibility( false );
         else
-            interactiveObject.setVisibility(true);
+            interactiveObject.setVisibility( true );
 
-        InteractiveObject.setInteractiveObjectVisible(interactiveObject, interactiveObject.isVisible());
+        InteractiveObject.setInteractiveObjectVisible( interactiveObject, interactiveObject.isVisible() );
     }
 
-    function registerScoreItem(score){
-        scoreList.push(score);
-        Storage.addScore(game.getCurrentLevelId(), score);
+    function registerScoreItem( score ) {
+        scoreList.push( score );
+        Storage.addScore( game.getCurrentLevelId(), score );
     }
 
-    function goBackToMenu(){
-        Stage.changeScreen(6);
+    function goBackToMenu() {
+        Stage.changeScreen( 6 );
     }
 
-    function changeSceneCssClassTo(_cssClass){
-        var oldSelector = '.' + Scene.getCssClass();
-        var selector = '.' + _cssClass;
-        $(oldSelector).addClass(_cssClass);
-        $(selector).removeClass(Scene.getCssClass());
+    function changeSceneCssClassTo( _cssClass ) {
+        var oldSelector = "." + Scene.getCssClass();
+        var selector = "." + _cssClass;
+        $( oldSelector ).addClass( _cssClass );
+        $( selector ).removeClass( Scene.getCssClass() );
 
-        Scene.setCssClass(_cssClass);
+        Scene.setCssClass( _cssClass );
     }
 
-    function unlockLevel(_levelId) {
-        Storage.unlockLevel(_levelId);
+    function unlockLevel( _levelId ) {
+        Storage.unlockLevel( _levelId );
     }
 
 
@@ -517,7 +517,7 @@ define(['Stage', 'levelsData', 'commandBar', 'dialogModal', 'interactiveObjects'
         ModalScene: ModalScene,
         Scene_con:Scene_con,
         endOfLevel:endOfLevel,
-        Player: require('Player'),
+        Player: require( "Player" ),
         core: ret
     };
 

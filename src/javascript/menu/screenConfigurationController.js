@@ -6,9 +6,9 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(['Stage'], function (Stage) {
+define([ "Stage" ], function( Stage ) {
 
-    var Player = require('Player');
+    var Player = require( "Player" );
 
     /**
      * This method is called when the screen Configuration is loaded
@@ -19,19 +19,19 @@ define(['Stage'], function (Stage) {
      * @memberOf module:Screen_configuration_Controller
      */
     function load() {
-        $('.menuButton').click(function(){
-            Player.play(Player.audios.sfx.selecionar_menu);
+        $( ".menuButton" ).click(function() {
+            Player.play( Player.audios.sfx.selecionar_menu );
         });
 
-        $('#muteSoundButton').click(function(){
+        $( "#muteSoundButton" ).click(function() {
            Player.mute();
         });
 
-        $('.backButton').click(function () {
-            Stage.changeScreen(0);
+        $( ".backButton" ).click(function() {
+            Stage.changeScreen( 0 );
         });
 
-        $('.slider').slider();
+        $( ".slider" ).slider();
     }
 
     /**
@@ -49,6 +49,6 @@ define(['Stage'], function (Stage) {
     return {
         load: load,
         unload: unload
-    }
+    };
 
 });
