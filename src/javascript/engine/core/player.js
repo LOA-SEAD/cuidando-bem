@@ -153,8 +153,9 @@ define(function() {
 
             loopSound = loopList[ loopId ];
 
-            var audio = new Audio( loopList[ nextId( loopId, loopList.length ) ];
-            loopSoundBuffer = audio.getAttribute("src") );
+            var nextInLoop = loopList[ nextId( loopId, loopList.length ) ];
+
+            loopSoundBuffer = new Audio( nextInLoop.getAttribute("src") );
             loopSoundBuffer.volume = loopList[ nextId( loopId, loopList.length ) ].vol;
             prepare( loopSoundBuffer );
 

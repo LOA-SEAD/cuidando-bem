@@ -9,17 +9,17 @@ define(function() {
     var generalPath = "./game/scripts/levels/";
     var filePaths = [
 
-        "Fase0",
-        "Fase1",
-        "Fase2",
-        "Fase3",
-        "Fase4",
-        "Fase5",
-        "Fase6",
-        "Fase7",
-        "Fase8",
-        "FaseTeste"
-        // "Fase9"
+        "fase0",
+        "fase1",
+        "fase2",
+        "fase3",
+        "fase4",
+        "fase5",
+        "fase6",
+        "fase7",
+        "fase8",
+        "faseTeste"
+        // "fase9"
 
     ];
 

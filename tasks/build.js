@@ -38,7 +38,7 @@ module.exports = function (grunt) {
 
         //Build for development
         grunt.task.run([
-            //'clean:dev',
+            'clean:dev',
             'copy:dev',
             'copy:libs',
             'replace:version',
@@ -48,7 +48,7 @@ module.exports = function (grunt) {
         if(target == 'prod' || target == 'rel') {
             //Take what was built for development and treat it for production
             grunt.task.run([
-                //'clean:prod',
+                'clean:prod',
                 'copy:prod',
                 'htmlmin:prod',
                 'cssmin:prod',

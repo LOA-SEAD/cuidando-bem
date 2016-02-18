@@ -11,21 +11,21 @@ define([ "Stage" ], function( Stage ) {
     Stage.setStartingScreenId( 0 );
 
 // 0
-    Stage.registerScreen("mainMenu", "mainMenu.html", "screen_mainMenu_controller");
+    Stage.registerScreen("mainMenu", "mainMenu.html", "screenMainMenuController");
 // 1
-    Stage.registerScreen("game", "gameContainer.html", "screen_game_controller");
+    Stage.registerScreen("game", "gameContainer.html", "screenGameController");
 // 2
-    Stage.registerScreen("loadGame", "loadGame.html", "screen_loadGame_controller");
+    Stage.registerScreen("loadGame", "loadGame.html", "screenLoadGameController");
 // 3
-    Stage.registerScreen("credits", "credits.html", "screen_credits_controller");
+    Stage.registerScreen("credits", "credits.html", "screenCreditsController");
 // 4
-    Stage.registerScreen("configuration", "configuration.html", "screen_configuration_controller");
+    Stage.registerScreen("configuration", "configuration.html", "screenConfigurationController");
 // 5
-    Stage.registerScreen("newGameSlotSelect", "newGameSlotSelect.html", "screen_newGameSlotSelect_controller");
+    Stage.registerScreen("newGameSlotSelect", "newGameSlotSelect.html", "screenNewGameSlotSelectController");
 // 6
-    Stage.registerScreen("levelSelect", "levelSelect.html", "screen_levelSelect_controller");
+    Stage.registerScreen("levelSelect", "levelSelect.html", "screenLevelSelectController");
 // 7
-    Stage.registerScreen("conteudo", "conteudo.html", "screen_conteudo_controller");
+    Stage.registerScreen("conteudo", "conteudo.html", "screenConteudoController");
 
     console.groupEnd();
 });

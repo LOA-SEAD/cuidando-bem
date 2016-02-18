@@ -1,4 +1,4 @@
- fi;/*
+/*
  This file configures all paths to modules used by the project
 
  @author Otho - Marcelo Lopes Lotufo
@@ -53,7 +53,7 @@ require.config({
         gameConfig: "game/scripts/gameConfig",
         stageConfig: "game/scripts/stageConfig",
 
-        Commons: "game/scripts/Commons",
+        Commons: "game/scripts/commons",
 
         // Refs
         DialogsData: "references/dialogData",

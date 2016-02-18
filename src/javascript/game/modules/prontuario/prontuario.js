@@ -123,6 +123,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
     var prescEnfermagemState = "vazio";
 
     // Enfermagem: virarDecubito
+    var prescEnfermagemTbody = "#prescEnfermagem_tbody";
     var prescEnfermagemVirouDecubito = false;
     var prescEnfermagemCheckSelector = "";
 
