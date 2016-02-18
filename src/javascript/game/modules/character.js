@@ -1,8 +1,8 @@
 define([], function() {
 
     /**
-	 * Stores a character name and cssClass
-	 *
+     * Stores a character name and cssClass
+     *
      * @class
      * @name Character
      *
@@ -10,10 +10,10 @@ define([], function() {
      * @param {string} _cssClass
      * @returns ObjectExpression
      * @constructor
-	 *
-	 * @author Otho - Marcelo Lopes Lotufo
+     *
+     * @author Otho - Marcelo Lopes Lotufo
      */
-	function Character( _name, _cssClass ) {
+    function Character( _name, _cssClass ) {
 
         /**
          * Character name that will be displayed in the Dialog Modal
@@ -22,7 +22,7 @@ define([], function() {
          *
          * @memberOf Character#
          */
-		var name = _name;
+        var name = _name;
 
         /**
          * Css class of the character portrait
@@ -31,7 +31,7 @@ define([], function() {
          *
          * @memberOf Character#
          */
-		var cssClass = _cssClass;
+        var cssClass = _cssClass;
 
         /**
          * Returns cssClass
@@ -40,9 +40,9 @@ define([], function() {
          *
          * @memberOf Character#
          */
-		function getCssClass() {
-			return cssClass;
-		}
+        function getCssClass() {
+            return cssClass;
+        }
 
         /**
          * Sets cssClass
@@ -51,10 +51,10 @@ define([], function() {
          *
          * @memberOf Character#
          */
-		function setCssClass( _cssClass ) {
-			cssClass = _cssClass;
-			return this;
-		}
+        function setCssClass( _cssClass ) {
+            cssClass = _cssClass;
+            return this;
+        }
 
         /**
          * Returns Name
@@ -63,9 +63,9 @@ define([], function() {
          *
          * @memberOf Character#
          */
-		function getName() {
-			return name;
-		}
+        function getName() {
+            return name;
+        }
 
         /**
          * Sets name
@@ -74,19 +74,19 @@ define([], function() {
          *
          * @memberOf Character#
          */
-		function setName( _name ) {
-			name = _name;
-			return this;
-		}
+        function setName( _name ) {
+            name = _name;
+            return this;
+        }
 
-		return {
-			getName: getName,
-			setName: setName,
+        return {
+            getName: getName,
+            setName: setName,
 
-			getCssClass: getCssClass,
-			setCssClass: setCssClass
-		};
-	}
+            getCssClass: getCssClass,
+            setCssClass: setCssClass
+        };
+    }
 
-	return Character;
+    return Character;
 });

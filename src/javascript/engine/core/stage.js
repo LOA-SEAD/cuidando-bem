@@ -1,10 +1,12 @@
 /**
  * The module stage is responsible to change and control the "screen" presented to the user.
- * For the module work it is needed to register "views" and "controllers" before calling the method start
+ * For the module work it is needed to register "views" and "controllers" before calling the method
+ * start
  *
  * A view is a html file, and a controller is a js file that is responsible to make its view work.
  * To bind all events to the view, as for example button clicks.
- * Because this project uses require.js every call to a new "screen" will asynchronously load the new view and controller
+ * Because this project uses require.js every call to a new "screen" will asynchronously load the
+ * new view and controller
  *
  * @name Stage
  * @module
@@ -45,7 +47,8 @@ define(function() {
     var controllerPath;
 
     /**
-     * Container should be an jquery selector string relative to the main html file. The selected element will be used
+     * Container should be an jquery selector string relative to the main html file.
+     * The selected element will be used
      * as base for all other elements that the module stage will append.
      * @private
      * @type {string}
@@ -55,8 +58,10 @@ define(function() {
     var containerSelector;
 
     var startingScreenId = 0;
+
     /**
-     * This function is called to init this module. It checks if an id was passed to the module and changes the screen
+     * This function is called to init this module. It checks if an id was passed to the module
+     * and changes the screen
      * to the starting screen. That is also required to be registered.
      * @method start
      * @public
@@ -64,8 +69,9 @@ define(function() {
      * @memberOf module:Stage
      */
     function start() {
-        if ( containerSelector == undefined )
+        if ( containerSelector == undefined ) {
             throw new Error( Errors.undefinedContainer );
+        }
 
         changeScreen( startingScreenId );
     }
@@ -146,7 +152,7 @@ define(function() {
      * @memberOf module:Stage
      */
     function registerScreen( _name, _htmlPage, _controller ) {
-        console.log( "\tAdding Screen: ", _name, _htmlPage, _controller );
+        console.log("\tAdding Screen: ", _name, _htmlPage, _controller );
         screens.push( new Screen( _name, _htmlPage, _controller ) );
     }
 
@@ -161,15 +167,22 @@ define(function() {
     function changeScreen( nextScreenId ) {
         var nextScreen = screens[ nextScreenId ];
 
-        //console.log('text!'+htmlPath+nextScreen.getHtmlPage());
+        // console.log('text!'+htmlPath+nextScreen.getHtmlPage());
 
+        var template = "text!" + htmlPath + nextScreen.getHtmlPage(),
+            controller = controllerPath + nextScreen.getControllerName();
 
-        require([ "text!" + htmlPath + nextScreen.getHtmlPage(), controllerPath + nextScreen.getControllerName() ], function( page, controller ) {
-            console.log("Actual Screen Name: " + nextScreen.getControllerName() );
-            $( containerSelector ).empty();
-            $( containerSelector ).append( page );
-            controller.load();
-        });
+        require([
+                template,
+                controller
+            ],
+            function( page, controller ) {
+                console.log("Actual Screen Name: " + nextScreen.getControllerName() );
+                $( containerSelector ).empty();
+                $( containerSelector ).append( page );
+                controller.load();
+            }
+        );
     }
 
     /**

@@ -8,8 +8,8 @@
 define([ "text!../html/scenes/scene.html" ], function( html ) {
 
 
-//Attributes
-//Methods
+// Attributes
+// Methods
     function init( selector ) {
         $( selector ).append( html );
     }
@@ -31,12 +31,12 @@ define([ "text!../html/scenes/scene.html" ], function( html ) {
      * @memberOf module:Scene
      */
     function setScene( _scene ) {
-        $( "#backgroundScene" ).attr( "class", _scene.getCssClass() );
+        $("#backgroundScene").attr("class", _scene.getCssClass() );
     }
 
-//Getters
-//Setters
-//Public Interface
+// Getters
+// Setters
+// Public Interface
     return {
         init: init,
         changeScene: changeScene,

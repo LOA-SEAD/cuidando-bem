@@ -11,6 +11,7 @@
 define(function() {
 
     var counter = -1;
+
     /**
      * @class
      * @name Scene
@@ -23,33 +24,37 @@ define(function() {
      * @author Otho - Marcelo Lopes Lotufo
      */
     function Scene( _id, _name ) {
-        //Attributes
+        // Attributes
 
-        if ( _id == null )
+        if ( _id == null ) {
             _id = "Scene_" + counter;
+        }
 
-        if ( _name == null )
+        if ( _name == null ) {
             _name = "";
+        }
 
         var id = _id;
 
         var name = _name;
         var cssClass = "noTexture";
 
-        var onLoadFunction = function() {};
-        var onUnloadFunction = function() {};
+        var onLoadFunction = function() {
+        };
+        var onUnloadFunction = function() {
+        };
 
         var dialogs = [];
 
         var interactiveObjects = [];
-        var interactiveObjects_aux = {};
+        var interactiveObjectsAux = {};
 
         var actions = [];
-        var actions_aux = {};
+        var actionsAux = {};
 
         var template;
 
-        //Methods
+        // Methods
 
         /**
          * Description
@@ -73,24 +78,27 @@ define(function() {
             onUnloadFunction();
         }
 
-        //Getters
+        // Getters
         function getClone() {
-            var scene_clone = new Scene( id, name )
+            var sceneClone = new Scene( id, name )
                 .setCssClass( getCssClass() )
                 .onLoad( onLoadFunction )
                 .onUnload( onUnloadFunction )
                 .setTemplate( getTemplate() );
 
-            for ( dialog in dialogs )
-                scene_clone.registerDialog( dialogs[ dialog ].getClone() );
+            for ( dialog in dialogs ) {
+                sceneClone.registerDialog( dialogs[ dialog ].getClone() );
+            }
 
-            for ( interactiveObject in interactiveObjects )
-                scene_clone.registerInteractiveObject( interactiveObjects[ interactiveObject ].getClone() );
+            for ( interactiveObject in interactiveObjects ) {
+                sceneClone.registerInteractiveObject( interactiveObjects[ interactiveObject ].getClone() );
+            }
 
-            for ( action in actions )
-                scene_clone.registerAction( actions[ action ].getClone() );
+            for ( action in actions ) {
+                sceneClone.registerAction( actions[ action ].getClone() );
+            }
 
-            return scene_clone;
+            return sceneClone;
         }
 
         function getId() {
@@ -139,10 +147,10 @@ define(function() {
          */
         function getAction( _actionId ) {
             if ( typeof _actionId == "string") {
-                return actions[ actions_aux[ _actionId ] ];
-            } else {
-                return actions[ _actionId ];
+                return actions[ actionsAux[ _actionId ] ];
             }
+
+            return actions[ _actionId ];
         }
 
         /**
@@ -176,17 +184,17 @@ define(function() {
          */
         function getInteractiveObject( _intObjId ) {
             if ( typeof _intObjId == "string") {
-                return interactiveObjects[ interactiveObjects_aux[ _intObjId ] ];
-            } else {
-                return interactiveObjects[ _intObjId ];
+                return interactiveObjects[ interactiveObjectsAux[ _intObjId ] ];
             }
+
+            return interactiveObjects[ _intObjId ];
         }
 
         function getTemplate() {
             return template;
         }
 
-        //Setters
+        // Setters
         function setId( _id ) {
             id = _id;
             return this;
@@ -225,7 +233,7 @@ define(function() {
          * @memberOf Scene#
          */
         function registerAction( _action ) {
-            actions_aux[ _action.getId() ] = actions.length;
+            actionsAux[ _action.getId() ] = actions.length;
             actions.push( _action );
 
             console.log("Registering Action: ", _action.getName(), "on Scene:" + name );
@@ -272,7 +280,7 @@ define(function() {
          * @memberOf Scene#
          */
         function registerInteractiveObject( _interactiveObject ) {
-            interactiveObjects_aux[ _interactiveObject.getId() ] = interactiveObjects.length;
+            interactiveObjectsAux[ _interactiveObject.getId() ] = interactiveObjects.length;
             interactiveObjects.push( _interactiveObject );
 
             console.log("Registering Interactive Object: ", _interactiveObject.getName(), "on Scene:" + name );
@@ -285,7 +293,7 @@ define(function() {
             }
         }
 
-        //Public interface
+        // Public interface
         return {
             getId: getId,
             getName: getName,
@@ -301,11 +309,11 @@ define(function() {
             getDialogs: getDialogs,
             getTemplate: getTemplate,
 
-            setId:setId,
-            setName:setName,
-            setCssClass:setCssClass,
-            onLoad:onLoad,
-            onUnload:onUnload,
+            setId: setId,
+            setName: setName,
+            setCssClass: setCssClass,
+            onLoad: onLoad,
+            onUnload: onUnload,
             setTemplate: setTemplate,
 
 

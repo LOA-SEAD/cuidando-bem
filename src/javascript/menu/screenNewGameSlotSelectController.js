@@ -8,8 +8,8 @@
  */
 define([ "Stage" ], function( Stage ) {
 
-    var Player = require( "Player" );
-    var Storage = require( "Storage" );
+    var Player = require("Player");
+    var Storage = require("Storage");
     var saves = Storage.load();
 
     var selectedId = Storage.getSelectedId();
@@ -24,7 +24,6 @@ define([ "Stage" ], function( Stage ) {
     var defaultNameInputValue = "";
 
 
-
     /**
      * This method is called when the screen newGameSlotSelect is loaded
      *
@@ -35,8 +34,8 @@ define([ "Stage" ], function( Stage ) {
      */
     function load() {
 
-        //region Setup Dialogs
-        //region Delete Slot
+        // region Setup Dialogs
+        // region Delete Slot
         $( deleteDialogSelector ).dialog({
             resizable: false,
             autoOpen: false,
@@ -48,17 +47,17 @@ define([ "Stage" ], function( Stage ) {
                     text: "Voltar",
                     "class": "dialogVoltarBtt",
                     click: function() {
-                        $( this ).dialog( "close" );
+                        $( this ).dialog("close");
                     }
                 },
                 {
                     text: "Apagar",
                     "class": "dialogApagarBtt",
-                    //"class": 'dialogConfirmarBtt menuButton menuButtonBlue',
+                    // "class": 'dialogConfirmarBtt menuButton menuButtonBlue',
                     click: function() {
-                        slotsSel = $( ".slot" );
+                        slotsSel = $(".slot");
 
-                        $( this ).dialog( "close" );
+                        $( this ).dialog("close");
                         Storage.reset( selectedId );
 
                         $( slotsSel[ selectedId ] ).removeClass("filled");
@@ -76,12 +75,12 @@ define([ "Stage" ], function( Stage ) {
 
         $( deleteDialogSelector )
             .dialog()
-            .dialog( "widget" )
-            .find( ".ui-dialog-titlebar-close" )
+            .dialog("widget")
+            .find(".ui-dialog-titlebar-close")
             .hide();
 
-        //endregion
-        //region Type Name
+        // endregion
+        // region Type Name
         $( typeNameDialogSelector ).dialog({
             resizable: false,
             autoOpen: false,
@@ -93,19 +92,24 @@ define([ "Stage" ], function( Stage ) {
                     text: "Voltar",
                     "class": "dialogVoltarBtt",
                     click: function() {
-                        $( this ).dialog( "close" );
+                        $( this ).dialog("close");
                         $( nameInputSelector ).val( defaultNameInputValue );
                     }
                 },
                 {
                     text: "Confirmar",
                     "class": "dialogConfirmarBtt",
-                    //"class": 'dialogConfirmarBtt menuButton menuButtonBlue',
+                    // "class": 'dialogConfirmarBtt menuButton menuButtonBlue',
                     click: function() {
-                        $( this ).dialog( "close" );
+                        $( this ).dialog("close");
                         var name = $( nameInputSelector ).val();
-                        if ( name === null || name === undefined || name === "" || name === defaultNameInputValue )
-                           name = defaultNameInputValue + " " + (selectedId + 1);
+                        if ( name === null ||
+                            name === undefined ||
+                            name === "" ||
+                            name === defaultNameInputValue ) {
+
+                            name = defaultNameInputValue + " " + (selectedId + 1);
+                        }
 
                         Storage.setupSlot( selectedId, name );
 
@@ -121,15 +125,14 @@ define([ "Stage" ], function( Stage ) {
 
         $( typeNameDialogSelector )
             .dialog()
-            .dialog( "widget" )
-            .find( ".ui-dialog-titlebar-close" )
+            .dialog("widget")
+            .find(".ui-dialog-titlebar-close")
             .hide();
-        //endregion
-        //endregion
+        // endregion
+        // endregion
 
 
-
-        var slotsSel = $( ".slot" );
+        var slotsSel = $(".slot");
 
         $( slotsSel[ selectedId ] ).addClass("selected");
 
@@ -141,44 +144,44 @@ define([ "Stage" ], function( Stage ) {
 
             if ( save.empty ) {
                 $( slotsSel[ i ] ).addClass("empty");
-            }else {
+            } else {
                 $( slotsSel[ i ] ).addClass("filled");
             }
 
             $( slotsSel[ i ] ).text( save.name );
         }
 
-        $( ".menuButton" ).click(function() {
-            Player.play( Player.audios.sfx.selecionar_menu );
+        $(".menuButton").click(function() {
+            Player.play( Player.audios.sfx.selecionarMenu );
         });
 
-        $( ".backButton" ).click(function() {
+        $(".backButton").click(function() {
             Stage.changeScreen( 0 );
         });
 
-        $( "#deleteSlot" ).click(function() {
+        $("#deleteSlot").click(function() {
             if ( !isSelectedEmpty ) {
                 $("#dialog-confirmDelete")
                     .dialog("open");
             }
         });
 
-        $( "#loadSlot" ).click(function() {
+        $("#loadSlot").click(function() {
             if ( !isSelectedEmpty ) {
                 Storage.loadSlot( selectedId );
                 Stage.changeScreen( 6 );
-            }else {
+            } else {
                 $( typeNameDialogSelector )
                     .dialog("open");
             }
         });
 
         slotsSel.click(function() {
-            var slotsSel = $( ".slot" );
+            var slotsSel = $(".slot");
             selectedId = slotsSel.index( this );
-            slotsSel.removeClass( "selected" );
+            slotsSel.removeClass("selected");
 
-            $( this ).addClass( "selected" );
+            $( this ).addClass("selected");
             var save = saves[ selectedId ];
             isSelectedEmpty = save.empty;
             checkIfSlotIsEmpty();
@@ -197,13 +200,13 @@ define([ "Stage" ], function( Stage ) {
      */
     function checkIfSlotIsEmpty() {
         if ( isSelectedEmpty ) {
-            $( "#deleteSlot" ).addClass( "disabled" );
+            $("#deleteSlot").addClass("disabled");
 
-            $( "#loadSlot" ).text( "Iniciar" );
-        }else {
-            $( "#deleteSlot" ).removeClass( "disabled" );
+            $("#loadSlot").text("Iniciar");
+        } else {
+            $("#deleteSlot").removeClass("disabled");
 
-            $( "#loadSlot" ).text( "Carregar" );
+            $("#loadSlot").text("Carregar");
         }
     }
 

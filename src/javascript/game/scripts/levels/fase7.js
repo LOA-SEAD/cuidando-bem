@@ -1,20 +1,20 @@
 /* by Wellyson */
 
-define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "Scores_data" ],
+define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
 
-        //region Imports
-        var Dialogs = require("Dialogs_data").fase7;
-        var Alertas = require("Dialogs_data").alertas;
-        // var Scores = require("Scores_data").fase3;
-        //endregion
+        // region Imports
+        var Dialogs = require("DialogsData").fase7;
+        var Alertas = require("DialogsData").alertas;
+        // var Scores = require("ScoresData").fase3;
+        // endregion
 
         var level = new Level("Level 7");
         console.groupCollapsed( level.getName() );
 
-        //region Scenes
+        // region Scenes
 
-        //region Recepcao
+        // region Recepcao
 
         var recepcao = lib.scenes.recepcao.getClone()
             .onLoad(function() {
@@ -24,10 +24,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
 
-
         function recepcaoIrCorredor() {
             console.log("Funcao: recepcao_ir_corredor");
-            if ( level.getFlag("conversar_recepcionista").getValue() == true ) { // wont check for flags
+            if ( level.getFlag("conversar_recepcionista").getValue() == true ) {
                 core.closeDialog();
                 core.changeScene( 1 );
                 console.log("Ir para o corredor");
@@ -43,14 +42,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         }
 
 
-
         recepcao.registerDialogs([
             // Dialog 0
-           new Dialog( lib.characters.jogador )
+            new Dialog( lib.characters.jogador )
                 .setText( Dialogs.recepcao[ 0 ] )
                 .registerOption("", function() {
-                core.openDialog( 1 );
-            }),
+                    core.openDialog( 1 );
+                }),
 
 
             // 1
@@ -58,8 +56,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Dialog( lib.characters.recepcionista )
                 .setText( Dialogs.recepcao[ 1 ] )
                 .registerOption("", function() {
-                core.closeDialog();
-            })
+                    core.closeDialog();
+                })
 
 
         ]);
@@ -85,7 +83,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
 
-        //region CORREDOR
+        // region CORREDOR
 
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
@@ -96,11 +94,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
 
-
-
         function corredorIrFarmacia() {
             console.log("Action: corredorIrFarmaciaHoraErrada");
-                core.changeScene( 4 );
+            core.changeScene( 4 );
 
 
         }
@@ -109,43 +105,43 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         function corredorIrPostoEnfermagem() {
             console.log("Action: corredorIrPostoEnfermagem");
             if ( level.getFlag("ir_postoEnfermagem_horaErrada").getValue() == false ) {
-                core.registerScoreItem( Scores.irPostoEnfermagem_horaErrada );
+                core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
                 level.getFlag("ir_postoEnfermagem_horaErrada").setValue( true );
                 core.changeScene( 5 );
-            } else
+            } else {
                 core.changeScene( 5 );
+            }
         }
 
         function corredorIrAlaFeminina() {
             console.log("Action: corredorIrAlaFeminina");
 
-                core.changeScene( 2 );
+            core.changeScene( 2 );
         }
 
 
         function corredorIrCentroCirurgico() {
             console.log("Action: corredorIrCentroCirurgicoHoraErrada");
             if ( level.getFlag("ir_centroCirurgico_horaErrada").getValue() == false ) {
-                core.registerScoreItem( Scores.irCentroCirurgico_horaErrada );
+                core.registerScoreItem( Scores.irCentroCirurgicoHoraErrada );
                 level.getFlag("ir_centroCirurgico_horaErrada").setValue( true );
                 core.changeScene( 7 );
-            } else
+            } else {
                 core.changeScene( 7 );
-
-
+            }
         }
 
 
         function corredorIrAlaMasculina() {
             console.log("Action: corredorIrAlaMasculinaHoraErrada");
             if ( level.getFlag("ir_AlaMasculina_horaErrada").getValue() == false ) {
-                core.registerScoreItem( Scores.irAlaMasculina_horaErrada );
+                core.registerScoreItem( Scores.irAlaMasculinaHoraErrada );
                 level.getFlag("ir_AlaMasculina_horaErrada").setValue( true );
                 core.changeScene( 6 );
-            } else
+            } else {
                 core.changeScene( 6 );
+            }
         }
-
 
 
         corredor.registerInteractiveObjects([
@@ -154,7 +150,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-goToCentroCirurgico")
                 .onClick( corredorIrCentroCirurgico )
                 .setVisibility( true ),
-
 
 
             new InteractiveObject("io-ir_farmacia", "Ir para a Farmacia")
@@ -174,21 +169,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick( corredorIrAlaFeminina )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_ala_masculina", "Ir para a Ala Masculina")
+            new InteractiveObject("io-ir_alaMasculina", "Ir para a Ala Masculina")
                 .setCssClass("intObj-goToAlaMasculina")
                 .onClick( corredorIrAlaMasculina )
                 .setVisibility( true )
 
 
-
-
-    ]);
-
-
+        ]);
 
 
         // region ALA FEMININA
-
 
 
         var alaFeminina = lib.scenes.alaFeminina.getClone()
@@ -198,178 +188,165 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
 
-
         alaFeminina.registerDialogs([
 
-        // 0
+            // 0
 
-                // 1 Jogador responde
+            // 1 Jogador responde
             new Dialog( lib.characters.jogador )
                 .setText("")
-                .registerOption( Dialogs.enfermaria_feminina[ 0 ], function() {
-                core.openDialog( 1 );
-            })
-                .registerOption( Dialogs.enfermaria_feminina[ 1 ], function() {
-                core.openDialog( 5 );
-            })
+                .registerOption( Dialogs.enfermariaFeminina[ 0 ], function() {
+                    core.openDialog( 1 );
+                })
+                .registerOption( Dialogs.enfermariaFeminina[ 1 ], function() {
+                    core.openDialog( 5 );
+                })
                 .setRandomize( true ),
 
-        // 1
+            // 1
 
             new Dialog( lib.characters.pacientes.ana )
-                    .setText( Dialogs.enfermaria_feminina[ 2 ] )
-                    .registerOption("", function() {
-                core.openDialog( 2 );
-            }),
-
-        // 2
-
-              new Dialog( lib.characters.jogador )
-                    .setText( Dialogs.enfermaria_feminina[ 3 ] )
-                    .registerOption("", function() {
-                core.openDialog( 3 );
-            }),
-
-        // 3
-         new Dialog( lib.characters.pacientes.ana )
-                    .setText( Dialogs.enfermaria_feminina[ 4 ] )
-                    .registerOption("", function() {
-                core.openDialog( 4 );
-            }),
-
-        // 4
-
-         new Dialog( lib.characters.jogador )
-                    .setText( Dialogs.enfermaria_feminina[ 5 ] )
-                    .registerOption("", function() {
-                core.closeDialog();
-            }),
-
-        // 5
-
-         new Dialog( lib.characters.mentor )
-                    .setText( Dialogs.enfermaria_feminina[ 6 ] )
-                    .registerOption("", function() {
-                core.openDialog( 0 );
-            }),
-
-        // 6 - ALERTA CONVERSAR PACIENTE
-            new Dialog( lib.characters.mentor )
-                .setText( Alertas.esqueceu.conversar_paciente )
+                .setText( Dialogs.enfermariaFeminina[ 2 ] )
                 .registerOption("", function() {
-                core.closeDialog();
-            }),
+                    core.openDialog( 2 );
+                }),
 
-               // 7 - ALERTA LAVAR MAOS
-            new Dialog( lib.characters.mentor )
-                .setText( Alertas.lavar_maos.tipo3 )
+            // 2
+
+            new Dialog( lib.characters.jogador )
+                .setText( Dialogs.enfermariaFeminina[ 3 ] )
                 .registerOption("", function() {
-                core.closeDialog();
-            }),
+                    core.openDialog( 3 );
+                }),
 
-
-               // 8 - ALERTA ESQUECEU MEDICAMENTO
-            new Dialog( lib.characters.mentor )
-                .setText( Alertas.esqueceu.pegar_medicamento )
+            // 3
+            new Dialog( lib.characters.pacientes.ana )
+                .setText( Dialogs.enfermariaFeminina[ 4 ] )
                 .registerOption("", function() {
-                core.closeDialog();
-            })
+                    core.openDialog( 4 );
+                }),
 
-    ]);
+            // 4
 
+            new Dialog( lib.characters.jogador )
+                .setText( Dialogs.enfermariaFeminina[ 5 ] )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
+
+            // 5
+
+            new Dialog( lib.characters.mentor )
+                .setText( Dialogs.enfermariaFeminina[ 6 ] )
+                .registerOption("", function() {
+                    core.openDialog( 0 );
+                }),
+
+            // 6 - ALERTA CONVERSAR PACIENTE
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.conversarPaciente )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
+
+            // 7 - ALERTA LAVAR MAOS
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.lavarMaos.tipo3 )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
+
+
+            // 8 - ALERTA ESQUECEU MEDICAMENTO
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.pegarMedicamento )
+                .registerOption("", function() {
+                    core.closeDialog();
+                })
+
+        ]);
 
 
         alaFeminina.registerActions([
 
 
-
-                   new Action("btn-ler_prontuario", "Ler prontuario")
+            new Action("btn-ler_prontuario", "Ler prontuario")
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
-                if ( level.getFlag("conversar_paciente").getValue() == false )
-                    ; // aviso que nao conversou com paciente
-                else {
-                    if ( level.getFlag("ler_prontuario").getValue() == false ) {
-                        level.getFlag("ler_prontuario").setValue( true );
-                        console.log("Action: ler prontuario");
-                        Prontuario.open();
-                        core.openModalScene("Prontuario");
-                        core.registerScoreItem( Scores.verProntuario );
+                    if ( level.getFlag("conversarPaciente").getValue() == false ) {
+                        // aviso que nao conversou com paciente
                     } else {
-                        console.log("Action: ler prontuario");
-                        Prontuario.open();
-                        core.openModalScene("Prontuario");
+                        if ( level.getFlag("ler_prontuario").getValue() == false ) {
+                            level.getFlag("ler_prontuario").setValue( true );
+                            console.log("Action: ler prontuario");
+                            Prontuario.open();
+                            core.openModalScene("Prontuario");
+                            core.registerScoreItem( Scores.verProntuario );
+                        } else {
+                            console.log("Action: ler prontuario");
+                            Prontuario.open();
+                            core.openModalScene("Prontuario");
 
-                            }
+                        }
 
-                }
-            })
+                    }
+                })
                 .setVisibility( true ),
 
 
-              new Action("btn-lavar_maos", "Lavar as mãos")
-                .setCssClass("action-lavar_maos")
+            new Action("btn-lavarMaos", "Lavar as mãos")
+                .setCssClass("action-lavarMaos")
                 .onClick(function() {
 
-                if ( level.getFlag("lavar_maos").getValue() == false ) {
-                    level.getFlag("lavar_maos").setValue( true );
-                     core.registerScoreItem( Scores.lavarMaos );
-                    level.getFlag("score_lavar_maos").setValue( true );
+                    if ( level.getFlag("lavarMaos").getValue() == false ) {
+                        level.getFlag("lavarMaos").setValue( true );
+                        core.registerScoreItem( Scores.lavarMaos );
+                        level.getFlag("score_lavar_maos").setValue( true );
 
-                }
-
-            })
-            .setVisibility( true )
-
-
-
-
-    ]);
-
-
-
-        alaFeminina.registerInteractiveObjects([
-
-             new InteractiveObject("io-ir_corredor", "Ir ao corredor")
-                .setCssClass("intObj-irAlaFeminina_corredor")
-                .onClick(function() {
-                if ( level.getFlag("conversar_paciente").getValue() == false )
-                    core.openDialog( 6 );
-                else {
-                    console.log("voltando para corredor");
-                    core.changeScene( 1 );
-
-                }
-
-            }),
-
-
-
-
-              new InteractiveObject("io-conversar_paciente2", "Ir ao leito")
-                .setCssClass("intObj-irLeitoEsquerda")
-                .onClick(function() {
-                    if ( level.getFlag("lavar_maos").getValue() == false )
-                        core.openDialog( 7 );
-                    else if ( level.getFlag("conversar_paciente").getValue() == false ) {
-                                level.getFlag("conversar_paciente").setValue( true );
-                                core.registerScoreItem( Scores.falarComPaciente );
-                                core.openDialog( 0 );
-                        } else if ( level.getFlag("pegar_medicamento").getValue() == false )
-                                core.openDialog( 8 );
-                        else
-                              core.changeScene( 3 );
-
+                    }
 
                 })
                 .setVisibility( true )
 
 
-
-          ]);
-
+        ]);
 
 
+        alaFeminina.registerInteractiveObjects([
+
+            new InteractiveObject("io-ir_corredor", "Ir ao corredor")
+                .setCssClass("intObj-irAlaFeminina_corredor")
+                .onClick(function() {
+                    if ( level.getFlag("conversarPaciente").getValue() == false ) {
+                        core.openDialog( 6 );
+                    } else {
+                        console.log("voltando para corredor");
+                        core.changeScene( 1 );
+
+                    }
+
+                }),
+
+
+            new InteractiveObject("io-conversar_paciente2", "Ir ao leito")
+                .setCssClass("intObj-irLeitoEsquerda")
+                .onClick(function() {
+                    if ( level.getFlag("lavarMaos").getValue() == false ) {
+                        core.openDialog( 7 );
+                    } else if ( level.getFlag("conversarPaciente").getValue() == false ) {
+                        level.getFlag("conversarPaciente").setValue( true );
+                        core.registerScoreItem( Scores.falarComPaciente );
+                        core.openDialog( 0 );
+                    } else if ( level.getFlag("pegarMedicamento").getValue() == false ) {
+                        core.openDialog( 8 );
+                    } else {
+                        core.changeScene( 3 );
+                    }
+                })
+                .setVisibility( true )
+
+
+        ]);
 
 
         //  region FARMACIA
@@ -377,327 +354,312 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var farmacia = lib.scenes.farmacia.getClone()
             .onLoad(function() {
                 if ( level.getFlag("ir_ala_feminina_primeira_vez").getValue() == true ) {
-                console.log("Load scene: " + farmacia.getName() );
-                console.log("Abrindo dialogo com farmaceutico");
-                core.openDialog( 0 );
-                } else
-                    {
-                        console.log("Hora Errada!");
-                        if ( level.getFlag("ir_farmacia_horaErrada").getValue() == false )
-                            core.registerScoreItem( Scores.irFarmacia_horaErrada );
-                        level.getFlag("ir_farmacia_horaErrada").setValue( true );
-                        core.openDialog( 9 );
-                        core.changeScene( 1 );
+                    console.log("Load scene: " + farmacia.getName() );
+                    console.log("Abrindo dialogo com farmaceutico");
+                    core.openDialog( 0 );
+                } else {
+                    console.log("Hora Errada!");
+                    if ( level.getFlag("ir_farmacia_horaErrada").getValue() == false ) {
+                        core.registerScoreItem( Scores.irFarmaciaHoraErrada );
                     }
+                    level.getFlag("ir_farmacia_horaErrada").setValue( true );
+                    core.openDialog( 9 );
+                    core.changeScene( 1 );
+                }
             });
 
 
         farmacia.registerDialogs([
 
 
-                // 0
-          new Dialog( lib.characters.jogador )
-                    .setText( Dialogs.farmacia[ 0 ] )
-                    .registerOption("", function() {
-                core.openDialog( 1 );
-            }),
+            // 0
+            new Dialog( lib.characters.jogador )
+                .setText( Dialogs.farmacia[ 0 ] )
+                .registerOption("", function() {
+                    core.openDialog( 1 );
+                }),
 
             // 1
-              new Dialog( lib.characters.paulo )
-                    .setText( Dialogs.farmacia[ 1 ] )
-                    .registerOption("", function() {
-                core.closeDialog();
-            }),
+            new Dialog( lib.characters.paulo )
+                .setText( Dialogs.farmacia[ 1 ] )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
 
             // 2
-               new Dialog( lib.characters.jogador )
-                     .setText("")
+            new Dialog( lib.characters.jogador )
+                .setText("")
                 .registerOption( Dialogs.farmacia[ 2 ], function() {
-                core.openDialog( 3 );
-            })
+                    core.openDialog( 3 );
+                })
                 .registerOption( Dialogs.farmacia[ 3 ], function() {
-                core.openDialog( 5 );
-            })
+                    core.openDialog( 5 );
+                })
                 .setRandomize( true ),
 
             // 3
-              new Dialog( lib.characters.paulo )
-                    .setText( Dialogs.farmacia[ 4 ] )
-                    .registerOption("", function() {
-                core.openDialog( 4 );
-            }),
+            new Dialog( lib.characters.paulo )
+                .setText( Dialogs.farmacia[ 4 ] )
+                .registerOption("", function() {
+                    core.openDialog( 4 );
+                }),
 
             // 4
-             new Dialog( lib.characters.jogador )
-                     .setText("")
+            new Dialog( lib.characters.jogador )
+                .setText("")
                 .registerOption( Dialogs.farmacia[ 5 ], function() {
-                core.openDialog( 6 );
-            })
+                    core.openDialog( 6 );
+                })
                 .registerOption( Dialogs.farmacia[ 6 ], function() {
-                core.registerScoreItem( Scores.trocarMedicamento );
-                core.closeDialog();
-            })
+                    core.registerScoreItem( Scores.trocarMedicamento );
+                    core.closeDialog();
+                })
                 .setRandomize( true ),
 
             // 5
-              new Dialog( lib.characters.mentor )
-                    .setText( Dialogs.farmacia[ 7 ] )
-                    .registerOption("", function() {
-                core.openDialog( 2 );
-            }),
+            new Dialog( lib.characters.mentor )
+                .setText( Dialogs.farmacia[ 7 ] )
+                .registerOption("", function() {
+                    core.openDialog( 2 );
+                }),
 
             // 6
-              new Dialog( lib.characters.mentor )
-                    .setText( Dialogs.farmacia[ 8 ] )
-                    .registerOption("", function() {
-                core.openDialog( 4 );
-            }),
+            new Dialog( lib.characters.mentor )
+                .setText( Dialogs.farmacia[ 8 ] )
+                .registerOption("", function() {
+                    core.openDialog( 4 );
+                }),
 
             // 7 - ALERTA VERIFICAR MEDICAMENTO
-              new Dialog( lib.characters.mentor )
-                    .setText( Alertas.esqueceu.verificar_medicamento )
-                    .registerOption("", function() {
-                core.closeDialog();
-            }),
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.verificarMedicamento )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
 
-             // 8 - ALERTA PEGAR MEDICAMENTO
-              new Dialog( lib.characters.mentor )
-                    .setText( Alertas.esqueceu.pegar_medicamento )
-                    .registerOption("", function() {
-                core.closeDialog();
-            }),
+            // 8 - ALERTA PEGAR MEDICAMENTO
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.pegarMedicamento )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
 
             // 9 - Alerta Hora Errada
 
-             new Dialog( lib.characters.mentor )
-                    .setText( Alertas.perdido.farmacia )
-                    .registerOption("", function() {
-                core.closeDialog();
-            })
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.perdido.farmacia )
+                .registerOption("", function() {
+                    core.closeDialog();
+                })
 
-    ]);
-
+        ]);
 
 
         farmacia.registerActions([
 
 
-             new Action("btn-ir_corredor", "Ir ao corredor")
+            new Action("btn-ir_corredor", "Ir ao corredor")
                 .setCssClass("action-ir_corredor")
                 .onClick(function() {
-                    if ( level.getFlag("pegar_medicamento").getValue() == false ) {
+                    if ( level.getFlag("pegarMedicamento").getValue() == false ) {
                         core.openDialog( 8 );
-                    } else
-                        if ( level.getFlag("conferir_medicamento_correto").getValue() == false )
-                            core.openDialog( 7 );
-                        else
-                            core.changeScene( 1 );
-            }),
+                    } else if ( level.getFlag("conferir_medicamento_correto").getValue() == false ) {
+                        core.openDialog( 7 );
+                    } else {
+                        core.changeScene( 1 );
+                    }
+                }),
 
 
-
-                         new Action("btn-pegarMedicamento", "Pegar Medicamento")
-                .setCssClass("action-pegar_medicamento")
+            new Action("btn-pegarMedicamento", "Pegar Medicamento")
+                .setCssClass("action-pegarMedicamento")
                 .onClick(function() {
-                    level.getFlag("pegar_medicamento").setValue( true );
+                    level.getFlag("pegarMedicamento").setValue( true );
                     core.registerScoreItem( Scores.pegarMedicamento );
 
-            }),
+                }),
 
 
-
-                         new Action("btn-conferirMedicamento", "Conferir Medicamento")
+            new Action("btn-conferirMedicamento", "Conferir Medicamento")
                 .setCssClass("action-conferir_medicamento")
                 .onClick(function() {
-                    if ( level.getFlag("pegar_medicamento").getValue() == false )
-                        ; // nao faz nada
-                    else if ( level.getFlag("conferir_medicamento_errado").getValue() == false ) {
-                    level.getFlag("conferir_medicamento_errado").setValue( true );
-                    core.registerScoreItem( Scores.conferirMedicamentoErrado );
-                    core.openDialog( 2 );
-                    } else
-                        {
-                             level.getFlag("conferir_medicamento_correto").setValue( true );
-                             core.registerScoreItem( Scores.conferirMedicamentoCorreto );
+                    if ( level.getFlag("pegarMedicamento").getValue() == false ) {
+                        // nao faz nada
+                    } else if ( level.getFlag("conferir_medicamento_errado").getValue() == false ) {
+                        level.getFlag("conferir_medicamento_errado").setValue( true );
+                        core.registerScoreItem( Scores.conferirMedicamentoErrado );
+                        core.openDialog( 2 );
+                    } else {
+                        level.getFlag("conferir_medicamento_correto").setValue( true );
+                        core.registerScoreItem( Scores.conferirMedicamentoCorreto );
 
-                        }
+                    }
 
 
-            })
+                })
 
         ]);
 
 
-         //  region LEITO
+        //  region LEITO
 
         var leito = lib.scenes.leitos.ana.getClone()
             .onLoad(function() {
-                    core.openDialog( 0 );
+                core.openDialog( 0 );
             });
 
-    leito.registerDialogs([
+        leito.registerDialogs([
 
-        // 0
-          new Dialog( lib.characters.pacientes.ana )
-                    .setText( Dialogs.leito_paciente[ 0 ] )
-                    .registerOption("", function() {
-                core.openDialog( 1 );
-            }),
-        // 1
-        new Dialog( lib.characters.jogador )
-                    .setText( Dialogs.leito_paciente[ 1 ] )
-                    .registerOption("", function() {
-                core.openDialog( 2 );
-            }),
-        // 2
-          new Dialog( lib.characters.pacientes.ana )
-                    .setText( Dialogs.leito_paciente[ 2 ] )
-                    .registerOption("", function() {
-                core.openDialog( 3 );
-            }),
+            // 0
+            new Dialog( lib.characters.pacientes.ana )
+                .setText( Dialogs.leitoPaciente[ 0 ] )
+                .registerOption("", function() {
+                    core.openDialog( 1 );
+                }),
+            // 1
+            new Dialog( lib.characters.jogador )
+                .setText( Dialogs.leitoPaciente[ 1 ] )
+                .registerOption("", function() {
+                    core.openDialog( 2 );
+                }),
+            // 2
+            new Dialog( lib.characters.pacientes.ana )
+                .setText( Dialogs.leitoPaciente[ 2 ] )
+                .registerOption("", function() {
+                    core.openDialog( 3 );
+                }),
 
-        // 3
-             new Dialog( lib.characters.jogador )
-                     .setText("")
-                .registerOption( Dialogs.leito_paciente[ 3 ], function() {
-                core.openDialog( 4 );
-            })
-                .registerOption( Dialogs.leito_paciente[ 4 ], function() {
+            // 3
+            new Dialog( lib.characters.jogador )
+                .setText("")
+                .registerOption( Dialogs.leitoPaciente[ 3 ], function() {
+                    core.openDialog( 4 );
+                })
+                .registerOption( Dialogs.leitoPaciente[ 4 ], function() {
                     core.openDialog( 7 );
 
-            })
+                })
                 .setRandomize( true ),
 
 
-          // 4
-          new Dialog( lib.characters.pacientes.ana )
-                    .setText( Dialogs.leito_paciente[ 5 ] )
-                    .registerOption("", function() {
-                core.openDialog( 5 );
-            }),
+            // 4
+            new Dialog( lib.characters.pacientes.ana )
+                .setText( Dialogs.leitoPaciente[ 5 ] )
+                .registerOption("", function() {
+                    core.openDialog( 5 );
+                }),
 
 
-         // 5
-        new Dialog( lib.characters.jogador )
-                    .setText( Dialogs.leito_paciente[ 6 ] )
-                    .registerOption("", function() {
-                core.openDialog( 6 );
-            }),
+            // 5
+            new Dialog( lib.characters.jogador )
+                .setText( Dialogs.leitoPaciente[ 6 ] )
+                .registerOption("", function() {
+                    core.openDialog( 6 );
+                }),
 
-        // 6
-          new Dialog( lib.characters.pacientes.ana )
-                    .setText( Dialogs.leito_paciente[ 7 ] )
-                    .registerOption("", function() {
-                core.closeDialog();
-            }),
+            // 6
+            new Dialog( lib.characters.pacientes.ana )
+                .setText( Dialogs.leitoPaciente[ 7 ] )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
 
-        // 7 ALERTA MENTOR
-         new Dialog( lib.characters.mentor )
-                    .setText( Dialogs.leito_paciente[ 8 ] )
-                    .registerOption("", function() {
-                core.openDialog( 3 );
-            })
+            // 7 ALERTA MENTOR
+            new Dialog( lib.characters.mentor )
+                .setText( Dialogs.leitoPaciente[ 8 ] )
+                .registerOption("", function() {
+                    core.openDialog( 3 );
+                })
 
         ]);
-
-
-
 
 
         //  region POSTO DE ENFERMAGEM
 
-        var posto_de_enfermagem = lib.scenes.postoDeEnfermagem.getClone()
+        var postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
                 if ( level.getFlag("ir_ala_feminina_primeira_vez").getValue() == true ) {
-               console.log("Load scene: " + posto_de_enfermagem.getName() );
-                } else
-                    {
-                        console.log("Hora Errada!");
-                        if ( level.getFlag("ir_postoEnfermagem_horaErrada").getValue() == false )
-                            core.registerScoreItem( Scores.irFarmacia_horaErrada );
-                        level.getFlag("ir_postoEnfermagem_horaErrada").setValue( true );
-                        core.openDialog( 2 );
-                        core.changeScene( 1 );
+                    console.log("Load scene: " + postoDeEnfermagem.getName() );
+                } else {
+                    console.log("Hora Errada!");
+                    if ( level.getFlag("ir_postoEnfermagem_horaErrada").getValue() == false ) {
+                        core.registerScoreItem( Scores.irFarmaciaHoraErrada );
                     }
-
-
-
-
+                    level.getFlag("ir_postoEnfermagem_horaErrada").setValue( true );
+                    core.openDialog( 2 );
+                    core.changeScene( 1 );
+                }
             });
 
-    posto_de_enfermagem.registerDialogs([
+        postoDeEnfermagem.registerDialogs([
 
 
+            // 0
+
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.pegarObjetosGaveta )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
+
+            // 1
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.pegarBandeja )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
+
+            // 2
+
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.perdido.farmacia )
+                .registerOption("", function() {
+                    core.closeDialog();
+                })
 
 
-        // 0
-
-         new Dialog( lib.characters.mentor )
-                    .setText( Alertas.esqueceu.pegar_objetos_gaveta )
-                    .registerOption("", function() {
-                core.closeDialog();
-            }),
-
-        // 1
-              new Dialog( lib.characters.mentor )
-                    .setText( Alertas.esqueceu.pegar_bandeja )
-                    .registerOption("", function() {
-                core.closeDialog();
-            }),
-
-        // 2
-
-         new Dialog( lib.characters.mentor )
-                    .setText( Alertas.perdido.farmacia )
-                    .registerOption("", function() {
-                core.closeDialog();
-            })
+        ]);
 
 
+        postoDeEnfermagem.registerInteractiveObjects([
 
-    ]);
-
-
-     posto_de_enfermagem.registerInteractiveObjects([
-
-            new InteractiveObject("io-abrir_gaveta", "Abrir gaveta")
+            new InteractiveObject("io-abrirGaveta", "Abrir gaveta")
                 .setCssClass("intObj-openDrawer")
                 .onClick(function() {
-                    console.log("Action: abrir_gaveta");
+                    console.log("Action: abrirGaveta");
                     core.openModalScene("gaveta");
                     core.openCommandBar();
 
 
-                //    core.setInteractiveObjectVisible("io-coxim", !(level.getFlag("coxim").getValue()));
+                    //    core.setInteractiveObjectVisible("io-coxim", !(level.getFlag("coxim").getValue()));
                 })
                 .setVisibility( true ),
 
 
-
-             new InteractiveObject("io-pegar_bandeja", "Pegar Bandeja")
+            new InteractiveObject("io-pegarBandeja", "Pegar Bandeja")
                 .setCssClass("intObj-bandeja")
                 .onClick(function() {
                     console.log("Action: Pegar bandeja");
-                    level.getFlag("pegar_bandeja").setValue( true );
-                    core.setInteractiveObjectVisible("io-pegar_bandeja", false );
+                    level.getFlag("pegarBandeja").setValue( true );
+                    core.setInteractiveObjectVisible("io-pegarBandeja", false );
 
                 })
                 .setVisibility( true )
 
-         ]);
+        ]);
 
 
+        postoDeEnfermagem.registerActions([
 
-        posto_de_enfermagem.registerActions([
-
-             new Action("btn-ir_corredor", "Ir ao corredor")
+            new Action("btn-ir_corredor", "Ir ao corredor")
                 .setCssClass("action-ir_corredor")
                 .onClick(function() {
-                    if ( level.getFlag("pegar_copo_descartavel").getValue() == false || level.getFlag("pegar_agua_potavel").getValue() == false )
+                    if ( level.getFlag("pegar_copo_descartavel").getValue() == false || level.getFlag("pegar_agua_potavel").getValue() == false ) {
                         core.openDialog( 0 );
-                    else
+                    } else {
                         core.changeScene( 1 );
-            })
+                    }
+                })
 
         ]);
 
@@ -709,20 +671,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
 
-
         alaMasculina.registerInteractiveObjects([
 
-           new InteractiveObject("io-ir_corredor", "Ir ao corredor")
+            new InteractiveObject("io-ir_corredor", "Ir ao corredor")
                 .setCssClass("intObj-irAlaMasculina_corredor")
                 .onClick(function() {
-                console.log("voltando para corredor");
-                core.changeScene( 1 );
-            })
+                    console.log("voltando para corredor");
+                    core.changeScene( 1 );
+                })
 
 
-    ]);
-
-
+        ]);
 
 
         //  region CENTRO CIRURGICO
@@ -737,20 +696,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         centroCirurgico.registerActions([
 
 
-         new Action("btn-ir_corredor", "Ir ao corredor")
+            new Action("btn-ir_corredor", "Ir ao corredor")
                 .setCssClass("action-ir_corredor")
                 .onClick(function() {
-                centroCirurgicoIrCorredor();
-            })
+                    centroCirurgicoIrCorredor();
+                })
 
 
-    ]);
+        ]);
 
         function centroCirurgicoIrCorredor() {
             console.log("Action: centroCirurgicoIrCorredor");
             core.changeScene( 1 );
         }
-
 
 
         // region PRONTUARIO
@@ -759,51 +717,49 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         prontuario = new Scene("Prontuario", "Prontuario");
 
         prontuario.registerActions([
-                new Action("btn-fechar_prontuario", "Fechar prontuário")
-                    .setCssClass("action-ler_prontuario")
-                    .onClick(function() {
-                console.log("Action: Fechar prontuario");
-                Prontuario.close();
-                core.closeModalScene("Prontuario");
-            })
-                    .setVisibility( true )
+            new Action("btn-fechar_prontuario", "Fechar prontuário")
+                .setCssClass("action-ler_prontuario")
+                .onClick(function() {
+                    console.log("Action: Fechar prontuario");
+                    Prontuario.close();
+                    core.closeModalScene("Prontuario");
+                })
+                .setVisibility( true )
 
-                ]);
+        ]);
 
 
-     gaveta = new Scene("gaveta", "Gaveta")
+        gaveta = new Scene("gaveta", "Gaveta")
             .setCssClass("modalScene-drawer");
 
         gaveta.registerActions([
-            new Action("btn-fechar_gaveta", "Fechar gaveta")
-                .setCssClass("action-fechar_gaveta")
+            new Action("btn-fecharGaveta", "Fechar gaveta")
+                .setCssClass("action-fecharGaveta")
                 .onClick(function() {
-                    console.log("Action: fechar_gaveta");
+                    console.log("Action: fecharGaveta");
                     core.closeModalScene("Gaveta");
                 })
                 .setVisibility( true )
         ]);
 
 
-
-
-       gaveta.registerInteractiveObjects([
+        gaveta.registerInteractiveObjects([
 
             new InteractiveObject("io-copo_descartavel", "Copo Descartável")
                 .setCssClass("intObj-copoDescartavel")
                 .onClick(function() {
-                    if ( level.getFlag("pegar_bandeja").getValue() == false ) {
+                    if ( level.getFlag("pegarBandeja").getValue() == false ) {
 
                         core.openDialog( 1 );
                     } else {
-                    console.log("IntObj: io-copo_descartavel");
-                    level.getFlag("pegar_copo_descartavel").setValue( true );
-                    core.setInteractiveObjectVisible("io-copo_descartavel", false );
+                        console.log("IntObj: io-copo_descartavel");
+                        level.getFlag("pegar_copo_descartavel").setValue( true );
+                        core.setInteractiveObjectVisible("io-copo_descartavel", false );
 
-                    if ( level.getFlag("score_pegar_copo_descartavel").getValue() == false ) {
-                        core.registerScoreItem( Scores.pegarCopoDescartavel );
-                       level.getFlag("score_pegar_copo_descartavel").setValue( true );
-                    }
+                        if ( level.getFlag("score_pegar_copo_descartavel").getValue() == false ) {
+                            core.registerScoreItem( Scores.pegarCopoDescartavel );
+                            level.getFlag("score_pegar_copo_descartavel").setValue( true );
+                        }
                     }
                 })
                 .setVisibility( true ),
@@ -813,69 +769,70 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-aguaPotavel")
                 .onClick(function() {
 
-                    if ( level.getFlag("pegar_bandeja").getValue() == false ) {
+                    if ( level.getFlag("pegarBandeja").getValue() == false ) {
 
                         core.openDialog( 1 );
                     } else {
-                    console.log("IntObj: io-agua_potavel");
-                    level.getFlag("pegar_agua_potavel").setValue( true );
-                    core.setInteractiveObjectVisible("io-agua_potavel", false );
+                        console.log("IntObj: io-agua_potavel");
+                        level.getFlag("pegar_agua_potavel").setValue( true );
+                        core.setInteractiveObjectVisible("io-agua_potavel", false );
 
-                    if ( level.getFlag("score_pegar_agua_potavel").getValue() == false ) {
-                        core.registerScoreItem( Scores.pegarAguaPotavel );
-                        level.getFlag("score_pegar_agua_potavel").setValue( true );
+                        if ( level.getFlag("score_pegar_agua_potavel").getValue() == false ) {
+                            core.registerScoreItem( Scores.pegarAguaPotavel );
+                            level.getFlag("score_pegar_agua_potavel").setValue( true );
+                        }
                     }
-                     }
                 })
                 .setVisibility( true )
-
 
 
         ]);
 
 
+        // endregion
 
+        // endregion
 
-
-
-
-
-
-        //endregion
-
-        //endregion
-
-        //region ModalScenes
+        // region ModalScenes
         level.registerModalScene( prontuario );
         level.registerModalScene( gaveta );
-        //endregion
+        // endregion
 
-        //region Level
+        // region Level
 
-        //region Register Scenes
+        // region Register Scenes
 
-        level.registerScene( recepcao ); //id 0
-        level.registerScene( corredor ); //id 1
-        level.registerScene( alaFeminina ); //id 2
-        level.registerScene( leito ); //id 3
-        level.registerScene( farmacia ); //id 4
-        level.registerScene( posto_de_enfermagem ); //id 5
-        level.registerScene( alaMasculina ); //id 6
-        level.registerScene( centroCirurgico ); //id 7
-        level.registerScene( prontuario ); //id 8
-        level.registerScene( gaveta ); //id 9
-
+        // id 0
+        level.registerScene( recepcao );
+        // id 1
+        level.registerScene( corredor );
+        // id 2
+        level.registerScene( alaFeminina );
+        // id 3
+        level.registerScene( leito );
+        // id 4
+        level.registerScene( farmacia );
+        // id 5
+        level.registerScene( postoDeEnfermagem );
+        // id 6
+        level.registerScene( alaMasculina );
+        // id 7
+        level.registerScene( centroCirurgico );
+        // id 8
+        level.registerScene( prontuario );
+        // id 9
+        level.registerScene( gaveta );
 
 
         // endregion
 
-        //region Register Modal Scenes
+        // region Register Modal Scenes
 
-        //endregion
+        // endregion
 
-        //region Flags
+        // region Flags
 
-        //endregion
+        // endregion
 
         level.setSetupScript(function() {
 
@@ -888,20 +845,20 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.getFlag("ir_AlaMasculina_horaErrada").setValue( false );
             level.getFlag("ir_AlaFeminina_horaErrada").setValue( false );
             level.getFlag("ir_postoEnfermagem_horaErrada").setValue( false );
-            level.getFlag("conversar_paciente").setValue( false );
+            level.getFlag("conversarPaciente").setValue( false );
             level.getFlag("ler_prontuario").setValue( false );
             level.getFlag("conferir_medicamento_errado").setValue( false );
-            level.getFlag("pegar_medicamento").setValue( false );
+            level.getFlag("pegarMedicamento").setValue( false );
             level.getFlag("conferir_medicamento_correto").setValue( false );
             level.getFlag("pegar_copo_descartavel").setValue( false );
             level.getFlag("pegar_agua_potavel").setValue( false );
-            level.getFlag("pegar_bandeja").setValue( false );
+            level.getFlag("pegarBandeja").setValue( false );
             level.getFlag("score_pegar_agua_potavel").setValue( false );
             level.getFlag("score_pegar_copo_descartavel").setValue( false );
             level.getFlag("ir_ala_feminina_primeira_vez").setValue( false );
-            level.getFlag("lavar_maos").setValue( false );
+            level.getFlag("lavarMaos").setValue( false );
 
-              //  dados do prontuario
+            //  dados do prontuario
             Prontuario.setNome("Ana Beatriz Galvão");
             Prontuario.setSexo("F");
             Prontuario.setEstadoCivil("Solteira");
@@ -924,11 +881,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setPrescMedicaRowData( 1, "", "Clorpropamida", "Oral", "250mg/1x/dia", "07:00h", "(X) Administrado  medicamento  sem intercorrências", false );
             Prontuario.setSsvvRowData( 1, "", "120X70 mmHg", "60 bpm", "18 rpm", "96%", "35ºC", true );
             Prontuario.setSsvvRowData( 1, "", "130X70 mmHg", "68 bpm", "20 rpm", "96%", "36,4ºC", true );
-            Prontuario.setAnotacaoEnfermagemRowData( "15/03", "" );
+            Prontuario.setAnotacaoEnfermagemRowData("15/03", "");
 
 
         });
-
 
 
         level.registerFlag( new Flag("conversar_recepcionista"), false );
@@ -939,24 +895,22 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("ir_AlaMasculina_horaErrada"), false );
         level.registerFlag( new Flag("ir_AlaFeminina_horaErrada"), false );
         level.registerFlag( new Flag("ir_postoEnfermagem_horaErrada"), false );
-        level.registerFlag( new Flag("conversar_paciente"), false );
+        level.registerFlag( new Flag("conversarPaciente"), false );
         level.registerFlag( new Flag("ler_prontuario"), false );
         level.registerFlag( new Flag("conferir_medicamento_errado"), false );
-        level.registerFlag( new Flag("pegar_medicamento"), false );
+        level.registerFlag( new Flag("pegarMedicamento"), false );
         level.registerFlag( new Flag("conferir_medicamento_correto"), false );
         level.registerFlag( new Flag("pegar_copo_descartavel"), false );
         level.registerFlag( new Flag("pegar_agua_potavel"), false );
-        level.registerFlag( new Flag("pegar_bandeja"), false );
+        level.registerFlag( new Flag("pegarBandeja"), false );
         level.registerFlag( new Flag("score_pegar_agua_potavel"), false );
         level.registerFlag( new Flag("score_pegar_copo_descartavel"), false );
         level.registerFlag( new Flag("ir_ala_feminina_primeira_vez"), false );
-        level.registerFlag( new Flag("lavar_maos"), false );
-
-
+        level.registerFlag( new Flag("lavarMaos"), false );
 
 
         level.setInitialScene( 0 );
-        //endregion
+        // endregion
 
         game.registerLevel( level, 7 );
 

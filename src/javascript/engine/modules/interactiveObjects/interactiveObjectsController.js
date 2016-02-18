@@ -5,12 +5,16 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define([ "text!../html/interactiveObject/interactiveObjects.html", "text!../html/interactiveObject/interactiveObjectTemplate.html" ], function( html, interactiveObjectTemplate ) {
-//Attributes
+define([
+        "text!../html/interactiveObject/interactiveObjects.html",
+        "text!../html/interactiveObject/interactiveObjectTemplate.html"
+    ],
+    function( html, interactiveObjectTemplate ) {
+// Attributes
     var divSelector = "#interactiveObjects";
     var interactiveObjectSelector = ".interactiveObject";
 
-//Methods
+// Methods
     /**
      * Description
      * @method init
@@ -54,7 +58,6 @@ define([ "text!../html/interactiveObject/interactiveObjects.html", "text!../html
     }
 
 
-
     /**
      * Description
      * @method addInteractiveObject
@@ -66,12 +69,12 @@ define([ "text!../html/interactiveObject/interactiveObjects.html", "text!../html
         var element = $( $( interactiveObjectTemplate )[ 0 ] );
 
 
-        element.attr( "title", _interactiveObject.getName() );
-        element.attr( "id", _interactiveObject.getId() );
+        element.attr("title", _interactiveObject.getName() );
+        element.attr("id", _interactiveObject.getId() );
         element.addClass( _interactiveObject.getCssClass() );
 
         element.tooltip({
-            //disabled: true,
+            // disabled: true,
             tooltipClass: "interactiveObject-ui-tooltip",
             show: {
                 duration: 200
@@ -93,8 +96,9 @@ define([ "text!../html/interactiveObject/interactiveObjects.html", "text!../html
         }
 
         $( divSelector ).append( element );
-        if ( !_interactiveObject.isVisible() )
+        if ( !_interactiveObject.isVisible() ) {
             element.hide();
+        }
     }
 
     /**
@@ -115,7 +119,7 @@ define([ "text!../html/interactiveObject/interactiveObjects.html", "text!../html
      * @memberOf module:InteractiveObject
      */
     function removeInteractiveObject( _interactiveObject ) {
-        $( "#" + _interactiveObject.getId() ).remove();
+        $("#" + _interactiveObject.getId() ).remove();
     }
 
     /**
@@ -203,17 +207,18 @@ define([ "text!../html/interactiveObject/interactiveObjects.html", "text!../html
         for ( i = 0; i < _interactiveObjects.length; i++ ) {
             console.log("InteractiveObject to be updated " + i + ": " + _interactiveObjects[ i ].getName() );
             var action = _interactiveObjects[ i ];
-            if ( action.isEnabled() )
+            if ( action.isEnabled() ) {
                 enableInteractiveObject( action );
-            else
+            } else {
                 disableInteractiveObject( action );
+            }
         }
         console.groupEnd();
     }
 
-//Getters
+// Getters
 
-//Setters
+// Setters
     /**
      * Description
      * @method setInteractiveObjectVisible
@@ -225,13 +230,14 @@ define([ "text!../html/interactiveObject/interactiveObjects.html", "text!../html
     function setInteractiveObjectVisible( _interactiveObject, _value ) {
         var selector = "#" + _interactiveObject.getId();
 
-        if ( _value )
+        if ( _value ) {
             $( selector ).show();
-        else
+        } else {
             $( selector ).hide();
+        }
     }
 
-//Public Interface
+// Public Interface
     return {
         init: init,
 

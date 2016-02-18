@@ -1,5 +1,6 @@
 /**
- * This module ensures that all the images that are going to be used during the game are already loaded in cache before
+ * This module ensures that all the images that are going to be used during the game are already
+ * loaded in cache before
  * they are requested. This way there is no load time between scenes.
  *
  * For this module to work properly it must receive a json object with all images urls
@@ -42,7 +43,8 @@ define([], function() {
     var imagesToLoad = 0;
 
     /**
-     * This is a callback function that is called when the imageLoader has finished to load an array of images
+     * This is a callback function that is called when the imageLoader has finished to load an array
+     * of images
      *
      * @type {function}
      * @private
@@ -68,12 +70,12 @@ define([], function() {
         if ( typeof obj === "object") {
             if ( obj instanceof Array ) {
                 arr = arr.concat( obj );
-            }else {
+            } else {
                 for ( x in obj ) {
                     arr = arr.concat( getAsArray( baseDir, obj[ x ] ) );
                 }
             }
-        }else {
+        } else {
             arr.push( baseDir + obj );
         }
 
@@ -82,7 +84,8 @@ define([], function() {
 
     /**
      * When an image is loaded this function is called.
-     * For each image loaded, count it in loaded and if loaded is equal to imagesToLoad call the callback function
+     * For each image loaded, count it in loaded and if loaded is equal to imagesToLoad call the
+     * callback function
      *
      * @private
      *
@@ -92,7 +95,7 @@ define([], function() {
         var evt = arguments[ 0 ];
 
         loaded++;
-        //console.log(arguments.length, arguments[0]);
+        // console.log(arguments.length, arguments[0]);
         console.log("Loaded Image: " + evt.target.src );
 
         if ( loaded == imagesToLoad ) {

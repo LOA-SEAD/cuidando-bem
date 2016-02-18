@@ -14,13 +14,15 @@ define([], function() {
     "use strict";
     function Action( _id, _name ) {
         counter++;
-        //Attributes
+        // Attributes
 
-        if ( _id == null )
+        if ( _id == null ) {
             _id = "action_" + counter;
+        }
 
-        if ( _name == null )
+        if ( _name == null ) {
             _name = "";
+        }
 
         var id = _id;
         /**
@@ -50,7 +52,8 @@ define([], function() {
          *
          * @memberOf Action#
          */
-        var onClickFunction = function() {};
+        var onClickFunction = function() {
+        };
         /**
          * @type {boolean}
          * @private
@@ -59,7 +62,7 @@ define([], function() {
          */
         var enable = true;
 
-        //Methods
+        // Methods
 
         /**
          * It runs this class actionFunction
@@ -73,7 +76,7 @@ define([], function() {
             onClickFunction();
         }
 
-        //Getters
+        // Getters
 
         /**
          * @method
@@ -148,7 +151,7 @@ define([], function() {
             return visible;
         }
 
-        //Setters
+        // Setters
         /**
          * @method
          * @method setEnable
@@ -195,13 +198,13 @@ define([], function() {
             return this;
         }
 
-        //Public interface
+        // Public interface
 
         return {
             execute: execute,
 
-            getClone:getClone,
-            getFunction:getFunction,
+            getClone: getClone,
+            getFunction: getFunction,
             getId: getId,
             getName: getName,
             getCssClass: getCssClass,

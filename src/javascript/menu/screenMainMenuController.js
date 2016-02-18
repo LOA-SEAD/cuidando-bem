@@ -8,7 +8,7 @@
  */
 define([ "Stage" ], function( Stage ) {
 
-    var Player = require( "Player" );
+    var Player = require("Player");
 
     /**
      * This method is called when the screen mainMenu is loaded
@@ -19,41 +19,41 @@ define([ "Stage" ], function( Stage ) {
      * @memberOf module:Screen_mainMenu_Controller
      */
     function load() {
-        //Player.setLoop(Player.audios.fundo, true);
-        //Player.play(Player.audios.fundo);
+        // Player.setLoop(Player.audios.fundo, true);
+        // Player.play(Player.audios.fundo);
 
-        //Player.playInLoop(Player.audios.loops.recepcao);
+        // Player.playInLoop(Player.audios.loops.recepcao);
         Player.playInLoop( Player.audios.musics.test );
-        //Player.playInLoop(Player.audios.loops.background);
-        //Player.playInRange(Player.audios.sfx.objeto);
+        // Player.playInLoop(Player.audios.loops.background);
+        // Player.playInRange(Player.audios.sfx.objeto);
 
         console.log("Configuring main menu listeners");
-        //var menuButtons = $('.menuButton');
+        // var menuButtons = $('.menuButton');
 
-        $( ".menuButton" ).click(function() {
-           Player.play( Player.audios.sfx.selecionar_menu );
+        $(".menuButton").click(function() {
+            Player.play( Player.audios.sfx.selecionarMenu );
         });
 
-        //Iniciar Jogo
-        $( "#initGame_btn" ).click(function() {
+        // Iniciar Jogo
+        $("#initGame_btn").click(function() {
             console.log( this );
             Stage.changeScreen( 5 );
         });
 
-        //Carregar Jogo
-        $( "#conteudo_btn" ).click(function() {
+        // Carregar Jogo
+        $("#conteudo_btn").click(function() {
             console.log( this );
             Stage.changeScreen( 7 );
         });
 
-        //Configurações
-        $( "#config_btn" ).click(function() {
+        // Configurações
+        $("#config_btn").click(function() {
             console.log( this );
             Stage.changeScreen( 4 );
         });
 
-        //Créditos
-        $( "#credits_btn" ).click(function() {
+        // Créditos
+        $("#credits_btn").click(function() {
             console.log( this );
             Stage.changeScreen( 3 );
         });
@@ -68,7 +68,7 @@ define([ "Stage" ], function( Stage ) {
      * @memberOf module:Screen_mainMenu_Controller
      */
     function unload() {
-        //$('.menuButton')
+        // $('.menuButton')
 
     }
 

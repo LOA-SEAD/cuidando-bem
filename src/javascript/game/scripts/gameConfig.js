@@ -1,8 +1,8 @@
 /*
 
-This module register which files to load. Each of these files should contain a Level.
+ This module register which files to load. Each of these files should contain a Level.
 
-@author Otho - Marcelo Lopes Lotufo
+ @author Otho - Marcelo Lopes Lotufo
  */
 define(function() {
     console.info("GameConfig - module loaded");
@@ -18,7 +18,7 @@ define(function() {
         "Fase6",
         "Fase7",
         "Fase8",
-        "FaseTeste",
+        "FaseTeste"
         // "Fase9"
 
     ];

@@ -4,7 +4,7 @@ define([], function() {
      *
      * @author Otho - Marcelo Lopes Lotufo
      */
-//Attributes
+// Attributes
     /**
      * This object stores all Level data for the game
      * @private
@@ -22,7 +22,7 @@ define([], function() {
      */
     var currentLevel = 0;
 
-//Methods
+// Methods
     /**
      * This function stores a level data in the levels object
      * @method registerLevel
@@ -39,11 +39,11 @@ define([], function() {
 
         levels[ _id ] = _level;
 
-        //Log
-        console.log( "\nAdding new Level:", _level.getName() );
+        // Log
+        console.log("\nAdding new Level:", _level.getName() );
     }
 
-//Getters
+// Getters
     /**
      * @method getCurrentLevel
      * @return {Level} MemberExpression
@@ -56,10 +56,10 @@ define([], function() {
     }
 
     function getCurrentLevelId() {
-      return currentLevel;
+        return currentLevel;
     }
 
-//Setters
+// Setters
     /**
      * @method setCurrentLevel
      * @param {(string|number)} _level
@@ -71,7 +71,7 @@ define([], function() {
         currentLevel = _level;
     }
 
-//Public Interface
+// Public Interface
     return {
         registerLevel: registerLevel,
 

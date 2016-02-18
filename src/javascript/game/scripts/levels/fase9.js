@@ -1,19 +1,19 @@
 /* by Wellyson */
 
-define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "Scores_data" ],
+define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
 
-        //region Imports
-        var Dialogs = require("Dialogs_data").fase3;
-        // var Scores = require("Scores_data").fase3;
-        //endregion
+        // region Imports
+        var Dialogs = require("DialogsData").fase3;
+        // var Scores = require("ScoresData").fase3;
+        // endregion
 
         var level = new Level("Level 9");
         console.groupCollapsed( level.getName() );
 
-        //region Scenes
+        // region Scenes
 
-        //region Recepcao
+        // region Recepcao
 
         var recepcao = lib.scenes.recepcao.getClone()
             .onLoad(function() {
@@ -30,36 +30,36 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
         ]);
 
-        //endregion
+        // endregion
 
-        //endregion
+        // endregion
 
-        //region ModalScenes
+        // region ModalScenes
 
-        //endregion
+        // endregion
 
-        //region Level
+        // region Level
 
-        //region Register Scenes
+        // region Register Scenes
 
         level.registerScene( recepcao );
 
         // endregion
 
-        //region Register Modal Scenes
+        // region Register Modal Scenes
 
-        //endregion
+        // endregion
 
-        //region Flags
+        // region Flags
 
-        //endregion
+        // endregion
 
         level.setSetupScript(function() {
-            //Script that runs once when the level is loaded or reloaded
+            // Script that runs once when the level is loaded or reloaded
         });
 
         level.setInitialScene( 0 );
-        //endregion
+        // endregion
 
         game.registerLevel( level, 9 );
 

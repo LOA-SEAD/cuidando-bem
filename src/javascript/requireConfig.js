@@ -1,21 +1,21 @@
-/*
-    This file configures all paths to modules used by the project
+ fi;/*
+ This file configures all paths to modules used by the project
 
-    @author Otho - Marcelo Lopes Lotufo
+ @author Otho - Marcelo Lopes Lotufo
  */
 
-//Configure all files paths aliases
+// Configure all files paths aliases
 require.config({
     baseUrl: "javascript/",
     paths: {
-        //Libs
+        // Libs
         jquery: "./libs/jquery",
         jqueryui: "./libs/jquery-ui",
         jquerymask: "./libs/jquery.mask",
         text: "./libs/text",
         SimpleStorage: "./libs/simpleStorage",
 
-        //Engine
+        // Engine
         Stage: "engine/core/stage",
         Player: "engine/core/player",
         ImageLoader: "engine/core/imageLoader",
@@ -36,7 +36,7 @@ require.config({
         scene: "engine/modules/scenes/sceneController",
         Scene: "engine/modules/scenes/scene",
 
-        //Game
+        // Game
         CuidandoBem: "game/modules/cuidandoBem",
 
         Storage: "game/modules/storage/storage",
@@ -49,16 +49,16 @@ require.config({
         levelsData: "game/modules/levelsData",
         FreqRespiratoria: "game/modules/freqRespiratoria/freqRespiratoria",
 
-        //Configs
+        // Configs
         gameConfig: "game/scripts/gameConfig",
         stageConfig: "game/scripts/stageConfig",
 
         Commons: "game/scripts/Commons",
 
-        //Refs
-        Dialogs_data: "references/dialogData",
-        Images_urls: "references/imagesUrls",
-        Scores_data: "references/scoreData",
-        Sounds_urls: "references/soundsUrls"
+        // Refs
+        DialogsData: "references/dialogData",
+        ImagesUrls: "references/imagesUrls",
+        ScoresData: "references/scoreData",
+        SoundsUrls: "references/soundsUrls"
     }
 });

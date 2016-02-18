@@ -1,242 +1,241 @@
 define(function( require ) {
 
-	var html = require( "text!../html/freqRespiratoria/freqRespiratoria.html" );
+    var html = require("text!../html/freqRespiratoria/freqRespiratoria.html");
 
-	var canvasSelector = "#freqRespiratoria";
+    var canvasSelector = "#freqRespiratoria";
 
-	var STATES = {
-		playing: 0,
-		stopped: 1
-	};
+    var STATES = {
+        playing: 0,
+        stopped: 1
+    };
 
-	var state = STATES.stopped;
+    var state = STATES.stopped;
 
-	var tick = {
-		last: undefined,
-		passed: undefined,
-		now: undefined,
-		accumulator: 0,
+    var tick = {
+        last: undefined,
+        passed: undefined,
+        now: undefined,
+        accumulator: 0,
 
-		time: undefined,
+        time: undefined,
 
-		rate: 60
-	};
+        rate: 60
+    };
 
-	var clock = {
-		x: 700,
-		y: 300,
-		radius: 60,
-		angle: 0,
-		line: 20,
-		img: undefined,
+    var clock = {
+        x: 700,
+        y: 300,
+        radius: 60,
+        angle: 0,
+        line: 20,
+        img: undefined,
 
-		accumulator: 0,
-		time: 1
-	};
-	tick.time = 1000 / tick.rate;
+        accumulator: 0,
+        time: 1
+    };
+    tick.time = 1000 / tick.rate;
 
-	function Animation () {
-		this.x;
-		this.y;
+    function Animation() {
+        this.x;
+        this.y;
 
-		this.frameTime;
-		this.accumulator = 0;
-		this.frameTotal;
-		this.frameCounter = 0;
-		this.cyclesPerMinute;
+        this.frameTime;
+        this.accumulator = 0;
+        this.frameTotal;
+        this.frameCounter = 0;
+        this.cyclesPerMinute;
 
-		this.img = [];
-		this.hasToDraw = false;
+        this.img = [];
+        this.hasToDraw = false;
 
-		this.width;
-		this.height;
+        this.width;
+        this.height;
 
-		this.srWidth;
-		this.srHeight;
+        this.srWidth;
+        this.srHeight;
 
 
-		this.update = function() {
+        this.update = function() {
 
-			this.accumulator += tick.time;
+            this.accumulator += tick.time;
 
-			while ( this.accumulator >= this.frameTime ) {
+            while ( this.accumulator >= this.frameTime ) {
 
-				this.frameCounter++;
-				this.frameCounter = this.frameCounter % this.frameTotal;
-				this.hasToDraw = true;
+                this.frameCounter++;
+                this.frameCounter = this.frameCounter % this.frameTotal;
+                this.hasToDraw = true;
 
-				this.accumulator -= this.frameTime;
-			}
-		};
+                this.accumulator -= this.frameTime;
+            }
+        };
 
-		this.draw = function( canvas ) {
-			if ( this.hasToDraw ) {
-				var ctx = canvas.getContext( "2d" );
+        this.draw = function( canvas ) {
+            if ( this.hasToDraw ) {
+                var ctx = canvas.getContext("2d");
 
-				var fx = this.frameCounter * this.width;
+                var fx = this.frameCounter * this.width;
 
-				var img = this.img[ this.frameCounter ];
+                var img = this.img[ this.frameCounter ];
 
-				ctx.drawImage( img, 0, 0, this.srWidth, this.srHeight, this.x, this.y, this.width, this.height );
-			}
-		};
-	}
+                ctx.drawImage( img, 0, 0, this.srWidth, this.srHeight, this.x, this.y, this.width, this.height );
+            }
+        };
+    }
 
-	var breathing = new Animation();
-	breathing.x = 50;
-	breathing.y = 180;
-	breathing.width = 400;
-	breathing.height = 240;
-	breathing.srWidth = 1920;
-	breathing.srHeight = 1152;
-	breathing.frameTotal = 12;
-	breathing.cyclesPerMinute = 18;
-	breathing.frameTime = 1000 * 60 / breathing.cyclesPerMinute / breathing.frameTotal;
+    var breathing = new Animation();
+    breathing.x = 50;
+    breathing.y = 180;
+    breathing.width = 400;
+    breathing.height = 240;
+    breathing.srWidth = 1920;
+    breathing.srHeight = 1152;
+    breathing.frameTotal = 12;
+    breathing.cyclesPerMinute = 18;
+    breathing.frameTime = 1000 * 60 / breathing.cyclesPerMinute / breathing.frameTotal;
 
-	var imgsLoaded = 0;
-	for ( i = 0; i < breathing.frameTotal; i++ ) {
-		breathing.img.push( new Image() );
+    var imgsLoaded = 0;
+    for ( i = 0; i < breathing.frameTotal; i++ ) {
+        breathing.img.push( new Image() );
 
-		breathing.img[ i ].onload = function() {
-			console.log("Image " + i + " loaded");
-			imgsLoaded++;
-			// if(imgsLoaded==coin.frameTotal){
-			// 	gameLoop();
-			// }
-		};
+        breathing.img[ i ].onload = function() {
+            console.log("Image " + i + " loaded");
+            imgsLoaded++;
+            // if(imgsLoaded==coin.frameTotal){
+            // 	gameLoop();
+            // }
+        };
 
-		var img = breathing.img[ i ];
+        var img = breathing.img[ i ];
 
-		if ( i < 10 ) {
-			i = "0" + i;
-		}
+        if ( i < 10 ) {
+            i = "0" + i;
+        }
 
-		img.src = "./images/modalScenes/01_" + i + ".png";
-	}
+        img.src = "./images/modalScenes/01_" + i + ".png";
+    }
 
-	clock.img = new Image();
+    clock.img = new Image();
 
-	clock.img.src = "./images/modalScenes/relogioDigital.png";
+    clock.img.src = "./images/modalScenes/relogioDigital.png";
 
-	clock.img.onLoad = function() {
-		console.log("Clock ('watch') image loaded");
-	};
+    clock.img.onLoad = function() {
+        console.log("Clock ('watch') image loaded");
+    };
 
 
+    function init( selector ) {
+        $( selector ).append( html );
 
-	function init( selector ) {
-		$( selector ).append( html );
+        var canvas = $( canvasSelector )[ 0 ];
+        canvas.setAttribute("width", 800 );
+        canvas.setAttribute("height", 600 );
 
-		var canvas = $( canvasSelector )[ 0 ];
-		canvas.setAttribute("width", 800 );
-		canvas.setAttribute("height", 600 );
+        console.info("FreqRespiratoria added to stage");
+    }
 
-		console.info("FreqRespiratoria added to stage");
-	}
+    function open() {
+        $( canvasSelector ).show();
 
-	function open() {
-		$( canvasSelector ).show();
+        clock.angle = -Math.PI / 2;
+        clock.accumulator = 0;
 
-		clock.angle = -Math.PI / 2;
-		clock.accumulator = 0;
+        breathing.frameCounter = 0;
 
-		breathing.frameCounter = 0;
+        tick.accumulator = 0;
+        tick.last = new Date().getTime();
+        state = STATES.playing;
 
-		tick.accumulator = 0;
-		tick.last = new Date().getTime();
-		state = STATES.playing;
+        animationLoop();
+    }
 
-		animationLoop();
-	}
+    function close() {
+        $( canvasSelector ).hide();
 
-	function close() {
-		$( canvasSelector ).hide();
+        state = STATES.stopped;
+    }
 
-		state = STATES.stopped;
-	}
 
+    function update() {
+        breathing.update();
 
+        clock.accumulator += tick.time;
+        while ( clock.accumulator >= clock.time ) {
+            clock.angle += Math.PI * 2 / 1000 / 60;
 
-	function update() {
-		breathing.update();
+            clock.accumulator -= clock.time;
+        }
+    }
 
-		clock.accumulator += tick.time;
-		while ( clock.accumulator >= clock.time ) {
-			clock.angle += Math.PI * 2 / 1000 / 60;
+    function draw( canvas ) {
+        ctx = canvas.getContext("2d");
+        ctx.clearRect( 0, 0, 800, 600 );
 
-			clock.accumulator -= clock.time;
-		}
-	}
+        breathing.draw( canvas );
 
-	function draw( canvas ) {
-		ctx = canvas.getContext( "2d" );
-		ctx.clearRect( 0, 0, 800, 600 );
+        ctx.drawImage( clock.img, 0, 0, 350, 600, 601, 135, 200, 330 );
 
-		breathing.draw( canvas );
+        ctx.beginPath();
+        ctx.moveTo( clock.x, clock.y - clock.radius );
+        ctx.lineTo( clock.x, clock.y - clock.radius + clock.line );
 
-		ctx.drawImage( clock.img, 0, 0, 350, 600, 601, 135, 200, 330 );
+        ctx.moveTo( clock.x, clock.y + clock.radius );
+        ctx.lineTo( clock.x, clock.y + clock.radius - clock.line );
 
-		ctx.beginPath();
-		ctx.moveTo( clock.x, clock.y - clock.radius );
-		ctx.lineTo( clock.x, clock.y - clock.radius + clock.line );
+        ctx.moveTo( clock.x - clock.radius, clock.y );
+        ctx.lineTo( clock.x - clock.radius + clock.line, clock.y );
 
-		ctx.moveTo( clock.x, clock.y + clock.radius );
-		ctx.lineTo( clock.x, clock.y + clock.radius - clock.line );
+        ctx.moveTo( clock.x + clock.radius, clock.y );
+        ctx.lineTo( clock.x + clock.radius - clock.line, clock.y );
 
-		ctx.moveTo( clock.x - clock.radius, clock.y );
-		ctx.lineTo( clock.x - clock.radius + clock.line, clock.y );
+        // ctx.arc(clock.x, clock.y, clock.radius, 0, Math.PI*2);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "rgba(0,0,0,130)";
+        ctx.stroke();
 
-		ctx.moveTo( clock.x + clock.radius, clock.y );
-		ctx.lineTo( clock.x + clock.radius - clock.line, clock.y );
+        ctx.beginPath();
+        px = Math.cos( clock.angle ) * clock.radius + clock.x;
+        py = Math.sin( clock.angle ) * clock.radius + clock.y;
 
-		//ctx.arc(clock.x, clock.y, clock.radius, 0, Math.PI*2);
-		ctx.lineWidth = 2;
-		ctx.strokeStyle = "rgba(0,0,0,130)";
-		ctx.stroke();
+        ctx.moveTo( clock.x, clock.y );
+        ctx.lineTo( px, py );
 
-		ctx.beginPath();
-		px = Math.cos( clock.angle ) * clock.radius + clock.x;
-		py = Math.sin( clock.angle ) * clock.radius + clock.y;
+        ctx.lineWidth = 5;
+        ctx.strokeStyle = "rgba(0,0,0,255)";
+        ctx.stroke();
+    }
 
-		ctx.moveTo( clock.x, clock.y );
-		ctx.lineTo( px, py );
+    function animationLoop() {
+        tick.now = new Date().getTime();
+        tick.passed = tick.now - tick.last;
+        tick.last = tick.now;
 
-		ctx.lineWidth = 5;
-		ctx.strokeStyle = "rgba(0,0,0,255)";
-		ctx.stroke();
-	}
+        tick.accumulator += tick.passed;
 
-	function animationLoop() {
-		tick.now = new Date().getTime();
-		tick.passed = tick.now - tick.last;
-		tick.last = tick.now;
+        while ( tick.accumulator >= tick.time ) {
+            update();
 
-		tick.accumulator += tick.passed;
+            tick.accumulator -= tick.time;
+        }
 
-		while ( tick.accumulator >= tick.time ) {
-			update();
+        draw( $( canvasSelector )[ 0 ] );
 
-			tick.accumulator -= tick.time;
-		}
+        if ( state == STATES.playing ) {
+            window.requestAnimationFrame( animationLoop );
+        }
+    }
 
-		draw( $( canvasSelector )[ 0 ] );
+    function setFr( _fr ) {
 
-		if ( state == STATES.playing )
-			window.requestAnimationFrame( animationLoop );
-	}
+        breathing.cyclesPerMinute = _fr;
+        breathing.frameTime = 1000 * 60 / breathing.cyclesPerMinute / breathing.frameTotal;
 
-	function setFr( _fr ) {
+    }
 
-		breathing.cyclesPerMinute = _fr;
-		breathing.frameTime = 1000 * 60 / breathing.cyclesPerMinute / breathing.frameTotal;
+    return {
+        init: init,
+        setFr: setFr,
 
-	}
-
-	return {
-		init:init,
-		setFr: setFr,
-
-		open:open,
-		close:close
-	};
+        open: open,
+        close: close
+    };
 });

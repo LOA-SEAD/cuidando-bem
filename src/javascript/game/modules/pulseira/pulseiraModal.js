@@ -7,7 +7,7 @@
  */
 define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
 
-//Attributes
+// Attributes
     /**
      * Description
      * @type {string}
@@ -109,8 +109,8 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
 
     var disabled = false;
 
-//Methods
-    //Init
+// Methods
+    // Init
     /**
      * Description
      * @method init
@@ -130,7 +130,7 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
         console.info("Show Modal Scene");
         showing = true;
         $( divSelector ).show();
-        $( dataInputSelector ).mask( "00/00/0000" );
+        $( dataInputSelector ).mask("00/00/0000");
     }
 
     /**
@@ -147,20 +147,20 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
     function disable() {
         disable = true;
 
-        $( dataInputSelector ).prop( "disabled", true );
-        $( leitoInputSelector ).prop( "disabled", true );
-        $( nameInputSelector ).prop( "disabled", true );
+        $( dataInputSelector ).prop("disabled", true );
+        $( leitoInputSelector ).prop("disabled", true );
+        $( nameInputSelector ).prop("disabled", true );
     }
 
     function enable() {
         disable = false;
 
-        $( dataInputSelector ).prop( "disabled", false );
-        $( leitoInputSelector ).prop( "disabled", false );
-        $( nameInputSelector ).prop( "disabled", false );
+        $( dataInputSelector ).prop("disabled", false );
+        $( leitoInputSelector ).prop("disabled", false );
+        $( nameInputSelector ).prop("disabled", false );
     }
 
-//Getters
+// Getters
     /**
      * Description
      * @method isShowing
@@ -215,7 +215,7 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
         return valid;
     }
 
-//Setters
+// Setters
     /**
      * Description
      * @method setNameRegExp
@@ -265,15 +265,13 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
     }
 
     function resetData() {
-        setName( "" );
-        setLeito( "" );
-        setData( "" );
+        setName("");
+        setLeito("");
+        setData("");
     }
 
 
-
-
-//Public Interface
+// Public Interface
     return {
         init: init,
 

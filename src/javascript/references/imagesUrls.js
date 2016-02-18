@@ -3,15 +3,15 @@
  */
 define(function() {
 
-	var baseDir = "./images/";
-	var paths = {
+    var baseDir = "./images/";
+    var paths = {
         others: [
             // "./assets/images/misc/arrow-icon_button-hover.png",
             // "./assets/images/misc/arrow-icon_button.png",
             // "./assets/images/misc/button-bg.png",
             // "./assets/images/misc/shattered.png",
             // "./assets/images/action_buttons/abrir_dialogo.jpg",
-            // "./assets/images/action_buttons/anotar_prontuario.jpg",
+            // "./assets/images/action_buttons/anotarProntuario.jpg",
             // "./assets/images/action_buttons/confirmar_pulseira.jpg",
             // "./assets/images/action_buttons/examinar_paciente.jpg",
             // "./assets/images/action_buttons/gaveta.jpg",
@@ -20,7 +20,7 @@ define(function() {
             // "./assets/images/action_buttons/ir_posto_de_enfermagem.jpg",
             // "./assets/images/action_buttons/ir_recepcao.jpg",
             // "./assets/images/action_buttons/ir_sala_de_leitos.jpg",
-            // "./assets/images/action_buttons/lavar_maos.jpg",
+            // "./assets/images/action_buttons/lavarMaos.jpg",
             // "./assets/images/action_buttons/leito-char-01.jpg",
             // "./assets/images/action_buttons/leito-char-02.jpg",
             // "./assets/images/action_buttons/mudar_posicao_paciente.jpg",
@@ -67,8 +67,8 @@ define(function() {
             // "./assets/images/modalScenes/pulseira.png",
             // "./assets/images/modalScenes/relogioDigital.png",
             // "./assets/images/modalScenes/termometro.png",
-            // "./assets/images/scenes/ala_masculina-paciente-virado.jpg",
-            // "./assets/images/scenes/ala_masculina.jpg",
+            // "./assets/images/scenes/alaMasculina-paciente-virado.jpg",
+            // "./assets/images/scenes/alaMasculina.jpg",
             // "./assets/images/scenes/corredor.jpg",
             // "./assets/images/scenes/encerra-provisoria-alfa.jpg",
             // "./assets/images/scenes/fim-level.jpg",
@@ -76,13 +76,13 @@ define(function() {
             // "./assets/images/scenes/leito-char-02-coxim.jpg",
             // "./assets/images/scenes/leito-char-02-virado.jpg",
             // "./assets/images/scenes/leito-char-02.jpg",
-            // "./assets/images/scenes/posto_de_enfermagem.jpg",
+            // "./assets/images/scenes/postoDeEnfermagem.jpg",
             // "./assets/images/scenes/recepcao.jpg",
-            "./images/scenes/sala_de_leitos.jpg"
+            "./images/scenes/salaDeLeitos.jpg"
         ]
-	};
+    };
 
-	return {
+    return {
         paths: paths,
         baseDir: baseDir
     };

@@ -8,7 +8,7 @@
  */
 define([ "Stage" ], function( Stage ) {
 
-    var Player = require( "Player" );
+    var Player = require("Player");
 
     /**
      * This method is called when the screen Credits is loaded
@@ -20,10 +20,10 @@ define([ "Stage" ], function( Stage ) {
      */
     function load() {
         // $('.menuButton').click(function(){
-        //     Player.play(Player.audios.sfx.selecionar_menu);
+        //     Player.play(Player.audios.sfx.selecionarMenu);
         // });
 
-        $( ".backButton" ).click(function() {
+        $(".backButton").click(function() {
             Stage.changeScreen( 0 );
         });
     }

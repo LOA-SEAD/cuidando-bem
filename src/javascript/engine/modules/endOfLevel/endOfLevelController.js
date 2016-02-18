@@ -5,11 +5,15 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define([ "text!../html/end_of_level/endOfLevel.html", "text!../html/end_of_level/scoreItemTemplate.html" ], function( html, scoreItemHtml ) {
+define([
+        "text!../html/end_of_level/endOfLevel.html",
+        "text!../html/end_of_level/scoreItemTemplate.html"
+    ],
+    function( html, scoreItemHtml ) {
 
-//Attributes
+// Attributes
 
-    var Stage = require( "Stage" );
+    var Stage = require("Stage");
     var modalSelector = "#endOfLevel";
     var scoreListSelector = "#scoreList";
 
@@ -17,8 +21,8 @@ define([ "text!../html/end_of_level/endOfLevel.html", "text!../html/end_of_level
     var scoreSelector = ".score";
 
     var isOpen = false;
-//Methods
-    //Init
+// Methods
+    // Init
     /**
      * Description
      * @method init
@@ -27,13 +31,13 @@ define([ "text!../html/end_of_level/endOfLevel.html", "text!../html/end_of_level
     function init( selector ) {
         $( selector ).append( html );
 
-        $( ".goToMenu" ).click(function() {
+        $(".goToMenu").click(function() {
             isOpen = false;
             Stage.changeScreen( 6 );
         });
 
-        $( ".playAgain" ).click(function() {
-            var core = require( "CuidandoBem" );
+        $(".playAgain").click(function() {
+            var core = require("CuidandoBem");
 
             core.restartLevel();
         });
@@ -66,9 +70,9 @@ define([ "text!../html/end_of_level/endOfLevel.html", "text!../html/end_of_level
         isOpen = false;
     }
 
-//Getters
-//Setters
-//Public Interface
+// Getters
+// Setters
+// Public Interface
     return {
         init: init,
         show: show,

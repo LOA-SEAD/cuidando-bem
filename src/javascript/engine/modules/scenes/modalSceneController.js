@@ -7,14 +7,14 @@
  */
 define([ "text!../html/scenes/modalScene.html" ], function( html ) {
 
-//Attributes
+// Attributes
 
     var divSelector = "#modalScene";
     var showing = false;
 
     var lastSceneClass = "";
-//Methods
-    //Init
+// Methods
+    // Init
     /**
      * Description
      * @method init
@@ -61,7 +61,7 @@ define([ "text!../html/scenes/modalScene.html" ], function( html ) {
         $( divSelector ).hide();
     }
 
-//Getters
+// Getters
     /**
      * Description
      * @method isShowing
@@ -72,10 +72,10 @@ define([ "text!../html/scenes/modalScene.html" ], function( html ) {
         return showing;
     }
 
-//Setters
+// Setters
 
 
-//Public Interface
+// Public Interface
     return {
         init: init,
 

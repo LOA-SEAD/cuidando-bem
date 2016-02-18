@@ -17,5 +17,6 @@
     "disallowMultipleLineBreaks": null,
     "requireCapitalizedComments": null,
     "validateIndentation": null,
-    "validateCommentPosition": { "position": "above" }
+    "validateCommentPosition": { "position": "above" },
+    "maximumLineLength": 1000
 }

@@ -1,6 +1,7 @@
 /**
  * This module's purpose is to provide an easy way to play sounds in a html5 application
- * It comes with a set of functions to play sounds in loops, a sinlge time, control global and single volumes, etc
+ * It comes with a set of functions to play sounds in loops, a sinlge time, control global and
+ * single volumes, etc
  *
  * It loads all sounds and get them ready to be played
  * @name Player
@@ -22,7 +23,7 @@ define(function() {
 
     var loopList;
     var loopId;
-    var isSoundLooping  = false;
+    var isSoundLooping = false;
     var loopSound = undefined;
     var loopSoundBuffer = undefined;
     var pastLoopSound = undefined;
@@ -45,8 +46,9 @@ define(function() {
     function load( baseDir, pathsObj ) {
         console.groupCollapsed("Loading Sounds: ");
         deepCopy( baseDir, pathsObj, audios );
-        if ( isMuted )
+        if ( isMuted ) {
             setSoundToMuted();
+        }
         console.groupEnd();
     }
 
@@ -56,13 +58,13 @@ define(function() {
             if ( typeof from[ audio ] === "object") {
                 if ( from[ audio ] instanceof Array ) {
                     to[ audio ] = [];
-                }else {
+                } else {
                     to[ audio ] = {};
                 }
                 deepCopy( baseDir, from[ audio ], to[ audio ] );
-            }else {
+            } else {
                 var path = from[ audio ];
-                var parser = path.split( "." );
+                var parser = path.split(".");
                 var fileName = parser[ 0 ];
                 var extension = parser[ 1 ];
 
@@ -85,13 +87,13 @@ define(function() {
         if ( typeof obj === "object") {
             if ( obj instanceof Array ) {
                 arr = arr.concat( obj );
-            }else {
+            } else {
                 var x;
                 for ( x in obj ) {
                     arr = arr.concat( getAsArray( obj[ x ] ) );
                 }
             }
-        }else {
+        } else {
             arr.push( obj );
         }
 
@@ -111,7 +113,7 @@ define(function() {
     function prepare( sound ) {
         if ( window.chrome ) {
             sound.load();
-        }else {
+        } else {
             sound.currentTime = 0;
         }
     }
@@ -123,7 +125,7 @@ define(function() {
 
         normalSound.play();
 
-        //console.log(sound);
+        // console.log(sound);
     }
 
     function justPlay( sound ) {
@@ -136,8 +138,9 @@ define(function() {
 
     function nextId( now, max ) {
         now++;
-        if ( now >= max )
+        if ( now >= max ) {
             now = 0;
+        }
 
         return now;
     }
@@ -150,16 +153,17 @@ define(function() {
 
             loopSound = loopList[ loopId ];
 
-            loopSoundBuffer = new Audio( loopList[ nextId( loopId, loopList.length ) ].getAttribute( "src" ) );
+            var audio = new Audio( loopList[ nextId( loopId, loopList.length ) ];
+            loopSoundBuffer = audio.getAttribute("src") );
             loopSoundBuffer.volume = loopList[ nextId( loopId, loopList.length ) ].vol;
             prepare( loopSoundBuffer );
 
             pastLoopSound = loopSound;
-            //loopSound.addEventListener('timeupdate', shouldPlayNextInLoop, false);
+            // loopSound.addEventListener('timeupdate', shouldPlayNextInLoop, false);
             loopInterval = setInterval( shouldPlayNextInLoop, 4 );
 
             play( loopSound );
-            //playNextInLoop();
+            // playNextInLoop();
         }
     }
 
@@ -176,19 +180,19 @@ define(function() {
 
         if ( pastLoopSound !== undefined ) {
             clearInterval( loopInterval );
-            //console.log("CLEAR");
-            //pastLoopSound.pause();
-            //loopSound.removeEventListener('timeupdate', shouldPlayNextInLoop, false);
-            //loopSoundBuffer.removeEventListener('timeupdate', shouldPlayNextInLoop, false);
-            //pastLoopSound.removeEventListener('ended', playNextInLoop, false);
+            // console.log("CLEAR");
+            // pastLoopSound.pause();
+            // loopSound.removeEventListener('timeupdate', shouldPlayNextInLoop, false);
+            // loopSoundBuffer.removeEventListener('timeupdate', shouldPlayNextInLoop, false);
+            // pastLoopSound.removeEventListener('ended', playNextInLoop, false);
         }
 
         pastLoopSound = loopSound;
         loopSound = loopSoundBuffer;
         delete loopSoundBuffer;
-        loopSoundBuffer = new Audio( loopList[ loopId ].getAttribute( "src" ) );
+        loopSoundBuffer = new Audio( loopList[ loopId ].getAttribute("src") );
         loopSoundBuffer.volume = loopList[ loopId ].volume;
-        //loopSoundBuffer = loopList[loopId];
+        // loopSoundBuffer = loopList[loopId];
 
 
         prepare( loopSoundBuffer );
@@ -197,18 +201,19 @@ define(function() {
         if ( isSoundLooping ) {
             console.log("PLAY");
             loopInterval = setInterval( shouldPlayNextInLoop, 4 );
-            //loopSound.addEventListener('timeupdate', shouldPlayNextInLoop, false);
-            //loopSoundBuffer.addEventListener('timeupdate', shouldPlayNextInLoop, false);
-            //pastLoopSound.removeEventListener('ended', playNextInLoop, false);
+            // loopSound.addEventListener('timeupdate', shouldPlayNextInLoop, false);
+            // loopSoundBuffer.addEventListener('timeupdate', shouldPlayNextInLoop, false);
+            // pastLoopSound.removeEventListener('ended', playNextInLoop, false);
         }
     }
 
     function shouldPlayNextInLoop() {
         var percentage = (loopSound.currentTime * 100) / loopSound.duration;
-        //console.log(loopSound.duration, loopSound.currentTime, percentage+"%");
+        // console.log(loopSound.duration, loopSound.currentTime, percentage+"%");
 
-        if ( percentage >= AUDIO_PERCENTAGE_TO_NEXT_IN_LOOP )
+        if ( percentage >= AUDIO_PERCENTAGE_TO_NEXT_IN_LOOP ) {
             playNextInLoop();
+        }
     }
 
     function playInRange( obj ) {
@@ -230,8 +235,9 @@ define(function() {
     function playNextInRange() {
         var rangeIdArray = [];
         var i;
-        for ( i in rangeList )
+        for ( i in rangeList ) {
             rangeIdArray.push( i );
+        }
 
         pastRangeSoundId = rangeSoundId;
 
@@ -243,8 +249,8 @@ define(function() {
 
         if ( pastLoopSound !== undefined ) {
             pastLoopSound.pause();
-            pastLoopSound.removeEventListener( "timeupdate", shouldPlayNextInRange, false );
-            //pastLoopSound.removeEventListener('ended', playNextInLoop, false);
+            pastLoopSound.removeEventListener("timeupdate", shouldPlayNextInRange, false );
+            // pastLoopSound.removeEventListener('ended', playNextInLoop, false);
         }
 
         pastRangeSound = rangeSound;
@@ -252,17 +258,18 @@ define(function() {
 
         play( rangeSound );
         if ( isRangePlaying ) {
-            rangeSound.addEventListener( "timeupdate", shouldPlayNextInRange, false );
-            //pastLoopSound.removeEventListener('ended', playNextInLoop, false);
+            rangeSound.addEventListener("timeupdate", shouldPlayNextInRange, false );
+            // pastLoopSound.removeEventListener('ended', playNextInLoop, false);
         }
     }
 
     function shouldPlayNextInRange() {
         var percentage = (this.currentTime * 100) / this.duration;
-        //console.log(this.duration, this.currentTime, percentage+"%");
+        // console.log(this.duration, this.currentTime, percentage+"%");
 
-        if ( percentage >= AUDIO_PERCENTAGE_TO_NEXT_IN_RANGE )
+        if ( percentage >= AUDIO_PERCENTAGE_TO_NEXT_IN_RANGE ) {
             playNextInRange();
+        }
     }
 
     function setVolumeOfTo( obj, volume ) {
@@ -330,7 +337,7 @@ define(function() {
         playInLoop: playInLoop,
         stopLoop: stopLoop,
 
-        playInRange:playInRange,
+        playInRange: playInRange,
         stopRange: stopRange,
 
         stopAll: stopAll

@@ -40,10 +40,11 @@ define([ "SimpleStorage" ], function( Storage ) {
             return clone;
         };
     }
+
     var emptySlot = new SaveObject("Novo Jogo");
 
     var Errors = {
-        id_out_range: "Save id must be: 0 <= id <= 2. Passed id: "
+        idOutRange: "Save id must be: 0 <= id <= 2. Passed id: "
     };
 
     var SAVES_CONTAINER_EMPTY_SLOTS = [ undefined, undefined, undefined ];
@@ -59,12 +60,12 @@ define([ "SimpleStorage" ], function( Storage ) {
     var muted;
 
     function init() {
-        //Get saves data from storage module
+        // Get saves data from storage module
         saves = Storage.get( KEY_SAVES_CONTAINER );
 
-        //"SavesContainer" does not exist
+        // "SavesContainer" does not exist
         if ( saves === undefined || !(saves instanceof Array) || saves.length !== 3 ) {
-            //Create "Saves"
+            // Create "Saves"
             creatEmptySaves();
         }
         for ( i in saves ) {
@@ -76,10 +77,10 @@ define([ "SimpleStorage" ], function( Storage ) {
         }
         saveSlots();
 
-        //Get is muted data from storage module
+        // Get is muted data from storage module
         muted = Storage.get( KEY_MUTED );
 
-        if ( muted === undefined || typeof muted !== "boolean" ) {
+        if ( muted === undefined || typeof muted !== "boolean") {
             muted = false;
             Storage.set( KEY_MUTED, muted );
         }
@@ -89,10 +90,11 @@ define([ "SimpleStorage" ], function( Storage ) {
         if ( selectedId === undefined || typeof selectedId !== "number" || selectedId < 0 || selectedId > 3 ) {
             selectedId = 0;
             Storage.set( KEY_SELECTED_ID );
-        }else {
+        } else {
 
         }
     }
+
     init();
 
     function creatEmptySaves() {
@@ -105,16 +107,16 @@ define([ "SimpleStorage" ], function( Storage ) {
         Storage.set( KEY_SAVES_CONTAINER, saves );
     }
 
-    //console.groupCollapsed("Loading saved files:");
+    // console.groupCollapsed("Loading saved files:");
     for ( i in saves ) {
         var save = saves[ i ];
         if ( save !== undefined && save !== null ) {
             console.log("Slot #" + i + " = " + save.name );
-        }else {
+        } else {
             console.log("Slot #" + i + " is empty");
         }
     }
-    //console.groupEnd();
+    // console.groupEnd();
 
     function load() {
         console.log("Loading all data");
@@ -123,8 +125,9 @@ define([ "SimpleStorage" ], function( Storage ) {
     }
 
     function loadSlot( id ) {
-        if ( id < 0 || id > 2 )
-            throw new Error( Errors.id_out_range + id );
+        if ( id < 0 || id > 2 ) {
+            throw new Error( Errors.idOutRange + id );
+        }
 
         console.log("Loading save from: " + saves[ id ].name + " id: " + id );
         loadedId = id;
@@ -141,8 +144,9 @@ define([ "SimpleStorage" ], function( Storage ) {
     }
 
     function reset( id ) {
-        if ( id < 0 || id > 2 )
-            throw new Error( Errors.id_out_range + id );
+        if ( id < 0 || id > 2 ) {
+            throw new Error( Errors.idOutRange + id );
+        }
 
         saves[ id ] = emptySlot.getClone();
         Storage.set( KEY_SAVES_CONTAINER, saves );
@@ -153,16 +157,17 @@ define([ "SimpleStorage" ], function( Storage ) {
     }
 
     function addScore( levelId, score ) {
-        if ( levelId < MINLEVEL || levelId > MAXLEVEL )
+        if ( levelId < MINLEVEL || levelId > MAXLEVEL ) {
             throw new Error("LevelId Failed");
+        }
 
         var level = saves[ loadedId ].levels[ levelId ];
 
         if ( level === undefined ) {
             level = [ score ];
-        }else if ( level instanceof Array ) {
+        } else if ( level instanceof Array ) {
             level.push( score );
-        }else {
+        } else {
             console.error("This should never happen.");
         }
 
@@ -170,8 +175,9 @@ define([ "SimpleStorage" ], function( Storage ) {
     }
 
     function resetScore( levelId ) {
-        if ( levelId < MINLEVEL || levelId > MAXLEVEL )
+        if ( levelId < MINLEVEL || levelId > MAXLEVEL ) {
             throw new Error("LevelId Failed");
+        }
 
         saves[ loadedId ].levels[ levelId ] = undefined;
     }
@@ -214,7 +220,7 @@ define([ "SimpleStorage" ], function( Storage ) {
         saveSlots();
     }
 
-    //region Test Slot
+    // region Test Slot
 
     Storage.flush();
 
@@ -224,7 +230,7 @@ define([ "SimpleStorage" ], function( Storage ) {
 
     saveSlots();
 
-    //endregion
+    // endregion
 
 
     // Public Interface for returning saved files

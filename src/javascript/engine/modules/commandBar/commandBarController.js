@@ -5,9 +5,13 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define([ "text!../html/command_bar/commandBar.html", "text!../html/command_bar/actionButtonTemplate.html" ], function( html, actionButtonTemplate ) {
+define([
+        "text!../html/command_bar/commandBar.html",
+        "text!../html/command_bar/actionButtonTemplate.html"
+    ],
+    function( html, actionButtonTemplate ) {
 
-//Attributes
+// Attributes
     /**
      * This string represents a selector for the html element that is the command bar
      *
@@ -29,8 +33,8 @@ define([ "text!../html/command_bar/commandBar.html", "text!../html/command_bar/a
      */
     var actionButtonSelector = ".action_button";
 
-//Methods
-    //Init
+// Methods
+    // Init
     /**
      * The init method should insert into the main html every html that the commandbar needs
      *
@@ -44,7 +48,8 @@ define([ "text!../html/command_bar/commandBar.html", "text!../html/command_bar/a
     }
 
     /**
-     * Add all action buttons in an array of actions. Calls "addActionButton" for each action in the array
+     * Add all action buttons in an array of actions. Calls "addActionButton" for each action
+     * in the array
      *
      * @method addAllActionButtons
      * @param {} _actions
@@ -78,7 +83,7 @@ define([ "text!../html/command_bar/commandBar.html", "text!../html/command_bar/a
         addAllActionButtons( _actions );
     }
 
-    //This function, if called should remove all the listeners and extra interface
+    // This function, if called should remove all the listeners and extra interface
     /**
      * This method removes every event listener from the action buttons
      *
@@ -88,11 +93,11 @@ define([ "text!../html/command_bar/commandBar.html", "text!../html/command_bar/a
      * @memberOf module:CommandBar
      */
     function close() {
-        var action_buttons = $( actionButtonSelector );
+        var actionButtons = $( actionButtonSelector );
 
-        for ( button in action_buttons ) {
-            var action_button = $( action_buttons[ button ] );
-            action_button.removeAllListeners();
+        for ( button in actionButtons ) {
+            var actionButton = $( actionButtons[ button ] );
+            actionButton.removeAllListeners();
         }
     }
 
@@ -122,7 +127,8 @@ define([ "text!../html/command_bar/commandBar.html", "text!../html/command_bar/a
 
 
     /**
-     * Add action button in command bar, also adds every attribute needed for an action to work including its "click" callback function
+     * Add action button in command bar, also adds every attribute needed for an action to work
+     * including its "click" callback function
      *
      * @method addActionButton
      * @param {} _action
@@ -134,8 +140,8 @@ define([ "text!../html/command_bar/commandBar.html", "text!../html/command_bar/a
         var element = $( $( actionButtonTemplate )[ 0 ] );
 
         element.click( _action.getFunction() );
-        element.attr( "title", _action.getName() );
-        element.attr( "id", _action.getId() );
+        element.attr("title", _action.getName() );
+        element.attr("id", _action.getId() );
         element.addClass( _action.getCssClass() );
 
         element.tooltip({
@@ -148,8 +154,8 @@ define([ "text!../html/command_bar/commandBar.html", "text!../html/command_bar/a
                 at: "center top",
                 using: function( position, feedback ) {
                     $( this ).css( position );
-                    $( "<div>" )
-                        .addClass( "arrow" )
+                    $("<div>")
+                        .addClass("arrow")
                         .addClass( feedback.vertical )
                         .addClass( feedback.horizontal )
                         .appendTo( this );
@@ -157,18 +163,20 @@ define([ "text!../html/command_bar/commandBar.html", "text!../html/command_bar/a
             }
         });
 
-        if ( _action.isEnabled() )
+        if ( _action.isEnabled() ) {
             element.addClass("enabled");
-        else
+        } else {
             element.addClass("disabled");
+        }
 
 
         $( barSelector ).append( element );
-        if ( !_action.isVisible() )
+        if ( !_action.isVisible() ) {
             element.hide();
+        }
     }
 
-    //Remove all buttons
+    // Remove all buttons
     /**
      * Empties the command bar
      *
@@ -181,7 +189,7 @@ define([ "text!../html/command_bar/commandBar.html", "text!../html/command_bar/a
         $( barSelector ).empty();
     }
 
-    //Remove Button
+    // Remove Button
     /**
      * Remove a single action button from the command bar based in its action id
      *
@@ -195,7 +203,7 @@ define([ "text!../html/command_bar/commandBar.html", "text!../html/command_bar/a
 
     }
 
-    //Activate button
+    // Activate button
     /**
      * Sets the button appearing in the command bar to enabled
      *
@@ -214,7 +222,7 @@ define([ "text!../html/command_bar/commandBar.html", "text!../html/command_bar/a
         element.tooltip("enable");
     }
 
-    //Deactivate Button
+    // Deactivate Button
     /**
      * Sets the button appearing in the command bar to disabled
      *
@@ -291,17 +299,18 @@ define([ "text!../html/command_bar/commandBar.html", "text!../html/command_bar/a
         for ( i = 0; i < _actions.length; i++ ) {
             console.log("Action to be updated " + i + ": " + _actions[ i ].getName() );
             var action = _actions[ i ];
-            if ( action.isEnabled() )
+            if ( action.isEnabled() ) {
                 enableActionButton( action );
-            else
+            } else {
                 disableActionButton( action );
+            }
         }
         console.groupEnd();
     }
 
-//Getters
+// Getters
 
-//Setters
+// Setters
     /**
      * Set an action visibility
      *
@@ -315,13 +324,14 @@ define([ "text!../html/command_bar/commandBar.html", "text!../html/command_bar/a
     function setActionVisible( _action, _value ) {
         var selector = "#" + _action.getId();
 
-        if ( _value )
+        if ( _value ) {
             $( selector ).show();
-        else
+        } else {
             $( selector ).hide();
+        }
     }
 
-//Public Interface
+// Public Interface
     return {
         init: init,
         close: close,

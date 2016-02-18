@@ -5,8 +5,8 @@ module.exports = {
 	    src: "<%= pkg.source %>" + "/javascript/**/*.js",
 	    options: {
 	        config: ".jscsrc",
-	        reporter: "text.js",
-	        verbose: true,
+	        reporter: "inline.js",
+	        verbose: false,
 	        fix: true,
 	        reporterOutput: "jscs.log"
 	    }

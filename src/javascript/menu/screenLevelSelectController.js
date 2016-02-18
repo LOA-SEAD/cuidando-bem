@@ -8,10 +8,10 @@
  */
 define([ "Stage", "levelsData" ], function( Stage, game ) {
 
-    var Player = require( "Player" );
-    var Storage = require( "Storage" );
-    var Dialogs = require( "Dialogs_data" );
-    var Lib = require( "Commons" );
+    var Player = require("Player");
+    var Storage = require("Storage");
+    var Dialogs = require("DialogsData");
+    var Lib = require("Commons");
 
     var save;
 
@@ -42,61 +42,60 @@ define([ "Stage", "levelsData" ], function( Stage, game ) {
         text = "Selecione uma fase";
         save = Storage.getLoadedSlot();
 
-        //Change player name to save slot name
+        // Change player name to save slot name
         Lib.characters.jogador.setName( save.name );
-
 
 
         var i;
         for ( i in save.levels ) {
             if ( i > save.lastLevel + 1 ) {
-                $( $( ".level" )[ i ] ).addClass( "disabled" );
+                $( $(".level")[ i ] ).addClass("disabled");
             }
         }
 
-        $( ".image", $( ".level" )[ save.lastLevel + 2 ] ).addClass( "next" );
+        $(".image", $(".level")[ save.lastLevel + 2 ] ).addClass("next");
 
-        $( ".menuButton" ).click(function() {
-            Player.play( Player.audios.sfx.selecionar_menu );
+        $(".menuButton").click(function() {
+            Player.play( Player.audios.sfx.selecionarMenu );
         });
 
-        $( ".backButton" ).click(function() {
+        $(".backButton").click(function() {
             Stage.changeScreen( 5 );
         });
 
-        $( ".level" ).click(function() {
-            var index = $( ".level" ).index( this );
+        $(".level").click(function() {
+            var index = $(".level").index( this );
             var levelId = index;
 
             if ( levelId <= save.lastLevel + 1 ) {
                 text = levelNames[ index ];
-                $( "p.title" ).text( text );
+                $("p.title").text( text );
 
-                if ( $( this ).hasClass( "selected" ) ) {
+                if ( $( this ).hasClass("selected") ) {
                     game.setCurrentLevel( levelId );
                     Stage.changeScreen( 1 );
                 } else {
-                    $( ".level" ).removeClass( "selected" );
-                    $( this ).addClass( "selected" );
+                    $(".level").removeClass("selected");
+                    $( this ).addClass("selected");
                 }
             }
         });
 
-        $( ".level" ).hover(
+        $(".level").hover(
             function() {
-                var index = $( ".level" ).index( this );
+                var index = $(".level").index( this );
                 var levelId = index;
 
                 if ( levelId <= save.lastLevel + 1 ) {
-                    $( "p.title" ).text( levelNames[ index ] );
+                    $("p.title").text( levelNames[ index ] );
                 }
             },
             function() {
-                var index = $( ".level" ).index( this );
+                var index = $(".level").index( this );
                 var levelId = index;
 
                 if ( levelId <= save.lastLevel + 1 ) {
-                    $( "p.title" ).text( text );
+                    $("p.title").text( text );
                 }
             }
         );

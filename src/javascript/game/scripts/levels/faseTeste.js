@@ -6,18 +6,18 @@
 define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria" ],
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, freqRespiratoria ) {
 
-        //region Imports
-        var Dialogs = require( "Dialogs_data" ).fase1;
-        var Alerts = require( "Dialogs_data" ).alertas;
-        //endregion
+        // region Imports
+        var Dialogs = require("DialogsData").fase1;
+        var Alerts = require("DialogsData").alertas;
+        // endregion
 
         var level = new Level("Level TESTE");
         console.groupCollapsed( level.getName() );
 
-        var flags_on = true;
+        var flagsOn = true;
         var visibility = false;
 
-        //region Scenes
+        // region Scenes
 
         level.setSetupScript(function() {
 
@@ -58,30 +58,30 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setPrescEnfermagemState("decubito");
 
             Prontuario.setSsvvRowRegExp( 0,
-                new RegExp( "" ),
-                new RegExp( "" ),
-                new RegExp( "" ),
-                new RegExp( "" ),
-                new RegExp( "" ),
-                new RegExp( "" )
-                );
+                new RegExp(""),
+                new RegExp(""),
+                new RegExp(""),
+                new RegExp(""),
+                new RegExp(""),
+                new RegExp("")
+            );
 
-            Prontuario.setAnotacaoEnfermagemRowData( "15/03", "" );
+            Prontuario.setAnotacaoEnfermagemRowData("15/03", "");
         });
 
 
-        //region Recepcao
+        // region Recepcao
         var recepcao = new Scene("recepcao", "scene-recepcao")
             .setCssClass("scene-lobby")
             .onLoad(function() {
-                //Pulseira.open();
-                //core.openModalScene("modalOximetro");
-                //Prontuario.open();
-                //freqRespiratoria.open();
+                // Pulseira.open();
+                // core.openModalScene("modalOximetro");
+                // Prontuario.open();
+                // freqRespiratoria.open();
 
-                //core.showEndOfLevel();
+                // core.showEndOfLevel();
             });
-        //endregion
+        // endregion
 
         recepcao.registerActions([
             new Action("btn-ir_corredor", "Ir ao corredor")
@@ -100,17 +100,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setTemplate("<span class='oximetro-text'>valor unidade</span>");
 
 
-        //endregion
+        // endregion
 
-        //region Level
-        //region Register Scenes
+        // region Level
+        // region Register Scenes
         level.registerScene( recepcao );
 
         level.registerModalScene( oximetro );
-        //endregion
+        // endregion
 
         level.setInitialScene( 0 );
-        //endregion
+        // endregion
 
         game.registerLevel( level, 9 );
 

@@ -22,13 +22,15 @@ define([], function() {
     "use strict";
     function InteractiveObject( _id, _name ) {
         counter++;
-        //Attributes
+        // Attributes
 
-        if ( _id == null )
+        if ( _id == null ) {
             _id = "interactiveObject_" + counter;
+        }
 
-        if ( _name == null )
+        if ( _name == null ) {
             _name = "";
+        }
 
         var id = _id;
         /**
@@ -58,7 +60,8 @@ define([], function() {
          *
          * @memberOf InteractiveObject#
          */
-        var onClickFunction = function() {};
+        var onClickFunction = function() {
+        };
         /**
          * @type {boolean}
          * @private
@@ -67,7 +70,7 @@ define([], function() {
          */
         var enable = true;
 
-        //Methods
+        // Methods
 
         /**
          * It runs this class actionFunction
@@ -81,7 +84,7 @@ define([], function() {
             onClickFunction();
         }
 
-        //Getters
+        // Getters
 
         /**
          * @method
@@ -92,9 +95,9 @@ define([], function() {
          * @memberOf InteractiveObject#
          */
 
-         function getFunction() {
+        function getFunction() {
             return onClickFunction;
-         }
+        }
 
         function getClone() {
             return new InteractiveObject( id, name )
@@ -156,7 +159,7 @@ define([], function() {
             return visible;
         }
 
-        //Setters
+        // Setters
         /**
          * @method
          * @method setEnable
@@ -204,14 +207,14 @@ define([], function() {
             return this;
         }
 
-        //Public interface
+        // Public interface
 
         return {
             execute: execute,
 
-            getClone:getClone,
+            getClone: getClone,
             getId: getId,
-            getFunction:getFunction,
+            getFunction: getFunction,
             getName: getName,
             getCssClass: getCssClass,
             isEnabled: isEnabled,
@@ -225,5 +228,6 @@ define([], function() {
             onClick: onClick
         };
     }
+
     return InteractiveObject;
 });

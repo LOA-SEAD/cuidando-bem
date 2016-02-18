@@ -10,45 +10,45 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         console.groupCollapsed("Commons:");
 
         var lib = {
-            //region Scenes
+            // region Scenes
             scenes: {
-                //Default object of "recepcao"
+                // Default object of "recepcao"
                 recepcao: new Scene("recepcao", "scene-recepcao")
                     .setCssClass("scene-lobby"),
 
-                //Default object of "corredor"
+                // Default object of "corredor"
                 corredor: new Scene("corredor", "scene-corredor")
                     .setCssClass("scene-hallway"),
 
-                //Default object of "alaMasculina"
+                // Default object of "alaMasculina"
                 alaMasculina: new Scene("alaMasculina", "Ala Masculina")
                     .setCssClass("scene-maleRoom"),
 
-                //Default object of "alaFeminina"
+                // Default object of "alaFeminina"
                 alaFeminina: new Scene("alaFeminina", "Ala Feminina")
                     .setCssClass("scene-femaleRoom"),
 
-                //Default object of "postoDeEnfermagem"
+                // Default object of "postoDeEnfermagem"
                 postoDeEnfermagem: new Scene("postoDeEnfermagem", "Posto de Enfermagem")
                     .setCssClass("scene-nursingStation"),
 
-                //Default object of "centroCirurgico"
+                // Default object of "centroCirurgico"
                 centroCirurgico: new Scene("centroCirurgico", "Centro Cirúrgico")
                     .setCssClass("scene-surgeryCenter"),
 
-                //Default object of "centroCirurgico"
-                centroCirurgico_yuri: new Scene("centroCirurgico_yuri", "Centro Cirúrgico Yuri")
+                // Default object of "centroCirurgico"
+                centroCirurgicoYuri: new Scene("centroCirurgicoYuri", "Centro Cirúrgico Yuri")
                     .setCssClass("scene-surgeryCenter-yuri"),
 
-                //Default object of "farmacia"
+                // Default object of "farmacia"
                 farmacia: new Scene("farmacia", "Farmácia")
                     .setCssClass("scene-pharmacy"),
 
                 finalDeFase: new Scene("Fim da fase", "scene-fim-level")
                     .setCssClass("scene-fim-level"),
 
-                //Default object of "leito"
-                leitos:{
+                // Default object of "leito"
+                leitos: {
                     joao: new Scene("leito_01", "scene-leito-char-01")
                         .setCssClass("scene-bedChar01"),
 
@@ -80,10 +80,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         .setCssClass("scene-bedChar10")
                 }
             },
-            //endregion
-            modalScenes: {
-
-            },
+            // endregion
+            modalScenes: {},
             actions: {
                 irCorredor: new Action("btn-ir_corredor", "Ir ao corredor")
                     .setCssClass("action-ir_corredor")
@@ -92,12 +90,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.changeScene( 1 );
                     })
             },
-            objects: {
-
-            },
+            objects: {},
 
             characters: {
-                recepcionista_unknow: new Character("Recepcionista", "char-receptionist"),
+                recepcionistaUnknow: new Character("Recepcionista", "char-receptionist"),
                 recepcionista: new Character("Clarice", "char-receptionist"),
                 mentor: new Character("Mentor", "char-mentor"),
                 jogador: new Character("Jogador", "char-player"),
@@ -118,16 +114,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     yuri: new Character("Sr. Yuri", "char-paciente_09"),
                     francisco: new Character("Sr. Francisco", "char-paciente_10"),
 
-                    joao_unknow: new Character("Paciente", "char-paciente_01"),
-                    carlos_unknow: new Character("Paciente", "char-paciente_02"),
-                    raul_unknow: new Character("Paciente", "char-paciente_03"),
-                    regina_unknow: new Character("Paciente", "char-paciente_04"),
-                    pedro_unknow: new Character("Paciente", "char-paciente_05"),
-                    esther_unknow: new Character("Paciente", "char-paciente_06"),
-                    josivaldo_unknow: new Character("Paciente", "char-paciente_07"),
-                    ana_unknow: new Character("Paciente", "char-paciente_08"),
-                    yuri_unknow: new Character("Paciente", "char-paciente_09"),
-                    francisco_unknow: new Character("Paciente", "char-paciente_10")
+                    joaoUnknow: new Character("Paciente", "char-paciente_01"),
+                    carlosUnknow: new Character("Paciente", "char-paciente_02"),
+                    raulUnknow: new Character("Paciente", "char-paciente_03"),
+                    reginaUnknow: new Character("Paciente", "char-paciente_04"),
+                    pedroUnknow: new Character("Paciente", "char-paciente_05"),
+                    estherUnknow: new Character("Paciente", "char-paciente_06"),
+                    josivaldoUnknow: new Character("Paciente", "char-paciente_07"),
+                    anaUnknow: new Character("Paciente", "char-paciente_08"),
+                    yuriUnknow: new Character("Paciente", "char-paciente_09"),
+                    franciscoUnknow: new Character("Paciente", "char-paciente_10")
                 }
             }
         };

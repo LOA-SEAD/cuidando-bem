@@ -9,7 +9,7 @@ define([], function() {
      * @author Otho - Marcelo Lopes Lotufo
      */
     function Flag( _name, _value ) {
-        //Attributes
+        // Attributes
 
         /**
          *
@@ -28,9 +28,9 @@ define([], function() {
          */
         var value = _value;
 
-        //Methods
+        // Methods
 
-        //Getters
+        // Getters
         function getClone() {
             return new Flag( name, value );
         }
@@ -57,7 +57,7 @@ define([], function() {
             return value;
         }
 
-        //Setters
+        // Setters
 
         /**
          * Description
@@ -81,7 +81,7 @@ define([], function() {
             value = _value;
         }
 
-        //Public interface
+        // Public interface
         return {
             getClone: getClone,
 

@@ -11,7 +11,7 @@ define([], function() {
     function Dialog( _speaker ) {
 
 
-        //Inner Class
+        // Inner Class
         /**
          * Description
          * @class Dialog.DialogOption
@@ -24,7 +24,8 @@ define([], function() {
             this.text = _text;
             this.actionFunction = _actionFunction;
         }
-        //Attributes
+
+        // Attributes
 
         if ( _speaker != null ) {
             /**
@@ -60,7 +61,7 @@ define([], function() {
 
         var randomize = false;
 
-        //Methods
+        // Methods
 
         /**
          * Description
@@ -74,21 +75,23 @@ define([], function() {
             options[ _optionIndex ].actionFunction();
         }
 
-        //Getters
+        // Getters
         function getClone() {
-            var dialog_clone = new Dialog( speaker )
+            var dialogClone = new Dialog( speaker )
                 .setText( text )
                 .setRandomize( randomize )
                 .setSpeakerCssClass( speaker.getCssClass() )
                 .setSpeakerName( speaker.getName() );
-                //.setSpeakerName(speakerName);
+            // .setSpeakerName(speakerName);
 
 
-            for ( opt in options )
-                dialog_clone.registerOption( options[ opt ].text, options[ opt ].actionFunction );
+            for ( opt in options ) {
+                dialogClone.registerOption( options[ opt ].text, options[ opt ].actionFunction );
+            }
 
-            return dialog_clone;
+            return dialogClone;
         }
+
         /**
          * Description
          * @method getOptions
@@ -148,24 +151,26 @@ define([], function() {
         }
 
         function setSpeakerName( _speakerName ) {
-            //speakerName = _speakerName;
+            // speakerName = _speakerName;
             return this;
         }
 
         function setSpeakerCssClass( _speakerCssClass ) {
-            //speakerCssClass = _speakerCssClass;
+            // speakerCssClass = _speakerCssClass;
             return this;
         }
+
         function setText( _text ) {
             text = _text;
             return this;
         }
+
         function setRandomize( _randomize ) {
             randomize = _randomize;
             return this;
         }
 
-        //Setters
+        // Setters
         /**
          * Description
          * @method registerOption
@@ -180,7 +185,7 @@ define([], function() {
             return this;
         }
 
-        //Public interface
+        // Public interface
 
         return {
             DialogOption: DialogOption,
@@ -194,9 +199,9 @@ define([], function() {
             getOptionText: getOptionText,
             getRandomize: getRandomize,
 
-            setSpeakerName:setSpeakerName,
-            setSpeakerCssClass:setSpeakerCssClass,
-            setText:setText,
+            setSpeakerName: setSpeakerName,
+            setSpeakerCssClass: setSpeakerCssClass,
+            setText: setText,
             setRandomize: setRandomize,
 
             registerOption: registerOption

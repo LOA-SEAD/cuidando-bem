@@ -1,11 +1,11 @@
-define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "Scores_data" ],
+define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
 
-        //region Imports
-        var Dialogs = require("Dialogs_data").fase3;
-        var Alertas = require("Dialogs_data").alertas;
+        // region Imports
+        var Dialogs = require("DialogsData").fase3;
+        var Alertas = require("DialogsData").alertas;
         Scores = Scores.level3;
-        //endregion
+        // endregion
 
         var level = new Level("Level 3");
         console.groupCollapsed( level.getName() );
@@ -16,9 +16,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             corredor,
             alaFeminina,
             centroCirurgico,
-            sala_de_leitos,
+            salaDeLeitos,
             leito,
-            posto_de_enfermagem,
+            postoDeEnfermagem,
             farmacia,
             gaveta,
             pulseira,
@@ -26,10 +26,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             zoom;
 
 
+        // region Scenes
 
-        //region Scenes
-
-        //region Recepcao
+        // region Recepcao
 
 
         var recepcao = lib.scenes.recepcao.getClone()
@@ -41,7 +40,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         function recepcaoIrCorredor() {
             console.log("Funcao: recepcao_ir_corredor");
-            if ( level.getFlag("conversar_recepcionista").getValue() == true ) { // wont check for flags
+            if ( level.getFlag("conversar_recepcionista").getValue() == true ) {
                 core.closeDialog();
                 core.changeScene( 1 );
                 console.log("Ir para o corredor");
@@ -57,15 +56,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         }
 
 
-
-
         recepcao.registerDialogs([
             // Dialog 0
             new Dialog( lib.characters.recepcionista )
                 .setText( Dialogs.recepcao[ 0 ] )
                 .registerOption("", function() {
-                core.closeDialog();
-            })
+                    core.closeDialog();
+                })
         ]);
 
 
@@ -89,13 +86,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
 
-        //region Corredor
+        // region Corredor
 
 
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
                 console.log("Entrando no corredor");
-                if ( level.getFlag("conversar_mentor").getValue() == false ) { // primeira passada
+                if ( level.getFlag("conversar_mentor").getValue() == false ) {
+                    // primeira passada
                     level.getFlag("conversar_mentor").setValue( true );
                     core.openDialog( 0 );
                 }
@@ -105,28 +103,28 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
         corredor.registerDialogs([
-            //Primeira passada pelo corredor
+            // Primeira passada pelo corredor
 
             // 0
             new Dialog( lib.characters.mentor )
                 .setText( Dialogs.corredor.fala1[ 0 ] )
                 .registerOption("", function() {
-                level.getFlag("conversar_mentor").setValue( true );
-                core.openDialog( 1 );
-            }),
+                    level.getFlag("conversar_mentor").setValue( true );
+                    core.openDialog( 1 );
+                }),
 
-            //1
-             new Dialog( lib.characters.jogador )
+            // 1
+            new Dialog( lib.characters.jogador )
                 .setText("")
                 .registerOption( Dialogs.corredor.fala1[ 1 ], function() {
-                core.openDialog( 4 );
-            })
+                    core.openDialog( 4 );
+                })
                 .registerOption( Dialogs.corredor.fala1[ 2 ], function() {
-                core.openDialog( 3 );
-            })
+                    core.openDialog( 3 );
+                })
                 .registerOption( Dialogs.corredor.fala1[ 3 ], function() {
-                core.openDialog( 2 );
-            })
+                    core.openDialog( 2 );
+                })
                 .setRandomize( true ),
 
 
@@ -134,100 +132,96 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Dialog( lib.characters.mentor )
                 .setText( Dialogs.corredor.fala1[ 6 ] )
                 .registerOption("", function() {
-                core.openDialog( 1 );
-            }),
+                    core.openDialog( 1 );
+                }),
             // 3 Mentor Corrige
             new Dialog( lib.characters.mentor )
                 .setText( Dialogs.corredor.fala1[ 5 ] )
                 .registerOption("", function() {
-                core.openDialog( 1 );
-            }),
+                    core.openDialog( 1 );
+                }),
             // 4 Mentor fala
             new Dialog( lib.characters.mentor )
                 .setText( Dialogs.corredor.fala1[ 4 ] )
                 .registerOption("", function() {
-                core.closeDialog();
-            }),
+                    core.closeDialog();
+                }),
 
 
-            //Segunda passada pelo corredor
+            // Segunda passada pelo corredor
 
 
-
-                //5
-              new Dialog( lib.characters.jogador )
+            // 5
+            new Dialog( lib.characters.jogador )
                 .setText( Dialogs.corredor.fala1[ 7 ] )
                 .registerOption("", function() {
-                core.closeDialog();
-            }),
+                    core.closeDialog();
+                }),
 
 
-                //6
-              new Dialog( lib.characters.jogador )
+            // 6
+            new Dialog( lib.characters.jogador )
                 .setText( Dialogs.corredor.fala2[ 0 ] )
                 .registerOption("", function() {
-                level.getFlag("conversar_mentor2").setValue( true );
-                core.openDialog( 7 );
-            }),
+                    level.getFlag("conversar_mentor2").setValue( true );
+                    core.openDialog( 7 );
+                }),
 
 
-            //7
-                new Dialog( lib.characters.mentor )
-                    .setText( Dialogs.corredor.fala2[ 1 ] )
-                    .registerOption("", function() {
-                level.getFlag("conversar_mentor2").setValue( true );
-                core.closeDialog();
-                core.unlockLevel( 3 );
-                core.closeCommandBar();
-                core.showEndOfLevel();
-            }),
-
-
-
-            //8 - alerta farmacia
+            // 7
             new Dialog( lib.characters.mentor )
-                    .setText( Alertas.perdido.enfermagem[ 1 ] )
-                    .registerOption("", function() {
-                core.closeDialog();
-            }),
+                .setText( Dialogs.corredor.fala2[ 1 ] )
+                .registerOption("", function() {
+                    level.getFlag("conversar_mentor2").setValue( true );
+                    core.closeDialog();
+                    core.unlockLevel( 3 );
+                    core.closeCommandBar();
+                    core.showEndOfLevel();
+                }),
 
-            //9 - alerta centro Cirurgico
+
+            // 8 - alerta farmacia
             new Dialog( lib.characters.mentor )
-                    .setText( Alertas.perdido.centroCirugico )
-                    .registerOption("", function() {
-                core.closeDialog();
-            })
+                .setText( Alertas.perdido.enfermagem[ 1 ] )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
+
+            // 9 - alerta centro Cirurgico
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.perdido.centroCirugico )
+                .registerOption("", function() {
+                    core.closeDialog();
+                })
 
 
-             ]);
+        ]);
 
 
-
-        //FUNCOES
+        // FUNCOES
 
 
         function corredorIrCentroCirurgico() {
             console.log("Action: corredorIrCentroCirurgico");
-            if ( level.getFlag("conversar_paciente").getValue() == false )
+            if ( level.getFlag("conversarPaciente").getValue() == false ) {
                 core.changeScene( 2 );
-            else
+            } else {
                 core.changeScene( 7 );
-
-
-
+            }
         }
 
 
         function corredorIrAlaFeminina() {
             console.log("Action: corredorIrAlaFeminina");
-            if ( level.getFlag("testar_equipamentos").getValue() == true )
+            if ( level.getFlag("testar_equipamentos").getValue() == true ) {
                 core.changeScene( 3 );
-            else
+            } else {
                 core.openDialog( 9 );
+            }
 
 
             if ( level.getFlag("ir_alaFeminina_horaErrada").getValue() == false ) {
-                core.registerScoreItem( Scores.irAlaFeminina_horaErrada );
+                core.registerScoreItem( Scores.irAlaFemininaHoraErrada );
                 level.getFlag("ir_alaFeminina_horaErrada").setValue( true );
 
             }
@@ -239,7 +233,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             console.log("Action: corredorIrFarmaciaHoraErrada");
             core.openDialog( 8 );
             if ( level.getFlag("ir_farmacia_horaErrada").getValue() == false ) {
-                core.registerScoreItem( Scores.irFarmacia_horaErrada );
+                core.registerScoreItem( Scores.irFarmaciaHoraErrada );
                 level.getFlag("ir_farmacia_horaErrada").setValue( true );
 
             }
@@ -250,7 +244,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             console.log("Action: corredorIrPostoEnfermagem");
             core.openDialog( 8 );
             if ( level.getFlag("ir_postoEnfermagem_horaErrada").getValue() == false ) {
-                core.registerScoreItem( Scores.irPostoEnfermagem_horaErrada );
+                core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
                 level.getFlag("ir_postoEnfermagem_horaErrada").setValue( true );
             }
         }
@@ -261,7 +255,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-goToCentroCirurgico")
                 .onClick( corredorIrCentroCirurgico )
                 .setVisibility( true ),
-
 
 
             new InteractiveObject("io-ir_farmacia", "Ir para a Farmacia")
@@ -282,30 +275,29 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
 
-
-           new InteractiveObject("io-conversar_mentor", "Conversar com Mentor")
+            new InteractiveObject("io-conversar_mentor", "Conversar com Mentor")
                 .setCssClass("intObj-talkToMentor")
                 .onClick(function() {
-                core.closeCommandBar();
-                console.log("Abrir diálogo com o mentor");
-                if ( level.getFlag("testar_equipamentos").getValue() == false )
-                    core.openDialog( 0 );
-                else if ( level.getFlag("testar_equipamentos").getValue() == true && level.getFlag("conversar_paciente").getValue() == false ) //segunda passada
-                    core.openDialog( 5 );
+                    core.closeCommandBar();
+                    console.log("Abrir diálogo com o mentor");
+                    if ( level.getFlag("testar_equipamentos").getValue() == false ) {
+                        core.openDialog( 0 );
+                    } else if ( level.getFlag("testar_equipamentos").getValue() == true && level.getFlag("conversarPaciente").getValue() == false ) {
+                        // segunda passada
+                        core.openDialog( 5 );
+                    }
 
 
-                if ( level.getFlag("fim_fase").getValue() == true )
-                    core.openDialog( 6 );
-
-
-            })
+                    if ( level.getFlag("fim_fase").getValue() == true ) {
+                        core.openDialog( 6 );
+                    }
+                })
                 .setVisibility( true )
 
-    ]);
+        ]);
 
 
-
-        //region Centro Cirurgico
+        // region Centro Cirurgico
 
 
         var centroCirurgico = lib.scenes.centroCirurgico.getClone()
@@ -315,187 +307,171 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
 
-
         centroCirurgico.registerDialogs([
 
 
-            //primeira passada pelo centro cirurgico
+            // primeira passada pelo centro cirurgico
 
             // 0 - Aline fala
             new Dialog( lib.characters.circulante )
-                .setText( Dialogs.centro_cirurgico.fala1[ 0 ] )
+                .setText( Dialogs.centroCirurgico.fala1[ 0 ] )
                 .registerOption("", function() {
-                level.getFlag("conversar_circulante").setValue( true );
-                core.openDialog( 1 );
-            }),
+                    level.getFlag("conversar_circulante").setValue( true );
+                    core.openDialog( 1 );
+                }),
 
-              // 1 Jogador responde
+            // 1 Jogador responde
             new Dialog( lib.characters.jogador )
                 .setText("")
-                .registerOption( Dialogs.centro_cirurgico.fala1[ 1 ], function() {
-                core.closeDialog();
-            })
-                .registerOption( Dialogs.centro_cirurgico.fala1[ 2 ], function() {
-                core.openDialog( 2 );
-            })
-                .registerOption( Dialogs.centro_cirurgico.fala1[ 3 ], function() {
-                core.openDialog( 3 );
-            })
+                .registerOption( Dialogs.centroCirurgico.fala1[ 1 ], function() {
+                    core.closeDialog();
+                })
+                .registerOption( Dialogs.centroCirurgico.fala1[ 2 ], function() {
+                    core.openDialog( 2 );
+                })
+                .registerOption( Dialogs.centroCirurgico.fala1[ 3 ], function() {
+                    core.openDialog( 3 );
+                })
                 .setRandomize( true ),
 
             // 2 op errada1
-                new Dialog( lib.characters.circulante )
-                .setText( Dialogs.centro_cirurgico.fala1[ 5 ] )
+            new Dialog( lib.characters.circulante )
+                .setText( Dialogs.centroCirurgico.fala1[ 5 ] )
                 .registerOption("", function() {
-                core.openDialog( 1 );
-            }),
+                    core.openDialog( 1 );
+                }),
 
-            //3 op errada2
+            // 3 op errada2
 
-                 new Dialog( lib.characters.circulante )
-                    .setText( Dialogs.centro_cirurgico.fala1[ 6 ] )
-                     .registerOption("", function() {
-                core.openDialog( 1 );
-            }),
+            new Dialog( lib.characters.circulante )
+                .setText( Dialogs.centroCirurgico.fala1[ 6 ] )
+                .registerOption("", function() {
+                    core.openDialog( 1 );
+                }),
 
             // 4  jogador
 
-                new Dialog( lib.characters.jogador )
-                      .setText( Dialogs.centro_cirurgico.fala1[ 4 ] )
-                      .registerOption("", function() {
-                core.closeDialog();
-            }),
-
-
+            new Dialog( lib.characters.jogador )
+                .setText( Dialogs.centroCirurgico.fala1[ 4 ] )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
 
 
             // 5 alerta lavar maos cirurgica
             new Dialog( lib.characters.circulante )
-                    .setText( Dialogs.centro_cirurgico.fala1[ 7 ] )
-                    .registerOption("", function() {
-                core.closeDialog();
-            }),
+                .setText( Dialogs.centroCirurgico.fala1[ 7 ] )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
             // 6 alerta lavar maos
-                new Dialog( lib.characters.circulante )
-                    .setText( Dialogs.centro_cirurgico.fala1[ 8 ] )
-                    .registerOption("", function() {
-                core.closeDialog();
-            }),
-             // 7 alerta testar equipamentos
-                new Dialog( lib.characters.circulante )
-                    .setText( Dialogs.centro_cirurgico.fala1[ 9 ] )
-                    .registerOption("", function() {
-                core.closeDialog();
-            })
-
-       ]);
-
+            new Dialog( lib.characters.circulante )
+                .setText( Dialogs.centroCirurgico.fala1[ 8 ] )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
+            // 7 alerta testar equipamentos
+            new Dialog( lib.characters.circulante )
+                .setText( Dialogs.centroCirurgico.fala1[ 9 ] )
+                .registerOption("", function() {
+                    core.closeDialog();
+                })
+        ]);
 
         function centroCirurgicoIrCorredor() {
             console.log("Action: centroCirurgicoIrCorredor");
-            if ( level.getFlag("testar_equipamentos").getValue() == false )
+            if ( level.getFlag("testar_equipamentos").getValue() == false ) {
                 core.openDialog( 0 );
-            else
+            } else {
                 core.changeScene( 1 );
+            }
         }
-
-
-
-
-
 
         centroCirurgico.registerInteractiveObjects([
 
 
-      new InteractiveObject("io-conversar_circulante", "Conversar com Circulante")
+            new InteractiveObject("io-conversar_circulante", "Conversar com Circulante")
                 .setCssClass("intObj-talkToCirculante")
                 .onClick(function() {
-                console.log("Abrir diálogo com a circulante");
-                if ( level.getFlag("conversar_paciente").getValue() == false || level.getFlag("testar_equipamentos").getValue() == false )
-                    core.openDialog( 0 );
-                else
-                    core.openDialog( 5 );
+                    console.log("Abrir diálogo com a circulante");
+                    if ( level.getFlag("conversarPaciente").getValue() == false || level.getFlag("testar_equipamentos").getValue() == false ) {
+                        core.openDialog( 0 );
+                    } else {
+                        core.openDialog( 5 );
+                    }
 
-            })
-        .setVisibility( true )
-
-
-         ]);
+                })
+                .setVisibility( true )
+        ]);
 
 
         centroCirurgico.registerActions([
 
-            new Action("btn-lavar_maos", "Lavar as mãos")
-                .setCssClass("action-lavar_maos")
+            new Action("btn-lavarMaos", "Lavar as mãos")
+                .setCssClass("action-lavarMaos")
                 .onClick(function() {
 
-                if ( level.getFlag("lavar_maos").getValue() == false ) {
-                    console.log("Action: lavar_maos");
-                    level.getFlag("lavar_maos").setValue( true );
-                    core.registerScoreItem( Scores.lavarMaosHoraErrada );
-                    core.openDialog( 5 );
+                    if ( level.getFlag("lavarMaos").getValue() == false ) {
+                        console.log("Action: lavarMaos");
+                        level.getFlag("lavarMaos").setValue( true );
+                        core.registerScoreItem( Scores.lavarMaosHoraErrada );
+                        core.openDialog( 5 );
 
 
-                }
-            }),
+                    }
+                }),
 
 
-
-             new Action("btn-lavar_maos_cirurgica", "Lavar as mãos técnica cirúrgica")
+            new Action("btn-lavar_maos_cirurgica", "Lavar as mãos técnica cirúrgica")
                 .setCssClass("action-lavar_maos_escova")
                 .onClick(function() {
 
-                if ( level.getFlag("lavar_maos_cirurgica").getValue() == false ) {
-                    console.log("Action: lavar_maos cirurgica");
-                    core.registerScoreItem( Scores.lavarMaosCirurgica );
-                    level.getFlag("lavar_maos_cirurgica").setValue( true );
-                }
+                    if ( level.getFlag("lavar_maos_cirurgica").getValue() == false ) {
+                        console.log("Action: lavarMaos cirurgica");
+                        core.registerScoreItem( Scores.lavarMaosCirurgica );
+                        level.getFlag("lavar_maos_cirurgica").setValue( true );
+                    }
 
 
-            }),
+                }),
 
 
             new Action("btn-testarEquipamentos", "Testar Equipamentos")
                 .setCssClass("action_testarEquipamentos")
                 .onClick(function() {
 
-                if ( level.getFlag("lavar_maos_cirurgica").getValue() == false ) {
-                    core.openDialog( 5 );
-                } else {
-                    console.log("Action: testar equipamentos");
-                    if ( level.getFlag("testar_equipamentos").getValue() == false ) {
-                        level.getFlag("testar_equipamentos").setValue( true );
-                        core.registerScoreItem( Scores.testarEquipamentos );
-                        core.openDialog( 4 );
+                    if ( level.getFlag("lavar_maos_cirurgica").getValue() == false ) {
+                        core.openDialog( 5 );
+                    } else {
+                        console.log("Action: testar equipamentos");
+                        if ( level.getFlag("testar_equipamentos").getValue() == false ) {
+                            level.getFlag("testar_equipamentos").setValue( true );
+                            core.registerScoreItem( Scores.testarEquipamentos );
+                            core.openDialog( 4 );
+                        }
+
+
                     }
 
+                }),
 
-
-                }
-
-            }),
-
-             new Action("btn-ir_corredor", "Ir ao corredor")
+            new Action("btn-ir_corredor", "Ir ao corredor")
                 .setCssClass("action-ir_corredor")
                 .onClick(function() {
-                if ( level.getFlag("testar_equipamentos").getValue() == false )
-                    core.openDialog( 7 ); // MENTOR: TESTAR EQUIPAMENTOS
-                else {
-                    level.getFlag("primeira_saida_centro_cirurgico").setValue( true );
-                    centroCirurgicoIrCorredor();
-
-                }
-            })
-
+                    if ( level.getFlag("testar_equipamentos").getValue() == false ) {
+                        // MENTOR: TESTAR EQUIPAMENTOS
+                        core.openDialog( 7 );
+                    } else {
+                        level.getFlag("primeira_saida_centro_cirurgico").setValue( true );
+                        centroCirurgicoIrCorredor();
+                    }
+                })
 
 
         ]);
 
 
-
-
-
-        //region Ala Feminina
+        // region Ala Feminina
 
 
         var alaFeminina = lib.scenes.alaFeminina.getClone()
@@ -507,20 +483,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         alaFeminina.registerActions([
 
-            new Action("btn-lavar_maos", "Lavar as mãos")
-                .setCssClass("action-lavar_maos")
+            new Action("btn-lavarMaos", "Lavar as mãos")
+                .setCssClass("action-lavarMaos")
                 .onClick(function() {
 
-                if ( level.getFlag("lavar_maos2").getValue() == false ) {
-                    console.log("Action: lavar_maos2");
-                    level.getFlag("lavar_maos2").setValue( true );
-                    core.registerScoreItem( Scores.lavarMaos2 );
-                }
-            })
+                    if ( level.getFlag("lavar_maos2").getValue() == false ) {
+                        console.log("Action: lavar_maos2");
+                        level.getFlag("lavar_maos2").setValue( true );
+                        core.registerScoreItem( Scores.lavarMaos2 );
+                    }
+                })
 
 
         ]);
-
 
 
         alaFeminina.registerDialogs([
@@ -528,176 +503,159 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             // 0 - Mentor
             new Dialog( lib.characters.mentor )
-                .setText( Alertas.lavar_maos.tipo1 )
+                .setText( Alertas.lavarMaos.tipo1 )
                 .registerOption("", function() {
-                core.closeDialog();
-            }),
+                    core.closeDialog();
+                }),
             // 1 - Mentor
             new Dialog( lib.characters.mentor )
-                .setText( Alertas.lavar_maos.tipo2 )
+                .setText( Alertas.lavarMaos.tipo2 )
                 .registerOption("", function() {
-                core.closeDialog();
-            }),
+                    core.closeDialog();
+                }),
             // 2 - Mentor: Não lavou mãos antes de pegar no prontuário
             new Dialog( lib.characters.mentor )
-                .setText( Alertas.lavar_maos.tipo3 )
+                .setText( Alertas.lavarMaos.tipo3 )
                 .registerOption("", function() {
-                core.closeDialog();
-            })
+                    core.closeDialog();
+                })
         ]);
-
-
-
 
 
         alaFeminina.registerInteractiveObjects([
 
-         new InteractiveObject("io-conversar_com_paciente", "Ir ao leito")
+            new InteractiveObject("io-conversar_com_paciente", "Ir ao leito")
                 .setCssClass("intObj-ir_leito_fase3")
                 .onClick(function() {
-                if ( level.getFlag("lavar_maos2").getValue() == false )
-                    core.openDialog( 2 );
-                else {
-
-                    if ( level.getFlag("ir_leito_paciente").getValue() == false ) {
-                        level.getFlag("ir_leito_paciente").setValue( true );
-                        console.log("Abrir diálogo com paciente 4");
-                        core.registerScoreItem( Scores.irAoLeitoCorreto );
-                        core.changeScene( 4 );
+                    if ( level.getFlag("lavar_maos2").getValue() == false ) {
+                        core.openDialog( 2 );
+                    } else {
+                        if ( level.getFlag("ir_leito_paciente").getValue() == false ) {
+                            level.getFlag("ir_leito_paciente").setValue( true );
+                            console.log("Abrir diálogo com paciente 4");
+                            core.registerScoreItem( Scores.irAoLeitoCorreto );
+                            core.changeScene( 4 );
+                        }
                     }
-
-                }
-
-            })
-           .setVisibility( true ),
+                })
+                .setVisibility( true ),
 
 
-           new InteractiveObject("io-ir_corredor", "Ir ao corredor")
+            new InteractiveObject("io-ir_corredor", "Ir ao corredor")
                 .setCssClass("intObj-irAlaFeminina_corredor")
                 .onClick(function() {
-                console.log("voltando para corredor");
+                    console.log("voltando para corredor");
 
-                core.changeScene( 1 );
+                    core.changeScene( 1 );
 
-            })
-
-
-    ]);
+                })
 
 
-        //region Leito
+        ]);
+
+
+        // region Leito
 
 
         var leito = lib.scenes.leitos.regina.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + leito.getName() );
                 console.log("Abrindo dialogo com paciente");
-                level.getFlag("conversar_paciente").setValue( true );
+                level.getFlag("conversarPaciente").setValue( true );
                 core.openDialog( 0 );
             });
 
 
         leito.registerActions([
 
-       new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
+            new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
                 .setCssClass("action-ir_sala_de_leitos")
                 .onClick(function() {
-                if ( level.getFlag("conversar_paciente").getValue() == false )
-                    core.openDialog( 6 );
-                else {
-                    console.log("Ganhou 150 pontos");
-                    core.registerScoreItem( Scores.encaminharPacienteCentroCirurgico );
-                    core.changeScene( 3 );
-                }
-
-            }),
+                    if ( level.getFlag("conversarPaciente").getValue() == false ) {
+                        core.openDialog( 6 );
+                    } else {
+                        console.log("Ganhou 150 pontos");
+                        core.registerScoreItem( Scores.encaminharPacienteCentroCirurgico );
+                        core.changeScene( 3 );
+                    }
+                }),
 
             new Action("btn-ler_prontuario", "Ler prontuario")
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
-                console.log("Action: ler prontuario");
-                Prontuario.open();
-                core.openModalScene("Prontuario");
+                    console.log("Action: ler prontuario");
+                    Prontuario.open();
+                    core.openModalScene("Prontuario");
 
-                if ( level.getFlag("ler_prontuario").getValue() == false ) {
-                    level.getFlag("ler_prontuario").setValue( true );
-                    core.registerScoreItem( Scores.pegarProntuario );
-                    console.log("Ganhou 150 pontos");
+                    if ( level.getFlag("ler_prontuario").getValue() == false ) {
+                        level.getFlag("ler_prontuario").setValue( true );
+                        core.registerScoreItem( Scores.pegarProntuario );
+                        console.log("Ganhou 150 pontos");
 
-                }
-            })
+                    }
+                })
                 .setVisibility( true )
-
-
-
-
-
-
-
-    ]);
-
-
-        leito.registerDialogs([
-
-                // 0
-            new Dialog( lib.characters.jogador )
-                .setText( Dialogs.leito_paciente[ 0 ] )
-                .registerOption("", function() {
-                core.openDialog( 1 );
-            }),
-
-
-                // 1
-            new Dialog( lib.characters.pacientes.regina )
-                .setText( Dialogs.leito_paciente[ 1 ] )
-                .registerOption("", function() {
-                core.openDialog( 2 );
-            }),
-
-             // 2
-              new Dialog( lib.characters.jogador )
-                .setText( Dialogs.leito_paciente[ 2 ] )
-                .registerOption("", function() {
-                core.openDialog( 3 );
-            }),
-
-
-                // 3
-            new Dialog( lib.characters.pacientes.regina )
-                .setText( Dialogs.leito_paciente[ 3 ] )
-                .registerOption("", function() {
-                core.openDialog( 4 );
-            }),
-
-               // 4
-              new Dialog( lib.characters.jogador )
-                .setText( Dialogs.leito_paciente[ 4 ] )
-                .registerOption("", function() {
-                core.openDialog( 5 );
-            }),
-
-
-                // 5
-            new Dialog( lib.characters.pacientes.regina )
-                .setText( Dialogs.leito_paciente[ 5 ] )
-                .registerOption("", function() {
-                core.closeDialog();
-            }),
-
-            //6
-             new Dialog( lib.characters.mentor )
-                .setText( Alertas.esqueceu.informar_paciente )
-                .registerOption("", function() {
-                core.closeDialog();
-            })
 
 
         ]);
 
 
+        leito.registerDialogs([
+
+            // 0
+            new Dialog( lib.characters.jogador )
+                .setText( Dialogs.leitoPaciente[ 0 ] )
+                .registerOption("", function() {
+                    core.openDialog( 1 );
+                }),
 
 
+            // 1
+            new Dialog( lib.characters.pacientes.regina )
+                .setText( Dialogs.leitoPaciente[ 1 ] )
+                .registerOption("", function() {
+                    core.openDialog( 2 );
+                }),
 
+            // 2
+            new Dialog( lib.characters.jogador )
+                .setText( Dialogs.leitoPaciente[ 2 ] )
+                .registerOption("", function() {
+                    core.openDialog( 3 );
+                }),
+
+
+            // 3
+            new Dialog( lib.characters.pacientes.regina )
+                .setText( Dialogs.leitoPaciente[ 3 ] )
+                .registerOption("", function() {
+                    core.openDialog( 4 );
+                }),
+
+            // 4
+            new Dialog( lib.characters.jogador )
+                .setText( Dialogs.leitoPaciente[ 4 ] )
+                .registerOption("", function() {
+                    core.openDialog( 5 );
+                }),
+
+
+            // 5
+            new Dialog( lib.characters.pacientes.regina )
+                .setText( Dialogs.leitoPaciente[ 5 ] )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
+
+            // 6
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.informarPaciente )
+                .registerOption("", function() {
+                    core.closeDialog();
+                })
+
+
+        ]);
 
 
         // FARMACIA
@@ -710,9 +668,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         // POSTO DE ENFERMAGEM
 
-        var posto_de_enfermagem = lib.scenes.postoDeEnfermagem.getClone()
+        var postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
-                console.log("Load scene: " + posto_de_enfermagem.getName() );
+                console.log("Load scene: " + postoDeEnfermagem.getName() );
                 //
             });
 
@@ -730,298 +688,291 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
 
-
         centroCirurgicoRegina.registerActions([
 
 
-
-          new Action("btn-lavar_maos", "Lavar as mãos")
-                .setCssClass("action-lavar_maos")
+            new Action("btn-lavarMaos", "Lavar as mãos")
+                .setCssClass("action-lavarMaos")
                 .onClick(function() {
 
-                if ( level.getFlag("lavar_maos3").getValue() == false )
-                    level.getFlag("lavar_maos3").setValue( true );
+                    if ( level.getFlag("lavar_maos3").getValue() == false ) {
+                        level.getFlag("lavar_maos3").setValue( true );
+                    }
+                }),
 
-            }),
 
-
-         new Action("btn-anotar_prontuario", "Anotar prontuario")
-                .setCssClass("action-anotar_prontuario")
+            new Action("btn-anotarProntuario", "Anotar prontuario")
+                .setCssClass("action-anotarProntuario")
                 .onClick(function() {
-                console.log("Action: Anotar prontuario");
-                if ( level.getFlag("lavar_maos3").getValue() == false ) {
-                    core.openDialog( 19 );
-                } else {
-                    if ( level.getFlag("score_anotar_prontuario").getValue() == false ) {
-                        core.registerScoreItem( Scores.anotarNoProntuario );
-                        level.getFlag("score_anotar_prontuario").setValue( true );
+                    console.log("Action: Anotar prontuario");
+                    if ( level.getFlag("lavar_maos3").getValue() == false ) {
+                        core.openDialog( 19 );
+                    } else {
+                        if ( level.getFlag("score_anotar_prontuario").getValue() == false ) {
+                            core.registerScoreItem( Scores.anotarNoProntuario );
+                            level.getFlag("score_anotar_prontuario").setValue( true );
+                        }
+                        if ( level.getFlag("colocar_placa_neutra").getValue() == false ) {
+                            core.openDialog( 20 );
+                        } else {
+                            Prontuario.open();
+                            core.openModalScene("Prontuario");
+                        }
                     }
-                    if ( level.getFlag("colocar_placa_neutra").getValue() == false )
-                        core.openDialog( 20 );
-                    else {
-                        Prontuario.open();
-                        core.openModalScene("Prontuario");
-                    }
-                }
-            })
+                })
                 .setVisibility( true ),
 
 
-         new Action("btn-colocar_placa_neutra", "Colocar Placa Neutra")
+            new Action("btn-colocar_placa_neutra", "Colocar Placa Neutra")
                 .setCssClass("action-colocar_placa_neutra")
                 .onClick(function() {
-                console.log("Action: Colocando placa neutra");
-                level.getFlag("colocar_placa_neutra").setValue( true );
-                if ( level.getFlag("score_placa_neutra").getValue() == false ) {
-                    core.registerScoreItem( Scores.colocarPlacaNeutra );
-                    level.getFlag("score_placa_neutra").setValue( true );
-                }
+                    console.log("Action: Colocando placa neutra");
+                    level.getFlag("colocar_placa_neutra").setValue( true );
+                    if ( level.getFlag("score_placa_neutra").getValue() == false ) {
+                        core.registerScoreItem( Scores.colocarPlacaNeutra );
+                        level.getFlag("score_placa_neutra").setValue( true );
+                    }
 
-                if ( level.getFlag("verificar_oximetro_local_cirurgia").getValue() == false )
-                    core.openDialog( 21 );
-
-            })
+                    if ( level.getFlag("verificar_oximetro_local_cirurgia").getValue() == false ) {
+                        core.openDialog( 21 );
+                    }
+                })
                 .setVisibility( true ),
 
 
-         new Action("btn-verificar_oximetro_local_cirurgia", "Verificar Oxímetro e Local da Cirurgia")
+            new Action("btn-verificar_oximetro_local_cirurgia", "Verificar Oxímetro e Local da Cirurgia")
                 .setCssClass("action-verificar_oximetro_local_cirurgia")
                 .onClick(function() {
-                console.log("Action: Verificando Paciente");
-                level.getFlag("verificar_oximetro_local_cirurgia").setValue( true );
-            })
+                    console.log("Action: Verificando Paciente");
+                    level.getFlag("verificar_oximetro_local_cirurgia").setValue( true );
+                })
                 .setVisibility( true )
 
 
-
-
-
-    ]);
+        ]);
 
 
         centroCirurgicoRegina.registerDialogs([
 
-                // 0
-                 new Dialog( lib.characters.circulante )
-                    .setText( Dialogs.centro_cirurgico.fala2[ 0 ] )
-                    .registerOption("", function() {
-                core.openDialog( 1 );
-            }),
+            // 0
+            new Dialog( lib.characters.circulante )
+                .setText( Dialogs.centroCirurgico.fala2[ 0 ] )
+                .registerOption("", function() {
+                    core.openDialog( 1 );
+                }),
 
             // 1
 
-                 new Dialog( lib.characters.jogador )
+            new Dialog( lib.characters.jogador )
                 .setText("")
-                .registerOption( Dialogs.centro_cirurgico.fala2[ 1 ], function() {
-                core.closeDialog();
-            })
-                .registerOption( Dialogs.centro_cirurgico.fala2[ 2 ], function() {
-                core.openDialog( 15 );
-            })
-                .registerOption( Dialogs.centro_cirurgico.fala2[ 3 ], function() {
-                core.openDialog( 16 );
-            })
+                .registerOption( Dialogs.centroCirurgico.fala2[ 1 ], function() {
+                    core.closeDialog();
+                })
+                .registerOption( Dialogs.centroCirurgico.fala2[ 2 ], function() {
+                    core.openDialog( 15 );
+                })
+                .registerOption( Dialogs.centroCirurgico.fala2[ 3 ], function() {
+                    core.openDialog( 16 );
+                })
                 .setRandomize( true ),
 
 
+            // 2  jogador
 
-            //2  jogador
-
-                 new Dialog( lib.characters.jogador )
-                    .setText( Dialogs.centro_cirurgico.fala2[ 4 ] )
-                    .registerOption("", function() {
-                core.openDialog( 3 );
-            }),
-
-
-            //3  paciente
-
-                new Dialog( lib.characters.pacientes.regina )
-                    .setText( Dialogs.centro_cirurgico.fala2[ 5 ] )
-                    .registerOption("", function() {
-                core.openDialog( 4 );
-            }),
-
-             //4  jogador
-
-                 new Dialog( lib.characters.jogador )
-                    .setText( Dialogs.centro_cirurgico.fala2[ 6 ] )
-                    .registerOption("", function() {
-                core.openDialog( 5 );
-            }),
+            new Dialog( lib.characters.jogador )
+                .setText( Dialogs.centroCirurgico.fala2[ 4 ] )
+                .registerOption("", function() {
+                    core.openDialog( 3 );
+                }),
 
 
-            //5  paciente
+            // 3  paciente
 
-                new Dialog( lib.characters.pacientes.regina )
-                    .setText( Dialogs.centro_cirurgico.fala2[ 7 ] )
-                    .registerOption("", function() {
-                core.openDialog( 6 );
-            }),
+            new Dialog( lib.characters.pacientes.regina )
+                .setText( Dialogs.centroCirurgico.fala2[ 5 ] )
+                .registerOption("", function() {
+                    core.openDialog( 4 );
+                }),
 
-            //6  jogador
+            // 4  jogador
 
-                 new Dialog( lib.characters.jogador )
-                    .setText( Dialogs.centro_cirurgico.fala2[ 8 ] )
-                    .registerOption("", function() {
-                core.openDialog( 7 );
-            }),
-
-
-            //7  paciente
-
-                new Dialog( lib.characters.pacientes.regina )
-                    .setText( Dialogs.centro_cirurgico.fala2[ 9 ] )
-                    .registerOption("", function() {
-                core.openDialog( 8 );
-            }),
+            new Dialog( lib.characters.jogador )
+                .setText( Dialogs.centroCirurgico.fala2[ 6 ] )
+                .registerOption("", function() {
+                    core.openDialog( 5 );
+                }),
 
 
-            //8  jogador
+            // 5  paciente
 
-                 new Dialog( lib.characters.jogador )
-                    .setText( Dialogs.centro_cirurgico.fala2[ 10 ] )
-                    .registerOption("", function() {
-                core.openDialog( 9 );
-            }),
+            new Dialog( lib.characters.pacientes.regina )
+                .setText( Dialogs.centroCirurgico.fala2[ 7 ] )
+                .registerOption("", function() {
+                    core.openDialog( 6 );
+                }),
 
+            // 6  jogador
 
-            //9  paciente
-
-                new Dialog( lib.characters.pacientes.regina )
-                    .setText( Dialogs.centro_cirurgico.fala2[ 11 ] )
-                    .registerOption("", function() {
-                core.openDialog( 10 );
-            }),
-
-
-             //10  jogador
-
-                 new Dialog( lib.characters.jogador )
-                    .setText( Dialogs.centro_cirurgico.fala2[ 12 ] )
-                    .registerOption("", function() {
-                core.openDialog( 11 );
-            }),
+            new Dialog( lib.characters.jogador )
+                .setText( Dialogs.centroCirurgico.fala2[ 8 ] )
+                .registerOption("", function() {
+                    core.openDialog( 7 );
+                }),
 
 
-            //11  paciente
+            // 7  paciente
 
-                new Dialog( lib.characters.pacientes.regina )
-                    .setText( Dialogs.centro_cirurgico.fala2[ 13 ] )
-                    .registerOption("", function() {
-                core.openDialog( 12 );
-            }),
-
-             //12  jogador
-
-                 new Dialog( lib.characters.jogador )
-                    .setText( Dialogs.centro_cirurgico.fala2[ 14 ] )
-                    .registerOption("", function() {
-                core.openDialog( 13 );
-            }),
+            new Dialog( lib.characters.pacientes.regina )
+                .setText( Dialogs.centroCirurgico.fala2[ 9 ] )
+                .registerOption("", function() {
+                    core.openDialog( 8 );
+                }),
 
 
-            //13  paciente
+            // 8  jogador
 
-                new Dialog( lib.characters.pacientes.regina )
-                    .setText( Dialogs.centro_cirurgico.fala2[ 15 ] )
-                    .registerOption("", function() {
-                core.openDialog( 14 );
-            }),
+            new Dialog( lib.characters.jogador )
+                .setText( Dialogs.centroCirurgico.fala2[ 10 ] )
+                .registerOption("", function() {
+                    core.openDialog( 9 );
+                }),
+
+
+            // 9  paciente
+
+            new Dialog( lib.characters.pacientes.regina )
+                .setText( Dialogs.centroCirurgico.fala2[ 11 ] )
+                .registerOption("", function() {
+                    core.openDialog( 10 );
+                }),
+
+
+            // 10  jogador
+
+            new Dialog( lib.characters.jogador )
+                .setText( Dialogs.centroCirurgico.fala2[ 12 ] )
+                .registerOption("", function() {
+                    core.openDialog( 11 );
+                }),
+
+
+            // 11  paciente
+
+            new Dialog( lib.characters.pacientes.regina )
+                .setText( Dialogs.centroCirurgico.fala2[ 13 ] )
+                .registerOption("", function() {
+                    core.openDialog( 12 );
+                }),
+
+            // 12  jogador
+
+            new Dialog( lib.characters.jogador )
+                .setText( Dialogs.centroCirurgico.fala2[ 14 ] )
+                .registerOption("", function() {
+                    core.openDialog( 13 );
+                }),
+
+
+            // 13  paciente
+
+            new Dialog( lib.characters.pacientes.regina )
+                .setText( Dialogs.centroCirurgico.fala2[ 15 ] )
+                .registerOption("", function() {
+                    core.openDialog( 14 );
+                }),
 
             // 14 jogador op
 
-                 new Dialog( lib.characters.jogador )
-                     .setText("")
-                .registerOption( Dialogs.centro_cirurgico.fala2[ 16 ], function() {
-                core.closeDialog();
-            })
-                .registerOption( Dialogs.centro_cirurgico.fala2[ 17 ], function() {
-                core.openDialog( 17 );
-            })
-                .registerOption( Dialogs.centro_cirurgico.fala2[ 18 ], function() {
-                core.openDialog( 18 );
-            })
+            new Dialog( lib.characters.jogador )
+                .setText("")
+                .registerOption( Dialogs.centroCirurgico.fala2[ 16 ], function() {
+                    core.closeDialog();
+                })
+                .registerOption( Dialogs.centroCirurgico.fala2[ 17 ], function() {
+                    core.openDialog( 17 );
+                })
+                .registerOption( Dialogs.centroCirurgico.fala2[ 18 ], function() {
+                    core.openDialog( 18 );
+                })
                 .setRandomize( true ),
 
 
-            //15 op2 - primeira parte
-                 new Dialog( lib.characters.circulante )
-                    .setText( Dialogs.centro_cirurgico.fala2[ 19 ] )
-                    .registerOption("", function() {
-                core.openDialog( 1 );
-            }),
+            // 15 op2 - primeira parte
+            new Dialog( lib.characters.circulante )
+                .setText( Dialogs.centroCirurgico.fala2[ 19 ] )
+                .registerOption("", function() {
+                    core.openDialog( 1 );
+                }),
 
-            //16 op3 - primeira parte
-                     //20 op2 - primeira parte
-                 new Dialog( lib.characters.circulante )
-                    .setText( Dialogs.centro_cirurgico.fala2[ 20 ] )
-                    .registerOption("", function() {
-                core.openDialog( 1 );
-            }),
+            // 16 op3 - primeira parte
+            // 20 op2 - primeira parte
+            new Dialog( lib.characters.circulante )
+                .setText( Dialogs.centroCirurgico.fala2[ 20 ] )
+                .registerOption("", function() {
+                    core.openDialog( 1 );
+                }),
 
-            //17 op2 - segunda parte
-                 new Dialog( lib.characters.circulante )
-                    .setText( Dialogs.centro_cirurgico.fala2[ 21 ] )
-                    .registerOption("", function() {
-                core.openDialog( 14 );
-            }),
+            // 17 op2 - segunda parte
+            new Dialog( lib.characters.circulante )
+                .setText( Dialogs.centroCirurgico.fala2[ 21 ] )
+                .registerOption("", function() {
+                    core.openDialog( 14 );
+                }),
 
-            //18 op3 - segunda parte
-                 new Dialog( lib.characters.circulante )
-                    .setText( Dialogs.centro_cirurgico.fala2[ 22 ] )
-                    .registerOption("", function() {
-                core.openDialog( 14 );
-            }),
+            // 18 op3 - segunda parte
+            new Dialog( lib.characters.circulante )
+                .setText( Dialogs.centroCirurgico.fala2[ 22 ] )
+                .registerOption("", function() {
+                    core.openDialog( 14 );
+                }),
 
-        // 19 Alertar Lavar maos
+            // 19 Alertar Lavar maos
 
-          new Dialog( lib.characters.circulante )
-                    .setText( Alertas.lavar_maos.tipo2 )
-                    .registerOption("", function() {
-                core.closeDialog();
-            }),
+            new Dialog( lib.characters.circulante )
+                .setText( Alertas.lavarMaos.tipo2 )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
 
-        // 20 - alerta colocar placa neutra
-        new Dialog( lib.characters.circulante )
-                    .setText( Alertas.esqueceu.coxim )
-                    .registerOption("", function() {
-                core.closeDialog();
-            }),
+            // 20 - alerta colocar placa neutra
+            new Dialog( lib.characters.circulante )
+                .setText( Alertas.esqueceu.coxim )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
 
-        // 21 - alerta verificar oximetro e local da cirurgia
+            // 21 - alerta verificar oximetro e local da cirurgia
 
-        new Dialog( lib.characters.circulante )
-                    .setText( Alertas.esqueceu.verificar_oximetro )
-                    .registerOption("", function() {
-                core.closeDialog();
-            })
+            new Dialog( lib.characters.circulante )
+                .setText( Alertas.esqueceu.verificarOximetro )
+                .registerOption("", function() {
+                    core.closeDialog();
+                })
 
 
-    ]);
+        ]);
 
 
         centroCirurgicoRegina.registerInteractiveObjects([
 
 
-      new InteractiveObject("io-conversar_circulante", "Conversar com Circulante")
+            new InteractiveObject("io-conversar_circulante", "Conversar com Circulante")
                 .setCssClass("intObj-talkToCirculante")
                 .onClick(function() {
-                console.log("Abrir diálogo com a circulante");
-                core.openDialog( 0 );
-            })
-        .setVisibility( true ),
+                    console.log("Abrir diálogo com a circulante");
+                    core.openDialog( 0 );
+                })
+                .setVisibility( true ),
 
-        new InteractiveObject("io-conversar_paciente", "Conversar com a Paciente")
+            new InteractiveObject("io-conversarPaciente", "Conversar com a Paciente")
                 .setCssClass("intObj-talkToPacienteRegina")
                 .onClick(function() {
-                console.log("Abrir diálogo com a paciente");
-                core.openDialog( 2 );
-            })
+                    console.log("Abrir diálogo com a paciente");
+                    core.openDialog( 2 );
+                })
 
 
-
-         ]);
+        ]);
 
 
         // region PRONTUARIO
@@ -1030,59 +981,66 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         prontuario = new Scene("Prontuario", "Prontuario");
 
         prontuario.registerActions([
-                new Action("btn-fechar_prontuario", "Fechar prontuário")
-                    .setCssClass("action-ler_prontuario")
-                    .onClick(function() {
-                console.log("Action: Fechar prontuario");
-                Prontuario.close();
-                core.closeModalScene("Prontuario");
+            new Action("btn-fechar_prontuario", "Fechar prontuário")
+                .setCssClass("action-ler_prontuario")
+                .onClick(function() {
+                    console.log("Action: Fechar prontuario");
+                    Prontuario.close();
+                    core.closeModalScene("Prontuario");
 
-                if ( level.getFlag("verificar_oximetro_local_cirurgia").getValue() == true && level.getFlag("colocar_placa_neutra").getValue() == true ) {
-                    level.getFlag("fim_fase").setValue( true );
-                    console.log("ACABOUUUUU EH TETRAAAA");
-                    core.changeScene( 1 );
-                }
+                    if ( level.getFlag("verificar_oximetro_local_cirurgia").getValue() == true && level.getFlag("colocar_placa_neutra").getValue() == true ) {
+                        level.getFlag("fim_fase").setValue( true );
+                        console.log("ACABOUUUUU EH TETRAAAA");
+                        core.changeScene( 1 );
+                    }
 
-            })
-                    .setVisibility( true )
+                })
+                .setVisibility( true )
 
-                ]);
+        ]);
 
 
+        // endregion
 
-        //endregion
+        // endregion
 
-        //endregion
-
-        //region ModalScenes
+        // region ModalScenes
 
         level.registerModalScene( prontuario );
 
 
-        //endregion
+        // endregion
 
-        //region Level
+        // region Level
 
-        //region Register Scenes
+        // region Register Scenes
 
-        level.registerScene( recepcao ); // id 0
-        level.registerScene( corredor ); // id 1
-        level.registerScene( centroCirurgico ); // id 2
-        level.registerScene( alaFeminina ); // id 3
-        level.registerScene( leito ); // id 4
-        level.registerScene( farmacia ); // id 5
-        level.registerScene( posto_de_enfermagem ); // id 6
-        level.registerScene( centroCirurgicoRegina ); // id 7
-        level.registerScene( prontuario ); // id 8
+        // id 0
+        level.registerScene( recepcao );
+        // 1
+        level.registerScene( corredor );
+        // 2
+        level.registerScene( centroCirurgico );
+        // 3
+        level.registerScene( alaFeminina );
+        // 4
+        level.registerScene( leito );
+        // 5
+        level.registerScene( farmacia );
+        // 6
+        level.registerScene( postoDeEnfermagem );
+        // 7
+        level.registerScene( centroCirurgicoRegina );
+        // 8
+        level.registerScene( prontuario );
 
         // endregion
 
-        //region Register Modal Scenes
+        // region Register Modal Scenes
 
-        //endregion
+        // endregion
 
-        //region Flags
-
+        // region Flags
 
 
         level.setSetupScript(function() {
@@ -1097,11 +1055,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.getFlag("ir_corredor_centro_cirurgico").setValue( false );
             level.getFlag("conversar_circulante").setValue( false );
             level.getFlag("lavar_maos_cirurgica").setValue( false );
-            level.getFlag("lavar_maos").setValue( false );
+            level.getFlag("lavarMaos").setValue( false );
             level.getFlag("lavar_maos2").setValue( false );
             level.getFlag("lavar_maos3").setValue( false );
             level.getFlag("primeira_saida_centro_cirurgico").setValue( false );
-            level.getFlag("conversar_paciente").setValue( false );
+            level.getFlag("conversarPaciente").setValue( false );
             level.getFlag("ir_alaFeminina_horaErrada").setValue( false );
             level.getFlag("ir_farmacia_horaErrada").setValue( false );
             level.getFlag("ir_postoEnfermagem_horaErrada").setValue( false );
@@ -1136,7 +1094,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setPrescEnfermagemState("decubito");
             Prontuario.setPrescMedicaRowData( 1, "", "Cefalotina", "Endovenosa", "6 g (6 x ao dia)", "Cefalotina Endovenosa 6 g (6 x ao dia) 06h-12h-18h-24h", "(X) 06h", false );
             Prontuario.setSsvvRowData( 1, "17/06", "120X70 mmHg", "47 bpm", "16 rpm", "96%", "35,7ºC", true );
-            Prontuario.setAnotacaoEnfermagemRowData( "15/03", "" );
+            Prontuario.setAnotacaoEnfermagemRowData("15/03", "");
 
         });
 
@@ -1148,11 +1106,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("ir_corredor_centro_cirurgico"), false );
         level.registerFlag( new Flag("conversar_circulante"), false );
         level.registerFlag( new Flag("lavar_maos_cirurgica"), false );
-        level.registerFlag( new Flag("lavar_maos"), false );
+        level.registerFlag( new Flag("lavarMaos"), false );
         level.registerFlag( new Flag("lavar_maos2"), false );
         level.registerFlag( new Flag("lavar_maos3"), false );
         level.registerFlag( new Flag("primeira_saida_centro_cirurgico"), false );
-        level.registerFlag( new Flag("conversar_paciente"), false );
+        level.registerFlag( new Flag("conversarPaciente"), false );
         level.registerFlag( new Flag("ir_alaFeminina_horaErrada"), false );
         level.registerFlag( new Flag("ir_farmacia_horaErrada"), false );
         level.registerFlag( new Flag("ir_postoEnfermagem_horaErrada"), false );
@@ -1166,12 +1124,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         level.setInitialScene( 0 );
-        //endregion
+        // endregion
 
         game.registerLevel( level, 3 );
 
         console.groupEnd();
-
 
 
     }
