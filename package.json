@@ -34,7 +34,6 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-gh-pages": "^1.0.0",
     "grunt-jsdoc": "^0.5.7",
-    "grunt-newer": "^1.1.2",
     "grunt-text-replace": "^0.3.12",
     "grunt-version": "^1.0.0",
     "load-grunt-tasks": "^3.3.0",

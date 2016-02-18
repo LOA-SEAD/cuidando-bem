@@ -4,38 +4,38 @@ module.exports = {
     options: {
         livereload: false
     },
-    
-    js : {        
+
+    js : {
         files: [
             '<%= pkg.source %>' + '/javascript/**/*.js'
         ],
         tasks: [
-            //'clean:js', 
-            'copy:js', 
+            //'clean:js',
+            'copy:js',
             'copy:libs'
-        ]        
+        ]
     },
 
-    html : {        
+    html : {
         files: [
             '<%= pkg.source %>' + '/html/**/*.html'
         ],
         tasks: [
-            //'clean:html', 
+            //'clean:html',
             'copy:html'
-        ]        
+        ]
     },
 
-    less : {        
+    less : {
         files: [
             '<%= pkg.source %>' + '/css/**/*.less'
         ],
         tasks: [
-            'newer:less:dev'
-        ]        
+            'less:dev'
+        ]
     },
 
-    images : {        
+    images : {
         files: [
             '<%= pkg.source %>' + '/images/**/*.{png,jpg,jpeg,gif}'
         ],
@@ -50,6 +50,6 @@ module.exports = {
         },
         files: [
             '<%= pkg.development %>' + '/**/*'
-        ]        
+        ]
     }
 };

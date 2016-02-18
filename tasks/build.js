@@ -42,7 +42,7 @@ module.exports = function (grunt) {
             'copy:dev',
             'copy:libs',
             'replace:version',
-            'newer:less:dev'
+            'less:dev'
         ]);
 
         if(target == 'prod' || target == 'rel') {
@@ -50,10 +50,10 @@ module.exports = function (grunt) {
             grunt.task.run([
                 //'clean:prod',
                 'copy:prod',
-                'newer:htmlmin:prod',
-                'newer:cssmin:prod',
+                'htmlmin:prod',
+                'cssmin:prod',
                 'replace:prod',
-                'newer:requirejs:prod'
+                'requirejs:prod'
             ]);
         }
 
