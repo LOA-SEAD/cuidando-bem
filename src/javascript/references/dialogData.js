@@ -567,7 +567,9 @@ define({
             "A dieta dele foi solicitada ontem e já está preparada. Aqui está.",
             // 3 Mentor
             "Você conferiu a dieta corretamente. Parabéns! A partir deste momento, tenha em mente que" +
-            " neste hospital usamos equipos de cores específicas para evitar possíveis erros de conexão."
+            " neste hospital usamos equipos de cores específicas para evitar possíveis erros de conexão.",
+            // 4 Mentor Corrige
+            "A administração de dieta é um procedimento que requer muita atenção e seus cuidados são essenciais para um tratamento efetivo!",
         ],
         postoEnfermagem: [
             // 0 Jogador op 1
@@ -940,8 +942,13 @@ define({
             ],
             verificarOximetro: [
                 "Lembre-se de verificar o oxímetro e o local da cirurgia antes de colocar a placa neutra."
+            ],
+            conferir_dieta: [
+                "Nunca se esqueça de conferir a dieta fornecida pelo farmacêutico."
+            ],
+            pegar_dieta: [
+                "O paciente necessita da dieta!"
             ]
-
         },
         descarte: {
             algodão: [
