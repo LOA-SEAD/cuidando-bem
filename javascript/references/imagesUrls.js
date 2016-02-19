@@ -1,0 +1,1 @@
+define([],function(){var e="./images/",t={others:["./images/scenes/salaDeLeitos.jpg"]};return{paths:t,baseDir:e}});

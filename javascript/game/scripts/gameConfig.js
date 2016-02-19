@@ -1,0 +1,1 @@
+define([],function(){console.info("GameConfig - module loaded");var e="./game/scripts/levels/",t=["fase0","fase1","fase2","fase3","fase4","fase5","fase6","fase7","fase8","faseTeste"],n;for(n=0;n<t.length;n++)console.log("	Requiring Level module: ",t[n]),require([e+t[n]])});
