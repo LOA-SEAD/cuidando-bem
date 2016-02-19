@@ -53,13 +53,15 @@ module.exports = function (grunt) {
                 'htmlmin:prod',
                 'cssmin:prod',
                 'replace:prod',
-                'requirejs:prod'
+                'requirejs:prod',
+                'clean:images',
+                'imagemin:prod'
             ]);
         }
 
         if(target == 'rel') {
             grunt.task.run([
-                'imagemin:prod',
+
                 'compress:rel'
             ]);
         }

@@ -4,7 +4,7 @@ module.exports = {
     options: {
 
     },
-    
+
     js : {
         src : ['<%= pkg.development %>' + '/javascript/**/*.js']
     },
@@ -12,13 +12,17 @@ module.exports = {
     html: {
         src : ['<%= pkg.development %>' + '/html/**/*.html']
     },
-    
+
     dev : {
         src : ['<%= pkg.development %>']
     },
 
     prod : {
         src : ['<%= pkg.production %>']
+    },
+
+    images : {
+        src : ['<%= pkg.production %>' + '/images']
     },
 
     docs : {

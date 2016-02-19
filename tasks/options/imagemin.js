@@ -2,11 +2,12 @@
 'use strict';
 module.exports = {
     options : {
-        
+
     },
 
     prod : {
         options : {
+            progressive: true,
             optimizationLevel: 7
         },
         files : [
@@ -15,7 +16,7 @@ module.exports = {
 
                 cwd: '<%= pkg.source %>' + '/images',
                 dest: '<%= pkg.production %>' + '/images',
-                src: ['**/*.{png, jpg, jpeg}']
+                src: ['**/*.{png,jpg,jpeg}']
             }
         ]
     }
