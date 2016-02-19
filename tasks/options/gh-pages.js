@@ -1,15 +1,15 @@
-//gh-pages
-'use strict';
+// gh-pages
+"use strict";
 module.exports = {
-    options : {
+    options: {
 
     },
-    
-    rel : {
+
+    rel: {
         options: {
-            base: '<%= pkg.production %>',
-            message: 'Auto-generated commit v'+'<%= pkg.version %>'
+            base: "<%= pkg.production %>",
+            message: "Auto-generated commit v" + "<%= pkg.version %>"
         },
-        src: ['**/*']
+        src: [ "**/*" ]
     }
 };
