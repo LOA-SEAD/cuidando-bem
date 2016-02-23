@@ -162,7 +162,17 @@ define(function() {
             anotarNoProntuario: new Score("Anotar no prontuário", 350 )
         },
 
-        level6: {},
+        level6: {
+            score_irCentroCirurgico_horaErrada: new Score("Ir para o Centro Cirugico sem precisar", -25),
+            score_irAlaFeminina_horaErrada: new Score("Ir para a Ala Feminina sem precisar", -25),
+            score_ir_farmacia_horaErrada: new Score("Ir para a Farmácia sem precisar", -25),
+            pegarDieta: new Score("Pegar a dieta do paciente", 50),
+            conferirDieta: new Score("Conferir medicamento/dieta", 150),
+            lavarMaos1: new Score("Lavar as mãos no posto de enfermagem", 200),
+            pegarCopoDescartavel: new Score("Pegar copo descartável", 50),
+            pegarAguaPotavel: new Score("Pegar agua potável", 50),
+            pegarSeringa: new Score("Pegar seringa", 50),
+        },
 
         level7: {
             irFarmaciaHoraErrada: new Score("Ir para a Farmacia sem precisar", -25 ),
@@ -179,8 +189,6 @@ define(function() {
             pegarAguaPotavel: new Score("Pegar água potável no posto de enfermagem", 50 ),
             pegarCopoDescartavel: new Score("Pegar copo descartável no posto de enfermagem", 50 ),
             lavarMaos: new Score("Lavar as mãos antes de ir ao leito do paciente", 200 )
-
-
         },
 
         level8: {
