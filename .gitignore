@@ -12,6 +12,7 @@ libs/
 
 #   Production
 dev/
+dev.env.json
 prod/
 dist/
 
@@ -21,12 +22,3 @@ jscs.log
 #   JsDoc Documentation
 docs/
 
-#   Example files
-*.example
-
-#   Office
-*.~vsd
-
-#   Bat files
-*.bat
-!server-2.0.bat

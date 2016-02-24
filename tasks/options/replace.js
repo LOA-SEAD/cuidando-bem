@@ -97,5 +97,27 @@ module.exports = {
                 to: "<title>" + "Cuidando Bem v" + "<%= pkg.version %>" + "</title>"
             }
         ]
+    },
+    configDevScreen: {
+        src: [ "<%= pkg.development %>" + "/javascript/game/scripts/stageConfig.js" ],
+        dest: [ "<%= pkg.development %>" + "/javascript/game/scripts/stageConfig.js" ],
+
+        replacements: [
+            {
+                from: "Stage.setStartingScreenId( 0 );",
+                to: "Stage.setStartingScreenId( <%= devCfg.initScreen %> );"
+            }
+        ]
+    },
+    configDevLevel: {
+        src: [ "<%= pkg.development %>" + "/javascript/game/modules/levelsData.js" ],
+        dest: [ "<%= pkg.development %>" + "/javascript/game/modules/levelsData.js" ],
+
+        replacements: [
+            {
+                from: "var currentLevel = 0;",
+                to: "var currentLevel = <%= devCfg.initLevel %>;"
+            }
+        ]
     }
 };
