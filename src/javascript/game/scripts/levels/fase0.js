@@ -478,12 +478,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Prontuario.open();
                     core.openCommandBar();
                 }),
-            // Dialog 21 - Final de fase, não lavou as mãos após usar aparelho
+            // Dialog 22 - Final de fase, não lavou as mãos após usar aparelho
             new Dialog( lib.characters.mentor )
                 .setText("Você deve lavar as mãos após utilizar os aparelhos.")
                 .registerOption("", function() {
                     core.closeDialog();
-                    Prontuario.open();
+                    // Prontuario.open();
                     core.openCommandBar();
                 })
         ]);
@@ -555,13 +555,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             break;
                     }
 
-                    if ( checouTodosAparelhos() ) {
-                        if ( level.getFlag("lavar-maosDepois").getValue() == false ) {
-                            level.getFlag("lavar-maosDepois").setValue( true );
-                            core.registerScoreItem( Scores.tutorial.lavarMaosDepois );
-                        }
-                    }
-
+                    level.getFlag("lavar-maosDepois").setValue( true );
                 })
                 .setVisibility( visibility ),
 
@@ -652,8 +646,20 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
                     console.log("Action: ler prontuario");
-                    Prontuario.open();
-                    core.openModalScene("Prontuario");
+                    if ( level.getFlag("lavar-maosDepois").getValue() == true ) {
+                        if ( checouTodosAparelhos() ) {
+                            if ( level.getFlag("lavar-maosDepoisScore").getValue() == true ) {
+                                core.registerScoreItem( Scores.tutorial.lavarMaosDepois );
+                            }
+                        }
+
+                        Prontuario.open();
+                        core.openModalScene("Prontuario");
+                    } else {
+                        Prontuario.close();
+                        core.closeCommandBar();
+                        core.openDialog( 22 );
+                    }
                 })
                 .setVisibility( visibility )
         ]);
@@ -829,7 +835,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                                 core.showEndOfLevel();
                                 core.unlockLevel( 1 );
                             } else {
-                                // In casa form data is not valid
+                                // In case form data is not valid
                                 Prontuario.close();
                                 core.closeCommandBar();
                                 core.openDialog( 20 );
@@ -952,6 +958,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.getFlag("pulseira").setValue( false );
             level.getFlag("lavar-maos").setValue( 0 );
             level.getFlag("lavar-maosDepois").setValue( false );
+            level.getFlag("lavar-maosDepoisScore").setValue( false );
             level.getFlag("termometro").setValue( false );
             level.getFlag("medidor-pressao").setValue( false );
             level.getFlag("oximetro").setValue( false );
@@ -1036,6 +1043,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("pulseira", false ) );
         level.registerFlag( new Flag("lavar-maos", 0 ) );
         level.registerFlag( new Flag("lavar-maosDepois", false ) );
+        level.registerFlag( new Flag("lavar-maosDepoisScore", false ) );
         level.registerFlag( new Flag("termometro", false ) );
         level.registerFlag( new Flag("medidor-pressao", false ) );
         level.registerFlag( new Flag("oximetro", false ) );
