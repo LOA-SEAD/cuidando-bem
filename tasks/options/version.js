@@ -1,15 +1,15 @@
-//gh-pages
-'use strict';
+// version
+"use strict";
 module.exports = {
 	options: {
 
     },
-    
-    options : {
-        pkg: 'package.json'
+
+    options: {
+        pkg: "package.json"
     },
 
-    project : {
-        src: ['package.json', 'bower.json']
+    project: {
+        src: [ "package.json", "bower.json" ]
     }
 };

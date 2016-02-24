@@ -1,22 +1,22 @@
-//gh-pages
-'use strict';
+// imagemin
+"use strict";
 module.exports = {
-    options : {
+    options: {
 
     },
 
-    prod : {
-        options : {
+    prod: {
+        options: {
             progressive: true,
             optimizationLevel: 7
         },
-        files : [
+        files: [
             {
                 expand: true,
 
-                cwd: '<%= pkg.source %>' + '/images',
-                dest: '<%= pkg.production %>' + '/images',
-                src: ['**/*.{png,jpg,jpeg}']
+                cwd: "<%= pkg.source %>" + "/images",
+                dest: "<%= pkg.production %>" + "/images",
+                src: [ "**/*.{png,jpg,jpeg}" ]
             }
         ]
     }

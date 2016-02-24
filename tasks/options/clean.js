@@ -1,31 +1,31 @@
-//clean
-'use strict';
+// clean
+"use strict";
 module.exports = {
     options: {
 
     },
 
-    js : {
-        src : ['<%= pkg.development %>' + '/javascript/**/*.js']
+    js: {
+        src: [ "<%= pkg.development %>" + "/javascript/**/*.js" ]
     },
 
     html: {
-        src : ['<%= pkg.development %>' + '/html/**/*.html']
+        src: [ "<%= pkg.development %>" + "/html/**/*.html" ]
     },
 
-    dev : {
-        src : ['<%= pkg.development %>']
+    dev: {
+        src: [ "<%= pkg.development %>" ]
     },
 
-    prod : {
-        src : ['<%= pkg.production %>']
+    prod: {
+        src: [ "<%= pkg.production %>" ]
     },
 
-    images : {
-        src : ['<%= pkg.production %>' + '/images']
+    images: {
+        src: [ "<%= pkg.production %>" + "/images" ]
     },
 
-    docs : {
-        src : ['<%= pkg.documentation %>']
+    docs: {
+        src: [ "<%= pkg.documentation %>" ]
     }
 };

@@ -1,28 +1,28 @@
-//clean
-'use strict';
+// connect
+"use strict";
 module.exports = {
     options: {
 
     },
 
-    dev : {
-        options : {
+    dev: {
+        options: {
             livereload: true,
-            port: '<%= pkg.port %>',
-            base: '<%= pkg.development %>'
+            port: "<%= pkg.port %>",
+            base: "<%= pkg.development %>"
         }
     },
 
-    prod : {
-        options : {
+    prod: {
+        options: {
             keepalive: true,
-            port: '<%= pkg.port %>',
-            base: '<%= pkg.production %>'
+            port: "<%= pkg.port %>",
+            base: "<%= pkg.production %>"
         }
     },
 
-    docs : {
-        port: '<%= pkg.port %>',
-        base: '<%= pkg.documentation %>'
+    docs: {
+        port: "<%= pkg.port %>",
+        base: "<%= pkg.documentation %>"
     }
 };

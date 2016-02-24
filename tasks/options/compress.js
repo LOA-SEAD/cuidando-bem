@@ -1,21 +1,21 @@
-//compress
-'use strict';
+// compress
+"use strict";
 module.exports = {
     options: {
 
     },
-    
-    rel : {
-        options : {
-            mode: 'zip',
-            archive: '<%= pkg.releases %>'+'/'+'<%= pkg.name %>'+'-'+'<%= pkg.version %>'+'.zip'
+
+    rel: {
+        options: {
+            mode: "zip",
+            archive: "<%= pkg.releases %>" + "/" + "<%= pkg.name %>" + "-" + "<%= pkg.version %>" + ".zip"
         },
-        files :[
+        files:[
             {
                 expand: true,
-                cwd: '<%= pkg.production %>',
-                dest: '<%= pkg.name %>'+'-'+'<%= pkg.version %>',
-                src: ['**/*']
+                cwd: "<%= pkg.production %>",
+                dest: "<%= pkg.name %>" + "-" + "<%= pkg.version %>",
+                src: [ "**/*" ]
             }
         ]
     }

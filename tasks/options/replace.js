@@ -1,86 +1,86 @@
-//replace
-'use strict';
+// replace
+"use strict";
 module.exports = {
     options: {
 
-    },    
+    },
 
     /*
         Remove console stuff from code before minification,
     so code on production won't fill console.
     */
     prod: {
-        src: ['<%= pkg.development %>' + '**/*.js'],
-        dest: ['<%= pkg.production %>'],
+        src: [ "<%= pkg.development %>" + "**/*.js" ],
+        dest: [ "<%= pkg.production %>" ],
 
         replacements: [
             {
                 from: /(console.assert)(.)*\)/g,
-                to: ''
+                to: ""
             },
             {
                 from: /(console.count)(.)*\)/g,
-                to: ''
+                to: ""
             },
             {
                 from: /(console.debug)(.)*\)/g,
-                to: ''
+                to: ""
             },
             {
                 from: /(console.dir)(.)*\)/g,
-                to: ''
+                to: ""
             },
             {
                 from: /(console.error)(.)*\)/g,
-                to: ''
+                to: ""
             },
             {
                 from: /(console.group)(.)*\)/g,
-                to: ''
+                to: ""
             },
             {
                 from: /(console.groupCollapsed)(.)*\)/g,
-                to: ''
+                to: ""
             },
             {
                 from: /(console.groupEnd)(.)*\)/g,
-                to: ''
+                to: ""
             },
             {
                 from: /(console.info)(.)*\)/g,
-                to: ''
+                to: ""
             },
             {
                 from: /(console.log)(.)*\)/g,
-                to: ''
+                to: ""
             },
             {
                 from: /(console.profile)(.)*\)/g,
-                to: ''
+                to: ""
             },
             {
                 from: /(console.profileEnd)(.)*\)/g,
-                to: ''
+                to: ""
             },
             {
                 from: /(console.table)(.)*\)/g,
-                to: ''
+                to: ""
             },
             {
                 from: /(console.time)(.)*\)/g,
-                to: ''
+                to: ""
             },
             {
                 from: /(console.timeEnd)(.)*\)/g,
-                to: ''
+                to: ""
             },
             {
                 from: /(console.trace)(.)*\)/g,
-                to: ''
+                to: ""
             },
             {
                 from: /(console.warn)(.)*\)/g,
-                to: ''
+                to: ""
             }
         ]
     },
@@ -88,13 +88,13 @@ module.exports = {
         Put game name and version in html title
     */
     version: {
-        src: ['<%= pkg.source %>' + '/index.html'],
-        dest: ['<%= pkg.development %>' + '/index.html'],
+        src: [ "<%= pkg.source %>" + "/index.html" ],
+        dest: [ "<%= pkg.development %>" + "/index.html" ],
 
         replacements: [
             {
-                from: '<title>Cuidando Bem</title>',
-                to: '<title>'+'Cuidando Bem v'+'<%= pkg.version %>'+'</title>'
+                from: "<title>Cuidando Bem</title>",
+                to: "<title>" + "Cuidando Bem v" + "<%= pkg.version %>" + "</title>"
             }
         ]
     }

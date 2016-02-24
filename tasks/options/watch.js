@@ -1,55 +1,55 @@
-//watch
-'use strict';
+// watch
+"use strict";
 module.exports = {
     options: {
         livereload: false
     },
 
-    js : {
+    js: {
         files: [
-            '<%= pkg.source %>' + '/javascript/**/*.js'
+            "<%= pkg.source %>" + "/javascript/**/*.js"
         ],
         tasks: [
-            //'clean:js',
-            'copy:js',
-            'copy:libs'
+            // 'clean:js',
+            "copy:js",
+            "copy:libs"
         ]
     },
 
-    html : {
+    html: {
         files: [
-            '<%= pkg.source %>' + '/html/**/*.html'
+            "<%= pkg.source %>" + "/html/**/*.html"
         ],
         tasks: [
-            //'clean:html',
-            'copy:html'
+            // 'clean:html',
+            "copy:html"
         ]
     },
 
-    less : {
+    less: {
         files: [
-            '<%= pkg.source %>' + '/css/**/*.less'
+            "<%= pkg.source %>" + "/css/**/*.less"
         ],
         tasks: [
-            'less:dev'
+            "less:dev"
         ]
     },
 
-    images : {
+    images: {
         files: [
-            '<%= pkg.source %>' + '/images/**/*.{png,jpg,jpeg,gif}'
+            "<%= pkg.source %>" + "/images/**/*.{png,jpg,jpeg,gif}"
         ],
         tasks: [
-            'copy:images'
+            "copy:images"
         ]
     },
 
-    livereload : {
+    livereload: {
         options: {
             livereload: true
         },
         files: [
-            '<%= pkg.development %>' + '/**/*'
+            "<%= pkg.development %>" + "/**/*"
         ]
     }
 };
