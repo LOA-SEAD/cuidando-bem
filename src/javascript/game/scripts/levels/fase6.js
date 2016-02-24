@@ -612,7 +612,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
    
             
                          new Action("btn-pegarFrascoDieta", "Pegar Frasco de Dieta")
-                .setCssClass("action-pegarFrascoDieta")
+                .setCssClass("action-frasco_dieta")
                 .onClick(function () {
                     
                     level.getFlag("pegar_dieta").setValue(true);
@@ -658,8 +658,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 
                 
                 
-            
-                
+
                 
              
                 
@@ -675,13 +674,14 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
               new Dialog(lib.characters.jogador)
                 .setText("")
                 .registerOption(Dialogs.posto_enfermagem[0], function () {
-                core.closeDialog(0);
+                core.closeDialog();
+                core.registerScoreItem(Scores.calcularInfusaoDieta);
             })
                 .registerOption(Dialogs.posto_enfermagem[1], function () {
-                core.openDialog(1);
+                core.openDialog(2);
             })
                 .registerOption(Dialogs.posto_enfermagem[2], function () {
-                core.openDialog(1);
+                core.openDialog(2);
             })
                 .setRandomize(true),
         
@@ -690,17 +690,19 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
            new Dialog(lib.characters.mentor)
                 .setText(Dialogs.posto_enfermagem[3])
                 .registerOption("", function () {
-                core.openDialog(0);
+                core.closeDialog();
             }),
         
         
-                   new Dialog(lib.characters.mentor)
-                .setText(Dialogs.posto_enfermagem[3])
+        //2
+         new Dialog(lib.characters.mentor)
+                .setText(Dialogs.posto_enfermagem[4])
                 .registerOption("", function () {
                 core.openDialog(0);
-            })
-
+            }),
         
+    
+      
         
         
 ]);
@@ -713,7 +715,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 .onClick(function () {
                     
                     if(level.getFlag("pegar_bandeja").getValue() == false)
-                        core.openDialog();
+                        core.openDialog(1);
                     else { 
                     console.log("Action: abrir_gaveta");
                     core.openModalScene("gaveta");
@@ -767,16 +769,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             })
             .setVisibility(true),
        
-            
-            new Action("btn-calcular_dieta", "Calcular Infusão da Dieta")
-                .setCssClass("action-calcular_dieta")
-                .onClick(function () {
-                 //   if(level.getFlag("pegar_copo_descartavel").getValue() == false || level.getFlag("pegar_agua_potavel").getValue() == false)
-               //         core.openDialog(0);
-                //    else
-                  //      core.changeScene(1);
-            }),
-
+        
             
         ]);
         
@@ -888,11 +881,18 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             new Action("btn-fechar_gaveta", "Fechar gaveta")
                 .setCssClass("action-fechar_gaveta")
                 .onClick( function () {
+                    
                     console.log("Action: fechar_gaveta");
                     core.closeModalScene("Gaveta");
+                    
+                    if(  (level.getFlag("pegar_copo_descartavel").getValue() == true) ||  (level.getFlag("pegar_agua_potavel").getValue() == true) ||                               (level.getFlag("pegar_seringa").getValue() == true) ||  (level.getFlag("pegar_equipoCorreto").getValue() == true))
+                        core.openDialog(0);     // PRECISA ARRUMAR AQUI
+                    
                 })
                 .setVisibility(true)
         ]);
+    
+    
     
    
     
@@ -907,12 +907,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     console.log("IntObj: io-copo_descartavel");
                     level.getFlag("pegar_copo_descartavel").setValue(true);
                     core.setInteractiveObjectVisible("io-copo_descartavel", false);
+                    
 
-                    if(level.getFlag("score_pegar_copo_descartavel").getValue() == false) {
+     
                         core.registerScoreItem(Scores.pegarCopoDescartavel);
-                        console.log("aeeeeeeeeeee");
-                       level.getFlag("score_pegar_copo_descartavel").setValue(true);
-                    }
+                  
                     
                 })
                 .setVisibility(true),
@@ -927,10 +926,9 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     level.getFlag("pegar_agua_potavel").setValue(true);
                     core.setInteractiveObjectVisible("io-agua_potavel", false);
 
-                    if(level.getFlag("score_pegar_agua_potavel").getValue() == false) {
+               
                         core.registerScoreItem(Scores.pegarAguaPotavel);
-                        level.getFlag("score_pegar_agua_potavel").setValue(true);
-                    }
+         
                      
                 })
                 .setVisibility(true),
@@ -945,13 +943,54 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                     level.getFlag("pegar_seringa").setValue(true);
                     core.setInteractiveObjectVisible("io-seringa", false);
 
-                    if(level.getFlag("score_pegar_seringa").getValue() == false) {
+           
                         core.registerScoreItem(Scores.pegarSeringa);
-                        level.getFlag("score_pegar_seringa").setValue(true);
-                    }
+           
                      
                 })
                 .setVisibility(true),
+           
+           
+           
+             
+           new InteractiveObject("io-infusao", "Equipamento de infusão de dieta")
+                .setCssClass("intObj-equipo_de_infusao_de_dieta")
+                .onClick(function () {
+                    
+                    console.log("intObj-equipo_de_infusao_de_dieta");
+                    level.getFlag("pegar_equipoCorreto").setValue(true);
+                    core.setInteractiveObjectVisible("io-infusao", false);
+
+                   
+                        core.registerScoreItem(Scores.pegarEquipoCorreto);
+                 
+                       
+                    
+                     
+                })
+                .setVisibility(true),
+           
+           
+                
+           new InteractiveObject("io-equipoErrado", "Equipamento ??????????????????")
+                .setCssClass("equipo")
+                .onClick(function () {
+                    
+                    console.log("intObj-equipo");
+                    level.getFlag("pegar_equipoErrado").setValue(true);
+                    core.setInteractiveObjectVisible("io-equipoErrado", false);
+
+                   
+                        core.registerScoreItem(Scores.pegarEquipoErrado);
+                 
+                       
+                    
+                     
+                })
+                .setVisibility(true),
+           
+           
+           
            
        
            
@@ -1014,10 +1053,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
             level.getFlag("lavar_maos").setValue(false);
             level.getFlag("pegar_bandeja").setValue(false);
             level.getFlag("pegou_tudo_posto_enfermagem").setValue(false);
-            level.getFlag("score_lavarMaos1").setValue(false);
-            level.getFlag("score_pegar_copo_descartavel").setValue(false);
-            level.getFlag("score_pegar_agua_potavel").setValue(false);
-            level.getFlag("score_pegar_seringa").setValue(false);
+            level.getFlag("score_lavarMaos1");
+            level.getFlag("pegar_equipoCorreto").setValue(false);
+            level.getFlag("pegar_equipoErrado").setValue(false);
+            level.registerFlag(new Flag("pegar_copo_descartavel"), false);
             
         
               //  dados do prontuario
@@ -1067,11 +1106,10 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
         level.registerFlag(new Flag("pegar_bandeja"), false);
         level.registerFlag(new Flag("pegou_tudo_posto_enfermagem"), false);
         level.registerFlag(new Flag("score_lavarMaos1"), false);
-        level.registerFlag(new Flag("score_pegar_copo_descartavel"), false);
-        level.registerFlag(new Flag("score_pegar_agua_potavel"), false);
-        level.registerFlag(new Flag("score_pegar_seringa"), false);
         level.registerFlag(new Flag("pegar_copo_descartavel"), false);
         level.registerFlag(new Flag("pegar_agua_potavel"), false);
+        level.registerFlag(new Flag("pegar_equipoCorreto"), false);
+        level.registerFlag(new Flag("pegar_equipoErrado"), false);
                     
                     
                     
