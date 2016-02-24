@@ -2,7 +2,7 @@
 "use strict";
 module.exports = {
     options: {
-
+        force: true
     },
 
     js: {
@@ -14,18 +14,20 @@ module.exports = {
     },
 
     dev: {
-        src: [ "<%= pkg.development %>" ]
+        src: [
+            "./<%= pkg.development %>/{css,javascript,html,fonts,sounds,index.html}"
+        ]
     },
 
     prod: {
-        src: [ "<%= pkg.production %>" ]
+        src: [ "./<%= pkg.production %>" ]
     },
 
     images: {
-        src: [ "<%= pkg.production %>" + "/images" ]
+        src: [ "./<%= pkg.production %>" + "/images" ]
     },
 
     docs: {
-        src: [ "<%= pkg.documentation %>" ]
+        src: [ "./<%= pkg.documentation %>/" ]
     }
 };

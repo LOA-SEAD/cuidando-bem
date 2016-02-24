@@ -31,7 +31,7 @@ module.exports = function( grunt ) {
 
         grunt.log.write("Building " + pkg.name + ":" + target );
 
-        if ( target == "rel") {
+        if ( target == "rel" ) {
             grunt.task.run([
                 "version::" + ver
             ]);
@@ -40,13 +40,21 @@ module.exports = function( grunt ) {
         // Build for development
         grunt.task.run([
             "clean:dev",
+            "newer:imagemin:dev",
             "copy:dev",
             "copy:libs",
             "replace:version",
             "less:dev"
         ]);
 
-        if ( target == "prod" || target == "rel") {
+        if ( target == "dev" ) {
+            grunt.task.run([
+                "replace:configDevScreen",
+                "replace:configDevLevel"
+            ]);
+        }
+
+        if ( target == "prod" || target == "rel" ) {
             // Take what was built for development and treat it for production
             grunt.task.run([
                 "clean:prod",
@@ -60,9 +68,8 @@ module.exports = function( grunt ) {
             ]);
         }
 
-        if ( target == "rel") {
+        if ( target == "rel" ) {
             grunt.task.run([
-
                 "compress:rel"
             ]);
         }

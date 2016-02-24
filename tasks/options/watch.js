@@ -11,8 +11,8 @@ module.exports = {
         ],
         tasks: [
             // 'clean:js',
-            "copy:js",
-            "copy:libs"
+            "newer:copy:js",
+            "newer:copy:libs"
         ]
     },
 
@@ -22,7 +22,7 @@ module.exports = {
         ],
         tasks: [
             // 'clean:html',
-            "copy:html"
+            "newer:copy:html"
         ]
     },
 
@@ -40,7 +40,7 @@ module.exports = {
             "<%= pkg.source %>" + "/images/**/*.{png,jpg,jpeg,gif}"
         ],
         tasks: [
-            "copy:images"
+            "newer:imagemin:dev"
         ]
     },
 

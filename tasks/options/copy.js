@@ -51,7 +51,6 @@ module.exports = {
                     "css/**.css",
                     "fonts/**",
                     "html/**",
-                    "images/**",
                     "javascript/**",
                     "sounds/**",
                     "index.html"
