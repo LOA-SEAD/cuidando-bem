@@ -534,6 +534,15 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
     function open() {
         $( prontuarioSelector ).show();
 
+        for ( row = 0; row < ssvvData.length; row++ ) {
+            var _disabled = ssvvData[ row ].disabled;
+
+            $( $( ssvvPressaoArterialSelector, ssvvTbodySelector )[ row ] ).mask("000x000");
+            $( $( ssvvFrequenciaCardiacaSelector, ssvvTbodySelector )[ row ] ).mask("000");
+            $( $( ssvvFrequenciaRespiratoriaSelector, ssvvTbodySelector )[ row ] ).mask("000");
+            $( $( ssvvSaturacaoSelector, ssvvTbodySelector )[ row ] ).mask("00");
+            $( $( ssvvTemperaturaSelector, ssvvTbodySelector )[ row ] ).mask("00.0");
+        }
         updateData();
     }
 
