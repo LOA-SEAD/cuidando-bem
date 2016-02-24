@@ -1,3 +1,4 @@
+// build
 "use strict";
 module.exports = function( grunt ) {
     grunt.registerTask("build", "Builds project", function( n ) {
