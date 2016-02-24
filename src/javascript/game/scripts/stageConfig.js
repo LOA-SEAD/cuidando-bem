@@ -10,21 +10,21 @@ define([ "Stage" ], function( Stage ) {
     Stage.setControllersPath("./menu/");
     Stage.setStartingScreenId( 0 );
 
-// 0
+// 0 - mainMenu
     Stage.registerScreen("mainMenu", "mainMenu.html", "screenMainMenuController");
-// 1
+// 1 - game
     Stage.registerScreen("game", "gameContainer.html", "screenGameController");
-// 2
+// 2 - loadGame
     Stage.registerScreen("loadGame", "loadGame.html", "screenLoadGameController");
-// 3
+// 3 - credits
     Stage.registerScreen("credits", "credits.html", "screenCreditsController");
-// 4
+// 4 - configuration
     Stage.registerScreen("configuration", "configuration.html", "screenConfigurationController");
-// 5
+// 5 - newGameSlotSelect
     Stage.registerScreen("newGameSlotSelect", "newGameSlotSelect.html", "screenNewGameSlotSelectController");
-// 6
+// 6 - levelSelect
     Stage.registerScreen("levelSelect", "levelSelect.html", "screenLevelSelectController");
-// 7
+// 7 - conteudo
     Stage.registerScreen("conteudo", "conteudo.html", "screenConteudoController");
 
     console.groupEnd();
