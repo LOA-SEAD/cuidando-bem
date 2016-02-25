@@ -1,111 +1,110 @@
-#endOfLevel{
-  position: relative;
-  top: 50px;
-  left: 165px;
+#endOfLevel {
+    position: absolute;
+    top: 5%;
+    left: 2%;
+    height: 90%;
+    width: 96%;
+    padding: 20px;
 
-  display: none;
-  width: 70%;
-  background-color: lightgrey;
-  //height: 50%;
-  padding: 20px;
+    box-sizing: border-box;
+    background-color: #CED1D2;
+    border-radius: 4% / 5%;
+    display: none;
 }
 
-#endOfLevelContainer{
-  //background-color: blue;
-  //height: 100%;
-  //width: 100%;
+#endOfLevelContainer {
 
+    height: 100%;
 
-  .endOfLevel-title{
-    padding: 10px;
+    .endOfLevel-title{
+        padding: 10px;
 
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-top: 1px solid black;
-  }
-  #scoreContainer{
-    #scoreList{
-      //height: 90%;
-      width: 100%;
-      border: 1px solid black;
-
-      thead{
-        tr{
-          height: 30px;
-          background-color: grey;
-          border-bottom: 1px solid black;
-        }
-        th:not(:last-child){
-          border-right: 1px solid black;
-        }
-      }
-      tbody{
-
-        tr:nth-child(odd){
-          background-color: lightgrey;
-        }
-        tr:nth-child(even){
-          background-color: white;
-        }
-
-        tr{
-          border-bottom: 1px solid black;
-        }
-        td:not(:last-child){
-          border-right: 1px solid black;
-        }
-      }
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        border-top: 1px solid black;
     }
 
+    #scoreContainer {
+        border: 1px solid black;
+        #scoreList {
+            //height: 90%;
+            width: 100%;
+            //border: 1px solid black;
 
-    .titles{
-      width: 75%;
-    }
+            thead{
+                tr{
+                    height: 30px;
+                    background-color: grey;
+                    border-bottom: 1px solid black;
+                }
+                th:not(:last-child){
+                    border-right: 1px solid black;
+                }
+            }
+            tbody{
 
-    .scores{
-      width: 25%;
-    }
+                tr:nth-child(odd){
+                    background-color: lightgrey;
+                }
+                tr:nth-child(even){
+                    background-color: white;
+                }
 
-    .title{
-      width: 75%;
-    }
+                tr{
+                    border-bottom: 1px solid black;
+                }
+                td:not(:last-child){
+                    border-right: 1px solid black;
+                }
+            }
+        }
 
-    .score{
-      width: 25%;
-      text-align: center;
+
+        .titles{
+            width: 75%;
+        }
+
+        .scores{
+            width: 25%;
+        }
+
+        .title{
+            width: 75%;
+        }
+
+        .score{
+            width: 25%;
+            text-align: center;
+        }
     }
-  }
 }
 
 #scoreContainer{
-  height: 70%;
-  max-height: 70%;
-  overflow-y: scroll;
+    height: 80%;
+    overflow-y: scroll;
 }
 
 #endOfLevel-menu{
-  text-align: center;
-  height: 8%;
+    text-align: center;
+    height: 8%;
 
-  .button{
-    background-color: white;
-    width: 175px;
-    position: relative;
-    height: 50px;
-    line-height: 50px;
-    top: 10px;
-    display: inline-block;
-  }
+    .button{
+        background-color: white;
+        width: 175px;
+        position: relative;
+        height: 50px;
+        line-height: 50px;
+        top: 10px;
+        display: inline-block;
+    }
 }
-
 
 .scoreItem{
 
-  .title{
+    .title{
 
-  }
-  .score{
+    }
+    .score{
 
-  }
-
+    }
 }
