@@ -368,9 +368,11 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
                 console.log("Load scene: " + alaMasculina.getName());
                 
                 
+                 core.setInteractiveObjectVisible("io-conversar_com_paciente", false);
+                
                 
                 if(level.getFlag("pegou_tudo_postoEnfermagem").getValue() == true)
-                        ;
+                        core.setInteractiveObjectVisible("io-conversar_com_paciente", true);
                 else   
                     if(level.getFlag("ler_prontuario").getValue() == true)
                             ;
@@ -429,7 +431,7 @@ define(['levelsData', 'Scene', 'Action', 'Level', 'Dialog', 'InteractiveObject',
            new Dialog(lib.characters.mentor)
                 .setText(Dialogs.ala_masculina[4])
                 .registerOption("", function () {
-                core.openDialog(2);
+                core.closeDialog();
             }),
          
          // 4
