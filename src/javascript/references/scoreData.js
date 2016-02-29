@@ -111,7 +111,6 @@ define(function() {
             gotejarSoroEquipo: new Score("Realizar gotejamento de soro no equipamento", 350 ),
             anotarNoProntuario: new Score("Anotar no prontuário", 200 )
 
-
         },
 
         level5: {
@@ -163,49 +162,45 @@ define(function() {
         },
 
         level6: {
-                score_irCentroCirurgico_horaErrada: new Score("Ir para o Centro Cirugico sem precisar", -25),
-                score_irAlaFeminina_horaErrada: new Score("Ir para a Ala Feminina sem precisar", -25),
-                score_ir_farmacia_horaErrada: new Score("Ir para a Farmácia sem precisar", -25),
-                pegarDieta: new Score("Pegar a dieta do paciente", 50),
-                conferirDieta: new Score("Conferir medicamento/dieta", 150),
-                lavarMaos1: new Score("Lavar as mãos no posto de enfermagem", 200),
-                lavarMaos2: new Score("Lavar as mãos antes de anotar no prontuário", 200),
-                pegarCopoDescartavel: new Score("Pegar copo descartável", 50),
-                pegarAguaPotavel: new Score("Pegar agua potável", 50),
-                pegarSeringa: new Score("Pegar seringa", 50),
-                pegarEquipoCorreto: new Score("Pegar equipamento correto", 150),
-                pegarEquipoErrado: new Score("Pegar equipamento errado", -150),
-                irAoLeitoCorreto: new Score("Ir ao leito do paciente", 50),
-                verificarPulseira: new Score("Verificar pulseira do paciente", 150),
-                falarComPaciente: new Score("Falar com o paciente", 50),
-                pegarSuporteSoro: new Score("Pegar Suporte de Soro", 50),
-                elevarCama: new Score("Elevar Cabeceira da Cama", 150),
-                verificarSonda: new Score("Verificar Localização da Sonda", 350),
-                administrarDieta: new Score("Administrar Dieta", 150),
-                colocarGotejamento: new Score("Colocar Gotejamento", 350),
-                anotarNoProntuario: new Score("Anotar no Prontuário", 350),
+            scoreIrCentroCirurgicoHoraErrada: new Score("Ir para o Centro Cirugico sem precisar", -25 ),
+            scoreIrAlaFemininaHoraErrada: new Score("Ir para a Ala Feminina sem precisar", -25 ),
+            scoreIrFarmaciaHoraErrada: new Score("Ir para a Farmácia sem precisar", -25 ),
+            pegarDieta: new Score("Pegar a dieta do paciente", 50 ),
+            conferirDieta: new Score("Conferir medicamento/dieta", 150 ),
+            lavarMaos1: new Score("Lavar as mãos no posto de enfermagem", 200 ),
+            lavarMaos2: new Score("Lavar as mãos antes de anotar no prontuário", 200 ),
+            pegarCopoDescartavel: new Score("Pegar copo descartável", 50 ),
+            pegarAguaPotavel: new Score("Pegar agua potável", 50 ),
+            pegarSeringa: new Score("Pegar seringa", 50 ),
+            pegarEquipoCorreto: new Score("Pegar equipamento correto", 150 ),
+            pegarEquipoErrado: new Score("Pegar equipamento errado", -150 ),
+            irAoLeitoCorreto: new Score("Ir ao leito do paciente", 50 ),
+            verificarPulseira: new Score("Verificar pulseira do paciente", 150 ),
+            falarComPaciente: new Score("Falar com o paciente", 50 ),
+            pegarSuporteSoro: new Score("Pegar Suporte de Soro", 50 ),
+            elevarCama: new Score("Elevar Cabeceira da Cama", 150 ),
+            verificarSonda: new Score("Verificar Localização da Sonda", 350 ),
+            administrarDieta: new Score("Administrar Dieta", 150 ),
+            colocarGotejamento: new Score("Colocar Gotejamento", 350 ),
+            anotarNoProntuario: new Score("Anotar no Prontuário", 350 )
         },
 
         level7: {
-               irFarmacia_horaErrada: new Score("Ir para a Farmacia sem precisar", -25),
-               irPostoEnfermagem_horaErrada: new Score("Ir para o Posto Enfermagem sem precisar", -25),
-               irCentroCirurgico_horaErrada: new Score("Ir para o Centro Cirugico sem precisar", -25),
-               irAlaMasculina_horaErrada: new Score("Ir para a Ala Masculina sem precisar", -25),
-               irAlaFeminina_horaErrada: new Score("Ir para a Ala Feminina sem precisar", -25),
-               verProntuario: new Score("Ver o prontuário", 150),
-               falarComPaciente: new Score("Falar com o paciente", 150),
-               pegarMedicamento: new Score("Pegar medicamento na farmácia", 50),
-               conferirMedicamentoErrado: new Score("Verificar o medicamento fornecido pelo farmacêutico", 350),
-               trocarMedicamento: new Score("Trocar o medicamento equivocado", 150),
-               conferirMedicamentoCorreto: new Score("Verificar o medicamento fornecido pelo farmacêutico", 150),
-               pegarAguaPotavel: new Score("Pegar água potável no posto de enfermagem", 50),
-               pegarCopoDescartavel: new Score("Pegar copo descartável no posto de enfermagem", 50),
-               lavarMaos: new Score("Lavar as mãos antes de ir ao leito do paciente", 200),
-               calcularInfusaoDieta: new Score("Cálculo da infusão da dieta", 150),
-            
-
-            
-
+           irFarmaciaHoraErrada: new Score("Ir para a Farmacia sem precisar", -25 ),
+           irPostoEnfermagemHoraErrada: new Score("Ir para o Posto Enfermagem sem precisar", -25 ),
+           irCentroCirurgicoHoraErrada: new Score("Ir para o Centro Cirugico sem precisar", -25 ),
+           irPostoEnfermagemHoraErrada: new Score("Ir para a Ala Masculina sem precisar", -25 ),
+           irAlaFemininaHoraErrada: new Score("Ir para a Ala Feminina sem precisar", -25 ),
+           verProntuario: new Score("Ver o prontuário", 150 ),
+           falarComPaciente: new Score("Falar com o paciente", 150 ),
+           pegarMedicamento: new Score("Pegar medicamento na farmácia", 50 ),
+           conferirMedicamentoErrado: new Score("Verificar o medicamento fornecido pelo farmacêutico", 350 ),
+           trocarMedicamento: new Score("Trocar o medicamento equivocado", 150 ),
+           conferirMedicamentoCorreto: new Score("Verificar o medicamento fornecido pelo farmacêutico", 150 ),
+           pegarAguaPotavel: new Score("Pegar água potável no posto de enfermagem", 50 ),
+           pegarCopoDescartavel: new Score("Pegar copo descartável no posto de enfermagem", 50 ),
+           lavarMaos: new Score("Lavar as mãos antes de ir ao leito do paciente", 200 ),
+           calcularInfusaoDieta: new Score("Cálculo da infusão da dieta", 150 )
         },
 
         level8: {

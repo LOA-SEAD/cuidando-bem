@@ -1015,7 +1015,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         // region Register Scenes
 
-        // id 0
+        // 0
         level.registerScene( recepcao );
         // 1
         level.registerScene( corredor );
