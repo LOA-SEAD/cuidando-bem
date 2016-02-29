@@ -68,9 +68,7 @@ module.exports = function( grunt ) {
                 "htmlmin:prod",
                 "cssmin:prod",
                 "replace:prod",
-                "requirejs:prod",
-                "clean:images",
-                "imagemin:prod"
+                "requirejs:prod"
             ]);
         }
 
