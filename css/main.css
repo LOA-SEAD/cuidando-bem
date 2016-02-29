@@ -2359,61 +2359,61 @@ p.title {
   background-color: #808080;
 }
 .scene-maleRoom {
-  background-image: url(../images/scenes/ala_masculina.jpg);
+  background-image: url(../images/scenes/alaMasculina.jpg);
 }
 .scene-maleRoom-cushion {
-  background-image: url(../images/scenes/ala_masculina-paciente-virado.jpg);
+  background-image: url(../images/scenes/alaMasculinaPacienteVirado.jpg);
 }
 .scene-femaleRoom {
-  background-image: url(../images/scenes/ala_feminina.png);
+  background-image: url(../images/scenes/alaFeminina.png);
 }
 .scene-bedroom {
-  background-image: url(../images/scenes/sala_de_leitos.jpg);
+  background-image: url(../images/scenes/salaDeLeitos.jpg);
 }
 .scene-bedChar01 {
-  background-image: url(../images/scenes/leito-char-01.jpg);
+  background-image: url(../images/scenes/leitoChar01.jpg);
 }
 .scene-bedChar02 {
-  background-image: url(../images/scenes/leito-char-02.jpg);
+  background-image: url(../images/scenes/leitoChar02.jpg);
 }
 .scene-bedChar02-turned {
-  background-image: url(../images/scenes/leito-char-02-virado.jpg);
+  background-image: url(../images/scenes/leitoChar02Virado.jpg);
 }
 .scene-bedChar02-cushion {
-  background-image: url(../images/scenes/leito-char-02-coxim.jpg);
+  background-image: url(../images/scenes/leitoChar02Coxim.jpg);
 }
 .scene-bedChar03 {
-  background-image: url(../images/scenes/leito-char-03.jpg);
+  background-image: url(../images/scenes/leitoChar03.jpg);
 }
 .scene-bedChar04 {
-  background-image: url(../images/scenes/leito-char-04.jpg);
+  background-image: url(../images/scenes/leitoChar04.jpg);
 }
 .scene-bedChar05 {
-  background-image: url(../images/scenes/leito-char-05.jpg);
+  background-image: url(../images/scenes/leitoChar05.jpg);
 }
 .scene-bedChar06 {
-  background-image: url(../images/scenes/leito-char-06.jpg);
+  background-image: url(../images/scenes/leitoChar06.jpg);
 }
 .scene-bedChar07 {
-  background-image: url(../images/scenes/leito-char-07.jpg);
+  background-image: url(../images/scenes/leitoChar07.jpg);
 }
 .scene-bedChar08 {
-  background-image: url(../images/scenes/leito-char-08.jpg);
+  background-image: url(../images/scenes/leitoChar08.jpg);
 }
 .scene-bedChar09 {
-  background-image: url(../images/scenes/leito-char-09.jpg);
+  background-image: url(../images/scenes/leitoChar09.jpg);
 }
 .scene-bedChar10 {
-  background-image: url(../images/scenes/leito-char-10.jpg);
+  background-image: url(../images/scenes/leitoChar10.jpg);
 }
 .scene-surgeryCenter {
-  background-image: url(../images/scenes/centro_cirurgico.jpg);
+  background-image: url(../images/scenes/centroCirurgico.jpg);
 }
 .scene-surgeryCenter-regina {
-  background-image: url(../images/scenes/centro_cirurgico_regina.jpg);
+  background-image: url(../images/scenes/centroCirurgicoRegina.jpg);
 }
 .scene-surgeryCenter-yuri {
-  background-image: url(../images/scenes/centro_cirurgico_yuri.jpg);
+  background-image: url(../images/scenes/centroCirurgicoYuri.jpg);
 }
 .scene-hallway {
   background-image: url(../images/scenes/corredor.jpg);
@@ -2422,16 +2422,16 @@ p.title {
   background-image: url('');
 }
 .scene-nursingStation {
-  background-image: url(../images/scenes/posto_de_enfermagem.jpg);
+  background-image: url(../images/scenes/postoDeEnfermagem.jpg);
 }
 .scene-lobby {
   background-image: url(../images/scenes/recepcao.jpg);
 }
 .scene-levelTransition {
-  background-image: url(../images/scenes/fim-level.jpg);
+  background-image: url(../images/scenes/fimLevel.jpg);
 }
 .scene-endAlpha {
-  background-image: url(../images/scenes/encerra-provisoria-alfa.jpg);
+  background-image: url(../images/scenes/encerramentoProvisorio.jpg);
 }
 .scene-none {
   background-color: #d3d3d3;
@@ -2440,13 +2440,13 @@ p.title {
   background-image: url(../images/scenes/farmacia.jpg);
 }
 .scene-surgeryCenter {
-  background-image: url(../images/scenes/centro_cirurgico.jpg);
+  background-image: url(../images/scenes/centroCirurgico.jpg);
 }
 .scene-femaleRoom {
-  background-image: url(../images/scenes/ala_feminina.png);
+  background-image: url(../images/scenes/alaFeminina.png);
 }
 .scene-centroCirurgicoRegina {
-  background-image: url(../images/scenes/centro_cirurgico_regina.jpg);
+  background-image: url(../images/scenes/centroCirurgicoRegina.jpg);
 }
 #modalScene {
   position: absolute;
@@ -2512,7 +2512,7 @@ p.title {
     left: 55%;
   }
 }
-.modalScene-medidor_pressao {
+.modalScene-medidorPressao {
   background-color: rgba(0, 0, 0, 0.7);
   background-image: url(../images/modalScenes/medidorPressao.png);
   background-position: center;
@@ -3334,7 +3334,7 @@ p.title {
 .action-confirmar_pulseira {
   background-image: url(../images/actionButtons/confirmarPulseira.jpg);
 }
-.action-lavar_maos {
+.action-lavarMaos {
   background-image: url(../images/actionButtons/lavarMaos.jpg);
 }
 .action-lavar_maos_escova {
@@ -3540,72 +3540,164 @@ p.title {
   white-space: nowrap;
 }
 #endOfLevel {
-  position: relative;
-  top: 50px;
-  left: 165px;
+  position: absolute;
+  top: 5%;
+  left: 2%;
+  height: 90%;
+  width: 96%;
+  box-sizing: border-box;
+  background-color: #CED1D2;
+  border-radius: 4% / 5%;
   display: none;
-  width: 70%;
-  background-color: lightgrey;
-  padding: 20px;
 }
-#endOfLevelContainer .endOfLevel-title {
-  padding: 10px;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  border-top: 1px solid black;
-}
-#endOfLevelContainer #scoreContainer #scoreList {
-  width: 100%;
-  border: 1px solid black;
-}
-#endOfLevelContainer #scoreContainer #scoreList thead tr {
-  height: 30px;
-  background-color: grey;
-  border-bottom: 1px solid black;
-}
-#endOfLevelContainer #scoreContainer #scoreList thead th:not(:last-child) {
-  border-right: 1px solid black;
-}
-#endOfLevelContainer #scoreContainer #scoreList tbody tr:nth-child(odd) {
-  background-color: lightgrey;
-}
-#endOfLevelContainer #scoreContainer #scoreList tbody tr:nth-child(even) {
-  background-color: white;
-}
-#endOfLevelContainer #scoreContainer #scoreList tbody tr {
-  border-bottom: 1px solid black;
-}
-#endOfLevelContainer #scoreContainer #scoreList tbody td:not(:last-child) {
-  border-right: 1px solid black;
-}
-#endOfLevelContainer #scoreContainer .titles {
-  width: 75%;
-}
-#endOfLevelContainer #scoreContainer .scores {
-  width: 25%;
-}
-#endOfLevelContainer #scoreContainer .title {
-  width: 75%;
-}
-#endOfLevelContainer #scoreContainer .score {
-  width: 25%;
-  text-align: center;
+.container {
+  padding: 1.4% 0.8%;
+  background-color: #67D6C5;
+  height: 72%;
+  width: 94%;
+  position: relative;
+  left: 3%;
+  right: 3%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 #scoreContainer {
-  height: 70%;
-  max-height: 70%;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
+#scoreList * {
+  box-sizing: border-box;
+}
+.percentBar {
+  height: 5%;
+  width: 94%;
+  position: relative;
+  left: 3%;
+  margin: 0.8% 0%;
+  text-align: left;
+}
+.percentBar .bar {
+  width: 30%;
+  height: 100%;
+  display: inline-block;
+  background-color: #67D6C5;
+}
+.percentBar .percent {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 50%;
+  display: inline-block;
+  padding: 0 1%;
+}
+.percentBar .tab {
+  position: absolute;
+  width: 9%;
+  height: 85%;
+  background-color: #67D6C5;
+  right: 0;
+  bottom: -30%;
+  border-top-left-radius: 25px;
+  background: linear-gradient(112deg, transparent 10%, #67d6c5 10%);
+}
+.endOfLevel-title {
+  height: 7%;
+  position: relative;
+}
+.endOfLevel-title > span {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  margin: auto;
+  font-size: 1.25em;
+}
+.separator {
+  width: 96%;
+  height: 0.7%;
+  background-color: #B1AEAB;
+  position: relative;
+  border-radius: 5% / 5%;
+  left: 2%;
+}
+#scoreList {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+#scoreList thead {
+  display: block;
+  width: 100%;
+  height: 10%;
+}
+#scoreList thead tr {
+  border-bottom: 1px solid black;
+  height: 100%;
+}
+#scoreList tr {
+  width: 100%;
+  display: flex;
+}
+#scoreList th {
+  position: relative;
+}
+#scoreList th > span {
+  position: absolute;
+  display: inline;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  height: 50%;
+  width: 50%;
+  margin: auto;
+  font-size: 1.4em;
+}
+#scoreList th.scores {
+  padding: 0 53px 0 0;
+}
+#scoreList th.actions,
+#scoreList td.actions {
+  flex-grow: 3;
+  display: inline-block;
+}
+#scoreList th.scores,
+#scoreList td.scores {
+  flex-grow: 1;
+  display: inline-block;
+  border-left: 1px solid black;
+}
+#scoreList td {
+  text-align: center;
+  padding: 0.5% 0;
+}
+#scoreList_tbody {
   overflow-y: scroll;
+  display: block;
+  width: 100%;
+  height: 90%;
+}
+#scoreList_tbody tr:nth-child(odd) {
+  background-color: #CFCFCF;
+}
+#scoreList_tbody tr:nth-child(even) {
+  background-color: #F2F2F2;
 }
 #endOfLevel-menu {
   text-align: center;
-  height: 8%;
+  height: 10%;
+  margin-top: 1%;
 }
-#endOfLevel-menu .button {
-  background-color: white;
-  width: 175px;
+#endOfLevel-menu .menuButton {
   position: relative;
-  height: 50px;
-  line-height: 50px;
-  top: 10px;
+  width: 18%;
+  margin: 0 5%;
   display: inline-block;
 }
