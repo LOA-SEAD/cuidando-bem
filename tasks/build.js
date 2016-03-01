@@ -50,7 +50,8 @@ module.exports = function( grunt ) {
             "copy:dev",
             "copy:libs",
             "replace:version",
-            "less:dev"
+            "less:dev",
+            "postcss:dev"
         ]);
 
         if ( target == "dev" ) {

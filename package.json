@@ -17,6 +17,7 @@
   },
   "version": "1.4.0",
   "devDependencies": {
+    "autoprefixer": "^6.3.3",
     "connect-livereload": "^0.5.4",
     "glob": "^6.0.1",
     "grunt": "~0.4.5",
@@ -35,11 +36,12 @@
     "grunt-gh-pages": "^1.0.0",
     "grunt-jscs": "^2.7.0",
     "grunt-jsdoc": "^0.5.7",
+    "grunt-newer": "*",
+    "grunt-postcss": "^0.7.2",
     "grunt-text-replace": "^0.3.12",
     "grunt-version": "^1.0.0",
     "load-grunt-tasks": "^3.3.0",
-    "time-grunt": "^1.1.0",
-    "grunt-newer": "*"
+    "time-grunt": "^1.1.0"
   },
   "bugs": {
     "url": "https://github.com/LOA-SEAD/cuidando-bem/issues"
