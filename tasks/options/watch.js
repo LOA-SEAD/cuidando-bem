@@ -31,7 +31,8 @@ module.exports = {
             "<%= pkg.source %>" + "/css/**/*.less"
         ],
         tasks: [
-            "less:dev"
+            "less:dev",
+            "postcss:dev"
         ]
     },
 
