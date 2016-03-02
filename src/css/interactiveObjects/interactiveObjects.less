@@ -9,7 +9,7 @@
   cursor: hand;
 }
 
-.interactiveObject:hover {
+.interactiveObject:hover:not(.no-glow) {
   @scale: 1.05;
   transform: scale( @scale, @scale );
   filter: drop-shadow(0 0 8px #91FF00);

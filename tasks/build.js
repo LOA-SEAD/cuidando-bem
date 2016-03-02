@@ -37,7 +37,7 @@ module.exports = function( grunt ) {
 
         grunt.log.write("Building " + pkg.name + ":" + target );
 
-        if ( target == "rel" ) {
+        if ( target == "rel" && ver !== "no") {
             grunt.task.run([
                 "version::" + ver
             ]);
