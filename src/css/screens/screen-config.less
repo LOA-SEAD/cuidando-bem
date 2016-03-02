@@ -1,5 +1,6 @@
 .config-backImage {
-    background: center no-repeat @screen-config;
+    position: absolute;
+    background-image:  @screen-config;
     &:extend(.menuBackImage);
 }
 
@@ -34,10 +35,10 @@
 #configContent {
     position: absolute;
     top: 32%;
-    left: 8%;
+    left: 5%;
     height: 55%;
     //background-color: yellow;
-    width: 100%;
+    width: 90%;
 
     .controlRow:not(:first-child) {
         margin-top: 10%;

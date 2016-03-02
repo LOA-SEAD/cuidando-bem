@@ -1,26 +1,27 @@
 #game {
-  width: 100vw;
-  height: 60vw; /* 10/6 */
-  max-height: 100vh;
-  max-width: 166.66vh; /* 10/6  = 1.666 */
+    width: 100vw;
+    height: 60vw; /* 10/6 */
+    max-height: 100vh;
+    max-width: 166.66vh; /* 10/6  = 1.666 */
 
-  margin: auto;
-  position: absolute;
+    margin: auto;
+    position: absolute;
 
-  top:0;bottom:0; /* vertical center */
-  left:0;right:0; /* horizontal center */
+    top:0;bottom:0; /* vertical center */
+    left:0;right:0; /* horizontal center */
 
-  background-color: red;
+    background-image: @bg-body;
+    background-size: 16% 25%;
 }
 
-#backgroundScene {
-  position: absolute;
-  height: 100%;
-  width: 100%;
+#backgroundScene, #stage {
+    position: absolute;
+    height: 100%;
+    width: 100%;
 }
 
 #interactiveArea {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
