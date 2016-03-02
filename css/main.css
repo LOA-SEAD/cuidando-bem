@@ -218,7 +218,6 @@ html,
 body {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-  -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -395,7 +394,8 @@ body {
 }
 .ui-slider.ui-state-disabled .ui-slider-handle,
 .ui-slider.ui-state-disabled .ui-slider-range {
-  filter: inherit;
+  -webkit-filter: inherit;
+          filter: inherit;
 }
 .ui-slider-horizontal {
   height: .8em;
@@ -595,61 +595,71 @@ p.title {
   background-image: url(../images/misc/locker.png);
 }
 .l0 {
-  transform: rotate(-90deg) translate(260px) rotate(90deg);
+  -webkit-transform: rotate(-90deg) translate(260px) rotate(90deg);
+          transform: rotate(-90deg) translate(260px) rotate(90deg);
 }
 .l0 > .image {
   background-image: url(../images/modalScenes/pulseira.png);
 }
 .l1 {
-  transform: rotate(-54deg) translate(260px) rotate(54deg);
+  -webkit-transform: rotate(-54deg) translate(260px) rotate(54deg);
+          transform: rotate(-54deg) translate(260px) rotate(54deg);
 }
 .l1 > .image {
   background-image: url(../images/interactiveObjects/coxim.png);
 }
 .l2 {
-  transform: rotate(-18deg) translate(260px) rotate(18deg);
+  -webkit-transform: rotate(-18deg) translate(260px) rotate(18deg);
+          transform: rotate(-18deg) translate(260px) rotate(18deg);
 }
 .l2 > .image {
   background-image: url(../images/interactiveObjects/aparelhodepressao_lateral.png);
 }
 .l3 {
-  transform: rotate(18deg) translate(260px) rotate(-18deg);
+  -webkit-transform: rotate(18deg) translate(260px) rotate(-18deg);
+          transform: rotate(18deg) translate(260px) rotate(-18deg);
 }
 .l3 > .image {
   background-image: url(../images/interactiveObjects/placa_neutra.png);
 }
 .l4 {
-  transform: rotate(54deg) translate(260px) rotate(-54deg);
+  -webkit-transform: rotate(54deg) translate(260px) rotate(-54deg);
+          transform: rotate(54deg) translate(260px) rotate(-54deg);
 }
 .l4 > .image {
   background-image: url(../images/interactiveObjects/seringa_20_ml.png);
 }
 .l5 {
-  transform: rotate(90deg) translate(260px) rotate(-90deg);
+  -webkit-transform: rotate(90deg) translate(260px) rotate(-90deg);
+          transform: rotate(90deg) translate(260px) rotate(-90deg);
 }
 .l5 > .image {
   background-image: url(../images/interactiveObjects/gaze_esteril.png);
 }
 .l6 {
-  transform: rotate(126deg) translate(260px) rotate(-126deg);
+  -webkit-transform: rotate(126deg) translate(260px) rotate(-126deg);
+          transform: rotate(126deg) translate(260px) rotate(-126deg);
 }
 .l6 > .image {
   background-image: url(../images/interactiveObjects/equipo_de_infusao_de_dieta.png);
 }
 .l7 {
-  transform: rotate(162deg) translate(260px) rotate(-162deg);
+  -webkit-transform: rotate(162deg) translate(260px) rotate(-162deg);
+          transform: rotate(162deg) translate(260px) rotate(-162deg);
 }
 .l7 > .image {
   background-image: url(../images/interactiveObjects/clorpromazina_medicamento.png);
 }
 .l8 {
-  transform: rotate(198deg) translate(260px) rotate(-198deg);
+  -webkit-transform: rotate(198deg) translate(260px) rotate(-198deg);
+          transform: rotate(198deg) translate(260px) rotate(-198deg);
 }
 .l8 > .image {
   background-image: url(../images/interactiveObjects/carrinho_anestesico.png);
 }
 .l9 {
-  transform: rotate(234deg) translate(260px) rotate(-234deg);
+  -webkit-transform: rotate(234deg) translate(260px) rotate(-234deg);
+          transform: rotate(234deg) translate(260px) rotate(-234deg);
 }
 .l9 > .image {
   background-image: url(../images/interactiveObjects/soro_glicofisiologico_1000_ml.png);
@@ -874,6 +884,12 @@ p.title {
 .interactiveObject {
   position: absolute;
   cursor: hand;
+}
+.interactiveObject:hover:not(.no-glow) {
+  -webkit-transform: scale(1.05, 1.05);
+          transform: scale(1.05, 1.05);
+  -webkit-filter: drop-shadow(0 0 8px #91ff00);
+          filter: drop-shadow(0 0 8px #91ff00);
 }
 .interactiveObject.disabled {
   cursor: default;
@@ -1204,10 +1220,6 @@ p.title {
     right: 458px;
   }
 }
-.intObj-braceletConfirmation:hover {
-  background-image: url(../images/interactiveObjects/checkmark.png);
-  background-size: contain;
-}
 .intObj-braceletConfirmed {
   cursor: default;
   background-image: url(../images/interactiveObjects/checkmark.png);
@@ -1256,10 +1268,6 @@ p.title {
     height: 103.5px;
   }
 }
-.intObj-thermometer:hover {
-  box-shadow: none;
-  background-image: url(../images/interactiveObjects/termometro-hover.png);
-}
 .intObj-bloodPressureMonitor {
   background-image: url(../images/interactiveObjects/pressao.png);
   background-size: contain;
@@ -1283,10 +1291,6 @@ p.title {
     width: 150px;
     height: 174.5px;
   }
-}
-.intObj-bloodPressureMonitor:hover {
-  box-shadow: none;
-  background-image: url(../images/interactiveObjects/pressao-hover.png);
 }
 .intObj-oximeter {
   background-image: url(../images/interactiveObjects/oximetro.png);
@@ -1312,10 +1316,6 @@ p.title {
     height: 118.2px;
   }
 }
-.intObj-oximeter:hover {
-  box-shadow: none;
-  background-image: url(../images/interactiveObjects/oximetro-hover.png);
-}
 .intObj-watch {
   background-image: url(../images/interactiveObjects/relogio.png);
   background-size: contain;
@@ -1339,10 +1339,6 @@ p.title {
     width: 120px;
     height: 159.36px;
   }
-}
-.intObj-watch:hover {
-  box-shadow: none;
-  background-image: url(../images/interactiveObjects/relogio-hover.png);
 }
 .intObj-aguaPotavel {
   background-image: url(../images/interactiveObjects/garrafa_agua_potavel.png);
@@ -1418,10 +1414,6 @@ p.title {
     width: 216px;
     height: 216px;
   }
-}
-.intObj-cushion:hover {
-  box-shadow: none;
-  background-image: url(../images/interactiveObjects/coxim-hover.png);
 }
 .intObj-agulha_40x12 {
   background-image: url(../images/interactiveObjects/agulha_40x12.png);
@@ -2494,21 +2486,21 @@ p.title {
 @media (min-width: 768px) {
   .temp_termometro {
     font-size: 35px;
-    top: 47%;
+    top: 46%;
     left: 55%;
   }
 }
 @media (min-width: 992px) {
   .temp_termometro {
     font-size: 45px;
-    top: 47%;
+    top: 46%;
     left: 55%;
   }
 }
 @media (min-width: 1200px) {
   .temp_termometro {
     font-size: 53px;
-    top: 47%;
+    top: 46%;
     left: 55%;
   }
 }
@@ -3293,7 +3285,6 @@ p.title {
   height: 25px;
   box-shadow: 6px 5px 9px -9px #000000;
   -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 .arrow.top:after {
@@ -3355,10 +3346,10 @@ p.title {
 .action-medir_saturacao_02 {
   background-image: url(../images/actionButtons/oximetro.jpg);
 }
-.action-abrir_gaveta {
+.action-abrirGaveta {
   background-image: url(../images/actionButtons/gaveta.jpg);
 }
-.action-fechar_gaveta {
+.action-fecharGaveta {
   background-image: url(../images/actionButtons/gaveta.jpg);
 }
 .action-pegar_termometro {
@@ -3643,6 +3634,8 @@ p.title {
 }
 #scoreList tr {
   width: 100%;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 #scoreList th {
@@ -3665,12 +3658,16 @@ p.title {
 }
 #scoreList th.actions,
 #scoreList td.actions {
-  flex-grow: 3;
+  -webkit-flex-grow: 3;
+      -ms-flex-positive: 3;
+          flex-grow: 3;
   display: inline-block;
 }
 #scoreList th.scores,
 #scoreList td.scores {
-  flex-grow: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
   display: inline-block;
   border-left: 1px solid black;
 }
