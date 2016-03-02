@@ -9,6 +9,12 @@
   cursor: hand;
 }
 
+.interactiveObject:hover {
+  @scale: 1.05;
+  transform: scale( @scale, @scale );
+  filter: drop-shadow(0 0 8px #91FF00);
+}
+
 .interactiveObject.disabled {
   cursor: default;
 }
@@ -160,7 +166,7 @@
 
 
 .intObj-irLeitoEsquerda {
-    
+
     width: 25%;
   height: 35%;
   bottom: 22%;
@@ -230,11 +236,11 @@
 }
 
 .intObj-irAlaMasculina_corredor {
-    
+
     left: 80%;
     top: 13%;
     width: 12%;
-    height: 28%; 
+    height: 28%;
 }
 
 .intObj-ir_farmacia_corredor {
@@ -392,10 +398,6 @@
   }
 
 }
-.intObj-braceletConfirmation:hover {
-  background-image: @intObj-braceletConfirmationGreen;
-  background-size: contain;
-}
 
 .intObj-braceletConfirmed {
   cursor: default;
@@ -457,10 +459,6 @@
   }
 
 }
-.intObj-thermometer:hover{
-  box-shadow: none;
-  background-image: @intObj-thermometer-hover;
-}
 
 .intObj-bloodPressureMonitor {
   background-image: @intObj-bloodPressureMonitor;
@@ -484,10 +482,6 @@
     height: 0.5 * @bloodPressure-height;
   }
 }
-.intObj-bloodPressureMonitor:hover{
-  box-shadow: none;
-  background-image: @intObj-bloodPressureMonitor-hover;
-}
 
 .intObj-oximeter {
   background-image: @intObj-oximeter;
@@ -509,10 +503,6 @@
     width: 0.6 * @oximeter-width;
     height: 0.6 *  @oximeter-height;
   }
-}
-.intObj-oximeter:hover{
-  box-shadow: none;
-  background-image: @intObj-oximeter-hover;
 }
 
 .intObj-watch {
@@ -536,12 +526,8 @@
     height: 0.24 *  @watch-height;
   }
 }
-.intObj-watch:hover{
-  box-shadow: none;
-  background-image: @intObj-watch-hover;
-}
 
-.intObj-aguaPotavel{ 
+.intObj-aguaPotavel{
   background-image: @intObj-aguaPotavel;
 
   background-size: contain;
@@ -620,10 +606,6 @@
     width: 0.9 * @intObj-cushion-width;
     height: 0.9 * @intObj-cushion-height;
   }
-}
-.intObj-cushion:hover {
-  box-shadow: none;
-  background-image: @intObj-cushion-hover;
 }
 
 //18/11/2015
@@ -728,7 +710,7 @@
 
    background-size: contain;
    background-repeat: no-repeat;
-  
+
    top: 25%;
    left: 35%;
    @bandeja-width: 0.15 * 1150px;
