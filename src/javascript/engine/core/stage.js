@@ -1,17 +1,19 @@
 /**
  * The module stage is responsible to change and control the "screen" presented to the user.
- * For the module work it is needed to register "views" and "controllers" before calling the method start
+ * For the module work it is needed to register "views" and "controllers" before calling the method
+ * start
  *
  * A view is a html file, and a controller is a js file that is responsible to make its view work.
  * To bind all events to the view, as for example button clicks.
- * Because this project uses require.js every call to a new "screen" will asynchronously load the new view and controller
+ * Because this project uses require.js every call to a new "screen" will asynchronously load the
+ * new view and controller
  *
  * @name Stage
  * @module
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define(function () {
+define(function() {
     console.info("Stage - module loaded");
 
     var Errors = {
@@ -45,7 +47,8 @@ define(function () {
     var controllerPath;
 
     /**
-     * Container should be an jquery selector string relative to the main html file. The selected element will be used
+     * Container should be an jquery selector string relative to the main html file.
+     * The selected element will be used
      * as base for all other elements that the module stage will append.
      * @private
      * @type {string}
@@ -55,8 +58,10 @@ define(function () {
     var containerSelector;
 
     var startingScreenId = 0;
+
     /**
-     * This function is called to init this module. It checks if an id was passed to the module and changes the screen
+     * This function is called to init this module. It checks if an id was passed to the module
+     * and changes the screen
      * to the starting screen. That is also required to be registered.
      * @method start
      * @public
@@ -64,10 +69,11 @@ define(function () {
      * @memberOf module:Stage
      */
     function start() {
-        if(containerSelector == undefined)
-            throw new Error(Errors.undefinedContainer);
+        if ( containerSelector == undefined ) {
+            throw new Error( Errors.undefinedContainer );
+        }
 
-        changeScreen(startingScreenId);
+        changeScreen( startingScreenId );
     }
 
     /**
@@ -80,7 +86,7 @@ define(function () {
      *
      * @memberOf module:Stage
      */
-    function Screen(_name, _htmlPage, _controllerName) {
+    function Screen( _name, _htmlPage, _controllerName ) {
 
         /**
          * The screen name
@@ -132,7 +138,7 @@ define(function () {
         return {
             getHtmlPage: getHtmlPage,
             getControllerName: getControllerName
-        }
+        };
     }
 
     /**
@@ -145,9 +151,9 @@ define(function () {
      *
      * @memberOf module:Stage
      */
-    function registerScreen(_name, _htmlPage, _controller) {
-        console.log('\tAdding Screen: ', _name, _htmlPage, _controller);
-        screens.push(new Screen(_name, _htmlPage, _controller));
+    function registerScreen( _name, _htmlPage, _controller ) {
+        console.log("\tAdding Screen: ", _name, _htmlPage, _controller );
+        screens.push( new Screen( _name, _htmlPage, _controller ) );
     }
 
     /**
@@ -158,18 +164,25 @@ define(function () {
      *
      * @memberOf module:Stage
      */
-    function changeScreen(nextScreenId) {
-        var nextScreen = screens[nextScreenId];
+    function changeScreen( nextScreenId ) {
+        var nextScreen = screens[ nextScreenId ];
 
-        //console.log('text!'+htmlPath+nextScreen.getHtmlPage());
+        // console.log('text!'+htmlPath+nextScreen.getHtmlPage());
 
+        var template = "text!" + htmlPath + nextScreen.getHtmlPage(),
+            controller = controllerPath + nextScreen.getControllerName();
 
-        require(['text!' + htmlPath + nextScreen.getHtmlPage(), controllerPath + nextScreen.getControllerName()], function (page, controller) {
-            console.log("Actual Screen Name: " + nextScreen.getControllerName());
-            $(containerSelector).empty();
-            $(containerSelector).append(page);
-            controller.load();
-        });
+        require([
+                template,
+                controller
+            ],
+            function( page, controller ) {
+                console.log("Actual Screen Name: " + nextScreen.getControllerName() );
+                $( containerSelector ).empty();
+                $( containerSelector ).append( page );
+                controller.load();
+            }
+        );
     }
 
     /**
@@ -180,7 +193,7 @@ define(function () {
      *
      * @memberOf module:Stage
      */
-    function setHtmlPath(_path) {
+    function setHtmlPath( _path ) {
         htmlPath = _path;
     }
 
@@ -193,7 +206,7 @@ define(function () {
      *
      * @memberOf module:Stage
      */
-    function setContainer(_id){
+    function setContainer( _id ) {
         containerSelector = _id;
     }
 
@@ -206,7 +219,7 @@ define(function () {
      *
      * @memberOf module:Stage
      */
-    function setStartingScreenId(_id){
+    function setStartingScreenId( _id ) {
         startingScreenId = _id;
     }
 
@@ -218,7 +231,7 @@ define(function () {
      *
      * @memberOf module:Stage
      */
-    function getContainer(){
+    function getContainer() {
         return containerSelector;
     }
 
@@ -230,7 +243,7 @@ define(function () {
      *
      * @memberOf module:Stage
      */
-    function setControllersPath(_path) {
+    function setControllersPath( _path ) {
         controllerPath = _path;
     }
 
@@ -245,5 +258,5 @@ define(function () {
 
         setContainer: setContainer,
         getContainer: getContainer
-    }
+    };
 });

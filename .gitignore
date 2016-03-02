@@ -7,20 +7,18 @@ node_modules
 #   BOWER
 libs/
 
+#   GRUNT
+.grunt
+
 #   Production
 dev/
+dev.env.json
 prod/
 dist/
+
+#   JS LINTING
+jscs.log
 
 #   JsDoc Documentation
 docs/
 
-#   Example files
-*.example
-
-#   Office
-*.~vsd
-
-#   Bat files
-*.bat
-!server-2.0.bat

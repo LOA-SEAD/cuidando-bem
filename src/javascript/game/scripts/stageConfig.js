@@ -1,31 +1,31 @@
 /*
-This module is responsible to register every screen used in this application, in this case a game.
+ This module is responsible to register every screen used in this application, in this case a game.
 
-@author Otho - Marcelo Lopes Lotufo
+ @author Otho - Marcelo Lopes Lotufo
  */
-define(['Stage'], function (Stage) {
+define([ "Stage" ], function( Stage ) {
     console.groupCollapsed("Stage Config:");
 
-    Stage.setHtmlPath('../html/screens/');
-    Stage.setControllersPath('./menu/');
-    Stage.setStartingScreenId(0);
+    Stage.setHtmlPath("../html/screens/");
+    Stage.setControllersPath("./menu/");
+    Stage.setStartingScreenId( 0 );
 
-//0
-    Stage.registerScreen('mainMenu', 'mainMenu.html', 'screen_mainMenu_controller');
-//1
-    Stage.registerScreen('game', 'gameContainer.html', 'screen_game_controller');
-//2
-    Stage.registerScreen('loadGame', 'loadGame.html', 'screen_loadGame_controller');
-//3
-    Stage.registerScreen('credits', 'credits.html', 'screen_credits_controller');
-//4
-    Stage.registerScreen('configuration', 'configuration.html', 'screen_configuration_controller');
-//5
-    Stage.registerScreen('newGameSlotSelect', 'newGameSlotSelect.html', 'screen_newGameSlotSelect_controller');
-//6
-    Stage.registerScreen('levelSelect', 'levelSelect.html', 'screen_levelSelect_controller');
-//7
-    Stage.registerScreen('conteudo', 'conteudo.html', 'screen_conteudo_controller');
+// 0 - mainMenu
+    Stage.registerScreen("mainMenu", "mainMenu.html", "screenMainMenuController");
+// 1 - game
+    Stage.registerScreen("game", "gameContainer.html", "screenGameController");
+// 2 - loadGame
+    Stage.registerScreen("loadGame", "loadGame.html", "screenLoadGameController");
+// 3 - credits
+    Stage.registerScreen("credits", "credits.html", "screenCreditsController");
+// 4 - configuration
+    Stage.registerScreen("configuration", "configuration.html", "screenConfigurationController");
+// 5 - newGameSlotSelect
+    Stage.registerScreen("newGameSlotSelect", "newGameSlotSelect.html", "screenNewGameSlotSelectController");
+// 6 - levelSelect
+    Stage.registerScreen("levelSelect", "levelSelect.html", "screenLevelSelectController");
+// 7 - conteudo
+    Stage.registerScreen("conteudo", "conteudo.html", "screenConteudoController");
 
     console.groupEnd();
 });

@@ -2,3 +2,101 @@
     background: center no-repeat @screen-config;
     &:extend(.menuBackImage);
 }
+
+.config.menuHorizontal {
+    bottom: 12%;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+
+    .menuButton {
+        display: inline;
+        padding: 0 25px;
+    }
+}
+
+.configTitle {
+    top: 6%;
+    position: absolute;;
+    width: 100%;
+    text-align: center;
+
+    .titleText {
+        display: inline;
+        padding: 10px 50px;
+        background-color: rgba(204, 214, 229, 0.6);
+        font-family: "Pacifico", sans-serif;
+        font-size: 45px;
+        border-radius: 12px;
+    }
+}
+
+#configContent {
+    position: absolute;
+    top: 32%;
+    left: 8%;
+    height: 55%;
+    //background-color: yellow;
+    width: 100%;
+
+    .controlRow:not(:first-child) {
+        margin-top: 10%;
+    }
+
+    .controlRow{
+
+        > div, .control > div {
+            display: inline-block;
+        }
+
+        .title {
+            position: absolute;
+            left: 0%;
+            font-family: "Pacifico", sans-serif;
+            font-size: 25px;
+            padding: 10px 50px;
+            background-color: rgba(204, 214, 229, 0.6);
+            border-radius: 12px;
+        }
+        .control {
+            width: 100%;
+            .slider {
+                background-color: white;
+                width: 50%;
+                height: 7px;
+                margin-bottom: 5px;
+                span {
+                    background-color: #e8b36d;
+                    border-radius: 25px;
+                    width: 30px;
+                    height: 30px;
+                    top: -10px;
+                }
+            }
+            .mute.desactive {
+                background: @muteDesactive;
+                background-size: cover;
+            }
+            .mute {
+                background: @muteActive;
+                background-size: cover;
+                //background-color: red;
+                width: 30px;
+                height: 30px;
+                position: relative;
+                top: 7px;
+            }
+            > span {
+                font-family: "Pacifico", sans-serif;
+                font-size: 30px;
+                padding: 0 20px;
+            }
+            .plus {
+                position: relative;
+                top: -2px;
+            }
+        }
+    }
+
+
+}

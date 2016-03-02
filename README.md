@@ -1,13 +1,15 @@
-Cuidando Bem
+# Cuidando Bem
 
-## Setup
+A point and click game using HTML5
 
-Dependencies:
+### Dev. Dependencies:
 * [node](http://nodejs.org/)
 * [grunt](http://gruntjs.com/)
 * [bower](http://bower.io/)
 
-After installing the dependencies run this using your prompt
+### Building the project
+
+First install the Dev. dependencies and run
 
 ```
 
@@ -16,23 +18,44 @@ bower install
 
 ```
 
-## Building
+### Building
 
-Use grunt build
+    grunt build
 
-## Running
+or
 
-To run this project you will need a http server
+    grunt build --target dev
 
-This project includes a server.bat that runs a python3 command that makes a simple http server from the folder it is executed.
+Will build the project so it can be easily changed and tested.
+After running this command once, check the file "dev.env.json" to speed up your testing for particular game levels or screens
 
-## Documentation
+    grunt build --target prod
 
-We are also documenting our software using JSDOC commenting style
-To see our documentation you will have to use grunt
+Will build the project as it should be deployed, with all minifications configured. It ignores "dev.env.json" config. It removes all console logs.
 
-```
+    grunt build --target rel
 
-grunt docs
+Will update the project version based on --v variable and compress all files into a .zip for easily deploying on a web server.
 
-```
+### Running
+
+    grunt serve
+
+or
+
+    grunt serve --target dev
+
+Will create an http serving the game 'dev' version on localhost:8080 so you can test it and actually read the source files
+
+    grunt serve --target prod
+
+Will run the game as you would see it published, also on localhost:8080
+
+### Documentation
+
+The project is documented using JSDOC commenting style
+
+To see our documentation you will have to run
+
+    grunt docs
+

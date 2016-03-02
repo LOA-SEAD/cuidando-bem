@@ -1,111 +1,265 @@
-#endOfLevel{
-  position: relative;
-  top: 50px;
-  left: 165px;
+#endOfLevel {
+    position: absolute;
+    top: 5%;
+    left: 2%;
+    height: 90%;
+    width: 96%;
+    // padding: 20px;
 
-  display: none;
-  width: 70%;
-  background-color: lightgrey;
-  //height: 50%;
-  padding: 20px;
+    box-sizing: border-box;
+    background-color: #CED1D2;
+    border-radius: 4% ~"/" 5%;
+    display: none;
 }
 
-#endOfLevelContainer{
-  //background-color: blue;
-  //height: 100%;
-  //width: 100%;
+.container {
+    padding: 1.4% 0.8%;
+    background-color: #67D6C5;
+    height: 72%;
+    width: 94%;
+    position: relative;
+    left: 3%;
+    right: 3%;
 
-
-  .endOfLevel-title{
-    padding: 10px;
-
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-top: 1px solid black;
-  }
-  #scoreContainer{
-    #scoreList{
-      //height: 90%;
-      width: 100%;
-      border: 1px solid black;
-
-      thead{
-        tr{
-          height: 30px;
-          background-color: grey;
-          border-bottom: 1px solid black;
-        }
-        th:not(:last-child){
-          border-right: 1px solid black;
-        }
-      }
-      tbody{
-
-        tr:nth-child(odd){
-          background-color: lightgrey;
-        }
-        tr:nth-child(even){
-          background-color: white;
-        }
-
-        tr{
-          border-bottom: 1px solid black;
-        }
-        td:not(:last-child){
-          border-right: 1px solid black;
-        }
-      }
-    }
-
-
-    .titles{
-      width: 75%;
-    }
-
-    .scores{
-      width: 25%;
-    }
-
-    .title{
-      width: 75%;
-    }
-
-    .score{
-      width: 25%;
-      text-align: center;
-    }
-  }
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
-#scoreContainer{
-  height: 70%;
-  max-height: 70%;
-  overflow-y: scroll;
+#scoreContainer {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+#scoreList * {
+    box-sizing: border-box;
+}
+.percentBar {
+    height: 5%;
+    width: 94%;
+    //background-color: red;
+    position: relative;
+    left: 3%;
+    margin: 0.8% 0%;
+    text-align: left;
+
+    .bar {
+        width: 30%;
+        height: 100%;
+        display: inline-block;
+        background-color: #67D6C5;
+    }
+    .percent {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 50%;
+        display: inline-block;
+        padding: 0 1%;
+    }
+    .tab {
+        position: absolute;
+        width: 9%;
+        height: 85%;
+        background-color: #67D6C5;
+        right: 0;
+        bottom: -30%;
+        border-top-left-radius: 25px;
+        background: linear-gradient(112deg, transparent 10%, #67D6C5 10%);
+    }
+}
+.endOfLevel-title {
+    height: 7%;
+    position: relative;
+
+    > span {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 50%;
+        margin: auto;
+        font-size: 1.25em;
+    }
+}
+.separator {
+    width: 96%;
+    height: 0.7%;
+    background-color: #B1AEAB;
+    position: relative;
+    border-radius: 5% ~"/" 5%;
+    left: 2%;
+}
+#scoreList {
+
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    thead {
+        display: block;
+        width: 100%;
+        height: 10%;
+
+        tr {
+            border-bottom: 1px solid black;
+            height: 100%;
+        }
+
+    }
+    tr {
+        width: 100%;
+        display: flex;
+    }
+
+    th {
+        position: relative;
+        // left: 0;
+        // bottom: 0;
+        // right: 0;
+        // top: 0;
+        // margin: auto;
+    }
+
+    th > span {
+        position: absolute;
+        display: inline;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        top: 0;
+        height: 50%;
+        width: 50%;
+        margin: auto;
+        font-size: 1.4em;
+    }
+
+    th.scores {
+        padding: 0 53px 0 0;
+    }
+
+    th.actions, td.actions {
+        flex-grow: 3;
+        display: inline-block;
+    }
+
+    th.scores, td.scores {
+        flex-grow: 1;
+        display: inline-block;
+        border-left: 1px solid black;
+    }
+
+    td {
+        text-align: center;
+        padding: 0.5% 0;
+    }
+}
+
+#scoreList_tbody {
+    overflow-y: scroll;
+    display: block;
+    width: 100%;
+    height: 90%;
+
+    tr:nth-child(odd){
+        background-color: #CFCFCF;
+    }
+    tr:nth-child(even){
+        background-color: #F2F2F2;
+    }
 }
 
 #endOfLevel-menu{
-  text-align: center;
-  height: 8%;
+    text-align: center;
+    height: 10%;
+    margin-top: 1%;
 
-  .button{
-    background-color: white;
-    width: 175px;
-    position: relative;
-    height: 50px;
-    line-height: 50px;
-    top: 10px;
-    display: inline-block;
-  }
+    .menuButton{
+        position: relative;
+        width: 18%;
+        margin: 0 5%;
+        display: inline-block;
+    }
 }
 
+// .endOfLevel-title{
+//     padding: 10px;
+// }
 
-.scoreItem{
+// #container {
+//     padding: 1.4%;
+//     background-color: #67D6C5;
+// }
 
-  .title{
+// #scoreContainer {
+//     border: 1px solid black;
+//     #scoreList {
+//         //height: 90%;
+//         width: 100%;
+//         //border: 1px solid black;
 
-  }
-  .score{
+//         thead, tbody {
+//             display: block;
+//         }
+//         thead{
+//             tr{
+//                 height: 30px;
+//                 background-color: grey;
+//                 border-bottom: 1px solid black;
+//             }
+//             th:not(:last-child){
+//                 border-right: 1px solid black;
+//             }
+//         }
+//         tbody{
 
-  }
+//             tr:nth-child(odd){
+//                 background-color: lightgrey;
+//             }
+//             tr:nth-child(even){
+//                 background-color: white;
+//             }
 
-}
+//             tr{
+//                 border-bottom: 1px solid black;
+//             }
+//             td:not(:last-child){
+//                 border-right: 1px solid black;
+//             }
+//         }
+//     }
+
+
+//     .titles{
+//         width: 75%;
+//     }
+
+//     .scores{
+//         width: 25%;
+//     }
+
+//     .title{
+//         width: 75%;
+//     }
+
+//     .score{
+//         width: 25%;
+//         text-align: center;
+//     }
+// }
+
+// #scoreContainer{
+//     height: 80%;
+// }
+
+// #scoreList_tbody {
+//     overflow-y: scroll;
+
+// }
+
+

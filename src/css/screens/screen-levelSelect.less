@@ -5,48 +5,206 @@
 
 #levelSelectContainer{
   width: 100%;
-  height: 50%;
-  position: relative;
-  bottom: 165px;
-  right: 20px;
+  height: 100%;
+  position: absolute;
+  top: 0;
 }
 
 #levelSelector {
-  width: 40%;
-  height: 70%;
-  margin-left: 32%;
+  top: 50%;
+  position: relative;
 }
 
-.level {
-  width: 30%;
-  height: 30%;
-  background-color: #58CA85;
-  float: left;
-  margin: 5px;
-  border-radius: 15px;
+p.title {
+  font-size: 40px;
+  color: black;
+  margin: 0;
+  position: relative;
+  font-family: Pacifico, monospace;
+  top: -45px;
+}
 
+.level:hover:not(.disabled), .level.selected {
+  .back {
+    @size: 100%;
+
+    background-color: #E39341;
+    width: @size;
+    height: @size;
+    margin: (100% - @size)/2;
+
+    border: 2px solid #D57A20;
+  }
+
+  .image {
+    @size: 74%;
+
+    width: @size;
+    height: @size;
+    margin: (100% - @size)/2;
+  }
+}
+.level.selected:hover {
+  .back {
+    background-color: #ffa44a;
+  }
+}
+.level {
+  @size: 140px;
+  @half: 70px;
+
+  width: @size;
+  height: @size;
+
+  //display: inline-block;
   cursor: hand;
 
-  border-bottom: 3px solid #468b4a;
+  display: block;
+  position: absolute;
+  top:  50%;
+  left: 50%;
+
+  margin: -@half;
+
+  border-radius: 50%;
+  .back {
+    @size: 70%;
+
+    background-color: #E39341;
+    width: @size;
+    height: @size;
+    margin: (100% - @size)/2;
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+
+    transition-duration: 0.3s;
+    transition-property: width, height, margin;
+  }
+
+  .image {
+    @size: 55%;
+
+    width: @size;
+    height: @size;
+    margin: (100% - @size)/2;
+    display: block;
+    position: absolute;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    transition-duration: 0.3s;
+    transition-property: width, height, margin;
+  }
 }
 
-.level:first-child{
-  width: 94%;
+.level.disabled {
+  > .back {
+    background-color: #ce5b5b;
+  }
+  > .image:not(.next) {
+    background-image: @locker;
+  }
 }
 
-.level.disabled{
-  background-color: #8E8F8E !important;
-  border-bottom: 3px solid #5b5c5b !important;
+@rad: 260px;
+@els: 10;
+@deg: 360deg / @els;
+.l0 {
+  @dg: @deg * 0 - @deg * 2.5;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+
+  > .image {
+    background-image: @bg-bracelet;
+  }
 }
 
-.level:active {
-  background-color: #b61f20;
-  border-bottom: 3px solid #8b191a;
+.l1 {
+  @dg: @deg * 1 - @deg * 2.5;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+
+  > .image {
+    background-image: @intObj-cushion;
+  }
+}
+
+.l2 {
+  @dg: @deg * 2 - @deg * 2.5;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+
+  > .image {
+    background-image: @intObj-aparelhoGlicemia;
+  }
+}
+
+.l3 {
+  @dg: @deg * 3 - @deg * 2.5;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+
+  > .image {
+    background-image: @intObj-placa_neutra;
+  }
+}
+
+.l4 {
+  @dg: @deg * 4 - @deg * 2.5;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+
+  > .image {
+    background-image: @intObj-seringa_20_ml;
+  }
+}
+
+.l5 {
+  @dg: @deg * 5 - @deg * 2.5;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+
+  > .image {
+    background-image: @intObj-gaze_esteril;
+  }
+}
+
+.l6 {
+  @dg: @deg * 6 - @deg * 2.5;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+
+  > .image {
+    background-image: @intObj-equipo_de_infusao_de_dieta;
+  }
+}
+
+.l7 {
+  @dg: @deg * 7 - @deg * 2.5;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+
+  > .image {
+    background-image: @intObj-clorpromazina_medicamento;
+  }
+}
+
+.l8 {
+  @dg: @deg * 8 - @deg * 2.5;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+
+  > .image {
+    background-image: @intObj-carrinho_anestesico;
+  }
+}
+
+.l9 {
+  @dg: @deg * 9 - @deg * 2.5;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+
+  > .image {
+    background-image: @intObj-soro_glicofisiologico_1000_ml;
+  }
 }
 
 .levelSelect-button {
-  bottom: -70px;
+  bottom: -50px;
   position: absolute;
-  width: 50%;
-  left: 55%;
+  width: 15%;
+  right: 1%;
 }

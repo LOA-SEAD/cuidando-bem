@@ -1,5 +1,6 @@
 /**
- * This module ensures that all the images that are going to be used during the game are already loaded in cache before
+ * This module ensures that all the images that are going to be used during the game are already
+ * loaded in cache before
  * they are requested. This way there is no load time between scenes.
  *
  * For this module to work properly it must receive a json object with all images urls
@@ -8,7 +9,7 @@
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define([], function(){
+define([], function() {
     console.info("ImageLoader - module loaded");
 
     /**
@@ -42,7 +43,8 @@ define([], function(){
     var imagesToLoad = 0;
 
     /**
-     * This is a callback function that is called when the imageLoader has finished to load an array of images
+     * This is a callback function that is called when the imageLoader has finished to load an array
+     * of images
      *
      * @type {function}
      * @private
@@ -62,19 +64,19 @@ define([], function(){
      *
      * @memberOf module:Image Loader
      */
-    function getAsArray(baseDir, obj){
+    function getAsArray( baseDir, obj ) {
         var arr = [];
         var x;
-        if(typeof obj === "object"){
-            if(obj instanceof Array){
-                arr = arr.concat(obj);
-            }else {
-                for (x in obj) {
-                    arr = arr.concat(getAsArray(baseDir, obj[x]));
+        if ( typeof obj === "object") {
+            if ( obj instanceof Array ) {
+                arr = arr.concat( obj );
+            } else {
+                for ( x in obj ) {
+                    arr = arr.concat( getAsArray( baseDir, obj[ x ] ) );
                 }
             }
-        }else{
-            arr.push(baseDir + obj);
+        } else {
+            arr.push( baseDir + obj );
         }
 
         return arr;
@@ -82,20 +84,21 @@ define([], function(){
 
     /**
      * When an image is loaded this function is called.
-     * For each image loaded, count it in loaded and if loaded is equal to imagesToLoad call the callback function
+     * For each image loaded, count it in loaded and if loaded is equal to imagesToLoad call the
+     * callback function
      *
      * @private
      *
      * @memberOf module:Image Loader
      */
-    function onLoad(){
-        var evt = arguments[0];
+    function onLoad() {
+        var evt = arguments[ 0 ];
 
         loaded++;
-        //console.log(arguments.length, arguments[0]);
-        console.log("Loaded Image: " + evt.target.src);
+        // console.log(arguments.length, arguments[0]);
+        console.log("Loaded Image: " + evt.target.src );
 
-        if(loaded == imagesToLoad) {
+        if ( loaded == imagesToLoad ) {
             console.groupEnd();
             loading = false;
             callback();
@@ -114,11 +117,10 @@ define([], function(){
      *
      * @memberOf module:Image Loader
      */
-    function load(baseDir, pathObject, _callback){
-        if(loading){
+    function load( baseDir, pathObject, _callback ) {
+        if ( loading ) {
             throw new Error("Can't load two path objects at the same time");
-        }
-        else{
+        } else {
             var id;
 
             loading = true;
@@ -127,15 +129,15 @@ define([], function(){
 
             callback = _callback;
 
-            var paths = getAsArray(baseDir, pathObject);
+            var paths = getAsArray( baseDir, pathObject );
             imagesToLoad = paths.length;
 
-            console.info("Images to load: ", imagesToLoad);
+            console.info("Images to load: ", imagesToLoad );
             console.groupCollapsed("Loading Images: ");
 
 
-            for(id in paths){
-                var path = paths[id];
+            for ( id in paths ) {
+                var path = paths[ id ];
                 var image = new Image();
 
 
@@ -147,5 +149,5 @@ define([], function(){
 
     return {
         load: load
-    }
+    };
 });

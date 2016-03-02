@@ -1,64 +1,64 @@
 /*
-    This file configures all paths to modules used by the project
+ This file configures all paths to modules used by the project
 
-    @author Otho - Marcelo Lopes Lotufo
+ @author Otho - Marcelo Lopes Lotufo
  */
 
-//Configure all files paths aliases
+// Configure all files paths aliases
 require.config({
-    baseUrl: 'javascript/',
+    baseUrl: "javascript/",
     paths: {
-        //Libs
-        jquery: './libs/jquery',
-        jqueryui: './libs/jquery-ui',
-        jquerymask: './libs/jquery.mask',
-        text: './libs/text',
-        SimpleStorage: './libs/simpleStorage',
+        // Libs
+        jquery: "./libs/jquery",
+        jqueryui: "./libs/jquery-ui",
+        jquerymask: "./libs/jquery.mask",
+        text: "./libs/text",
+        SimpleStorage: "./libs/simpleStorage",
 
-        //Engine
-        Stage: 'engine/core/Stage',
-        Player: 'engine/core/Player',
-        ImageLoader: 'engine/core/ImageLoader',
+        // Engine
+        Stage: "engine/core/stage",
+        Player: "engine/core/player",
+        ImageLoader: "engine/core/imageLoader",
 
-        commandBar: 'engine/modules/command_bar/CommandBarController',
-        Action: 'engine/modules/command_bar/Action',
+        commandBar: "engine/modules/commandBar/commandBarController",
+        Action: "engine/modules/commandBar/action",
 
-        dialogModal: 'engine/modules/dialog/DialogsController',
-        Dialog: 'engine/modules/dialog/Dialog',
+        dialogModal: "engine/modules/dialog/dialogsController",
+        Dialog: "engine/modules/dialog/dialog",
 
-        endOfLevel: 'engine/modules/end_of_level/EndOfLevelController',
+        endOfLevel: "engine/modules/endOfLevel/endOfLevelController",
 
-        interactiveObjects: "engine/modules/interactive_objects/InteractiveObjectsController",
-        InteractiveObject: 'engine/modules/interactive_objects/InteractiveObject',
+        interactiveObjects: "engine/modules/interactiveObjects/interactiveObjectsController",
+        InteractiveObject: "engine/modules/interactiveObjects/interactiveObject",
 
-        modalScene: "engine/modules/scenes/ModalSceneController",
+        modalScene: "engine/modules/scenes/modalSceneController",
 
-        scene: 'engine/modules/scenes/SceneController',
-        Scene: 'engine/modules/scenes/Scene',
+        scene: "engine/modules/scenes/sceneController",
+        Scene: "engine/modules/scenes/scene",
 
-        //Game
-        CuidandoBem: 'game/modules/CuidandoBem',
+        // Game
+        CuidandoBem: "game/modules/cuidandoBem",
 
-        Storage: 'game/modules/storage/Storage',
+        Storage: "game/modules/storage/storage",
 
-        Flag: 'game/modules/Flag',
-        Level: 'game/modules/Level',
-        Character: 'game/modules/Character',
-        Pulseira: 'game/modules/pulseira/Pulseira_Modal',
-        Prontuario: 'game/modules/prontuario/Prontuario',
-        levelsData: 'game/modules/levelsData',
-        FreqRespiratoria: 'game/modules/freqRespiratoria/FreqRespiratoria',
+        Flag: "game/modules/flag",
+        Level: "game/modules/level",
+        Character: "game/modules/character",
+        Pulseira: "game/modules/pulseira/pulseiraModal",
+        Prontuario: "game/modules/prontuario/prontuario",
+        levelsData: "game/modules/levelsData",
+        FreqRespiratoria: "game/modules/freqRespiratoria/freqRespiratoria",
 
-        //Configs
-        gameConfig: 'game/scripts/gameConfig',
-        stageConfig: 'game/scripts/stageConfig',
+        // Configs
+        gameConfig: "game/scripts/gameConfig",
+        stageConfig: "game/scripts/stageConfig",
 
-        Commons: 'game/scripts/Commons',
+        Commons: "game/scripts/commons",
 
-        //Refs
-        Dialogs_data: 'references/Dialog_data',
-        Images_urls: 'references/Images_urls',
-        Scores_data: 'references/Score_data',
-        Sounds_urls: 'references/Sounds_urls'
+        // Refs
+        DialogsData: "references/dialogData",
+        ImagesUrls: "references/imagesUrls",
+        ScoresData: "references/scoreData",
+        SoundsUrls: "references/soundsUrls"
     }
 });
