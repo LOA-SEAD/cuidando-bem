@@ -219,37 +219,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
         function corredorIrFarmacia() {
-<<<<<<< ff6fbe25c25883226ed7030b841c347ea615257d
-            
-            if (level.getFlag("ler_prontuario").getValue() == true){
-                        core.changeScene(4);
-                        core.openDialog(0);   
-            }
-            
-       //     else {
-            
-              /*  if (level.getFlag("score_ir_farmacia_horaErrada").getValue() == false){
-                
-                level.getFlag("score_ir_farmacia_horaErrada").setValue(true);
-                core.registerScoreItem(Scores.irFarmacia_horaErrada);
-                console.log("PERDEU 25 PONTOS");
-
-                }
-                
-                
-                core.changeScene(4);*/
-             
-              
-                
-                
-          //  }
-            
-=======
             if ( level.getFlag("ler_prontuario").getValue() == true ) {
                 core.changeScene( 4 );
                 core.openDialog( 0 );
             }
->>>>>>> Fix jscs bugs
         }
 
         function corredorIrPostoEnfermagem() {
@@ -318,36 +291,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // 2
             new Dialog( lib.characters.jogador )
                 .setText("")
-<<<<<<< ff6fbe25c25883226ed7030b841c347ea615257d
-                .registerOption(Dialogs.ala_masculina[2], function () {
-                core.closeDialog();
-            })
-                .registerOption(Dialogs.ala_masculina[3], function () {
-                core.openDialog(3);
-            })
-                .setRandomize(true),
-         
-         // 3
-         
-         
-           new Dialog(lib.characters.mentor)
-                .setText(Dialogs.ala_masculina[4])
-                .registerOption("", function () {
-                core.closeDialog();
-            }),
-         
-         // 4
-         
-           new Dialog(lib.characters.mentor)
-                    .setText(Alertas.lavar_maos.tipo3)
-                    .registerOption("", function () {
-                core.closeDialog();
-            }),
-         
-        
-    ]);
-         
-=======
                 .registerOption( Dialogs.alaMasculina[ 2 ], function() {
                     level.getFlag("ler_prontuario").setValue( true );
                     core.closeDialog();
@@ -371,7 +314,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeDialog();
                 })
          ]);
->>>>>>> Fix jscs bugs
+
 
         alaMasculina.registerInteractiveObjects([
 
@@ -402,52 +345,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             new Action("btn-ler_prontuario", "Ler prontuario")
                 .setCssClass("action-ler_prontuario")
-<<<<<<< ff6fbe25c25883226ed7030b841c347ea615257d
-                .onClick(function () {
-                    
-                    if(level.getFlag("ler_prontuario").getValue() == false)  {
-                        
-                            level.getFlag("ler_prontuario").setValue(true);
-                           // core.openDialog(0);
-       
-                    }
-                        
-                        Prontuario.open();
-                        core.openModalScene("Prontuario");
-                //        core.registerScoreItem(Scores.verProntuario);         
-                 
-              
-            })  
-                .setVisibility(true),
-            
-    
-         
-         
-         ]);  
-
-    
-
-       //endregion ALA MASCULINA
-   
-  
-    
-    // region FARMACIA
-    
-=======
                 .onClick(function() {
-
                     Prontuario.open();
                     core.openModalScene("Prontuario");
-                    //        core.registerScoreItem(Scores.verProntuario);
-
                 })
                 .setVisibility( true )
-        ]);
 
-        // endregion ALA MASCULINA
-
-        // region FARMACIA
->>>>>>> Fix jscs bugs
+         ]);
 
         var farmacia = lib.scenes.farmacia.getClone()
             .onLoad(function() {
@@ -870,80 +774,47 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         prontuario = new Scene("Prontuario", "Prontuario");
 
         prontuario.registerActions([
-<<<<<<< ff6fbe25c25883226ed7030b841c347ea615257d
-                new Action("btn-fechar_prontuario", "Fechar prontuário")
-                    .setCssClass("action-ler_prontuario")
-                    .onClick(function () {
-                        core.openDialog(2);
-                console.log("Action: Fechar prontuario");
-                Prontuario.close();
-                core.closeModalScene("Prontuario");
-            })
-                    .setVisibility(true),
-=======
             new Action("btn-fechar_prontuario", "Fechar prontuário")
-            .setCssClass("action-ler_prontuario")
-            .onClick(function() {
-                if ( level.getFlag("pegou_tudo_postoEnfermagem").getValue() == false ) {
-                    core.openDialog( 2 );
-                } else {
+                .setCssClass("action-ler_prontuario")
+                .onClick(function() {
+                    if ( level.getFlag("pegou_tudo_postoEnfermagem").getValue() == false ) {
+                        core.openDialog( 2 );
+                    } else {
+                        Prontuario.close();
+                        core.setActionVisible("btn-fechar_prontuario", false );
+                        core.showEndOfLevel();
+                    }
+                    console.log("Action: Fechar prontuario");
+                    Prontuario.close();
+                    core.closeModalScene("Prontuario");
+                })
+                .setVisibility( true )
+        ]);
 
-                      //      core.unlockLevel(7);
-                       //     core.closeCommandBar();
-                       Prontuario.close();
-                       core.setActionVisible("btn-fechar_prontuario", false );
-                       core.showEndOfLevel();
-                   }
-
-                   console.log("Action: Fechar prontuario");
-                   Prontuario.close();
-                   core.closeModalScene("Prontuario");
-               })
-            .setVisibility( true )
-
-            ]);
->>>>>>> Fix jscs bugs
-
-    // region GAVETA
-<<<<<<< ff6fbe25c25883226ed7030b841c347ea615257d
-    
-     gaveta = new Scene("gaveta", "Gaveta")
+        // region GAVETA
+        gaveta = new Scene("gaveta", "Gaveta")
             .setCssClass("modalScene-drawer");
 
         gaveta.registerActions([
             new Action("btn-fechar_gaveta", "Fechar gaveta")
                 .setCssClass("action-fechar_gaveta")
-                .onClick( function () {
-                    
+                .onClick(function() {
                     console.log("Action: fechar_gaveta");
                     core.closeModalScene("Gaveta");
-                    
-                    if(  (level.getFlag("pegar_copo_descartavel").getValue() == true) ||  (level.getFlag("pegar_agua_potavel").getValue() == true) ||                               (level.getFlag("pegar_seringa").getValue() == true) ||  (level.getFlag("pegar_equipoCorreto").getValue() == true))
-                        core.openDialog(0);    
-                        level.getFlag("pegou_tudo_postoEnfermagem").setValue(true);
-                    
+
+                    if ( (level.getFlag("pegar_copo_descartavel").getValue() == true) &&
+                        (level.getFlag("pegar_agua_potavel").getValue() == true) &&
+                        (level.getFlag("pegar_seringa").getValue() == true) &&
+                        (level.getFlag("pegar_equipoCorreto").getValue() == true) )  {
+
+                        core.openDialog( 0 );
+                        core.openDialog( 0 );
+                        level.getFlag("pegou_tudo_postoEnfermagem").setValue( true );
+                        level.getFlag("pegou_tudo_postoEnfermagem").setValue( true );
+                    }
                 })
-                .setVisibility(true)
-=======
+                .setVisibility( true )
 
-    gaveta = new Scene("gaveta", "Gaveta")
-    .setCssClass("modalScene-drawer");
-
-    gaveta.registerActions([
-        new Action("btn-fechar_gaveta", "Fechar gaveta")
-        .setCssClass("action-fechar_gaveta")
-        .onClick(function() {
-
-            console.log("Action: fechar_gaveta");
-            core.closeModalScene("Gaveta");
-
-            if (  (level.getFlag("pegar_copo_descartavel").getValue() == true) &&  (level.getFlag("pegar_agua_potavel").getValue() == true) &&                               (level.getFlag("pegar_seringa").getValue() == true) &&  (level.getFlag("pegar_equipoCorreto").getValue() == true) )  {
-                core.openDialog( 0 );
-                level.getFlag("pegou_tudo_postoEnfermagem").setValue( true );      }
-
-            })
-        .setVisibility( true )
->>>>>>> Fix jscs bugs
         ]);
 
     gaveta.registerInteractiveObjects([
