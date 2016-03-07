@@ -1,11 +1,12 @@
 /* by Wellyson */
 
-define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "Scores_data" ],
+define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
 
         // region Imports
-        var Dialogs = require("Dialogs_data").fase9;
-         var Scores = require("Scores_data").fase9;
+        var Dialogs = require("DialogsData").fase9;
+        var Alertas = require("DialogsData").alertas;
+        var Scores = require("ScoresData").fase9;
         // endregion
 
         var level = new Level("Level 9");
@@ -257,10 +258,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                 new Dialog( lib.characters.jogador )
                 .setText("")
-                .registerOption( Dialogs.ala_masculina[ 0 ], function() {
+                // .registerOption( Dialogs.ala_masculina[ 0 ], function() {
+                .registerOption( "", function() {
                     core.openDialog( 1 );
             })
-                .registerOption( Dialogs.ala_masculina[ 1 ], function() {
+                // .registerOption( Dialogs.ala_masculina[ 1 ], function() {
+                .registerOption( "", function() {
                 core.openDialog( 4 );
             })
                 .setRandomize( true ),
@@ -270,7 +273,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 // 1
 
             new Dialog( lib.characters.pacientes.francisco )
-                .setText( Dialogs.ala_masculina[ 2 ] )
+                // .setText( Dialogs.ala_masculina[ 2 ] )
+                .setText( "" )
                 .registerOption("", function() {
                 core.openDialog( 2 );
             }),
@@ -280,7 +284,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
          new Dialog( lib.characters.jogador )
-                .setText( Dialogs.ala_masculina[ 3 ] )
+                // .setText( Dialogs.ala_masculina[ 3 ] )
+                .setText( "" )
                 .registerOption("", function() {
                 core.openDialog( 3 );
             }),
@@ -290,7 +295,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
            new Dialog( lib.characters.pacientes.francisco )
-                .setText( Dialogs.ala_masculina[ 4 ] )
+                // .setText( Dialogs.ala_masculina[ 4 ] )
+                .setText( "" )
                 .registerOption("", function() {
                 core.closeDialog();
             }),
@@ -299,7 +305,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
          // 4 - MENTOR ALERTA
 
            new Dialog( lib.characters.mentor )
-                    .setText( Dialogs.ala_masculina[ 5 ] )
+                    // .setText( Dialogs.ala_masculina[ 5 ] )
+                    .setText( "" )
                     .registerOption("", function() {
                 core.openDialog( 0 );
             })
