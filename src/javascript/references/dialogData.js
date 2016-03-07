@@ -795,7 +795,7 @@ define({
             " pelo médico e, assim que eu voltar, verificaremos seus sinais vitais.",
             // 4 Paciente
             "Tá certo! Brigado.",
-            //5 Mentor Alerta
+            // 5 Mentor Alerta
             "Esqueceu de se apresentar? E como está o paciente?"
         ],
         farmacia: [
@@ -806,8 +806,8 @@ define({
             // 2 Farmaceutico
             "Aqui está. Boa sorte!",
             // 3 MENTOR ALERTA
-            "Você está se esquecendo de uma etapa muito importante!",
-            
+            "Você está se esquecendo de uma etapa muito importante!"
+
         ],
         leitoPaciente: [
             // 0 Jogador
@@ -826,15 +826,15 @@ define({
             // 5 Jogador op 2
             "Tudo bem, senhor Raul, porém deixarei apenas desta vez, ok?!"
         ],
-        
+
         postoDeEnfermagem: [
-            
-            // 0 
+
+            // 0
             "Lembre-se de pegar todos os equipamentos antes de sair!"
-            
-            
+
+
         ],
-        
+
         alaMasculina: [
             // 0 Jogador
             "Agora estamos no leito correto, senhor Francisco.",
