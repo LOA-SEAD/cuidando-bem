@@ -220,7 +220,7 @@ define([ "SimpleStorage" ], function( Storage ) {
         saveSlots();
     }
 
-    // region Test Slot
+    // @dev {
 
     Storage.flush();
 
@@ -230,8 +230,7 @@ define([ "SimpleStorage" ], function( Storage ) {
 
     saveSlots();
 
-    // endregion
-
+    // }
 
     // Public Interface for returning saved files
     return {
