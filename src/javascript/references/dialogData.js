@@ -66,7 +66,7 @@ define({
                 // 12 Paciente
                 "Meu nome é João Manoel Ribeiro, nasci no dia 07/06/1956.",
                 // 13 Jogador
-                " Está certo, seu João. Já tenho todas as informações de que preciso ",
+                " Está certo, seu João. Já tenho todas as informações de que preciso.",
                 // 14 Mentor
                 "Sua primeira missão é admitir o Sr. João nesta enfermaria, identificando-o" +
                 " com uma pulseira e verificando os seus sinais vitais. Antes de começar," +
@@ -290,11 +290,11 @@ define({
                 "Terminamos, Aline. Vou buscar a paciente.",
                 // 5 op errada1
                 "Você  ainda  irá  conhecer  a  paciente  e  é  o" +
-                "responsável por levá-la ao centro cirúrgico!",
+                " responsável por levá-la ao centro cirúrgico!",
                 // 6 op errada2
                 "Nunca  se  esqueça  de  verificar  todos  os" +
-                "equipamento, pois  assim  evitamos  a ocorrência" +
-                "de imprevistos na cirurgia!",
+                " equipamento, pois  assim  evitamos  a ocorrência" +
+                " de imprevistos na cirurgia!",
 
                 // 7 ALERTA LAVAR MAOS CIRURGICA
                 "Higienize suas mãos utilizando as técnicas" +
@@ -302,8 +302,8 @@ define({
 
                 // 8 ALERTA LAVAR MAOS
                 "Não se esqueça do procedimento mais frequente" +
-                "e vital de um hospital. Você já o realizou várias" +
-                "vezes até aqui. Consegue lembrar qual é ele?",
+                " e vital de um hospital. Você já o realizou várias" +
+                " vezes até aqui. Consegue lembrar qual é ele?",
 
                 // 9 ALERTA TESTAR EQUIPAMENTOS
 
@@ -329,7 +329,7 @@ define({
                 // 6 Jogador
                 "Seu nome?",
                 // 7 Paciente
-                "Regina Oliveira",
+                "Regina Oliveira.",
                 // 8 Jogador
                 "Parte do corpo em que será feita a cirurgia?",
                 // 9 Paciente
@@ -357,11 +357,11 @@ define({
 
                 // 19 op2 - primeira parte
                 "Tem certeza? Talvez a primeira fase deva ser" +
-                "aplicada em um procedimento anterior.",
+                " aplicada em um procedimento anterior.",
 
                 // 20 op3 - primeira parte
                 "Você tem certeza de que irá verificar o paciente" +
-                "apenas no fim do procedimento?",
+                " apenas no fim do procedimento?",
 
                 // 21 op2 - segunda parte
                 "O oxímetro de pulso do paciente e a indicação" +
