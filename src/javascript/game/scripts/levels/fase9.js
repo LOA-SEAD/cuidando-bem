@@ -6,7 +6,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // region Imports
         var Dialogs = require("DialogsData").fase9;
         var Alertas = require("DialogsData").alertas;
-        var Scores = require("ScoresData").fase9;
+        var Scores = require("ScoresData").level9;
         // endregion
 
         var level = new Level("Level 9");
@@ -692,9 +692,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         // region ModalScenes
 
-        level.registerModalScene( prontuario );
-        level.registerModalScene( gaveta );
-        level.registerModalScene( pulseira );
+
 
         // endregion
 
@@ -722,6 +720,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // endregion
 
         // region Register Modal Scenes
+    
+            level.registerModalScene( prontuario );
+    level.registerModalScene( gaveta );
+      //  level.registerModalScene( pulseira );
 
         // endregion
 
@@ -786,4 +788,5 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         console.groupEnd();
 
 
-    });
+    }
+      );
