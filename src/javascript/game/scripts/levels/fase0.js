@@ -979,8 +979,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setDataNascimento("07/06/1956");
             Prontuario.setIdade("58 anos");
             Prontuario.setProfissao("Comerciante");
-            Prontuario.setPai("Joaquim Casagrande");
-            Prontuario.setMae("Lúcia Moraes Casagrande");
+            Prontuario.setPai("Joaquim Ribeiro");
+            Prontuario.setMae("Adelaide Moraes Ribeiro");
 
             Prontuario.setAlergiaMedicamentosa( true, "Dipirona");
             Prontuario.setDisableAlergiaMedicamentosa( true );
