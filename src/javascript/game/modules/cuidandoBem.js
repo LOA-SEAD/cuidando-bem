@@ -537,6 +537,7 @@ define([
         };
 
 
+        // @dev {
         window.gameShark = {
             Stage: Stage,
             game: game,
@@ -549,6 +550,7 @@ define([
             Player: require("Player"),
             core: ret
         };
+        // }
 
         return ret;
     });
