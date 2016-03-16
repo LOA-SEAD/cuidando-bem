@@ -266,7 +266,7 @@ define({
                 "cirúrgico.  É  um  documento  de  extrema importância!",
 
                 // 7
-                "A paciente o espera na sala de leitos."
+                "A paciente o espera na enfermaria masculina."
             ],
             fala2: [
                 // 0 Jogador
@@ -469,7 +469,7 @@ define({
         ],
         lugarIncorreto: [
             // 0 Mentor
-            "Está perdido? O lugar certo é a Ala Masculina.",
+            "Está perdido? O lugar certo é a enfermarica masculina.",
             // 1 Mentor
             "Está perdido? O lugar certo é a Farmácia.",
             // 2 Mentor
@@ -853,7 +853,7 @@ define({
             ]
         },
         enfermariaMasculina: [
-            "Volte à Enfermaria Masculina."
+            "Volte à enfermaria masculina."
         ],
         perdido: {
             enfermagem: [
