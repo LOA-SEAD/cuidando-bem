@@ -4,8 +4,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
 
         // region Imports
-        var Dialogs = require("Dialogs_data").fase6;
-        var Alertas = require("Dialogs_data").alertas;
+        var Dialogs = require("DialogsData").fase6;
+        var Alertas = require("DialogsData").alertas;
         var Scores = Scores.level6;
         // endregion
 
