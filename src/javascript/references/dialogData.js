@@ -469,7 +469,7 @@ define({
         ],
         lugarIncorreto: [
             // 0 Mentor
-            "Está perdido? O lugar certo é a enfermarica masculina.",
+            "Está perdido? O lugar certo é a enfermaria masculina.",
             // 1 Mentor
             "Está perdido? O lugar certo é a Farmácia.",
             // 2 Mentor
@@ -941,7 +941,7 @@ define({
                 "Você já pegou a medicação solicitado pela paciente?"
             ],
             pegarBandeja: [
-                "Objetos devem ser colocadas na bandeja!"
+                "Objetos devem ser colocados na bandeja!"
             ],
             pegarObjetosGaveta: [
                 "Caso o paciente não possua restrição hídrica, medicações de via oral devem ser acompanhadas de líquido para facilitar na deglutição."

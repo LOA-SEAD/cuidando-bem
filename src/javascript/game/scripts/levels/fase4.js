@@ -517,8 +517,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         level.getFlag("pegarEquipoSoroMacrogotas").getValue() == true &&
                         level.getFlag("pegarLuvas").getValue() == true &&
                         level.getFlag("pegarSeringa10").getValue() == true &&
-                        level.getFlag("pegarAmpolaSF").getValue() == true &&
-                        level.getFlag("pegarBandeja").getValue() == true ) {
+                        level.getFlag("pegarAmpolaSF").getValue() == true /*&&
+                        level.getFlag("pegarBandeja").getValue() == true*/ ) {
 
                         level.getFlag("pegarInstrumentos").setValue( true );
                         console.log("Action: ir_corredor");
@@ -595,6 +595,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.closeDialog();
                     core.changeScene( 1 );
+                }),
+            // Dialog 7 - Não pegou bandeja
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.pegarBandeja )
+                .registerOption("", function() {
+                    core.closeDialog();
                 })
 
         ]);
@@ -604,22 +610,43 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-abrir_gaveta_esquerda", "Abrir gaveta esquerda")
                 .setCssClass("intObj-openDrawer_left")
                 .onClick(function() {
-                    console.log("Action: abrir_gaveta_esquerda");
-                    core.openModalScene("gavetaEsquerda");
-                    core.openCommandBar();
+                    if ( level.getFlag("pegou_bandeja_balcao").getValue() != true ) {
+                        core.openDialog( 7 );
+                    }
+                    else{
+                        console.log("Action: abrir_gaveta_esquerda");
+                        core.openModalScene("gavetaEsquerda");
+                        core.openCommandBar();
 
-                    // core.setInteractiveObjectVisible("io-coxim", !(level.getFlag("coxim").getValue()));
+                        // core.setInteractiveObjectVisible("io-coxim", !(level.getFlag("coxim").getValue()));
+                    }
                 })
                 .setVisibility( true ),
 
             new InteractiveObject("io-abrir_gaveta_direita", "Abrir gaveta direita")
                 .setCssClass("intObj-openDrawer_right")
                 .onClick(function() {
-                    console.log("Action: abrir_gaveta_direita");
-                    core.openModalScene("gavetaDireita");
-                    core.openCommandBar();
+                    if ( level.getFlag("pegou_bandeja_balcao").getValue() != true ) {
+                        core.openDialog( 7 );
+                    }
+                    else{
+                        console.log("Action: abrir_gaveta_direita");
+                        core.openModalScene("gavetaDireita");
+                        core.openCommandBar();
 
-                    // core.setInteractiveObjectVisible("io-coxim", !(level.getFlag("coxim").getValue()));
+                        // core.setInteractiveObjectVisible("io-coxim", !(level.getFlag("coxim").getValue()));
+                    }
+                })
+                .setVisibility( true ),
+
+            // Bandeja
+            new InteractiveObject("io-pegar_bandeja", "Pegar bandeja")
+                .setCssClass("intObj-bandeja")
+                .onClick(function() {
+                    console.log("Action: Pegar bandeja");
+                    level.getFlag("pegou_bandeja_balcao").setValue( true );
+                    //level.getFlag("pegarBandeja").setValue( true );
+                    core.setInteractiveObjectVisible("io-pegar_bandeja", false );
                 })
                 .setVisibility( true )
 
@@ -807,6 +834,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("lavarMaosLeito", false ) );
         level.registerFlag( new Flag("lavarMaosPostoEnfermagem", false ) );
 
+        level.registerFlag( new Flag("pegou_bandeja_balcao", false ) );
         level.registerFlag( new Flag("pegarSoroFisiológico", false ) );
         level.registerFlag( new Flag("pegarSeringa5", false ) );
         level.registerFlag( new Flag("pegarAgulha", false ) );
@@ -816,7 +844,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("pegarLuvas", false ) );
         level.registerFlag( new Flag("pegarSeringa10", false ) );
         level.registerFlag( new Flag("pegarAmpolaSF", false ) );
-        level.registerFlag( new Flag("pegarBandeja", false ) );
+        //level.registerFlag( new Flag("pegarBandeja", false ) );
         level.registerFlag( new Flag("pegarInstrumentos", false ) );
 
         /* MORE FLAGS FROM SCORES DATA
