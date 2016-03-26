@@ -1,6 +1,8 @@
 /*
     This css file will import other css files, so the files are all organized and there is only
     one link on the main html
+
+
     Author: Otho - Marcelo Lopes Lotufo
     Author: Thales Eduardo Adair Menato
 */
@@ -18,6 +20,15 @@
 @button-yellow: #E4BC47;
 @button-green: #82BF56;
 
+//TODO Arrumar
+@font-digital: "Digital7", monospace;
+@font-printed: monospace;
+@font-cursive: 'Pacifico', cursive;
+@font-style: "Whipsmart", verdana;
+@font-menu: "Indie Flower", sans-serif;
+@font-actions: "Indie Flower", sans-serif;
+@font-dialog: sans-serif;
+
 @import "./normalize.css";
 @import "main.less";
 @import "imageURLs.less";
@@ -25,6 +36,7 @@
 @import "disableSelection.less";
 
 @import "screens/general-menu.less";
+@import "screens/buttons.less";
 @import "screens/jquery-ui.less";
 @import "screens/screen-gameContainer.less";
 @import "screens/screen-levelSelect.less";
@@ -50,3 +62,11 @@
 @import "commandBar/commandBar.less";
 
 @import "endOfLevel/endOfLevel.less";
+
+html {
+    font-size: 1vmin;
+}
+
+body {
+	font-family: @font-cursive;
+}

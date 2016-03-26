@@ -1,210 +1,193 @@
-.levelSelect-backImage{
-  background: center no-repeat @screen-levelSelect;
-  &:extend(.menuBackImage);
+.levelSelect-backImage {
+    position: absolute;
+    background-image: @screen-levelSelect;
+    &:extend(.menuBackImage);
 }
 
-#levelSelectContainer{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
+#levelSelectContainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
 }
 
 #levelSelector {
-  top: 50%;
-  position: relative;
+    width: 100%;
+    height: 100%;
+    position: absolute;
 }
 
 p.title {
-  font-size: 40px;
-  color: black;
-  margin: 0;
-  position: relative;
-  font-family: Pacifico, monospace;
-  top: -45px;
+    font-size: 5em;
+    color: black;
+    margin: 0;
+    position: relative;
+    top: -5%;
 }
 
-.level:hover:not(.disabled), .level.selected {
-  .back {
-    @size: 100%;
-
-    background-color: #E39341;
-    width: @size;
-    height: @size;
-    margin: (100% - @size)/2;
-
-    border: 2px solid #D57A20;
-  }
-
-  .image {
-    @size: 74%;
-
-    width: @size;
-    height: @size;
-    margin: (100% - @size)/2;
-  }
+.level:hover:not(.disabled){
+    z-index: 3;
 }
+.level.selected {
+    z-index: 2;
+}
+.level:hover:not(.disabled),
+.level.selected {
+    .back {
+        @size: 100%;
+        background-color: #E39341;
+        width: @size;
+        height: @size;
+        margin: (100% - @size)/2;
+        border: 2px solid #D57A20;
+    }
+    .image {
+        @size: 74%;
+        width: @size;
+        height: @size;
+        margin: (100% - @size)/2;
+    }
+}
+
 .level.selected:hover {
-  .back {
-    background-color: #ffa44a;
-  }
+    .back {
+        background-color: #ffa44a;
+    }
 }
+
 .level {
-  @size: 140px;
-  @half: 70px;
-
-  width: @size;
-  height: @size;
-
-  //display: inline-block;
-  cursor: hand;
-
-  display: block;
-  position: absolute;
-  top:  50%;
-  left: 50%;
-
-  margin: -@half;
-
-  border-radius: 50%;
-  .back {
-    @size: 70%;
-
-    background-color: #E39341;
-    width: @size;
-    height: @size;
-    margin: (100% - @size)/2;
+    width: 15%;
+    height: 25%;
+    //display: inline-block;
+    cursor: hand;
     display: block;
     position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -7.5% -7.5%;
     border-radius: 50%;
-
-    transition-duration: 0.3s;
-    transition-property: width, height, margin;
-  }
-
-  .image {
-    @size: 55%;
-
-    width: @size;
-    height: @size;
-    margin: (100% - @size)/2;
-    display: block;
-    position: absolute;
-
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-
-    transition-duration: 0.3s;
-    transition-property: width, height, margin;
-  }
+    .back {
+        @size: 70%;
+        background-color: #E39341;
+        width: @size;
+        height: @size;
+        margin: (100% - @size)/2;
+        display: block;
+        position: absolute;
+        border-radius: 50%;
+        transition-duration: 0.3s;
+        transition-property: width, height, margin;
+    }
+    .image {
+        @size: 55%;
+        width: @size;
+        height: @size;
+        margin: (100% - @size)/2;
+        display: block;
+        position: absolute;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        transition-duration: 0.3s;
+        transition-property: width, height, margin;
+    }
 }
 
 .level.disabled {
-  > .back {
-    background-color: #ce5b5b;
-  }
-  > .image:not(.next) {
-    background-image: @locker;
-  }
+    > .back {
+        background-color: #ce5b5b;
+    }
+    > .image:not(.next) {
+        background-image: @locker;
+    }
 }
 
-@rad: 260px;
+@rad: 140%;
 @els: 10;
 @deg: 360deg / @els;
 .l0 {
-  @dg: @deg * 0 - @deg * 2.5;
-  transform: rotate(@dg) translate(@rad) rotate(-@dg);
-
-  > .image {
-    background-image: @bg-bracelet;
-  }
+    @dg: @deg * 0 - @deg * 2.5;
+    transform: rotate(@dg) translate(@rad) rotate(-@dg);
+    > .image {
+        background-image: @bg-bracelet;
+    }
 }
 
 .l1 {
-  @dg: @deg * 1 - @deg * 2.5;
-  transform: rotate(@dg) translate(@rad) rotate(-@dg);
-
-  > .image {
-    background-image: @intObj-cushion;
-  }
+    @dg: @deg * 1 - @deg * 2.5;
+    transform: rotate(@dg) translate(@rad) rotate(-@dg);
+    > .image {
+        background-image: @intObj-cushion;
+    }
 }
 
 .l2 {
-  @dg: @deg * 2 - @deg * 2.5;
-  transform: rotate(@dg) translate(@rad) rotate(-@dg);
-
-  > .image {
-    background-image: @intObj-aparelhoGlicemia;
-  }
+    @dg: @deg * 2 - @deg * 2.5;
+    transform: rotate(@dg) translate(@rad) rotate(-@dg);
+    > .image {
+        background-image: @intObj-aparelhoGlicemia;
+    }
 }
 
 .l3 {
-  @dg: @deg * 3 - @deg * 2.5;
-  transform: rotate(@dg) translate(@rad) rotate(-@dg);
-
-  > .image {
-    background-image: @intObj-placa_neutra;
-  }
+    @dg: @deg * 3 - @deg * 2.5;
+    transform: rotate(@dg) translate(@rad) rotate(-@dg);
+    > .image {
+        background-image: @intObj-placa_neutra;
+    }
 }
 
 .l4 {
-  @dg: @deg * 4 - @deg * 2.5;
-  transform: rotate(@dg) translate(@rad) rotate(-@dg);
-
-  > .image {
-    background-image: @intObj-seringa_20_ml;
-  }
+    @dg: @deg * 4 - @deg * 2.5;
+    transform: rotate(@dg) translate(@rad) rotate(-@dg);
+    > .image {
+        background-image: @intObj-seringa_20_ml;
+    }
 }
 
 .l5 {
-  @dg: @deg * 5 - @deg * 2.5;
-  transform: rotate(@dg) translate(@rad) rotate(-@dg);
-
-  > .image {
-    background-image: @intObj-gaze_esteril;
-  }
+    @dg: @deg * 5 - @deg * 2.5;
+    transform: rotate(@dg) translate(@rad) rotate(-@dg);
+    > .image {
+        background-image: @intObj-gaze_esteril;
+    }
 }
 
 .l6 {
-  @dg: @deg * 6 - @deg * 2.5;
-  transform: rotate(@dg) translate(@rad) rotate(-@dg);
-
-  > .image {
-    background-image: @intObj-equipo_de_infusao_de_dieta;
-  }
+    @dg: @deg * 6 - @deg * 2.5;
+    transform: rotate(@dg) translate(@rad) rotate(-@dg);
+    > .image {
+        background-image: @intObj-equipo_de_infusao_de_dieta;
+    }
 }
 
 .l7 {
-  @dg: @deg * 7 - @deg * 2.5;
-  transform: rotate(@dg) translate(@rad) rotate(-@dg);
-
-  > .image {
-    background-image: @intObj-clorpromazina_medicamento;
-  }
+    @dg: @deg * 7 - @deg * 2.5;
+    transform: rotate(@dg) translate(@rad) rotate(-@dg);
+    > .image {
+        background-image: @intObj-clorpromazina_medicamento;
+    }
 }
 
 .l8 {
-  @dg: @deg * 8 - @deg * 2.5;
-  transform: rotate(@dg) translate(@rad) rotate(-@dg);
-
-  > .image {
-    background-image: @intObj-carrinho_anestesico;
-  }
+    @dg: @deg * 8 - @deg * 2.5;
+    transform: rotate(@dg) translate(@rad) rotate(-@dg);
+    > .image {
+        background-image: @intObj-carrinho_anestesico;
+    }
 }
 
 .l9 {
-  @dg: @deg * 9 - @deg * 2.5;
-  transform: rotate(@dg) translate(@rad) rotate(-@dg);
-
-  > .image {
-    background-image: @intObj-soro_glicofisiologico_1000_ml;
-  }
+    @dg: @deg * 9 - @deg * 2.5;
+    transform: rotate(@dg) translate(@rad) rotate(-@dg);
+    > .image {
+        background-image: @intObj-soro_glicofisiologico_1000_ml;
+    }
 }
 
 .levelSelect-button {
-  bottom: -50px;
-  position: absolute;
-  width: 15%;
-  right: 1%;
+    bottom: 2%;
+    position: absolute;
+    width: 15%;
+    right: 1%;
 }
