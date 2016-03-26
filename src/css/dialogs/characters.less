@@ -1,39 +1,23 @@
 .character {
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   float: right;
   position: absolute;
 
-  @char-receptionist-width: 296px;
-  @char-receptionist-height: 419px;
-
-  @media screen and (min-width: @screen-sm-min) {
-    width: 0.5 * @char-receptionist-width;
-    height: 0.5 * @char-receptionist-height;
-    top: -180px;
-    right: 50px;
-  }
-
-  @media screen and (min-width: @screen-md-min) {
-    width: 0.7 * @char-receptionist-width;
-    height: 0.7 * @char-receptionist-height;
-    top: -255px;
-    right: 50px;
-  }
-
-  @media screen and (min-width: @screen-lg-min) {
-    width: @char-receptionist-width;
-    height: @char-receptionist-height;
-    top: -370px;
-    right: 50px;
-  }
+  width: 20%;
+  height: 170%;
+  top: -153%;
+  right: 0%;
 }
+
 .char-receptionist {
-  background: @char-receptionist no-repeat top;
+  background-image: @char-receptionist;
   &:extend(.character);
 }
 
 .char-mentor {
-  background: @char-mentor no-repeat top;
+  background-image: @char-mentor;
   &:extend(.character);
 }
 .char-paciente_01 {

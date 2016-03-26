@@ -1,22 +1,21 @@
 // dialogModal
 @char_img-width: 10%;
-@dialogBar-width: 100% - 2 * @dialogBar-margin;
-@dialogBar-min-height: 25%;
-@dialogBar-margin: 2%;
 
 //region generic config stuff
 #dialogBar {
+  box-sizing: border-box;
   text-align: left;
   position: absolute;
   bottom: 0;
   display: none;
   border: solid 1px rgba(0, 0, 0, 0.40);
-  box-shadow: #080808 1px 1px 2px;
+  //box-shadow: #080808 1px 1px 2px;
   background-color: rgba(217, 216, 195, 0.95);
 
-  width: @dialogBar-width;
-  min-height: @dialogBar-min-height;
-  margin: @dialogBar-margin;
+  width: 96%;
+  min-height: 30%;
+  bottom: 2%;
+  left: 2%;
 }
 
 #dialogBar-mask {
@@ -32,28 +31,22 @@
 .dialog_charName {
   font-family: 'Pacifico', cursive;
   text-align: left;
-  height: 10%;
+  height: 25%;
   background-color: rgba(0, 0, 0, 0.1);
   border-bottom: solid 1px rgba(0, 0, 0, 0.1);
   padding-left: 2%;
   text-decoration: none;
 
-  @media (min-width:@screen-sm-min) {
-    font-size: 15px;
-  }
-  @media (min-width:@screen-md-min) {
-    font-size: 20px;
-  }
-  @media (min-width:@screen-lg-min) {
-    font-size: 25px;
-  }
+
+  font-size: 4em;
 }
 
 .dialog_left {
-  position: absolute;
+  //position: absolute;
+  padding: 2%;
   left: 0;
   width: 95%;
-  height: 75%;
+  //height: 75%;
 }
 .dialog_right {
   cursor: hand;
@@ -61,7 +54,8 @@
   text-align: center;
   right: 0;
   width: 5%;
-  height: 75%;
+  height: 20%;
+  bottom: 5%;
 
 }
 .on {
@@ -75,37 +69,19 @@
 }
 
 .dialog_mainText {
-  padding: @dialogMainText-padding;
-  font-weight: bold;
-
-  @media (min-width:@screen-sm-min) {
-    font-size: 11px;
-  }
-  @media (min-width:@screen-md-min) {
-    font-size: 15px;
-  }
-  @media (min-width:@screen-lg-min) {
-    font-size: 18px;
-  }
+  font-size: 2.5em;
 }
 
 .dialog_options {
   text-align: center;
-  font-size: 16px;
 
-  @media (min-width:@screen-sm-min) {
-    font-size: 11px;
-  }
-  @media (min-width:@screen-md-min) {
-    font-size: 15px;
-  }
-  @media (min-width:@screen-lg-min) {
-    font-size: 18px;
-  }
+  font-size: 2.5em;
+}
+.dialog_button:not(:first-child) {
+  margin-top: 0.5%;
 }
 
 .dialog_button {
-  margin-top: 8px;
   padding: 0 10px;
   cursor: pointer;
   font-family: 'Lato', sans-serif;
