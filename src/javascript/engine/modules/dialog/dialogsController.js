@@ -57,11 +57,13 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             // $(dialogModalSelector).css("display", "table");
             // $(dialogModalSelector).hide()
 
+            // @dev {
             $( document ).keydown(function( e ) {
                 if ( e.which == 32 ) {
                     $(".dialog_right").click();
                 }
             });
+            // }
 
             $( dialogMaskSelector ).show();
             $( dialogModalSelector ).show("fade", {
