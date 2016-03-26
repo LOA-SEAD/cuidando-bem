@@ -387,7 +387,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             }
         }
 
-        centroCirurgico.registerInteractiveObjects([
+        centroCirurgico.registerInteractiveObjects([  
 
 
             new InteractiveObject("io-conversar_circulante", "Conversar com Circulante")
@@ -401,8 +401,36 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
 
                 })
+                .setVisibility( true ),
+            
+      
+            
+            
+            new InteractiveObject("io-carrinho_anestesico", "Testar Equipamentos")
+                .setCssClass("intObj-carrinho_anestesico")
+                .onClick(function() {
+                 
+                      if ( level.getFlag("lavar_maos_cirurgica").getValue() == false ) {
+                        core.openDialog( 5 );
+                    } else {
+                        
+                        console.log("Action: testar equipamentos");
+                        if ( level.getFlag("testar_equipamentos").getValue() == false ) {
+                            level.getFlag("testar_equipamentos").setValue( true );
+                            core.registerScoreItem( Scores.testarEquipamentos );
+                            // FALTA COLOCAR BEEP DO SOM DE CONFIRMAÇÃO -----------------------
+                            core.openDialog( 4 );
+                        }
+
+
+                    }
+
+                })
                 .setVisibility( true )
+        
         ]);
+    
+    
 
 
         centroCirurgico.registerActions([
@@ -434,26 +462,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
                 }),
-
-
-            new Action("btn-testarEquipamentos", "Testar Equipamentos")
-                .setCssClass("action_testarEquipamentos")
-                .onClick(function() {
-
-                    if ( level.getFlag("lavar_maos_cirurgica").getValue() == false ) {
-                        core.openDialog( 5 );
-                    } else {
-                        console.log("Action: testar equipamentos");
-                        if ( level.getFlag("testar_equipamentos").getValue() == false ) {
-                            level.getFlag("testar_equipamentos").setValue( true );
-                            core.registerScoreItem( Scores.testarEquipamentos );
-                            core.openDialog( 4 );
-                        }
-
-
-                    }
-
-                }),
+            
 
             new Action("btn-ir_corredor", "Ir ao corredor")
                 .setCssClass("action-ir_corredor")
