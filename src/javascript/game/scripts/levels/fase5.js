@@ -744,7 +744,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( level.getFlag("score_pegou_kit_glicemia").getValue() == true &&
                         level.getFlag("score_pegou_algodao").getValue() == true &&
                         level.getFlag("score_pegou_luvas").getValue() == true &&
-                        level.getFlag("score_pegou_bandeja").getValue() == true &&
+                        //level.getFlag("score_pegou_bandeja").getValue() == true &&
                         level.getFlag("score_pegou_luvas_estereis").getValue() == true &&
                         level.getFlag("score_pegou_gaze").getValue() == true &&
                         level.getFlag("score_pegou_fita_hipoalergenica").getValue() == true &&
@@ -776,21 +776,45 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-abrirGaveta", "Abrir gaveta")
                 .setCssClass("intObj-openDrawer")
                 .onClick(function() {
-                    console.log("Action: abrirGaveta");
-                    core.openModalScene("gaveta");
-                    core.openCommandBar();
-                    core.setInteractiveObjectVisible("io-kit_glicemia", !(level.getFlag("score_pegou_kit_glicemia").getValue()) );
-                    core.setInteractiveObjectVisible("io-algodao", !(level.getFlag("score_pegou_algodao").getValue()) );
-                    core.setInteractiveObjectVisible("io-luvas", !(level.getFlag("score_pegou_luvas").getValue()) );
-                    core.setInteractiveObjectVisible("io-bandeja", !(level.getFlag("score_pegou_bandeja").getValue()) );
-                    core.setInteractiveObjectVisible("io-luvasEstereis", !(level.getFlag("score_pegou_luvas_estereis").getValue()) );
-                    core.setInteractiveObjectVisible("io-gaze", !(level.getFlag("score_pegou_gaze").getValue()) );
-                    core.setInteractiveObjectVisible("io-fita_hipoalergenica", !(level.getFlag("score_pegou_fita_hipoalergenica").getValue()) );
-                    core.setInteractiveObjectVisible("io-soro", !(level.getFlag("score_pegou_soro").getValue()) );
-                    core.setInteractiveObjectVisible("io-seringa", !(level.getFlag("score_pegou_seringa").getValue()) );
-                    core.setInteractiveObjectVisible("io-agulha", !(level.getFlag("score_pegou_agulha").getValue()) );
+                    if ( level.getFlag("pegou_bandeja").getValue() != true ) {
+                        core.openDialog( 0 );
+                    }
+                    else{
+                        console.log("Action: abrirGaveta");
+                        core.openModalScene("gaveta");
+                        core.openCommandBar();
+                        core.setInteractiveObjectVisible("io-kit_glicemia", !(level.getFlag("score_pegou_kit_glicemia").getValue()) );
+                        core.setInteractiveObjectVisible("io-algodao", !(level.getFlag("score_pegou_algodao").getValue()) );
+                        core.setInteractiveObjectVisible("io-luvas", !(level.getFlag("score_pegou_luvas").getValue()) );
+                        core.setInteractiveObjectVisible("io-luvasEstereis", !(level.getFlag("score_pegou_luvas_estereis").getValue()) );
+                        core.setInteractiveObjectVisible("io-gaze", !(level.getFlag("score_pegou_gaze").getValue()) );
+                        core.setInteractiveObjectVisible("io-fita_hipoalergenica", !(level.getFlag("score_pegou_fita_hipoalergenica").getValue()) );
+                        core.setInteractiveObjectVisible("io-soro", !(level.getFlag("score_pegou_soro").getValue()) );
+                        core.setInteractiveObjectVisible("io-seringa", !(level.getFlag("score_pegou_seringa").getValue()) );
+                        core.setInteractiveObjectVisible("io-agulha", !(level.getFlag("score_pegou_agulha").getValue()) );
+                    }
+                })
+                .setVisibility( true ),
+
+            // Bandeja
+            new InteractiveObject("io-pegar_bandeja", "Pegar bandeja")
+                .setCssClass("intObj-bandeja")
+                .onClick(function() {
+                    console.log("Action: Pegar bandeja");
+                    level.getFlag("pegou_bandeja").setValue( true );
+                    //level.getFlag("score_pegou_bandeja").setValue( true );
+                    core.setInteractiveObjectVisible("io-pegar_bandeja", false );
                 })
                 .setVisibility( true )
+        ]);
+
+        postoDeEnfermagem.registerDialogs([
+            // Dialog 0 - Não pegou bandeja
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.pegarBandeja )
+                .registerOption("", function() {
+                    core.closeDialog();
+                })
         ]);
         // endregion
 
@@ -849,24 +873,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true ),
 
-            // Bandeja
-            new InteractiveObject("io-bandeja", "Pegar bandeja")
-                .setCssClass("intObj-bandeja")
-                .onClick(function() {
-                    console.log("Action: pegar bandeja");
-                    core.registerScoreItem( Scores.pegarBandeja );
-                    core.setInteractiveObjectVisible("io-bandeja", false );
-                    level.getFlag("score_pegou_bandeja").setValue( true );
-                })
-                .setVisibility( true ),
-
             // Luvas estéreis
-            new InteractiveObject("io-luvasEstereis", "Pegar luvas estéreis")
-                .setCssClass("intObj-luvasEstereis")
+            new InteractiveObject("io-luvas_estereis", "Pegar luvas estéreis")
+                .setCssClass("intObj-luvas_estereis")
                 .onClick(function() {
                     console.log("Action: pegar luvas estéreis");
                     core.registerScoreItem( Scores.pegarLuvasEstereis );
-                    core.setInteractiveObjectVisible("io-luvasEstereis", false );
+                    core.setInteractiveObjectVisible("io-luvas_estereis", false );
                     level.getFlag("score_pegou_luvas_estereis").setValue( true );
                 })
                 .setVisibility( true ),
@@ -1008,6 +1021,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.getFlag("conversar_recepcionista").setValue( false );
             level.getFlag("conversar_mentor").setValue( false );
             level.getFlag("entrou_ala_feminina").setValue( false );
+            level.getFlag("pegou_bandeja").setValue( false );
             level.getFlag("pegou_todos_instrumentos").setValue( false );
             level.getFlag("score_ir_posto_hora_errada").setValue( false );
             level.getFlag("score_ir_farmacia_hora_errada").setValue( false );
@@ -1021,7 +1035,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.getFlag("score_pegou_kit_glicemia").setValue( false );
             level.getFlag("score_pegou_algodao").setValue( false );
             level.getFlag("score_pegou_luvas").setValue( false );
-            level.getFlag("score_pegou_bandeja").setValue( false );
+            //level.getFlag("score_pegou_bandeja").setValue( false );
             level.getFlag("score_pegou_luvas_estereis").setValue( false );
             level.getFlag("score_pegou_gaze").setValue( false );
             level.getFlag("score_pegou_fita_hipoalergenica").setValue( false );
@@ -1106,6 +1120,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("conversar_recepcionista"), false );
         level.registerFlag( new Flag("conversar_mentor"), false );
         level.registerFlag( new Flag("entrou_ala_feminina"), false );
+        level.registerFlag( new Flag("pegou_bandeja"), false );
         level.registerFlag( new Flag("pegou_todos_instrumentos"), false );
         level.registerFlag( new Flag("score_ir_posto_hora_errada"), false );
         level.registerFlag( new Flag("score_ir_farmacia_hora_errada"), false );
@@ -1119,7 +1134,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("score_pegou_kit_glicemia"), false );
         level.registerFlag( new Flag("score_pegou_algodao"), false );
         level.registerFlag( new Flag("score_pegou_luvas"), false );
-        level.registerFlag( new Flag("score_pegou_bandeja"), false );
+        //level.registerFlag( new Flag("score_pegou_bandeja"), false );
         level.registerFlag( new Flag("score_pegou_luvas_estereis"), false );
         level.registerFlag( new Flag("score_pegou_gaze"), false );
         level.registerFlag( new Flag("score_pegou_fita_hipoalergenica"), false );

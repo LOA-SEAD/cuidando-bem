@@ -578,9 +578,7 @@ define({
             "A infusão da dieta ocorrerá em 33 gotas por minuto no período de uma hora.",
             // 2 Jogador op 3
             "A infusão da dieta ocorrerá em 67 gotas no período de uma hora.",
-            // 3 Pegar Bandeja
-            "Primeiro pegue a bandeja para colocar os equipamentos.",
-            // 4 Mentor Corrige
+            // 3 Mentor Corrige
             "Acho que você se enganou. Tente novamente."
 
 
@@ -941,7 +939,7 @@ define({
                 "Você já pegou a medicação solicitado pela paciente?"
             ],
             pegarBandeja: [
-                "Objetos devem ser colocados na bandeja!"
+                "Primeiro pegue a bandeja para colocar os equipamentos."
             ],
             pegarObjetosGaveta: [
                 "Caso o paciente não possua restrição hídrica, medicações de via oral devem ser acompanhadas de líquido para facilitar na deglutição."

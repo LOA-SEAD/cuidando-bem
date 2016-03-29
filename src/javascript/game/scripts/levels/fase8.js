@@ -549,6 +549,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.setActionVisible("btn-lavarMaos", true );
                     core.setInteractiveObjectVisible("io-pegar_agua", !(level.getFlag("score_pegou_agua").getValue()) );
                     core.setInteractiveObjectVisible("io-pegar_copo", !(level.getFlag("score_pegou_copo").getValue()) );
+                    core.setInteractiveObjectVisible("io-pegar_bandeja", !(level.getFlag("pegou_bandeja").getValue()) );
                     core.openCommandBar();
                 }
             })
@@ -600,16 +601,21 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-pegar_agua", "Pegar água potável")
                 .setCssClass("intObj-garrafa_agua_potavel")
                 .onClick(function() {
-                    console.log("Action: Pegar água potável");
                     if ( level.getFlag("score_lavar_maos_posto_enfermagem").getValue() == false ) {
                         if ( level.getFlag("score_nao_lavar_maos_posto_enfermagem").getValue() == false ) {
                             core.registerScoreItem( Scores.naoLavarMaosPostoEnfermagem );
                             level.getFlag("score_nao_lavar_maos_posto_enfermagem").setValue( true );
                         }
                     }
-                    core.registerScoreItem( Scores.pegarAguaPotavel );
-                    level.getFlag("score_pegou_agua").setValue( true );
-                    core.setInteractiveObjectVisible("io-pegar_agua", false );
+                    if ( level.getFlag("pegou_bandeja").getValue() != true ) {
+                        core.openDialog( 0 );
+                    }
+                    else{
+                        console.log("Action: Pegar água potável");
+                        core.registerScoreItem( Scores.pegarAguaPotavel );
+                        level.getFlag("score_pegou_agua").setValue( true );
+                        core.setInteractiveObjectVisible("io-pegar_agua", false );
+                    }
                 })
                 .setVisibility( false ),
 
@@ -617,18 +623,49 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-pegar_copo", "Pegar copo descartavel")
                 .setCssClass("intObj-copo_descartavel")
                 .onClick(function() {
-                    console.log("Action: Pegar copo descartavel");
                     if ( level.getFlag("score_lavar_maos_posto_enfermagem").getValue() == false ) {
                         if ( level.getFlag("score_nao_lavar_maos_posto_enfermagem").getValue() == false ) {
                             core.registerScoreItem( Scores.naoLavarMaosPostoEnfermagem );
                             level.getFlag("score_nao_lavar_maos_posto_enfermagem").setValue( true );
                         }
                     }
-                    core.registerScoreItem( Scores.pegarCopoDescartavel );
-                    level.getFlag("score_pegou_copo").setValue( true );
-                    core.setInteractiveObjectVisible("io-pegar_copo", false );
+                    if ( level.getFlag("pegou_bandeja").getValue() != true ) {
+                        core.openDialog( 0 );
+                    }
+                    else{
+                        console.log("Action: Pegar copo descartavel");
+                        core.registerScoreItem( Scores.pegarCopoDescartavel );
+                        level.getFlag("score_pegou_copo").setValue( true );
+                        core.setInteractiveObjectVisible("io-pegar_copo", false );
+                    }
+                })
+                .setVisibility( false ),
+
+            // Bandeja
+            new InteractiveObject("io-pegar_bandeja", "Pegar bandeja")
+                .setCssClass("intObj-bandeja")
+                .onClick(function() {
+                    console.log("Action: Pegar bandeja");
+                    if ( level.getFlag("score_lavar_maos_posto_enfermagem").getValue() == false ) {
+                        if ( level.getFlag("score_nao_lavar_maos_posto_enfermagem").getValue() == false ) {
+                            core.registerScoreItem( Scores.naoLavarMaosPostoEnfermagem );
+                            level.getFlag("score_nao_lavar_maos_posto_enfermagem").setValue( true );
+                        }
+                    }
+                    level.getFlag("pegou_bandeja").setValue( true );
+                    //level.getFlag("score_pegou_bandeja").setValue( true );
+                    core.setInteractiveObjectVisible("io-pegar_bandeja", false );
                 })
                 .setVisibility( false )
+        ]);
+
+        postoDeEnfermagem.registerDialogs([
+            // Dialog 0 - Não pegou bandeja
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.pegarBandeja )
+                .registerOption("", function() {
+                    core.closeDialog();
+                })
         ]);
         // endregion
 
@@ -1035,6 +1072,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // Script that runs once when the level is loaded or reloaded
 
             level.getFlag("ja_falou_farmaceutico").setValue( false );
+            level.getFlag("pegou_bandeja").setValue( false );
             level.getFlag("ja_falou_paciente").setValue( false );
             level.getFlag("ja_falou_paciente_leito").setValue( false );
             level.getFlag("levou_yuri_centro_cirurgico").setValue( false );
@@ -1133,6 +1171,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         // region Flags
         level.registerFlag( new Flag("ja_falou_farmaceutico"), false );
+        level.registerFlag( new Flag("pegou_bandeja"), false );
         level.registerFlag( new Flag("ja_falou_paciente"), false );
         level.registerFlag( new Flag("ja_falou_paciente_leito"), false );
         level.registerFlag( new Flag("levou_yuri_centro_cirurgico"), false );

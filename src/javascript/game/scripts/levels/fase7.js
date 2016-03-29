@@ -626,23 +626,25 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-abrirGaveta", "Abrir gaveta")
                 .setCssClass("intObj-openDrawer")
                 .onClick(function() {
-                    console.log("Action: abrirGaveta");
-                    core.openModalScene("gaveta");
-                    core.openCommandBar();
-
-
-                    //    core.setInteractiveObjectVisible("io-coxim", !(level.getFlag("coxim").getValue()));
+                    if ( level.getFlag("pegou_bandeja").getValue() != true ) {
+                        core.openDialog( 1 );
+                    }
+                    else{
+                        console.log("Action: abrirGaveta");
+                        core.openModalScene("gaveta");
+                        core.openCommandBar();
+                    }
                 })
                 .setVisibility( true ),
 
 
-            new InteractiveObject("io-pegarBandeja", "Pegar Bandeja")
+            new InteractiveObject("io-pegar_bandeja", "Pegar bandeja")
                 .setCssClass("intObj-bandeja")
                 .onClick(function() {
                     console.log("Action: Pegar bandeja");
-                    level.getFlag("pegarBandeja").setValue( true );
-                    core.setInteractiveObjectVisible("io-pegarBandeja", false );
-
+                    level.getFlag("pegou_bandeja").setValue( true );
+                    //level.getFlag("score_pegou_bandeja").setValue( true );
+                    core.setInteractiveObjectVisible("io-pegar_bandeja", false );
                 })
                 .setVisibility( true )
 
@@ -748,18 +750,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-copo_descartavel", "Copo Descartável")
                 .setCssClass("intObj-copoDescartavel")
                 .onClick(function() {
-                    if ( level.getFlag("pegarBandeja").getValue() == false ) {
+                    console.log("IntObj: io-copo_descartavel");
+                    level.getFlag("pegar_copo_descartavel").setValue( true );
+                    core.setInteractiveObjectVisible("io-copo_descartavel", false );
 
-                        core.openDialog( 1 );
-                    } else {
-                        console.log("IntObj: io-copo_descartavel");
-                        level.getFlag("pegar_copo_descartavel").setValue( true );
-                        core.setInteractiveObjectVisible("io-copo_descartavel", false );
-
-                        if ( level.getFlag("score_pegar_copo_descartavel").getValue() == false ) {
-                            core.registerScoreItem( Scores.pegarCopoDescartavel );
-                            level.getFlag("score_pegar_copo_descartavel").setValue( true );
-                        }
+                    if ( level.getFlag("score_pegar_copo_descartavel").getValue() == false ) {
+                        core.registerScoreItem( Scores.pegarCopoDescartavel );
+                        level.getFlag("score_pegar_copo_descartavel").setValue( true );
                     }
                 })
                 .setVisibility( true ),
@@ -768,19 +765,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-agua_potavel", "Água Potável")
                 .setCssClass("intObj-aguaPotavel")
                 .onClick(function() {
+                    console.log("IntObj: io-agua_potavel");
+                    level.getFlag("pegar_agua_potavel").setValue( true );
+                    core.setInteractiveObjectVisible("io-agua_potavel", false );
 
-                    if ( level.getFlag("pegarBandeja").getValue() == false ) {
-
-                        core.openDialog( 1 );
-                    } else {
-                        console.log("IntObj: io-agua_potavel");
-                        level.getFlag("pegar_agua_potavel").setValue( true );
-                        core.setInteractiveObjectVisible("io-agua_potavel", false );
-
-                        if ( level.getFlag("score_pegar_agua_potavel").getValue() == false ) {
-                            core.registerScoreItem( Scores.pegarAguaPotavel );
-                            level.getFlag("score_pegar_agua_potavel").setValue( true );
-                        }
+                    if ( level.getFlag("score_pegar_agua_potavel").getValue() == false ) {
+                        core.registerScoreItem( Scores.pegarAguaPotavel );
+                        level.getFlag("score_pegar_agua_potavel").setValue( true );
                     }
                 })
                 .setVisibility( true )
@@ -852,7 +843,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.getFlag("conferir_medicamento_correto").setValue( false );
             level.getFlag("pegar_copo_descartavel").setValue( false );
             level.getFlag("pegar_agua_potavel").setValue( false );
-            level.getFlag("pegarBandeja").setValue( false );
+            level.getFlag("pegou_bandeja").setValue( false );
             level.getFlag("score_pegar_agua_potavel").setValue( false );
             level.getFlag("score_pegar_copo_descartavel").setValue( false );
             level.getFlag("ir_ala_feminina_primeira_vez").setValue( false );
@@ -902,7 +893,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("conferir_medicamento_correto"), false );
         level.registerFlag( new Flag("pegar_copo_descartavel"), false );
         level.registerFlag( new Flag("pegar_agua_potavel"), false );
-        level.registerFlag( new Flag("pegarBandeja"), false );
+        level.registerFlag( new Flag("pegou_bandeja"), false );
         level.registerFlag( new Flag("score_pegar_agua_potavel"), false );
         level.registerFlag( new Flag("score_pegar_copo_descartavel"), false );
         level.registerFlag( new Flag("ir_ala_feminina_primeira_vez"), false );
