@@ -60,7 +60,10 @@ define(function() {
                 if ( from[ audio ] instanceof Array ) {
                     to[ audio ] = [];
                 } else {
-                    to[ audio ] = {};
+                    to[ audio ] = {
+                        _name: audio,
+                        _volume: 1
+                    };
                 }
                 deepCopy( baseDir, from[ audio ], to[ audio ] );
             } else {
@@ -76,7 +79,7 @@ define(function() {
                 console.log("\tName: " + fileName, "Extension: " + extension );
 
                 sound.loop = false;
-                sound.volume = masterVolume;
+                sound.volume = to._volume * masterVolume;
                 sound.vol = sound.volume;
                 sound.load();
             }
@@ -299,6 +302,15 @@ define(function() {
         resetAllVolumes();
     }
 
+    function setVolumeToCategory( category, volume ) {
+        category._volume = volume;
+
+        for ( sound in category ) {
+            setVolumeOfTo( sound, volume * masterVolume );
+        }
+
+    }
+
     function mute() {
         SaveLoadGame.toggleMute();
         isMuted = !isMuted;
@@ -331,6 +343,7 @@ define(function() {
         mute: mute,
 
         setVolumeOfTo: setVolumeOfTo,
+        setVolumeToCategory: setVolumeToCategory,
         setMasterVolumeTo: setMasterVolumeTo,
 
         playInLoop: playInLoop,
