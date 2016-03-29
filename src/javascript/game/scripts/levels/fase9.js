@@ -760,11 +760,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setPeso("62");
             Prontuario.setAltura("1,77");
             Prontuario.setCircunferenciaAbdominal("91");
-            Prontuario.setPrescEnfermagemState("decubito");
-            Prontuario.setPrescMedicaRowData( 1, "", "Soro Glicosado 5%", "Endovenosa", "800ml", "", "(X) Administrado a infusão de  solução de  reposição  hidroeletrolítica  conforme  prescrição  médica, sem  intercorrências.", false );
-            Prontuario.setPrescMedicaRowData( 1, "", "NaCL 20%", "Endovenosa", "20ml", "", "(X) Administrado a infusão de  solução de  reposição  hidroeletrolítica  conforme  prescrição  médica, sem  intercorrências.", false );
-            Prontuario.setPrescMedicaRowData( 1, "", "Glicose 50%", "Endovenosa", "30ml", "", "(X) Administrado a infusão de  solução de  reposição  hidroeletrolítica  conforme  prescrição  médica, sem  intercorrências.", false );
-            Prontuario.setSsvvRowData( 1, "", "130X70 mmHg", "82 bpm", "19 rpm", "96%", "35.9ºC", true );
+            
+            Prontuario.setPrescMedicaRowData( 0, "", "Soro Glicosado 5%", "Endovenosa", "800ml", "", false, true );
+            Prontuario.setPrescMedicaRowData( 1, "", "NaCL 20%", "Endovenosa", "20ml", "", false, true );
+            //Prontuario.setPrescMedicaRowData( 2, "", "Glicose 50%", "Endovenosa", "30ml", "", "(X) Administrado a infusão de  solução de  reposição  hidroeletrolítica  conforme  prescrição  médica, sem  intercorrências.", false );
+
+            //Prontuario.setPrescEnfermagemState("risco de desiquilíbrio eletrolítico");
+
+            Prontuario.setSsvvRowData( 0, "", "130X70", "82", "19", "96", "35.9", true );
+            Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
         //    Prontuario.setAnotacaoEnfermagemRowData( "15/03", "" );
         });
 

@@ -1010,8 +1010,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             Prontuario.setAlergiaMedicamentosa( true, "Dipirona");
             Prontuario.setDisableAlergiaMedicamentosa( true );
-            Prontuario.setDataInternacao("13/05/2015");
-            Prontuario.setLeito("02 - Leito Masculino");
+            Prontuario.setDataInternacao("15/03/2015");
+            Prontuario.setLeito("02 - Enfermaria Masculina");
             Prontuario.setAntecedentes("Ocorrência de internação em 2004, devido a suspeita de infarto agudo do miocárdio (IAM)");
             Prontuario.setHipotese("Crise hipertensiva");
             Prontuario.setObservacoes("");
@@ -1020,10 +1020,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAltura("1,62");
             Prontuario.setCircunferenciaAbdominal("115");
 
-            Prontuario.setPrescMedicaRowData( 0, "15/03", "Captopril", "Oral", "comp 75 mg", "2x dia", true, true );
-            Prontuario.setPrescMedicaRowData( 1, "15/03", "Ácido acetilsalicílico (AAS)", "Oral", "comp 100 mg", "1x dia", true, true );
+            Prontuario.setPrescMedicaRowData( 0, "15/03", "Captopril", "Oral", "comp 75 mg", "2x dia", false, true );
+            Prontuario.setPrescMedicaRowData( 1, "15/03", "Ácido acetilsalicílico (AAS)", "Oral", "comp 100 mg", "1x dia", false, true );
 
-            Prontuario.setSsvvRowData( 0, "15/03", "", "", "", "", "", false );
+            Prontuario.setSsvvRowData( 0, "", "", "", "", "", "", false );
             Prontuario.setSsvvRowRegExp( 0,
                 new RegExp("15/03"),
                 new RegExp("160x100"),

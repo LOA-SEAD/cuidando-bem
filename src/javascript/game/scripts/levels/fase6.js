@@ -970,17 +970,23 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setDisableAlergiaMedicamentosa( true );
             Prontuario.setDataInternacao("15/05/2015");
             Prontuario.setLeito("01 - Enfermaria Masculina");
-            Prontuario.setAntecedentes("Nenhum");
+            Prontuario.setAntecedentes("");
             Prontuario.setHipotese("Câncer de esôfago");
             Prontuario.setObservacoes("Diagnóstico identificado de Câncer (CA) de Esôfago há um ano atrás, encontra-se em cuidados paliativos.");
             Prontuario.setPeso("48");
             Prontuario.setAltura("1,60");
             Prontuario.setCircunferenciaAbdominal("70");
-            Prontuario.setPrescEnfermagemState("decubito");
-            Prontuario.setPrescMedicaRowData( 1, "", "Nutrição Enteral (Hipercalórica  0,99 cal/ml)", "Sonda Nasogástrica", "200 ml/01 hora", "06h/06h", "(X) Administrado dieta sem intercorrências", false );
-            Prontuario.setPrescMedicaRowData( 1, "", "Morfina (solução oral/gota)", "Oral", "40mg/ml", "12/12h", "(X) Administrado medicamento,", false );
-            Prontuario.setSsvvRowData( 1, "", "100X10 mmHg", "65 bpm", "16 rpm", "93%", "36.5ºC", true );
-            Prontuario.setAnotacaoEnfermagemRowData( "15/03", "" );
+            
+            Prontuario.setPrescMedicaRowData( 0, "", "Nutrição Enteral (Hipercalórica  0,99 cal/ml)", "Sonda Nasogástrica", "200 ml/01 hora", "06h/06h", false, true );
+            Prontuario.setPrescMedicaRowData( 1, "", "Morfina (solução oral/gota)", "Oral", "40mg/ml", "12/12h", true, true );
+            
+            //Prontuario.setPrescEnfermagemState("nutrição desequilibrada");
+            //Prontuario.setPrescEnfermagemState("manutenção correta da sonda nasogástrica");
+            //Prontuario.setPrescEnfermagemState("risco de deiquilibrio eletrolítico");
+
+            Prontuario.setSsvvRowData( 0, "", "100X10", "65", "16", "93", "36.5", true );
+            Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
+            Prontuario.setAnotacaoEnfermagemRowData( "15/05", "" );
         });
 
         level.registerFlag( new Flag("conversar_mentor"), false );
