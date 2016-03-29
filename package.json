@@ -15,10 +15,13 @@
     "type": "git",
     "url": "https://github.com/LOA-SEAD/cuidando-bem.git"
   },
+  "main": "Gruntfile.js",
   "version": "1.4.1",
   "devDependencies": {
     "autoprefixer": "^6.3.3",
     "connect-livereload": "^0.5.4",
+    "electron-packager": "^6.0.0",
+    "electron-prebuilt": "^0.36.0",
     "glob": "^6.0.1",
     "grunt": "~0.4.5",
     "grunt-contrib-clean": "^0.6.0",
@@ -47,7 +50,6 @@
     "url": "https://github.com/LOA-SEAD/cuidando-bem/issues"
   },
   "homepage": "https://github.com/LOA-SEAD/cuidando-bem",
-  "main": "Gruntfile.js",
   "dependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
