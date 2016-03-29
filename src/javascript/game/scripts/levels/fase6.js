@@ -495,17 +495,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         })
         .setRandomize( true ),
 
-          // 1
+        // 1
 
-          new Dialog( lib.characters.mentor )
-          .setText( Dialogs.postoEnfermagem[ 3 ] )
-          .registerOption("", function() {
+        new Dialog( lib.characters.mentor )
+        .setText( Alertas.esqueceu.pegarBandeja )
+        .registerOption("", function() {
             core.closeDialog();
         }),
 
         // 2
         new Dialog( lib.characters.mentor )
-        .setText( Dialogs.postoEnfermagem[ 4 ] )
+        .setText( Dialogs.postoEnfermagem[ 3 ] )
         .registerOption("", function() {
             core.openDialog( 0 );
         })

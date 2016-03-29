@@ -8,6 +8,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         // region Imports
         var Dialogs = require("DialogsData").tutorial;
+        var Alertas = require("DialogsData").alertas;
         // var Scores = require("ScoresData").tutorial;
         // endregion
 
@@ -680,28 +681,52 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-abrirGaveta", "Abrir gaveta")
                 .setCssClass("intObj-openDrawer")
                 .onClick(function() {
-                    console.log("Action: abrirGaveta");
-                    core.openModalScene("Gaveta");
-                    core.openCommandBar();
+                    if ( level.getFlag("pegou_bandeja").getValue() != true ) {
+                        core.openDialog( 0 );
+                    }
+                    else{
+                        console.log("Action: abrirGaveta");
+                        core.openModalScene("Gaveta");
+                        core.openCommandBar();
 
-                    core.setActionVisible("btn-fecharGaveta", true );
+                        core.setActionVisible("btn-fecharGaveta", true );
 
-                    if ( level.getFlag("termometro").getValue() != true ) {
-                        core.setInteractiveObjectVisible("io-termometro", true );
-                    }
-                    if ( level.getFlag("medidor-pressao").getValue() != true ) {
-                        core.setInteractiveObjectVisible("io-medidorPressao", true );
-                    }
-                    if ( level.getFlag("oximetro").getValue() != true ) {
-                        core.setInteractiveObjectVisible("io-oximetro", true );
-                    }
-                    if ( level.getFlag("relogio").getValue() != true ) {
-                        core.setInteractiveObjectVisible("io-relogio", true );
+                        if ( level.getFlag("termometro").getValue() != true ) {
+                            core.setInteractiveObjectVisible("io-termometro", true );
+                        }
+                        if ( level.getFlag("medidor-pressao").getValue() != true ) {
+                            core.setInteractiveObjectVisible("io-medidorPressao", true );
+                        }
+                        if ( level.getFlag("oximetro").getValue() != true ) {
+                            core.setInteractiveObjectVisible("io-oximetro", true );
+                        }
+                        if ( level.getFlag("relogio").getValue() != true ) {
+                            core.setInteractiveObjectVisible("io-relogio", true );
+                        }
                     }
 
                 })
-                .setVisibility( visibility )
+                .setVisibility( visibility ),
 
+            // Bandeja
+            new InteractiveObject("io-pegar_bandeja", "Pegar bandeja")
+                .setCssClass("intObj-bandeja")
+                .onClick(function() {
+                    console.log("Action: Pegar bandeja");
+                    level.getFlag("pegou_bandeja").setValue( true );
+                    core.setInteractiveObjectVisible("io-pegar_bandeja", false );
+                })
+                .setVisibility( true )
+
+        ]);
+
+        postoDeEnfermagem.registerDialogs([
+            // Dialog 0 - Não pegou bandeja
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.pegarBandeja )
+                .registerOption("", function() {
+                    core.closeDialog();
+                })
         ]);
 
         postoDeEnfermagem.registerActions([
@@ -959,6 +984,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.getFlag("lavar-maos").setValue( 0 );
             level.getFlag("lavar-maosDepois").setValue( false );
             level.getFlag("lavar-maosDepoisScore").setValue( false );
+            level.getFlag("pegou_bandeja").setValue( false );
             level.getFlag("termometro").setValue( false );
             level.getFlag("medidor-pressao").setValue( false );
             level.getFlag("oximetro").setValue( false );
@@ -1044,6 +1070,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("lavar-maos", 0 ) );
         level.registerFlag( new Flag("lavar-maosDepois", false ) );
         level.registerFlag( new Flag("lavar-maosDepoisScore", false ) );
+        level.registerFlag( new Flag("pegou_bandeja", false ) );
         level.registerFlag( new Flag("termometro", false ) );
         level.registerFlag( new Flag("medidor-pressao", false ) );
         level.registerFlag( new Flag("oximetro", false ) );

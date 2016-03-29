@@ -752,8 +752,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: ir_corredor");
                     if ( level.getFlag("score_pegou_kit_glicemia").getValue() == true &&
                         level.getFlag("score_pegou_algodao").getValue() == true &&
-                        level.getFlag("score_pegou_luvas").getValue() == true &&
-                        level.getFlag("score_pegou_bandeja").getValue() == true ) {
+                        level.getFlag("score_pegou_luvas").getValue() == true /*&&
+                        level.getFlag("score_pegou_bandeja").getValue() == true*/ ) {
                         // Libera para dialogo com o paciente
                         level.getFlag("conversar_paciente2").setValue( true );
                         if ( level.getFlag("pegou_tudo_gaveta").getValue() == false ) {
@@ -773,16 +773,40 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-abrirGaveta", "Abrir gaveta")
                 .setCssClass("intObj-openDrawer")
                 .onClick(function() {
-                    console.log("Action: abrirGaveta");
-                    core.openModalScene("gaveta");
-                    core.openCommandBar();
+                    if ( level.getFlag("pegou_bandeja").getValue() != true ) {
+                        core.openDialog( 0 );
+                    }
+                    else{
+                        console.log("Action: abrirGaveta");
+                        core.openModalScene("gaveta");
+                        core.openCommandBar();
 
-                    core.setInteractiveObjectVisible("io-kit_glicemia", !(level.getFlag("score_pegou_kit_glicemia").getValue()) );
-                    core.setInteractiveObjectVisible("io-algodao", !(level.getFlag("score_pegou_algodao").getValue()) );
-                    core.setInteractiveObjectVisible("io-luvas", !(level.getFlag("score_pegou_luvas").getValue()) );
-                    core.setInteractiveObjectVisible("io-bandeja", !(level.getFlag("score_pegou_bandeja").getValue()) );
+                        core.setInteractiveObjectVisible("io-kit_glicemia", !(level.getFlag("score_pegou_kit_glicemia").getValue()) );
+                        core.setInteractiveObjectVisible("io-algodao", !(level.getFlag("score_pegou_algodao").getValue()) );
+                        core.setInteractiveObjectVisible("io-luvas", !(level.getFlag("score_pegou_luvas").getValue()) );
+                    }
+                })
+                .setVisibility( true ),
+
+            // Bandeja
+            new InteractiveObject("io-pegar_bandeja", "Pegar bandeja")
+                .setCssClass("intObj-bandeja")
+                .onClick(function() {
+                    console.log("Action: Pegar bandeja");
+                    level.getFlag("pegou_bandeja").setValue( true );
+                    //level.getFlag("score_pegou_bandeja").setValue( true );
+                    core.setInteractiveObjectVisible("io-pegar_bandeja", false );
                 })
                 .setVisibility( true )
+        ]);
+
+        postoDeEnfermagem.registerDialogs([
+            // Dialog 0 - Não pegou bandeja
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.pegarBandeja )
+                .registerOption("", function() {
+                    core.closeDialog();
+                })
         ]);
         // endregion
 
@@ -862,17 +886,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.setInteractiveObjectVisible("io-luvas", false );
                     level.getFlag("score_pegou_luvas").setValue( true );
                 })
-                .setVisibility( true ),
-
-            // Bandeja
-            new InteractiveObject("io-bandeja", "Pegar bandeja")
-                .setCssClass("intObj-bandeja")
-                .onClick(function() {
-                    console.log("Action: pegar bandeja");
-                    core.registerScoreItem( Scores.pegarBandeja );
-                    core.setInteractiveObjectVisible("io-bandeja", false );
-                    level.getFlag("score_pegou_bandeja").setValue( true );
-                })
                 .setVisibility( true )
         ]);
         // endregion
@@ -893,8 +906,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Verifica se é apenas a verificação do prontuário no início ou se é no final, para anotar os valores
                     if ( level.getFlag("score_falar_paciente").getValue() == false ) {
                         core.closeCommandBar();
-                        // Vai abrir o segundo diálogo da ala masculina
-                        core.openDialog( 2 );
+                        // Vai abrir o segundo diálogo da ala masculina caso ele ainda não tenha dito esta frase
+                        if ( level.getFlag("frase_apos_prontuario").getValue() == false ) {
+                            level.getFlag("frase_apos_prontuario").setValue( true );
+                            core.openDialog( 2 );
+                        }
                     }
                 })
                 .setVisibility( true )
@@ -938,6 +954,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.getFlag("conversarPaciente").setValue( false );
             level.getFlag("lavarMaos").setValue( false );
             level.getFlag("checar_prontuario").setValue( false );
+            level.getFlag("frase_apos_prontuario").setValue( false );
+            level.getFlag("pegou_bandeja").setValue( false );
             level.getFlag("pegou_tudo_gaveta").setValue( true );
             level.getFlag("segunda_ida_leito_paciente").setValue( false );
             level.getFlag("lavar_maos2").setValue( false );
@@ -963,7 +981,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.getFlag("score_pegou_kit_glicemia").setValue( false );
             level.getFlag("score_pegou_algodao").setValue( false );
             level.getFlag("score_pegou_luvas").setValue( false );
-            level.getFlag("score_pegou_bandeja").setValue( false );
+            //level.getFlag("score_pegou_bandeja").setValue( false );
             level.getFlag("score_lavar_maos_antes_de_ir_no_leito").setValue( false );
             level.getFlag("score_verificar_pulseira").setValue( false );
             level.getFlag("score_selecionou_bandeja").setValue( false );
@@ -1040,6 +1058,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("conversarPaciente"), false );
         level.registerFlag( new Flag("lavarMaos"), false );
         level.registerFlag( new Flag("checar_prontuario"), false );
+        level.registerFlag( new Flag("frase_apos_prontuario"), false );
+        level.registerFlag( new Flag("pegou_bandeja"), false );
         level.registerFlag( new Flag("pegou_tudo_gaveta"), true );
         level.registerFlag( new Flag("segunda_ida_leito_paciente"), false );
         level.registerFlag( new Flag("lavar_maos2"), false );
@@ -1065,7 +1085,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("score_pegou_kit_glicemia"), false );
         level.registerFlag( new Flag("score_pegou_algodao"), false );
         level.registerFlag( new Flag("score_pegou_luvas"), false );
-        level.registerFlag( new Flag("score_pegou_bandeja"), false );
+        //level.registerFlag( new Flag("score_pegou_bandeja"), false );
         level.registerFlag( new Flag("score_lavar_maos_antes_de_ir_no_leito"), false );
         level.registerFlag( new Flag("score_verificar_pulseira"), false );
         level.registerFlag( new Flag("score_selecionou_bandeja"), false );
