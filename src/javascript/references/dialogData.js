@@ -486,7 +486,7 @@ define({
             // 0 Jogador
             "Boa tarde, Alberto!",
             // 1 Mentor
-            "Boa tarde! A paciente de hoje teve um Acidente Vascular Encefálico Isquêmico (AVE)." +
+            "Boa tarde! A paciente de hoje teve um Acidente Vascular Encefálico Isquêmico (AVCI)." +
             " Ela também sofreu uma queda, resultando em uma lesão. Vá até a enfermaria" +
             " feminina para realizar os procedimentos necessários."
         ],
