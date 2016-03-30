@@ -25,7 +25,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             postoDeEnfermagem,
             gaveta,
             pulseira,
-            prontuario;
+            prontuario,
+            glicosimetro;
 
         // region Recepcao
         function recepcaoIrCorredor() {
@@ -398,7 +399,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption( Dialogs.leitoPaciente[ 4 ], function() {
                     core.closeDialog();
                     core.setActionVisible("btn-falarPaciente", false );
-                    core.setActionVisible("btn-teste_glicemia", true );
+                    core.setActionVisible("btn-realizar_teste_glicemia", true );
                     core.setActionVisible("btn-descartar_agulha", true );
                     core.setActionVisible("btn-jogar_algodao", true );
                     core.setActionVisible("btn-materiaisCurativo", true );
@@ -511,9 +512,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true ),
 
-            new Action("btn-teste_glicemia", "Fazer teste de glicemia capilar")
+            new Action("btn-realizar_teste_glicemia", "Realizar teste de glicemia capilar")
                 // CONSERTAR
-                .setCssClass("action-selecionar_bandeja")
+                .setCssClass("action-realizar_teste_glicemia")
                 .onClick(function() {
                     console.log("Action: Fazer teste de glicemia capilar");
                     // Desabilita acesso a pulseira
@@ -530,6 +531,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         level.getFlag("score_fez_teste_glicemia").setValue( true );
                         core.registerScoreItem( Scores.fazerTesteGlicemia );
                     }
+                    //Abre a cena do glicosimetro
+                    core.openModalScene("modalGlicosimetro");
                 })
                 .setVisibility( false ),
 
@@ -986,13 +989,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // endregion
 
         // region Glicosimetro
-        /*
-         glicosimetro = new Scene("Glicosimetro", "Glicosimetro");
+        glicosimetro = new Scene("modalGlicosimetro", "modalGlicosimetro")
+            .setCssClass("modalScene-glicosimetro")
+            .setTemplate("<span class='glicosimetro-text'>100 mg/dl</span>");
 
-         glicosimetro.registerActions([
-
-         ]);*/
-
+        glicosimetro.registerActions([
+            new Action("btn-realizar_teste_glicemia", "Fechar teste de glicemia capilar")
+                .setCssClass("action-realizar_teste_glicemia")
+                .onClick(function() {
+                    core.closeModalScene("modalGlicosimetro");
+                })
+                .setVisibility( true )
+        ]);
         // endregion
 
         // endregion
@@ -1013,7 +1021,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerModalScene( pulseira );
         level.registerModalScene( gaveta );
         level.registerModalScene( prontuario );
-        // level.registerModalScene(glicosimetro);
+        level.registerModalScene( glicosimetro );
 
         // level init script
         level.setSetupScript(function() {

@@ -25,8 +25,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             postoDeEnfermagem,
             gaveta,
             pulseira,
-            prontuario;
-        // glicosimetro;
+            prontuario,
+            glicosimetro;
 
         // region Recepcao
         function recepcaoIrCorredor() {
@@ -712,6 +712,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             level.getFlag("score_realizou_teste_glicemia").setValue( true );
                             core.registerScoreItem( Scores.realizarTesteGlicemia );
                         }
+                        //Abre a cena do glicosimetro
+                        core.openModalScene("modalGlicosimetro");
                     }
                 })
                 .setVisibility( false ),
@@ -921,13 +923,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // endregion
 
         // region Glicosimetro
-        /*
-         glicosimetro = new Scene("Glicosimetro", "Glicosimetro");
+        glicosimetro = new Scene("modalGlicosimetro", "modalGlicosimetro")
+            .setCssClass("modalScene-glicosimetro")
+            .setTemplate("<span class='glicosimetro-text'>180 mg/dl</span>");
 
-         glicosimetro.registerActions([
-
-         ]);*/
-
+        glicosimetro.registerActions([
+            new Action("btn-realizar_teste_glicemia", "Fechar teste de glicemia capilar")
+                .setCssClass("action-realizar_teste_glicemia")
+                .onClick(function() {
+                    core.closeModalScene("modalGlicosimetro");
+                })
+                .setVisibility( true )
+        ]);
         // endregion
 
         // Register in level
@@ -945,7 +952,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerModalScene( pulseira );
         level.registerModalScene( gaveta );
         level.registerModalScene( prontuario );
-        // level.registerModalScene(glicosimetro);
+        level.registerModalScene( glicosimetro );
 
         // level init script
         level.setSetupScript(function() {
