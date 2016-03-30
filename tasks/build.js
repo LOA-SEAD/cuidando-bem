@@ -10,7 +10,7 @@ module.exports = function( grunt ) {
             "dev" - Builds game to run in a development env.
                 minifications :     false,
                 removeLogs :        false,
-                autoPubilishing :   false,
+                autoPublishing :   false,
                 autoVersioning :    false,
                 setupInitialLevel:  true,
                 setupInitialScreen: true
@@ -18,7 +18,7 @@ module.exports = function( grunt ) {
             "prod" - Builds game to be tested in a production env. This is the way the game should be deployed if everything is ok.
                 minifications :     true,
                 removeLogs :        true,
-                autoPubilishing :   false,
+                autoPublishing :   false,
                 autoVersioning :    false,
                 setupInitialLevel:  false,
                 setupInitialScreen: false
@@ -26,7 +26,7 @@ module.exports = function( grunt ) {
             "rel" - Takes the game builded in "prod" publishs it and updates the game version
                 minifications :     true,
                 removeLogs :        true,
-                autoPubilishing :   true,
+                autoPublishing :   true,
                 autoVersioning :    true, //dependent on grunt option "v"
                 setupInitialLevel:  false,
                 setupInitialScreen: false
