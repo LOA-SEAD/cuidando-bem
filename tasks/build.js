@@ -15,7 +15,8 @@ module.exports = function( grunt ) {
                 setupInitialLevel:  true,
                 setupInitialScreen: true
 
-            "prod" - Builds game to be tested in a production env. This is the way the game should be deployed if everything is ok.
+            "prod" - Builds game to be tested in a production env. This is the way the game should
+            be deployed if everything is ok.
                 minifications :     true,
                 removeLogs :        true,
                 autoPublishing :   false,
@@ -32,7 +33,9 @@ module.exports = function( grunt ) {
                 setupInitialScreen: false
         */
 
+        // Get target option or set it to "dev"
         var target = grunt.option("target") || "dev";
+        // Get ver option or set it to "minor"
         var ver = grunt.option("ver") || "minor";
 
         grunt.log.write("Building " + pkg.name + ":" + target );
@@ -73,9 +76,14 @@ module.exports = function( grunt ) {
             ]);
         }
 
+        /*
+            Compress the code into a zip and publish the game to all desktop plataforms
+            using electron
+        */
         if ( target == "rel" ) {
             grunt.task.run([
-                "compress:rel"
+                "compress:rel",
+                "electron"
             ]);
         }
     });
