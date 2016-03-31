@@ -783,27 +783,27 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setDataInternacao("10/10/2015");
             Prontuario.setLeito("01 - Enfermaria Masculina");
             Prontuario.setAntecedentes("Ausência");
-            Prontuario.setHipotese("Infecção no trato respiratório por Streptococcus sp. e desconforto respiratório.");
+            Prontuario.setHipotese("Infecção no trato respiratório por Streptococcus sp.  e desconforto respiratório.");
             Prontuario.setObservacoes("Está no 2.º dia de uso de Cefalotina Sódica (Keflin®)");
             Prontuario.setPeso("62");
             Prontuario.setAltura("1,77");
             Prontuario.setCircunferenciaAbdominal("91");
             
-            Prontuario.setPrescMedicaRowData( 0, "", "Cefalotina sódica (Keflin®)", "Endovenosa", "800 mg diluído em 100 ml de SF (soro fisiológico) 0,9% em 01 hora", "6/6h", "(X) Administrado medicação sem intercorrência<br />(X) Administrado medicação com intercorrência", true );
+            Prontuario.setPrescMedicaRowData( 0, "", "Cefalotina sódica (Keflin®)", "Endovenosa", false, true );
             Prontuario.setPrescMedicaRowData( 1, "", "", "", "", "", "", false );
 
             //Prontuario.setPrescEnfermagemState("risco de infecção");
 
             Prontuario.setSsvvRowData( 0, "", "110x70", "55", "16", "96", "37.3", true );
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
-            Prontuario.setAnotacaoEnfermagemRowData("10/10", "");
+            Prontuario.setAnotacaoEnfermagemRowData("", "");
 
             // 'pulseira' content
             Pulseira.setNameRegExp( /Pedro Alcides Mendonça/ );
             Pulseira.setLeitoRegExp( /0*1/ );
             Pulseira.setDataRegExp( /03\/06\/1962/ );
             Pulseira.setName("Pedro Alcides Mendonça");
-            Pulseira.setLeito("13");
+            Pulseira.setLeito("01");
             Pulseira.setData("03/06/1962");
             Pulseira.disable();
         });

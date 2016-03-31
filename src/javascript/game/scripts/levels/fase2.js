@@ -236,7 +236,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         salaDeLeitos.registerInteractiveObjects([
             new InteractiveObject("io-ir_leito", "Ir ao leito")
-                .setCssClass("intObj-ir_leito-fase4")
+                .setCssClass("intObj-ir_leito-fase1")
                 .onClick(function() {
                     if ( level.getFlag("lavar_maos2").getValue() == false ) {
                         // Mentor corrige
@@ -1004,11 +1004,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.getFlag("score_anotar_prontuario").setValue( false );
 
             Pulseira.setNameRegExp( /Raul Gonzales Rodrigues/ );
-            Pulseira.setLeitoRegExp( /0*1/ );
+            Pulseira.setLeitoRegExp( /0*3/ );
             Pulseira.setDataRegExp( /24\/07\/1937/ );
 
             Pulseira.setName("Raul Gonzales Rodrigues");
-            Pulseira.setLeito("01");
+            Pulseira.setLeito("03");
             Pulseira.setData("24/07/1937");
             Pulseira.disable();
 
@@ -1045,11 +1045,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // Prontuario.setPrescEnfermagemState("verificar glicemia");
             // Prontuario.setPrescEnfermagemState("levantar grade");
 
-            Prontuario.setSsvvRowData( 0, "17/06", "130x70", "58", "28", "95", "36,2", true );
+            Prontuario.setSsvvRowData( 0, "", "130x70", "58", "28", "95", "36,2", true );
             // Disable 2 row
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
 
-            Prontuario.setAnotacaoEnfermagemRowData("17/06", "");
+            Prontuario.setAnotacaoEnfermagemRowData("", "");
         });
 
         // Flags

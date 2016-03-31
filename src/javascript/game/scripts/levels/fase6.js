@@ -969,7 +969,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAlergiaMedicamentosa( false, "");
             Prontuario.setDisableAlergiaMedicamentosa( true );
             Prontuario.setDataInternacao("15/05/2015");
-            Prontuario.setLeito("01 - Enfermaria Masculina");
+            Prontuario.setLeito("03 - Enfermaria Masculina");
             Prontuario.setAntecedentes("");
             Prontuario.setHipotese("Câncer de esôfago");
             Prontuario.setObservacoes("Diagnóstico identificado de Câncer (CA) de Esôfago há um ano atrás, encontra-se em cuidados paliativos.");
@@ -986,7 +986,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             Prontuario.setSsvvRowData( 0, "", "100X10", "65", "16", "93", "36.5", true );
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
-            Prontuario.setAnotacaoEnfermagemRowData( "15/05", "" );
+            Prontuario.setAnotacaoEnfermagemRowData( "", "" );
         });
 
         level.registerFlag( new Flag("conversar_mentor"), false );

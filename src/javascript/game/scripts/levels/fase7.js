@@ -861,7 +861,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAlergiaMedicamentosa( false, "");
             Prontuario.setDisableAlergiaMedicamentosa( true );
             Prontuario.setDataInternacao("23/08/2015");
-            Prontuario.setLeito("03 - Enfermaria Feminina");
+            Prontuario.setLeito("01 - Enfermaria Feminina");
             Prontuario.setAntecedentes("");
             Prontuario.setHipotese("Cirurgia de fratura de fêmur");
             Prontuario.setObservacoes("Diabetes Mellitus tipo II, sofreu queda em degrau de uma escada, devido à instabilidade glicêmica.");
@@ -876,7 +876,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             Prontuario.setSsvvRowData( 0, "", "120X70", "60", "18", "96", "35", true );
             Prontuario.setSsvvRowData( 1, "", "130X70", "68", "20", "96", "36.4", true );
-            Prontuario.setAnotacaoEnfermagemRowData("19/07", "");
+            Prontuario.setAnotacaoEnfermagemRowData("", "");
 
 
         });

@@ -187,7 +187,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             new InteractiveObject("io-ir_leito", "Ir ao leito")
-                .setCssClass("intObj-ir_leito-fase4")
+                .setCssClass("intObj-ir_leito-tutorial")
                 .onClick(function() {
                     if ( level.getFlag("score_lavar_maos_antes_leito").getValue() == false ) {
                         if ( level.getFlag("score_nao_lavar_maos_antes_leito").getValue() == false ) {
@@ -1166,7 +1166,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // Disable 2 row
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
 
-            Prontuario.setAnotacaoEnfermagemRowData("27/09", "");
+            Prontuario.setAnotacaoEnfermagemRowData("", "");
         });
 
         // region Flags

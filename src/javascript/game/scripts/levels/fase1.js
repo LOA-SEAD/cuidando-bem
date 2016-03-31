@@ -780,7 +780,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // Disable 2 row
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
 
-            Prontuario.setAnotacaoEnfermagemRowData("15/03", "");
+            Prontuario.setAnotacaoEnfermagemRowData("", "");
         });
 
         // Flags

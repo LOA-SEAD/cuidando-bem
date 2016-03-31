@@ -1020,8 +1020,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAltura("1,62");
             Prontuario.setCircunferenciaAbdominal("115");
 
-            Prontuario.setPrescMedicaRowData( 0, "15/03", "Captopril", "Oral", "comp 75 mg", "2x dia", false, true );
-            Prontuario.setPrescMedicaRowData( 1, "15/03", "Ácido acetilsalicílico (AAS)", "Oral", "comp 100 mg", "1x dia", false, true );
+            Prontuario.setPrescMedicaRowData( 0, "", "Captopril", "Oral", "comp 75 mg", "2x dia", false, true );
+            Prontuario.setPrescMedicaRowData( 1, "", "Ácido acetilsalicílico (AAS)", "Oral", "comp 100 mg", "1x dia", false, true );
 
             Prontuario.setSsvvRowData( 0, "", "", "", "", "", "", false );
             Prontuario.setSsvvRowRegExp( 0,
@@ -1035,7 +1035,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // Disable 2 row
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
 
-            Prontuario.setAnotacaoEnfermagemRowData("15/03", "");
+            Prontuario.setAnotacaoEnfermagemRowData("", "");
 
             Prontuario.setPrescEnfermagemState("vazio");
         });

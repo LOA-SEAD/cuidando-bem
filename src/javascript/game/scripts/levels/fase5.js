@@ -1113,7 +1113,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setSsvvRowData( 0, "", "120x70", "46", "15", "96", "35", true );
             Prontuario.setSsvvRowData( 1, "", "130x80", "52", "18", "94", "36", true );
 
-            Prontuario.setAnotacaoEnfermagemRowData("02/11", "");
+            Prontuario.setAnotacaoEnfermagemRowData("", "");
         });
 
         // region Flags
