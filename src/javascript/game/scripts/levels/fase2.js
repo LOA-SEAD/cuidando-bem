@@ -10,6 +10,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var Dialogs = require("DialogsData").fase2;
         var Alertas = require("DialogsData").alertas;
         var Scores = require("ScoresData").level2;
+        var Player = require("Player");
         // endregion
 
         var level = new Level("Level 2");
@@ -887,6 +888,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                     else{
                         console.log("Action: abrirGaveta");
+                        //Som
+                        Player.play( Player.audios.sfx.abrirGaveta );
                         core.openModalScene("gaveta");
                         core.openCommandBar();
 
@@ -902,6 +905,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-bandeja")
                 .onClick(function() {
                     console.log("Action: Pegar bandeja");
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     level.getFlag("pegou_bandeja").setValue( true );
                     //level.getFlag("score_pegou_bandeja").setValue( true );
                     core.setInteractiveObjectVisible("io-pegar_bandeja", false );
@@ -953,6 +958,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-fecharGaveta")
                 .onClick(function() {
                     console.log("Action: fecharGaveta");
+                    //Som
+                    Player.play( Player.audios.sfx.fecharGaveta );
                     core.closeModalScene("Gaveta");
                     console.log("Btn ir corredor");
                     core.setActionVisible("btn-ir_corredor", true );
@@ -969,6 +976,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-thermometer")
                 .onClick(function() {
                     console.log("Action: pegar kit de glicemia");
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.pegarKitGlicemia );
                     core.setInteractiveObjectVisible("io-kit_glicemia", false );
                     level.getFlag("score_pegou_kit_glicemia").setValue( true );
@@ -980,6 +989,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-algodao_seco")
                 .onClick(function() {
                     console.log("Action: pegar algodao ");
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.pegarAlgodao );
                     core.setInteractiveObjectVisible("io-algodao", false );
                     level.getFlag("score_pegou_algodao").setValue( true );
@@ -991,6 +1002,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-luvas_de_procedimento")
                 .onClick(function() {
                     console.log("Action: pegar luvas");
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.pegarLuvas );
                     core.setInteractiveObjectVisible("io-luvas", false );
                     level.getFlag("score_pegou_luvas").setValue( true );

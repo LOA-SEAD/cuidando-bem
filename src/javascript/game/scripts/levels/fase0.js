@@ -687,6 +687,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                     else{
                         console.log("Action: abrirGaveta");
+                        //Som
+                        Player.play( Player.audios.sfx.abrirGaveta );
                         core.openModalScene("Gaveta");
                         core.openCommandBar();
 
@@ -714,7 +716,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-bandeja")
                 .onClick(function() {
                     console.log("Action: Pegar bandeja");
-                    Player.play( Player.audios.sfx.fecharGaveta );
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     level.getFlag("pegou_bandeja").setValue( true );
                     core.setInteractiveObjectVisible("io-pegar_bandeja", false );
                 })
@@ -772,6 +775,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-fecharGaveta")
                 .onClick(function() {
                     console.log("Action: fecharGaveta");
+                    //Som
+                    Player.play( Player.audios.sfx.fecharGaveta );
                     core.closeModalScene("Gaveta");
                     if ( level.getFlag("termometro").getValue() == true &&
                         level.getFlag("oximetro").getValue() == true &&
@@ -791,7 +796,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-thermometer")
                 .onClick(function() {
                     console.log("Action: pegar_termometro");
-                    Player.play( Player.audios.sfx.objeto );
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.tutorial.pegarTermometro );
                     core.setInteractiveObjectVisible("io-termometro", false );
                     level.getFlag("termometro").setValue( true );
@@ -802,7 +808,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-bloodPressureMonitor")
                 .onClick(function() {
                     console.log("O medidor de pressão foi ativado");
-                    Player.play( Player.audios.sfx.objeto );
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.tutorial.pegarAparelhoPressao );
                     core.setInteractiveObjectVisible("io-medidorPressao", false );
                     level.getFlag("medidor-pressao").setValue( true );
@@ -813,7 +820,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-oximeter")
                 .onClick(function() {
                     console.log("Action: pegar_oximetro");
-                    Player.play( Player.audios.sfx.objeto );
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.tutorial.pegarOximetro );
                     core.setInteractiveObjectVisible("io-oximetro", false );
                     level.getFlag("oximetro").setValue( true );
@@ -824,7 +832,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-watch")
                 .onClick(function() {
                     console.log("Action: pegar_relogio");
-                    Player.play( Player.audios.sfx.objeto );
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.tutorial.pegarRelogio );
                     core.setInteractiveObjectVisible("io-relogio", false );
                     level.getFlag("relogio").setValue( true );

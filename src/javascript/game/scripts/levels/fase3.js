@@ -5,6 +5,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var Dialogs = require("DialogsData").fase3;
         var Alertas = require("DialogsData").alertas;
         Scores = Scores.level3;
+        var Player = require("Player");
         // endregion
 
         var level = new Level("Level 3");
@@ -303,6 +304,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var centroCirurgico = lib.scenes.centroCirurgico.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + centroCirurgico.getName() );
+                //Som
+                Player.play( Player.audios.sfx.abrirPorta );
                 core.openDialog( 0 );
             });
 
@@ -653,6 +656,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Dialog( lib.characters.pacientes.regina )
                 .setText( Dialogs.leitoPaciente[ 5 ] )
                 .registerOption("", function() {
+                    //Som
+                    Player.play( Player.audios.sfx.mesaComRodinha );
                     core.closeDialog();
                 }),
 
@@ -689,6 +694,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setCssClass("scene-centroCirurgicoRegina")
             .onLoad(function() {
                 console.log("Entrando no centro cirurgico segunda vez");
+                //Som
+                Player.play( Player.audios.sfx.abrirPorta );
                 core.openDialog( 0 );
             })
             .onUnload(function() {
