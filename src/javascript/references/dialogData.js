@@ -190,7 +190,9 @@ define({
             "Bom dia.",
             // Ação - pegar o prontuário
             // 2 Jogador
-            "Parece que temos um procedimento para ser realizado, vou até o posto de enfermagem e já volto."
+            "Parece que temos um procedimento para ser realizado, vou até o posto de enfermagem e já volto.",
+            // 3 Lixo Errado Alerta
+            "Tem certeza que está realizando o descarte no lixo correto?",
         ],
         leitoPaciente: [
             // 0 Jogador
