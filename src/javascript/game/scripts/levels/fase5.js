@@ -95,7 +95,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         function corredorIrAlaFeminina() {
             if ( level.getFlag("conversar_mentor").getValue() == false ) {
-                core.openDialog( 3 );
+                core.openDialog( 6 );
                 if ( level.getFlag("score_ir_ala_feminina_hora_errada").getValue() == false ) {
                     core.registerScoreItem( Scores.irAlaFemininaHoraErrada );
                     level.getFlag("score_ir_ala_feminina_hora_errada").setValue( true );
@@ -106,13 +106,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         }
 
         function corredorIrAlaMasculina() {
-            core.openDialog( 3 );
             if ( level.getFlag("conversar_mentor").getValue() == false ) {
+                core.openDialog( 6 );
                 if ( level.getFlag("score_ir_alaMasculina_hora_errada").getValue() == false ) {
                     core.registerScoreItem( Scores.irAlaMasculinaHoraErrada );
                     level.getFlag("score_ir_alaMasculina_hora_errada").setValue( true );
                 }
             } else {
+                core.openDialog( 3 );
                 if ( level.getFlag("score_ir_alaMasculina_apos_fala_mentor").getValue() == false ) {
                     core.registerScoreItem( Scores.irAlaMasculinaAposFalaMentor );
                     level.getFlag("score_ir_alaMasculina_apos_fala_mentor").setValue( true );
@@ -185,7 +186,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Alertas.perdido.enfermagem[ 1 ] )
                 .registerOption("", function() {
                     core.closeDialog();
-                })
+                }),
+            // 6 - Mentor Ação errada: Não falar com o mentor para saber qual é a enfermaria correta
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.perdido.corredor )
+                .registerOption("", function() {
+                    core.closeDialog();
+                })  
         ]);
 
         corredor.registerInteractiveObjects([
@@ -527,12 +534,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.closeCommandBar();
                         core.openDialog( 7 );
                     }
-                    if ( level.getFlag("score_fez_teste_glicemia").getValue() == false ) {
-                        level.getFlag("score_fez_teste_glicemia").setValue( true );
-                        core.registerScoreItem( Scores.fazerTesteGlicemia );
+                    else{
+                        if ( level.getFlag("score_fez_teste_glicemia").getValue() == false ) {
+                            level.getFlag("score_fez_teste_glicemia").setValue( true );
+                            core.registerScoreItem( Scores.fazerTesteGlicemia );
+                        }
+                        //Abre a cena do glicosimetro
+                        core.openModalScene("modalGlicosimetro");
                     }
-                    //Abre a cena do glicosimetro
-                    core.openModalScene("modalGlicosimetro");
                 })
                 .setVisibility( false ),
 
@@ -789,7 +798,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.setInteractiveObjectVisible("io-kit_glicemia", !(level.getFlag("score_pegou_kit_glicemia").getValue()) );
                         core.setInteractiveObjectVisible("io-algodao", !(level.getFlag("score_pegou_algodao").getValue()) );
                         core.setInteractiveObjectVisible("io-luvas", !(level.getFlag("score_pegou_luvas").getValue()) );
-                        core.setInteractiveObjectVisible("io-luvasEstereis", !(level.getFlag("score_pegou_luvas_estereis").getValue()) );
+                        core.setInteractiveObjectVisible("io-luvas_estereis", !(level.getFlag("score_pegou_luvas_estereis").getValue()) );
                         core.setInteractiveObjectVisible("io-gaze", !(level.getFlag("score_pegou_gaze").getValue()) );
                         core.setInteractiveObjectVisible("io-fita_hipoalergenica", !(level.getFlag("score_pegou_fita_hipoalergenica").getValue()) );
                         core.setInteractiveObjectVisible("io-soro", !(level.getFlag("score_pegou_soro").getValue()) );
@@ -845,7 +854,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // Kit glicemia
             new InteractiveObject("io-kit_glicemia", "Pegar Kit de glicemia")
             // Ainda nao disponivel imagem correta
-                .setCssClass("intObj-thermometer")
+                .setCssClass("intObj-aparelhoGlicemia")
                 .onClick(function() {
                     console.log("Action: pegar kit de glicemia");
                     core.registerScoreItem( Scores.pegarKitGlicemia );
