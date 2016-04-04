@@ -266,6 +266,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-lavarMaos", "Lavar as mãos")
                 .setCssClass("action-lavarMaos")
                 .onClick(function() {
+                    //Som
+                    Player.play( Player.audios.sfx.lavarMaos );
                     // verifica se é a primeira vez que está indo verificar o paciente
                     if ( level.getFlag("segunda_ida_leito_paciente").getValue() == false ) {
                         if ( level.getFlag("lavarMaos").getValue() == false ) {

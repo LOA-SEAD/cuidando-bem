@@ -536,6 +536,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-lavarMaos")
                 .onClick(function() {
                     console.log("Action: lavarMaos");
+                    //Som
+                    Player.play( Player.audios.sfx.lavarMaos );
 
                     // TODO Clean this mess PLEASE
                     switch ( level.getFlag("lavar-maos").getValue() ) {

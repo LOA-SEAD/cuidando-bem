@@ -307,6 +307,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-lavarMaos", "Lavar as mãos")
                 .setCssClass("action-lavarMaos")
                 .onClick(function() {
+                    //Som
+                    Player.play( Player.audios.sfx.lavarMaos );
                     if ( level.getFlag("lavarMaos").getValue() == false ) {
                         console.log("Action: lavarMaos");
                         level.getFlag("lavarMaos").setValue( true );

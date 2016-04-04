@@ -7,6 +7,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var Dialogs = require("DialogsData").fase7;
         var Alertas = require("DialogsData").alertas;
         // var Scores = require("ScoresData").fase3;
+        var Player = require("Player");
         // endregion
 
         var level = new Level("Level 7");
@@ -297,7 +298,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-lavarMaos", "Lavar as mãos")
                 .setCssClass("action-lavarMaos")
                 .onClick(function() {
-
+                    //Som
+                    Player.play( Player.audios.sfx.lavarMaos );
                     if ( level.getFlag("lavarMaos").getValue() == false ) {
                         level.getFlag("lavarMaos").setValue( true );
                         core.registerScoreItem( Scores.lavarMaos );
@@ -474,6 +476,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-pegarMedicamento", "Pegar Medicamento")
                 .setCssClass("action-pegarMedicamento")
                 .onClick(function() {
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     level.getFlag("pegarMedicamento").setValue( true );
                     core.registerScoreItem( Scores.pegarMedicamento );
 
@@ -631,6 +635,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                     else{
                         console.log("Action: abrirGaveta");
+                        //Som
+                        Player.play( Player.audios.sfx.abrirGaveta );
                         core.openModalScene("gaveta");
                         core.openCommandBar();
                     }
@@ -642,6 +648,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-bandeja")
                 .onClick(function() {
                     console.log("Action: Pegar bandeja");
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     level.getFlag("pegou_bandeja").setValue( true );
                     //level.getFlag("score_pegou_bandeja").setValue( true );
                     core.setInteractiveObjectVisible("io-pegar_bandeja", false );
@@ -739,6 +747,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-fecharGaveta")
                 .onClick(function() {
                     console.log("Action: fecharGaveta");
+                    //Som
+                    Player.play( Player.audios.sfx.fecharGaveta );
                     core.closeModalScene("Gaveta");
                 })
                 .setVisibility( true )
@@ -751,6 +761,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-copoDescartavel")
                 .onClick(function() {
                     console.log("IntObj: io-copo_descartavel");
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     level.getFlag("pegar_copo_descartavel").setValue( true );
                     core.setInteractiveObjectVisible("io-copo_descartavel", false );
 
@@ -766,6 +778,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-aguaPotavel")
                 .onClick(function() {
                     console.log("IntObj: io-agua_potavel");
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     level.getFlag("pegar_agua_potavel").setValue( true );
                     core.setInteractiveObjectVisible("io-agua_potavel", false );
 

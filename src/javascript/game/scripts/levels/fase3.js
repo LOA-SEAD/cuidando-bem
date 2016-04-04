@@ -441,7 +441,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-lavarMaos", "Lavar as mãos")
                 .setCssClass("action-lavarMaos")
                 .onClick(function() {
-
+                    //Som
+                    Player.play( Player.audios.sfx.lavarMaos );
                     if ( level.getFlag("lavarMaos").getValue() == false ) {
                         console.log("Action: lavarMaos");
                         level.getFlag("lavarMaos").setValue( true );
@@ -456,7 +457,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-lavar_maos_cirurgica", "Lavar as mãos técnica cirúrgica")
                 .setCssClass("action-lavar_maos_escova")
                 .onClick(function() {
-
+                    //Som
+                    Player.play( Player.audios.sfx.lavarMaos );
                     if ( level.getFlag("lavar_maos_cirurgica").getValue() == false ) {
                         console.log("Action: lavarMaos cirurgica");
                         core.registerScoreItem( Scores.lavarMaosCirurgica );
@@ -498,7 +500,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-lavarMaos", "Lavar as mãos")
                 .setCssClass("action-lavarMaos")
                 .onClick(function() {
-
+                    //Som
+                    Player.play( Player.audios.sfx.lavarMaos );
                     if ( level.getFlag("lavar_maos2").getValue() == false ) {
                         console.log("Action: lavar_maos2");
                         level.getFlag("lavar_maos2").setValue( true );
@@ -710,7 +713,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-lavarMaos", "Lavar as mãos")
                 .setCssClass("action-lavarMaos")
                 .onClick(function() {
-
+                    //Som
+                    Player.play( Player.audios.sfx.lavarMaos );
                     if ( level.getFlag("lavar_maos3").getValue() == false ) {
                         level.getFlag("lavar_maos3").setValue( true );
                     }
