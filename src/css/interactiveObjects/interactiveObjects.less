@@ -1473,4 +1473,27 @@
        height: 0.9 * @termometro_frontal-height;
    }
 }
+.intObj-aparelhoGlicemia {
+   background-image: @intObj-aparelhoGlicemia;
 
+   background-size: contain;
+   background-repeat: no-repeat;
+
+   top: 12%;
+   left: 21%;
+   @aparelhoGlicemia-width: 0.27 * 496px;
+   @aparelhoGlicemia-height: 0.27 * 991px;
+
+   @media screen and (min-width: @screen-sm-min) {
+       width: 0.38 * @aparelhoGlicemia-width;
+       height: 0.38 * @aparelhoGlicemia-height;
+   }
+   @media screen and (min-width: @screen-md-min) {
+       width: 0.45 * @aparelhoGlicemia-width;
+       height: 0.45 * @aparelhoGlicemia-height;
+   }
+   @media screen and (min-width: @screen-lg-min) {
+       width: 0.5 * @aparelhoGlicemia-width;
+       height: 0.5 * @aparelhoGlicemia-height;
+   }
+}

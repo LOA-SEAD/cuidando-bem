@@ -883,6 +883,9 @@ define({
 
             centroCirurgico: [
                 "Primeiro teste os equipamentos que serão utilizados na cirurgia."
+            ],
+            corredor: [
+                "Converse comigo para saber qual é a enfermaria correta."
             ]
         },
         esqueceu: {
