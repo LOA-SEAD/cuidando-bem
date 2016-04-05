@@ -259,7 +259,114 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         alert("Você deveria checar o prontuario");
                     }
                 })
-                .setVisibility( false )
+                .setVisibility( false ),
+
+
+            new InteractiveObject("io-lixoBranco", "Lixo Comum")
+                .setCssClass("intObj-lixo_comum")
+                .onClick(function() {
+
+                    if(level.getFlag("descartar_algodao").getValue() == true)
+
+                        {
+
+                        core.setActionVisible("btn-lavarMaos", true );
+                        core.setActionVisible("btn-jogar_algodao_lixo", false);
+                        core.setActionVisible("btn-jogar_agulha_perfuro", true );
+                        core.setActionVisible("btn-ler_prontuario", true );
+                        core.setActionVisible("btn-elevar_grade_cama", true );
+                        core.setActionVisible("btn-anotarProntuario", true );
+
+                      /*
+                          if(level.getFlag("descartar_agulha").getValue() == true)
+                            core.setActionVisible("btn-jogar_agulha_perfuro", false );
+
+                            */
+
+                        core.setInteractiveObjectVisible("io-lixoBranco", false );
+                        core.setInteractiveObjectVisible("io-lixoInfectante",false );
+                        core.setInteractiveObjectVisible("io-perfuroCortante", false );
+
+                        }
+
+                    else {
+
+
+                        core.openDialog(7);
+                    }
+
+
+
+
+                })
+                .setVisibility( false ),
+
+
+            new InteractiveObject("io-lixoInfectante", "Lixo Infectante")
+                .setCssClass("intObj-lixo_infectante")
+                .onClick(function() {
+
+                        core.openDialog(7);
+
+                    // falta fazer score de erro
+
+                })
+                .setVisibility( false ),
+
+
+
+            new InteractiveObject("io-perfuroCortante", "Perfuro Cortante")
+                .setCssClass("intObj-lixo_perfuro_cortante")
+                .onClick(function() {
+
+                      if(level.getFlag("descartar_agulha").getValue() == true)
+
+                        {
+
+
+                        core.setActionVisible("btn-lavarMaos", true );
+                        core.setActionVisible("btn-jogar_algodao_lixo", true);
+                        core.setActionVisible("btn-jogar_agulha_perfuro", false );
+                        core.setActionVisible("btn-ler_prontuario", true );
+                        core.setActionVisible("btn-elevar_grade_cama", true );
+                        core.setActionVisible("btn-anotarProntuario", true );
+
+                       /*
+                          if(level.getFlag("descartar_algodao").getValue() == true)
+                            core.setActionVisible("btn-jogar_algodao_lixo", false );
+                            */
+
+
+
+                        core.setInteractiveObjectVisible("io-lixoBranco", false );
+                        core.setInteractiveObjectVisible("io-lixoInfectante",false );
+                        core.setInteractiveObjectVisible("io-perfuroCortante", false );
+
+                        }
+
+                    else {
+
+                        core.openDialog(7);
+                    }
+
+
+
+
+
+                })
+                .setVisibility( false ),
+
+
+
+
+
+
+
+
+
+
+
+
         ]);
 
 
@@ -331,12 +438,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             new Action("btn-jogar_agulha_perfuro", "Descartar Agulha")
                 // CONSERTAR
-                .setCssClass("action-jogar_agulha_perfuro")
+                .setCssClass("action-agulha_40x12")
                 .onClick(function() {
-                    level.getFlag("selecionar_agulha").setValue( true );
+                  level.getFlag("descartar_agulha").setValue(true);
 
-                    core.setActionVisible("btn-lixoBranco", true );
-                    core.setActionVisible("btn-perfuroCortante", true );
+                        core.setInteractiveObjectVisible("io-lixoBranco", true );
+                        core.setInteractiveObjectVisible("io-lixoInfectante",true );
+                        core.setInteractiveObjectVisible("io-perfuroCortante", true );
+
 
                     core.setActionVisible("btn-lavarMaos", false );
                     core.setActionVisible("btn-jogar_algodao_lixo",  false );
@@ -350,11 +459,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
          new Action("btn-jogar_algodao_lixo", "Descartar Algodão")
-                .setCssClass("action-jogar_algodao_lixo")
+                .setCssClass("action-algodao_seco")
                 .onClick(function() {
                     console.log("Action: Descartar Algodão");
 
-                    level.getFlag("descartar_algodao").setValue(true);
+
+                        level.getFlag("descartar_algodao").setValue(true);
+
+                        core.setInteractiveObjectVisible("io-lixoBranco", true );
+                        core.setInteractiveObjectVisible("io-lixoInfectante",true );
+                        core.setInteractiveObjectVisible("io-perfuroCortante", true );
 
                     core.setActionVisible("btn-lavarMaos", false );
                     core.setActionVisible("btn-jogar_algodao_lixo", false );
@@ -362,18 +476,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.setActionVisible("btn-ler_prontuario", false);
                     core.setActionVisible("btn-elevar_grade_cama", false );
                     core.setActionVisible("btn-anotarProntuario", false );
-                    core.setActionVisible("btn-lixoBranco", true );
-                    core.setActionVisible("btn-perfuroCortante", true );
-
-                    level.getFlag("descartar_algodao").setValue(true);
-
-
-
-
-                 //   if ( level.getFlag("score_jogou_algodao_lixo").getValue() == false ) {
-                    //    level.getFlag("score_jogou_algodao_lixo").setValue( true );
-                   //     core.registerScoreItem( Scores.algodaoLixoCerto );
-                  //  }
                 })
                 .setVisibility( false ),
 
@@ -413,60 +515,59 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( false ),
 
+            // new Action("btn-lixoBranco", "Lixo Branco")
+            //     .setCssClass("action-lixoBranco")
+            //     .onClick(function() {
+            //         if(level.getFlag("selecionar_algodao").getValue() == true) {
+            //             //Som
+            //             Player.play( Player.audios.sfx.jogandoLixo );
 
-            new Action("btn-lixoBranco", "Lixo Branco")
-                .setCssClass("action-lixoBranco")
-                .onClick(function() {
-                    if(level.getFlag("selecionar_algodao").getValue() == true) {
-                        //Som
-                        Player.play( Player.audios.sfx.jogandoLixo );
+            //             core.setActionVisible("btn-lavarMaos", true );
+            //             core.setActionVisible("btn-jogar_algodao_lixo", false );
+            //             core.setActionVisible("btn-jogar_agulha_perfuro", true);
+            //             core.setActionVisible("btn-ler_prontuario", true);
+            //             core.setActionVisible("btn-elevar_grade_cama",true );
+            //             core.setActionVisible("btn-anotarProntuario", true );
+            //             core.setActionVisible("btn-lixoBranco", false );
+            //             core.setActionVisible("btn-perfuroCortante", false );
+            //         }
+            //         else{
+            //             core.openDialog(7);
+            //         }
+            //     })
+            //     .setVisibility( false ),
 
-                        core.setActionVisible("btn-lavarMaos", true );
-                        core.setActionVisible("btn-jogar_algodao_lixo", false );
-                        core.setActionVisible("btn-jogar_agulha_perfuro", true);
-                        core.setActionVisible("btn-ler_prontuario", true);
-                        core.setActionVisible("btn-elevar_grade_cama",true );
-                        core.setActionVisible("btn-anotarProntuario", true );
-                        core.setActionVisible("btn-lixoBranco", false );
-                        core.setActionVisible("btn-perfuroCortante", false );
-                    }
-                    else{
-                        core.openDialog(7);
-                    }
-                })
-                .setVisibility( false ),
+            // new Action("btn-perfuroCortante", "Perfuro Cortante")
+            //     .setCssClass("action-perfuroCortante")
+            //     .onClick(function() {
 
-            new Action("btn-perfuroCortante", "Perfuro Cortante")
-                .setCssClass("action-perfuroCortante")
-                .onClick(function() {
+            //         if (level.getFlag("descartar_agulha").getValue() == true) {
+            //             Player.play( Player.audios.sfx.jogandoLixo );
+            //         core.setActionVisible("btn-lavarMaos", true );
+            //         core.setActionVisible("btn-jogar_algodao_lixo", true );
+            //         core.setActionVisible("btn-jogar_agulha_perfuro", false);
+            //         core.setActionVisible("btn-ler_prontuario", true);
+            //         core.setActionVisible("btn-elevar_grade_cama",true );
+            //         core.setActionVisible("btn-anotarProntuario", true );
+            //         core.setActionVisible("btn-lixoBranco", false );
+            //         core.setActionVisible("btn-perfuroCortante", false );
 
-                    if (level.getFlag("descartar_agulha").getValue() == true) {
-                        Player.play( Player.audios.sfx.jogandoLixo );
-                    core.setActionVisible("btn-lavarMaos", true );
-                    core.setActionVisible("btn-jogar_algodao_lixo", true );
-                    core.setActionVisible("btn-jogar_agulha_perfuro", false);
-                    core.setActionVisible("btn-ler_prontuario", true);
-                    core.setActionVisible("btn-elevar_grade_cama",true );
-                    core.setActionVisible("btn-anotarProntuario", true );
-                    core.setActionVisible("btn-lixoBranco", false );
-                    core.setActionVisible("btn-perfuroCortante", false );
+            //         if(level.getFlag("descartar_algodao").getValue() == false)
+            //             core.setActionVisible("btn-jogar_algodao_lixo", false );
 
-                    if(level.getFlag("descartar_algodao").getValue() == false)
-                        core.setActionVisible("btn-jogar_algodao_lixo", false );
+            //         }
 
-                    }
+            //         else    {
 
-                    else    {
-
-                          core.openDialog(7);
-                    }
-
+            //               core.openDialog(7);
+            //         }
 
 
-                    // fazer o score
 
-                })
-                .setVisibility( false )
+            //         // fazer o score
+
+            //     })
+            //     .setVisibility( false )
         ]);
 
 
