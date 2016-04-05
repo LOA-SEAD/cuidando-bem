@@ -1109,28 +1109,28 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setDataInternacao("02/11/2015");
             Prontuario.setLeito("02 - Enfermaria Feminina");
             Prontuario.setAntecedentes("Quatro internações devido à quadro de hiperglicemia entre os anos de 2012 à 2013.");
-            Prontuario.setHipotese("Acidente vascular encefálico isquêmico (AVE).");
+            Prontuario.setHipotese("Acidente vascular encefálico isquêmico (AVCI).");
             Prontuario.setObservacoes("Teve trombose venosa profunda, diabetes mellitus tipo II e pressão arterial sistêmica. Tabagista há 40 anos.");
 
             Prontuario.setPeso("56");
             Prontuario.setAltura("1,70");
             Prontuario.setCircunferenciaAbdominal("82");
 
-            Prontuario.setPrescMedicaRowData( 0, "02/11", "Fondaparinux Sódico", "Oral", "7,5 mg (1x ao dia)", "07h", true, true );
-            Prontuario.setPrescMedicaRowData( 1, "02/11", "Atenolol", "Oral", "100 mg (2x ao dia)", "08h - 18h", true, true );
+            Prontuario.setPrescMedicaRowData( 0, "", "Fondaparinux Sódico", "Oral", "7,5 mg (1x ao dia)", "07h", true, true );
+            Prontuario.setPrescMedicaRowData( 1, "", "Atenolol", "Oral", "100 mg (2x ao dia)", "08h - 18h", true, true );
             // Prescrição 2 e 3 ainda não funcionam
-            // Prontuario.setPrescMedicaRowData(2, "02/11", "Metmorfina", "Oral", "750 mg (2x ao dia)", "06h - 17h", true, true);
-            // Prontuario.setPrescMedicaRowData(3, "02/11", "Glibenclamida", "Oral", "4 mg (2x ao dia)", "07:30h - 17:30h", true, true);
+            // Prontuario.setPrescMedicaRowData(2, "", "Metmorfina", "Oral", "750 mg (2x ao dia)", "06h - 17h", true, true);
+            // Prontuario.setPrescMedicaRowData(3, "", "Glibenclamida", "Oral", "4 mg (2x ao dia)", "07:30h - 17:30h", true, true);
 
             Prontuario.setPrescEnfermagemState("decubito");
             // Prontuario.setPrescEnfermagemState("verificar glicemia");
             // Prontuario.setPrescEnfermagemState("levantar grade");
             // Prontuario.setPrescEnfermagemState("troca curativo");
 
-            Prontuario.setSsvvRowData( 0, "02/11", "120x70", "46", "15", "96", "35", true );
-            Prontuario.setSsvvRowData( 1, "02/11", "130x80", "52", "18", "94", "36", true );
+            Prontuario.setSsvvRowData( 0, "", "120x70", "46", "15", "96", "35", true );
+            Prontuario.setSsvvRowData( 1, "", "130x80", "52", "18", "94", "36", true );
 
-            Prontuario.setAnotacaoEnfermagemRowData("02/11", "");
+            Prontuario.setAnotacaoEnfermagemRowData("", "");
         });
 
         // region Flags

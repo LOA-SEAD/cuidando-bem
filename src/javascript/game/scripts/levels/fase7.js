@@ -861,18 +861,22 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAlergiaMedicamentosa( false, "");
             Prontuario.setDisableAlergiaMedicamentosa( true );
             Prontuario.setDataInternacao("23/08/2015");
-            Prontuario.setLeito("03 - Enfermaria Feminina");
-            Prontuario.setAntecedentes("Nenhum");
+            Prontuario.setLeito("01 - Enfermaria Feminina");
+            Prontuario.setAntecedentes("");
             Prontuario.setHipotese("Cirurgia de fratura de fêmur");
-            Prontuario.setObservacoes("Diabetes Mellitus II e Hipertensão Arterial Sistêmica");
+            Prontuario.setObservacoes("Diabetes Mellitus tipo II, sofreu queda em degrau de uma escada, devido à instabilidade glicêmica.");
             Prontuario.setPeso("50");
             Prontuario.setAltura("1,65");
             Prontuario.setCircunferenciaAbdominal("78");
-            Prontuario.setPrescEnfermagemState("decubito");
-            Prontuario.setPrescMedicaRowData( 1, "", "Clorpropamida", "Oral", "250mg/1x/dia", "07:00h", "(X) Administrado  medicamento  sem intercorrências", false );
-            Prontuario.setSsvvRowData( 1, "", "120X70 mmHg", "60 bpm", "18 rpm", "96%", "35ºC", true );
-            Prontuario.setSsvvRowData( 1, "", "130X70 mmHg", "68 bpm", "20 rpm", "96%", "36,4ºC", true );
-            Prontuario.setAnotacaoEnfermagemRowData("15/03", "");
+            
+            Prontuario.setPrescMedicaRowData( 0, "", "Clorpropamida", "Oral", "250mg/1x/dia", "07:00h", false, false );
+            Prontuario.setPrescMedicaRowData( 1, "", "", "", "", "", false, false );
+
+            //Prontuario.setPrescEnfermagemState("glicemia instável");
+
+            Prontuario.setSsvvRowData( 0, "", "120X70", "60", "18", "96", "35", true );
+            Prontuario.setSsvvRowData( 1, "", "130X70", "68", "20", "96", "36.4", true );
+            Prontuario.setAnotacaoEnfermagemRowData("", "");
 
 
         });

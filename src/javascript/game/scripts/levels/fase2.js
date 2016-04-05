@@ -236,7 +236,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         salaDeLeitos.registerInteractiveObjects([
             new InteractiveObject("io-ir_leito", "Ir ao leito")
-                .setCssClass("intObj-ir_leito-fase4")
+                .setCssClass("intObj-ir_leito-fase1")
                 .onClick(function() {
                     if ( level.getFlag("lavar_maos2").getValue() == false ) {
                         // Mentor corrige
@@ -1032,7 +1032,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAlergiaMedicamentosa( false, "");
             Prontuario.setDisableAlergiaMedicamentosa( true );
             Prontuario.setDataInternacao("17/06/2015");
-            Prontuario.setLeito("03 - Leito Masculino");
+            Prontuario.setLeito("03 - Enfermaria Masculina");
             Prontuario.setAntecedentes("Ocorrência de duas internações em 2013 por crise hipertensiva e uma internação em 2014 por hiperglicemia.");
             Prontuario.setHipotese("Acidose metabólica (Glicemia capilar no momento de internação 649 mg/dl).");
             Prontuario.setObservacoes("Portador de Diabetes Mellitus II há 33 anos e Hipertensão Arterial Sistêmica há 15 anos.");
@@ -1041,10 +1041,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAltura("1,63");
             Prontuario.setCircunferenciaAbdominal("147");
 
-            Prontuario.setPrescMedicaRowData( 0, "17/06", "Metmorfina", "Oral", "500 mg (2x ao dia)", "07h - 17h", true, true );
-            Prontuario.setPrescMedicaRowData( 1, "17/06", "Glibenclamida", "Oral", "4 mg (2x ao dia)", "08h - 18h", true, true );
+            Prontuario.setPrescMedicaRowData( 0, "", "Metmorfina", "Oral", "500 mg (2x ao dia)", "07h - 17h", true, true );
+            Prontuario.setPrescMedicaRowData( 1, "", "Glibenclamida", "Oral", "4 mg (2x ao dia)", "08h - 18h", true, true );
             // Prescricao 2 ainda não está funcionando
-            // Prontuario.setPrescMedicaRowData(2, "17/06", "Bicarbonato de sódio", "Endovenoso", "8,4 g + Água destilada 100 ml", "Tempo de 4 horas", true, true);
+            // Prontuario.setPrescMedicaRowData(2, "", "Bicarbonato de sódio", "Endovenoso", "8,4 g + Água destilada 100 ml", "Tempo de 4 horas", true, true);
             // Necessário para evitar que valores antigos apareçam no prontuário
             // Prontuario.setPrescMedicaRowData(3, '', '', '', '', '', true, true);
 
@@ -1052,11 +1052,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // Prontuario.setPrescEnfermagemState("verificar glicemia");
             // Prontuario.setPrescEnfermagemState("levantar grade");
 
-            Prontuario.setSsvvRowData( 0, "17/06", "130x70", "58", "28", "95", "36,2", true );
+            Prontuario.setSsvvRowData( 0, "", "130x70", "58", "28", "95", "36,2", true );
             // Disable 2 row
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
 
-            Prontuario.setAnotacaoEnfermagemRowData("17/06", "");
+            Prontuario.setAnotacaoEnfermagemRowData("", "");
         });
 
         // Flags

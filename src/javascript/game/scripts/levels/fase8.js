@@ -187,7 +187,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             new InteractiveObject("io-ir_leito", "Ir ao leito")
-                .setCssClass("intObj-ir_leito-fase4")
+                .setCssClass("intObj-ir_leito-tutorial")
                 .onClick(function() {
                     if ( level.getFlag("score_lavar_maos_antes_leito").getValue() == false ) {
                         if ( level.getFlag("score_nao_lavar_maos_antes_leito").getValue() == false ) {
@@ -1152,7 +1152,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAltura("1,80");
             Prontuario.setCircunferenciaAbdominal("90");
 
-            Prontuario.setPrescMedicaRowData( 0, "27/09", "Midazolam", "Oral", "15 mg", "01x/dia antes do procedimento cirúrgico", false, true );
+            Prontuario.setPrescMedicaRowData( 0, "", "Midazolam", "Oral", "15 mg", "01x/dia antes do procedimento cirúrgico", false, true );
             // Necessário para evitar que valores antigos apareçam no prontuário
             Prontuario.setPrescMedicaRowData( 1, "", "", "", "", "", false, true );
             // Prontuario.setPrescMedicaRowData(2, '', '', '', '', '', true, true);
@@ -1162,11 +1162,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // Prontuario.setPrescEnfermagemState("Realizar Check list da Primeira Fase da Cirurgia segura");
             // Prontuario.setPrescEnfermagemState("Placa Neutra");
 
-            Prontuario.setSsvvRowData( 0, "27/09", "120x70", "72", "16", "96", "35,5", true );
+            Prontuario.setSsvvRowData( 0, "", "120x70", "72", "16", "96", "35,5", true );
             // Disable 2 row
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
 
-            Prontuario.setAnotacaoEnfermagemRowData("27/09", "");
+            Prontuario.setAnotacaoEnfermagemRowData("", "");
         });
 
         // region Flags

@@ -1084,17 +1084,26 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAlergiaMedicamentosa( false, "");
             Prontuario.setDisableAlergiaMedicamentosa( true );
             Prontuario.setDataInternacao("09/12/2015");
-            Prontuario.setLeito("01 - Enfermaria Feminina");
-            Prontuario.setAntecedentes("Nenhum");
+            Prontuario.setLeito("03 - Enfermaria Feminina");
+            Prontuario.setAntecedentes("");
             Prontuario.setHipotese("Insuficiência arterial periférica em membro inferior esquerdo. Procedimento cirúrgico a ser realizado: Cirurgia de Enxerto Poplíteo e Amputação transmetatársica à esquerda");
             Prontuario.setObservacoes("Diabetes Mellitus II e Hipertensão Arterial Sistêmica");
             Prontuario.setPeso("79");
             Prontuario.setAltura("1,50");
             Prontuario.setCircunferenciaAbdominal("132");
-            Prontuario.setPrescEnfermagemState("decubito");
-            Prontuario.setPrescMedicaRowData( 1, "", "Cefalotina", "Endovenosa", "6 g (6 x ao dia)", "Cefalotina Endovenosa 6 g (6 x ao dia) 06h-12h-18h-24h", "(X) 06h", false );
-            Prontuario.setSsvvRowData( 1, "17/06", "120X70 mmHg", "47 bpm", "16 rpm", "96%", "35,7ºC", true );
-            Prontuario.setAnotacaoEnfermagemRowData("15/03", "");
+
+            Prontuario.setPrescMedicaRowData( 0, "", "Midazolam", "Oral", "15 mg", "06h", true, true );
+            Prontuario.setPrescMedicaRowData( 1, "", "Cefalotina", "Endovenosa", "6 g (6 x ao dia)", "Cefalotina Endovenosa 6 g (6 x ao dia) 06h-12h-18h-24h", true, false );
+
+            // Prontuario.setPrescEnfermagemState("encaminhas paciente ao centro cirúrgico");
+            // Prontuario.setPrescEnfermagemState("check list da cirurgia segura");
+            // Prontuario.setPrescEnfermagemState("placa neutra");
+
+            Prontuario.setSsvvRowData( 0, "", "120x70", "47", "16", "96", "35,7", true );
+            // Disable 2 row
+            Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
+
+            Prontuario.setAnotacaoEnfermagemRowData("", "");
 
         });
 
