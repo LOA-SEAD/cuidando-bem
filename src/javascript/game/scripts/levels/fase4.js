@@ -418,6 +418,21 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.setInteractiveObjectVisible("io-ir_corredor_esquerda", true );
                 core.setInteractiveObjectVisible("io-ir_corredor_direita", true );
             });
+    
+    
+         farmacia.registerActions([
+            
+            new Action("io-ler_prontuario", "Ler prontuário")
+                .setCssClass("action-ler_prontuario")
+                .onClick(function() {
+                    console.log("Action: ler prontuario");
+                    Prontuario.open();
+                    core.openModalScene("Prontuario");
+
+                })
+                .setVisibility( true )
+        ]);
+    
 
         farmacia.registerDialogs([
             // Dialog 0
@@ -475,6 +490,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true )
 
         ]);
+    
+
 
         // endregion
 
