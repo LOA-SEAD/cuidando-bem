@@ -577,7 +577,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 console.log("Load scene: " + leito.getName() );
                 console.log("Abrindo dialogo com paciente");
                 level.getFlag("conversarPaciente").setValue( true );
-                core.openDialog( 0 );
+              //  core.openDialog( 0 );
             });
 
 
@@ -612,6 +612,20 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true )
 
 
+        ]);
+    
+    
+    leito.registerInteractiveObjects([
+        
+          new InteractiveObject("io-conversar_paciente04", "Falar com o paciente")
+                .setCssClass("intObj-conversar_paciente04")
+                .onClick(function() {
+                    
+                    core.openDialog(0);
+                    
+                })
+
+        
         ]);
 
 

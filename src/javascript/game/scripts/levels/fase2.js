@@ -570,6 +570,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
         leito.registerInteractiveObjects([
+            
             new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
                 .setCssClass("intObj-paciente_02-checar_pulseira")
                 .onClick(function() {
@@ -586,8 +587,52 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.openCommandBar();
                     }
                 })
-                .setVisibility( true )
+                .setVisibility( true ),
+            
+                    new InteractiveObject("io-conversar_paciente03", "Falar com o paciente")
+                .setCssClass("intObj-conversar_paciente03")
+                .onClick(function() {
+                    
+                    
+                     if ( level.getFlag("conversar_paciente2").getValue() == true ) {
+                        console.log("Action: btn-conversarPaciente");
+                        if ( level.getFlag("score_falar_paciente").getValue() == false ) {
+                            core.registerScoreItem( Scores.falarComPaciente );
+                            level.getFlag("score_falar_paciente").setValue( true );
+                        }
+                        core.closeCommandBar();
+                        core.openDialog( 0 );
+                    } else {
+                        // Já realizou os procedimentos
+                        console.log("Action: Explicar o resultado");
+                        if ( level.getFlag("score_realizou_teste_glicemia").getValue() == false ) {
+                            if ( level.getFlag("score_nao_realizou_teste_glicemia").getValue() == false ) {
+                                core.registerScoreItem( Scores.naoUsarAlgodao2 );
+                                level.getFlag("score_nao_realizou_teste_glicemia").setValue( true );
+                            }
+                            core.closeCommandBar();
+                            core.openDialog( 12 );
+                        } else {
+                            if ( level.getFlag("score_explicou_resultado").getValue() == false ) {
+                                level.getFlag("score_explicou_resultado").setValue( true );
+                                core.registerScoreItem( Scores.explicarResultado );
+                            }
+                            core.openDialog( 6 );
+                            // Para o caso dele ter tentado sair sem explicar o resultado para o paciente antes
+                            level.getFlag("tem_fala").setValue( false );
+                        }
+                    }
+                })
+                .setVisibility( true ),
+            
+            
+            
+            
         ]);
+    
+    
+    
+
 
         leito.registerDialogs([
             new Dialog( lib.characters.jogador )
@@ -696,10 +741,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
         leito.registerActions([
-            new Action("btn-falarPaciente", "Conversar com Paciente")
+            
+            
+            /*new Action("btn-falarPaciente", "Conversar com Paciente")
                 // Será outro
                 .setCssClass("action-leito-char-02")
                 .onClick(function() {
+                    
                     if ( level.getFlag("conversar_paciente2").getValue() == true ) {
                         console.log("Action: btn-conversarPaciente");
                         if ( level.getFlag("score_falar_paciente").getValue() == false ) {
@@ -729,7 +777,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         }
                     }
                 })
-                .setVisibility( true ),
+                .setVisibility( true ),*/
 
             new Action("btn-selecionar_bandeja", "Selecionar Bandeja")
                 // CONSERTAR

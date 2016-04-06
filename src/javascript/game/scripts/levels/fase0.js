@@ -495,6 +495,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         // region Leito - interactiveObjects and Actions
         leito.registerInteractiveObjects([
+            
             new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
                 .setCssClass("intObj-paciente_01-checar_pulseira")
                 .onClick(function() {
@@ -506,7 +507,22 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.setInteractiveObjectVisible("io-confirmar_pulseira", true );
                     }
                 })
-                .setVisibility( visibility )
+                .setVisibility( visibility ),
+            
+            
+             new InteractiveObject("io-conversar_paciente", "Falar com o paciente")
+                .setCssClass("intObj-conversar_paciente01")
+                .onClick(function() {
+                    
+                      
+                    core.openDialog( 18 );
+                    core.closeCommandBar();
+                    
+                })
+                .setVisibility( true ),
+            
+            
+        
 
         ]);
 
@@ -527,13 +543,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                 })
                 .setVisibility( visibility ),
-            new Action("btn-perguntar_nome_do_paciente", "Perguntar nome do paciente")
-                .setCssClass("action-perguntar_nome_char1")
-                .onClick(function() {
-                    core.openDialog( 18 );
-                    core.closeCommandBar();
-                })
-                .setVisibility( true ),
+            
+    
+            
             new Action("btn-lavarMaos", "Lavar as mãos")
                 .setCssClass("action-lavarMaos")
                 .onClick(function() {
