@@ -28,6 +28,8 @@ define([ "Stage", "CuidandoBem" ], function( Stage, Core ) {
         });
 
         Core.init();
+        Player.stopAll();
+        Player.playInRange( Player.audios.musics.inGame );
     }
 
     /**

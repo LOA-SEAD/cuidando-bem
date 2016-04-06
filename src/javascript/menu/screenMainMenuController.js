@@ -23,7 +23,7 @@ define([ "Stage" ], function( Stage ) {
         // Player.play(Player.audios.fundo);
 
         // Player.playInLoop(Player.audios.loops.recepcao);
-        Player.playInLoop( Player.audios.musics.test );
+        Player.playInLoop( Player.audios.musics.menu );
         // Player.playInLoop(Player.audios.loops.background);
         // Player.playInRange(Player.audios.sfx.objeto);
 
