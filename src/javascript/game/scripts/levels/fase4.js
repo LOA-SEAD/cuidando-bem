@@ -70,13 +70,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
             new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-left")
+                .setCssClass("intObj-lobbyToHallway-left no-glow")
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( true ),
 
 
             new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-right")
+                .setCssClass("intObj-lobbyToHallway-right no-glow")
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( true ),
 
@@ -436,7 +436,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
             new InteractiveObject("io-conversar_paciente05", "Falar com o paciente")
-                .setCssClass("intObj-conversar_paciente05")
+                .setCssClass("intObj-conversar_paciente")
                 .onClick(function() {
 
                      if ( level.getFlag("pegarPrescricaoMedica").getValue() == true &&
@@ -688,6 +688,21 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeDialog();
                     core.changeScene( 1 );
                 })
+        ]);
+
+        farmacia.registerInteractiveObjects([
+
+            new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
+                .setCssClass("intObj-lobbyToHallway-left no-glow")
+                .onClick( farmaciaIrCorredor )
+                .setVisibility( true ),
+
+
+            new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
+                .setCssClass("intObj-lobbyToHallway-right no-glow")
+                .onClick( farmaciaIrCorredor )
+                .setVisibility( true )
+
         ]);
 
         // endregion

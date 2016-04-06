@@ -69,13 +69,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
             new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-left")
+                .setCssClass("intObj-lobbyToHallway-left no-glow")
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( true ),
 
 
             new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-right")
+                .setCssClass("intObj-lobbyToHallway-right no-glow")
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( true )
         ]);
@@ -360,27 +360,33 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
         leito.registerInteractiveObjects([
+            
             new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
                 // VAI MUDAR
                 .setCssClass("intObj-paciente_02-checar_pulseira")
                 .onClick(function() {
-                    console.log("IO: pulseira_paciente");
-                    if ( level.getFlag("score_falar_paciente").getValue() == false ) {
-                        if ( level.getFlag("score_nao_falar_paciente").getValue() == false ) {
-                            core.registerScoreItem( Scores.naoFalarComPaciente );
-                            level.getFlag("score_nao_falar_paciente").setValue( true );
-                        }
-                        core.closeCommandBar();
-                        core.openDialog( 6 );
-                    }
-                    if ( level.getFlag("score_verificar_pulseira").getValue() == false ) {
-                        core.registerScoreItem( Scores.verificarPulseira );
-                        level.getFlag("score_verificar_pulseira").setValue( true );
-                    }
-                    core.openModalScene("pulseira");
-                    Pulseira.open();
+                    
                 })
-                .setVisibility( true )
+                .setVisibility( true ),
+            
+            
+            new InteractiveObject("io-conversar_paciente06", "Falar com o paciente")
+                // VAI MUDAR
+                .setCssClass("intObj-conversar_paciente")
+                .onClick(function() {
+                    
+                    
+                      if ( level.getFlag("score_falar_paciente").getValue() == false ) {
+                        core.registerScoreItem( Scores.falarComPaciente );
+                        level.getFlag("score_falar_paciente").setValue( true );
+                    }
+                    core.openDialog( 0 );
+                    core.closeCommandBar();
+                    
+                })
+                .setVisibility( true ),
+            
+            
         ]);
 
         leito.registerDialogs([
@@ -509,10 +515,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
         leito.registerActions([
-            new Action("btn-falarPaciente", "Conversar com Paciente")
+            
+            
+         /*   new Action("btn-falarPaciente", "Conversar com Paciente")
                 // Será outro
                 .setCssClass("action-leito-char-02")
                 .onClick(function() {
+                    
+                    
                     if ( level.getFlag("score_falar_paciente").getValue() == false ) {
                         core.registerScoreItem( Scores.falarComPaciente );
                         level.getFlag("score_falar_paciente").setValue( true );
@@ -521,6 +531,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeCommandBar();
                 })
                 .setVisibility( true ),
+            */
+            
 
             new Action("btn-realizar_teste_glicemia", "Realizar teste de glicemia capilar")
                 // CONSERTAR
