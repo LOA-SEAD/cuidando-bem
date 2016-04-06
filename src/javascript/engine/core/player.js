@@ -36,6 +36,7 @@ define(function() {
     var rangeSound = undefined;
     var rangeSoundBuffer = undefined;
     var pastRangeSound = undefined;
+    var rangeInterval;
 
     var audios = {};
 
@@ -119,13 +120,13 @@ define(function() {
     }
 
     function play( sound ) {
+        console.log( "Starting: ", sound );
         normalSound = sound;
 
         prepare( normalSound );
 
         normalSound.play();
 
-        // console.log(sound);
     }
 
     function justPlay( sound ) {
@@ -195,16 +196,11 @@ define(function() {
         loopSoundBuffer.volume = loopList[ loopId ].volume;
         // loopSoundBuffer = loopList[loopId];
 
-
         prepare( loopSoundBuffer );
         justPlay( loopSound );
 
         if ( isSoundLooping ) {
-            console.log("PLAY");
             loopInterval = setInterval( shouldPlayNextInLoop, 4 );
-            // loopSound.addEventListener('timeupdate', shouldPlayNextInLoop, false);
-            // loopSoundBuffer.addEventListener('timeupdate', shouldPlayNextInLoop, false);
-            // pastLoopSound.removeEventListener('ended', playNextInLoop, false);
         }
     }
 
@@ -234,8 +230,10 @@ define(function() {
     }
 
     function playNextInRange() {
+        console.log( "Play Next in Range" );
         var rangeIdArray = [];
         var i;
+
         for ( i in rangeList ) {
             rangeIdArray.push( i );
         }
@@ -246,27 +244,27 @@ define(function() {
             rangeIdArray.splice( pastRangeSoundId, 1 );
         }
 
-        rangeSoundId = rangeIdArray[ Math.floor( Math.random() * rangeIdArray.length ) ];
+        var randomId = Math.floor( Math.random() * rangeIdArray.length );
+        console.log( randomId );
+        rangeSoundId = rangeIdArray[ randomId ];
 
         if ( pastLoopSound !== undefined ) {
             pastLoopSound.pause();
-            pastLoopSound.removeEventListener("timeupdate", shouldPlayNextInRange, false );
-            // pastLoopSound.removeEventListener('ended', playNextInLoop, false);
+            clearInterval( rangeInterval );
         }
 
         pastRangeSound = rangeSound;
         rangeSound = rangeList[ rangeSoundId ];
 
-        play( rangeSound );
+        justPlay( rangeSound );
+
         if ( isRangePlaying ) {
-            rangeSound.addEventListener("timeupdate", shouldPlayNextInRange, false );
-            // pastLoopSound.removeEventListener('ended', playNextInLoop, false);
+            loopInterval = setInterval( shouldPlayNextInRange, 4 );
         }
     }
 
     function shouldPlayNextInRange() {
-        var percentage = (this.currentTime * 100) / this.duration;
-        // console.log(this.duration, this.currentTime, percentage+"%");
+        var percentage = (rangeSound.currentTime * 100) / rangeSound.duration;
 
         if ( percentage >= AUDIO_PERCENTAGE_TO_NEXT_IN_RANGE ) {
             playNextInRange();
