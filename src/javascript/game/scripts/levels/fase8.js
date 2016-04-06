@@ -307,7 +307,23 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openModalScene("pulseira");
                     Pulseira.open();
                 })
-                .setVisibility( true )
+                .setVisibility( true ),
+            
+            
+              new InteractiveObject("io-conversar_paciente09", "Falar com o paciente")
+                
+                .setCssClass("intObjconversar_paciente")
+                .onClick(function() {
+                    
+                    
+               core.openDialog( 0 );
+                    core.closeCommandBar();
+                    
+                })
+                .setVisibility( true ),
+            
+            
+            
         ]);
 
         leito.registerDialogs([
@@ -329,14 +345,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
         leito.registerActions([
-            new Action("btn-falarPaciente", "Conversar com Paciente")
+            
+          /*  new Action("btn-falarPaciente", "Conversar com Paciente")
                 // Será outro
                 .setCssClass("action-leito-char-02")
                 .onClick(function() {
                     core.openDialog( 0 );
                     core.closeCommandBar();
                 })
-                .setVisibility( true ),
+                .setVisibility( true ),*/
 
             new Action("btn-oferecer_copo", "Oferecer copo com água para o paciente")
                 .setCssClass("action-copo_descartavel")
