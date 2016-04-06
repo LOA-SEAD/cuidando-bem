@@ -7,6 +7,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var Dialogs = require("DialogsData").fase6;
         var Alertas = require("DialogsData").alertas;
         var Scores = Scores.level6;
+        var Player = require("Player");
         // endregion
 
         var level = new Level("Level 6");
@@ -446,6 +447,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-pegarFrascoDieta", "Pegar Frasco de Dieta")
                 .setCssClass("action-frasco_dieta")
                 .onClick(function() {
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     level.getFlag("pegarDieta").setValue( true );
                     core.registerScoreItem( Scores.pegarDieta );
                     console.log("GANHA 50 PONTOS");
@@ -517,7 +520,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         new InteractiveObject("io-abrir_gaveta", "Abrir gaveta")
         .setCssClass("intObj-openDrawer")
         .onClick(function() {
-
+            //Som
+            Player.play( Player.audios.sfx.abrirGaveta );
             if ( level.getFlag("pegar_bandeja").getValue() == false ) {
                 core.openDialog( 1 );
             } else {
@@ -532,6 +536,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("intObj-bandeja")
         .onClick(function() {
             console.log("Action: Pegar bandeja");
+            //Som
+            Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_bandeja").setValue( true );
                     // linha importante
                     core.setInteractiveObjectVisible("io-pegar_bandeja", false );
@@ -555,7 +561,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         new Action("btn-lavarMaos", "Lavar as mãos")
             .setCssClass("action-lavarMaos")
             .onClick(function() {
-
+                //Som
+                Player.play( Player.audios.sfx.lavarMaos );
                 if ( level.getFlag("score_lavarMaos1").getValue() == false ) {
                     core.registerScoreItem( Scores.lavarMaos1 );
                 }
@@ -711,7 +718,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       new Action("btn-lavarMaos", "Lavar as mãos")
       .setCssClass("action-lavarMaos")
       .onClick(function() {
-
+        //Som
+        Player.play( Player.audios.sfx.lavarMaos );
         if ( level.getFlag("score_lavarMaos2").getValue() == false ) {
             core.registerScoreItem( Scores.lavarMaos2 );
         }
@@ -800,6 +808,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-fechar_gaveta")
                 .onClick(function() {
                     console.log("Action: fechar_gaveta");
+                    //Som
+                    Player.play( Player.audios.sfx.fecharGaveta );
                     core.closeModalScene("Gaveta");
 
                     if ( (level.getFlag("pegar_copo_descartavel").getValue() == true) &&
@@ -824,6 +834,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
             console.log("IntObj: io-copo_descartavel");
+            //Som
+            Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_copo_descartavel").setValue( true );
             core.setInteractiveObjectVisible("io-copo_descartavel", false );
 
@@ -837,6 +849,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
             console.log("IntObj: io-agua_potavel");
+            //Som
+            Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_agua_potavel").setValue( true );
             core.setInteractiveObjectVisible("io-agua_potavel", false );
 
@@ -850,6 +864,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
             console.log("IntObj: io-seringa");
+            //Som
+            Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_seringa").setValue( true );
             core.setInteractiveObjectVisible("io-seringa", false );
 
@@ -863,6 +879,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
             console.log("intObj-equipo_de_infusao_de_dieta");
+            //Som
+            Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_equipoCorreto").setValue( true );
             core.setInteractiveObjectVisible("io-infusao", false );
 
@@ -876,6 +894,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
             console.log("intObj-equipo");
+            //Som
+            Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_equipoErrado").setValue( true );
             core.setInteractiveObjectVisible("io-equipoErrado", false );
 

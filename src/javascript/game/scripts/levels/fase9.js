@@ -7,6 +7,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var Dialogs = require("DialogsData").fase9;
         var Alertas = require("DialogsData").alertas;
         var Scores = require("ScoresData").level9;
+        var Player = require("Player");
         // endregion
 
         var level = new Level("Level 9");
@@ -445,7 +446,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-pegarFrascoDieta", "Pegar Frasco de SG 5%")
                 .setCssClass("action-frasco_dieta")
                 .onClick(function() {
-
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     if ( level.getFlag("pegarFrascoSG").getValue() == false ) {
 
                     level.getFlag("pegarFrascoSG").setValue( true );
@@ -459,7 +461,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-cloretoSodio_20_10ml", "Pegar NaCL 20%")
                 .setCssClass("action-cloretoSodio_20_10ml")
                 .onClick(function() {
-
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                      if ( level.getFlag("pegarNACL").getValue() == false ) {
 
                     level.getFlag("pegarNACL").setValue( true );
@@ -521,7 +524,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         new InteractiveObject("io-abrir_gaveta", "Abrir gaveta")
         .setCssClass("intObj-openDrawer")
         .onClick(function() {
-
+            //Som
+            Player.play( Player.audios.sfx.abrirGaveta );
             if ( level.getFlag("pegar_bandeja").getValue() == false ) {
                 core.openDialog( 0 );
             } else {
@@ -536,6 +540,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("intObj-bandeja")
         .onClick(function() {
             console.log("Action: Pegar bandeja");
+            //Som
+            Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_bandeja").setValue( true );
                     // linha importante
                     core.setInteractiveObjectVisible("io-pegar_bandeja", false );
@@ -559,7 +565,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         new Action("btn-lavarMaos", "Lavar as mãos")
             .setCssClass("action-lavarMaos")
             .onClick(function() {
-
+                //Som
+                Player.play( Player.audios.sfx.lavarMaos );
                 if ( level.getFlag("score_lavarMaos1").getValue() == false ) {
                     core.registerScoreItem( Scores.lavarMaos1 );
                 }
@@ -607,6 +614,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
 
                     console.log("Action: fechar_gaveta");
+                    //Som
+                    Player.play( Player.audios.sfx.fecharGaveta );
                     core.closeModalScene("Gaveta");
 
                     if ( (level.getFlag("pegar_seringa").getValue() == true) &&
@@ -631,6 +640,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
             console.log("IntObj: io-seringa");
+            //Som
+            Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_seringa").setValue( true );
             core.setInteractiveObjectVisible("io-seringa", false );
 
@@ -644,6 +655,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
             console.log("intObj-agulha_40x12");
+            //Som
+            Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_agulha").setValue( true );
             core.setInteractiveObjectVisible("io-agulha", false );
 
@@ -657,6 +670,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
             console.log("intObj-glicose");
+            //Som
+            Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_ampola").setValue( true );
             core.setInteractiveObjectVisible("io-ampola", false );
 
@@ -671,6 +686,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
             console.log("intObj-equipoSoro");
+            //Som
+            Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_equipoSoro").setValue( true );
             core.setInteractiveObjectVisible("io-equipoSoro", false );
 

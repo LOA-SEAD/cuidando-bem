@@ -9,6 +9,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // region Imports
         var Dialogs = require("DialogsData").fase1;
         var Alertas = require("DialogsData").alertas;
+        var Player = require("Player");
         Scores = Scores.level1;
         // endregion
 
@@ -306,6 +307,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-lavarMaos", "Lavar as mãos")
                 .setCssClass("action-lavarMaos")
                 .onClick(function() {
+                    //Som
+                    Player.play( Player.audios.sfx.lavarMaos );
                     if ( level.getFlag("lavarMaos").getValue() == false ) {
                         console.log("Action: lavarMaos");
                         level.getFlag("lavarMaos").setValue( true );
@@ -503,6 +506,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-examinar_paciente")
                 .onClick(function() {
                     console.log("Action: btn-examinar_paciente");
+                    Player.play( Player.audios.sfx.objeto );
                     core.openModalScene("zoomChar2");
                     level.getFlag("examinar_paciente").setValue( true );
                     core.setActionVisible("btn-ir_sala_leitos", true );
@@ -586,6 +590,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-openDrawer")
                 .onClick(function() {
                     console.log("Action: abrirGaveta");
+                    //Som
+                    Player.play( Player.audios.sfx.abrirGaveta );
                     core.openModalScene("gaveta");
                     core.openCommandBar();
 
@@ -657,6 +663,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-fecharGaveta")
                 .onClick(function() {
                     console.log("Action: fecharGaveta");
+                    //Som
+                    Player.play( Player.audios.sfx.fecharGaveta );
                     core.closeModalScene("Gaveta");
                 })
                 .setVisibility( true )
@@ -668,6 +676,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("IntObj: io-coxim");
                     level.getFlag("coxim").setValue( true );
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     core.setInteractiveObjectVisible("io-coxim", false );
 
                     if ( level.getFlag("score_pegar_coxim").getValue() == false ) {

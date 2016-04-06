@@ -9,6 +9,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // region Imports
         var Dialogs = require("DialogsData").tutorial;
         var Alertas = require("DialogsData").alertas;
+        var Player = require("Player");
         // var Scores = require("ScoresData").tutorial;
         // endregion
 
@@ -434,6 +435,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText("")
                 .registerOption( Dialogs.leito.conversa2[ 6 ], function() {
                     core.openDialog( 16 );
+                    //Som
+                    Player.play( Player.audios.sfx.missaoCumprida );
                 }),
             // Dialog 16
             new Dialog( lib.characters.mentor )
@@ -535,6 +538,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-lavarMaos")
                 .onClick(function() {
                     console.log("Action: lavarMaos");
+                    //Som
+                    Player.play( Player.audios.sfx.lavarMaos );
 
                     // TODO Clean this mess PLEASE
                     switch ( level.getFlag("lavar-maos").getValue() ) {
@@ -686,6 +691,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                     else{
                         console.log("Action: abrirGaveta");
+                        //Som
+                        Player.play( Player.audios.sfx.abrirGaveta );
                         core.openModalScene("Gaveta");
                         core.openCommandBar();
 
@@ -713,6 +720,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-bandeja")
                 .onClick(function() {
                     console.log("Action: Pegar bandeja");
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     level.getFlag("pegou_bandeja").setValue( true );
                     core.setInteractiveObjectVisible("io-pegar_bandeja", false );
                 })
@@ -770,6 +779,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-fecharGaveta")
                 .onClick(function() {
                     console.log("Action: fecharGaveta");
+                    //Som
+                    Player.play( Player.audios.sfx.fecharGaveta );
                     core.closeModalScene("Gaveta");
                     if ( level.getFlag("termometro").getValue() == true &&
                         level.getFlag("oximetro").getValue() == true &&
@@ -789,6 +800,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-thermometer")
                 .onClick(function() {
                     console.log("Action: pegar_termometro");
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.tutorial.pegarTermometro );
                     core.setInteractiveObjectVisible("io-termometro", false );
                     level.getFlag("termometro").setValue( true );
@@ -799,6 +812,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-bloodPressureMonitor")
                 .onClick(function() {
                     console.log("O medidor de pressão foi ativado");
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.tutorial.pegarAparelhoPressao );
                     core.setInteractiveObjectVisible("io-medidorPressao", false );
                     level.getFlag("medidor-pressao").setValue( true );
@@ -809,6 +824,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-oximeter")
                 .onClick(function() {
                     console.log("Action: pegar_oximetro");
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.tutorial.pegarOximetro );
                     core.setInteractiveObjectVisible("io-oximetro", false );
                     level.getFlag("oximetro").setValue( true );
@@ -819,6 +836,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-watch")
                 .onClick(function() {
                     console.log("Action: pegar_relogio");
+                    //Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.tutorial.pegarRelogio );
                     core.setInteractiveObjectVisible("io-relogio", false );
                     level.getFlag("relogio").setValue( true );
