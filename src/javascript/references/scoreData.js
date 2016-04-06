@@ -83,7 +83,10 @@ define(function() {
             colocarPlacaNeutra: new Score("Colocar placa neutra antes da cirurgia no paciente", 250 )
         },
         level4: {
-            irLugarErrado: new Score("Ir ao lugar errado", -25 ),
+            irPostoEnfermagemHoraErrada: new Score("Ir ao posto de enfermagem em hora indevida", -25 ),
+            irFarmaciaHoraErrada: new Score("Ir à farmácia em hora indevida", -25 ),
+            irAlaFeminina: new Score("Ir à ala feminina sem precisar", -25 ),
+            lavarMaosAntesLeito: new Score("Lavou as mãos antes de ir ao leito do paciente", 200 ),
             lavarMaos: new Score("Lavou as mãos antes", 200 ),
             notLavarMaos: new Score("Não lavou as mãos antes", -200 ),
             checarProntuario: new Score("Checar Prontuário", 150 ),
@@ -110,9 +113,7 @@ define(function() {
             administrarMedicacao: new Score("Administrar medicação", 250 ),
             gotejarSoroEquipo: new Score("Realizar gotejamento de soro no equipamento", 350 ),
             anotarNoProntuario: new Score("Anotar no prontuário", 200 )
-
         },
-
         level5: {
             irPostoEnfermagemHoraErrada: new Score("Ir ao posto de enfermagem em hora indevida", -25 ),
             irFarmaciaHoraErrada: new Score("Ir à farmácia sem precisar", -25 ),

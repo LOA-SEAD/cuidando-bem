@@ -415,7 +415,11 @@ define({
             // 3 Jogador op 2
             "Sim, mas o nome da medicação não é uma informação importante, não se preocupe.",
             // 4 Jogador op 3
-            "Não sei dizer, não há nada anotado no prontuário."
+            "Não sei dizer, não há nada anotado no prontuário.",
+            // 5 Correção op 2
+            "Forneça ao paciente as informações sobre a medicação.",
+            // 6 Correção op 3
+            "Tem certeza? Olhe atentamente o prontuário do paciente."
         ],
         farmacia: [
             // 0 Paulo
@@ -467,7 +471,11 @@ define({
             " Por favor, não abra a pinça do equipo e em breve poderá voltar para seus alunos.",
             // 7 Mentor
             "Lembre-se sempre de utilizar os nove certos na administração de medicamentos!" +
-            " Deste modo reduzimos a possibilidades de erros."
+            " Deste modo reduzimos a possibilidades de erros.",
+            // 8 Mentor - Correção op 2
+            "Você precisa explicar a finalidade do uso desta medicação.",
+            // 9 Mentor - Correção op 3
+            "É um erro gravíssimo administrar um medicamento sem saber sua função!"
         ],
         lugarIncorreto: [
             // 0 Mentor
@@ -953,6 +961,9 @@ define({
             ],
             verificarMedicamento2: [
                 "Você tem certeza que esta é a medicação correta?"
+            ],
+            verificarMedicamento3: [
+                "Sempre confirme se o medicamento fornecido é o mesmo prescrito."
             ],
             pegarMedicamento: [
                 "Você já pegou a medicação solicitado pela paciente?"
