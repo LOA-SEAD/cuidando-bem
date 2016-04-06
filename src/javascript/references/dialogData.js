@@ -471,7 +471,11 @@ define({
             " Por favor, não abra a pinça do equipo e em breve poderá voltar para seus alunos.",
             // 7 Mentor
             "Lembre-se sempre de utilizar os nove certos na administração de medicamentos!" +
-            " Deste modo reduzimos a possibilidades de erros."
+            " Deste modo reduzimos a possibilidades de erros.",
+            // 8 Mentor - Correção op 2
+            "Você precisa explicar a finalidade do uso desta medicação.",
+            // 9 Mentor - Correção op 3
+            "É um erro gravíssimo administrar um medicamento sem saber sua função!"
         ],
         lugarIncorreto: [
             // 0 Mentor
