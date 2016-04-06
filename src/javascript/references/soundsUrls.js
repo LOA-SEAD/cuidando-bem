@@ -8,68 +8,72 @@ define(function() {
     var paths = {
         sfx: {
             abrirGaveta: [
-                "gaveta_abrindo_1.mp3",
-                "gaveta_abrindo_2.mp3"
+                "gavetaAbrindo1.mp3",
+                "gavetaAbrindo2.mp3"
             ],
             abrirPorta: [
-                "porta_abrindo_1.mp3",
-                "porta_abrindo_2.mp3"
+                "portaAbrindo1.mp3",
+                "portaAbrindo2.mp3"
             ],
             bip: [
-                "bip_termometro_oximetro.mp3"
+                "beepTermometroOximetro.mp3"
             ],
             bombinha: [
-                "bombinha_esfigmnanometro.mp3"
+                "bombinhaEsfigmnanometro.mp3"
             ],
             campainha: [
-                "campainha_1.mp3",
-                "campainha_2.mp3"
+                "campainha1.mp3",
+                "campainha2.mp3"
             ],
             clique: [
-                "clique_de_luz_botao_campainha_etc.mp3"
+                "cliqueDeLuzBotaoCampainhaEtc.mp3"
             ],
             escrever: [
-                "escrevendo_papel.mp3"
+                "escrevendoPapel.mp3"
             ],
             fecharGaveta: [
-                "gaveta_fechando.mp3"
+                "gavetaFechando.mp3"
             ],
             jogandoLixo: [
-                "jogando_lixo.mp3"
+                "jogandoLixo.mp3"
             ],
             lavarMaos: [
-                "lavando_as_maos.mp3"
+                "lavandoMaos.mp3"
             ],
             mesaComRodinha: [
                 "mesaComRodinha.mp3"
             ],
             missaoCumprida: [
-                "missao_cumprida.mp3"
+                "missaoCumprida.mp3"
             ],
             monitorCoracao: [
-                "monitor_coracao_beeps.mp3"
+                "beepsMonitorCoracao.mp3"
             ],
             objeto: [
-                "efeito_para_quando_um_objeto_e_manuseado_1.mp3",
-                "efeito_para_quando_um_objeto_e_manuseado_2.mp3",
-                "efeito_para_quando_um_objeto_e_manuseado_3.mp3"
+                "efeitoObjeto1.mp3",
+                "efeitoObjeto2.mp3",
+                "efeitoObjeto3.mp3"
             ],
             pegarObjeto: [
-                "som_para_coletar_itens.mp3"
+                "somParaColetarItens.mp3"
             ],
             selecionarMenu: [
-                "menu_select.mp3"
+                "menuSelect.mp3"
             ],
             ticTac: [
-                "tictac_relogio_de_puslo.mp3"
-
+                "tictacRelogioDePulso.mp3"
             ]
         },
         musics: {
-            test: [ "CuidandoBemDoMenu.mp3" ]
+            menu: [ "cuidandoBemDoMenu.mp3" ],
+            inGame: [
+                "cuidandoBemDosPacientes1.mp3",
+                "cuidandoBemDosPacientes2.mp3",
+                "cuidandoBemDosPacientes3.mp3"
+            ]
         },
         loops: {
-            recepcao: [ "sons_ambiente_hospital_recepcao.mp3" ]
+            recepcao: [ "sonsAmbienteHospitalRecepcao.mp3" ]
         }
 
     };
