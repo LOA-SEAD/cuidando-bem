@@ -34,11 +34,17 @@ define(function() {
             fecharGaveta: [
                 "gaveta_fechando.mp3"
             ],
+            jogandoLixo: [
+                "jogando_lixo.mp3"
+            ],
             lavarMaos: [
                 "lavando_as_maos.mp3"
             ],
             mesaComRodinha: [
                 "mesaComRodinha.mp3"
+            ],
+            missaoCumprida: [
+                "missao_cumprida.mp3"
             ],
             monitorCoracao: [
                 "monitor_coracao_beeps.mp3"

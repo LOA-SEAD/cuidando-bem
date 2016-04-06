@@ -435,6 +435,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText("")
                 .registerOption( Dialogs.leito.conversa2[ 6 ], function() {
                     core.openDialog( 16 );
+                    //Som
+                    Player.play( Player.audios.sfx.missaoCumprida );
                 }),
             // Dialog 16
             new Dialog( lib.characters.mentor )

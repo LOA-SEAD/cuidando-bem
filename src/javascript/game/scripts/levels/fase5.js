@@ -553,6 +553,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-descartar_agulha")
                 .onClick(function() {
                     console.log("Action: Jogar agulha no descarpax");
+                    //Som
+                    Player.play( Player.audios.sfx.jogandoLixo );
                     if ( level.getFlag("score_fez_teste_glicemia").getValue() == false ) {
                         if ( level.getFlag("score_nao_fez_teste_glicemia").getValue() == false ) {
                             core.registerScoreItem( Scores.naoFazerTesteGlicemia );

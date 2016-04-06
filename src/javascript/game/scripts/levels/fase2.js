@@ -330,7 +330,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: Jogar algodão no lixo branco");
                     
                     
-                    level.getFlag("selecionar_algodao").setValue(true);
+                    level.getFlag("selecionar_algodao").setValue( true );
                     
                     /*if ( level.getFlag("score_jogou_algodao_lixo").getValue() == false ) {
                         level.getFlag("score_jogou_algodao_lixo").setValue( true );
@@ -373,7 +373,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // }*/
                     
                     
-                    level.getFlag("selecionar_agulha").setValue(true);
+                    level.getFlag("selecionar_agulha").setValue( true );
                     
                     
                     
@@ -432,20 +432,20 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-lixoBranco", "Lixo Branco")
                 .setCssClass("action-lixoBranco")
                 .onClick(function() {
-                    
-                    
-                    if(level.getFlag("selecionar_agulha").getValue() = true) {
+                    if(level.getFlag("selecionar_algodao").getValue() == true) {
+                        //Som
+                        Player.play( Player.audios.sfx.jogandoLixo );
                         
-                    core.setActionVisible("btn-lixoBranco", false );
-                    core.setActionVisible("btn-perfuroCortante", false );
-                    
-                    core.setActionVisible("btn-lavarMaos", true );
-                    core.setActionVisible("btn-jogar_algodao_lixo",  false );
-                    core.setActionVisible("btn-jogar_agulha_perfuro",  true );
-                    core.setActionVisible("btn-elevar_grade_cama",  true );
-                    core.setActionVisible("btn-ler_prontuario", true );
-                    core.setActionVisible("btn-anotarProntuario",  true ); 
+                        core.setActionVisible("btn-lixoBranco", false );
+                        core.setActionVisible("btn-perfuroCortante", false );
                         
+                        core.setActionVisible("btn-lavarMaos", true );
+                        core.setActionVisible("btn-jogar_algodao_lixo",  false );
+                        core.setActionVisible("btn-jogar_agulha_perfuro",  true );
+                        core.setActionVisible("btn-elevar_grade_cama",  true );
+                        core.setActionVisible("btn-anotarProntuario",  true ); 
+                            
+                        level.getFlag("selecionar_algodao").setValue( false );
                     }
                     
                     else{
@@ -471,18 +471,27 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 new Action("btn-perfuroCortante", "Perfuro Cortante")
                 .setCssClass("action-perfuroCortante")
                 .onClick(function() {
-                
-                   /* if ( level.getFlag("lavar_maos_apos_lixo").getValue() == false ) {
-                        core.closeCommandBar();
-                        core.openDialog( 6 );
-                    } else {
-                        if ( level.getFlag("score_anotar_prontuario").getValue() == false ) {
-                            core.registerScoreItem( Scores.anotarNoProntuario );
-                            level.getFlag("score_anotar_prontuario").setValue( true );
-                        }
-                        Prontuario.open();
-                        core.openModalScene("Prontuario");
-                    }*/
+                    if(level.getFlag("selecionar_agulha").getValue() == true) {
+                        //Som
+                        Player.play( Player.audios.sfx.jogandoLixo );
+                        
+                        core.setActionVisible("btn-lixoBranco", false );
+                        core.setActionVisible("btn-perfuroCortante", false );
+                        
+                        core.setActionVisible("btn-lavarMaos", true );
+                        core.setActionVisible("btn-jogar_algodao_lixo",  false );
+                        core.setActionVisible("btn-jogar_agulha_perfuro",  false );
+                        core.setActionVisible("btn-elevar_grade_cama",  true );
+                        core.setActionVisible("btn-anotarProntuario",  true ); 
+                        
+                        level.getFlag("selecionar_agulha").setValue( false );
+                        level.getFlag("score_jogou_agulha_perfuro").setValue( true );
+                    }
+                    
+                    else{
+                        
+                        core.openDialog(7);
+                    }
                 })
                 .setVisibility( false )
             
@@ -974,8 +983,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         gaveta.registerInteractiveObjects([
             // Kit glicemia
             new InteractiveObject("io-kit_glicemia", "Pegar Kit de glicemia")
-            // Ainda nao disponivel imagem correta
-                .setCssClass("intObj-thermometer")
+                .setCssClass("intObj-aparelhoGlicemia")
                 .onClick(function() {
                     console.log("Action: pegar kit de glicemia");
                     //Som
