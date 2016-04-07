@@ -447,7 +447,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-pegarFrascoDieta", "Pegar Frasco de Dieta")
                 .setCssClass("action-frasco_dieta")
                 .onClick(function() {
-                    //Som
+                    // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     level.getFlag("pegarDieta").setValue( true );
                     core.registerScoreItem( Scores.pegarDieta );
@@ -520,7 +520,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         new InteractiveObject("io-abrir_gaveta", "Abrir gaveta")
         .setCssClass("intObj-openDrawer")
         .onClick(function() {
-            //Som
+            // Som
             Player.play( Player.audios.sfx.abrirGaveta );
             if ( level.getFlag("pegar_bandeja").getValue() == false ) {
                 core.openDialog( 1 );
@@ -536,7 +536,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("intObj-bandeja")
         .onClick(function() {
             console.log("Action: Pegar bandeja");
-            //Som
+            // Som
             Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_bandeja").setValue( true );
                     // linha importante
@@ -561,7 +561,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         new Action("btn-lavarMaos", "Lavar as mãos")
             .setCssClass("action-lavarMaos")
             .onClick(function() {
-                //Som
+                // Som
                 Player.play( Player.audios.sfx.lavarMaos );
                 if ( level.getFlag("score_lavarMaos1").getValue() == false ) {
                     core.registerScoreItem( Scores.lavarMaos1 );
@@ -646,20 +646,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         })
         .setVisibility( true )
         .setEnable( false ),
-        
-        
-          
+
+
             new InteractiveObject("io-conversar_paciente07", "Falar com o paciente")
-        
+
                 .setCssClass("intObj-conversar_paciente")
                 .onClick(function() {
-                    
-                  
-                    
+
+
                 })
-                .setVisibility( true ),
-            
-        
+                .setVisibility( true )
+
+
         ]);
 
     leito.registerActions([
@@ -732,7 +730,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       new Action("btn-lavarMaos", "Lavar as mãos")
       .setCssClass("action-lavarMaos")
       .onClick(function() {
-        //Som
+        // Som
         Player.play( Player.audios.sfx.lavarMaos );
         if ( level.getFlag("score_lavarMaos2").getValue() == false ) {
             core.registerScoreItem( Scores.lavarMaos2 );
@@ -822,7 +820,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-fechar_gaveta")
                 .onClick(function() {
                     console.log("Action: fechar_gaveta");
-                    //Som
+                    // Som
                     Player.play( Player.audios.sfx.fecharGaveta );
                     core.closeModalScene("Gaveta");
 
@@ -848,7 +846,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
             console.log("IntObj: io-copo_descartavel");
-            //Som
+            // Som
             Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_copo_descartavel").setValue( true );
             core.setInteractiveObjectVisible("io-copo_descartavel", false );
@@ -863,7 +861,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
             console.log("IntObj: io-agua_potavel");
-            //Som
+            // Som
             Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_agua_potavel").setValue( true );
             core.setInteractiveObjectVisible("io-agua_potavel", false );
@@ -878,7 +876,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
             console.log("IntObj: io-seringa");
-            //Som
+            // Som
             Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_seringa").setValue( true );
             core.setInteractiveObjectVisible("io-seringa", false );
@@ -893,7 +891,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
             console.log("intObj-equipo_de_infusao_de_dieta");
-            //Som
+            // Som
             Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_equipoCorreto").setValue( true );
             core.setInteractiveObjectVisible("io-infusao", false );
@@ -908,7 +906,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
             console.log("intObj-equipo");
-            //Som
+            // Som
             Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_equipoErrado").setValue( true );
             core.setInteractiveObjectVisible("io-equipoErrado", false );
@@ -1010,13 +1008,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setPeso("48");
             Prontuario.setAltura("1,60");
             Prontuario.setCircunferenciaAbdominal("70");
-            
+
             Prontuario.setPrescMedicaRowData( 0, "", "Nutrição Enteral (Hipercalórica  0,99 cal/ml)", "Sonda Nasogástrica", "200 ml/01 hora", "06h/06h", false, true );
             Prontuario.setPrescMedicaRowData( 1, "", "Morfina (solução oral/gota)", "Oral", "40mg/ml", "12/12h", true, true );
-            
-            //Prontuario.setPrescEnfermagemState("nutrição desequilibrada");
-            //Prontuario.setPrescEnfermagemState("manutenção correta da sonda nasogástrica");
-            //Prontuario.setPrescEnfermagemState("risco de deiquilibrio eletrolítico");
+
+            // Prontuario.setPrescEnfermagemState("nutrição desequilibrada");
+            // Prontuario.setPrescEnfermagemState("manutenção correta da sonda nasogástrica");
+            // Prontuario.setPrescEnfermagemState("risco de deiquilibrio eletrolítico");
 
             Prontuario.setSsvvRowData( 0, "", "100X10", "65", "16", "93", "36.5", true );
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );

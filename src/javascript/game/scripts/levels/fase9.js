@@ -14,7 +14,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         console.groupCollapsed( level.getName() );
 
 
-
      var
             recepcao,
             corredor,
@@ -32,14 +31,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // region Scenes
 
 
-
         // region CENTRO CIRURGICO
 
      var centroCirurgico = lib.scenes.centroCirurgico.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + centroCirurgico.getName() );
             });
-
 
 
     function corredorIrCentroCirurgico() {
@@ -68,8 +65,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
 
-
-
               function corredorIrAlaFeminina() {
              core.changeScene( 7 );
 
@@ -83,8 +78,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         }
         // endregion ALA FEMININA
-
-
 
 
         // region Recepcao
@@ -117,13 +110,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
 
-
         recepcao.registerDialogs([
 
 
-
         ]);
-
 
 
             function recepcaoIrCorredor() {
@@ -138,7 +128,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
      // endregion RECEPCAO
-
 
 
      // region CORREDOR
@@ -167,7 +156,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
 
-
             new InteractiveObject("io-ir_farmacia", "Ir para a Farmacia")
                 .setCssClass("intObj-goToFarmacia")
                 .onClick( corredorIrFarmacia )
@@ -190,7 +178,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-goToAlaMasculina")
                 .onClick( corredorIrAlaMasculina )
                 .setVisibility( true )
-
 
 
           /* new InteractiveObject("io-conversar_mentor", "Conversar com Mentor")
@@ -234,7 +221,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
 
 
-
                 if ( level.getFlag("falar_paciente").getValue() == false ) {
                     level.getFlag("falar_paciente").setValue( true );
                     core.openDialog( 0 );
@@ -248,9 +234,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                  core.setInteractiveObjectVisible("io-conversar_com_paciente", false);
                 */
             });
-
-
-
 
 
      alaMasculina.registerDialogs([
@@ -268,7 +251,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.openDialog( 4 );
             })
                 .setRandomize( true ),
-
 
 
                 // 1
@@ -316,8 +298,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     ]);
 
 
-
-
     alaMasculina.registerInteractiveObjects([
 
 
@@ -344,18 +324,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
 
 
-
             })
            .setVisibility(true),
         */
 
 
-
  ]);
 
      alaMasculina.registerActions([
-
-
 
 
             new Action("btn-ler_prontuario", "Ler prontuario")
@@ -378,10 +354,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true )
 
 
-
-
-
-
          ]);
 
        // endregion ALA MASCULINA
@@ -390,7 +362,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
 
                 console.log("Load scene: " + farmacia.getName() );
-
 
 
             });
@@ -440,13 +411,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
 
 
-
                 }),
 
             new Action("btn-pegarFrascoDieta", "Pegar Frasco de SG 5%")
                 .setCssClass("action-frasco_dieta")
                 .onClick(function() {
-                    //Som
+                    // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     if ( level.getFlag("pegarFrascoSG").getValue() == false ) {
 
@@ -461,7 +431,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-cloretoSodio_20_10ml", "Pegar NaCL 20%")
                 .setCssClass("action-cloretoSodio_20_10ml")
                 .onClick(function() {
-                    //Som
+                    // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                      if ( level.getFlag("pegarNACL").getValue() == false ) {
 
@@ -493,7 +463,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     // endregion FARMACIA
 
 
-
      // region POSTO DE ENFERMAGEM
 
     var postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
@@ -516,7 +485,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         })
 
 
-
         ]);
 
     postoDeEnfermagem.registerInteractiveObjects([
@@ -524,7 +492,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         new InteractiveObject("io-abrir_gaveta", "Abrir gaveta")
         .setCssClass("intObj-openDrawer")
         .onClick(function() {
-            //Som
+            // Som
             Player.play( Player.audios.sfx.abrirGaveta );
             if ( level.getFlag("pegar_bandeja").getValue() == false ) {
                 core.openDialog( 0 );
@@ -540,7 +508,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("intObj-bandeja")
         .onClick(function() {
             console.log("Action: Pegar bandeja");
-            //Som
+            // Som
             Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_bandeja").setValue( true );
                     // linha importante
@@ -565,7 +533,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         new Action("btn-lavarMaos", "Lavar as mãos")
             .setCssClass("action-lavarMaos")
             .onClick(function() {
-                //Som
+                // Som
                 Player.play( Player.audios.sfx.lavarMaos );
                 if ( level.getFlag("score_lavarMaos1").getValue() == false ) {
                     core.registerScoreItem( Scores.lavarMaos1 );
@@ -578,7 +546,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     ]);
 
     // endregion POSTO DE ENFERMAGEM
-
 
 
          // region PRONTUARIO
@@ -603,7 +570,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
 
-
       // region GAVETA
         gaveta = new Scene("gaveta", "Gaveta")
             .setCssClass("modalScene-drawer");
@@ -614,7 +580,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
 
                     console.log("Action: fechar_gaveta");
-                    //Som
+                    // Som
                     Player.play( Player.audios.sfx.fecharGaveta );
                     core.closeModalScene("Gaveta");
 
@@ -640,7 +606,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
             console.log("IntObj: io-seringa");
-            //Som
+            // Som
             Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_seringa").setValue( true );
             core.setInteractiveObjectVisible("io-seringa", false );
@@ -655,7 +621,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
             console.log("intObj-agulha_40x12");
-            //Som
+            // Som
             Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_agulha").setValue( true );
             core.setInteractiveObjectVisible("io-agulha", false );
@@ -670,7 +636,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
             console.log("intObj-glicose");
-            //Som
+            // Som
             Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_ampola").setValue( true );
             core.setInteractiveObjectVisible("io-ampola", false );
@@ -686,7 +652,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
             console.log("intObj-equipoSoro");
-            //Som
+            // Som
             Player.play( Player.audios.sfx.pegarObjeto );
             level.getFlag("pegar_equipoSoro").setValue( true );
             core.setInteractiveObjectVisible("io-equipoSoro", false );
@@ -700,15 +666,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     ]);
 
 
-
-
-
         // endregion
 
         // endregion
 
         // region ModalScenes
-
 
 
         // endregion
@@ -737,7 +699,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // endregion
 
         // region Register Modal Scenes
-    
+
             level.registerModalScene( prontuario );
     level.registerModalScene( gaveta );
       //  level.registerModalScene( pulseira );
@@ -753,9 +715,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             level.getFlag("score_iralaFeminina_horaErrada").setValue( false );
             level.getFlag("score_irCentroCirurgico_horaErrada").setValue( false );
-
-
-
 
 
              //  dados do prontuario
@@ -777,12 +736,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setPeso("62");
             Prontuario.setAltura("1,77");
             Prontuario.setCircunferenciaAbdominal("91");
-            
+
             Prontuario.setPrescMedicaRowData( 0, "", "Soro Glicosado 5%", "Endovenosa", "800ml", "", false, true );
             Prontuario.setPrescMedicaRowData( 1, "", "NaCL 20%", "Endovenosa", "20ml", "", false, true );
-            //Prontuario.setPrescMedicaRowData( 2, "", "Glicose 50%", "Endovenosa", "30ml", "", "(X) Administrado a infusão de  solução de  reposição  hidroeletrolítica  conforme  prescrição  médica, sem  intercorrências.", false );
+            // Prontuario.setPrescMedicaRowData( 2, "", "Glicose 50%", "Endovenosa", "30ml", "", "(X) Administrado a infusão de  solução de  reposição  hidroeletrolítica  conforme  prescrição  médica, sem  intercorrências.", false );
 
-            //Prontuario.setPrescEnfermagemState("risco de desiquilíbrio eletrolítico");
+            // Prontuario.setPrescEnfermagemState("risco de desiquilíbrio eletrolítico");
 
             Prontuario.setSsvvRowData( 0, "", "130X70", "82", "19", "96", "35.9", true );
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
@@ -790,15 +749,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         });
 
 
-
-
-
-
-
         level.registerFlag( new Flag("score_iralaFeminina_horaErrada"), false );
         level.registerFlag( new Flag("score_irCentroCirurgico_horaErrada"), false );
-
-
 
 
         level.setInitialScene( 0 );
