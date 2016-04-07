@@ -68,6 +68,7 @@ define(function() {
             lavarMaosAposLixos: new Score("Lavar as mãos após procedimentos", 200 ),
             anotarNoProntuario: new Score("Anotar no prontuário", 250 )
         },
+
         level3: {
             irPostoEnfermagemHoraErrada: new Score("Ir ao posto de enfermagem sem precisar", -25 ),
             irFarmaciaHoraErrada: new Score("Ir ao posto de enfermagem sem precisar", -25 ),
@@ -247,7 +248,6 @@ define(function() {
         },
 
         level9: {
-
             lerProntuario: new Score("Ler prontuário do paciente", 150 ),
             pegarFrascoSG: new Score("Pegar Frasco SG 5%", 50 ),
             pegarNACL: new Score("Pegar NaCL 20%", 50 ),
@@ -256,9 +256,6 @@ define(function() {
             pegarAgulha: new Score("Pegar Agulha 40X12", 50 ),
             pegarGlicose: new Score("Pegar Ampola de Glicose 50%", 50 ),
             pegarSoro: new Score("Pegar Soro de Macrogotas", 50 )
-
-
-
         }
     };
 });

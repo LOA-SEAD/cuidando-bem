@@ -308,10 +308,7 @@ define({
                 " vezes até aqui. Consegue lembrar qual é ele?",
 
                 // 9 ALERTA TESTAR EQUIPAMENTOS
-
                 "Você está se esquecendo de algo importante!"
-
-
             ],
             fala2: [
                 // 0 Aline
@@ -371,8 +368,6 @@ define({
 
                 // 22 op3 - segunda parte
                 "Você já possui todas informações necessárias!"
-
-
             ]
         },
         alaFeminina: [
@@ -590,8 +585,6 @@ define({
             "A infusão da dieta ocorrerá em 67 gotas no período de uma hora.",
             // 3 Mentor Corrige
             "Acho que você se enganou. Tente novamente."
-
-
         ],
         leitoPaciente: [
             // 0 Jogador
@@ -634,8 +627,6 @@ define({
             // 6 MENTOR
             "Sua apresentação profissional é a parte mais importante do diálogo com" +
             " o paciente. Tente novamente."
-
-
         ],
         farmacia: [
             // 0 Jogador
@@ -815,7 +806,6 @@ define({
             "Aqui está. Boa sorte!",
             // 3 MENTOR ALERTA
             "Você está se esquecendo de uma etapa muito importante!"
-
         ],
         leitoPaciente: [
             // 0 Jogador
@@ -836,11 +826,8 @@ define({
         ],
 
         postoDeEnfermagem: [
-
             // 0
             "Lembre-se de pegar todos os equipamentos antes de sair!"
-
-
         ],
 
         alaMasculina: [
@@ -983,7 +970,6 @@ define({
             pegarDieta: [
                 "O paciente necessita da dieta!"
             ]
-
         },
         descarte: {
             algodão: [

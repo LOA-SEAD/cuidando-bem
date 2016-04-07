@@ -10,7 +10,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var Dialogs = require("DialogsData").tutorial;
         var Alertas = require("DialogsData").alertas;
         var Player = require("Player");
-        // var Scores = require("ScoresData").tutorial;
         // endregion
 
         var level = new Level("Level 0 - Tutorial");
@@ -435,7 +434,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText("")
                 .registerOption( Dialogs.leito.conversa2[ 6 ], function() {
                     core.openDialog( 16 );
-                    //Som
+                    // Som
                     Player.play( Player.audios.sfx.missaoCumprida );
                 }),
             // Dialog 16
@@ -495,7 +494,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         // region Leito - interactiveObjects and Actions
         leito.registerInteractiveObjects([
-            
+
             new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
                 .setCssClass("intObj-paciente_01-checar_pulseira")
                 .onClick(function() {
@@ -508,21 +507,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                 })
                 .setVisibility( visibility ),
-            
-            
+
+
              new InteractiveObject("io-conversar_paciente", "Falar com o paciente")
                 .setCssClass("intObj-conversar_paciente")
                 .onClick(function() {
-                    
-                      
+
+
                     core.openDialog( 18 );
                     core.closeCommandBar();
-                    
+
                 })
-                .setVisibility( true ),
-            
-            
-        
+                .setVisibility( true )
+
 
         ]);
 
@@ -543,14 +540,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                 })
                 .setVisibility( visibility ),
-            
-    
-            
+
+
             new Action("btn-lavarMaos", "Lavar as mãos")
                 .setCssClass("action-lavarMaos")
                 .onClick(function() {
                     console.log("Action: lavarMaos");
-                    //Som
+                    // Som
                     Player.play( Player.audios.sfx.lavarMaos );
 
                     // TODO Clean this mess PLEASE
@@ -700,10 +696,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     if ( level.getFlag("pegou_bandeja").getValue() != true ) {
                         core.openDialog( 0 );
-                    }
-                    else{
+                    } else {
                         console.log("Action: abrirGaveta");
-                        //Som
+                        // Som
                         Player.play( Player.audios.sfx.abrirGaveta );
                         core.openModalScene("Gaveta");
                         core.openCommandBar();
@@ -732,7 +727,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-bandeja")
                 .onClick(function() {
                     console.log("Action: Pegar bandeja");
-                    //Som
+                    // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     level.getFlag("pegou_bandeja").setValue( true );
                     core.setInteractiveObjectVisible("io-pegar_bandeja", false );
@@ -791,7 +786,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-fecharGaveta")
                 .onClick(function() {
                     console.log("Action: fecharGaveta");
-                    //Som
+                    // Som
                     Player.play( Player.audios.sfx.fecharGaveta );
                     core.closeModalScene("Gaveta");
                     if ( level.getFlag("termometro").getValue() == true &&
@@ -812,7 +807,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-thermometer")
                 .onClick(function() {
                     console.log("Action: pegar_termometro");
-                    //Som
+                    // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.tutorial.pegarTermometro );
                     core.setInteractiveObjectVisible("io-termometro", false );
@@ -824,7 +819,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-bloodPressureMonitor")
                 .onClick(function() {
                     console.log("O medidor de pressão foi ativado");
-                    //Som
+                    // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.tutorial.pegarAparelhoPressao );
                     core.setInteractiveObjectVisible("io-medidorPressao", false );
@@ -836,7 +831,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-oximeter")
                 .onClick(function() {
                     console.log("Action: pegar_oximetro");
-                    //Som
+                    // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.tutorial.pegarOximetro );
                     core.setInteractiveObjectVisible("io-oximetro", false );
@@ -848,7 +843,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-watch")
                 .onClick(function() {
                     console.log("Action: pegar_relogio");
-                    //Som
+                    // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.tutorial.pegarRelogio );
                     core.setInteractiveObjectVisible("io-relogio", false );
