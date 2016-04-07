@@ -26,6 +26,19 @@ require([ "requireConfig" ], function() {
                     // Load all sound files ind SoundsUrls
                     player.load( sounds.baseDir, sounds.paths );
 
+                    if ( storage.isSfxMuted() ) {
+                        player.setVolumeToCategory( player.audios.sfx, 0 );
+                    } else {
+                        player.setVolumeToCategory( player.audios.sfx, storage.getSfxVolume() );
+                    }
+
+                    if ( storage.isMusicMuted() ) {
+                        player.setVolumeToCategory( player.audios.musics, 0 );
+                    } else {
+                        player.setVolumeToCategory( player.audios.musics, storage.getMusicVolume() );
+                    }
+
+
                     // Load jquery and less libs
                     require([ "jquery" ], function( $ ) {
                         window.$ = $;

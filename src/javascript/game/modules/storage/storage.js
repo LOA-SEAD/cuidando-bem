@@ -50,14 +50,21 @@ define([ "SimpleStorage" ], function( Storage ) {
     var SAVES_CONTAINER_EMPTY_SLOTS = [ undefined, undefined, undefined ];
 
     var KEY_SAVES_CONTAINER = "saves_container";
-    var KEY_MUTED = "is_muted";
+    var KEY_SFX_MUTED = "sfx_muted";
+    var KEY_SFX_VOLUME = "sfx_volume";
+    var KEY_MUSIC_MUTED = "music_muted";
+    var KEY_MUSIC_VOLUME = "music_volume";
     var KEY_SELECTED_ID = "selected_id";
 
     var saves;
     var loadedId;
     var selectedId;
 
-    var muted;
+    var sfxMuted;
+    var sfxVolume;
+
+    var musicMuted;
+    var musicVolume;
 
     function init() {
         // Get saves data from storage module
@@ -77,12 +84,40 @@ define([ "SimpleStorage" ], function( Storage ) {
         }
         saveSlots();
 
-        // Get is muted data from storage module
-        muted = Storage.get( KEY_MUTED );
+        // Get if sfx is muted data from storage module
+        sfxMuted = Storage.get( KEY_SFX_MUTED );
+        console.log( sfxMuted );
 
-        if ( muted === undefined || typeof muted !== "boolean") {
-            muted = false;
-            Storage.set( KEY_MUTED, muted );
+        if ( sfxMuted === undefined || typeof sfxMuted !== "boolean") {
+            sfxMuted = false;
+            Storage.set( KEY_SFX_MUTED, sfxMuted );
+        }
+
+        // Get if music is muted data from storage module
+        musicMuted = Storage.get( KEY_MUSIC_MUTED );
+        console.log( musicMuted );
+
+        if ( musicMuted === undefined || typeof musicMuted !== "boolean") {
+            musicMuted = false;
+            Storage.set( KEY_MUSIC_MUTED, musicMuted );
+        }
+
+        // Get sfx volume data from storage module
+        sfxVolume = Storage.get( KEY_SFX_VOLUME );
+        console.log( sfxVolume );
+
+        if ( sfxVolume === undefined || typeof sfxVolume !== "number") {
+            sfxVolume = 1;
+            Storage.set( KEY_SFX_VOLUME, sfxVolume );
+        }
+
+        // Get music volume data from storage module
+        musicVolume = Storage.get( KEY_MUSIC_VOLUME );
+        console.log( musicVolume );
+
+        if ( musicVolume === undefined || typeof musicVolume !== "number") {
+            musicVolume = 1;
+            Storage.set( KEY_MUSIC_VOLUME, musicVolume );
         }
 
         selectedId = Storage.get( KEY_SELECTED_ID );
@@ -197,13 +232,50 @@ define([ "SimpleStorage" ], function( Storage ) {
         Storage.set( KEY_SELECTED_ID, selectedId );
     }
 
-    function toggleMute() {
-        muted = !muted;
-        Storage.set( KEY_MUTED, muted );
+    function toggleSfxMute() {
+        sfxMuted = !sfxMuted;
+        Storage.set( KEY_SFX_MUTED, sfxMuted );
     }
 
-    function isMuted() {
-        return muted;
+    function toggleMusicMute() {
+        musicMuted = !musicMuted;
+        Storage.set( KEY_MUSIC_MUTED, musicMuted );
+    }
+
+    function isSfxMuted() {
+        return sfxMuted;
+    }
+
+    function isMusicMuted() {
+        return musicMuted;
+    }
+
+    function getSfxVolume() {
+        return sfxVolume;
+    }
+
+    function getMusicVolume() {
+        return musicVolume;
+    }
+
+    function setSfxVolume( value ) {
+        if ( value >= 0 && value <= 1 ) {
+            sfxVolume = value;
+        } else {
+            sfxVolume = 1;
+        }
+
+        Storage.set( KEY_SFX_VOLUME, sfxVolume );
+    }
+
+    function setMusicVolume( value ) {
+        if ( value >= 0 && value <= 1 ) {
+            musicVolume = value;
+        } else {
+            musicVolume = 1;
+        }
+
+        Storage.set( KEY_MUSIC_VOLUME, musicVolume );
     }
 
     function getSelectedId() {
@@ -222,13 +294,13 @@ define([ "SimpleStorage" ], function( Storage ) {
 
     // @dev {
 
-    Storage.flush();
+    // Storage.flush();
 
-    saves[ 0 ] = new SaveObject("Testing");
-    saves[ 0 ].lastLevel = MAXLEVEL;
-    saves[ 0 ].empty = false;
+    // saves[ 0 ] = new SaveObject("Testing");
+    // saves[ 0 ].lastLevel = MAXLEVEL;
+    // saves[ 0 ].empty = false;
 
-    saveSlots();
+    // saveSlots();
 
     // }
 
@@ -245,8 +317,14 @@ define([ "SimpleStorage" ], function( Storage ) {
         addScore: addScore,
         resetScore: resetScore,
 
-        toggleMute: toggleMute,
-        isMuted: isMuted,
+        setSfxVolume: setSfxVolume,
+        getSfxVolume: getSfxVolume,
+        setMusicVolume: setMusicVolume,
+        getMusicVolume: getMusicVolume,
+        toggleSfxMute: toggleSfxMute,
+        toggleMusicMute: toggleMusicMute,
+        isSfxMuted: isSfxMuted,
+        isMusicMuted: isMusicMuted,
 
         getLoadedSlot: getLoadedSlot,
         setSelectedId: setSelectedId,
