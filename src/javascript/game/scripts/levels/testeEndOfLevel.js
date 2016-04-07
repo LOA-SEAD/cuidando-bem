@@ -25,7 +25,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         level.setInitialScene( 0 );
 
-        game.registerLevel( level, 10 );
+        game.registerLevel( level, 12 );
 
         console.groupEnd();
 

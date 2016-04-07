@@ -85,6 +85,7 @@
 @soroFisiologico100ml : url(../images/actionButtons/soroFisiologico100ml.jpg);
 @soroFisiologico250ml : url(../images/actionButtons/soroFisiologico250ml.jpg);
 @soroGlicofisiologico1000ml : url(../images/actionButtons/soroGlicofisiologico1000ml.jpg);
+@agulha : url(../images/actionButtons/agulha40x12.jpg);
 //endregion
 
 //region Characters
@@ -110,17 +111,24 @@
 @intObj-braceletConfirmationGray: url(../images/interactiveObjects/checkmark-gray.png);
 @intObj-braceletConfirmationGreen: url(../images/interactiveObjects/checkmark.png);
 @intObj-cushion: url(../images/interactiveObjects/coxim.png);
-@intObj-paciente_01-checar_pulseira: url(../images/interactiveObjects/pulseira-paciente01.png);
-@intObj-paciente_02-checar_pulseira: url(../images/interactiveObjects/pulseira-paciente02.png);
+@intObj-paciente_01-checar_pulseira: url(../images/interactiveObjects/pulseira01.png);
+@intObj-paciente_02-checar_pulseira: url(../images/interactiveObjects/pulseira02.png);
+@intObj-paciente_03-checar_pulseira: url(../images/interactiveObjects/pulseira03.png);
+@intObj-paciente_04-checar_pulseira: url(../images/interactiveObjects/pulseira04.png);
+@intObj-paciente_05-checar_pulseira: url(../images/interactiveObjects/pulseira05.png);
+@intObj-paciente_06-checar_pulseira: url(../images/interactiveObjects/pulseira06.png);
+@intObj-paciente_07-checar_pulseira: url(../images/interactiveObjects/pulseira07.png);
+@intObj-paciente_08-checar_pulseira: url(../images/interactiveObjects/pulseira08.png);
+@intObj-paciente_09-checar_pulseira: url(../images/interactiveObjects/pulseira09.png);
+@intObj-paciente_10-checar_pulseira: url(../images/interactiveObjects/pulseira10.png);
 @intObj-watch: url(../images/interactiveObjects/relogio.png);
 @intObj-copoDescartavel: url(../images/interactiveObjects/copo_descartavel.png);
 @intObj-aguaPotavel: url(../images/interactiveObjects/garrafa_agua_potavel.png);
 
-
 @intObj-algodao: url(../images/interactiveObjects/algodao_seco.png);
 @intObj-luvas: url(../images/interactiveObjects/algodao_seco.png);
 @intObj-bandeja: url(../images/interactiveObjects/algodao_seco.png);
-@intObj-aparelhoGlicemia: url(../images/interactiveObjects/aparelhodepressao_lateral.png);
+@intObj-aparelhoGlicemia: url(../images/interactiveObjects/glicosimetro.png);
 @intObj-algodao: url(../images/interactiveObjects/algodao_seco.png);
 
 //18/11/2015 - Todos em portugues
@@ -180,7 +188,7 @@
 @bg-relogio_digital: url(../images/modalScenes/relogioDigital.png);
 @bg-oximetro: url(../images/modalScenes/oximetro.png);
 @bg-zoom-char-2: url(../images/modalScenes/zoom-char-02.png);
-
+@bg-glicosimetro: url(../images/modalScenes/glicosimetro.png);
 @bg-prontuario: url(../images/modalScenes/prontuario.png);
 //endregion
 
@@ -201,11 +209,14 @@
 @scene-lobby: url(../images/scenes/recepcao.jpg);
 @scene-nursingStation: url(../images/scenes/postoDeEnfermagem.jpg);
 @scene-maleRoom: url(../images/scenes/alaMasculina.jpg);
+@scene-maleRoom-cushion: url(../images/scenes/alaMasculinaPacienteVirado.jpg);
 @scene-femaleRoom: url(../images/scenes/alaFeminina.png);
 @scene-bedroom: url(../images/scenes/salaDeLeitos.jpg);
+// Centro Cirúrgico
 @scene-surgeryCenter: url(../images/scenes/centroCirurgico.jpg);
-// @scene-surgeryCenter-regina: url(../images/scenes/centroCirurgicoRegina.jpg);
-// @scene-surgeryCenter-yuri: url(../images/scenes/centroCirurgicoYuri.jpg);
+@scene-centroCirurgicoRegina: url(../images/scenes/centroCirurgicoRegina.jpg);
+@scene-centroCirurgicoYuri: url(../images/scenes/centroCirurgicoYuri.jpg);
+
 @scene-infirmary: url('');
 @scene-levelTransition: url(../images/scenes/fimLevel.jpg);
 @scene-endAlpha: url(../images/scenes/encerramentoProvisorio.jpg);
@@ -216,7 +227,6 @@
 @scene-bedChar02: url(../images/scenes/leitoChar02.jpg);
 @scene-bedChar02-turned: url(../images/scenes/leitoChar02Virado.jpg);
 @scene-bedChar02-cushion: url(../images/scenes/leitoChar02Coxim.jpg);
-@scene-maleRoom-cushion: url(../images/scenes/alaMasculinaPacienteVirado.jpg);
 @scene-bedChar03: url(../images/scenes/leitoChar03.jpg);
 @scene-bedChar04: url(../images/scenes/leitoChar04.jpg);
 @scene-bedChar05: url(../images/scenes/leitoChar05.jpg);
@@ -225,8 +235,20 @@
 @scene-bedChar08: url(../images/scenes/leitoChar08.jpg);
 @scene-bedChar09: url(../images/scenes/leitoChar09.jpg);
 @scene-bedChar10: url(../images/scenes/leitoChar10.jpg);
-@scene-centroCirurgicoRegina: url(../images/scenes/centroCirurgicoRegina.jpg);
-@scene-centroCirurgicoYuri: url(../images/scenes/centroCirurgicoYuri.jpg);
+// Com grade
+@scene-bedChar01-grade: url(../images/scenes/leitoChar01Grade.jpg);
+@scene-bedChar02-grade: url(../images/scenes/leitoChar02Grade.jpg);
+@scene-bedChar02-turned-grade: url(../images/scenes/leitoChar02ViradoGrade.jpg);
+@scene-bedChar02-cushion-grade: url(../images/scenes/leitoChar02CoximGrade.jpg);
+@scene-bedChar03-grade: url(../images/scenes/leitoChar03Grade.jpg);
+@scene-bedChar04-grade: url(../images/scenes/leitoChar04Grade.jpg);
+@scene-bedChar05-grade: url(../images/scenes/leitoChar05Grade.jpg);
+@scene-bedChar06-grade: url(../images/scenes/leitoChar06Grade.jpg);
+@scene-bedChar07-grade: url(../images/scenes/leitoChar07Grade.jpg);
+@scene-bedChar08-grade: url(../images/scenes/leitoChar08Grade.jpg);
+@scene-bedChar09-grade: url(../images/scenes/leitoChar09Grade.jpg);
+@scene-bedChar10-grade: url(../images/scenes/leitoChar10Grade.jpg);
+
 
 
 

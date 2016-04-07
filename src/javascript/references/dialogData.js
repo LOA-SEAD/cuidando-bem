@@ -66,7 +66,7 @@ define({
                 // 12 Paciente
                 "Meu nome é João Manoel Ribeiro, nasci no dia 07/06/1956.",
                 // 13 Jogador
-                " Está certo, seu João. Já tenho todas as informações de que preciso ",
+                " Está certo, seu João. Já tenho todas as informações de que preciso.",
                 // 14 Mentor
                 "Sua primeira missão é admitir o Sr. João nesta enfermaria, identificando-o" +
                 " com uma pulseira e verificando os seus sinais vitais. Antes de começar," +
@@ -190,7 +190,9 @@ define({
             "Bom dia.",
             // Ação - pegar o prontuário
             // 2 Jogador
-            "Parece que temos um procedimento para ser realizado, vou até o posto de enfermagem e já volto."
+            "Parece que temos um procedimento para ser realizado, vou até o posto de enfermagem e já volto.",
+            // 3 Lixo Errado Alerta
+            "Tem certeza que está realizando o descarte no lixo correto?"
         ],
         leitoPaciente: [
             // 0 Jogador
@@ -266,7 +268,7 @@ define({
                 "cirúrgico.  É  um  documento  de  extrema importância!",
 
                 // 7
-                "A paciente o espera na sala de leitos."
+                "A paciente o espera na enfermaria masculina."
             ],
             fala2: [
                 // 0 Jogador
@@ -290,11 +292,11 @@ define({
                 "Terminamos, Aline. Vou buscar a paciente.",
                 // 5 op errada1
                 "Você  ainda  irá  conhecer  a  paciente  e  é  o" +
-                "responsável por levá-la ao centro cirúrgico!",
+                " responsável por levá-la ao centro cirúrgico!",
                 // 6 op errada2
                 "Nunca  se  esqueça  de  verificar  todos  os" +
-                "equipamento, pois  assim  evitamos  a ocorrência" +
-                "de imprevistos na cirurgia!",
+                " equipamento, pois  assim  evitamos  a ocorrência" +
+                " de imprevistos na cirurgia!",
 
                 // 7 ALERTA LAVAR MAOS CIRURGICA
                 "Higienize suas mãos utilizando as técnicas" +
@@ -302,14 +304,11 @@ define({
 
                 // 8 ALERTA LAVAR MAOS
                 "Não se esqueça do procedimento mais frequente" +
-                "e vital de um hospital. Você já o realizou várias" +
-                "vezes até aqui. Consegue lembrar qual é ele?",
+                " e vital de um hospital. Você já o realizou várias" +
+                " vezes até aqui. Consegue lembrar qual é ele?",
 
                 // 9 ALERTA TESTAR EQUIPAMENTOS
-
                 "Você está se esquecendo de algo importante!"
-
-
             ],
             fala2: [
                 // 0 Aline
@@ -329,7 +328,7 @@ define({
                 // 6 Jogador
                 "Seu nome?",
                 // 7 Paciente
-                "Regina Oliveira",
+                "Regina Oliveira.",
                 // 8 Jogador
                 "Parte do corpo em que será feita a cirurgia?",
                 // 9 Paciente
@@ -357,11 +356,11 @@ define({
 
                 // 19 op2 - primeira parte
                 "Tem certeza? Talvez a primeira fase deva ser" +
-                "aplicada em um procedimento anterior.",
+                " aplicada em um procedimento anterior.",
 
                 // 20 op3 - primeira parte
                 "Você tem certeza de que irá verificar o paciente" +
-                "apenas no fim do procedimento?",
+                " apenas no fim do procedimento?",
 
                 // 21 op2 - segunda parte
                 "O oxímetro de pulso do paciente e a indicação" +
@@ -369,8 +368,6 @@ define({
 
                 // 22 op3 - segunda parte
                 "Você já possui todas informações necessárias!"
-
-
             ]
         },
         alaFeminina: [
@@ -413,7 +410,11 @@ define({
             // 3 Jogador op 2
             "Sim, mas o nome da medicação não é uma informação importante, não se preocupe.",
             // 4 Jogador op 3
-            "Não sei dizer, não há nada anotado no prontuário."
+            "Não sei dizer, não há nada anotado no prontuário.",
+            // 5 Correção op 2
+            "Forneça ao paciente as informações sobre a medicação.",
+            // 6 Correção op 3
+            "Tem certeza? Olhe atentamente o prontuário do paciente."
         ],
         farmacia: [
             // 0 Paulo
@@ -465,11 +466,15 @@ define({
             " Por favor, não abra a pinça do equipo e em breve poderá voltar para seus alunos.",
             // 7 Mentor
             "Lembre-se sempre de utilizar os nove certos na administração de medicamentos!" +
-            " Deste modo reduzimos a possibilidades de erros."
+            " Deste modo reduzimos a possibilidades de erros.",
+            // 8 Mentor - Correção op 2
+            "Você precisa explicar a finalidade do uso desta medicação.",
+            // 9 Mentor - Correção op 3
+            "É um erro gravíssimo administrar um medicamento sem saber sua função!"
         ],
         lugarIncorreto: [
             // 0 Mentor
-            "Está perdido? O lugar certo é a Ala Masculina.",
+            "Está perdido? O lugar certo é a enfermaria masculina.",
             // 1 Mentor
             "Está perdido? O lugar certo é a Farmácia.",
             // 2 Mentor
@@ -486,7 +491,7 @@ define({
             // 0 Jogador
             "Boa tarde, Alberto!",
             // 1 Mentor
-            "Boa tarde! A paciente de hoje teve um Acidente Vascular Encefálico Isquêmico (AVE)." +
+            "Boa tarde! A paciente de hoje teve um Acidente Vascular Encefálico Isquêmico (AVCI)." +
             " Ela também sofreu uma queda, resultando em uma lesão. Vá até a enfermaria" +
             " feminina para realizar os procedimentos necessários."
         ],
@@ -540,7 +545,9 @@ define({
             // 2 Jogador op 2
             "Sim, Alberto! Não se preocupe, passar uma dieta é simples.",
             // 3 Mentor
-            "Boa sorte com seu novo paciente!"
+            "Boa sorte com seu novo paciente!",
+            // 4 Mentor Corrige
+            "A administração de dieta é um procedimento que requer muita atenção para um tratamento efetivo!"
         ],
         alaMasculina: [
             // 0 Jogador
@@ -552,7 +559,9 @@ define({
             "Senhor Josivaldo... Seu prontuário tem uma prescrição de dieta," +
             " vou até a farmácia buscar os equipamentos necessários e já volto.",
             // 3 Jogador op 2
-            "Senhor Josivaldo... Além de sua sonda nasogástrica, por hora não há nada prescrito."
+            "Senhor Josivaldo... Além de sua sonda nasogástrica, por hora não há nada prescrito.",
+            // 4 Mentor Corrige
+            "O prontuário do paciente precisa ser consultado!"
         ],
         farmacia: [
             // 0 Jogador op 1
@@ -563,7 +572,9 @@ define({
             "A dieta dele foi solicitada ontem e já está preparada. Aqui está.",
             // 3 Mentor
             "Você conferiu a dieta corretamente. Parabéns! A partir deste momento, tenha em mente que" +
-            " neste hospital usamos equipos de cores específicas para evitar possíveis erros de conexão."
+            " neste hospital usamos equipos de cores específicas para evitar possíveis erros de conexão.",
+            // 4 Mentor Corrige
+            "A administração de dieta é um procedimento que requer muita atenção e seus cuidados são essenciais para um tratamento efetivo!"
         ],
         postoEnfermagem: [
             // 0 Jogador op 1
@@ -571,7 +582,9 @@ define({
             // 1 Jogador op 2
             "A infusão da dieta ocorrerá em 33 gotas por minuto no período de uma hora.",
             // 2 Jogador op 3
-            "A infusão da dieta ocorrerá em 67 gotas no período de uma hora."
+            "A infusão da dieta ocorrerá em 67 gotas no período de uma hora.",
+            // 3 Mentor Corrige
+            "Acho que você se enganou. Tente novamente."
         ],
         leitoPaciente: [
             // 0 Jogador
@@ -614,8 +627,6 @@ define({
             // 6 MENTOR
             "Sua apresentação profissional é a parte mais importante do diálogo com" +
             " o paciente. Tente novamente."
-
-
         ],
         farmacia: [
             // 0 Jogador
@@ -782,7 +793,9 @@ define({
             "O senhor parece muito desidratado. Vou até a farmácia buscar o soro prescrito" +
             " pelo médico e, assim que eu voltar, verificaremos seus sinais vitais.",
             // 4 Paciente
-            "Tá certo! Brigado."
+            "Tá certo! Brigado.",
+            // 5 Mentor Alerta
+            "Esqueceu de se apresentar? E como está o paciente?"
         ],
         farmacia: [
             // 0 Farmaceutico
@@ -790,7 +803,9 @@ define({
             // 1 Jogador
             "Sim, Paulo. E desta vez preciso de Soro glicosado  5% - 1000ml e NaCl 20 %- 20 ml.",
             // 2 Farmaceutico
-            "Aqui está. Boa sorte!"
+            "Aqui está. Boa sorte!",
+            // 3 MENTOR ALERTA
+            "Você está se esquecendo de uma etapa muito importante!"
         ],
         leitoPaciente: [
             // 0 Jogador
@@ -809,6 +824,12 @@ define({
             // 5 Jogador op 2
             "Tudo bem, senhor Raul, porém deixarei apenas desta vez, ok?!"
         ],
+
+        postoDeEnfermagem: [
+            // 0
+            "Lembre-se de pegar todos os equipamentos antes de sair!"
+        ],
+
         alaMasculina: [
             // 0 Jogador
             "Agora estamos no leito correto, senhor Francisco.",
@@ -841,7 +862,7 @@ define({
             ]
         },
         enfermariaMasculina: [
-            "Volte à Enfermaria Masculina."
+            "Volte à enfermaria masculina."
         ],
         perdido: {
             enfermagem: [
@@ -859,6 +880,9 @@ define({
 
             centroCirurgico: [
                 "Primeiro teste os equipamentos que serão utilizados na cirurgia."
+            ],
+            corredor: [
+                "Converse comigo para saber qual é a enfermaria correta."
             ]
         },
         esqueceu: {
@@ -925,19 +949,27 @@ define({
             verificarMedicamento2: [
                 "Você tem certeza que esta é a medicação correta?"
             ],
+            verificarMedicamento3: [
+                "Sempre confirme se o medicamento fornecido é o mesmo prescrito."
+            ],
             pegarMedicamento: [
                 "Você já pegou a medicação solicitado pela paciente?"
             ],
             pegarBandeja: [
-                "Objetos devem ser colocadas na bandeja!"
+                "Primeiro pegue a bandeja para colocar os equipamentos."
             ],
             pegarObjetosGaveta: [
                 "Caso o paciente não possua restrição hídrica, medicações de via oral devem ser acompanhadas de líquido para facilitar na deglutição."
             ],
             verificarOximetro: [
                 "Lembre-se de verificar o oxímetro e o local da cirurgia antes de colocar a placa neutra."
+            ],
+            conferirDieta: [
+                "Nunca se esqueça de conferir a dieta fornecida pelo farmacêutico."
+            ],
+            pegarDieta: [
+                "O paciente necessita da dieta!"
             ]
-
         },
         descarte: {
             algodão: [

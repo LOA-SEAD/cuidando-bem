@@ -57,11 +57,13 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             // $(dialogModalSelector).css("display", "table");
             // $(dialogModalSelector).hide()
 
+            // @dev {
             $( document ).keydown(function( e ) {
                 if ( e.which == 32 ) {
                     $(".dialog_right").click();
                 }
             });
+            // }
 
             $( dialogMaskSelector ).show();
             $( dialogModalSelector ).show("fade", {
@@ -98,13 +100,21 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             // if first time hide everything to animate later
             if ( isDialogOpen == false ) {
                 $( dialogModalSelector + " div").hide();
-                animation();
+                // animation();
+                $( dialogCharNameSelector ).first().show();
+                $( dialogCharImg ).show(  );
+                $( dialogTextSelector ).show();
+                $( dialogOptionsSelector ).show(  );
             }
             // if already opened, keep the charName and animate the rest
             else {
                 $( dialogTextSelector ).hide();
                 $( dialogOptionsSelector ).hide();
-                animation();
+                // animation();
+                $( dialogCharNameSelector ).first().show();
+                $( dialogCharImg ).show(  );
+                $( dialogTextSelector ).show();
+                $( dialogOptionsSelector ).show(  );
             }
 
             // animation for dialog

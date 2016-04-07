@@ -4,7 +4,7 @@
 }
 
 .ui-dialog {
-    font-family: "Whipsmart";
+    font-family: @font-actions;
 
     background-color: #ECECEC;
     border-radius: 14px !important;
@@ -26,7 +26,7 @@
 }
 
 .ui-dialog-title {
-    font-size: 25px;
+    font-size: 2em;
     font-weight: bold;
     position: relative;
     bottom: 10px;
@@ -47,7 +47,7 @@
 }
 
 .ui-dialog-buttonpane {
-    margin-top: 110px;
+    margin-top: 7%;
 }
 
 .ui-slider {
@@ -118,46 +118,56 @@
 
 #dialog-confirmDelete {
     position: relative;
-    top: 37px;
+
+    p {
+        top: 1%;
+        width: 80%;
+        position: relative;
+        left: 10%;
+        font-size: 2.5em;
+    }
 }
 
 #dialog-typeName {
     position: relative;
     // top: -10px;
     p {
-        margin: 10px 0px;
+        top: 1%;
         width: 80%;
         position: relative;
         left: 10%;
-        font-size: 23px;
+        font-size: 2.5em;
     }
 
     input {
         border: none;
         text-align: center;
-        height: 37px;
-        // border-radius: 5px;
+        height: 15%;
         width: 85%;
+        font-size: 4em;
     }
 }
 
 .dialogVoltarBtt {
-    margin-right: 40px;
+    margin-right: 5%;
     background-color: @button-yellow;
+    font-size: 2em;
 }
 .dialogConfirmarBtt {
     background-color: @button-blue;
+    font-size: 2em;
 }
 .dialogApagarBtt {
     background-color: @button-red;
+    font-size: 2em;
 }
 .dialogVoltarBtt, .dialogConfirmarBtt, .dialogApagarBtt {
     /* background-color: red; */
     color: white;
-    font-family: verdana;
-    border-radius: 12px !important;
+    font-family: @font-menu;
+    border-radius: 5% ~"/" 20%  !important;
     width: 40%;
-    height: 55px;
+    height: 15%;
 }
 .dialogVoltarBtt:hover, .dialogConfirmarBtt:hover, .dialogApagarBtt:hover {
     position: relative;

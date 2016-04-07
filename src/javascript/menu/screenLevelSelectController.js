@@ -18,16 +18,16 @@ define([ "Stage", "levelsData" ], function( Stage, game ) {
     var text = "Selecione uma fase";
 
     var levelNames = [
-        "1 - Pulseira",
-        "2 - Coxim",
-        "3 - Glicosímetro",
-        "4 - Placa neutra",
-        "5 - Seringa",
-        "6 - Gaze estéril",
-        "7 - Equipo de dieta",
-        "8 - Medicamento",
-        "9 - Carrinho anestésico",
-        "10 - Soro glicofisiológico"
+        "1 - Identificação do Paciente",
+        "2 - Prevenção de úlcera por pressão",
+        "3 - Prevenção de quedas",
+        "4 - Cirurgia segura",
+        "5 - Medicação segura",
+        "6 - Higienização das mãos",
+        "7 - Infusão de dieta segura",
+        "8 - Segurança na admnistração de medicação",
+        "9 - Segurança em procedimentos cirúrgicos",
+        "10 - Admnistração segura de medicação"
     ];
 
     /**

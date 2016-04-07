@@ -7,6 +7,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var Dialogs = require("DialogsData").fase7;
         var Alertas = require("DialogsData").alertas;
         // var Scores = require("ScoresData").fase3;
+        var Player = require("Player");
         // endregion
 
         var level = new Level("Level 7");
@@ -71,13 +72,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
             new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-left")
+                .setCssClass("intObj-lobbyToHallway-left no-glow")
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( true ),
 
 
             new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-right")
+                .setCssClass("intObj-lobbyToHallway-right no-glow")
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( true )
         ]);
@@ -297,7 +298,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-lavarMaos", "Lavar as mãos")
                 .setCssClass("action-lavarMaos")
                 .onClick(function() {
-
+                    // Som
+                    Player.play( Player.audios.sfx.lavarMaos );
                     if ( level.getFlag("lavarMaos").getValue() == false ) {
                         level.getFlag("lavarMaos").setValue( true );
                         core.registerScoreItem( Scores.lavarMaos );
@@ -474,6 +476,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-pegarMedicamento", "Pegar Medicamento")
                 .setCssClass("action-pegarMedicamento")
                 .onClick(function() {
+                    // Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     level.getFlag("pegarMedicamento").setValue( true );
                     core.registerScoreItem( Scores.pegarMedicamento );
 
@@ -626,23 +630,28 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-abrirGaveta", "Abrir gaveta")
                 .setCssClass("intObj-openDrawer")
                 .onClick(function() {
-                    console.log("Action: abrirGaveta");
-                    core.openModalScene("gaveta");
-                    core.openCommandBar();
-
-
-                    //    core.setInteractiveObjectVisible("io-coxim", !(level.getFlag("coxim").getValue()));
+                    if ( level.getFlag("pegou_bandeja").getValue() != true ) {
+                        core.openDialog( 1 );
+                    } else {
+                        console.log("Action: abrirGaveta");
+                        // Som
+                        Player.play( Player.audios.sfx.abrirGaveta );
+                        core.openModalScene("gaveta");
+                        core.openCommandBar();
+                    }
                 })
                 .setVisibility( true ),
 
 
-            new InteractiveObject("io-pegarBandeja", "Pegar Bandeja")
+            new InteractiveObject("io-pegar_bandeja", "Pegar bandeja")
                 .setCssClass("intObj-bandeja")
                 .onClick(function() {
                     console.log("Action: Pegar bandeja");
-                    level.getFlag("pegarBandeja").setValue( true );
-                    core.setInteractiveObjectVisible("io-pegarBandeja", false );
-
+                    // Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
+                    level.getFlag("pegou_bandeja").setValue( true );
+                    // level.getFlag("score_pegou_bandeja").setValue( true );
+                    core.setInteractiveObjectVisible("io-pegar_bandeja", false );
                 })
                 .setVisibility( true )
 
@@ -737,6 +746,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-fecharGaveta")
                 .onClick(function() {
                     console.log("Action: fecharGaveta");
+                    // Som
+                    Player.play( Player.audios.sfx.fecharGaveta );
                     core.closeModalScene("Gaveta");
                 })
                 .setVisibility( true )
@@ -748,18 +759,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-copo_descartavel", "Copo Descartável")
                 .setCssClass("intObj-copoDescartavel")
                 .onClick(function() {
-                    if ( level.getFlag("pegarBandeja").getValue() == false ) {
+                    console.log("IntObj: io-copo_descartavel");
+                    // Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
+                    level.getFlag("pegar_copo_descartavel").setValue( true );
+                    core.setInteractiveObjectVisible("io-copo_descartavel", false );
 
-                        core.openDialog( 1 );
-                    } else {
-                        console.log("IntObj: io-copo_descartavel");
-                        level.getFlag("pegar_copo_descartavel").setValue( true );
-                        core.setInteractiveObjectVisible("io-copo_descartavel", false );
-
-                        if ( level.getFlag("score_pegar_copo_descartavel").getValue() == false ) {
-                            core.registerScoreItem( Scores.pegarCopoDescartavel );
-                            level.getFlag("score_pegar_copo_descartavel").setValue( true );
-                        }
+                    if ( level.getFlag("score_pegar_copo_descartavel").getValue() == false ) {
+                        core.registerScoreItem( Scores.pegarCopoDescartavel );
+                        level.getFlag("score_pegar_copo_descartavel").setValue( true );
                     }
                 })
                 .setVisibility( true ),
@@ -768,19 +776,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-agua_potavel", "Água Potável")
                 .setCssClass("intObj-aguaPotavel")
                 .onClick(function() {
+                    console.log("IntObj: io-agua_potavel");
+                    // Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
+                    level.getFlag("pegar_agua_potavel").setValue( true );
+                    core.setInteractiveObjectVisible("io-agua_potavel", false );
 
-                    if ( level.getFlag("pegarBandeja").getValue() == false ) {
-
-                        core.openDialog( 1 );
-                    } else {
-                        console.log("IntObj: io-agua_potavel");
-                        level.getFlag("pegar_agua_potavel").setValue( true );
-                        core.setInteractiveObjectVisible("io-agua_potavel", false );
-
-                        if ( level.getFlag("score_pegar_agua_potavel").getValue() == false ) {
-                            core.registerScoreItem( Scores.pegarAguaPotavel );
-                            level.getFlag("score_pegar_agua_potavel").setValue( true );
-                        }
+                    if ( level.getFlag("score_pegar_agua_potavel").getValue() == false ) {
+                        core.registerScoreItem( Scores.pegarAguaPotavel );
+                        level.getFlag("score_pegar_agua_potavel").setValue( true );
                     }
                 })
                 .setVisibility( true )
@@ -852,7 +856,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.getFlag("conferir_medicamento_correto").setValue( false );
             level.getFlag("pegar_copo_descartavel").setValue( false );
             level.getFlag("pegar_agua_potavel").setValue( false );
-            level.getFlag("pegarBandeja").setValue( false );
+            level.getFlag("pegou_bandeja").setValue( false );
             level.getFlag("score_pegar_agua_potavel").setValue( false );
             level.getFlag("score_pegar_copo_descartavel").setValue( false );
             level.getFlag("ir_ala_feminina_primeira_vez").setValue( false );
@@ -870,18 +874,22 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAlergiaMedicamentosa( false, "");
             Prontuario.setDisableAlergiaMedicamentosa( true );
             Prontuario.setDataInternacao("23/08/2015");
-            Prontuario.setLeito("03 - Enfermaria Feminina");
-            Prontuario.setAntecedentes("Nenhum");
+            Prontuario.setLeito("01 - Enfermaria Feminina");
+            Prontuario.setAntecedentes("");
             Prontuario.setHipotese("Cirurgia de fratura de fêmur");
-            Prontuario.setObservacoes("Diabetes Mellitus II e Hipertensão Arterial Sistêmica");
+            Prontuario.setObservacoes("Diabetes Mellitus tipo II, sofreu queda em degrau de uma escada, devido à instabilidade glicêmica.");
             Prontuario.setPeso("50");
             Prontuario.setAltura("1,65");
             Prontuario.setCircunferenciaAbdominal("78");
-            Prontuario.setPrescEnfermagemState("decubito");
-            Prontuario.setPrescMedicaRowData( 1, "", "Clorpropamida", "Oral", "250mg/1x/dia", "07:00h", "(X) Administrado  medicamento  sem intercorrências", false );
-            Prontuario.setSsvvRowData( 1, "", "120X70 mmHg", "60 bpm", "18 rpm", "96%", "35ºC", true );
-            Prontuario.setSsvvRowData( 1, "", "130X70 mmHg", "68 bpm", "20 rpm", "96%", "36,4ºC", true );
-            Prontuario.setAnotacaoEnfermagemRowData("15/03", "");
+
+            Prontuario.setPrescMedicaRowData( 0, "", "Clorpropamida", "Oral", "250mg/1x/dia", "07:00h", false, false );
+            Prontuario.setPrescMedicaRowData( 1, "", "", "", "", "", false, false );
+
+            // Prontuario.setPrescEnfermagemState("glicemia instável");
+
+            Prontuario.setSsvvRowData( 0, "", "120X70", "60", "18", "96", "35", true );
+            Prontuario.setSsvvRowData( 1, "", "130X70", "68", "20", "96", "36.4", true );
+            Prontuario.setAnotacaoEnfermagemRowData("", "");
 
 
         });
@@ -902,7 +910,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("conferir_medicamento_correto"), false );
         level.registerFlag( new Flag("pegar_copo_descartavel"), false );
         level.registerFlag( new Flag("pegar_agua_potavel"), false );
-        level.registerFlag( new Flag("pegarBandeja"), false );
+        level.registerFlag( new Flag("pegou_bandeja"), false );
         level.registerFlag( new Flag("score_pegar_agua_potavel"), false );
         level.registerFlag( new Flag("score_pegar_copo_descartavel"), false );
         level.registerFlag( new Flag("ir_ala_feminina_primeira_vez"), false );

@@ -39,7 +39,7 @@ define([ "Stage" ], function( Stage ) {
         $( deleteDialogSelector ).dialog({
             resizable: false,
             autoOpen: false,
-            height: 200,
+            dialogClass: "delete-slot-dialog",
             modal: true,
             draggable: false,
             buttons: [
@@ -84,7 +84,8 @@ define([ "Stage" ], function( Stage ) {
         $( typeNameDialogSelector ).dialog({
             resizable: false,
             autoOpen: false,
-            height: 210,
+            // height: "auto",
+            dialogClass: "type-name-dialog",
             modal: true,
             draggable: false,
             buttons: [

@@ -1,5 +1,6 @@
 .config-backImage {
-    background: center no-repeat @screen-config;
+    position: absolute;
+    background-image:  @screen-config;
     &:extend(.menuBackImage);
 }
 
@@ -25,7 +26,7 @@
         display: inline;
         padding: 10px 50px;
         background-color: rgba(204, 214, 229, 0.6);
-        font-family: "Pacifico", sans-serif;
+        font-family: @font-cursive;
         font-size: 45px;
         border-radius: 12px;
     }
@@ -34,10 +35,10 @@
 #configContent {
     position: absolute;
     top: 32%;
-    left: 8%;
+    left: 5%;
     height: 55%;
     //background-color: yellow;
-    width: 100%;
+    width: 90%;
 
     .controlRow:not(:first-child) {
         margin-top: 10%;
@@ -52,7 +53,7 @@
         .title {
             position: absolute;
             left: 0%;
-            font-family: "Pacifico", sans-serif;
+            font-family: @font-cursive;
             font-size: 25px;
             padding: 10px 50px;
             background-color: rgba(204, 214, 229, 0.6);
@@ -87,7 +88,7 @@
                 top: 7px;
             }
             > span {
-                font-family: "Pacifico", sans-serif;
+                font-family: @font-cursive;
                 font-size: 30px;
                 padding: 0 20px;
             }

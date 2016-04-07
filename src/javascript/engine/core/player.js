@@ -16,7 +16,7 @@ define(function() {
 
     var isMuted = false;
     var masterVolume = 1;
-    var pastMasterVolume;
+    var pastMasterVolume = 1;
 
     var normalSound = undefined;
     var pastNormalSound = undefined;
@@ -36,6 +36,7 @@ define(function() {
     var rangeSound = undefined;
     var rangeSoundBuffer = undefined;
     var pastRangeSound = undefined;
+    var rangeInterval;
 
     var audios = {};
 
@@ -59,7 +60,10 @@ define(function() {
                 if ( from[ audio ] instanceof Array ) {
                     to[ audio ] = [];
                 } else {
-                    to[ audio ] = {};
+                    to[ audio ] = {
+                        _name: audio,
+                        _volume: 1
+                    };
                 }
                 deepCopy( baseDir, from[ audio ], to[ audio ] );
             } else {
@@ -75,7 +79,7 @@ define(function() {
                 console.log("\tName: " + fileName, "Extension: " + extension );
 
                 sound.loop = false;
-                sound.volume = masterVolume;
+                sound.volume = (to._volume || 1) * masterVolume;
                 sound.vol = sound.volume;
                 sound.load();
             }
@@ -119,13 +123,13 @@ define(function() {
     }
 
     function play( sound ) {
+        console.log( "Starting: ", sound );
         normalSound = sound;
 
         prepare( normalSound );
 
         normalSound.play();
 
-        // console.log(sound);
     }
 
     function justPlay( sound ) {
@@ -157,6 +161,7 @@ define(function() {
 
             loopSoundBuffer = new Audio( nextInLoop.getAttribute("src") );
             loopSoundBuffer.volume = loopList[ nextId( loopId, loopList.length ) ].vol;
+            loopSoundBuffer.vol = loopList[ nextId( loopId, loopList.length ) ].vol;
             prepare( loopSoundBuffer );
 
             pastLoopSound = loopSound;
@@ -195,16 +200,11 @@ define(function() {
         loopSoundBuffer.volume = loopList[ loopId ].volume;
         // loopSoundBuffer = loopList[loopId];
 
-
         prepare( loopSoundBuffer );
         justPlay( loopSound );
 
         if ( isSoundLooping ) {
-            console.log("PLAY");
             loopInterval = setInterval( shouldPlayNextInLoop, 4 );
-            // loopSound.addEventListener('timeupdate', shouldPlayNextInLoop, false);
-            // loopSoundBuffer.addEventListener('timeupdate', shouldPlayNextInLoop, false);
-            // pastLoopSound.removeEventListener('ended', playNextInLoop, false);
         }
     }
 
@@ -234,8 +234,10 @@ define(function() {
     }
 
     function playNextInRange() {
+        console.log( "Play Next in Range" );
         var rangeIdArray = [];
         var i;
+
         for ( i in rangeList ) {
             rangeIdArray.push( i );
         }
@@ -246,27 +248,27 @@ define(function() {
             rangeIdArray.splice( pastRangeSoundId, 1 );
         }
 
-        rangeSoundId = rangeIdArray[ Math.floor( Math.random() * rangeIdArray.length ) ];
+        var randomId = Math.floor( Math.random() * rangeIdArray.length );
+        console.log( randomId );
+        rangeSoundId = rangeIdArray[ randomId ];
 
         if ( pastLoopSound !== undefined ) {
             pastLoopSound.pause();
-            pastLoopSound.removeEventListener("timeupdate", shouldPlayNextInRange, false );
-            // pastLoopSound.removeEventListener('ended', playNextInLoop, false);
+            clearInterval( rangeInterval );
         }
 
         pastRangeSound = rangeSound;
         rangeSound = rangeList[ rangeSoundId ];
 
-        play( rangeSound );
+        justPlay( rangeSound );
+
         if ( isRangePlaying ) {
-            rangeSound.addEventListener("timeupdate", shouldPlayNextInRange, false );
-            // pastLoopSound.removeEventListener('ended', playNextInLoop, false);
+            loopInterval = setInterval( shouldPlayNextInRange, 4 );
         }
     }
 
     function shouldPlayNextInRange() {
-        var percentage = (this.currentTime * 100) / this.duration;
-        // console.log(this.duration, this.currentTime, percentage+"%");
+        var percentage = (rangeSound.currentTime * 100) / rangeSound.duration;
 
         if ( percentage >= AUDIO_PERCENTAGE_TO_NEXT_IN_RANGE ) {
             playNextInRange();
@@ -279,6 +281,7 @@ define(function() {
         var soundId;
         for ( soundId in playList ) {
             var sound = playList[ soundId ];
+
             sound.vol = volume;
             sound.volume = volume * masterVolume;
         }
@@ -299,6 +302,15 @@ define(function() {
         masterVolume = volume;
 
         resetAllVolumes();
+    }
+
+    function setVolumeToCategory( category, volume ) {
+        category._volume = volume;
+
+        for ( sound in category ) {
+            setVolumeOfTo( category[ sound ], volume * masterVolume );
+        }
+
     }
 
     function mute() {
@@ -333,6 +345,7 @@ define(function() {
         mute: mute,
 
         setVolumeOfTo: setVolumeOfTo,
+        setVolumeToCategory: setVolumeToCategory,
         setMasterVolumeTo: setMasterVolumeTo,
 
         playInLoop: playInLoop,

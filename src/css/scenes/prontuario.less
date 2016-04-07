@@ -1,28 +1,21 @@
 #prontuario {
+    font-family: @font-printed;
+    font-size: 2em;
     display: none;
     z-index: 1;
+    box-sizing: border-box;
 
-    height: 498px * 1.2;
-    width: 726px * 1.2;
-    position: relative;
+    width: 72%;
+    height: 83%;
+    position: absolute;
     //background-color: white;
     background-image: @bg-prontuario;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 
-    @media (min-width:@screen-sm-min) {
-        left: 75px;
-        top: 25px;
-    }
-    @media (min-width:@screen-md-min) {
-        left: 100px;
-        top: 45px;
-    }
-    @media (min-width:@screen-lg-min) {
-        left: 110px;
-        top: 45px;
-    }
+    left: 13%;
+    top: 2%;
 
     text-align: left;
 
@@ -33,6 +26,7 @@
     }
 
     .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+        font-size: 1.7rem;
         padding: 0px;
         color: #008080;
     }
@@ -55,10 +49,10 @@
     }
     .content{
         overflow-y: hidden;
-        height: 95%;
-        padding-left: 120px;
-        padding-right: 55px;
-        padding-top: 60px;
+        width: 80%;
+        left: 13%;
+        top: 10%;
+        box-sizing: border-box;
     }
 
     .title{
@@ -75,7 +69,7 @@
     }
 
     .outerBlock{
-        padding: 25px;
+        //padding: 25px;
     }
 
     .block{

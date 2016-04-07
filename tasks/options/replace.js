@@ -15,9 +15,14 @@ module.exports = {
         overwrite: true,
 
         // Replace console.(anything)
+        // Replace @dev tags
         replacements: [
             {
                 from: / *console\..*?\);?\n/g,
+                to: ""
+            },
+            {
+                from: /\/\/ *@dev *{(.|\n|\r)*\/\/ *}/g,
                 to: ""
             }
         ]

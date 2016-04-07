@@ -1,38 +1,27 @@
 #game {
-  //  size change accordingly to screen size
-  //  located on large, medium and small devices files
-  border: solid 1px dimgray;
-  box-shadow: #080808 1px 1px 10px;
-  //position: absolute;
+    width: 100vw;
+    height: 60vw; /* 10/6 */
+    max-height: 100vh;
+    max-width: 166.66vh; /* 10/6  = 1.666 */
 
-  position: relative;
-  top: 50%;
+    margin: auto;
+    position: absolute;
 
-  @media (min-width:@screen-sm-min) {
-    width: 768px;
-    height: 461px;
-    margin: -461/2 auto;
-  }
-  @media (min-width:@screen-md-min) {
-    width: 992px;
-    height: 595px;
-    margin: -595/2 auto;
-  }
-  @media (min-width:@screen-lg-min) {
-    width: 1200px;
-    height: 720px;
-    margin: -720/2 auto;
-  }
+    top:0;bottom:0; /* vertical center */
+    left:0;right:0; /* horizontal center */
+
+    background-image: @bg-body;
+    background-size: 16% 25%;
 }
 
-#backgroundScene {
-  position: absolute;
-  height: 100%;
-  width: 100%;
+#backgroundScene, #stage {
+    position: absolute;
+    height: 100%;
+    width: 100%;
 }
 
 #interactiveArea {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }

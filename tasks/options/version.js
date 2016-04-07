@@ -1,10 +1,6 @@
 // version
 "use strict";
 module.exports = {
-	options: {
-
-    },
-
     options: {
         pkg: "package.json"
     },

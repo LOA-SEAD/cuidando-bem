@@ -8,7 +8,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         // region Imports
         var Dialogs = require("DialogsData").tutorial;
-        // var Scores = require("ScoresData").tutorial;
+        var Alertas = require("DialogsData").alertas;
+        var Player = require("Player");
         // endregion
 
         var level = new Level("Level 0 - Tutorial");
@@ -90,13 +91,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
             new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-left")
+                .setCssClass("intObj-lobbyToHallway-left no-glow")
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( visibility ),
 
 
             new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-right")
+                .setCssClass("intObj-lobbyToHallway-right no-glow")
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( visibility )
         ]);
@@ -433,6 +434,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText("")
                 .registerOption( Dialogs.leito.conversa2[ 6 ], function() {
                     core.openDialog( 16 );
+                    // Som
+                    Player.play( Player.audios.sfx.missaoCumprida );
                 }),
             // Dialog 16
             new Dialog( lib.characters.mentor )
@@ -491,6 +494,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         // region Leito - interactiveObjects and Actions
         leito.registerInteractiveObjects([
+
             new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
                 .setCssClass("intObj-paciente_01-checar_pulseira")
                 .onClick(function() {
@@ -502,7 +506,20 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.setInteractiveObjectVisible("io-confirmar_pulseira", true );
                     }
                 })
-                .setVisibility( visibility )
+                .setVisibility( visibility ),
+
+
+             new InteractiveObject("io-conversar_paciente", "Falar com o paciente")
+                .setCssClass("intObj-conversar_paciente")
+                .onClick(function() {
+
+
+                    core.openDialog( 18 );
+                    core.closeCommandBar();
+
+                })
+                .setVisibility( true )
+
 
         ]);
 
@@ -523,17 +540,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                 })
                 .setVisibility( visibility ),
-            new Action("btn-perguntar_nome_do_paciente", "Perguntar nome do paciente")
-                .setCssClass("action-perguntar_nome_char1")
-                .onClick(function() {
-                    core.openDialog( 18 );
-                    core.closeCommandBar();
-                })
-                .setVisibility( true ),
+
+
             new Action("btn-lavarMaos", "Lavar as mãos")
                 .setCssClass("action-lavarMaos")
                 .onClick(function() {
                     console.log("Action: lavarMaos");
+                    // Som
+                    Player.play( Player.audios.sfx.lavarMaos );
 
                     // TODO Clean this mess PLEASE
                     switch ( level.getFlag("lavar-maos").getValue() ) {
@@ -680,28 +694,55 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-abrirGaveta", "Abrir gaveta")
                 .setCssClass("intObj-openDrawer")
                 .onClick(function() {
-                    console.log("Action: abrirGaveta");
-                    core.openModalScene("Gaveta");
-                    core.openCommandBar();
+                    if ( level.getFlag("pegou_bandeja").getValue() != true ) {
+                        core.openDialog( 0 );
+                    } else {
+                        console.log("Action: abrirGaveta");
+                        // Som
+                        Player.play( Player.audios.sfx.abrirGaveta );
+                        core.openModalScene("Gaveta");
+                        core.openCommandBar();
 
-                    core.setActionVisible("btn-fecharGaveta", true );
+                        core.setActionVisible("btn-fecharGaveta", true );
 
-                    if ( level.getFlag("termometro").getValue() != true ) {
-                        core.setInteractiveObjectVisible("io-termometro", true );
-                    }
-                    if ( level.getFlag("medidor-pressao").getValue() != true ) {
-                        core.setInteractiveObjectVisible("io-medidorPressao", true );
-                    }
-                    if ( level.getFlag("oximetro").getValue() != true ) {
-                        core.setInteractiveObjectVisible("io-oximetro", true );
-                    }
-                    if ( level.getFlag("relogio").getValue() != true ) {
-                        core.setInteractiveObjectVisible("io-relogio", true );
+                        if ( level.getFlag("termometro").getValue() != true ) {
+                            core.setInteractiveObjectVisible("io-termometro", true );
+                        }
+                        if ( level.getFlag("medidor-pressao").getValue() != true ) {
+                            core.setInteractiveObjectVisible("io-medidorPressao", true );
+                        }
+                        if ( level.getFlag("oximetro").getValue() != true ) {
+                            core.setInteractiveObjectVisible("io-oximetro", true );
+                        }
+                        if ( level.getFlag("relogio").getValue() != true ) {
+                            core.setInteractiveObjectVisible("io-relogio", true );
+                        }
                     }
 
                 })
-                .setVisibility( visibility )
+                .setVisibility( visibility ),
 
+            // Bandeja
+            new InteractiveObject("io-pegar_bandeja", "Pegar bandeja")
+                .setCssClass("intObj-bandeja")
+                .onClick(function() {
+                    console.log("Action: Pegar bandeja");
+                    // Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
+                    level.getFlag("pegou_bandeja").setValue( true );
+                    core.setInteractiveObjectVisible("io-pegar_bandeja", false );
+                })
+                .setVisibility( true )
+
+        ]);
+
+        postoDeEnfermagem.registerDialogs([
+            // Dialog 0 - Não pegou bandeja
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.pegarBandeja )
+                .registerOption("", function() {
+                    core.closeDialog();
+                })
         ]);
 
         postoDeEnfermagem.registerActions([
@@ -745,6 +786,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-fecharGaveta")
                 .onClick(function() {
                     console.log("Action: fecharGaveta");
+                    // Som
+                    Player.play( Player.audios.sfx.fecharGaveta );
                     core.closeModalScene("Gaveta");
                     if ( level.getFlag("termometro").getValue() == true &&
                         level.getFlag("oximetro").getValue() == true &&
@@ -764,6 +807,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-thermometer")
                 .onClick(function() {
                     console.log("Action: pegar_termometro");
+                    // Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.tutorial.pegarTermometro );
                     core.setInteractiveObjectVisible("io-termometro", false );
                     level.getFlag("termometro").setValue( true );
@@ -774,6 +819,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-bloodPressureMonitor")
                 .onClick(function() {
                     console.log("O medidor de pressão foi ativado");
+                    // Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.tutorial.pegarAparelhoPressao );
                     core.setInteractiveObjectVisible("io-medidorPressao", false );
                     level.getFlag("medidor-pressao").setValue( true );
@@ -784,6 +831,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-oximeter")
                 .onClick(function() {
                     console.log("Action: pegar_oximetro");
+                    // Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.tutorial.pegarOximetro );
                     core.setInteractiveObjectVisible("io-oximetro", false );
                     level.getFlag("oximetro").setValue( true );
@@ -794,6 +843,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-watch")
                 .onClick(function() {
                     console.log("Action: pegar_relogio");
+                    // Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.tutorial.pegarRelogio );
                     core.setInteractiveObjectVisible("io-relogio", false );
                     level.getFlag("relogio").setValue( true );
@@ -959,6 +1010,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.getFlag("lavar-maos").setValue( 0 );
             level.getFlag("lavar-maosDepois").setValue( false );
             level.getFlag("lavar-maosDepoisScore").setValue( false );
+            level.getFlag("pegou_bandeja").setValue( false );
             level.getFlag("termometro").setValue( false );
             level.getFlag("medidor-pressao").setValue( false );
             level.getFlag("oximetro").setValue( false );
@@ -979,13 +1031,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setDataNascimento("07/06/1956");
             Prontuario.setIdade("58 anos");
             Prontuario.setProfissao("Comerciante");
-            Prontuario.setPai("Joaquim Casagrande");
-            Prontuario.setMae("Lúcia Moraes Casagrande");
+            Prontuario.setPai("Joaquim Ribeiro");
+            Prontuario.setMae("Adelaide Moraes Ribeiro");
 
             Prontuario.setAlergiaMedicamentosa( true, "Dipirona");
             Prontuario.setDisableAlergiaMedicamentosa( true );
-            Prontuario.setDataInternacao("13/05/2015");
-            Prontuario.setLeito("02 - Leito Masculino");
+            Prontuario.setDataInternacao("15/03/2015");
+            Prontuario.setLeito("02 - Enfermaria Masculina");
             Prontuario.setAntecedentes("Ocorrência de internação em 2004, devido a suspeita de infarto agudo do miocárdio (IAM)");
             Prontuario.setHipotese("Crise hipertensiva");
             Prontuario.setObservacoes("");
@@ -994,10 +1046,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAltura("1,62");
             Prontuario.setCircunferenciaAbdominal("115");
 
-            Prontuario.setPrescMedicaRowData( 0, "15/03", "Captopril", "Oral", "comp 75 mg", "2x dia", true, true );
-            Prontuario.setPrescMedicaRowData( 1, "15/03", "Ácido acetilsalicílico (AAS)", "Oral", "comp 100 mg", "1x dia", true, true );
+            Prontuario.setPrescMedicaRowData( 0, "", "Captopril", "Oral", "comp 75 mg", "2x dia", false, true );
+            Prontuario.setPrescMedicaRowData( 1, "", "Ácido acetilsalicílico (AAS)", "Oral", "comp 100 mg", "1x dia", false, true );
 
-            Prontuario.setSsvvRowData( 0, "15/03", "", "", "", "", "", false );
+            Prontuario.setSsvvRowData( 0, "", "", "", "", "", "", false );
             Prontuario.setSsvvRowRegExp( 0,
                 new RegExp("15/03"),
                 new RegExp("160x100"),
@@ -1009,7 +1061,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // Disable 2 row
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
 
-            Prontuario.setAnotacaoEnfermagemRowData("15/03", "");
+            Prontuario.setAnotacaoEnfermagemRowData("", "");
 
             Prontuario.setPrescEnfermagemState("vazio");
         });
@@ -1044,6 +1096,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("lavar-maos", 0 ) );
         level.registerFlag( new Flag("lavar-maosDepois", false ) );
         level.registerFlag( new Flag("lavar-maosDepoisScore", false ) );
+        level.registerFlag( new Flag("pegou_bandeja", false ) );
         level.registerFlag( new Flag("termometro", false ) );
         level.registerFlag( new Flag("medidor-pressao", false ) );
         level.registerFlag( new Flag("oximetro", false ) );

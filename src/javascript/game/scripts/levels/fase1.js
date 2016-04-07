@@ -9,6 +9,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // region Imports
         var Dialogs = require("DialogsData").fase1;
         var Alertas = require("DialogsData").alertas;
+        var Player = require("Player");
         Scores = Scores.level1;
         // endregion
 
@@ -74,13 +75,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
             new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-left")
+                .setCssClass("intObj-lobbyToHallway-left no-glow")
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( true ),
 
 
             new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-right")
+                .setCssClass("intObj-lobbyToHallway-right no-glow")
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( true )
         ]);
@@ -306,6 +307,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-lavarMaos", "Lavar as mãos")
                 .setCssClass("action-lavarMaos")
                 .onClick(function() {
+                    // Som
+                    Player.play( Player.audios.sfx.lavarMaos );
                     if ( level.getFlag("lavarMaos").getValue() == false ) {
                         console.log("Action: lavarMaos");
                         level.getFlag("lavarMaos").setValue( true );
@@ -401,6 +404,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
         leito.registerInteractiveObjects([
+
             new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
                 .setCssClass("intObj-paciente_02-checar_pulseira")
                 .onClick(function() {
@@ -410,8 +414,25 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openCommandBar();
                 })
                 .setVisibility( true )
-                .setEnable( false )
+                .setEnable( false ),
+
+               new InteractiveObject("io-conversar_paciente02", "Falar com o paciente")
+                .setCssClass("intObj-conversar_paciente")
+                .onClick(function() {
+
+                      if ( level.getFlag("score_falar_paciente").getValue() == false ) {
+                        core.registerScoreItem( Scores.falarComPaciente );
+                        level.getFlag("score_falar_paciente").setValue( true );
+                    }
+
+                    core.openDialog( 0 );
+                    core.closeCommandBar();
+
+                })
+                .setVisibility( true )
+
         ]);
+
 
         leito.registerDialogs([
             // 0 Jogador escolhe fala
@@ -503,25 +524,26 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-examinar_paciente")
                 .onClick(function() {
                     console.log("Action: btn-examinar_paciente");
+                    Player.play( Player.audios.sfx.objeto );
                     core.openModalScene("zoomChar2");
                     level.getFlag("examinar_paciente").setValue( true );
                     core.setActionVisible("btn-ir_sala_leitos", true );
                 })
                 .setVisibility( false ),
+
+         /*
             new Action("btn-falarPaciente", "Conversar com Paciente")
                 .setCssClass("action-leito-char-02")
                 .onClick(function() {
                     console.log("Action: btn-conversarPaciente");
 
-                    if ( level.getFlag("score_falar_paciente").getValue() == false ) {
-                        core.registerScoreItem( Scores.falarComPaciente );
-                        level.getFlag("score_falar_paciente").setValue( true );
-                    }
 
-                    core.openDialog( 0 );
-                    core.closeCommandBar();
                 })
                 .setVisibility( true ),
+
+            */
+
+
             new Action("btn-perguntar_nome", "Perguntar nome do paciente")
                 .setCssClass("action-leito-char-02")
                 .onClick(function() {
@@ -586,6 +608,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-openDrawer")
                 .onClick(function() {
                     console.log("Action: abrirGaveta");
+                    // Som
+                    Player.play( Player.audios.sfx.abrirGaveta );
                     core.openModalScene("gaveta");
                     core.openCommandBar();
 
@@ -657,6 +681,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-fecharGaveta")
                 .onClick(function() {
                     console.log("Action: fecharGaveta");
+                    // Som
+                    Player.play( Player.audios.sfx.fecharGaveta );
                     core.closeModalScene("Gaveta");
                 })
                 .setVisibility( true )
@@ -668,6 +694,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("IntObj: io-coxim");
                     level.getFlag("coxim").setValue( true );
+                    // Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
                     core.setInteractiveObjectVisible("io-coxim", false );
 
                     if ( level.getFlag("score_pegar_coxim").getValue() == false ) {
@@ -752,17 +780,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             Prontuario.setNome("Carlos Esme Gouvêa");
             Prontuario.setSexo("M");
-            Prontuario.setEstadoCivil("Viúvo");
+            Prontuario.setEstadoCivil("Casado");
             Prontuario.setDataNascimento("01/12/1945");
             Prontuario.setIdade("69 anos");
-            Prontuario.setProfissao("Advogado Aposentado");
+            Prontuario.setProfissao("Advogado aposentado");
             Prontuario.setPai("Leonardo Gouvêa");
             Prontuario.setMae("Maria Clara Esme Gouvêa");
 
             Prontuario.setAlergiaMedicamentosa( false, "");
             Prontuario.setDisableAlergiaMedicamentosa( true );
             Prontuario.setDataInternacao("15/06/2015");
-            Prontuario.setLeito("03 - Leito Masculino");
+            Prontuario.setLeito("02 - Enfermaria Masculina");
             Prontuario.setAntecedentes("Nenhum");
             Prontuario.setHipotese("Pneumonia brônquica, insuficiência respiratória e anemia ferropriva.");
             Prontuario.setObservacoes("Possui incontinência urinária, acamado.");
@@ -773,14 +801,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAltura("1,68");
             Prontuario.setCircunferenciaAbdominal("135");
 
-            Prontuario.setPrescMedicaRowData( 0, "15/03", "Sulfato ferroso", "Oral", "drágea 250 mg", "2x dia", "x");
-            Prontuario.setPrescMedicaRowData( 1, "15/03", "Azitromicina", "Oral", "comp 500 mg", "1x dia", "x");
+            Prontuario.setPrescMedicaRowData( 0, "", "Sulfato ferroso", "Oral", "drágea 250 mg", "2x dia", true, true );
+            Prontuario.setPrescMedicaRowData( 1, "", "Azitromicina", "Oral", "comp 500 mg", "1x dia", true, true );
 
-            Prontuario.setSsvvRowData( 0, "15/03", "130x80", "65", "14", "94", "36", true );
+            Prontuario.setSsvvRowData( 0, "", "130x80", "65", "14", "94", "36", true );
             // Disable 2 row
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
 
-            Prontuario.setAnotacaoEnfermagemRowData("15/03", "");
+            Prontuario.setAnotacaoEnfermagemRowData("", "");
         });
 
         // Flags
