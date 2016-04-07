@@ -16,7 +16,7 @@ define(function() {
 
     var isMuted = false;
     var masterVolume = 1;
-    var pastMasterVolume;
+    var pastMasterVolume = 1;
 
     var normalSound = undefined;
     var pastNormalSound = undefined;
@@ -79,7 +79,7 @@ define(function() {
                 console.log("\tName: " + fileName, "Extension: " + extension );
 
                 sound.loop = false;
-                sound.volume = to._volume * masterVolume;
+                sound.volume = (to._volume || 1) * masterVolume;
                 sound.vol = sound.volume;
                 sound.load();
             }
@@ -161,6 +161,7 @@ define(function() {
 
             loopSoundBuffer = new Audio( nextInLoop.getAttribute("src") );
             loopSoundBuffer.volume = loopList[ nextId( loopId, loopList.length ) ].vol;
+            loopSoundBuffer.vol = loopList[ nextId( loopId, loopList.length ) ].vol;
             prepare( loopSoundBuffer );
 
             pastLoopSound = loopSound;
@@ -280,6 +281,7 @@ define(function() {
         var soundId;
         for ( soundId in playList ) {
             var sound = playList[ soundId ];
+
             sound.vol = volume;
             sound.volume = volume * masterVolume;
         }
@@ -306,7 +308,7 @@ define(function() {
         category._volume = volume;
 
         for ( sound in category ) {
-            setVolumeOfTo( sound, volume * masterVolume );
+            setVolumeOfTo( category[ sound ], volume * masterVolume );
         }
 
     }
