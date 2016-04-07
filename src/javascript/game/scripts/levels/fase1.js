@@ -75,13 +75,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
             new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-left")
+                .setCssClass("intObj-lobbyToHallway-left no-glow")
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( true ),
 
 
             new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-right")
+                .setCssClass("intObj-lobbyToHallway-right no-glow")
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( true )
         ]);
@@ -404,6 +404,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
         leito.registerInteractiveObjects([
+            
             new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
                 .setCssClass("intObj-paciente_02-checar_pulseira")
                 .onClick(function() {
@@ -413,8 +414,27 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openCommandBar();
                 })
                 .setVisibility( true )
-                .setEnable( false )
+                .setEnable( false ),
+            
+               new InteractiveObject("io-conversar_paciente02", "Falar com o paciente")
+                .setCssClass("intObj-conversar_paciente")
+                .onClick(function() {
+                    
+                      if ( level.getFlag("score_falar_paciente").getValue() == false ) {
+                        core.registerScoreItem( Scores.falarComPaciente );
+                        level.getFlag("score_falar_paciente").setValue( true );
+                    }
+
+                    core.openDialog( 0 );
+                    core.closeCommandBar();
+                   
+                })
+                .setVisibility( true ),
+            
         ]);
+    
+    
+    
 
         leito.registerDialogs([
             // 0 Jogador escolhe fala
@@ -512,20 +532,20 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.setActionVisible("btn-ir_sala_leitos", true );
                 })
                 .setVisibility( false ),
+            
+         /*   
             new Action("btn-falarPaciente", "Conversar com Paciente")
                 .setCssClass("action-leito-char-02")
                 .onClick(function() {
                     console.log("Action: btn-conversarPaciente");
 
-                    if ( level.getFlag("score_falar_paciente").getValue() == false ) {
-                        core.registerScoreItem( Scores.falarComPaciente );
-                        level.getFlag("score_falar_paciente").setValue( true );
-                    }
-
-                    core.openDialog( 0 );
-                    core.closeCommandBar();
+                  
                 })
                 .setVisibility( true ),
+            
+            */
+            
+            
             new Action("btn-perguntar_nome", "Perguntar nome do paciente")
                 .setCssClass("action-leito-char-02")
                 .onClick(function() {

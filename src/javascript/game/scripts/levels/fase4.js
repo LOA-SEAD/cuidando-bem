@@ -70,13 +70,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
             new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-left")
+                .setCssClass("intObj-lobbyToHallway-left no-glow")
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( true ),
 
 
             new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-right")
+                .setCssClass("intObj-lobbyToHallway-right no-glow")
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( true ),
 
@@ -345,12 +345,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // region Leito
         leito = lib.scenes.leitos.pedro.getClone()
             .onLoad(function() {
+
                 console.log("Leito: Onload");
                 core.setInteractiveObjectVisible("io-pulseira_paciente", true );
                 core.setActionVisible("btn-ir_sala_leitos", true );
-                core.openDialog( 0 );
-                //}
 
+                core.openDialog( 0 );
+
+                // Conflito
+                // core.setActionVisible("btn-lavarMaos", true );
+                // core.setActionVisible("btn-ler_prontuario", true );
             })
             .onUnload(function() {
                 console.log("Leito: OnUnload");
@@ -419,6 +423,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         // region Leito - interactiveObjects and Actions
         leito.registerInteractiveObjects([
+
             new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
                 .setCssClass("intObj-paciente_01-checar_pulseira")
                 .onClick(function() {
@@ -427,7 +432,28 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Pulseira.open();
                     core.openCommandBar();
                 })
-                .setVisibility( true )
+                .setVisibility( true ),
+
+
+            new InteractiveObject("io-conversar_paciente05", "Falar com o paciente")
+                .setCssClass("intObj-conversar_paciente")
+                .onClick(function() {
+
+                     if ( level.getFlag("pegarPrescricaoMedica").getValue() == true &&
+                    level.getFlag("pegarMedicamento").getValue() == true &&
+                    level.getFlag("prepararMedicacao").getValue() == true ) {
+                    // after first visit
+                    core.openDialog( 3 );
+                } else  {
+                    // the first visit
+                    level.getFlag("falarComPaciente").setValue( true );
+                    core.openDialog( 0 );
+                }
+
+                })
+                .setVisibility( true ),
+
+
         ]);
 
         leito.registerActions([
@@ -662,6 +688,21 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeDialog();
                     core.changeScene( 1 );
                 })
+        ]);
+
+        farmacia.registerInteractiveObjects([
+
+            new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
+                .setCssClass("intObj-lobbyToHallway-left no-glow")
+                .onClick( farmaciaIrCorredor )
+                .setVisibility( true ),
+
+
+            new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
+                .setCssClass("intObj-lobbyToHallway-right no-glow")
+                .onClick( farmaciaIrCorredor )
+                .setVisibility( true )
+
         ]);
 
         // endregion

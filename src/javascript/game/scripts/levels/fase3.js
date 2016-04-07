@@ -75,13 +75,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
             new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-left")
+                .setCssClass("intObj-lobbyToHallway-left no-glow")
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( true ),
 
 
             new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-right")
+                .setCssClass("intObj-lobbyToHallway-right no-glow")
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( true )
         ]);
@@ -577,7 +577,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 console.log("Load scene: " + leito.getName() );
                 console.log("Abrindo dialogo com paciente");
                 level.getFlag("conversarPaciente").setValue( true );
-                core.openDialog( 0 );
+              //  core.openDialog( 0 );
             });
 
 
@@ -612,6 +612,20 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true )
 
 
+        ]);
+    
+    
+    leito.registerInteractiveObjects([
+        
+          new InteractiveObject("io-conversar_paciente04", "Falar com o paciente")
+                .setCssClass("intObj-conversar_paciente")
+                .onClick(function() {
+                    
+                    core.openDialog(0);
+                    
+                })
+
+        
         ]);
 
 
