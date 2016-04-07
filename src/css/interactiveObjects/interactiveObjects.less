@@ -22,31 +22,13 @@
 //region Recepcao - Lobby
 .intObj-talkToReceptionist {
   background-image: url(../images/interactiveObjects/intObj-receptionist.png);
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-  @intObj-receptionist-width: 242px;
-  @intObj-receptionist-height: 263px;
-
-  @media screen and (min-width: @screen-sm-min) {
-    width: 0.60 * @intObj-receptionist-width;
-    height: 0.60 * @intObj-receptionist-height;
-    top: 108px;
-    right: 290px;
-  }
-
-  @media screen and (min-width: @screen-md-min) {
-    width: 0.80 * @intObj-receptionist-width;
-    height: 0.80 * @intObj-receptionist-height;
-    top: 135px;
-    right: 380px;
-  }
-
-  @media screen and (min-width: @screen-lg-min) {
-    width: @intObj-receptionist-width;
-    height: @intObj-receptionist-height;
-    top: 157px;
-    right: 448px;
-  }
+  width: 18%;
+  height: 33%;
+  top: 25%;
+  left: 45%;
 }
 
 .intObj-9Certos{
@@ -55,7 +37,7 @@
   width: 11%;
   height: 8%;
   top: 45%;
-  right: 17%;
+  left: 17%;
 }
 
 .intObj-lobbyToHallway-left {
@@ -66,18 +48,18 @@
 }
 
 .intObj-lobbyToHallway-left:hover {
-  background-image: svg-gradient(to right, rgba(255,255,255,0.7), rgba(255,255,255,0.2) 25%, transparent);
+  background-image: svg-gradient(to left, rgba(255,255,255,0.7), rgba(255,255,255,0.2) 25%, transparent);
 }
 
-.intObj-lobbyToHallway-right {
-  right: 0;
+.intObj-lobbyToHallway-left {
+  left: 0;
   top: 0;
   height: 100%;
   width: 8%;
 }
 
-.intObj-lobbyToHallway-right:hover {
-  background-image: svg-gradient(to right, transparent, rgba(255,255,255,0.2) 75%, rgba(255,255,255,0.7));
+.intObj-lobbyToHallway-left:hover {
+  background-image: svg-gradient(to left, transparent, rgba(255,255,255,0.2) 75%, rgba(255,255,255,0.7));
 }
 //endregion
 
@@ -85,27 +67,12 @@
 .intObj-talkToMentor {
   background-image: @intObj-charMentor;
   background-size: contain;
-  @charMentor-width: 190px;
-  @charMentor-height: 524px;
+  background-repeat: no-repeat;
 
-  @media screen and (min-width: @screen-sm-min) {
-    bottom: 6%;
-    left: 25%;
-    width: 0.58 * @charMentor-width;
-    height: 0.58 * @charMentor-height;
-  }
-  @media screen and (min-width: @screen-md-min) {
-    bottom: 6%;
-    left: 25%;
-    width: 0.74 * @charMentor-width;
-    height: 0.74 * @charMentor-height;
-  }
-  @media screen and (min-width: @screen-lg-min) {
-    bottom: 6%;
-    left: 25%;
-    width: 0.9 * @charMentor-width;
-    height: 0.9 * @charMentor-height;
-  }
+  bottom: 10%;
+  left: 30%;
+  width: 13%;
+  height: 55%;
 }
 
 .intObj-goToCentroCirurgico {
@@ -158,16 +125,16 @@
 
 .intObj-irLeitoDaEsquerda {
 
-    width: 7%;
-    height: 16%;
-    top: 46%;
-    left: 20%;
+  width: 7%;
+  height: 16%;
+  top: 46%;
+  left: 20%;
 }
 
 
 .intObj-irLeitoEsquerda {
 
-    width: 25%;
+  width: 25%;
   height: 35%;
   bottom: 22%;
   left: 9%;
@@ -175,31 +142,14 @@
 
 
 .intObj-talkToCirculante {
-
-  background-image: @intObj-charMentor;
+  background-image: @intObj-charCirculante;
   background-size: contain;
-  @charMentor-width: 190px;
-  @charMentor-height: 524px;
+  background-repeat: no-repeat;
 
-  @media screen and (min-width: @screen-sm-min) {
-    bottom: 6%;
-    left: 4%;
-    width: 0.58 * @charMentor-width;
-    height: 0.58 * @charMentor-height;
-  }
-  @media screen and (min-width: @screen-md-min) {
-    bottom: 6%;
-    left: 4%;
-    width: 0.74 * @charMentor-width;
-    height: 0.74 * @charMentor-height;
-  }
-  @media screen and (min-width: @screen-lg-min) {
-    bottom: 6%;
-    left: 4%;
-    width: 0.9 * @charMentor-width;
-    height: 0.9 * @charMentor-height;
-  }
-
+  bottom: 6%;
+  left: 4%;
+  width: 17%;
+  height: 65%;
 }
 
 .intObj-ir_leito_fase3 {
@@ -229,26 +179,26 @@
 
 .intObj-irAlaFeminina_corredor {
 
-    left: 80%;
-    top: 13%;
-    width: 12%;
-    height: 28%;
+  left: 80%;
+  top: 13%;
+  width: 12%;
+  height: 28%;
 }
 
 .intObj-irAlaMasculina_corredor {
 
-    left: 80%;
-    top: 13%;
-    width: 12%;
-    height: 28%;
+  left: 80%;
+  top: 13%;
+  width: 12%;
+  height: 28%;
 }
 
 .intObj-ir_farmacia_corredor {
 
-    left: 72%;
-    top: 7%;
-    width: 8%;
-    height: 60%;
+  left: 72%;
+  top: 7%;
+  width: 8%;
+  height: 60%;
 
 }
 
@@ -268,7 +218,7 @@
 
 .intObj-goToBedroom { // Sala de Leitos
   top: 22%;
-  right: 21%;
+  left: 21%;
   width: 10%;
   height: 11%;
 }
@@ -309,7 +259,7 @@
   width: 12%;
   height: 35%;
   top: 25%;
-  right: 8%;
+  left: 8%;
 }
 
 //endregion
@@ -318,98 +268,42 @@
 //region Paciente 01 - Sr. Joao
 .intObj-paciente_01-checar_pulseira {
   background-image: @intObj-paciente_01-checar_pulseira;
-  background-size: cover;
-  @paciente_01-pulseira-width: 146px;
-  @paciente_01-pulseira-height: 147px;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-  @media screen and (min-width: @screen-sm-min) {
-    width: 0.205 * @paciente_01-pulseira-width;
-    height: 0.205 * @paciente_01-pulseira-height;
-    bottom: 31.5%;
-    left: 52%;
-  }
-
-  @media screen and (min-width: @screen-md-min) {
-    width: 0.27 * @paciente_01-pulseira-width;
-    height: 0.27 * @paciente_01-pulseira-height;
-    bottom: 31.5%;
-    left: 52%;
-  }
-
-  @media screen and (min-width: @screen-lg-min) {
-    width: 0.34 * @paciente_01-pulseira-width;
-    height: 0.34 * @paciente_01-pulseira-height;
-    bottom: 31%;
-    left: 52%;
-  }
+  width: 4%;
+  height: 6.5%;
+  bottom: 31%;
+  left: 52%;
 }
 
 .intObj-conversar_paciente {
-    
   width: 20%;
   height: 30%;
   bottom: 40%;
   left: 45%;
-
-    
 }
-
-
-
 
 .intObj-paciente_02-checar_pulseira {
   background-image: @intObj-paciente_02-checar_pulseira;
-  background-size: cover;
-  @paciente_02-pulseira-width: 200px;
-  @paciente_02-pulseira-height: 150px;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-  @media screen and (min-width: @screen-sm-min) {
-    width: 0.205 * @paciente_02-pulseira-width;
-    height: 0.205 * @paciente_02-pulseira-height;
-    bottom: 22%;
-    left: 40%;
-  }
-
-  @media screen and (min-width: @screen-md-min) {
-    width: 0.27 * @paciente_02-pulseira-width;
-    height: 0.27 * @paciente_02-pulseira-height;
-    bottom: 22%;
-    left: 40%;
-  }
-
-  @media screen and (min-width: @screen-lg-min) {
-    width: 0.34 * @paciente_02-pulseira-width;
-    height: 0.34 * @paciente_02-pulseira-height;
-    bottom: 22%;
-    left: 40%;
-  }
+  top: 37%;
+  right: 23%;
+  width: 9%;
+  height: 20%;
 }
 //endregion
 .intObj-braceletConfirmation, .intObj-braceletConfirmed{
   background-image: @intObj-braceletConfirmationGray;
   background-size: contain;
+  background-repeat: no-repeat;
 
-  @media screen and (min-width: @screen-sm-min) {
-    width: 0.6 * 284px;
-    height: 0.6 * 263px;
-    top: (@game-height-sm - (0.6 * 263px)) / 2;
-    right: (@screen-sm-min - (0.6 * 284px)) / 2;
-  }
-
-  @media screen and (min-width: @screen-md-min) {
-    width: 0.8 * 284px;
-    height: 0.8 * 263px;
-    top: (@game-height-md - (0.8 * 263px)) / 2;
-    right: (@screen-md-min - (0.8 * 284px)) / 2;
-  }
-
-  @media screen and (min-width: @screen-lg-min) {
-    width: 284px;
-    height: 263px;
-    top: (@game-height-lg - 263px) / 2;
-    right: (@screen-lg-min - 284px) / 2;
-  }
-
+  top: 37%;
+  right: 23%;
+  width: 9%;
+  height: 20%;
 }
 
 .intObj-braceletConfirmed {
@@ -427,7 +321,7 @@
   width: 30%;
   height: 29%;
   top: 33%;
-  right: 2%;
+  left: 2%;
 }
 
 // gavetas em 2 objetos interativos
@@ -436,14 +330,14 @@
   width: 9%;
   height: 29%;
   top: 33%;
-  right: 22%;
+  left: 22%;
 }
 
-.intObj-openDrawer_right{
+.intObj-openDrawer_left{
   width: 9%;
   height: 29%;
   top: 33%;
-  right: 2%;
+  left: 2%;
 }
 
 //endregion
@@ -453,1060 +347,451 @@
   background-size: contain;
   background-repeat: no-repeat;
 
-  @thermometer-width: 250px;
-  @thermometer-height: 115px;
-  top: 12%;
-  left: 10%;
-
-  @media screen and (min-width: @screen-sm-min) {
-    width: 0.7 * @thermometer-width;
-    height: 0.7 * @thermometer-height;
-  }
-  @media screen and (min-width: @screen-md-min) {
-    width: 0.8 * @thermometer-width;
-    height: 0.8 * @thermometer-height;
-  }
-  @media screen and (min-width: @screen-lg-min) {
-    width: 0.9 * @thermometer-width;
-    height: 0.9 * @thermometer-height;
-  }
-
+  top: 50%;
+  left: 21%;
+  width: 20%;
+  height: 19%;
 }
 
 .intObj-bloodPressureMonitor {
   background-image: @intObj-bloodPressureMonitor;
   background-size: contain;
+  background-repeat: no-repeat;
 
-  @bloodPressure-width: 300px;
-  @bloodPressure-height: 349px;
-  top: 12%;
-  left: 33%;
-
-  @media screen and (min-width: @screen-sm-min) {
-    width: 0.38 * @bloodPressure-width;
-    height: 0.38 * @bloodPressure-height;
-  }
-  @media screen and (min-width: @screen-md-min) {
-    width: 0.45 * @bloodPressure-width;
-    height: 0.45 * @bloodPressure-height;
-  }
-  @media screen and (min-width: @screen-lg-min) {
-    width: 0.5 * @bloodPressure-width;
-    height: 0.5 * @bloodPressure-height;
-  }
+  top: 22%;
+  left: 27%;
+  width: 16%;
+  height: 27%;
 }
 
 .intObj-oximeter {
   background-image: @intObj-oximeter;
   background-size: contain;
+  background-repeat: no-repeat;
 
-  @oximeter-width: 200px;
-  @oximeter-height: 197px;
-  top: 12%;
-  left: 53%;
-  @media screen and (min-width: @screen-sm-min) {
-    width: 0.4 * @oximeter-width;
-    height: 0.4 * @oximeter-height;
-  }
-  @media screen and (min-width: @screen-md-min) {
-    width: 0.5 * @oximeter-width;
-    height: 0.5 * @oximeter-height;
-  }
-  @media screen and (min-width: @screen-lg-min) {
-    width: 0.6 * @oximeter-width;
-    height: 0.6 *  @oximeter-height;
-  }
+  top: 37%;
+  left: 47%;
+  width: 11%;
+  height: 18%;
 }
 
 .intObj-watch {
   background-image: @intObj-watch;
   background-size: contain;
+  background-repeat: no-repeat;
 
-  @watch-width: 500px;
-  @watch-height: 664px;
-  top: 12%;
-  left: 68%;
-  @media screen and (min-width: @screen-sm-min) {
-    width: 0.18 * @watch-width;
-    height: 0.18 * @watch-height;
-  }
-  @media screen and (min-width: @screen-md-min) {
-    width: 0.20 * @watch-width;
-    height: 0.20 * @watch-height;
-  }
-  @media screen and (min-width: @screen-lg-min) {
-    width: 0.24 * @watch-width;
-    height: 0.24 *  @watch-height;
-  }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 
 .intObj-aguaPotavel{
   background-image: @intObj-aguaPotavel;
-
   background-size: contain;
   background-repeat: no-repeat;
 
-  top: 28%;
-  left: 55%;
-
-  @intObj-cushion-height: 0.6 * 400px;
-  @intObj-cushion-width: 0.6 * 400px;
-
-  @media screen and (min-width: @screen-sm-min) {
-    width: 0.7 * @intObj-cushion-width;
-    height: 0.7 * @intObj-cushion-height;
-  }
-  @media screen and (min-width: @screen-md-min) {
-    width: 0.8 * @intObj-cushion-width;
-    height: 0.8 * @intObj-cushion-height;
-  }
-  @media screen and (min-width: @screen-lg-min) {
-    width: 0.9 * @intObj-cushion-width;
-    height: 0.9 * @intObj-cushion-height;
-  }
-
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 
 .intObj-copoDescartavel {
   background-image: @intObj-copoDescartavel;
-
   background-size: contain;
   background-repeat: no-repeat;
 
-  top: 30%;
-  left: 30%;
-
-  @intObj-cushion-height: 0.4 * 400px;
-  @intObj-cushion-width: 0.4 * 400px;
-
-  @media screen and (min-width: @screen-sm-min) {
-    width: 0.7 * @intObj-cushion-width;
-    height: 0.7 * @intObj-cushion-height;
-  }
-  @media screen and (min-width: @screen-md-min) {
-    width: 0.8 * @intObj-cushion-width;
-    height: 0.8 * @intObj-cushion-height;
-  }
-  @media screen and (min-width: @screen-lg-min) {
-    width: 0.9 * @intObj-cushion-width;
-    height: 0.9 * @intObj-cushion-height;
-  }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 
 
 
 .intObj-cushion {
   background-image: @intObj-cushion;
-
   background-size: contain;
   background-repeat: no-repeat;
 
-  top: 30%;
-  left: 25%;
-
-  @intObj-cushion-height: 0.6 * 400px;
-  @intObj-cushion-width: 0.6 * 400px;
-
-  @media screen and (min-width: @screen-sm-min) {
-    width: 0.7 * @intObj-cushion-width;
-    height: 0.7 * @intObj-cushion-height;
-  }
-  @media screen and (min-width: @screen-md-min) {
-    width: 0.8 * @intObj-cushion-width;
-    height: 0.8 * @intObj-cushion-height;
-  }
-  @media screen and (min-width: @screen-lg-min) {
-    width: 0.9 * @intObj-cushion-width;
-    height: 0.9 * @intObj-cushion-height;
-  }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 
 //18/11/2015
 .intObj-agulha_40x12 {
-   background-image: @intObj-agulha_40x12;
+  background-image: @intObj-agulha_40x12;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 38%;
-   left: 45%;
-   @agulha_40x12-width: 0.27 * 1152px;
-   @agulha_40x12-height: 0.27 * 1039px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.38 * @agulha_40x12-width;
-       height: 0.38 * @agulha_40x12-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.45 * @agulha_40x12-width;
-       height: 0.45 * @agulha_40x12-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.5 * @agulha_40x12-width;
-       height: 0.5 * @agulha_40x12-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-algodao_seco {
-   background-image: @intObj-algodao_seco;
+  background-image: @intObj-algodao_seco;
 
-   background-size: contain;
-   background-repeat: no-repeat;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   top: 12%;
-   left: 29%;
-   @algodao_seco-width: 0.45 * 971px;
-   @algodao_seco-height: 0.45 * 616px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.38 * @algodao_seco-width;
-       height: 0.38 * @algodao_seco-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.45 * @algodao_seco-width;
-       height: 0.45 * @algodao_seco-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.5 * @algodao_seco-width;
-       height: 0.5 * @algodao_seco-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-aparelhodepressao_frontal {
-   background-image: @intObj-aparelhodepressao_frontal;
+  background-image: @intObj-aparelhodepressao_frontal;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 0;
-   left: 0;
-   @aparelhodepressao_frontal-width: 0.5 * 535px;
-   @aparelhodepressao_frontal-height: 0.5 * 656px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @aparelhodepressao_frontal-width;
-       height: 0.7 * @aparelhodepressao_frontal-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @aparelhodepressao_frontal-width;
-       height: 0.8 * @aparelhodepressao_frontal-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @aparelhodepressao_frontal-width;
-       height: 0.9 * @aparelhodepressao_frontal-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-aparelhodepressao_lateral {
-   background-image: @intObj-aparelhodepressao_lateral;
+  background-image: @intObj-aparelhodepressao_lateral;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 0;
-   left: 0;
-   @aparelhodepressao_lateral-width: 0.5 * 753px;
-   @aparelhodepressao_lateral-height: 0.5 * 781px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @aparelhodepressao_lateral-width;
-       height: 0.7 * @aparelhodepressao_lateral-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @aparelhodepressao_lateral-width;
-       height: 0.8 * @aparelhodepressao_lateral-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @aparelhodepressao_lateral-width;
-       height: 0.9 * @aparelhodepressao_lateral-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-bandeja {
-   background-image: @intObj-bandeja;
+  background-image: @intObj-bandeja;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 26%;
-   left: 45%;
-   @bandeja-width: 0.15 * 1150px;
-   @bandeja-height: 0.15 * 420px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.49 * @bandeja-width;
-       height: 0.49 * @bandeja-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.62 * @bandeja-width;
-       height: 0.62 * @bandeja-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.75 * @bandeja-width;
-       height: 0.75 * @bandeja-height;
-   }
+  top: 26%;
+  left: 45%;
+  width: 10%;
+  height: 6%;
 }
 .intObj-carrinho_anestesico {
-   background-image: @intObj-carrinho_anestesico;
+  background-image: @intObj-carrinho_anestesico;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 27%;
-   left: 84%    ;
-   @carrinho_anestesico-width: 0.5 * 1014px;
-   @carrinho_anestesico-height: 0.5 * 538px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @carrinho_anestesico-width;
-       height: 0.7 * @carrinho_anestesico-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @carrinho_anestesico-width;
-       height: 0.8 * @carrinho_anestesico-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @carrinho_anestesico-width;
-       height: 0.9 * @carrinho_anestesico-height;
-   }
+  top: 20%;
+  left: 50%;
+  width: 11%;
+  height: 35%;
 }
+
 .intObj-cloreto_de_sodio_20__10_ml_ {
-   background-image: @intObj-cloreto_de_sodio_20__10_ml_;
+  background-image: @intObj-cloreto_de_sodio_20__10_ml_;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 0;
-   left: 0;
-   @cloreto_de_sodio_20__10_ml_-width: 0.5 * 515px;
-   @cloreto_de_sodio_20__10_ml_-height: 0.5 * 955px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @cloreto_de_sodio_20__10_ml_-width;
-       height: 0.7 * @cloreto_de_sodio_20__10_ml_-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @cloreto_de_sodio_20__10_ml_-width;
-       height: 0.8 * @cloreto_de_sodio_20__10_ml_-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @cloreto_de_sodio_20__10_ml_-width;
-       height: 0.9 * @cloreto_de_sodio_20__10_ml_-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-clorpromazina_medicamento {
-   background-image: @intObj-clorpromazina_medicamento;
+  background-image: @intObj-clorpromazina_medicamento;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 0;
-   left: 0;
-   @clorpromazina_medicamento-width: 0.5 * 632px;
-   @clorpromazina_medicamento-height: 0.5 * 497px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @clorpromazina_medicamento-width;
-       height: 0.7 * @clorpromazina_medicamento-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @clorpromazina_medicamento-width;
-       height: 0.8 * @clorpromazina_medicamento-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @clorpromazina_medicamento-width;
-       height: 0.9 * @clorpromazina_medicamento-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-copo_descartavel {
-   background-image: @intObj-copo_descartavel;
+  background-image: @intObj-copo_descartavel;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 14%;
-   left: 37%;
-   @copo_descartavel-width: 0.33 * 533px;
-   @copo_descartavel-height: 0.33 * 713px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.38 * @copo_descartavel-width;
-       height: 0.38 * @copo_descartavel-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.45 * @copo_descartavel-width;
-       height: 0.45 * @copo_descartavel-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.5 * @copo_descartavel-width;
-       height: 0.5 * @copo_descartavel-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-coxim {
-   background-image: @intObj-coxim;
+  background-image: @intObj-coxim;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 0;
-   left: 0;
-   @coxim-width: 0.5 * 1189px;
-   @coxim-height: 0.5 * 724px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @coxim-width;
-       height: 0.7 * @coxim-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @coxim-width;
-       height: 0.8 * @coxim-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @coxim-width;
-       height: 0.9 * @coxim-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-equipo_de_infusao_de_dieta {
-   background-image: @intObj-equipo_de_infusao_de_dieta;
+  background-image: @intObj-equipo_de_infusao_de_dieta;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 0;
-   left: 0;
-   @equipo_de_infusao_de_dieta-width: 0.5 * 965px;
-   @equipo_de_infusao_de_dieta-height: 0.5 * 574px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @equipo_de_infusao_de_dieta-width;
-       height: 0.7 * @equipo_de_infusao_de_dieta-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @equipo_de_infusao_de_dieta-width;
-       height: 0.8 * @equipo_de_infusao_de_dieta-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @equipo_de_infusao_de_dieta-width;
-       height: 0.9 * @equipo_de_infusao_de_dieta-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-fita_adesiva_hipoalergenica_micropore {
-   background-image: @intObj-fita_adesiva_hipoalergenica_micropore;
+  background-image: @intObj-fita_adesiva_hipoalergenica_micropore;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 39%;
-   left: 60%;
-   @fita_adesiva_hipoalergenica_micropore-width: 0.63 * 700px;
-   @fita_adesiva_hipoalergenica_micropore-height: 0.63 * 456px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.38 * @fita_adesiva_hipoalergenica_micropore-width;
-       height: 0.38 * @fita_adesiva_hipoalergenica_micropore-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.45 * @fita_adesiva_hipoalergenica_micropore-width;
-       height: 0.45 * @fita_adesiva_hipoalergenica_micropore-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.5 * @fita_adesiva_hipoalergenica_micropore-width;
-       height: 0.5 * @fita_adesiva_hipoalergenica_micropore-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-frasco_de_alcool {
-   background-image: @intObj-frasco_de_alcool;
+  background-image: @intObj-frasco_de_alcool;
 
-   background-size: contain;
-   background-repeat: no-repeat;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   top: 39%;
-   left: 35%;
-   @frasco_de_alcool-width: 0.35 * 294px;
-   @frasco_de_alcool-height: 0.35 * 862px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.38 * @frasco_de_alcool-width;
-       height: 0.38 * @frasco_de_alcool-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.45 * @frasco_de_alcool-width;
-       height: 0.45 * @frasco_de_alcool-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.5 * @frasco_de_alcool-width;
-       height: 0.5 * @frasco_de_alcool-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-frasco_de_dieta {
-   background-image: @intObj-frasco_de_dieta;
+  background-image: @intObj-frasco_de_dieta;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 0;
-   left: 0;
-   @frasco_de_dieta-width: 0.5 * 452px;
-   @frasco_de_dieta-height: 0.5 * 821px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @frasco_de_dieta-width;
-       height: 0.7 * @frasco_de_dieta-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @frasco_de_dieta-width;
-       height: 0.8 * @frasco_de_dieta-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @frasco_de_dieta-width;
-       height: 0.9 * @frasco_de_dieta-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-garrafa_agua_potavel {
-   background-image: @intObj-garrafa_agua_potavel;
+  background-image: @intObj-garrafa_agua_potavel;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 16%;
-   left: 31%;
-   @garrafa_agua_potavel-width: 0.32 * 316px;
-   @garrafa_agua_potavel-height: 0.32 * 945px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.38 * @garrafa_agua_potavel-width;
-       height: 0.38 * @garrafa_agua_potavel-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.45 * @garrafa_agua_potavel-width;
-       height: 0.45 * @garrafa_agua_potavel-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.5 * @garrafa_agua_potavel-width;
-       height: 0.5 * @garrafa_agua_potavel-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-gaveta {
-   background-image: @intObj-gaveta;
+  background-image: @intObj-gaveta;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 0;
-   left: 0;
-   @gaveta-width: 0.5 * 1486px;
-   @gaveta-height: 0.5 * 917px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @gaveta-width;
-       height: 0.7 * @gaveta-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @gaveta-width;
-       height: 0.8 * @gaveta-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @gaveta-width;
-       height: 0.9 * @gaveta-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-gaze_esteril {
-   background-image: @intObj-gaze_esteril;
+  background-image: @intObj-gaze_esteril;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 38%;
-   left: 20%;
-   @gaze_esteril-width: 0.31 * 970px;
-   @gaze_esteril-height: 0.31 * 922px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.38 * @gaze_esteril-width;
-       height: 0.38 * @gaze_esteril-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.45 * @gaze_esteril-width;
-       height: 0.45 * @gaze_esteril-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.5 * @gaze_esteril-width;
-       height: 0.5 * @gaze_esteril-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-keflin_medicamento {
-   background-image: @intObj-keflin_medicamento;
+  background-image: @intObj-keflin_medicamento;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 50%;
-   left: 38%;
-   @keflin_medicamento-width: 0.31 * 405px;
-   @keflin_medicamento-height: 0.31 * 943px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.38 * @keflin_medicamento-width;
-       height: 0.38 * @keflin_medicamento-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.45 * @keflin_medicamento-width;
-       height: 0.45 * @keflin_medicamento-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.5 * @keflin_medicamento-width;
-       height: 0.5 * @keflin_medicamento-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-lixo_comum {
-   background-image: @intObj-lixo_comum;
+  background-image: @intObj-lixo_comum;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 65%;
-   left: 62%;
-   @lixo_comum-width: 0.5 * 371px;
-   @lixo_comum-height: 0.5 * 527px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @lixo_comum-width;
-       height: 0.7 * @lixo_comum-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @lixo_comum-width;
-       height: 0.8 * @lixo_comum-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @lixo_comum-width;
-       height: 0.9 * @lixo_comum-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-lixo_infectante {
-   background-image: @intObj-lixo_infectante;
+  background-image: @intObj-lixo_infectante;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 65%;
-   left: 42%;
-   @lixo_infectante-width: 0.5 * 398px;
-   @lixo_infectante-height: 0.5 * 492px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @lixo_infectante-width;
-       height: 0.7 * @lixo_infectante-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @lixo_infectante-width;
-       height: 0.8 * @lixo_infectante-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @lixo_infectante-width;
-       height: 0.9 * @lixo_infectante-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-lixo_perfuro_cortante {
-   background-image: @intObj-lixo_perfuro_cortante;
+  background-image: @intObj-lixo_perfuro_cortante;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 65%;
-   left: 18%;
-   @lixo_perfuro_cortante-width: 0.3 * 578px;
-   @lixo_perfuro_cortante-height: 0.3 * 846px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @lixo_perfuro_cortante-width;
-       height: 0.7 * @lixo_perfuro_cortante-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @lixo_perfuro_cortante-width;
-       height: 0.8 * @lixo_perfuro_cortante-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @lixo_perfuro_cortante-width;
-       height: 0.9 * @lixo_perfuro_cortante-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-luvas_de_procedimento {
-   background-image: @intObj-luvas_de_procedimento;
+  background-image: @intObj-luvas_de_procedimento;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 12%;
-   left: 49%;
-   @luvas_de_procedimento-width: 0.4 * 1119px;
-   @luvas_de_procedimento-height: 0.4 * 731px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.38 * @luvas_de_procedimento-width;
-       height: 0.38 * @luvas_de_procedimento-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.45 * @luvas_de_procedimento-width;
-       height: 0.45 * @luvas_de_procedimento-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.5 * @luvas_de_procedimento-width;
-       height: 0.5 * @luvas_de_procedimento-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-luvas_estereis {
-   background-image: @intObj-luvas_estereis;
+  background-image: @intObj-luvas_estereis;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 40%;
-   left: 10%;
-   @luvas_estereis-width: 0.3 * 495px;
-   @luvas_estereis-height: 0.3 * 918px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.38 * @luvas_estereis-width;
-       height: 0.38 * @luvas_estereis-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.45 * @luvas_estereis-width;
-       height: 0.45 * @luvas_estereis-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.5 * @luvas_estereis-width;
-       height: 0.5 * @luvas_estereis-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-midazolam_medicamento {
-   background-image: @intObj-midazolam_medicamento;
+  background-image: @intObj-midazolam_medicamento;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 50%;
-   left: 38%;
-   @midazolam_medicamento-width: 0.4 * 651px;
-   @midazolam_medicamento-height: 0.4 * 741px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.38 * @midazolam_medicamento-width;
-       height: 0.38 * @midazolam_medicamento-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.45 * @midazolam_medicamento-width;
-       height: 0.45 * @midazolam_medicamento-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.5 * @midazolam_medicamento-width;
-       height: 0.5 * @midazolam_medicamento-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-oximetro_frontal {
-   background-image: @intObj-oximetro_frontal;
+  background-image: @intObj-oximetro_frontal;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 0;
-   left: 0;
-   @oximetro_frontal-width: 0.5 * 453px;
-   @oximetro_frontal-height: 0.5 * 266px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @oximetro_frontal-width;
-       height: 0.7 * @oximetro_frontal-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @oximetro_frontal-width;
-       height: 0.8 * @oximetro_frontal-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @oximetro_frontal-width;
-       height: 0.9 * @oximetro_frontal-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-oximetro_lateral {
-   background-image: @intObj-oximetro_lateral;
+  background-image: @intObj-oximetro_lateral;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 0;
-   left: 0;
-   @oximetro_lateral-width: 0.5 * 541px;
-   @oximetro_lateral-height: 0.5 * 494px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @oximetro_lateral-width;
-       height: 0.7 * @oximetro_lateral-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @oximetro_lateral-width;
-       height: 0.8 * @oximetro_lateral-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @oximetro_lateral-width;
-       height: 0.9 * @oximetro_lateral-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-placa_neutra {
-   background-image: @intObj-placa_neutra;
+  background-image: @intObj-placa_neutra;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 0;
-   left: 0;
-   @placa_neutra-width: 0.5 * 1920px;
-   @placa_neutra-height: 0.5 * 1152px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @placa_neutra-width;
-       height: 0.7 * @placa_neutra-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @placa_neutra-width;
-       height: 0.8 * @placa_neutra-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @placa_neutra-width;
-       height: 0.9 * @placa_neutra-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-prancheta {
-   background-image: @intObj-prancheta;
+  background-image: @intObj-prancheta;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 0;
-   left: 0;
-   @prancheta-width: 0.5 * 440px;
-   @prancheta-height: 0.5 * 604px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @prancheta-width;
-       height: 0.7 * @prancheta-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @prancheta-width;
-       height: 0.8 * @prancheta-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @prancheta-width;
-       height: 0.9 * @prancheta-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-prancheta_horizontal {
-   background-image: @intObj-prancheta_horizontal;
+  background-image: @intObj-prancheta_horizontal;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 0;
-   left: 0;
-   @prancheta_horizontal-width: 0.5 * 726px;
-   @prancheta_horizontal-height: 0.5 * 498px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @prancheta_horizontal-width;
-       height: 0.7 * @prancheta_horizontal-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @prancheta_horizontal-width;
-       height: 0.8 * @prancheta_horizontal-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @prancheta_horizontal-width;
-       height: 0.9 * @prancheta_horizontal-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-prontuario {
-   background-image: @intObj-prontuario;
+  background-image: @intObj-prontuario;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 0;
-   left: 0;
-   @prontuario-width: 0.5 * 1181px;
-   @prontuario-height: 0.5 * 1146px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @prontuario-width;
-       height: 0.7 * @prontuario-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @prontuario-width;
-       height: 0.8 * @prontuario-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @prontuario-width;
-       height: 0.9 * @prontuario-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-relogiodigital {
-   background-image: @intObj-relogiodigital;
+  background-image: @intObj-relogiodigital;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 0;
-   left: 0;
-   @relogiodigital-width: 0.5 * 310px;
-   @relogiodigital-height: 0.5 * 587px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @relogiodigital-width;
-       height: 0.7 * @relogiodigital-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @relogiodigital-width;
-       height: 0.8 * @relogiodigital-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @relogiodigital-width;
-       height: 0.9 * @relogiodigital-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-relogiodigital_lateral {
-   background-image: @intObj-relogiodigital_lateral;
+  background-image: @intObj-relogiodigital_lateral;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 0;
-   left: 0;
-   @relogiodigital_lateral-width: 0.5 * 389px;
-   @relogiodigital_lateral-height: 0.5 * 578px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @relogiodigital_lateral-width;
-       height: 0.7 * @relogiodigital_lateral-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @relogiodigital_lateral-width;
-       height: 0.8 * @relogiodigital_lateral-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @relogiodigital_lateral-width;
-       height: 0.9 * @relogiodigital_lateral-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-seringa_20_ml {
-   background-image: @intObj-seringa_20_ml;
+  background-image: @intObj-seringa_20_ml;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 40%;
-   left: 35%;
-   @seringa_20_ml-width: 0.31 * 558px;
-   @seringa_20_ml-height: 0.31 * 894px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.38 * @seringa_20_ml-width;
-       height: 0.38 * @seringa_20_ml-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.45 * @seringa_20_ml-width;
-       height: 0.45 * @seringa_20_ml-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.5 * @seringa_20_ml-width;
-       height: 0.5 * @seringa_20_ml-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-seringa_de_10_ml {
-   background-image: @intObj-seringa_de_10_ml;
+  background-image: @intObj-seringa_de_10_ml;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 39%;
-   left: 22%;
-   @seringa_de_10_ml-width: 0.33 * 493px;
-   @seringa_de_10_ml-height: 0.33 * 906px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.38 * @seringa_de_10_ml-width;
-       height: 0.38 * @seringa_de_10_ml-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.45 * @seringa_de_10_ml-width;
-       height: 0.45 * @seringa_de_10_ml-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.5 * @seringa_de_10_ml-width;
-       height: 0.5 * @seringa_de_10_ml-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-soro_glicofisiologico_1000_ml {
-   background-image: @intObj-soro_glicofisiologico_1000_ml;
+  background-image: @intObj-soro_glicofisiologico_1000_ml;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 0;
-   left: 0;
-   @soro_glicofisiologico_1000_ml-width: 0.5 * 405px;
-   @soro_glicofisiologico_1000_ml-height: 0.5 * 1058px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @soro_glicofisiologico_1000_ml-width;
-       height: 0.7 * @soro_glicofisiologico_1000_ml-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @soro_glicofisiologico_1000_ml-width;
-       height: 0.8 * @soro_glicofisiologico_1000_ml-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @soro_glicofisiologico_1000_ml-width;
-       height: 0.9 * @soro_glicofisiologico_1000_ml-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-termometro_frontal {
-   background-image: @intObj-termometro_frontal;
+  background-image: @intObj-termometro_frontal;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 0;
-   left: 0;
-   @termometro_frontal-width: 0.5 * 1576px;
-   @termometro_frontal-height: 0.5 * 232px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.7 * @termometro_frontal-width;
-       height: 0.7 * @termometro_frontal-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.8 * @termometro_frontal-width;
-       height: 0.8 * @termometro_frontal-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.9 * @termometro_frontal-width;
-       height: 0.9 * @termometro_frontal-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-aparelhoGlicemia {
-   background-image: @intObj-aparelhoGlicemia;
+  background-image: @intObj-aparelhoGlicemia;
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   background-size: contain;
-   background-repeat: no-repeat;
-
-   top: 12%;
-   left: 21%;
-   @aparelhoGlicemia-width: 0.27 * 496px;
-   @aparelhoGlicemia-height: 0.27 * 991px;
-
-   @media screen and (min-width: @screen-sm-min) {
-       width: 0.38 * @aparelhoGlicemia-width;
-       height: 0.38 * @aparelhoGlicemia-height;
-   }
-   @media screen and (min-width: @screen-md-min) {
-       width: 0.45 * @aparelhoGlicemia-width;
-       height: 0.45 * @aparelhoGlicemia-height;
-   }
-   @media screen and (min-width: @screen-lg-min) {
-       width: 0.5 * @aparelhoGlicemia-width;
-       height: 0.5 * @aparelhoGlicemia-height;
-   }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }

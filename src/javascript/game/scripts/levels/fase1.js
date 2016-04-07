@@ -260,7 +260,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         // Sala de leitos
         salaDeLeitos = new Scene("salaDeLeitos", "scene-salaDeLeitos")
-            .setCssClass("scene-bedroom")
+            .setCssClass("scene-bedroom-level1")
             .onLoad(function() {
                 console.log("Entrando na sala de leitos");
                 if ( level.getFlag("colocou_coxim").getValue() == true ) {

@@ -22,11 +22,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                 // Default object of "alaMasculina"
                 alaMasculina: new Scene("alaMasculina", "Ala Masculina")
-                    .setCssClass("scene-maleRoom"),
+                    .setCssClass("scene-bedroom"),
 
                 // Default object of "alaFeminina"
                 alaFeminina: new Scene("alaFeminina", "Ala Feminina")
-                    .setCssClass("scene-femaleRoom"),
+                    .setCssClass("scene-bedroom"),
 
                 // Default object of "postoDeEnfermagem"
                 postoDeEnfermagem: new Scene("postoDeEnfermagem", "Posto de Enfermagem")
@@ -98,7 +98,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 mentor: new Character("Mentor", "char-mentor"),
                 jogador: new Character("Jogador", "char-player"),
 
-                circulante: new Character("Circulante", "char-player"),
+                circulante: new Character("Circulante", "char-circulante"),
                 // TODO: mudar 'paulo:' para 'farmaceutico:'
                 paulo: new Character("Paulo", "char-paulo"),
 
