@@ -1160,7 +1160,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setTemplate("<span class='glicosimetro-text'>180 mg/dl</span>");
 
         glicosimetro.registerActions([
-            new Action("btn-realizar_teste_glicemia", "Fechar teste de glicemia capilar")
+            new Action("btn-realizar_teste_glicemia", "Terminar teste de glicemia capilar")
                 .setCssClass("action-realizar_teste_glicemia")
                 .onClick(function() {
                     core.closeModalScene("modalGlicosimetro");
