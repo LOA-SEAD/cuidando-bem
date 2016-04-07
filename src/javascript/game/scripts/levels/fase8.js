@@ -150,7 +150,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         // region Ala masculina
         salaDeLeitos = new Scene("salaDeLeitos", "scene-salaDeLeitos")
-            .setCssClass("scene-bedroom")
+            .setCssClass("scene-bedroom-level8")
             .onLoad(function() {
                 console.log("Load scene: Ala Masculina");
                 // Depois que já ocorreu o diálogo, o botão do prontuário fica liberado

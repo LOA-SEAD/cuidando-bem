@@ -237,7 +237,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         // region Sala de Leitos
         var salaDeLeitos = new Scene("salaDeLeitos", "scene-salaDeLeitos")
-            .setCssClass("scene-bedroom")
+            .setCssClass("scene-bedroom-level0")
             .onLoad(function() {
                 switch ( level.getFlag("passagem_sala-de-leitos").getValue() ) {
                     case 0:

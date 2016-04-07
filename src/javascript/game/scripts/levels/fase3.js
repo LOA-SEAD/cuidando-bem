@@ -484,7 +484,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // region Ala Feminina
 
 
-        var alaFeminina = lib.scenes.alaFeminina.getClone()
+        var alaFeminina = new Scene("alaMasculina", "Ala Masculina")
+            .setCssClass("scene-bedroom-level3")
             .onLoad(function() {
                 console.log("Load scene: " + alaFeminina.getName() );
                 //

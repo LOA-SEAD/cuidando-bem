@@ -59,7 +59,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // region ALA FEMININA
 
 
-         var alaFeminina = lib.scenes.alaFeminina.getClone()
+         var alaFeminina = new Scene("alaMasculina", "Ala Masculina")
+            .setCssClass("scene-bedroom-level9")
             .onLoad(function() {
 
             });

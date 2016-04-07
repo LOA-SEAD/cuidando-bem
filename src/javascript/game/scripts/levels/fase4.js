@@ -188,7 +188,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // region Sala de Leitos
         alaMasculina = new Scene("alaMasculina", "scene-alaMasculina")
 
-            .setCssClass("scene-bedroom")
+            .setCssClass("scene-bedroom-level4")
             .onLoad(function() {
                 console.log("Load scene: " + alaMasculina.getName() );
                 core.setInteractiveObjectVisible("io-ir_corredor", true );

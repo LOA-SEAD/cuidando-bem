@@ -22,11 +22,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                 // Default object of "alaMasculina"
                 alaMasculina: new Scene("alaMasculina", "Ala Masculina")
-                    .setCssClass("scene-maleRoom"),
+                    .setCssClass("scene-bedroom"),
 
                 // Default object of "alaFeminina"
                 alaFeminina: new Scene("alaFeminina", "Ala Feminina")
-                    .setCssClass("scene-femaleRoom"),
+                    .setCssClass("scene-bedroom"),
 
                 // Default object of "postoDeEnfermagem"
                 postoDeEnfermagem: new Scene("postoDeEnfermagem", "Posto de Enfermagem")
