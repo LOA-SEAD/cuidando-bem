@@ -198,7 +198,7 @@ define([ "SimpleStorage" ], function( Storage ) {
 
         var level = saves[ loadedId ].levels[ levelId ];
 
-        if ( level === undefined ) {
+        if ( !!!level ) {
             level = [ score ];
         } else if ( level instanceof Array ) {
             level.push( score );

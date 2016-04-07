@@ -442,7 +442,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Dialogs.leito.conversa2[ 7 ] )
                 .registerOption("", function() {
                     core.closeDialog( 16 );
-                    core.setActionVisible("btn-lavarMaos", true );
+                    // core.setActionVisible("btn-lavarMaos", true );
                     core.openCommandBar();
                 }),
             // Dialog 17 - Mentor
@@ -503,7 +503,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Pulseira.open();
                     core.openCommandBar();
                     if ( level.getFlag("pulseira").getValue() == false ) {
-                        core.setInteractiveObjectVisible("io-confirmar_pulseira", true );
+                        // core.setInteractiveObjectVisible("io-pulseira_paciente", true );
                     }
                 })
                 .setVisibility( visibility ),
@@ -530,7 +530,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( Pulseira.isAllDataValid() ) {
                         console.log("Action: action-ir_sala_de_leitos");
                         core.registerScoreItem( Scores.tutorial.identificarPaciente );
-                        core.setActionVisible("btn-perguntar_nome_do_paciente", false );
                         core.changeScene( 2 );
                         Pulseira.disable();
                     } else {
