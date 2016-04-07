@@ -7,7 +7,7 @@ module.exports = {
 
     publish: {
         options: {
-            name: "Cuidando Bem",
+            name: "Cuidando Bem-<%= pkg.version %>",
             dir: "prod",
             out: "dist",
             platform: "all",
