@@ -1,1 +1,1 @@
-define(["Stage","CuidandoBem"],function(e,t){function r(){$(".menuButton").click(function(){n.play(n.audios.sfx.selecionarMenu)}),$(".backButton").click(function(){e.changeScreen(0)}),t.init()}function i(){}var n=require("Player");return{load:r,unload:i}});
+define(["Stage","CuidandoBem"],function(e,t){function r(){$(".menuButton").click(function(){n.play(n.audios.sfx.selecionarMenu)}),$(".backButton").click(function(){e.changeScreen(0)}),t.init(),n.stopAll(),n.playInRange(n.audios.musics.inGame)}function i(){}var n=require("Player");return{load:r,unload:i}});

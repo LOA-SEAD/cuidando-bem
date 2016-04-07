@@ -1,15 +1,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Cuidando Bem v1.4.1</title>
+        <title>Cuidando Bem v1.5.0</title>
 
         <link rel="stylesheet" type="text/css" href="./css/main.css">
 
         <link rel="shortcut icon" href="./images/misc/favicon.ico">
+        <script>
+            if (window.require) {
+                window.nodeRequire = window.require;
+                delete window.require;
+            }
+        </script>
         <script data-main="./javascript/main" src="./javascript/libs/require.js"></script>
 
     </head>
-    <body id="game">
-        <div id="stage"></div>
+    <body>
+        <div id="game">
+            <div id="stage"></div>
+        </div>
     </body>
 </html>
