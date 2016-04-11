@@ -442,7 +442,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Dialogs.leito.conversa2[ 7 ] )
                 .registerOption("", function() {
                     core.closeDialog( 16 );
-                    // core.setActionVisible("btn-lavarMaos", true );
+                    core.setActionVisible("btn-lavarMaos", true );
                     core.openCommandBar();
                 }),
             // Dialog 17 - Mentor
