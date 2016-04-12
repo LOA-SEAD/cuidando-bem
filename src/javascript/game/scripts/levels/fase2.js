@@ -227,7 +227,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 console.log("Entrando na sala de leitos");
                 // Na primeira vez o leito vai estar desabilitado e ocorrerá uma conversa com o paciente
                 if ( level.getFlag("segunda_ida_leito_paciente").getValue() == false ) {
-                    core.setInteractiveObjectVisible("io-ir_leito", true );  
+                    core.setInteractiveObjectVisible("io-ir_leito", false );  
                     core.openDialog( 0 );
                 } else {
                     core.setInteractiveObjectVisible("io-ir_leito", true );
@@ -285,7 +285,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         // Volte para o corredor
                         core.changeScene( 1 );
                     } else {
-                        alert("Você deveria checar o prontuario");
+                        core.openDialog(8);
                     }
                 })
                 .setVisibility( true ),
@@ -383,6 +383,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
         salaDeLeitos.registerActions([
+            
             new Action("btn-lavarMaos", "Lavar as mãos")
                 .setCssClass("action-lavarMaos")
                 .onClick(function() {
@@ -449,6 +450,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 // CONSERTAR
                 .setCssClass("action-agulha_40x12")
                 .onClick(function() {
+                    
                   level.getFlag("descartar_agulha").setValue( true );
 
                         core.setInteractiveObjectVisible("io-lixoBranco", true );
@@ -474,16 +476,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                         level.getFlag("descartar_algodao").setValue( true );
 
-                        core.setInteractiveObjectVisible("io-lixoBranco", true );
-                        core.setInteractiveObjectVisible("io-lixoInfectante", true );
-                        core.setInteractiveObjectVisible("io-perfuroCortante", true );
-
                     core.setActionVisible("btn-lavarMaos", false );
                     core.setActionVisible("btn-jogar_algodao_lixo", false );
                     core.setActionVisible("btn-jogar_agulha_perfuro", false );
                     core.setActionVisible("btn-ler_prontuario", false );
                     core.setActionVisible("btn-elevar_grade_cama", false );
                     core.setActionVisible("btn-anotarProntuario", false );
+                    
+                    core.setActionVisible("btn-lixoComum", true );
+                    core.setActionVisible("btn-lixoInfectante", true  );
+                    core.setActionVisible("btn-perfuroCortante", true  );
+                    
+                    
                 })
                 .setVisibility( false ),
 
@@ -521,60 +525,61 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.openModalScene("Prontuario");
                     }
                 })
-                .setVisibility( false )
+                .setVisibility( false ),
+            
+            
+            
+            new Action("btn-lixoComum", "Lixo Comum")
+                .setCssClass("action-lixo_comum")
+                .onClick(function() {
+                
+                    
+                        //score
+                    
+                    if(level.getFlag("descartar_algodao").getValue() == true) {
+                    
+                    core.setActionVisible("btn-lavarMaos", true );
+                    core.setActionVisible("btn-jogar_algodao_lixo", false );
+                    core.setActionVisible("btn-jogar_agulha_perfuro", true );
+                    core.setActionVisible("btn-ler_prontuario", true );
+                    core.setActionVisible("btn-elevar_grade_cama", true );
+                    core.setActionVisible("btn-anotarProntuario", true );
+                        
+                        }
+                    
+                    
+                    
+                        
+                        
+                
+                   
+                })
+                .setVisibility( true ),
+            
+            
+            
+              new Action("btn-lixoInfectante", "Lixo Infectante")
+                .setCssClass("action-lixo_infectante")
+                .onClick(function() {
+                
+                        core.openDialog(7);
+                    // fazer score?
+                   
+                })
+                .setVisibility( true ),
+            
+            
+            
+              new Action("btn-perfuroCortante", "Perfuro Cortante")
+                .setCssClass("action-lixo_perfuro_cortante")
+                .onClick(function() {
+                
+                
+                   
+                })
+                .setVisibility( true ),
+            
 
-            // new Action("btn-lixoBranco", "Lixo Branco")
-            //     .setCssClass("action-lixoBranco")
-            //     .onClick(function() {
-            //         if(level.getFlag("selecionar_algodao").getValue() == true) {
-            //             // Som
-            //             Player.play( Player.audios.sfx.jogandoLixo );
-
-            //             core.setActionVisible("btn-lavarMaos", true );
-            //             core.setActionVisible("btn-jogar_algodao_lixo", false );
-            //             core.setActionVisible("btn-jogar_agulha_perfuro", true);
-            //             core.setActionVisible("btn-ler_prontuario", true);
-            //             core.setActionVisible("btn-elevar_grade_cama",true );
-            //             core.setActionVisible("btn-anotarProntuario", true );
-            //             core.setActionVisible("btn-lixoBranco", false );
-            //             core.setActionVisible("btn-perfuroCortante", false );
-            //         }
-            //         else{
-            //             core.openDialog(7);
-            //         }
-            //     })
-            //     .setVisibility( false ),
-
-            // new Action("btn-perfuroCortante", "Perfuro Cortante")
-            //     .setCssClass("action-perfuroCortante")
-            //     .onClick(function() {
-
-            //         if (level.getFlag("descartar_agulha").getValue() == true) {
-            //             Player.play( Player.audios.sfx.jogandoLixo );
-            //         core.setActionVisible("btn-lavarMaos", true );
-            //         core.setActionVisible("btn-jogar_algodao_lixo", true );
-            //         core.setActionVisible("btn-jogar_agulha_perfuro", false);
-            //         core.setActionVisible("btn-ler_prontuario", true);
-            //         core.setActionVisible("btn-elevar_grade_cama",true );
-            //         core.setActionVisible("btn-anotarProntuario", true );
-            //         core.setActionVisible("btn-lixoBranco", false );
-            //         core.setActionVisible("btn-perfuroCortante", false );
-
-            //         if(level.getFlag("descartar_algodao").getValue() == false)
-            //             core.setActionVisible("btn-jogar_algodao_lixo", false );
-
-            //         }
-
-            //         else    {
-
-            //               core.openDialog(7);
-            //         }
-
-
-            //         // fazer o score
-
-            //     })
-            //     .setVisibility( false )
         ]);
 
 
@@ -631,7 +636,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Dialogs.alaMasculina[ 3 ] )
                 .registerOption("", function() {
                     core.closeDialog();
-                })
+                }),
+            
+            // 8 - Aviso de checar prontuario
+            
+              new Dialog( lib.characters.mentor )
+                .setText( Dialogs.alaMasculina[ 4 ] )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
         ]);
         // endregion
 
