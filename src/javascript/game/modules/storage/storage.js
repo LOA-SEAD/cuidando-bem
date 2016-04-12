@@ -292,17 +292,17 @@ define([ "SimpleStorage" ], function( Storage ) {
         saveSlots();
     }
 
-    // @dev {
+    //@dev {
 
-    // Storage.flush();
+    Storage.flush();
 
-    // saves[ 0 ] = new SaveObject("Testing");
-    // saves[ 0 ].lastLevel = MAXLEVEL;
-    // saves[ 0 ].empty = false;
+    saves[ 0 ] = new SaveObject("Testing");
+    saves[ 0 ].lastLevel = MAXLEVEL;
+    saves[ 0 ].empty = false;
 
-    // saveSlots();
+    saveSlots();
 
-    // }
+    //}
 
     // Public Interface for returning saved files
     return {

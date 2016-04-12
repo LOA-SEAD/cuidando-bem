@@ -56,7 +56,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     console.log("Encerrar o diálogo");
                     core.closeDialog( 1 );
-                    level.getFlag("pegarFolheto9Certos").setValue( true );
                     core.setInteractiveObjectVisible("io-ir_corredor_esquerda", true );
                     core.setInteractiveObjectVisible("io-ir_corredor_direita", true );
                 })
@@ -121,7 +120,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         function corredorIrFarmacia() {
             console.log("Vá para a farmácia");
-            if ( level.getFlag("pegarPrescricaoMedica").getValue() == true ) {
+            if ( level.getFlag("score_pegou_prescricao_medica").getValue() == true ) {
                 core.changeScene( 4 );
             } else {
                 core.openDialog( 0 );
@@ -206,7 +205,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }
             })
             .onUnload(function() {
-                level.getFlag("lavarMaosSalaLeitos").setValue( false );
+                console.log("Ala masculina: OnUnload");
+                core.closeCommandBar();
             });
 
         alaMasculina.registerActions([
@@ -254,7 +254,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Dialog( lib.characters.jogador )
                 .setText("")
                 .registerOption( Dialogs.alaMasculina[ 2 ], function() {
-                    // level.getFlag("falarComPaciente").setValue( true );
                     core.closeDialog();
                     core.openCommandBar();
                 })
@@ -297,11 +296,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     if ( level.getFlag("score_lavar_maos_antes_leito").getValue() == false ) {
                         core.openDialog( 6 );
-                        // Marcar pontos
-                        /*if ( level.getFlag("score_ir_posto_enfermagem_hora_errada").getValue() == false ) {
-                            core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
-                            level.getFlag("score_ir_posto_enfermagem_hora_errada").setValue( true );
-                        }*/
+                        if ( level.getFlag("score_nao_lavar_maos_antes_leito").getValue() == false ) {
+                            core.registerScoreItem( Scores.naoLavarMaosAntesLeito );
+                            level.getFlag("score_nao_lavar_maos_antes_leito").setValue( true );
+                        }
                     } else {
                         core.changeScene( 3 );
                     }
@@ -311,9 +309,20 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-ir_corredor", "Ir ao Corredor")
                 .setCssClass("intObj-bedroomToHallway")
                 .onClick(function() {
-                    if ( level.getFlag("pegarPrescricaoMedica").getValue() == false ) {
+                    if ( level.getFlag("score_pegou_prescricao_medica").getValue() == false ) {
+                        //Retira pontos do prontuario e da prescrição caso eles não foram vistos
+                        if ( level.getFlag("score_nao_pegou_prescricao_medica").getValue() == false ) {
+                            core.registerScoreItem( Scores.naoPegarPrescricaoMedica );
+                            level.getFlag("score_nao_pegou_prescricao_medica").setValue( true );
+                        }
+                        if ( level.getFlag("score_viu_prontuario").getValue() == false ) {
+                            if ( level.getFlag("score_nao_viu_prontuario").getValue() == false ) {
+                                core.registerScoreItem( Scores.naoChecarProntuario );
+                                level.getFlag("score_nao_viu_prontuario").setValue( true );
+                            }
+                        }
                         core.openDialog( 5 );
-                    } else {
+                    }else {
                         core.changeScene( 1 );
                     }
 
@@ -324,15 +333,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-prontuario-leito1-fase4")
                 .onClick(function() {
                     console.log("Action: ler prontuario");
+                    if ( level.getFlag("score_viu_prontuario").getValue() == false ) {
+                        core.registerScoreItem( Scores.checarProntuario );
+                        level.getFlag("score_viu_prontuario").setValue( true );
+                    }
                     Prontuario.open();
                     core.openModalScene("Prontuario");
-
-                    if ( level.getFlag("lavarMaosSalaLeitos").getValue() == true ) {
-                        core.registerScoreItem( Scores.lavarMaos );
-                    } else {
-                        core.registerScoreItem( Scores.notLavarMaos );
-                    }
-
                 })
                 .setVisibility( true )
 
@@ -402,13 +408,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.closeDialog();
                 }),
-            // Dialog 6
+            // Dialog 6 - Opção errada 2 no diálogo 2
             new Dialog( lib.characters.mentor )
                 .setText( Dialogs.leitoPaciente[ 8 ] )
                 .registerOption("", function() {
                     core.openDialog( 2 );
                 }),
-            // Dialog 7
+            // Dialog 7 - Opção errada 3 no diálogo 2
             new Dialog( lib.characters.mentor )
                 .setText( Dialogs.leitoPaciente[ 9 ] )
                 .registerOption("", function() {
@@ -426,6 +432,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("IO: pulseira_paciente");
                     core.openModalScene("Pulseira");
+                    if ( level.getFlag("score_checar_pulseira").getValue() == false ) {
+                        core.registerScoreItem( Scores.checarPulseira );
+                        level.getFlag("score_checar_pulseira").setValue( true );
+                    }
                     Pulseira.open();
                     core.openCommandBar();
                 })
@@ -435,21 +445,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-conversar_paciente05", "Falar com o paciente")
                 .setCssClass("intObj-conversar_paciente")
                 .onClick(function() {
-
-                     if ( level.getFlag("pegarPrescricaoMedica").getValue() == true &&
-                    level.getFlag("pegarMedicamento").getValue() == true &&
-                    level.getFlag("prepararMedicacao").getValue() == true ) {
-                    // after first visit
-                    core.openDialog( 3 );
-                } else {
-                    // the first visit
-                    level.getFlag("falarComPaciente").setValue( true );
                     core.openDialog( 0 );
-                }
-
                 })
                 .setVisibility( true )
-
 
         ]);
 
@@ -458,11 +456,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
                 .setCssClass("action-ir_sala_de_leitos")
                 .onClick(function() {
-                    if ( level.getFlag("checarPulseira").getValue() == false ) {
-                        level.getFlag("lavarMaosLeito").setValue( true );
-                        core.registerScoreItem( Scores.checarPulseira );
-                    } else {
-                        core.registerScoreItem( Scores.notChecarPulseira );
+                    if ( level.getFlag("score_checar_pulseira").getValue() == false ) {
+                        if ( level.getFlag("score_nao_checar_pulseira").getValue() == false ) {
+                            core.registerScoreItem( Scores.naoChecarPulseira );
+                            level.getFlag("score_nao_checar_pulseira").setValue( true );
+                        }
                     }
                     console.log("Action: action-ir_sala_de_leitos");
                     core.changeScene( 2 );
@@ -474,16 +472,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 // Não existe a imagem correta
                 .setCssClass("action-administrarMedicamento")
                 .onClick(function() {
-                    // Marcar pontos
-                    /*if ( level.getFlag("score_lavar_maos_antes_leito").getValue() == false ) {
-                        core.registerScoreItem( Scores.lavarMaosAntesLeito );
-                        level.getFlag("score_lavar_maos_antes_leito").setValue( true );
-                    }*/
+                    if ( level.getFlag("score_administrar_medicacao").getValue() == false ) {
+                        core.registerScoreItem( Scores.administrarMedicacao );
+                        level.getFlag("score_administrar_medicacao").setValue( true );
+                    }
                     // Tirar pontos se não verificou pulseira
-                    /*if ( level.getFlag("score_lavar_maos_antes_leito").getValue() == false ) {
-                        core.registerScoreItem( Scores.lavarMaosAntesLeito );
-                        level.getFlag("score_lavar_maos_antes_leito").setValue( true );
-                    }*/
+                    if ( level.getFlag("score_checar_pulseira").getValue() == false ) {
+                        if ( level.getFlag("score_nao_checar_pulseira").getValue() == false ) {
+                            core.registerScoreItem( Scores.naoChecarPulseira );
+                            level.getFlag("score_nao_checar_pulseira").setValue( true );
+                        }
+                    }
                     console.log("Action: Administrar medicamento");
                 })
                 .setVisibility( true ),
@@ -492,16 +491,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // Não existe a imagem correta
                 .setCssClass("action-realizarGotejamento")
                 .onClick(function() {
-                    // Marcar pontos
-                    /*if ( level.getFlag("score_lavar_maos_antes_leito").getValue() == false ) {
-                        core.registerScoreItem( Scores.lavarMaosAntesLeito );
-                        level.getFlag("score_lavar_maos_antes_leito").setValue( true );
-                    }*/
+                    if ( level.getFlag("score_gotejar_soro_equipo").getValue() == false ) {
+                        core.registerScoreItem( Scores.gotejarSoroEquipo );
+                        level.getFlag("score_gotejar_soro_equipo").setValue( true );
+                    }
                     // Tirar pontos se não administrou medicamento
-                    /*if ( level.getFlag("score_lavar_maos_antes_leito").getValue() == false ) {
-                        core.registerScoreItem( Scores.lavarMaosAntesLeito );
-                        level.getFlag("score_lavar_maos_antes_leito").setValue( true );
-                    }*/
+                    if ( level.getFlag("score_administrar_medicacao").getValue() == false ) {
+                        if ( level.getFlag("score_nao_administrar_medicacao").getValue() == false ) {
+                            core.registerScoreItem( Scores.naoAdministrarMedicacao );
+                            level.getFlag("score_nao_administrar_medicacao").setValue( true );
+                        }
+                    }
                     console.log("Action: Realizar gotejamento de soro no equipo");
                 })
                 .setVisibility( true ),
@@ -511,15 +511,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     // Som
                     Player.play( Player.audios.sfx.lavarMaos );
-                    if ( level.getFlag("score_lavar_maos").getValue() == false ) {
-                        core.registerScoreItem( Scores.lavarMaos );
-                        level.getFlag("score_lavar_maos").setValue( true );
+                    if ( level.getFlag("score_lavar_maos_antes_prontuario").getValue() == false ) {
+                        core.registerScoreItem( Scores.lavarMaosAntesProntuario );
+                        level.getFlag("score_lavar_maos_antes_prontuario").setValue( true );
                     }
-                    // Tirar pontos se não administrou medicamento
-                    /*if ( level.getFlag("score_lavar_maos_antes_leito").getValue() == false ) {
-                        core.registerScoreItem( Scores.lavarMaosAntesLeito );
-                        level.getFlag("score_lavar_maos_antes_leito").setValue( true );
-                    }*/
+                    // Tirar pontos se não realizou gotejamento
+                    if ( level.getFlag("score_gotejar_soro_equipo").getValue() == false ) {
+                        if ( level.getFlag("score_nao_gotejar_soro_equipo").getValue() == false ) {
+                            core.registerScoreItem( Scores.naoGotejarSoroEquipo );
+                            level.getFlag("score_nao_gotejar_soro_equipo").setValue( true );
+                        }
+                    }
                     console.log("Action: Lavar as mãos");
                 })
                 .setVisibility( true ),
@@ -531,12 +533,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Prontuario.open();
                     core.openModalScene("Prontuario");
                     // Marcar pontos
-                    /*if ( level.getFlag("score_lavar_maos_antes_leito").getValue() == false ) {
-                        core.registerScoreItem( Scores.lavarMaosAntesLeito );
-                        level.getFlag("score_lavar_maos_antes_leito").setValue( true );
-                    }*/
-                    if ( level.getFlag("lavarMaosLeito").getValue() == false ) {
-                        core.registerScoreItem( Scores.notLavarMaos );
+                    if ( level.getFlag("score_anotou_prontuario").getValue() == false ) {
+                        core.registerScoreItem( Scores.anotarNoProntuario );
+                        level.getFlag("score_anotou_prontuario").setValue( true );
+                    }
+                    if ( level.getFlag("score_lavar_maos_antes_prontuario").getValue() == false ) {
+                        if ( level.getFlag("score_nao_lavar_maos_antes_prontuario").getValue() == false ) {
+                            core.registerScoreItem( Scores.naoLavarMaosAntesProntuario );
+                            level.getFlag("score_nao_lavar_maos_antes_prontuario").setValue( true );
+                        }
                     }
 
                 })
@@ -552,7 +557,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // Só perde pontos caso já esteja liberado para pegar o medicamento
             if ( level.getFlag("score_conferiu_medicacao").getValue() == false ) {
                 if ( level.getFlag("score_nao_conferiu_medicacao").getValue() == false ) {
-                    // core.registerScoreItem( Scores.naoConferirMedicacao );
+                    core.registerScoreItem( Scores.naoConferirMedicamento );
                     level.getFlag("score_nao_conferiu_medicacao").setValue( true );
                 }
                 core.openDialog( 4 );
@@ -572,7 +577,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openCommandBar();
                 }
                 // Apenas se ele pegou a prescrição médica é que ele sabe o que vai pegar, mas só vai falar uma vez
-                if ( (level.getFlag("pegarPrescricaoMedica").getValue() == true) &&
+                if ( (level.getFlag("score_pegou_prescricao_medica").getValue() == true) &&
                     (level.getFlag("ja_falou_farmaceutico").getValue() == false) ) {
                     level.getFlag("ja_falou_farmaceutico").setValue( true );
                     core.openDialog( 0 );
@@ -616,8 +621,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     console.log("Action: Pegar Medicamento");
-                    // core.registerScoreItem( Scores.pegarMedicamento );
-                    level.getFlag("score_pegou_medicamento").setValue( true );
+                    if ( level.getFlag("score_pegou_medicamento").getValue() == false ) {
+                        core.registerScoreItem( Scores.pegarMedicamento );
+                        level.getFlag("score_pegou_medicamento").setValue( true );
+                    }
+                    core.setActionVisible("btn-keflinMedicamento", true );
                     core.setInteractiveObjectVisible("io-keflin_medicamento", false );
                 })
                 .setVisibility( false )
@@ -628,14 +636,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-keflin_medicamento")
                 .onClick(function() {
                     console.log("Action: Conferir Medicamento");
-                    if ( level.getFlag("score_pegou_medicamento").getValue() == false ) {
-                        if ( level.getFlag("score_nao_pegou_medicamento").getValue() == false ) {
-                            // core.registerScoreItem( Scores.naoPegarMedicamento );
-                            level.getFlag("score_nao_pegou_medicamento").setValue( true );
-                        }
-                    }
                     if ( level.getFlag("score_conferiu_medicacao").getValue() == false ) {
-                        // core.registerScoreItem( Scores.conferirMedicacao );
+                        core.registerScoreItem( Scores.conferirMedicamento );
                         level.getFlag("score_conferiu_medicacao").setValue( true );
                     }
                 })
@@ -668,7 +670,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeDialog();
                     // Ativando o Keflin e o seu botão para conferí-lo
                     core.setInteractiveObjectVisible("io-keflin_medicamento", true );
-                    core.setActionVisible("btn-keflinMedicamento", true );
                     core.openCommandBar();
                 }),
             // Dialog 4
@@ -713,8 +714,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             })
             .onUnload(function() {
                 core.closeCommandBar();
-                level.getFlag("lavar_maos_posto_enfermagem").setValue( false );
-                // level.getFlag("prepararMedicacao").setValue(true);
             });
 
         postoDeEnfermagem.registerActions([
@@ -745,8 +744,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: lavarMaos");
                     // Som
                     Player.play( Player.audios.sfx.lavarMaos );
-                    if ( level.getFlag("lavar_maos_posto_enfermagem").getValue() == false ) {
-                        level.getFlag("lavar_maos_posto_enfermagem").setValue( true );
+                    if ( level.getFlag("score_lavar_maos_posto_enfermagem").getValue() == false ) {
+                        core.registerScoreItem( Scores.lavarMaos );
+                        level.getFlag("score_lavar_maos_posto_enfermagem").setValue( true );
                     }
 
                 })
@@ -756,10 +756,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-keflin_medicamento")
                 .onClick(function() {
                     console.log("Action: Confirmar medicação com o mentor");
-                    // COLOCAR AS FLAGS
-                    /*if ( level.getFlag("lavar_maos_posto_enfermagem").getValue() == false ) {
-                        level.getFlag("lavar_maos_posto_enfermagem").setValue( true );
-                    }*/
+                    if ( level.getFlag("score_conferiu_medicacao_posto").getValue() == false ) {
+                        core.registerScoreItem( Scores.confirmarMedicacaoPosto );
+                        level.getFlag("score_conferiu_medicacao_posto").setValue( true );
+                    }
 
                 })
                 .setVisibility( false ),
@@ -768,10 +768,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-prepararMedicacao")
                 .onClick(function() {
                     console.log("Action: Preparar medicação");
-                    // COLOCAR AS FLAGS
-                    /*if ( level.getFlag("lavar_maos_posto_enfermagem").getValue() == false ) {
-                        level.getFlag("lavar_maos_posto_enfermagem").setValue( true );
-                    }*/
+                    if ( level.getFlag("score_preparar_medicacao").getValue() == false ) {
+                        core.registerScoreItem( Scores.prepararMedicacao );
+                        level.getFlag("score_preparar_medicacao").setValue( true );
+                    }
 
                 })
                 .setVisibility( false ),
@@ -780,10 +780,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-gotejamentoSoro")
                 .onClick(function() {
                     console.log("Action: Calcular gotejamento do soro");
-                    // COLOCAR AS FLAGS
-                    /*if ( level.getFlag("lavar_maos_posto_enfermagem").getValue() == false ) {
-                        level.getFlag("lavar_maos_posto_enfermagem").setValue( true );
-                    }*/
+                    if ( level.getFlag("score_calculou_gotejamento").getValue() == false ) {
+                        core.registerScoreItem( Scores.calcularGotejamento );
+                        level.getFlag("score_calculou_gotejamento").setValue( true );
+                    }
 
                 })
                 .setVisibility( false ),
@@ -794,10 +794,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: lavarMaos");
                     // Aqui irá abrir a ficha sobre a medicação que é para o jogador preencher
 
-                    // COLOCAR AS FLAGS
-                    /*if ( level.getFlag("lavar_maos_posto_enfermagem").getValue() == false ) {
-                        level.getFlag("lavar_maos_posto_enfermagem").setValue( true );
-                    }*/
+                    if ( level.getFlag("score_identificar_medicacao").getValue() == false ) {
+                        core.registerScoreItem( Scores.identificarMedicacao );
+                        level.getFlag("score_identificar_medicacao").setValue( true );
+                    }
 
                 })
                 .setVisibility( false )
@@ -808,6 +808,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Dialog( lib.characters.jogador )
                 .setText("")
                 .registerOption( Dialogs.postoDeEnfermagem[ 0 ], function() {
+                    if ( level.getFlag("score_calculou_valor_medicamento").getValue() == false ) {
+                        core.registerScoreItem( Scores.calcularValorMedicamento );
+                        level.getFlag("score_calculou_valor_medicamento").setValue( true );
+                    }
                     core.closeDialog();
                 })
                 .registerOption( Dialogs.postoDeEnfermagem[ 1 ], function() {
@@ -821,6 +825,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Dialog( lib.characters.mentor )
                 .setText( Dialogs.postoDeEnfermagem[ 3 ] )
                 .registerOption("", function() {
+                    if ( level.getFlag("score_calculou_errado_valor_medicamento").getValue() == false ) {
+                        core.registerScoreItem( Scores.calcularErradoValorMedicamento );
+                        level.getFlag("score_calculou_errado_valor_medicamento").setValue( true );
+                    }
                     core.openDialog( 0 );
                 }),
             // Dialog 2
@@ -875,12 +883,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-abrir_gaveta_esquerda", "Abrir gaveta esquerda")
                 .setCssClass("intObj-openDrawer_left")
                 .onClick(function() {
-                    if ( level.getFlag("pegou_bandeja_balcao").getValue() != true ) {
+                    if ( level.getFlag("score_pegou_bandeja").getValue() != true ) {
                         core.openDialog( 7 );
                     } else {
                         console.log("Action: Abrir gaveta");
                         // Som
                         Player.play( Player.audios.sfx.abrirGaveta );
+                        if ( level.getFlag("score_lavar_maos_posto_enfermagem").getValue() == false ) {
+                            if ( level.getFlag("score_nao_lavar_maos_posto_enfermagem").getValue() == false ) {
+                                core.registerScoreItem( Scores.naoLavarMaos );
+                                level.getFlag("score_nao_lavar_maos_posto_enfermagem").setValue( true );
+                            }
+                        }
                         core.openModalScene("gavetaEsquerda");
                         core.openCommandBar();
 
@@ -900,7 +914,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             /*new InteractiveObject("io-abrir_gaveta_direita", "Abrir gaveta direita")
                 .setCssClass("intObj-openDrawer_right")
                 .onClick(function() {
-                    if ( level.getFlag("pegou_bandeja_balcao").getValue() != true ) {
+                    if ( level.getFlag("score_pegou_bandeja").getValue() != true ) {
                         core.openDialog( 7 );
                     }
                     else{
@@ -922,7 +936,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     console.log("Action: Pegar bandeja");
-                    level.getFlag("pegou_bandeja_balcao").setValue( true );
+                    if ( level.getFlag("score_lavar_maos_posto_enfermagem").getValue() == false ) {
+                        if ( level.getFlag("score_nao_lavar_maos_posto_enfermagem").getValue() == false ) {
+                            core.registerScoreItem( Scores.naoLavarMaos );
+                            level.getFlag("score_nao_lavar_maos_posto_enfermagem").setValue( true );
+                        }
+                    }
+                    if ( level.getFlag("score_pegou_bandeja").getValue() == false ) {
+                        core.registerScoreItem( Scores.pegarBandeja );
+                        level.getFlag("score_pegou_bandeja").setValue( true );
+                    }
                     core.setInteractiveObjectVisible("io-pegar_bandeja", false );
                 })
                 .setVisibility( true )
@@ -958,8 +981,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             core.closeCommandBar();
                             core.openDialog( 2 );
                         } else {
-                        core.closeCommandBar();
-                        core.openDialog( 4 );
+                            if ( level.getFlag("score_nao_pegou_todos_instrumentos").getValue() == false ) {
+                                core.registerScoreItem( Scores.naoPegarAlgumInstrumento );
+                                level.getFlag("score_nao_pegou_todos_instrumentos").setValue( true );
+                            }
+                            core.closeCommandBar();
+                            core.openDialog( 4 );
                     }
                 })
                 .setVisibility( true )
@@ -974,9 +1001,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     console.log("Action: pegar soro fisiológico 0,9% (100 ml)");
-                    // core.registerScoreItem( Scores.pegarSoro );
                     core.setInteractiveObjectVisible("io-soro", false );
-                    level.getFlag("score_pegou_soro").setValue( true );
+                    if ( level.getFlag("score_pegou_soro").getValue() == false ) {
+                        core.registerScoreItem( Scores.pegarSoroFisiologico );
+                        level.getFlag("score_pegou_soro").setValue( true );
+                    }
                 })
                 .setVisibility( true ),
 
@@ -987,9 +1016,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     console.log("Action: pegar algodao ");
-                    // core.registerScoreItem( Scores.pegarAlgodao );
                     core.setInteractiveObjectVisible("io-algodao", false );
-                    level.getFlag("score_pegou_algodao").setValue( true );
+                    if ( level.getFlag("score_pegou_algodao").getValue() == false ) {
+                        core.registerScoreItem( Scores.pegarAlgodao );
+                        level.getFlag("score_pegou_algodao").setValue( true );
+                    }
                 })
                 .setVisibility( true ),
 
@@ -1000,9 +1031,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     console.log("Action: pegar luvas de procedimento");
-                    // core.registerScoreItem( Scores.pegarLuvas );
                     core.setInteractiveObjectVisible("io-luvas", false );
-                    level.getFlag("score_pegou_luvas").setValue( true );
+                    if ( level.getFlag("score_pegou_luvas").getValue() == false ) {
+                        core.registerScoreItem( Scores.pegarLuvas );
+                        level.getFlag("score_pegou_luvas").setValue( true );
+                    }
                 })
                 .setVisibility( true ),
 
@@ -1014,9 +1047,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     console.log("Action: Pegar seringa de 5 ml");
-                    // core.registerScoreItem( Scores.pegarSoro );
                     core.setInteractiveObjectVisible("io-seringa5ml", false );
-                    level.getFlag("score_pegou_seringa_5ml").setValue( true );
+                    if ( level.getFlag("score_pegou_seringa_5ml").getValue() == false ) {
+                        core.registerScoreItem( Scores.pegarSeringa5 );
+                        level.getFlag("score_pegou_seringa_5ml").setValue( true );
+                    }
                 })
                 .setVisibility( true ),
 
@@ -1028,9 +1063,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     console.log("Action: Pegar ampola de soro Fisiológico 0,9% (10ml)");
-                    // core.registerScoreItem( Scores.pegarSoro );
                     core.setInteractiveObjectVisible("io-ampola_soro", false );
-                    level.getFlag("score_pegou_ampola_soro").setValue( true );
+                    if ( level.getFlag("score_pegou_ampola_soro").getValue() == false ) {
+                        core.registerScoreItem( Scores.pegarAmpolaSF );
+                        level.getFlag("score_pegou_ampola_soro").setValue( true );
+                    }
                 })
                 .setVisibility( true ),
 
@@ -1041,9 +1078,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     console.log("Action: Pegar álcool 70%");
-                    // core.registerScoreItem( Scores.pegarSoro );
                     core.setInteractiveObjectVisible("io-alcool", false );
-                    level.getFlag("score_pegou_alcool").setValue( true );
+                    if ( level.getFlag("score_pegou_alcool").getValue() == false ) {
+                        core.registerScoreItem( Scores.pegarAlcool );
+                        level.getFlag("score_pegou_alcool").setValue( true );
+                    }
                 })
                 .setVisibility( true ),
 
@@ -1054,9 +1093,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     console.log("Action: Pegar seringa de 10 ml");
-                    // core.registerScoreItem( Scores.pegarSoro );
                     core.setInteractiveObjectVisible("io-seringa10ml", false );
-                    level.getFlag("score_pegou_seringa_10ml").setValue( true );
+                    if ( level.getFlag("score_pegou_seringa_10ml").getValue() == false ) {
+                        core.registerScoreItem( Scores.pegarSeringa10 );
+                        level.getFlag("score_pegou_seringa_10ml").setValue( true );
+                    }
                 })
                 .setVisibility( true ),
 
@@ -1067,9 +1108,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     console.log("Action: pegar agulha 40X12 ");
-                    core.registerScoreItem( Scores.pegarAgulha );
                     core.setInteractiveObjectVisible("io-agulha", false );
-                    level.getFlag("score_pegou_agulha").setValue( true );
+                    if ( level.getFlag("score_pegou_agulha").getValue() == false ) {
+                        core.registerScoreItem( Scores.pegarAgulha );
+                        level.getFlag("score_pegou_agulha").setValue( true );
+                    }
                 })
                 .setVisibility( true ),
 
@@ -1081,9 +1124,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     console.log("Action: Pegar equipo de soro macrogotas");
-                    // core.registerScoreItem( Scores.pegarSoro );
                     core.setInteractiveObjectVisible("io-equipo_soro", false );
-                    level.getFlag("score_pegou_equipo_soro").setValue( true );
+                    if ( level.getFlag("score_pegou_equipo_soro").getValue() == false ) {
+                        core.registerScoreItem( Scores.pegarEquipoSoroMacrogotas );
+                        level.getFlag("score_pegou_equipo_soro").setValue( true );
+                    }
                 })
                 .setVisibility( true )
         ]);
@@ -1151,7 +1196,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     console.log("Action: Pegar prescrição médica");
-                    level.getFlag("pegarPrescricaoMedica").setValue( true );
+                    if ( level.getFlag("score_pegou_prescricao_medica").getValue() == false ) {
+                        core.registerScoreItem( Scores.pegarPrescricaoMedica );
+                        level.getFlag("score_pegou_prescricao_medica").setValue( true );
+                    }
                     core.setActionVisible("btn-pegar_prescricao_medica", false );
                 })
                 .setVisibility( true )
@@ -1170,9 +1218,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                     Pulseira.close();
 
-                    if ( level.getFlag("checarPulseira").getValue() == false ) {
+                    if ( level.getFlag("score_checar_pulseira").getValue() == false ) {
                         core.registerScoreItem( Scores.checarPulseira );
-                        level.getFlag("checarPulseira").setValue( true );
+                        level.getFlag("score_checar_pulseira").setValue( true );
                     }
                 })
                 .setVisibility( true )
@@ -1197,21 +1245,23 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         level.setSetupScript(function() {
 
+            level.getFlag("pegarFolheto9Certos").setValue( false );
             level.getFlag("score_ir_posto_enfermagem_hora_errada").setValue( false );
             level.getFlag("score_ir_farmacia_hora_errada").setValue( false );
             level.getFlag("score_ir_ala_feminina").setValue( false );
             level.getFlag("score_viu_prontuario").setValue( false );
             level.getFlag("score_nao_viu_prontuario").setValue( false );
             level.getFlag("score_lavar_maos_antes_leito").setValue( false );
-            level.getFlag("falarComPaciente").setValue( false );
+            level.getFlag("score_nao_lavar_maos_antes_leito").setValue( false );
             level.getFlag("ja_falou_farmaceutico").setValue( false );
             level.getFlag("score_pegou_medicamento").setValue( false );
             level.getFlag("score_nao_pegou_medicamento").setValue( false );
             level.getFlag("score_conferiu_medicacao").setValue( false );
-            level.getFlag("pegarPrescricaoMedica").setValue( false );
+            level.getFlag("score_pegou_prescricao_medica").setValue( false );
             level.getFlag("score_nao_conferiu_medicacao").setValue( false );
-            level.getFlag("lavar_maos_posto_enfermagem").setValue( false );
-            level.getFlag("pegou_bandeja_balcao").setValue( false );
+            level.getFlag("score_lavar_maos_posto_enfermagem").setValue( false );
+            level.getFlag("score_nao_lavar_maos_posto_enfermagem").setValue( false );
+            level.getFlag("score_pegou_bandeja").setValue( false );
             level.getFlag("score_pegou_soro").setValue( false );
             level.getFlag("score_pegou_algodao").setValue( false );
             level.getFlag("score_pegou_luvas").setValue( false );
@@ -1221,9 +1271,25 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.getFlag("score_pegou_seringa_10ml").setValue( false );
             level.getFlag("score_pegou_agulha").setValue( false );
             level.getFlag("score_pegou_equipo_soro").setValue( false );
-            level.getFlag("pegou_instrumentos").setValue( false );
+            level.getFlag("score_nao_pegou_todos_instrumentos").setValue( false );
             level.getFlag("score_falou_com_mentor").setValue( false );
             level.getFlag("score_lavar_maos").setValue( false );
+            level.getFlag("score_nao_pegou_prescricao_medica").setValue( false );
+            level.getFlag("score_calculou_valor_medicamento").setValue( false );
+            level.getFlag("score_calculou_errado_valor_medicamento").setValue( false );
+            level.getFlag("score_checar_pulseira").setValue( false );
+            level.getFlag("score_nao_checar_pulseira").setValue( false );
+            level.getFlag("score_lavar_maos_antes_prontuario").setValue( false );
+            level.getFlag("score_nao_lavar_maos_antes_prontuario").setValue( false );
+            level.getFlag("score_conferiu_medicacao_posto").setValue( false );
+            level.getFlag("score_preparar_medicacao").setValue( false );
+            level.getFlag("score_calculou_gotejamento").setValue( false );
+            level.getFlag("score_identificar_medicacao").setValue( false );
+            level.getFlag("score_administrar_medicacao").setValue( false );
+            level.getFlag("score_nao_administrar_medicacao").setValue( false );
+            level.getFlag("score_gotejar_soro_equipo").setValue( false );
+            level.getFlag("score_nao_gotejar_soro_equipo").setValue( false );
+            level.getFlag("score_anotou_prontuario").setValue( false );
 
             // 'prontuário' content
             Prontuario.setNome("Pedro Alcídes Mendonça");
@@ -1266,46 +1332,24 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         });
 
         // region Flags
+
         level.registerFlag( new Flag("pegarFolheto9Certos", false ) );
-        level.registerFlag( new Flag("checarPulseira", false ) );
-
-
-        level.registerFlag( new Flag("pegarPrescricaoMedica", false ) );
-        level.registerFlag( new Flag("pegarMedicamento", false ) );
-        level.registerFlag( new Flag("prepararMedicacao", false ) );
-
-        level.registerFlag( new Flag("lavarMaosSalaLeitos", false ) );
-        level.registerFlag( new Flag("lavarMaosLeito", false ) );
-        level.registerFlag( new Flag("lavar_maos_posto_enfermagem", false ) );
-
-       /* level.registerFlag( new Flag("pegou_bandeja_balcao", false ) );
-        level.registerFlag( new Flag("pegarSoroFisiológico", false ) );
-        level.registerFlag( new Flag("pegarSeringa5", false ) );
-        level.registerFlag( new Flag("pegarAgulha", false ) );
-        level.registerFlag( new Flag("pegarAlcool", false ) );
-        level.registerFlag( new Flag("pegarAlgodao", false ) );
-        level.registerFlag( new Flag("pegarEquipoSoroMacrogotas", false ) );
-        level.registerFlag( new Flag("pegarLuvas", false ) );
-        level.registerFlag( new Flag("pegarSeringa10", false ) );
-        level.registerFlag( new Flag("pegarAmpolaSF", false ) );
-        // level.registerFlag( new Flag("pegarBandeja", false ) );
-        */
-
         level.registerFlag( new Flag("score_ir_posto_enfermagem_hora_errada", false ) );
         level.registerFlag( new Flag("score_ir_farmacia_hora_errada", false ) );
         level.registerFlag( new Flag("score_ir_ala_feminina", false ) );
         level.registerFlag( new Flag("score_viu_prontuario", false ) );
         level.registerFlag( new Flag("score_nao_viu_prontuario", false ) );
         level.registerFlag( new Flag("score_lavar_maos_antes_leito", false ) );
-        level.registerFlag( new Flag("falarComPaciente", false ) );
+        level.registerFlag( new Flag("score_nao_lavar_maos_antes_leito", false ) );
         level.registerFlag( new Flag("ja_falou_farmaceutico", false ) );
         level.registerFlag( new Flag("score_pegou_medicamento", false ) );
         level.registerFlag( new Flag("score_nao_pegou_medicamento", false ) );
         level.registerFlag( new Flag("score_conferiu_medicacao", false ) );
-        level.registerFlag( new Flag("pegarPrescricaoMedica", false ) );
+        level.registerFlag( new Flag("score_pegou_prescricao_medica", false ) );
         level.registerFlag( new Flag("score_nao_conferiu_medicacao", false ) );
-        level.registerFlag( new Flag("lavar_maos_posto_enfermagem", false ) );
-        level.registerFlag( new Flag("pegou_bandeja_balcao", false ) );
+        level.registerFlag( new Flag("score_lavar_maos_posto_enfermagem", false ) );
+        level.registerFlag( new Flag("score_nao_lavar_maos_posto_enfermagem", false ) );
+        level.registerFlag( new Flag("score_pegou_bandeja", false ) );
         level.registerFlag( new Flag("score_pegou_soro", false ) );
         level.registerFlag( new Flag("score_pegou_algodao", false ) );
         level.registerFlag( new Flag("score_pegou_luvas", false ) );
@@ -1315,18 +1359,25 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("score_pegou_seringa_10ml", false ) );
         level.registerFlag( new Flag("score_pegou_agulha", false ) );
         level.registerFlag( new Flag("score_pegou_equipo_soro", false ) );
-        level.registerFlag( new Flag("pegou_instrumentos", false ) );
+        level.registerFlag( new Flag("score_nao_pegou_todos_instrumentos", false ) );
         level.registerFlag( new Flag("score_falou_com_mentor", false ) );
         level.registerFlag( new Flag("score_lavar_maos", false ) );
-
-        /* MORE FLAGS FROM SCORES DATA
-         confirmarMedicacao
-         calcularGotejamento
-         identificarMedicacao
-         administrarMedicacao
-         gotejarSoroEquipo
-         anotarNoProntuario
-         */
+        level.registerFlag( new Flag("score_nao_pegou_prescricao_medica", false ) );
+        level.registerFlag( new Flag("score_calculou_valor_medicamento", false ) );
+        level.registerFlag( new Flag("score_calculou_errado_valor_medicamento", false ) );
+        level.registerFlag( new Flag("score_checar_pulseira", false ) );
+        level.registerFlag( new Flag("score_nao_checar_pulseira", false ) );
+        level.registerFlag( new Flag("score_lavar_maos_antes_prontuario", false ) );
+        level.registerFlag( new Flag("score_nao_lavar_maos_antes_prontuario", false ) );
+        level.registerFlag( new Flag("score_conferiu_medicacao_posto", false ) );
+        level.registerFlag( new Flag("score_preparar_medicacao", false ) );
+        level.registerFlag( new Flag("score_calculou_gotejamento", false ) );
+        level.registerFlag( new Flag("score_identificar_medicacao", false ) );
+        level.registerFlag( new Flag("score_administrar_medicacao", false ) );
+        level.registerFlag( new Flag("score_nao_administrar_medicacao", false ) );
+        level.registerFlag( new Flag("score_gotejar_soro_equipo", false ) );
+        level.registerFlag( new Flag("score_nao_gotejar_soro_equipo", false ) );
+        level.registerFlag( new Flag("score_anotou_prontuario", false ) );
 
         // endregion
 
