@@ -189,7 +189,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         corredor.registerInteractiveObjects([
             new InteractiveObject("io-ir_sala_leitos", "Ir para a sala de Leitos Masculino")
-                .setCssClass("intObj-goToBedroom")
+                .setCssClass("intObj-goToAlaMasculina")
                 .onClick( corredorIrSalaLeitos )
                 .setVisibility( true ),
 
@@ -213,7 +213,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     core.openDialog( 0 );
                 })
-                .setVisibility( false )
+                .setVisibility( false ),
+          
+            
 
         ]);
         // endregion
@@ -225,7 +227,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 console.log("Entrando na sala de leitos");
                 // Na primeira vez o leito vai estar desabilitado e ocorrerá uma conversa com o paciente
                 if ( level.getFlag("segunda_ida_leito_paciente").getValue() == false ) {
-                    core.setInteractiveObjectVisible("io-ir_leito", false );
+                    core.setInteractiveObjectVisible("io-ir_leito", true );  
                     core.openDialog( 0 );
                 } else {
                     core.setInteractiveObjectVisible("io-ir_leito", true );
@@ -262,17 +264,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
         salaDeLeitos.registerInteractiveObjects([
+            
             new InteractiveObject("io-ir_leito", "Ir ao leito")
-                .setCssClass("intObj-ir_leito-fase1")
+                .setCssClass("intObj-ir_leito-fase2")
                 .onClick(function() {
                     if ( level.getFlag("lavar_maos2").getValue() == false ) {
                         // Mentor corrige
-                        core.openDialog( 3 );
+                        core.openDialog( 3 );   
                     } else {
                         core.changeScene( 3 );
                     }
                 })
-                .setVisibility( false ),
+                .setVisibility( true ),
 
             new InteractiveObject("io-ir_corredor", "Ir ao Corredor")
                 .setCssClass("intObj-bedroomToHallway")
@@ -285,7 +288,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         alert("Você deveria checar o prontuario");
                     }
                 })
-                .setVisibility( false ),
+                .setVisibility( true ),
 
 
             new InteractiveObject("io-lixoBranco", "Lixo Comum")
@@ -420,7 +423,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         }
                     }
                 })
-                .setVisibility( false ),
+                .setVisibility( true ),
 
 
             new Action("btn-ler_prontuario", "Ler prontuario")
@@ -439,7 +442,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.openModalScene("Prontuario");
                     }
                 })
-                .setVisibility( false ),
+                .setVisibility( true ),
 
 
             new Action("btn-jogar_agulha_perfuro", "Descartar Agulha")
