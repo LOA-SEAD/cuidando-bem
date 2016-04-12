@@ -557,7 +557,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // Só perde pontos caso já esteja liberado para pegar o medicamento
             if ( level.getFlag("score_conferiu_medicacao").getValue() == false ) {
                 if ( level.getFlag("score_nao_conferiu_medicacao").getValue() == false ) {
-                    core.registerScoreItem( Scores.naoConferirMedicacao );
+                    core.registerScoreItem( Scores.naoConferirMedicamento );
                     level.getFlag("score_nao_conferiu_medicacao").setValue( true );
                 }
                 core.openDialog( 4 );
@@ -637,7 +637,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("Action: Conferir Medicamento");
                     if ( level.getFlag("score_conferiu_medicacao").getValue() == false ) {
-                        core.registerScoreItem( Scores.conferirMedicacao );
+                        core.registerScoreItem( Scores.conferirMedicamento );
                         level.getFlag("score_conferiu_medicacao").setValue( true );
                     }
                 })
