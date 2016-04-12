@@ -6,7 +6,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // region Imports
         var Dialogs = require("DialogsData").fase7;
         var Alertas = require("DialogsData").alertas;
-        // var Scores = require("ScoresData").fase3;
+        var Scores = require("ScoresData").level7;
         var Player = require("Player");
         // endregion
 
@@ -304,8 +304,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( level.getFlag("lavarMaos").getValue() == false ) {
                         level.getFlag("lavarMaos").setValue( true );
                         core.registerScoreItem( Scores.lavarMaos );
-                        level.getFlag("score_lavar_maos").setValue( true );
-
                     }
 
                 })
@@ -340,7 +338,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         level.getFlag("conversarPaciente").setValue( true );
                         core.registerScoreItem( Scores.falarComPaciente );
                         core.openDialog( 0 );
-                    } else if ( level.getFlag("pegarMedicamento").getValue() == false ) {
+                    } else if ( level.getFlag("pegar_medicamento").getValue() == false ) {
                         core.openDialog( 8 );
                     } else {
                         core.changeScene( 3 );
@@ -353,6 +351,28 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         //  region FARMACIA
+
+        function farmaciaIrCorredor() {
+            console.log("Ir para o corredor");
+            // Só perde pontos caso já esteja liberado para pegar o medicamento
+            /*if ( level.getFlag("score_conferiu_medicacao").getValue() == false ) {
+                if ( level.getFlag("score_nao_conferiu_medicacao").getValue() == false ) {
+                    // core.registerScoreItem( Scores.naoConferirMedicacao );
+                    level.getFlag("score_nao_conferiu_medicacao").setValue( true );
+                }
+                core.openDialog( 4 );
+            }*/
+
+            if ( level.getFlag("pegar_medicamento").getValue() == false ) {
+                core.openDialog( 8 );
+            } else if ( level.getFlag("conferir_medicamento_correto").getValue() == false ) {
+                core.openDialog( 7 );
+            } else if ( level.getFlag("conferir_medicamento_errado").getValue() == false ) {
+                core.openDialog( 10 );
+            } else {
+                core.changeScene( 1 );
+            }
+        }
 
         var farmacia = lib.scenes.farmacia.getClone()
             .onLoad(function() {
@@ -372,6 +392,49 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
 
+        farmacia.registerInteractiveObjects([
+            new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
+                .setCssClass("intObj-lobbyToHallway-left")
+                .onClick( farmaciaIrCorredor )
+                .setVisibility( true ),
+
+            new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
+                .setCssClass("intObj-lobbyToHallway-right")
+                .onClick( farmaciaIrCorredor )
+                .setVisibility( true ),
+
+            // Clorpromazina
+            new InteractiveObject("io-clorpromazina_medicamento", "Pegar Medicamento")
+                .setCssClass("intObj-clorpromazina_medicamento")
+                .onClick(function() {
+                    // Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
+                    console.log("Action: Pegar Medicamento");
+                    level.getFlag("pegar_medicamento").setValue( true );
+                    //Ativando o seu botão para conferi-lo
+                    core.setActionVisible("btn-clorpromazinaMedicamento", true );
+                    core.registerScoreItem( Scores.pegarMedicamento );
+                    core.setInteractiveObjectVisible("io-clorpromazina_medicamento", false );
+                })
+                .setVisibility( false ),
+
+            // Clorpropamida
+            new InteractiveObject("io-clorpropamida_medicamento", "Pegar Medicamento")
+                .setCssClass("intObj-clorpropamida_medicamento")
+                .onClick(function() {
+                    // Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
+                    console.log("Action: Pegar Medicamento");
+                    level.getFlag("pegar_medicamento_correto").setValue( true );
+                    //Ativando o seu botão para conferi-lo
+                    core.setActionVisible("btn-clorpropamidaMedicamento", true );
+                    core.registerScoreItem( Scores.trocarMedicamento );
+                    core.setInteractiveObjectVisible("io-clorpropamida_medicamento", false );
+                })
+                .setVisibility( false )
+                    
+        ]);
+
         farmacia.registerDialogs([
 
 
@@ -386,6 +449,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Dialog( lib.characters.paulo )
                 .setText( Dialogs.farmacia[ 1 ] )
                 .registerOption("", function() {
+                    // Ativando o Clorpromazina
+                    core.setInteractiveObjectVisible("io-clorpromazina_medicamento", true );
                     core.closeDialog();
                 }),
 
@@ -414,7 +479,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openDialog( 6 );
                 })
                 .registerOption( Dialogs.farmacia[ 6 ], function() {
-                    core.registerScoreItem( Scores.trocarMedicamento );
+                    // Ativando o Clorpropamida
+                    core.setInteractiveObjectVisible("io-clorpropamida_medicamento", true );
                     core.closeDialog();
                 })
                 .setRandomize( true ),
@@ -453,56 +519,41 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Alertas.perdido.farmacia )
                 .registerOption("", function() {
                     core.closeDialog();
+                }),
+            // 10 - ALERTA VERIFICAR MEDICAMENTO PRIMEIRA VEZ
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.pegarMedicamento2 )
+                .registerOption("", function() {
+                    core.closeDialog();
                 })
-
         ]);
 
 
         farmacia.registerActions([
 
 
-            new Action("btn-ir_corredor", "Ir ao corredor")
-                .setCssClass("action-ir_corredor")
+            new Action("btn-clorpromazinaMedicamento", "Conferir Medicamento")
+                .setCssClass("action-clorpromazina_medicamento")
                 .onClick(function() {
-                    if ( level.getFlag("pegarMedicamento").getValue() == false ) {
-                        core.openDialog( 8 );
-                    } else if ( level.getFlag("conferir_medicamento_correto").getValue() == false ) {
-                        core.openDialog( 7 );
-                    } else {
-                        core.changeScene( 1 );
-                    }
-                }),
-
-
-            new Action("btn-pegarMedicamento", "Pegar Medicamento")
-                .setCssClass("action-pegarMedicamento")
-                .onClick(function() {
-                    // Som
-                    Player.play( Player.audios.sfx.pegarObjeto );
-                    level.getFlag("pegarMedicamento").setValue( true );
-                    core.registerScoreItem( Scores.pegarMedicamento );
-
-                }),
-
-
-            new Action("btn-conferirMedicamento", "Conferir Medicamento")
-                .setCssClass("action-conferir_medicamento")
-                .onClick(function() {
-                    if ( level.getFlag("pegarMedicamento").getValue() == false ) {
-                        // nao faz nada
-                    } else if ( level.getFlag("conferir_medicamento_errado").getValue() == false ) {
+                    if ( level.getFlag("conferir_medicamento_errado").getValue() == false ) {
                         level.getFlag("conferir_medicamento_errado").setValue( true );
                         core.registerScoreItem( Scores.conferirMedicamentoErrado );
+                        core.setActionVisible("btn-clorpromazinaMedicamento", false );
                         core.openDialog( 2 );
-                    } else {
+                    }
+                })
+                .setVisibility( false ),
+
+            new Action("btn-clorpropamidaMedicamento", "Conferir Medicamento")
+                .setCssClass("action-clorpropamida_medicamento")
+                .onClick(function() {
+                    if ( level.getFlag("conferir_medicamento_correto").getValue() == false ) {
                         level.getFlag("conferir_medicamento_correto").setValue( true );
                         core.registerScoreItem( Scores.conferirMedicamentoCorreto );
-
+                        core.setActionVisible("btn-clorpropamidaMedicamento", false );
                     }
-
-
                 })
-
+                .setVisibility( false )
         ]);
 
 
@@ -853,7 +904,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.getFlag("conversarPaciente").setValue( false );
             level.getFlag("ler_prontuario").setValue( false );
             level.getFlag("conferir_medicamento_errado").setValue( false );
-            level.getFlag("pegarMedicamento").setValue( false );
+            level.getFlag("pegar_medicamento").setValue( false );
+            level.getFlag("pegar_medicamento_correto").setValue( false );
             level.getFlag("conferir_medicamento_correto").setValue( false );
             level.getFlag("pegar_copo_descartavel").setValue( false );
             level.getFlag("pegar_agua_potavel").setValue( false );
@@ -907,7 +959,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("conversarPaciente"), false );
         level.registerFlag( new Flag("ler_prontuario"), false );
         level.registerFlag( new Flag("conferir_medicamento_errado"), false );
-        level.registerFlag( new Flag("pegarMedicamento"), false );
+        level.registerFlag( new Flag("pegar_medicamento"), false );
+        level.registerFlag( new Flag("pegar_medicamento_correto"), false );
         level.registerFlag( new Flag("conferir_medicamento_correto"), false );
         level.registerFlag( new Flag("pegar_copo_descartavel"), false );
         level.registerFlag( new Flag("pegar_agua_potavel"), false );
