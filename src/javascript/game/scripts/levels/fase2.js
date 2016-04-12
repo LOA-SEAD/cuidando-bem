@@ -632,7 +632,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         leito.registerInteractiveObjects([
 
             new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
-                .setCssClass("intObj-paciente_02-checar_pulseira")
+                .setCssClass("intObj-paciente_03-checar_pulseira")
                 .onClick(function() {
                     if ( level.getFlag("score_falar_paciente").getValue() == false ) {
                         core.closeCommandBar();

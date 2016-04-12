@@ -422,7 +422,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         leito.registerInteractiveObjects([
 
             new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
-                .setCssClass("intObj-paciente_01-checar_pulseira")
+                .setCssClass("intObj-paciente_05-checar_pulseira")
                 .onClick(function() {
                     console.log("IO: pulseira_paciente");
                     core.openModalScene("Pulseira");
