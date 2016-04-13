@@ -74,14 +74,14 @@ require([ "requireConfig" ], function() {
 
 
                                         var width = $("#stage").width(),
-                                            fontSize =  width / 100 ;
+                                            fontSize =  width / 150 ;
 
                                         fontSize = +fontSize.toFixed( 2 );
 
                                         $("html").css("font-size", fontSize + "px");
                                         $( window ).resize(function() {
                                             var width = $("#stage").width(),
-                                                fontSize =  width / 100 ;
+                                                fontSize =  width / 150 ;
 
                                             fontSize = +fontSize.toFixed( 2 );
 

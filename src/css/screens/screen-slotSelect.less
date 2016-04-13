@@ -86,8 +86,17 @@ This file is part of Cuidando Bem.
         font-size: 4em;
         cursor: hand;
     }
+
+    .slot:hover:not(.selected) {
+        background-color: #80B1B3;
+    }
+
     .slot.selected{
         background-color: indianred;
+    }
+
+    .slot.selected:hover{
+        background-color: #D98282;
     }
 
     .slot.empty{
@@ -117,7 +126,7 @@ This file is part of Cuidando Bem.
 
 .type-name-dialog {
     width: 30% !important;
-    height: 30% !important;
+    height: 33% !important;
     box-sizing: border-box;
     top: 35% !important;
     left: 35% !important;
