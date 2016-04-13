@@ -14,900 +14,848 @@ This file is part of Cuidando Bem.
     You should have received a copy of the GNU General Public License
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 #interactiveObjects {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 .interactiveObject {
-  position: absolute;
-  cursor: hand;
+    position: absolute;
+    cursor: hand;
 }
 
 .interactiveObject:hover:not(.no-glow) {
-  @scale: 1.05;
-  transform: scale( @scale, @scale );
-  filter: drop-shadow(0 0 8px #91FF00);
+    @scale: 1.05;
+    transform: scale( @scale, @scale );
+    filter: drop-shadow(0 0 8px #91FF00);
 }
 
 .interactiveObject.disabled {
-  cursor: default;
+    cursor: default;
 }
 
 //region Recepcao - Lobby
 .intObj-talkToReceptionist {
-  background-image: url(../images/interactiveObjects/intObj-receptionist.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  width: 18%;
-  height: 33%;
-  top: 25%;
-  left: 45%;
+    background-image: url(../images/interactiveObjects/intObj-receptionist.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 18%;
+    height: 33%;
+    top: 25%;
+    left: 45%;
 }
 
-.intObj-9Certos{
-  background-image: @intObj-9certos;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  width: 11%;
-  height: 8%;
-  top: 45%;
-  left: 17%;
+.intObj-9Certos {
+    background-image: @intObj-9certos;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 9%;
+    height: 8%;
+    top: 45%;
+    right: 18%;
 }
 
 .intObj-lobbyToHallway-right {
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: 8%;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 8%;
 }
 
 .intObj-lobbyToHallway-right:hover {
-  background-image: svg-gradient(to right, rgba(255,255,255,0.7), rgba(255,255,255,0.2) 25%, transparent);
+    background-image: svg-gradient(to right, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.2) 25%, transparent);
 }
 
 .intObj-lobbyToHallway-left {
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 8%;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 8%;
 }
 
 .intObj-lobbyToHallway-left:hover {
-  background-image: svg-gradient(to right, transparent, rgba(255,255,255,0.2) 75%, rgba(255,255,255,0.7));
+    background-image: svg-gradient(to right, transparent, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0.7));
 }
-//endregion
 
+//endregion
 //region Corredor - Hallway
 .intObj-talkToMentor {
-  background-image: @intObj-charMentor;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  bottom: 10%;
-  left: 30%;
-  width: 13%;
-  height: 55%;
+    background-image: @intObj-charMentor;
+    background-size: contain;
+    background-repeat: no-repeat;
+    bottom: 10%;
+    left: 30%;
+    width: 13%;
+    height: 55%;
 }
 
 .intObj-goToCentroCirurgico {
-
-  top: 41%;
-  left: 53%;
-  width: 6%;
-  height: 9%;
-
+    top: 41%;
+    left: 53%;
+    width: 6%;
+    height: 9%;
 }
-
 
 .intObj-goToFarmacia {
-
-  top: 9%;
-  left: 8%;
-  width: 14%;
-  height: 15%;
-
-
+    top: 9%;
+    left: 8%;
+    width: 14%;
+    height: 15%;
 }
-
 
 .intObj-goToPostoEnfermagem {
-
-  top: 33%;
-  left: 43%;
-  width: 5%;
-  height: 5%;
-
+    top: 33%;
+    left: 43%;
+    width: 5%;
+    height: 5%;
 }
-
 
 .intObj-goToAlaFeminina {
-
-  top: 33%;
-  left: 62%;
-  width: 5%;
-  height: 5%;
-
+    top: 33%;
+    left: 62%;
+    width: 5%;
+    height: 5%;
 }
+
 .intObj-goToAlaMasculina {
-
-  top: 23%;
-  left: 70%;
-  width: 8%;
-  height: 8%;
-
+    top: 23%;
+    left: 70%;
+    width: 8%;
+    height: 8%;
 }
 
 .intObj-irLeitoDaEsquerda {
-
-  width: 7%;
-  height: 16%;
-  top: 46%;
-  left: 20%;
+    width: 7%;
+    height: 16%;
+    top: 46%;
+    left: 20%;
 }
-
 
 .intObj-irLeitoEsquerda {
-
-  width: 25%;
-  height: 35%;
-  bottom: 22%;
-  left: 9%;
+    width: 25%;
+    height: 35%;
+    bottom: 22%;
+    left: 9%;
 }
 
-
 .intObj-talkToCirculante {
-  background-image: @intObj-charCirculante;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  bottom: 6%;
-  left: 4%;
-  width: 17%;
-  height: 65%;
+    background-image: @intObj-charCirculante;
+    background-size: contain;
+    background-repeat: no-repeat;
+    bottom: 6%;
+    left: 4%;
+    width: 17%;
+    height: 65%;
 }
 
 .intObj-ir_leito_fase3 {
-
-  top: 48%;
-  left: 67%;
-  width: 11%;
-  height: 15%;
-
+    top: 48%;
+    left: 67%;
+    width: 11%;
+    height: 15%;
 }
 
-
-.intObj-talkToPacienteRegina{
-
-  top: 35%;
-  left: 44%;
-  width: 17%;
-  height: 20%;
+.intObj-talkToPacienteRegina {
+    top: 35%;
+    left: 44%;
+    width: 17%;
+    height: 20%;
 }
 
-.intObj-talkToFarmaceutico{
-  top: 22%;
-  left: 58%;
-  width: 14%;
-  height: 38%;
+.intObj-talkToFarmaceutico {
+    top: 22%;
+    left: 58%;
+    width: 14%;
+    height: 38%;
 }
 
 .intObj-irAlaFeminina_corredor {
-
-  left: 80%;
-  top: 13%;
-  width: 12%;
-  height: 28%;
+    left: 80%;
+    top: 13%;
+    width: 12%;
+    height: 28%;
 }
 
 .intObj-irAlaMasculina_corredor {
-
-  left: 80%;
-  top: 13%;
-  width: 12%;
-  height: 28%;
+    left: 80%;
+    top: 13%;
+    width: 12%;
+    height: 28%;
 }
 
 .intObj-ir_farmacia_corredor {
-
-  left: 72%;
-  top: 7%;
-  width: 8%;
-  height: 60%;
-
+    left: 72%;
+    top: 7%;
+    width: 8%;
+    height: 60%;
 }
 
-.intObj-goToNursingStation {  // Posto de Enfermagem
-  top: 32%;
-  left: 42%;
-  width: 7%;
-  height: 8%;
+.intObj-goToNursingStation {
+    // Posto de Enfermagem
+    top: 32%;
+    left: 42%;
+    width: 7%;
+    height: 8%;
 }
 
-.intObj-goToPharmacy { // Farmácia
-  top: 8%;
-  left: 7%;
-  width: 15%;
-  height: 16%;
+.intObj-goToPharmacy {
+    // Farmácia
+    top: 8%;
+    left: 7%;
+    width: 15%;
+    height: 16%;
 }
 
-.intObj-goToBedroom { // Sala de Leitos
-  top: 22%;
-  right: 21%;
-  width: 10%;
-  height: 11%;
+.intObj-goToBedroom {
+    // Sala de Leitos
+    top: 22%;
+    right: 21%;
+    width: 10%;
+    height: 11%;
 }
+
 //endregion
-
 //region Ala Masculina - Bedroom
 .intObj-ir_leito-tutorial {
-  width: 20%;
-  height: 35%;
-  bottom: 22%;
-  right: 37%;
+    width: 20%;
+    height: 35%;
+    bottom: 22%;
+    right: 37%;
 }
 
 .intObj-ir_leito-fase1 {
-  width: 18%;
-  height: 35%;
-  bottom: 22%;
-  left: 63%
+    width: 18%;
+    height: 35%;
+    bottom: 22%;
+    left: 63%
 }
 
 .intObj-ir_leito-fase4 {
-  width: 25%;
-  height: 35%;
-  bottom: 22%;
-  left: 9%;
-  zoom: 1;
+    width: 25%;
+    height: 35%;
+    bottom: 22%;
+    left: 9%;
+    zoom: 1;
 }
 
-.intObj-prontuario-leito1-fase4{
-  width: 5%;
-  height: 8%;
-  bottom: 26%;
-  left: 13%;
-  zoom: 2;
+.intObj-prontuario-leito1-fase4 {
+    width: 5%;
+    height: 8%;
+    bottom: 26%;
+    left: 13%;
+    zoom: 2;
 }
 
 .intObj-bedroomToHallway {
-  width: 12%;
-  height: 35%;
-  top: 25%;
-  right: 8%;
+    width: 12%;
+    height: 35%;
+    top: 25%;
+    right: 8%;
 }
 
 //endregion
-
 //region Leito
 //region Paciente 01 - Sr. Joao
 .intObj-paciente_01-checar_pulseira {
-  background-image: @intObj-paciente_01-checar_pulseira;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  width: 4%;
-  height: 6.5%;
-  bottom: 31%;
-  left: 52%;
+    background-image: @intObj-paciente_01-checar_pulseira;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 4%;
+    height: 6.5%;
+    bottom: 31%;
+    left: 52%;
 }
 
 .intObj-conversar_paciente {
-  width: 20%;
-  height: 30%;
-  bottom: 40%;
-  left: 45%;
+    width: 20%;
+    height: 30%;
+    bottom: 40%;
+    left: 45%;
 }
 
 .intObj-paciente_02-checar_pulseira {
-  background-image: @intObj-paciente_02-checar_pulseira;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 72.5%;
-  left: 40.5%;
-  width: 5%;
-  height: 5%;
+    background-image: @intObj-paciente_02-checar_pulseira;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 72.5%;
+    left: 40.5%;
+    width: 5%;
+    height: 5%;
 }
 
 .intObj-paciente_03-checar_pulseira {
-  background-image: @intObj-paciente_03-checar_pulseira;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 72.5%;
-  left: 40.5%;
-  width: 5%;
-  height: 5%;
+    background-image: @intObj-paciente_03-checar_pulseira;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 72.5%;
+    left: 40.5%;
+    width: 5%;
+    height: 5%;
 }
 
 .intObj-paciente_04-checar_pulseira {
-  background-image: @intObj-paciente_04-checar_pulseira;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 72.5%;
-  left: 40.5%;
-  width: 5%;
-  height: 5%;
+    background-image: @intObj-paciente_04-checar_pulseira;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 72.5%;
+    left: 40.5%;
+    width: 5%;
+    height: 5%;
 }
 
 .intObj-paciente_05-checar_pulseira {
-  background-image: @intObj-paciente_05-checar_pulseira;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 72.5%;
-  left: 40.5%;
-  width: 5%;
-  height: 5%;
+    background-image: @intObj-paciente_05-checar_pulseira;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 72.5%;
+    left: 40.5%;
+    width: 5%;
+    height: 5%;
 }
 
 .intObj-paciente_06-checar_pulseira {
-  background-image: @intObj-paciente_06-checar_pulseira;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 72.5%;
-  left: 40.5%;
-  width: 5%;
-  height: 5%;
+    background-image: @intObj-paciente_06-checar_pulseira;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 72.5%;
+    left: 40.5%;
+    width: 5%;
+    height: 5%;
 }
 
 .intObj-paciente_07-checar_pulseira {
-  background-image: @intObj-paciente_07-checar_pulseira;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 72.5%;
-  left: 40.5%;
-  width: 5%;
-  height: 5%;
+    background-image: @intObj-paciente_07-checar_pulseira;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 72.5%;
+    left: 40.5%;
+    width: 5%;
+    height: 5%;
 }
 
 .intObj-paciente_08-checar_pulseira {
-  background-image: @intObj-paciente_08-checar_pulseira;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 72.5%;
-  left: 40.5%;
-  width: 5%;
-  height: 5%;
+    background-image: @intObj-paciente_08-checar_pulseira;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 72.5%;
+    left: 40.5%;
+    width: 5%;
+    height: 5%;
 }
 
 .intObj-paciente_09-checar_pulseira {
-  background-image: @intObj-paciente_09-checar_pulseira;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 72.5%;
-  left: 40.5%;
-  width: 5%;
-  height: 5%;
+    background-image: @intObj-paciente_09-checar_pulseira;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 72.5%;
+    left: 40.5%;
+    width: 5%;
+    height: 5%;
 }
 
 .intObj-paciente_10-checar_pulseira {
-  background-image: @intObj-paciente_10-checar_pulseira;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 72.5%;
-  left: 40.5%;
-  width: 5%;
-  height: 5%;
+    background-image: @intObj-paciente_10-checar_pulseira;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 72.5%;
+    left: 40.5%;
+    width: 5%;
+    height: 5%;
 }
-//endregion
-.intObj-braceletConfirmation, .intObj-braceletConfirmed{
-  background-image: @intObj-braceletConfirmationGray;
-  background-size: contain;
-  background-repeat: no-repeat;
 
-  top: 37%;
-  right: 23%;
-  width: 9%;
-  height: 20%;
+//endregion
+.intObj-braceletConfirmation,
+.intObj-braceletConfirmed {
+    background-image: @intObj-braceletConfirmationGray;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    right: 23%;
+    width: 9%;
+    height: 20%;
 }
 
 .intObj-braceletConfirmed {
-  cursor: default;
-  background-image: @intObj-braceletConfirmationGreen;
-  background-size: contain;
+    cursor: default;
+    background-image: @intObj-braceletConfirmationGreen;
+    background-size: contain;
 }
+
 //endregion
-
 //region Posto de Enfermagem - nursingStation
-
-
 // gavetas em 1 objeto interativo
-.intObj-openDrawer{
-  width: 30%;
-  height: 29%;
-  top: 33%;
-  right: 2%;
+.intObj-openDrawer {
+    width: 30%;
+    height: 29%;
+    top: 33%;
+    right: 2%;
 }
 
 // gavetas em 2 objetos interativos
-
-.intObj-openDrawer_left{
-  width: 9%;
-  height: 29%;
-  top: 33%;
-  right: 22%;
+.intObj-openDrawer_left {
+    width: 9%;
+    height: 29%;
+    top: 33%;
+    right: 22%;
 }
 
-.intObj-openDrawer_right{
-  width: 9%;
-  height: 29%;
-  top: 33%;
-  right: 2%;
+.intObj-openDrawer_right {
+    width: 9%;
+    height: 29%;
+    top: 33%;
+    right: 2%;
 }
 
 //endregion
-
 .intObj-thermometer {
-  background-image: @intObj-thermometer;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 50%;
-  left: 21%;
-  width: 20%;
-  height: 19%;
+    background-image: @intObj-thermometer;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 50%;
+    left: 21%;
+    width: 20%;
+    height: 19%;
 }
 
 .intObj-bloodPressureMonitor {
-  background-image: @intObj-bloodPressureMonitor;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 22%;
-  left: 27%;
-  width: 16%;
-  height: 27%;
+    background-image: @intObj-bloodPressureMonitor;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 22%;
+    left: 27%;
+    width: 16%;
+    height: 27%;
 }
 
 .intObj-oximeter {
-  background-image: @intObj-oximeter;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 47%;
-  width: 11%;
-  height: 18%;
+    background-image: @intObj-oximeter;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 47%;
+    width: 11%;
+    height: 18%;
 }
 
 .intObj-watch {
-  background-image: @intObj-watch;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  right: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-watch;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    right: 23%;
+    width: 9%;
+    height: 20%;
 }
 
-.intObj-aguaPotavel{
-  background-image: @intObj-aguaPotavel;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+.intObj-aguaPotavel {
+    background-image: @intObj-aguaPotavel;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
 
 .intObj-copoDescartavel {
-  background-image: @intObj-copoDescartavel;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-copoDescartavel;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
 
-
-
 .intObj-cushion {
-  background-image: @intObj-cushion;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 35%;
-  left: 37%;
-  width: 29%;
-  height: 30%;
+    background-image: @intObj-cushion;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 35%;
+    left: 37%;
+    width: 29%;
+    height: 30%;
 }
 
 //18/11/2015
 .intObj-agulha_40x12 {
-  background-image: @intObj-agulha_40x12;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-agulha_40x12;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-algodao_seco {
-  background-image: @intObj-algodao_seco;
-
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 34%;
-  left: 63%;
-  width: 7%;
-  height: 8%;
+    background-image: @intObj-algodao_seco;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 34%;
+    left: 63%;
+    width: 7%;
+    height: 8%;
 }
+
 .intObj-aparelhodepressao_frontal {
-  background-image: @intObj-aparelhodepressao_frontal;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-aparelhodepressao_frontal;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-aparelhodepressao_lateral {
-  background-image: @intObj-aparelhodepressao_lateral;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-aparelhodepressao_lateral;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-bandeja {
-  background-image: @intObj-bandeja;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 26%;
-  left: 45%;
-  width: 10%;
-  height: 6%;
+    background-image: @intObj-bandeja;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 26%;
+    left: 45%;
+    width: 10%;
+    height: 6%;
 }
-.intObj-carrinho_anestesico {
-  background-image: @intObj-carrinho_anestesico;
-  background-size: contain;
-  background-repeat: no-repeat;
 
-  top: 20%;
-  left: 50%;
-  width: 11%;
-  height: 35%;
+.intObj-carrinho_anestesico {
+    background-image: @intObj-carrinho_anestesico;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 20%;
+    left: 50%;
+    width: 11%;
+    height: 35%;
 }
 
 .intObj-cloreto_de_sodio_20__10_ml_ {
-  background-image: @intObj-cloreto_de_sodio_20__10_ml_;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-cloreto_de_sodio_20__10_ml_;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-clorpromazina_medicamento {
-  background-image: @intObj-clorpromazina_medicamento;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 58%;
-  left: 38%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-clorpromazina_medicamento;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 58%;
+    left: 38%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-copo_descartavel {
-  background-image: @intObj-copo_descartavel;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-copo_descartavel;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-coxim {
-  background-image: @intObj-coxim;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-coxim;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-equipo_de_infusao_de_dieta {
-  background-image: @intObj-equipo_de_infusao_de_dieta;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-equipo_de_infusao_de_dieta;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-fita_adesiva_hipoalergenica_micropore {
-  background-image: @intObj-fita_adesiva_hipoalergenica_micropore;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-fita_adesiva_hipoalergenica_micropore;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-frasco_de_alcool {
-  background-image: @intObj-frasco_de_alcool;
-
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-frasco_de_alcool;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-frasco_de_dieta {
-  background-image: @intObj-frasco_de_dieta;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-frasco_de_dieta;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-garrafa_agua_potavel {
-  background-image: @intObj-garrafa_agua_potavel;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-garrafa_agua_potavel;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-gaveta {
-  background-image: @intObj-gaveta;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-gaveta;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-gaze_esteril {
-  background-image: @intObj-gaze_esteril;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-gaze_esteril;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-keflin_medicamento {
-  background-image: @intObj-keflin_medicamento;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-keflin_medicamento;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-lixo_comum {
-  background-image: @intObj-lixo_comum;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-lixo_comum;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-lixo_infectante {
-  background-image: @intObj-lixo_infectante;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-lixo_infectante;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-lixo_perfuro_cortante {
-  background-image: @intObj-lixo_perfuro_cortante;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-lixo_perfuro_cortante;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-luvas_de_procedimento {
-  background-image: @intObj-luvas_de_procedimento;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 33%;
-  left: 27%;
-  width: 19%;
-  height: 20%;
+    background-image: @intObj-luvas_de_procedimento;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 33%;
+    left: 27%;
+    width: 19%;
+    height: 20%;
 }
+
 .intObj-luvas_estereis {
-  background-image: @intObj-luvas_estereis;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-luvas_estereis;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-midazolam_medicamento {
-  background-image: @intObj-midazolam_medicamento;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-midazolam_medicamento;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-oximetro_frontal {
-  background-image: @intObj-oximetro_frontal;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-oximetro_frontal;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-oximetro_lateral {
-  background-image: @intObj-oximetro_lateral;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-oximetro_lateral;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-placa_neutra {
-  background-image: @intObj-placa_neutra;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-placa_neutra;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-prancheta {
-  background-image: @intObj-prancheta;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-prancheta;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-prancheta_horizontal {
-  background-image: @intObj-prancheta_horizontal;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-prancheta_horizontal;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-prontuario {
-  background-image: @intObj-prontuario;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-prontuario;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-relogiodigital {
-  background-image: @intObj-relogiodigital;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-relogiodigital;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-relogiodigital_lateral {
-  background-image: @intObj-relogiodigital_lateral;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-relogiodigital_lateral;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-seringa_20_ml {
-  background-image: @intObj-seringa_20_ml;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-seringa_20_ml;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-seringa_de_10_ml {
-  background-image: @intObj-seringa_de_10_ml;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-seringa_de_10_ml;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-soro_glicofisiologico_1000_ml {
-  background-image: @intObj-soro_glicofisiologico_1000_ml;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-soro_glicofisiologico_1000_ml;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-termometro_frontal {
-  background-image: @intObj-termometro_frontal;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 37%;
-  left: 23%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-termometro_frontal;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 37%;
+    left: 23%;
+    width: 9%;
+    height: 20%;
 }
+
 .intObj-aparelhoGlicemia {
-  background-image: @intObj-aparelhoGlicemia;
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  top: 44%;
-  left: 53%;
-  width: 9%;
-  height: 20%;
+    background-image: @intObj-aparelhoGlicemia;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 44%;
+    left: 53%;
+    width: 9%;
+    height: 20%;
 }
-.intObj-clorpropamida_medicamento {
-  background-image: @intObj-clorpropamida_medicamento;
-  background-size: contain;
-  background-repeat: no-repeat;
 
-  top: 60%;
-  left: 38%;
-  width: 10%;
-  height: 20%;
+.intObj-clorpropamida_medicamento {
+    background-image: @intObj-clorpropamida_medicamento;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 60%;
+    left: 38%;
+    width: 10%;
+    height: 20%;
 }
