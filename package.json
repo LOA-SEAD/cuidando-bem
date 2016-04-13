@@ -39,12 +39,16 @@
     "grunt-electron": "^2.0.1",
     "grunt-gh-pages": "^1.0.0",
     "grunt-jscs": "^2.7.0",
-    "grunt-jsdoc": "^0.5.7",
+    "grunt-jsdoc": "^1.1.0",
     "grunt-newer": "*",
     "grunt-postcss": "^0.7.2",
     "grunt-text-replace": "^0.3.12",
     "grunt-version": "^1.0.0",
+    "ink-docstrap": "^1.1.4",
+    "jaguarjs-jsdoc": "0.0.1",
+    "jsdoc": "^3.4.0",
     "load-grunt-tasks": "^3.3.0",
+    "minami": "^1.1.1",
     "time-grunt": "^1.1.0"
   },
   "bugs": {
@@ -56,5 +60,4 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": ""
-
 }
