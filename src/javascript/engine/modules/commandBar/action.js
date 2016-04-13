@@ -19,6 +19,7 @@ define([], function() {
     var counter = -1;
 
     /**
+     * A class that defines actions and its behaviour
      * @class
      * @name Action
      * @param {string} _id

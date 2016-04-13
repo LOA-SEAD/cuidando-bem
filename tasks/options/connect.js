@@ -22,7 +22,10 @@ module.exports = {
     },
 
     docs: {
-        port: "<%= pkg.port %>",
-        base: "<%= pkg.documentation %>"
+        options: {
+            // keepalive: true,
+            port: "<%= pkg.port %>",
+            base: "<%= pkg.documentation %>"
+        }
     }
 };

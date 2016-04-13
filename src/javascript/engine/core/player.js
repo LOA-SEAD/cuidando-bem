@@ -211,7 +211,7 @@ define(function() {
 
         pastLoopSound = loopSound;
         loopSound = loopSoundBuffer;
-        delete loopSoundBuffer;
+
         loopSoundBuffer = new Audio( loopList[ loopId ].getAttribute("src") );
         loopSoundBuffer.volume = loopList[ loopId ].volume;
         // loopSoundBuffer = loopList[loopId];

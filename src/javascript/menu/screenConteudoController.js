@@ -15,9 +15,9 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
- * This method adds all the events to the Credits screen
+ * This method adds all the events to the Conteudo screen
  *
- * @name Screen_credits_Controller
+ * @name Screen_conteudo_Controller
  * @module
  *
  * @author Otho - Marcelo Lopes Lotufo
@@ -27,12 +27,12 @@ define([ "Stage" ], function( Stage ) {
     var Player = require("Player");
 
     /**
-     * This method is called when the screen Credits is loaded
+     * This method is called when the screen Conteudo is loaded
      *
      * @method load
      * @public
      *
-     * @memberOf module:Screen_credits_Controller
+     * @memberOf module:Screen_conteudo_Controller
      */
     function load() {
         // $('.menuButton').click(function(){
@@ -45,12 +45,12 @@ define([ "Stage" ], function( Stage ) {
     }
 
     /**
-     * This method is called when the screen Credits is unloaded
+     * This method is called when the screen Conteudo is unloaded
      *
      * @method unload
      * @public
      *
-     * @memberOf module:Screen_credits_Controller
+     * @memberOf module:Screen_conteudo_Controller
      */
     function unload() {
 

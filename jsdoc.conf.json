@@ -5,21 +5,8 @@
 	"plugins"   : ["plugins/markdown"],
 
 	"templates" : {
-		"cleverLinks"           : false,
-		"monospaceLinks"        : false,
-		"dateFormat"            : "ddd MMM Do YYYY",
-		"outputSourceFiles"     : true,
-		"outputSourcePath"      : true,
-		"systemName"            : "Cuidando Bem",
-		"footer"                : "",
-		"copyright"             : "Cuidando Bem Copyright © 2014-2014",
-		"navType"               : "vertical",
-		"theme"                 : "cerulean",
-		"linenums"              : true,
-		"collapseSymbols"       : false,
-		"inverseNav"            : true,
-		"highlightTutorialCode" : true,
-		"protocol": "fred://"
+		"cleverLinks": false,
+        "monospaceLinks": true
 	},
 	"markdown"  : {
 		"parser"   : "gfm",

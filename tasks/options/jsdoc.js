@@ -14,7 +14,7 @@ module.exports = {
         ],
         options: {
             destination: "<%= pkg.documentation %>",
-            template: "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
+            template: "node_modules/minami/",
             configure: "jsdoc.conf.json"
         }
     }
