@@ -453,17 +453,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     
                   level.getFlag("descartar_agulha").setValue( true );
 
-                        core.setInteractiveObjectVisible("io-lixoBranco", true );
-                        core.setInteractiveObjectVisible("io-lixoInfectante", true );
-                        core.setInteractiveObjectVisible("io-perfuroCortante", true );
-
-
                     core.setActionVisible("btn-lavarMaos", false );
                     core.setActionVisible("btn-jogar_algodao_lixo",  false );
                     core.setActionVisible("btn-jogar_agulha_perfuro",  false );
                     core.setActionVisible("btn-elevar_grade_cama",  false );
                     core.setActionVisible("btn-ler_prontuario", false );
                     core.setActionVisible("btn-anotarProntuario",  false );
+                    
+                    core.setActionVisible("btn-lixoComum", true );
+                    core.setActionVisible("btn-lixoInfectante", true  );
+                    core.setActionVisible("btn-perfuroCortante", true  );
+                    
                 })
                 .setVisibility( false ),
 
@@ -476,12 +476,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                         level.getFlag("descartar_algodao").setValue( true );
 
-                    core.setActionVisible("btn-lavarMaos", false );
-                    core.setActionVisible("btn-jogar_algodao_lixo", false );
-                    core.setActionVisible("btn-jogar_agulha_perfuro", false );
+                     core.setActionVisible("btn-lavarMaos", false );
+                    core.setActionVisible("btn-jogar_algodao_lixo",  false );
+                    core.setActionVisible("btn-jogar_agulha_perfuro",  false );
+                    core.setActionVisible("btn-elevar_grade_cama",  false );
                     core.setActionVisible("btn-ler_prontuario", false );
-                    core.setActionVisible("btn-elevar_grade_cama", false );
-                    core.setActionVisible("btn-anotarProntuario", false );
+                    core.setActionVisible("btn-anotarProntuario",  false );
                     
                     core.setActionVisible("btn-lixoComum", true );
                     core.setActionVisible("btn-lixoInfectante", true  );
@@ -537,6 +537,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         //score
                     
                     if(level.getFlag("descartar_algodao").getValue() == true) {
+                        
+                    core.setActionVisible("btn-lixoComum", false );
+                    core.setActionVisible("btn-lixoInfectante", false  );
+                    core.setActionVisible("btn-perfuroCortante", false  );   
+                                
                     
                     core.setActionVisible("btn-lavarMaos", true );
                     core.setActionVisible("btn-jogar_algodao_lixo", false );
@@ -545,7 +550,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.setActionVisible("btn-elevar_grade_cama", true );
                     core.setActionVisible("btn-anotarProntuario", true );
                         
+                    if(level.getFlag("descartar_agulha").getValue() == true)
+                            core.setActionVisible("btn-jogar_agulha_perfuro", false );
+                            
                         }
+                    
+                    else {
+                        
+                         core.openDialog(7);
+                    }
+         
                     
                     
                     
@@ -554,7 +568,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 
                    
                 })
-                .setVisibility( true ),
+                .setVisibility( false ),
             
             
             
@@ -566,7 +580,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // fazer score?
                    
                 })
-                .setVisibility( true ),
+                .setVisibility( false ),
             
             
             
@@ -574,10 +588,38 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-lixo_perfuro_cortante")
                 .onClick(function() {
                 
+                    
+                            if(level.getFlag("descartar_agulha").getValue() == true) {
+                                
+                                
+                                 core.setActionVisible("btn-lixoComum", false );
+                                core.setActionVisible("btn-lixoInfectante", false  );
+                                core.setActionVisible("btn-perfuroCortante", false  );   
+                                
+                                core.setActionVisible("btn-lavarMaos", true );
+                                core.setActionVisible("btn-jogar_algodao_lixo", true );
+                                core.setActionVisible("btn-jogar_agulha_perfuro", false );
+                                core.setActionVisible("btn-ler_prontuario", true );
+                                core.setActionVisible("btn-elevar_grade_cama", true );
+                                core.setActionVisible("btn-anotarProntuario", true );
+                                      
+                                   if(level.getFlag("descartar_algodao").getValue() == true)
+                            core.setActionVisible("btn-jogar_algodao_lixo", false );            
+                       
+                            }
+                    
+                      else {
+                        
+                         core.openDialog(7);
+                    }
+                    
+                      
+                    
+                     
                 
                    
                 })
-                .setVisibility( true ),
+                .setVisibility( false ),
             
 
         ]);
@@ -1277,6 +1319,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.getFlag("descartar_agulha").setValue( false );
             level.getFlag("score_algodao").setValue( false );
             level.getFlag("score_agulha").setValue( false );
+   
 
             Pulseira.setNameRegExp( /Raul Gonzales Rodrigues/ );
             Pulseira.setLeitoRegExp( /0*3/ );
@@ -1385,6 +1428,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("descartar_agulha"), false );
         level.registerFlag( new Flag("score_agulha"), false );
         level.registerFlag( new Flag("score_algodao"), false );
+
 
         level.setInitialScene( 0 );
         // endregion
