@@ -636,7 +636,28 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                     core.openDialog( 0 );
 
+                }),
+        
+        new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
+                .setCssClass("intObj-paciente_04-checar_pulseira")
+                .onClick(function() {
+                    
+                   /* if ( level.getFlag("score_falar_paciente").getValue() == false ) {
+                        core.closeCommandBar();
+                        core.openDialog( 15 );
+                    } else {
+                        // Desabilita o primeiro diálogo com o paciente
+                        level.getFlag("conversar_paciente2").setValue( false );
+                        level.getFlag("selecionar_bandeja").setValue( true );
+                        console.log("IO: pulseira_paciente");*/
+                        core.openModalScene("pulseira");
+                        Pulseira.open();
+                        core.openCommandBar();
+               //     }
                 })
+                .setVisibility( true ),
+        
+        
 
 
         ]);
@@ -1045,6 +1066,29 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true )
 
         ]);
+    
+    // region PULSEIRA
+    
+       pulseira = new Scene("pulseira", "pulseira");
+
+        pulseira.registerInteractiveObjects([]);
+
+        pulseira.registerActions([
+            new Action("btn-largar_pulseira", "Fechar pulseira")
+                .setCssClass("action-pulseira_paciente")
+                .onClick(function() {
+                    console.log("Ação: Fechar modal pulseira");
+                    core.closeModalScene("Pulseira");
+                  /*  if ( level.getFlag("score_verificar_pulseira").getValue() == false ) {
+                        level.getFlag("score_verificar_pulseira").setValue( true );
+                        core.registerScoreItem( Scores.verificarPulseira );
+                    }*/
+                    Pulseira.close();
+                })
+                .setVisibility( true )
+        ]);
+    
+    
 
 
         // endregion
@@ -1054,6 +1098,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // region ModalScenes
 
         level.registerModalScene( prontuario );
+        level.registerModalScene( pulseira );
 
 
         // endregion
@@ -1151,6 +1196,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
 
             Prontuario.setAnotacaoEnfermagemRowData("", "");
+            
+            
+            Pulseira.setNameRegExp( /Regina Oliveira/ );
+            Pulseira.setLeitoRegExp( /0*3/ );
+            Pulseira.setDataRegExp( /19\/04\/1952/ );
+
+            Pulseira.setName("Regina Oliveira");
+            Pulseira.setLeito("03");
+            Pulseira.setData("19/04/1952");
+            Pulseira.disable();
+            
+            
+            
 
         });
 
