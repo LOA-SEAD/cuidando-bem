@@ -66,8 +66,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         // region ALA FEMININA
 
-        var alaFeminina = new Scene("alaMasculina", "Ala Masculina")
-        .setCssClass("scene-bedroom-level6")
+        var alaFeminina = lib.scenes.alaFeminina.getClone()
         .onLoad(function() {
 
         });
@@ -84,6 +83,24 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             }
 
         }
+    
+    
+    
+     
+    
+    
+        alaFeminina.registerInteractiveObjects([ 
+      
+         new InteractiveObject("io-ir_corredor", "Ir ao corredor")
+                .setCssClass("intObj-irAlaFeminina_corredor")
+                .onClick(function() {
+                    console.log("voltando para corredor");
+
+                    core.changeScene( 1 );
+
+                }),
+        
+      ]);
         // endregion ALA FEMININA
 
         // region Recepcao
@@ -276,6 +293,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // region ALA MASCULINA
 
         var alaMasculina = lib.scenes.alaMasculina.getClone()
+            .setCssClass("scene-bedroom-level6")
             .onLoad(function() {
                 console.log("Load scene: " + alaMasculina.getName() );
 
