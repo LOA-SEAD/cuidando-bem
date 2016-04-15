@@ -496,7 +496,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 // CONSERTAR
                 .setCssClass("action-elevar_grade_cama")
                 .onClick(function() {
-                    if ( level.getFlag("score_jogou_agulha_perfuro").getValue() == true ) {
+                    if ( level.getFlag("descartar_agulha").getValue() == true ) {
                         console.log("Action: Elevar a grade da cama");
                         if ( level.getFlag("score_elevou_grade_cama").getValue() == false ) {
                             level.getFlag("score_elevou_grade_cama").setValue( true );

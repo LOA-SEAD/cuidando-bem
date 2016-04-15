@@ -612,7 +612,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
     // region LEITO
 
-    var leito = lib.scenes.leitos.ana.getClone()
+    var leito = lib.scenes.leitos.josivaldo.getClone()
     .onLoad(function() {
 
      core.openDialog( 0 );
@@ -672,15 +672,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     leito.registerInteractiveObjects([
 
         new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
-        .setCssClass("intObj-paciente_01-checar_pulseira")
+        .setCssClass("intObj-paciente_07-checar_pulseira")
         .onClick(function() {
             console.log("IO: pulseira_paciente");
             core.openModalScene("Pulseira");
-            pulseira.open();
+            Pulseira.open();
             core.openCommandBar();
         })
-        .setVisibility( true )
-        .setEnable( false ),
+        .setVisibility( true ),
+    //    .setEnable( false ),
 
 
             new InteractiveObject("io-conversar_paciente07", "Falar com o paciente")
@@ -819,7 +819,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     level.getFlag("score_verificar_pulseira").setValue( true );
                 }
 
-                    pulseira.close();
+                    Pulseira.close();
                 })
         .setVisibility( true )
         ]);
@@ -852,7 +852,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         gaveta.registerActions([
             new Action("btn-fechar_gaveta", "Fechar gaveta")
-                .setCssClass("action-fechar_gaveta")
+                .setCssClass("action-fecharGaveta")
                 .onClick(function() {
                     console.log("Action: fechar_gaveta");
                     // Som
@@ -1054,6 +1054,20 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setSsvvRowData( 0, "", "100X10", "65", "16", "93", "36.5", true );
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
             Prontuario.setAnotacaoEnfermagemRowData( "", "" );
+            
+            
+            // 'pulseira' content
+            Pulseira.setNameRegExp( /Josivaldo Silva/ );
+            Pulseira.setLeitoRegExp( /0*3/ );
+            Pulseira.setDataRegExp( /02\/02\/1961/ );
+
+            Pulseira.setName("Josivaldo Silva");
+            Pulseira.setLeito("03");
+            Pulseira.setData("02/02/1961");
+            Pulseira.disable();
+            
+            
+            
         });
 
         level.registerFlag( new Flag("conversar_mentor"), false );

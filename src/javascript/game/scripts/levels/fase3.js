@@ -1058,7 +1058,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                     if ( level.getFlag("verificar_oximetro_local_cirurgia").getValue() == true && level.getFlag("colocar_placa_neutra").getValue() == true ) {
                         level.getFlag("fim_fase").setValue( true );
-                        console.log("ACABOUUUUU EH TETRAAAA");
+            
                         core.changeScene( 1 );
                     }
 
