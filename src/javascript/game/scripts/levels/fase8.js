@@ -204,7 +204,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             new InteractiveObject("io-ir_leito", "Ir ao leito")
-                .setCssClass("intObj-ir_leito-tutorial")
+                .setCssClass("intObj-irLeitoEsquerda")
                 .onClick(function() {
                     if ( level.getFlag("score_lavar_maos_antes_leito").getValue() == false ) {
                         if ( level.getFlag("score_nao_lavar_maos_antes_leito").getValue() == false ) {
@@ -313,7 +313,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         leito.registerInteractiveObjects([
             new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
                 // VAI MUDAR
-                .setCssClass("intObj-paciente_02-checar_pulseira")
+                .setCssClass("intObj-paciente_09-checar_pulseira")
                 .onClick(function() {
                     console.log("IO: pulseira_paciente");
                     if ( level.getFlag("score_verificar_pulseira").getValue() == false ) {
@@ -446,7 +446,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( level.getFlag("levou_yuri_centro_cirurgico").getValue() == false ) {
                         level.getFlag("levou_yuri_centro_cirurgico").setValue( true );
                     }
-                    core.setActionVisible("btn-falarPaciente", false );
+                    //core.setActionVisible("btn-falarPaciente", false );
                     core.setActionVisible("btn-oferecer_copo", false );
                     core.setActionVisible("btn-administrar_medicamento", false );
                     core.setActionVisible("btn-levar_yuri_cc", false );
@@ -1176,11 +1176,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.getFlag("score_anotar_prontuario_centro_cirurgico").setValue( false );
 
             Pulseira.setNameRegExp( /Yuri de Souza Almeida/ );
-            Pulseira.setLeitoRegExp( /0*2/ );
+            Pulseira.setLeitoRegExp( /0*1/ );
             Pulseira.setDataRegExp( /16\/03\/1993/ );
 
             Pulseira.setName("Yuri de Souza Almeida");
-            Pulseira.setLeito("02");
+            Pulseira.setLeito("01");
             Pulseira.setData("16/03/1993");
             Pulseira.disable();
 
@@ -1197,7 +1197,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAlergiaMedicamentosa( true, "Dipirona, sulfa.");
             Prontuario.setDisableAlergiaMedicamentosa( true );
             Prontuario.setDataInternacao("27/09/2015");
-            Prontuario.setLeito("02 - Enfermaria masculina");
+            Prontuario.setLeito("01 - Enfermaria masculina");
             Prontuario.setAntecedentes("");
             Prontuario.setHipotese("Cirurgia de reconstrução do ligamento cruzado anterior (LCA), no MMII direito.");
             Prontuario.setObservacoes("Acidente automobilístico.");

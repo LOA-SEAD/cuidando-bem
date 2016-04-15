@@ -42,8 +42,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // region Recepcao
         function recepcaoIrCorredor() {
             console.log("Funcao: recepcao_ir_corredor");
-            core.closeDialog();
-            core.changeScene( 1 );
+            if ( level.getFlag("pegarFolheto9Certos").getValue() == false ) {
+                core.openDialog( 2 );
+            } else {
+                core.closeDialog();
+                core.changeScene( 1 );
+            }
             console.log("Ir para o corredor");
         }
 
@@ -74,6 +78,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeDialog( 1 );
                     core.setInteractiveObjectVisible("io-ir_corredor_esquerda", true );
                     core.setInteractiveObjectVisible("io-ir_corredor_direita", true );
+                }),
+            // Dialog 2
+            new Dialog( lib.characters.recepcionista )
+                .setText( Alertas.esqueceu.folheto9certos )
+                .registerOption("", function() {
+                    core.closeDialog();
                 })
         ]);
 
@@ -485,8 +495,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             new Action("btn-administrarMedicamento", "Administrar medicamento")
-                // Não existe a imagem correta
-                .setCssClass("action-administrarMedicamento")
+                .setCssClass("action-keflin_medicamento")
                 .onClick(function() {
                     if ( level.getFlag("score_administrar_medicacao").getValue() == false ) {
                         core.registerScoreItem( Scores.administrarMedicacao );
@@ -504,8 +513,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             new Action("btn-realizarGotejamento", "Realizar gotejamento de soro no equipo")
-            // Não existe a imagem correta
-                .setCssClass("action-realizarGotejamento")
+                .setCssClass("action-equipo")
                 .onClick(function() {
                     if ( level.getFlag("score_gotejar_soro_equipo").getValue() == false ) {
                         core.registerScoreItem( Scores.gotejarSoroEquipo );
@@ -793,7 +801,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( false ),
 
             new Action("btn-gotejamentoSoro", "Calcular gotejamento do soro")
-                .setCssClass("action-gotejamentoSoro")
+                .setCssClass("action-equipo")
                 .onClick(function() {
                     console.log("Action: Calcular gotejamento do soro");
                     if ( level.getFlag("score_calculou_gotejamento").getValue() == false ) {
@@ -1011,8 +1019,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         gavetaEsquerda.registerInteractiveObjects([
             // Soro Fisiológico 0,9% (100 ml)
             new InteractiveObject("io-soro", "Pegar soro fisiológico 0,9% (100 ml)")
-            // Ainda nao disponivel imagem correta
-                .setCssClass("intObj-thermometer")
+                .setCssClass("intObj-soro_fisiologico_100_ml")
                 .onClick(function() {
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
@@ -1042,7 +1049,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             // Luvas de procedimento
             new InteractiveObject("io-luvas", "Pegar luvas de procedimento")
-                .setCssClass("intObj-luvas_de_procedimento")
+                .setCssClass("intObj-luvas_de_procedimento_fase5")
                 .onClick(function() {
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
@@ -1057,8 +1064,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             // Seringa de 5 ml
             new InteractiveObject("io-seringa5ml", "Pegar seringa de 5 ml")
-            // Ainda nao disponivel imagem correta
-                .setCssClass("intObj-watch")
+                .setCssClass("intObj-seringa_5_ml")
                 .onClick(function() {
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
@@ -1073,8 +1079,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             // Ampola de soro Fisiológico 0,9% (10ml)
             new InteractiveObject("io-ampola_soro", "Pegar ampola de soro Fisiológico 0,9% (10ml)")
-                // Ainda nao disponivel imagem correta
-                .setCssClass("intObj-luvas_estereis")
+                .setCssClass("intObj-cloreto_de_sodio_20__10_ml_")
                 .onClick(function() {
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
@@ -1134,8 +1139,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             // Equipo de soro macrogotas
             new InteractiveObject("io-equipo_soro", "Pegar equipo de soro macrogotas")
-                // Ainda nao disponivel imagem correta
-                .setCssClass("intObj-fita_adesiva_hipoalergenica_micropore")
+                .setCssClass("intObj-equipo_de_soro")
                 .onClick(function() {
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );

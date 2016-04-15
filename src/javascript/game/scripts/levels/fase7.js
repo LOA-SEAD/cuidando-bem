@@ -566,7 +566,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( level.getFlag("conferir_medicamento_correto").getValue() == false ) {
                         level.getFlag("conferir_medicamento_correto").setValue( true );
                         core.registerScoreItem( Scores.conferirMedicamentoCorreto );
-                        core.setActionVisible("btn-clorpropamidaMedicamento", false );
                     }
                 })
                 .setVisibility( false )
@@ -642,6 +641,25 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.openDialog( 3 );
                 })
+
+        ]);
+
+        leito.registerInteractiveObjects([
+
+            new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
+                .setCssClass("intObj-paciente_08-checar_pulseira")
+                .onClick(function() {
+                    console.log("IO: pulseira_paciente");
+                    core.openModalScene("pulseira");
+                    /*if ( level.getFlag("score_verificar_pulseira").getValue() == false ) {
+                        core.registerScoreItem( Scores.verificarPulseira );
+                        level.getFlag("score_verificar_pulseira").setValue( true );
+                    }*/
+                    Pulseira.open();
+                    core.openCommandBar();
+                })
+                .setVisibility( true )
+
 
         ]);
 
@@ -863,11 +881,29 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         // endregion
 
+        // region Pulseira
+        pulseira = new Scene("pulseira", "pulseira");
+
+        pulseira.registerInteractiveObjects([]);
+
+        pulseira.registerActions([
+            new Action("btn-largar_pulseira", "Fechar pulseira")
+                .setCssClass("action-pulseira_paciente")
+                .onClick(function() {
+                    console.log("Ação: Fechar modal pulseira");
+                    core.closeModalScene("Pulseira");
+                    Pulseira.close();
+                })
+                .setVisibility( true )
+        ]);
+        // endregion
+
         // endregion
 
         // region ModalScenes
         level.registerModalScene( prontuario );
         level.registerModalScene( gaveta );
+        level.registerModalScene( pulseira );
         // endregion
 
         // region Level
@@ -930,6 +966,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.getFlag("score_pegar_copo_descartavel").setValue( false );
             level.getFlag("ir_ala_feminina_primeira_vez").setValue( false );
             level.getFlag("lavarMaos").setValue( false );
+
+            //Dados da pulseira
+            Pulseira.setNameRegExp( /Ana Beatriz Galv(a|ã)o/ );
+            Pulseira.setLeitoRegExp( /0*1/ );
+            Pulseira.setDataRegExp( /19\/07\/1979/ );
+
+            Pulseira.setName("Ana Beatriz Galvão");
+            Pulseira.setLeito("01");
+            Pulseira.setData("19/07/1979");
+            Pulseira.disable();
 
             //  dados do prontuario
             Prontuario.setNome("Ana Beatriz Galvão");

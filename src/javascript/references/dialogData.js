@@ -985,7 +985,10 @@ define({
             ],
             pegarDieta: [
                 "O paciente necessita da dieta!"
-            ]
+            ],
+            folheto9certos: [
+                "Pegue o folheto dos 9 certos!"
+            ],
         },
         descarte: {
             algodão: [
