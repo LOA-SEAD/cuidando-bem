@@ -33,6 +33,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
      var
             recepcao,
             corredor,
+            alaMasculina,
             alaFeminina,
             centroCirurgico,
             salaDeLeitos,
@@ -45,6 +46,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             zoom;
 
         // region Scenes
+    
 
 
         // region CENTRO CIRURGICO
@@ -75,7 +77,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // region ALA FEMININA
 
 
-         var alaFeminina = new Scene("alaMasculina", "Ala Masculina")
+         var alaFeminina = new Scene("alaFeminina", "Ala Feminina")
             .setCssClass("scene-bedroom-level9")
             .onLoad(function() {
 
@@ -232,9 +234,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
       // region ALA MASCULINA
-
-
-      var alaMasculina = lib.scenes.alaMasculina.getClone()
+    
+    
+        var alaMasculina = lib.scenes.alaMasculina.getClone()
             .onLoad(function() {
 
 
@@ -703,7 +705,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // 02
         level.registerScene( alaMasculina );
         // 03
-        level.registerScene( leito );
+        //level.registerScene( leito );
         // 04
         level.registerScene( farmacia );
         // 05
@@ -717,8 +719,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         // region Register Modal Scenes
 
-            level.registerModalScene( prontuario );
-    level.registerModalScene( gaveta );
+         level.registerModalScene( prontuario );
+         level.registerModalScene( gaveta );
       //  level.registerModalScene( pulseira );
 
         // endregion
@@ -732,6 +734,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             level.getFlag("score_iralaFeminina_horaErrada").setValue( false );
             level.getFlag("score_irCentroCirurgico_horaErrada").setValue( false );
+            level.getFlag("pegou_tudo_postoEnfermagem").setValue( false );
+            level.getFlag("falar_paciente").setValue( false );
 
 
              //  dados do prontuario
@@ -768,6 +772,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         level.registerFlag( new Flag("score_iralaFeminina_horaErrada"), false );
         level.registerFlag( new Flag("score_irCentroCirurgico_horaErrada"), false );
+        level.registerFlag( new Flag("pegou_tudo_postoEnfermagem"), false );
+        level.registerFlag( new Flag("falar_paciente"), false );
 
 
         level.setInitialScene( 0 );
