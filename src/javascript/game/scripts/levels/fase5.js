@@ -379,10 +379,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         leito.registerInteractiveObjects([
 
             new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
-                // VAI MUDAR
-                .setCssClass("intObj-paciente_02-checar_pulseira")
+                .setCssClass("intObj-paciente_06-checar_pulseira")
                 .onClick(function() {
-
+                    console.log("IO: pulseira_paciente");
+                    core.openModalScene("pulseira");
+                    if ( level.getFlag("score_verificar_pulseira").getValue() == false ) {
+                        core.registerScoreItem( Scores.verificarPulseira );
+                        level.getFlag("score_verificar_pulseira").setValue( true );
+                    }
+                    Pulseira.open();
+                    core.openCommandBar();
                 })
                 .setVisibility( true ),
 
@@ -431,7 +437,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText("")
                 .registerOption( Dialogs.leitoPaciente[ 4 ], function() {
                     core.closeDialog();
-                    core.setActionVisible("btn-falarPaciente", false );
+                    //core.setActionVisible("btn-falarPaciente", false );
                     core.setActionVisible("btn-realizar_teste_glicemia", true );
                     core.setActionVisible("btn-descartar_agulha", true );
                     core.setActionVisible("btn-jogar_algodao", true );
@@ -672,7 +678,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( false ),
 
             new Action("btn-calcar_luvas_estereis", "Calçar luvas estéreis")
-                .setCssClass("action-luvasEstereis")
+                .setCssClass("action-luvas_estereis")
                 .onClick(function() {
                     console.log("Action: Calçar luvas estéreis");
                     if ( level.getFlag("score_lavou_maos_antes_calcar_luva").getValue() == false ) {
@@ -895,7 +901,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         gaveta.registerInteractiveObjects([
             // Kit glicemia
             new InteractiveObject("io-kit_glicemia", "Pegar Kit de glicemia")
-            // Ainda nao disponivel imagem correta
                 .setCssClass("intObj-aparelhoGlicemia")
                 .onClick(function() {
                     console.log("Action: pegar kit de glicemia");
@@ -922,7 +927,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             // Luvas
             new InteractiveObject("io-luvas", "Pegar luvas")
-                .setCssClass("intObj-luvas_de_procedimento")
+                .setCssClass("intObj-luvas_de_procedimento_fase5")
                 .onClick(function() {
                     console.log("Action: pegar luvas");
                     // Som
@@ -974,8 +979,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             // Soro Fisiológico 0,9% (250 ml) aquecido
             new InteractiveObject("io-soro", "Pegar soro fisiológico 0,9% (250 ml) aquecido")
-            // Ainda nao disponivel imagem correta
-                .setCssClass("intObj-watch")
+                .setCssClass("intObj-soro_fisiologico_250_ml")
                 .onClick(function() {
                     console.log("Action: pegar soro fisiológico 0,9% (250 ml) aquecido");
                     // Som
