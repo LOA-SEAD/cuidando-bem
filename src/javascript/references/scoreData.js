@@ -274,14 +274,16 @@ define(function() {
         },
 
         level9: {
-            lerProntuario: new Score("Ler prontuário do paciente", 150 ),
+            lerProntuario: new Score("Ler prontuario do paciente", 150 ),
+            pegarPrescricaoMedica: new Score("Pegar Prescrição Médica", 150 ),
             pegarFrascoSG: new Score("Pegar Frasco SG 5%", 50 ),
             pegarNACL: new Score("Pegar NaCL 20%", 50 ),
             conferirDieta: new Score("Conferir Medicamento Prescrito", 150 ),
             pegarSeringa: new Score("Pegar Seringa 5ml", 50 ),
             pegarAgulha: new Score("Pegar Agulha 40X12", 50 ),
             pegarGlicose: new Score("Pegar Ampola de Glicose 50%", 50 ),
-            pegarSoro: new Score("Pegar Soro de Macrogotas", 50 )
+            pegarSoro: new Score("Pegar Soro de Macrogotas", 50 ),
+            irFarmacia_horaErrada: new Score("Ir para a farmácia na hora errada", -25),
         }
     };
 });

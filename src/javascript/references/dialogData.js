@@ -813,7 +813,9 @@ define({
             // 4 Paciente
             "Tá certo! Brigado.",
             // 5 Mentor Alerta
-            "Esqueceu de se apresentar? E como está o paciente?"
+            "Esqueceu de se apresentar? E como está o paciente?",
+            // 6 Esqueceu prescricao ou prontuario
+            "Você está se esquecendo de algo importante.",
         ],
         farmacia: [
             // 0 Farmaceutico
@@ -848,7 +850,7 @@ define({
             "Lembre-se de pegar todos os equipamentos antes de sair!"
         ],
 
-        alaMasculina: [
+        alaMasculina1: [
             // 0 Jogador
             "Agora estamos no leito correto, senhor Francisco.",
             // 1 Paciente
