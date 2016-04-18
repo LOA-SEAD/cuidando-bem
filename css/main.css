@@ -178,6 +178,45 @@ td,
 th {
     padding: 0;
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 @font-face {
   font-family: "Pacifico";
   src: local("?"), url("../fonts/Pacifico/Pacifico.ttf") format("truetype");
@@ -220,6 +259,19 @@ th {
   font-weight: normal;
   font-style: normal;
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 html,
 body {
   -webkit-touch-callout: none;
@@ -228,6 +280,19 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 .menuBackImage,
 .levelSelect-backImage,
 .slotSelect-backImage,
@@ -259,6 +324,19 @@ body {
   padding: 5px 45px;
   font-size: 22px;
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 .menuButton,
 .backButton {
   position: relative;
@@ -273,44 +351,53 @@ body {
 .menuButtonBlue {
   background-color: #3498db;
   border-bottom: 5px solid #2980B9;
-  text-shadow: 0px -2px #2980b9;
+}
+.menuButtonBlue:hover {
+  background-color: #5FAEE3;
 }
 .menuButtonRed {
   background-color: #e74c3c;
   border-bottom: 5px solid #BD3E31;
-  text-shadow: 0px -2px #bd3e31;
+}
+.menuButtonRed:hover {
+  background-color: #EC7669;
 }
 .menuButtonGreen {
   background-color: #82bf56;
   border-bottom: 5px solid #669644;
-  text-shadow: 0px -2px #669644;
+}
+.menuButtonGreen:hover {
+  background-color: #9CCD7A;
 }
 .menuButtonYellow {
   background-color: #e4bc47;
   border-bottom: 5px solid #A38426;
-  text-shadow: 0px -2px #a38426;
+}
+.menuButtonYellow:hover {
+  background-color: #EACD75;
 }
 .menuButton.disabled {
   background-color: #8E8F8E !important;
   border-bottom: 5px solid #5b5c5b !important;
-  text-shadow: 0px -2px #5b5c5b !important;
-}
-.menuButton:hover,
-.backButton:hover {
-  transform: translate(0px, -2px);
-  -webkit-transform: translate(0px, -2px);
-  border-bottom-width: 7px;
 }
 .menuButton:active {
-  transform: translate(0px, 5px);
-  -webkit-transform: translate(0px, 5px);
-  border-bottom: 1px solid #2980B9;
+  border-bottom: 5px solid transparent;
+  -webkit-transform: translate(0px, 2px);
+          transform: translate(0px, 2px);
 }
-.menuButtonAnimate,
-.level {
-  transition: all 0.1s;
-  -webkit-transition: all 0.1s;
-}
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 .ui-widget-overlay {
   background-color: black;
   opacity: 0.5;
@@ -438,7 +525,7 @@ body {
   text-align: center;
   height: 15%;
   width: 85%;
-  font-size: 4em;
+  font-size: 3em;
 }
 .dialogVoltarBtt {
   margin-right: 5%;
@@ -469,6 +556,19 @@ body {
   position: relative;
   top: 2px;
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 #game {
   width: 100vw;
   height: 60vw;
@@ -498,6 +598,19 @@ body {
   width: 100%;
   height: 100%;
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 .levelSelect-backImage {
   position: absolute;
   background-image: url(../images/screens/tela_levelSelect.jpg);
@@ -519,6 +632,7 @@ p.title {
   margin: 0;
   position: relative;
   top: -5%;
+  z-index: 5;
 }
 .level:hover:not(.disabled) {
   z-index: 3;
@@ -659,6 +773,19 @@ p.title {
   width: 15%;
   right: 1%;
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 #slotSelect {
   position: absolute;
   width: 100%;
@@ -721,8 +848,14 @@ p.title {
   font-size: 4em;
   cursor: hand;
 }
+#slotsContainer .slot:hover:not(.selected) {
+  background-color: #80B1B3;
+}
 #slotsContainer .slot.selected {
   background-color: indianred;
+}
+#slotsContainer .slot.selected:hover {
+  background-color: #D98282;
 }
 #slotsContainer .slot.empty {
   color: #000;
@@ -745,7 +878,7 @@ p.title {
 }
 .type-name-dialog {
   width: 30% !important;
-  height: 30% !important;
+  height: 33% !important;
   box-sizing: border-box;
   top: 35% !important;
   left: 35% !important;
@@ -757,6 +890,19 @@ p.title {
   top: 35% !important;
   left: 35% !important;
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 #mainMenu {
   position: absolute;
   width: 100%;
@@ -779,10 +925,36 @@ p.title {
 .mainMenu-backImage {
   background-image: url(../images/screens/tela_inicial.jpg);
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 .credits-backImage {
   position: absolute;
   background-image: url(../images/screens/credits.jpg);
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 .config-backImage {
   position: absolute;
   background-image: url(../images/screens/config.jpg);
@@ -871,6 +1043,19 @@ p.title {
   position: relative;
   top: -2px;
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 #screenConteudo {
   position: absolute;
   width: 100%;
@@ -880,6 +1065,19 @@ p.title {
 #screenConteudo-backImage {
   background-image: url(../images/screens/conteudo.jpg);
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 html,
 body {
   position: absolute;
@@ -888,6 +1086,19 @@ body {
   text-align: center;
   background-color: black;
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 #interactiveObjects {
   position: absolute;
   width: 100%;
@@ -908,48 +1119,21 @@ body {
 }
 .intObj-talkToReceptionist {
   background-image: url(../images/interactiveObjects/intObj-receptionist.png);
-  background-size: cover;
-}
-@media screen and (min-width: 768px) {
-  .intObj-talkToReceptionist {
-    width: 145.2px;
-    height: 157.8px;
-    top: 108px;
-    right: 290px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-talkToReceptionist {
-    width: 193.6px;
-    height: 210.4px;
-    top: 135px;
-    right: 380px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-talkToReceptionist {
-    width: 242px;
-    height: 263px;
-    top: 157px;
-    right: 448px;
-  }
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 18%;
+  height: 33%;
+  top: 25%;
+  left: 45%;
 }
 .intObj-9Certos {
-  background: red;
-  position: absolute;
-  width: 11%;
+  background-image: url(../images/interactiveObjects/9certos.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 9%;
   height: 8%;
   top: 45%;
-  right: 17%;
-}
-.intObj-lobbyToHallway-left {
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 8%;
-}
-.intObj-lobbyToHallway-left:hover {
-  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwLjciLz48c3RvcCBvZmZzZXQ9IjI1JSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwLjIiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMCIvPjwvbGluZWFyR3JhZGllbnQ+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkaWVudCkiIC8+PC9zdmc+');
+  right: 18%;
 }
 .intObj-lobbyToHallway-right {
   right: 0;
@@ -958,35 +1142,25 @@ body {
   width: 8%;
 }
 .intObj-lobbyToHallway-right:hover {
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwLjciLz48c3RvcCBvZmZzZXQ9IjI1JSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwLjIiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMCIvPjwvbGluZWFyR3JhZGllbnQ+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkaWVudCkiIC8+PC9zdmc+');
+}
+.intObj-lobbyToHallway-left {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 8%;
+}
+.intObj-lobbyToHallway-left:hover {
   background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwIi8+PHN0b3Agb2Zmc2V0PSI3NSUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMC4yIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZmZmZmZmIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvbGluZWFyR3JhZGllbnQ+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkaWVudCkiIC8+PC9zdmc+');
 }
 .intObj-talkToMentor {
   background-image: url(../images/interactiveObjects/char-mentor.png);
   background-size: contain;
-}
-@media screen and (min-width: 768px) {
-  .intObj-talkToMentor {
-    bottom: 6%;
-    left: 25%;
-    width: 110.2px;
-    height: 303.92px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-talkToMentor {
-    bottom: 6%;
-    left: 25%;
-    width: 140.6px;
-    height: 387.76px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-talkToMentor {
-    bottom: 6%;
-    left: 25%;
-    width: 171px;
-    height: 471.6px;
-  }
+  background-repeat: no-repeat;
+  bottom: 10%;
+  left: 30%;
+  width: 13%;
+  height: 55%;
 }
 .intObj-goToCentroCirurgico {
   top: 41%;
@@ -1031,32 +1205,13 @@ body {
   left: 9%;
 }
 .intObj-talkToCirculante {
-  background-image: url(../images/interactiveObjects/char-mentor.png);
+  background-image: url(../images/interactiveObjects/circulanteDeLeito.png);
   background-size: contain;
-}
-@media screen and (min-width: 768px) {
-  .intObj-talkToCirculante {
-    bottom: 6%;
-    left: 4%;
-    width: 110.2px;
-    height: 303.92px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-talkToCirculante {
-    bottom: 6%;
-    left: 4%;
-    width: 140.6px;
-    height: 387.76px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-talkToCirculante {
-    bottom: 6%;
-    left: 4%;
-    width: 171px;
-    height: 471.6px;
-  }
+  background-repeat: no-repeat;
+  bottom: 6%;
+  left: 4%;
+  width: 17%;
+  height: 65%;
 }
 .intObj-ir_leito_fase3 {
   top: 48%;
@@ -1116,13 +1271,19 @@ body {
   width: 20%;
   height: 35%;
   bottom: 22%;
-  left: 37%;
+  right: 37%;
 }
 .intObj-ir_leito-fase1 {
   width: 18%;
   height: 35%;
   bottom: 22%;
   left: 63%;
+}
+.intObj-ir_leito-fase2 {
+  width: 12%;
+  height: 18%;
+  bottom: 36%;
+  left: 66%;
 }
 .intObj-ir_leito-fase4 {
   width: 25%;
@@ -1146,31 +1307,12 @@ body {
 }
 .intObj-paciente_01-checar_pulseira {
   background-image: url(../images/interactiveObjects/pulseira01.png);
-  background-size: cover;
-}
-@media screen and (min-width: 768px) {
-  .intObj-paciente_01-checar_pulseira {
-    width: 29.93px;
-    height: 30.135px;
-    bottom: 31.5%;
-    left: 52%;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-paciente_01-checar_pulseira {
-    width: 39.42px;
-    height: 39.69px;
-    bottom: 31.5%;
-    left: 52%;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-paciente_01-checar_pulseira {
-    width: 49.64px;
-    height: 49.98px;
-    bottom: 31%;
-    left: 52%;
-  }
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 4%;
+  height: 6.5%;
+  bottom: 31%;
+  left: 52%;
 }
 .intObj-conversar_paciente {
   width: 20%;
@@ -1180,63 +1322,94 @@ body {
 }
 .intObj-paciente_02-checar_pulseira {
   background-image: url(../images/interactiveObjects/pulseira02.png);
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 72.5%;
+  left: 40.5%;
+  width: 5%;
+  height: 5%;
 }
-@media screen and (min-width: 768px) {
-  .intObj-paciente_02-checar_pulseira {
-    width: 41px;
-    height: 30.75px;
-    bottom: 22%;
-    left: 40%;
-  }
+.intObj-paciente_03-checar_pulseira {
+  background-image: url(../images/interactiveObjects/pulseira03.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 62.6%;
+  left: 47.4%;
+  width: 5%;
+  height: 7%;
 }
-@media screen and (min-width: 992px) {
-  .intObj-paciente_02-checar_pulseira {
-    width: 54px;
-    height: 40.5px;
-    bottom: 22%;
-    left: 40%;
-  }
+.intObj-paciente_04-checar_pulseira {
+  background-image: url(../images/interactiveObjects/pulseira04.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 75%;
+  left: 39.5%;
+  width: 5%;
+  height: 5%;
 }
-@media screen and (min-width: 1200px) {
-  .intObj-paciente_02-checar_pulseira {
-    width: 68px;
-    height: 51px;
-    bottom: 22%;
-    left: 40%;
-  }
+.intObj-paciente_05-checar_pulseira {
+  background-image: url(../images/interactiveObjects/pulseira05.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 76%;
+  left: 35.5%;
+  width: 5%;
+  height: 5.5%;
+}
+.intObj-paciente_06-checar_pulseira {
+  background-image: url(../images/interactiveObjects/pulseira06.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 59%;
+  left: 36.9%;
+  width: 5%;
+  height: 5%;
+}
+.intObj-paciente_07-checar_pulseira {
+  background-image: url(../images/interactiveObjects/pulseira03.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 63.5%;
+  left: 47.5%;
+  width: 5%;
+  height: 5%;
+}
+.intObj-paciente_08-checar_pulseira {
+  background-image: url(../images/interactiveObjects/pulseira08.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 72.4%;
+  left: 41%;
+  width: 5%;
+  height: 5.1%;
+}
+.intObj-paciente_09-checar_pulseira {
+  background-image: url(../images/interactiveObjects/pulseira09.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 76.9%;
+  left: 38.75%;
+  width: 5%;
+  height: 5.4%;
+}
+.intObj-paciente_10-checar_pulseira {
+  background-image: url(../images/interactiveObjects/pulseira10.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 72.5%;
+  left: 40.5%;
+  width: 5%;
+  height: 5%;
 }
 .intObj-braceletConfirmation,
 .intObj-braceletConfirmed {
   background-image: url(../images/interactiveObjects/checkmark-gray.png);
   background-size: contain;
-}
-@media screen and (min-width: 768px) {
-  .intObj-braceletConfirmation,
-  .intObj-braceletConfirmed {
-    width: 170.4px;
-    height: 157.8px;
-    top: 151.6px;
-    right: 298.8px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-braceletConfirmation,
-  .intObj-braceletConfirmed {
-    width: 227.2px;
-    height: 210.4px;
-    top: 192.3px;
-    right: 382.4px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-braceletConfirmation,
-  .intObj-braceletConfirmed {
-    width: 284px;
-    height: 263px;
-    top: 228.5px;
-    right: 458px;
-  }
+  background-repeat: no-repeat;
+  top: 37%;
+  right: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-braceletConfirmed {
   cursor: default;
@@ -1265,273 +1438,109 @@ body {
   background-image: url(../images/interactiveObjects/termometro.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 12%;
-  left: 10%;
-}
-@media screen and (min-width: 768px) {
-  .intObj-thermometer {
-    width: 175px;
-    height: 80.5px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-thermometer {
-    width: 200px;
-    height: 92px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-thermometer {
-    width: 225px;
-    height: 103.5px;
-  }
+  top: 50%;
+  left: 21%;
+  width: 20%;
+  height: 19%;
 }
 .intObj-bloodPressureMonitor {
   background-image: url(../images/interactiveObjects/pressao.png);
   background-size: contain;
-  top: 12%;
-  left: 33%;
-}
-@media screen and (min-width: 768px) {
-  .intObj-bloodPressureMonitor {
-    width: 114px;
-    height: 132.62px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-bloodPressureMonitor {
-    width: 135px;
-    height: 157.05px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-bloodPressureMonitor {
-    width: 150px;
-    height: 174.5px;
-  }
+  background-repeat: no-repeat;
+  top: 22%;
+  left: 27%;
+  width: 16%;
+  height: 27%;
 }
 .intObj-oximeter {
   background-image: url(../images/interactiveObjects/oximetro.png);
   background-size: contain;
-  top: 12%;
-  left: 53%;
-}
-@media screen and (min-width: 768px) {
-  .intObj-oximeter {
-    width: 80px;
-    height: 78.8px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-oximeter {
-    width: 100px;
-    height: 98.5px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-oximeter {
-    width: 120px;
-    height: 118.2px;
-  }
+  background-repeat: no-repeat;
+  top: 37%;
+  left: 47%;
+  width: 11%;
+  height: 18%;
 }
 .intObj-watch {
   background-image: url(../images/interactiveObjects/relogio.png);
   background-size: contain;
-  top: 12%;
-  left: 68%;
-}
-@media screen and (min-width: 768px) {
-  .intObj-watch {
-    width: 90px;
-    height: 119.52px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-watch {
-    width: 100px;
-    height: 132.8px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-watch {
-    width: 120px;
-    height: 159.36px;
-  }
+  background-repeat: no-repeat;
+  top: 37%;
+  right: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-aguaPotavel {
   background-image: url(../images/interactiveObjects/garrafa_agua_potavel.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 28%;
+  top: 33%;
   left: 55%;
-}
-@media screen and (min-width: 768px) {
-  .intObj-aguaPotavel {
-    width: 168px;
-    height: 168px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-aguaPotavel {
-    width: 192px;
-    height: 192px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-aguaPotavel {
-    width: 216px;
-    height: 216px;
-  }
+  width: 9%;
+  height: 20%;
 }
 .intObj-copoDescartavel {
   background-image: url(../images/interactiveObjects/copo_descartavel.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 30%;
-  left: 30%;
-}
-@media screen and (min-width: 768px) {
-  .intObj-copoDescartavel {
-    width: 112px;
-    height: 112px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-copoDescartavel {
-    width: 128px;
-    height: 128px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-copoDescartavel {
-    width: 144px;
-    height: 144px;
-  }
+  top: 40%;
+  left: 40%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-cushion {
   background-image: url(../images/interactiveObjects/coxim.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 30%;
-  left: 25%;
-}
-@media screen and (min-width: 768px) {
-  .intObj-cushion {
-    width: 168px;
-    height: 168px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-cushion {
-    width: 192px;
-    height: 192px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-cushion {
-    width: 216px;
-    height: 216px;
-  }
+  top: 35%;
+  left: 37%;
+  width: 29%;
+  height: 30%;
 }
 .intObj-agulha_40x12 {
   background-image: url(../images/interactiveObjects/agulha_40x12.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 38%;
-  left: 45%;
+  top: 30%;
+  left: 53%;
+  width: 9%;
+  height: 20%;
 }
-@media screen and (min-width: 768px) {
-  .intObj-agulha_40x12 {
-    width: 118.1952px;
-    height: 106.6014px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-agulha_40x12 {
-    width: 139.968px;
-    height: 126.2385px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-agulha_40x12 {
-    width: 155.52px;
-    height: 140.265px;
-  }
+.intObj-ampola_glicose_50 {
+  background-image: url(../images/interactiveObjects/glicose30_10ml.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 50%;
+  left: 50%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-algodao_seco {
   background-image: url(../images/interactiveObjects/algodao_seco.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 12%;
-  left: 29%;
-}
-@media screen and (min-width: 768px) {
-  .intObj-algodao_seco {
-    width: 166.041px;
-    height: 105.336px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-algodao_seco {
-    width: 196.6275px;
-    height: 124.74px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-algodao_seco {
-    width: 218.475px;
-    height: 138.6px;
-  }
+  top: 34%;
+  left: 63%;
+  width: 7%;
+  height: 8%;
 }
 .intObj-aparelhodepressao_frontal {
   background-image: url(../images/interactiveObjects/aparelhodepressao_frontal.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 0;
-  left: 0;
-}
-@media screen and (min-width: 768px) {
-  .intObj-aparelhodepressao_frontal {
-    width: 187.25px;
-    height: 229.6px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-aparelhodepressao_frontal {
-    width: 214px;
-    height: 262.4px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-aparelhodepressao_frontal {
-    width: 240.75px;
-    height: 295.2px;
-  }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-aparelhodepressao_lateral {
   background-image: url(../images/interactiveObjects/aparelhodepressao_lateral.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 0;
-  left: 0;
-}
-@media screen and (min-width: 768px) {
-  .intObj-aparelhodepressao_lateral {
-    width: 263.55px;
-    height: 273.35px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-aparelhodepressao_lateral {
-    width: 301.2px;
-    height: 312.4px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-aparelhodepressao_lateral {
-    width: 338.85px;
-    height: 351.45px;
-  }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-bandeja {
   background-image: url(../images/interactiveObjects/bandeja.png);
@@ -1539,830 +1548,418 @@ body {
   background-repeat: no-repeat;
   top: 26%;
   left: 45%;
-}
-@media screen and (min-width: 768px) {
-  .intObj-bandeja {
-    width: 84.525px;
-    height: 30.87px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-bandeja {
-    width: 106.95px;
-    height: 39.06px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-bandeja {
-    width: 129.375px;
-    height: 47.25px;
-  }
+  width: 10%;
+  height: 6%;
 }
 .intObj-carrinho_anestesico {
   background-image: url(../images/interactiveObjects/carrinho_anestesico.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 27%;
-  left: 84%    ;
+  left: 84%;
+  width: 11%;
+  height: 35%;
 }
-@media screen and (min-width: 768px) {
-  .intObj-carrinho_anestesico {
-    width: 354.9px;
-    height: 188.3px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-carrinho_anestesico {
-    width: 405.6px;
-    height: 215.2px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-carrinho_anestesico {
-    width: 456.3px;
-    height: 242.1px;
-  }
+.intObj-cloreto_de_sodio_10__10_ml_ {
+  background-image: url(../images/interactiveObjects/cloreto_de_sodio_10__10_ml_.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-cloreto_de_sodio_20__10_ml_ {
   background-image: url(../images/interactiveObjects/cloreto_de_sodio_20__10_ml_.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 0;
-  left: 0;
-}
-@media screen and (min-width: 768px) {
-  .intObj-cloreto_de_sodio_20__10_ml_ {
-    width: 180.25px;
-    height: 334.25px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-cloreto_de_sodio_20__10_ml_ {
-    width: 206px;
-    height: 382px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-cloreto_de_sodio_20__10_ml_ {
-    width: 231.75px;
-    height: 429.75px;
-  }
+  top: 45%;
+  left: 65%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-clorpromazina_medicamento {
   background-image: url(../images/interactiveObjects/clorpromazina_medicamento.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 0;
-  left: 0;
+  top: 58%;
+  left: 38%;
+  width: 9%;
+  height: 20%;
 }
-@media screen and (min-width: 768px) {
-  .intObj-clorpromazina_medicamento {
-    width: 221.2px;
-    height: 173.95px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-clorpromazina_medicamento {
-    width: 252.8px;
-    height: 198.8px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-clorpromazina_medicamento {
-    width: 284.4px;
-    height: 223.65px;
-  }
+.intObj-clorpropamida_medicamento {
+  background-image: url(../images/interactiveObjects/clorpropamida_medicamento.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 60%;
+  left: 38%;
+  width: 10%;
+  height: 20%;
 }
 .intObj-copo_descartavel {
   background-image: url(../images/interactiveObjects/copo_descartavel.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 14%;
-  left: 37%;
-}
-@media screen and (min-width: 768px) {
-  .intObj-copo_descartavel {
-    width: 66.8382px;
-    height: 89.4102px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-copo_descartavel {
-    width: 79.1505px;
-    height: 105.8805px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-copo_descartavel {
-    width: 87.945px;
-    height: 117.645px;
-  }
+  top: 25%;
+  left: 29%;
+  width: 9%;
+  height: 15%;
 }
 .intObj-coxim {
   background-image: url(../images/interactiveObjects/coxim.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 0;
-  left: 0;
-}
-@media screen and (min-width: 768px) {
-  .intObj-coxim {
-    width: 416.15px;
-    height: 253.4px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-coxim {
-    width: 475.6px;
-    height: 289.6px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-coxim {
-    width: 535.05px;
-    height: 325.8px;
-  }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-equipo_de_infusao_de_dieta {
   background-image: url(../images/interactiveObjects/equipo_de_infusao_de_dieta.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 0;
-  left: 0;
+  top: 37%;
+  left: 29%;
+  width: 9%;
+  height: 20%;
 }
-@media screen and (min-width: 768px) {
-  .intObj-equipo_de_infusao_de_dieta {
-    width: 337.75px;
-    height: 200.9px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-equipo_de_infusao_de_dieta {
-    width: 386px;
-    height: 229.6px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-equipo_de_infusao_de_dieta {
-    width: 434.25px;
-    height: 258.3px;
-  }
+.intObj-equipo_de_soro {
+  background-image: url(../images/interactiveObjects/equipo_de_soro.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 34%;
+  left: 43%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-fita_adesiva_hipoalergenica_micropore {
   background-image: url(../images/interactiveObjects/fita_adesiva_hipoalergenica_micropore.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 39%;
-  left: 60%;
-}
-@media screen and (min-width: 768px) {
-  .intObj-fita_adesiva_hipoalergenica_micropore {
-    width: 167.58px;
-    height: 109.1664px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-fita_adesiva_hipoalergenica_micropore {
-    width: 198.45px;
-    height: 129.276px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-fita_adesiva_hipoalergenica_micropore {
-    width: 220.5px;
-    height: 143.64px;
-  }
+  top: 34%;
+  left: 43%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-frasco_de_alcool {
   background-image: url(../images/interactiveObjects/frasco_de_alcool.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 39%;
-  left: 35%;
-}
-@media screen and (min-width: 768px) {
-  .intObj-frasco_de_alcool {
-    width: 39.102px;
-    height: 114.646px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-frasco_de_alcool {
-    width: 46.305px;
-    height: 135.765px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-frasco_de_alcool {
-    width: 51.45px;
-    height: 150.85px;
-  }
+  top: 45%;
+  left: 55%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-frasco_de_dieta {
   background-image: url(../images/interactiveObjects/frasco_de_dieta.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 0;
-  left: 0;
-}
-@media screen and (min-width: 768px) {
-  .intObj-frasco_de_dieta {
-    width: 158.2px;
-    height: 287.35px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-frasco_de_dieta {
-    width: 180.8px;
-    height: 328.4px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-frasco_de_dieta {
-    width: 203.4px;
-    height: 369.45px;
-  }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-garrafa_agua_potavel {
   background-image: url(../images/interactiveObjects/garrafa_agua_potavel.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 16%;
-  left: 31%;
-}
-@media screen and (min-width: 768px) {
-  .intObj-garrafa_agua_potavel {
-    width: 38.4256px;
-    height: 114.912px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-garrafa_agua_potavel {
-    width: 45.504px;
-    height: 136.08px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-garrafa_agua_potavel {
-    width: 50.56px;
-    height: 151.2px;
-  }
+  top: 12%;
+  left: 37%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-gaveta {
   background-image: url(../images/interactiveObjects/gaveta.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 0;
-  left: 0;
-}
-@media screen and (min-width: 768px) {
-  .intObj-gaveta {
-    width: 520.1px;
-    height: 320.95px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-gaveta {
-    width: 594.4px;
-    height: 366.8px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-gaveta {
-    width: 668.7px;
-    height: 412.65px;
-  }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-gaze_esteril {
   background-image: url(../images/interactiveObjects/gaze_esteril.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 38%;
-  left: 20%;
+  top: 45%;
+  left: 63%;
+  width: 10%;
+  height: 20%;
 }
-@media screen and (min-width: 768px) {
-  .intObj-gaze_esteril {
-    width: 114.266px;
-    height: 108.6116px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-gaze_esteril {
-    width: 135.315px;
-    height: 128.619px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-gaze_esteril {
-    width: 150.35px;
-    height: 142.91px;
-  }
+.intObj-glicose_30__10_ml {
+  background-image: url(../images/interactiveObjects/glicose_30__10_ml.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-keflin_medicamento {
   background-image: url(../images/interactiveObjects/keflin_medicamento.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 50%;
-  left: 38%;
-}
-@media screen and (min-width: 768px) {
-  .intObj-keflin_medicamento {
-    width: 47.709px;
-    height: 111.0854px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-keflin_medicamento {
-    width: 56.4975px;
-    height: 131.5485px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-keflin_medicamento {
-    width: 62.775px;
-    height: 146.165px;
-  }
+  left: 40%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-lixo_comum {
   background-image: url(../images/interactiveObjects/lixo_comum.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 65%;
-  left: 62%;
-}
-@media screen and (min-width: 768px) {
-  .intObj-lixo_comum {
-    width: 129.85px;
-    height: 184.45px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-lixo_comum {
-    width: 148.4px;
-    height: 210.8px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-lixo_comum {
-    width: 166.95px;
-    height: 237.15px;
-  }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-lixo_infectante {
   background-image: url(../images/interactiveObjects/lixo_infectante.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 65%;
-  left: 42%;
-}
-@media screen and (min-width: 768px) {
-  .intObj-lixo_infectante {
-    width: 139.3px;
-    height: 172.2px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-lixo_infectante {
-    width: 159.2px;
-    height: 196.8px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-lixo_infectante {
-    width: 179.1px;
-    height: 221.4px;
-  }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-lixo_perfuro_cortante {
   background-image: url(../images/interactiveObjects/lixo_perfuro_cortante.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 65%;
-  left: 18%;
-}
-@media screen and (min-width: 768px) {
-  .intObj-lixo_perfuro_cortante {
-    width: 121.38px;
-    height: 177.66px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-lixo_perfuro_cortante {
-    width: 138.72px;
-    height: 203.04px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-lixo_perfuro_cortante {
-    width: 156.06px;
-    height: 228.42px;
-  }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-luvas_de_procedimento {
   background-image: url(../images/interactiveObjects/luvas_de_procedimento.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 12%;
-  left: 49%;
+  top: 33%;
+  left: 27%;
+  width: 19%;
+  height: 20%;
 }
-@media screen and (min-width: 768px) {
-  .intObj-luvas_de_procedimento {
-    width: 170.088px;
-    height: 111.112px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-luvas_de_procedimento {
-    width: 201.42px;
-    height: 131.58px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-luvas_de_procedimento {
-    width: 223.8px;
-    height: 146.2px;
-  }
+.intObj-luvas_de_procedimento_fase5 {
+  background-image: url(../images/interactiveObjects/luvas_de_procedimento.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 34%;
+  left: 28%;
+  width: 19%;
+  height: 15%;
 }
 .intObj-luvas_estereis {
   background-image: url(../images/interactiveObjects/luvas_estereis.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 40%;
-  left: 10%;
-}
-@media screen and (min-width: 768px) {
-  .intObj-luvas_estereis {
-    width: 56.43px;
-    height: 104.652px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-luvas_estereis {
-    width: 66.825px;
-    height: 123.93px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-luvas_estereis {
-    width: 74.25px;
-    height: 137.7px;
-  }
+  top: 46%;
+  left: 25%;
+  width: 9%;
+  height: 19%;
 }
 .intObj-midazolam_medicamento {
   background-image: url(../images/interactiveObjects/midazolam_medicamento.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 50%;
+  top: 55%;
   left: 38%;
-}
-@media screen and (min-width: 768px) {
-  .intObj-midazolam_medicamento {
-    width: 98.952px;
-    height: 112.632px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-midazolam_medicamento {
-    width: 117.18px;
-    height: 133.38px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-midazolam_medicamento {
-    width: 130.2px;
-    height: 148.2px;
-  }
+  width: 9%;
+  height: 20%;
 }
 .intObj-oximetro_frontal {
   background-image: url(../images/interactiveObjects/oximetro_frontal.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 0;
-  left: 0;
-}
-@media screen and (min-width: 768px) {
-  .intObj-oximetro_frontal {
-    width: 158.55px;
-    height: 93.1px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-oximetro_frontal {
-    width: 181.2px;
-    height: 106.4px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-oximetro_frontal {
-    width: 203.85px;
-    height: 119.7px;
-  }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-oximetro_lateral {
   background-image: url(../images/interactiveObjects/oximetro_lateral.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 0;
-  left: 0;
-}
-@media screen and (min-width: 768px) {
-  .intObj-oximetro_lateral {
-    width: 189.35px;
-    height: 172.9px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-oximetro_lateral {
-    width: 216.4px;
-    height: 197.6px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-oximetro_lateral {
-    width: 243.45px;
-    height: 222.3px;
-  }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-placa_neutra {
   background-image: url(../images/interactiveObjects/placa_neutra.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 0;
-  left: 0;
-}
-@media screen and (min-width: 768px) {
-  .intObj-placa_neutra {
-    width: 672px;
-    height: 403.2px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-placa_neutra {
-    width: 768px;
-    height: 460.8px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-placa_neutra {
-    width: 864px;
-    height: 518.4px;
-  }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-prancheta {
   background-image: url(../images/interactiveObjects/prancheta.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 0;
-  left: 0;
-}
-@media screen and (min-width: 768px) {
-  .intObj-prancheta {
-    width: 154px;
-    height: 211.4px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-prancheta {
-    width: 176px;
-    height: 241.6px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-prancheta {
-    width: 198px;
-    height: 271.8px;
-  }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-prancheta_horizontal {
   background-image: url(../images/interactiveObjects/prancheta_horizontal.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 0;
-  left: 0;
-}
-@media screen and (min-width: 768px) {
-  .intObj-prancheta_horizontal {
-    width: 254.1px;
-    height: 174.3px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-prancheta_horizontal {
-    width: 290.4px;
-    height: 199.2px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-prancheta_horizontal {
-    width: 326.7px;
-    height: 224.1px;
-  }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-prontuario {
   background-image: url(../images/interactiveObjects/prontuario.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 0;
-  left: 0;
-}
-@media screen and (min-width: 768px) {
-  .intObj-prontuario {
-    width: 413.35px;
-    height: 401.1px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-prontuario {
-    width: 472.4px;
-    height: 458.4px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-prontuario {
-    width: 531.45px;
-    height: 515.7px;
-  }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-relogiodigital {
   background-image: url(../images/interactiveObjects/relogiodigital.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 0;
-  left: 0;
-}
-@media screen and (min-width: 768px) {
-  .intObj-relogiodigital {
-    width: 108.5px;
-    height: 205.45px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-relogiodigital {
-    width: 124px;
-    height: 234.8px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-relogiodigital {
-    width: 139.5px;
-    height: 264.15px;
-  }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-relogiodigital_lateral {
   background-image: url(../images/interactiveObjects/relogiodigital_lateral.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 0;
-  left: 0;
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
-@media screen and (min-width: 768px) {
-  .intObj-relogiodigital_lateral {
-    width: 136.15px;
-    height: 202.3px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-relogiodigital_lateral {
-    width: 155.6px;
-    height: 231.2px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-relogiodigital_lateral {
-    width: 175.05px;
-    height: 260.1px;
-  }
+.intObj-seringa_5_ml {
+  background-image: url(../images/interactiveObjects/seringa_5_ml.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 49%;
+  left: 34%;
+  width: 9%;
+  height: 17%;
 }
 .intObj-seringa_20_ml {
   background-image: url(../images/interactiveObjects/seringa_20_ml.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 40%;
-  left: 35%;
-}
-@media screen and (min-width: 768px) {
-  .intObj-seringa_20_ml {
-    width: 65.7324px;
-    height: 105.3132px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-seringa_20_ml {
-    width: 77.841px;
-    height: 124.713px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-seringa_20_ml {
-    width: 86.49px;
-    height: 138.57px;
-  }
+  top: 49%;
+  left: 34%;
+  width: 9%;
+  height: 17%;
 }
 .intObj-seringa_de_10_ml {
   background-image: url(../images/interactiveObjects/seringa_de_10_ml.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 39%;
-  left: 22%;
+  top: 33%;
+  left: 63%;
+  width: 9%;
+  height: 17%;
 }
-@media screen and (min-width: 768px) {
-  .intObj-seringa_de_10_ml {
-    width: 61.8222px;
-    height: 113.6124px;
-  }
+.intObj-soro_fisiologico_100_ml {
+  background-image: url(../images/interactiveObjects/soro_fisiologico_100_ml.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 45%;
+  left: 45%;
+  width: 9%;
+  height: 20%;
 }
-@media screen and (min-width: 992px) {
-  .intObj-seringa_de_10_ml {
-    width: 73.2105px;
-    height: 134.541px;
-  }
+.intObj-soro_fisiologico_250_ml {
+  background-image: url(../images/interactiveObjects/soro_fisiologico_250_ml.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 45%;
+  left: 45%;
+  width: 9%;
+  height: 20%;
 }
-@media screen and (min-width: 1200px) {
-  .intObj-seringa_de_10_ml {
-    width: 81.345px;
-    height: 149.49px;
-  }
+.intObj-soro_fisiologico_1000_ml {
+  background-image: url(../images/interactiveObjects/soro_fisiologico_1000_ml.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 45%;
+  left: 45%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-soro_glicofisiologico_1000_ml {
   background-image: url(../images/interactiveObjects/soro_glicofisiologico_1000_ml.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 0;
-  left: 0;
-}
-@media screen and (min-width: 768px) {
-  .intObj-soro_glicofisiologico_1000_ml {
-    width: 141.75px;
-    height: 370.3px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-soro_glicofisiologico_1000_ml {
-    width: 162px;
-    height: 423.2px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-soro_glicofisiologico_1000_ml {
-    width: 182.25px;
-    height: 476.1px;
-  }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-termometro_frontal {
   background-image: url(../images/interactiveObjects/termometro_frontal.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 0;
-  left: 0;
-}
-@media screen and (min-width: 768px) {
-  .intObj-termometro_frontal {
-    width: 551.6px;
-    height: 81.2px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .intObj-termometro_frontal {
-    width: 630.4px;
-    height: 92.8px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-termometro_frontal {
-    width: 709.2px;
-    height: 104.4px;
-  }
+  top: 37%;
+  left: 23%;
+  width: 9%;
+  height: 20%;
 }
 .intObj-aparelhoGlicemia {
   background-image: url(../images/interactiveObjects/glicosimetro.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 12%;
-  left: 21%;
+  top: 44%;
+  left: 53%;
+  width: 9%;
+  height: 20%;
 }
-@media screen and (min-width: 768px) {
-  .intObj-aparelhoGlicemia {
-    width: 50.8896px;
-    height: 101.6766px;
-  }
+.intObj-clorpropamida_medicamento {
+  background-image: url(../images/interactiveObjects/clorpropamida_medicamento.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 60%;
+  left: 38%;
+  width: 10%;
+  height: 20%;
 }
-@media screen and (min-width: 992px) {
-  .intObj-aparelhoGlicemia {
-    width: 60.264px;
-    height: 120.4065px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .intObj-aparelhoGlicemia {
-    width: 66.96px;
-    height: 133.785px;
-  }
-}
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 .scene,
 .scene-maleRoom,
 .scene-maleRoom-cushion,
 .scene-femaleRoom,
 .scene-bedroom,
+.scene-bedroom-level0,
+.scene-bedroom-level1,
+.scene-bedroom-level1a,
+.scene-bedroom-level1b,
+.scene-bedroom-level1c,
+.scene-bedroom-level2,
+.scene-bedroom-level3,
+.scene-bedroom-level4,
+.scene-bedroom-level5,
+.scene-bedroom-level6,
+.scene-bedroom-level7,
+.scene-bedroom-level8,
+.scene-bedroom-level9,
 .scene-bedChar01,
 .scene-bedChar02,
 .scene-bedChar02-turned,
@@ -2403,7 +2000,46 @@ body {
   background-image: url(../images/scenes/alaFeminina.png);
 }
 .scene-bedroom {
-  background-image: url(../images/scenes/salaDeLeitos.jpg);
+  background-image: url(../images/scenes/quartos.jpg);
+}
+.scene-bedroom-level0 {
+  background-image: url(../images/scenes/quartos0.jpg);
+}
+.scene-bedroom-level1 {
+  background-image: url(../images/scenes/quartos1a.jpg);
+}
+.scene-bedroom-level1a {
+  background-image: url(../images/scenes/quartos1a.jpg);
+}
+.scene-bedroom-level1b {
+  background-image: url(../images/scenes/quartos1.bjpg);
+}
+.scene-bedroom-level1c {
+  background-image: url(../images/scenes/quartos1.jcpg);
+}
+.scene-bedroom-level2 {
+  background-image: url(../images/scenes/quartos2.jpg);
+}
+.scene-bedroom-level3 {
+  background-image: url(../images/scenes/quartos3.jpg);
+}
+.scene-bedroom-level4 {
+  background-image: url(../images/scenes/quartos4.jpg);
+}
+.scene-bedroom-level5 {
+  background-image: url(../images/scenes/quartos5.jpg);
+}
+.scene-bedroom-level6 {
+  background-image: url(../images/scenes/quartos6.jpg);
+}
+.scene-bedroom-level7 {
+  background-image: url(../images/scenes/quartos7.jpg);
+}
+.scene-bedroom-level8 {
+  background-image: url(../images/scenes/quartos8.jpg);
+}
+.scene-bedroom-level9 {
+  background-image: url(../images/scenes/quartos9.jpg);
 }
 .scene-bedChar01 {
   background-image: url(../images/scenes/leitoChar01.jpg);
@@ -2483,6 +2119,19 @@ body {
 .scene-centroCirurgicoRegina {
   background-image: url(../images/scenes/centroCirurgicoRegina.jpg);
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 #modalScene {
   position: absolute;
   display: none;
@@ -2609,6 +2258,19 @@ body {
   font-size: 3.5em;
   color: #000;
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 #prontuario {
   font-family: monospace;
   font-size: 2em;
@@ -2912,6 +2574,19 @@ body {
 .ui-corner-br {
   border-bottom-right-radius: 4px;
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 #pulseira_modal {
   display: none;
   float: left;
@@ -2940,15 +2615,46 @@ body {
   left: 22%;
   top: 47.5%;
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 #freqRespiratoria {
   display: none;
   float: left;
-  position: relative;
+  position: absolute;
   width: 66%;
   height: 84%;
   left: 17%;
-  top: 10%;
+  top: 8%;
+  background-color: white;
+  background-image: radial-gradient(#ffffff 31%, #b7b7b7 131%);
+  border-radius: 10% / 13%;
+  border: 5px solid black;
+  box-sizing: border-box;
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 #dialogBar {
   box-sizing: border-box;
   text-align: left;
@@ -3032,9 +2738,23 @@ body {
   color: black;
   text-shadow: -1px -1px #666666, 1px 1px #ffffff;
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 .character,
 .char-receptionist,
 .char-mentor,
+.char-circulante,
 .char-paciente_01,
 .char-paciente_02,
 .char-paciente_03,
@@ -3059,6 +2779,9 @@ body {
 }
 .char-mentor {
   background-image: url(../images/characters/mentor.png);
+}
+.char-circulante {
+  background-image: url(../images/characters/circulanteDeLeito.png);
 }
 .char-paciente_01 {
   background-image: url(../images/characters/paciente1.png);
@@ -3087,6 +2810,19 @@ body {
 .char-paciente_09 {
   background-image: url(../images/characters/paciente9.png);
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 .action_button {
   cursor: hand;
   display: inline-block;
@@ -3218,7 +2954,13 @@ body {
 .action-abrir_dialogo {
   background-image: url(../images/actionButtons/abrirDialogo.jpg);
 }
+.action-realizar_teste_glicemia {
+  background-image: url(../images/actionButtons/glicosimetro.jpg);
+}
 .action-examinar_paciente {
+  background-image: url(../images/actionButtons/examinarPaciente.jpg);
+}
+.action-terminar_exame {
   background-image: url(../images/actionButtons/examinarPaciente.jpg);
 }
 .action-falar_com_paciente_ala {
@@ -3374,6 +3116,19 @@ body {
 .action-soro_glicofisiologico_1000ml {
   background-image: url(../images/actionButtons/soroGlicofisiologico1000ml.jpg);
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 #commandBar {
   position: absolute;
   z-index: 2;
@@ -3384,6 +3139,19 @@ body {
   overflow-y: hidden;
   white-space: nowrap;
 }
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 #endOfLevel {
   position: absolute;
   top: 5%;
