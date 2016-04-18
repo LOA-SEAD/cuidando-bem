@@ -1,27 +1,29 @@
 /*
 This file is part of Cuidando Bem.
+
     Cuidando Bem is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
+
     Cuidando Bem is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
+
     You should have received a copy of the GNU General Public License
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
 
-        // region Imports
+
         var Dialogs = require("DialogsData").fase9;
         var Alertas = require("DialogsData").alertas;
         var Scores = require("ScoresData").level9;
         var Player = require("Player");
-        // endregion
+
 
         var level = new Level("Level 9");
         console.groupCollapsed( level.getName() );
@@ -43,11 +45,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             prontuario,
             zoom;
 
-        // region Scenes
-
-
-
-        // region CENTRO CIRURGICO
 
      var centroCirurgico = lib.scenes.centroCirurgico.getClone()
             .onLoad(function() {
@@ -68,11 +65,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         }
-
-        // endregion CENTRO CIRURGICO
-
-
-            // region ALA FEMININA
 
 
          var alaFeminina = new Scene("alaFeminina", "Ala Feminina")
@@ -95,10 +87,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             }
 
         }
-        // endregion ALA FEMININA
 
-
-        // region Recepcao
 
         var recepcao = lib.scenes.recepcao.getClone()
             .onLoad(function() {
@@ -138,14 +127,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
     }
-
-
-
-
-     // endregion RECEPCAO
-
-
-     // region CORREDOR
 
 
         corredor = lib.scenes.corredor.getClone()
@@ -200,23 +181,23 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         function corredorIrFarmacia() {
 
 
-                if(level.getFlag("conversar_paciente").getValue() == false) {
+                if ( level.getFlag("conversar_paciente").getValue() == false ) {
 
-                    if(level.getFlag("score_ir_farmacia_horaErrada").getValue() == false){
-                        level.getFlag("score_ir_farmacia_horaErrada").setValue(true);
-                        core.registerScoreItem( Scores.irFarmacia_horaErrada );
+                    if ( level.getFlag("score_ir_farmacia_horaErrada").getValue() == false ) {
+                        level.getFlag("score_ir_farmacia_horaErrada").setValue( true );
+                        core.registerScoreItem( Scores.irFarmaciaHoraErrada );
 
                          core.changeScene( 4 );
                     }
+                } else {
+                   core.changeScene( 4 );
                 }
-            else
-                core.changeScene( 4 );
         }
 
         function corredorIrPostoEnfermagem() {
 
 
-            core.changeScene(5);
+            core.changeScene( 5 );
 
 
     }
@@ -227,25 +208,21 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         }
 
 
-      // region ALA MASCULINA
       var alaMasculina = lib.scenes.alaMasculina.getClone()
             .setCssClass("scene-bedroom-level9")
             .onLoad(function() {
 
 
-                if(level.getFlag("conversar_paciente").getValue() == false){
-                    core.openDialog(0);
-                    level.getFlag("conversar_paciente").setValue(true);
+                if ( level.getFlag("conversar_paciente").getValue() == false ) {
+                    core.openDialog( 0 );
+                    level.getFlag("conversar_paciente").setValue( true );
+                } else if ( level.getFlag("pegou_tudo_postoEnfermagem").getValue() == true ) {
+
+                     core.setInteractiveObjectVisible("io-ir_ao_leito", true );
+                     core.setActionVisible("btn-lavarMaos", true );
+                     core.setActionVisible("btn-prescricao_medica", false );
+
                 }
-                else if (level.getFlag("pegou_tudo_postoEnfermagem").getValue() == true){
-
-                     core.setInteractiveObjectVisible("io-ir_ao_leito", true);
-                     core.setActionVisible("btn-lavarMaos", true);
-                     core.setActionVisible("btn-prescricao_medica", false);
-
-                }
-
-
 
 
                 console.log("Load scene: " + alaMasculina.getName() );
@@ -262,14 +239,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
            new Dialog( lib.characters.jogador )
                 .setText("")
                 .registerOption( Dialogs.alaMasculina[ 0 ], function() {
-                    core.openDialog(1);
+                    core.openDialog( 1 );
                 })
                 .registerOption( Dialogs.alaMasculina[ 1 ], function() {
                     core.openDialog( 4 );
                 })
                 .setRandomize( true ),
 
-         //1 - paciente
+         // 1 - paciente
 
            new Dialog( lib.characters.pacientes.francisco )
                 .setText( Dialogs.alaMasculina[ 2 ] )
@@ -277,9 +254,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openDialog( 2 );
                 }),
 
-         //2 jogador
+         // 2 jogador
 
-           new Dialog( lib.characters.jogador)
+           new Dialog( lib.characters.jogador )
                 .setText( Dialogs.alaMasculina[ 3 ] )
                 .registerOption("", function() {
                     core.openDialog( 3 );
@@ -327,28 +304,28 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                 console.log("voltando para corredor");
 
-                    if(level.getFlag("pegar_prescricao_medica").getValue() == false)
-                        core.openDialog(5);
-                    else
-                core.changeScene( 1 );
+                    if ( level.getFlag("pegar_prescricao_medica").getValue() == false ) {
+                        core.openDialog( 5 );
+                    } else {
+                       core.changeScene( 1 );
+                    }
 
             }),
 
 
-
          new InteractiveObject("io-ir_ao_leito", "Ir ao leito")
                 .setCssClass("intObj-irLeitoEsquerda")
-                .onClick(function () {
+                .onClick(function() {
 
-                    if (level.getFlag("lavar_maos").getValue() == true)
-                        core.changeScene(3);
-                    else
-                        core.openDialog(6);
+                    if ( level.getFlag("lavar_maos").getValue() == true ) {
+                        core.changeScene( 3 );
+                    } else {
+                        core.openDialog( 6 );
+                    }
 
 
             })
-           .setVisibility(false),
-
+           .setVisibility( false )
 
 
  ]);
@@ -363,7 +340,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( level.getFlag("ler_prontuario").getValue() == false ) {
                             level.getFlag("ler_prontuario").setValue( true );
                             core.registerScoreItem( Scores.lerProntuario );
-                            core.setActionVisible("btn-prescricao_medica", true);
+                            core.setActionVisible("btn-prescricao_medica", true );
 
                     }
 
@@ -376,14 +353,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
 
-
             new Action("btn-prescricao_medica", "Pegar prescrição médica")
                 .setCssClass("action-pegar_prescricao")
                 .onClick(function() {
 
-                    if(level.getFlag("pegar_prescricao_medica").getValue() == false){
+                    if ( level.getFlag("pegar_prescricao_medica").getValue() == false ) {
 
-                        level.getFlag("pegar_prescricao_medica").setValue(true);
+                        level.getFlag("pegar_prescricao_medica").setValue( true );
                         core.registerScoreItem( Scores.pegarPrescricaoMedica );
 
                     }
@@ -398,29 +374,24 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 // Som
                 Player.play( Player.audios.sfx.lavarMaos );
 
-                if(level.getFlag("lavar_maos").getValue() == false){
-                        level.getFlag("lavar_maos").setValue(true);
-                        core.registerScoreItem(Scores.lavarMaos);
+                if ( level.getFlag("lavar_maos").getValue() == false ) {
+                        level.getFlag("lavar_maos").setValue( true );
+                        core.registerScoreItem( Scores.lavarMaos );
                 }
             })
             .setVisibility( false )
 
          ]);
 
-       // endregion ALA MASCULINA
-
-
 
       var farmacia = lib.scenes.farmacia.getClone()
             .onLoad(function() {
 
-                if(level.getFlag("pegar_prescricao_medica").getValue() == false){
-                        core.openDialog(4);
-                }
+                if ( level.getFlag("pegar_prescricao_medica").getValue() == false ) {
+                        core.openDialog( 4 );
+                } else {
 
-                else {
-
-                    core.openDialog(0);
+                    core.openDialog( 0 );
                     core.setActionVisible("btn-pegarFrascoDieta", true );
                     core.setActionVisible("btn-cloretoSodio_20_10ml", true );
                     core.setActionVisible("btn-conferirMedicamento", true );
@@ -480,10 +451,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Alertas.esqueceu.verificarMedicamento3 )
                 .registerOption("", function() {
                     core.closeDialog();
-                }),
-
-
-
+                })
 
 
         ]);
@@ -497,13 +465,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                     if ( level.getFlag("conferirMedicamento").getValue() == true  ) {
                         core.changeScene( 1 );
-                    }
-                   else  {
+                    } else {
 
-                        core.openDialog(5);
+                        core.openDialog( 5 );
 
                    }
-
 
 
                 })
@@ -559,10 +525,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
              .setVisibility( false )
            ]);
 
-    // endregion FARMACIA
-
-
-     // region POSTO DE ENFERMAGEM
 
     var postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
     .onLoad(function() {
@@ -574,15 +536,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         //         core.openDialog(2);
 
 
-
-
-
         // }
         // else {
         //     core.changeScene(5);
         //     core.setInteractiveObjectVisible("io-abrir_gaveta", true );
         //     core.setInteractiveObjectVisible("io-pegar_bandeja", true );
-
 
 
         //         }
@@ -616,9 +574,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           .setText( Alertas.esqueceu.pegarMedicamento  )
           .registerOption("", function() {
             core.closeDialog();
-        }),
-
-
+        })
 
 
         ]);
@@ -684,11 +640,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
     ]);
 
-    // endregion POSTO DE ENFERMAGEM
-
-
-     // region Leito
-
 
         leito = lib.scenes.leitos.francisco.getClone()
             .onLoad(function() {
@@ -696,7 +647,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             })
             .onUnload(function() {
-
 
 
             });
@@ -708,16 +658,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("intObj-conversar_paciente")
         .onClick(function() {
 
-                 if(level.getFlag("conversar_paciente_leito").getValue() == false ) {
-                     level.getFlag("conversar_paciente_leito").setValue(true);
+                 if ( level.getFlag("conversar_paciente_leito").getValue() == false ) {
+                     level.getFlag("conversar_paciente_leito").setValue( true );
                      core.registerScoreItem( Scores.conversarPacienteLeito );
                  }
 
-                 core.openDialog(0);
+                 core.openDialog( 0 );
 
         })
-        .setVisibility( true ),
-
+        .setVisibility( true )
 
 
     ]);
@@ -730,14 +679,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
          new Dialog( lib.characters.jogador )
           .setText(  Dialogs.leitoPaciente[ 0 ] )
           .registerOption("", function() {
-            core.openDialog(1);
+            core.openDialog( 1 );
         }),
 
         // 1
          new Dialog( lib.characters.pacientes.francisco )
           .setText( Dialogs.leitoPaciente [ 1 ] )
           .registerOption("", function() {
-            core.openDialog(2);
+            core.openDialog( 2 );
         }),
 
 
@@ -745,7 +694,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
          new Dialog( lib.characters.jogador )
           .setText(  Dialogs.leitoPaciente[ 2 ] )
           .registerOption("", function() {
-            core.openDialog(3);
+            core.openDialog( 3 );
         }),
 
 
@@ -753,7 +702,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
          new Dialog( lib.characters.pacientes.francisco )
           .setText( Dialogs.leitoPaciente [ 3 ] )
           .registerOption("", function() {
-            core.openDialog(4);
+            core.openDialog( 4 );
         }),
 
 
@@ -774,28 +723,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
          new Dialog( lib.characters.mentor )
           .setText(  Dialogs.leitoPaciente[ 6 ] )
           .registerOption("", function() {
-            core.openDialog(4);
-        }),
-
-
-
-
-
-
-
-
-
+            core.openDialog( 4 );
+        })
 
 
     ]);
 
-
-
-
-    //endregion LEITO
-
-
-         // region PRONTUARIO
 
         prontuario = new Scene("Prontuario", "Prontuario");
 
@@ -818,7 +751,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
 
-      // region GAVETA
         gaveta = new Scene("gaveta", "Gaveta")
             .setCssClass("modalScene-drawer");
 
@@ -914,19 +846,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     ]);
 
 
-        // endregion
-
-        // endregion
-
-        // region ModalScenes
-
-
-        // endregion
-
-        // region Level
-
-       // region Register Scenes
-
         // 00
         level.registerScene( recepcao );
         // 01
@@ -934,7 +853,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // 02
         level.registerScene( alaMasculina );
         // 03
-        //level.registerScene( leito );
+        // level.registerScene( leito );
         // 04
         level.registerScene( farmacia );
         // 05
@@ -944,20 +863,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // 07
         level.registerScene( alaFeminina );
 
-        // endregion
-
-        // region Register Modal Scenes
-
 
             level.registerModalScene( prontuario );
             level.registerModalScene( gaveta );
         //  level.registerModalScene( pulseira );
 
-        // endregion
-
-        // region Flags
-
-        // endregion
 
         level.setSetupScript(function() {
             // Script that runs once when the level is loaded or reloaded
@@ -1031,12 +941,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("conversar_paciente_leito"), false );
 
         level.setInitialScene( 0 );
-        // endregion
+
 
         game.registerLevel( level, 9 );
 
         console.groupEnd();
-
-
-    }
-      );
+    });

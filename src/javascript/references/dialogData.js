@@ -207,7 +207,7 @@ define({
             // 3 Lixo Errado Alerta
             "Tem certeza que está realizando o descarte no lixo correto?",
             // 4 Alerta Checar Prontuario
-            "Você deve checar o prontuário.",
+            "Você deve checar o prontuário."
         ],
         leitoPaciente: [
             // 0 Jogador
@@ -812,7 +812,7 @@ define({
             // 5 Mentor Alerta
             "Esqueceu de se apresentar? E como está o paciente?",
             // 6 Esqueceu prescricao ou prontuario
-            "Você está se esquecendo de algo importante.",
+            "Você está se esquecendo de algo importante."
         ],
         farmacia: [
             // 0 Farmaceutico
@@ -840,7 +840,7 @@ define({
             " à televisão daquela cama.Vamos destrocar?",
             // 5 Jogador op 2
             "Tudo bem, senhor Raul, porém deixarei apenas desta vez, ok?!",
-            // 6 
+            // 6
             "Esta não foi a melhor decisão.A permanência do paciente em seu próprio leito evita possíveis erros e confusões. Tente novamente."
         ],
 
@@ -991,7 +991,7 @@ define({
             ],
             folheto9certos: [
                 "Pegue o folheto dos 9 certos!"
-            ],
+            ]
         },
         descarte: {
             algodão: [

@@ -308,7 +308,7 @@ define([ "SimpleStorage" ], function( Storage ) {
         saveSlots();
     }
 
-    //@dev {
+    // @dev {
 
     Storage.flush();
 
@@ -318,7 +318,7 @@ define([ "SimpleStorage" ], function( Storage ) {
 
     saveSlots();
 
-    //}
+    // }
 
     // Public Interface for returning saved files
     return {

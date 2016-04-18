@@ -50,8 +50,7 @@ define([ "Stage" ], function( Stage ) {
      */
     function load() {
 
-        // region Setup Dialogs
-        // region Delete Slot
+
         $( deleteDialogSelector ).dialog({
             resizable: false,
             autoOpen: false,
@@ -95,8 +94,7 @@ define([ "Stage" ], function( Stage ) {
             .find(".ui-dialog-titlebar-close")
             .hide();
 
-        // endregion
-        // region Type Name
+
         $( typeNameDialogSelector ).dialog({
             resizable: false,
             autoOpen: false,
@@ -145,8 +143,6 @@ define([ "Stage" ], function( Stage ) {
             .dialog("widget")
             .find(".ui-dialog-titlebar-close")
             .hide();
-        // endregion
-        // endregion
 
 
         var slotsSel = $(".slot");

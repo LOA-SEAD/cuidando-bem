@@ -23,7 +23,6 @@ This file is part of Cuidando Bem.
  */
 define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
 
-    // region Attributes
 
     var prontuarioSelector = "#prontuario";
 
@@ -203,9 +202,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
     var anotacaoEnfermagemText = "";
     var anotacaoEnfermagemTextRegExp = "";
 
-    // endregion
 
-    // region Gets
     function getNome() {
         return nomeText;
     }
@@ -274,9 +271,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         return prescEnfermagemState;
     }
 
-    // endregion
 
-    // region Sets
     function setNome( _nomeText ) {
         nomeText = _nomeText;
         $( nomeDisplaySelector ).text( nomeText );
@@ -500,9 +495,6 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         $("." + prescEnfermagemState, prescEnfermagemTbody ).show();
     }
 
-    // endregion
-
-    // region Methods
 
     function init( selector ) {
         $( selector ).append( html );
@@ -759,7 +751,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         return true;
     }
 
-    // endregion
+
     // Public Interface
 
     window.Prontuario = {

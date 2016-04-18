@@ -14,24 +14,19 @@ This file is part of Cuidando Bem.
     You should have received a copy of the GNU General Public License
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
-/* by Wellyson */
 
 define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
 
-        // region Imports
         var Dialogs = require("DialogsData").fase7;
         var Alertas = require("DialogsData").alertas;
         var Scores = require("ScoresData").level7;
         var Player = require("Player");
-        // endregion
+
 
         var level = new Level("Level 7");
         console.groupCollapsed( level.getName() );
 
-        // region Scenes
-
-        // region Recepcao
 
         var recepcao = lib.scenes.recepcao.getClone()
             .onLoad(function() {
@@ -99,8 +94,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true )
         ]);
 
-
-        // region CORREDOR
 
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
@@ -193,9 +186,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         ]);
-
-
-        // region ALA FEMININA
 
 
         var alaFeminina = new Scene("alaMasculina", "Ala Masculina")
@@ -366,8 +356,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
 
-        //  region FARMACIA
-
         function farmaciaIrCorredor() {
             console.log("Ir para o corredor");
             // Só perde pontos caso já esteja liberado para pegar o medicamento
@@ -427,7 +415,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Player.play( Player.audios.sfx.pegarObjeto );
                     console.log("Action: Pegar Medicamento");
                     level.getFlag("pegar_medicamento").setValue( true );
-                    //Ativando o seu botão para conferi-lo
+                    // Ativando o seu botão para conferi-lo
                     core.setActionVisible("btn-clorpromazinaMedicamento", true );
                     core.registerScoreItem( Scores.pegarMedicamento );
                     core.setInteractiveObjectVisible("io-clorpromazina_medicamento", false );
@@ -442,7 +430,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Player.play( Player.audios.sfx.pegarObjeto );
                     console.log("Action: Pegar Medicamento");
                     level.getFlag("pegar_medicamento_correto").setValue( true );
-                    //Ativando o seu botão para conferi-lo
+                    // Ativando o seu botão para conferi-lo
                     core.setActionVisible("btn-clorpropamidaMedicamento", true );
                     core.registerScoreItem( Scores.trocarMedicamento );
                     core.setInteractiveObjectVisible("io-clorpropamida_medicamento", false );
@@ -572,8 +560,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
 
-        //  region LEITO
-
         var leito = lib.scenes.leitos.ana.getClone()
             .onLoad(function() {
                 core.openDialog( 0 );
@@ -663,8 +649,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         ]);
 
-
-        //  region POSTO DE ENFERMAGEM
 
         var postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
@@ -758,7 +742,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         ]);
 
-        //  region ALA MASCULINA
 
         var alaMasculina = lib.scenes.alaMasculina.getClone()
             .onLoad(function() {
@@ -778,8 +761,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         ]);
 
-
-        //  region CENTRO CIRURGICO
 
         var centroCirurgico = lib.scenes.centroCirurgico.getClone()
             .onLoad(function() {
@@ -804,9 +785,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             console.log("Action: centroCirurgicoIrCorredor");
             core.changeScene( 1 );
         }
-
-
-        // region PRONTUARIO
 
 
         prontuario = new Scene("Prontuario", "Prontuario");
@@ -879,9 +857,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
 
-        // endregion
-
-        // region Pulseira
         pulseira = new Scene("pulseira", "pulseira");
 
         pulseira.registerInteractiveObjects([]);
@@ -896,19 +871,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
         ]);
-        // endregion
 
-        // endregion
 
-        // region ModalScenes
         level.registerModalScene( prontuario );
         level.registerModalScene( gaveta );
         level.registerModalScene( pulseira );
-        // endregion
 
-        // region Level
-
-        // region Register Scenes
 
         // id 0
         level.registerScene( recepcao );
@@ -931,16 +899,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // id 9
         level.registerScene( gaveta );
 
-
-        // endregion
-
-        // region Register Modal Scenes
-
-        // endregion
-
-        // region Flags
-
-        // endregion
 
         level.setSetupScript(function() {
 
@@ -967,7 +925,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.getFlag("ir_ala_feminina_primeira_vez").setValue( false );
             level.getFlag("lavarMaos").setValue( false );
 
-            //Dados da pulseira
+            // Dados da pulseira
             Pulseira.setNameRegExp( /Ana Beatriz Galv(a|ã)o/ );
             Pulseira.setLeitoRegExp( /0*1/ );
             Pulseira.setDataRegExp( /19\/07\/1979/ );
@@ -1034,7 +992,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         level.setInitialScene( 0 );
-        // endregion
+
 
         game.registerLevel( level, 7 );
 

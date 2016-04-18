@@ -14,20 +14,14 @@ This file is part of Cuidando Bem.
     You should have received a copy of the GNU General Public License
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
-/*
- This module has every wrold variable from each game level so it can be easily loaded inside the game.
- New levels can easily be made by adding new game levels.
- */
 
 define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
 
-        // region Imports
         var Dialogs = require("DialogsData").fase1;
         var Alertas = require("DialogsData").alertas;
         var Player = require("Player");
         Scores = Scores.level1;
-        // endregion
 
         var level = new Level("Level 1");
         console.groupCollapsed( level.getName() );
@@ -856,7 +850,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         level.setInitialScene( 0 );
-        // endregion
 
         game.registerLevel( level, 1 );
 

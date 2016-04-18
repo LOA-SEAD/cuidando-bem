@@ -121,7 +121,7 @@ define(function() {
             pegarLuvas: new Score("Pegar par de luvas de procedimento", 50 ),
             pegarSeringa10: new Score("Pegar seringa de 10ml", 50 ),
             pegarAmpolaSF: new Score("Pegar ampola de soro fisiológico 0,9% 10ml", 50 ),
-            naoPegarAlgumInstrumento: new Score("Fechar a gaveta sem pegar todos os instrumentos", -50),
+            naoPegarAlgumInstrumento: new Score("Fechar a gaveta sem pegar todos os instrumentos", -50 ),
             confirmarMedicacaoPosto: new Score("Confirmar medicação com mentor", 150 ),
             prepararMedicacao: new Score("Preparar medicação", 150 ),
             calcularGotejamento: new Score("Calcular gotejamento de soro", 350 ),
@@ -280,9 +280,9 @@ define(function() {
             pegarAgulha: new Score("Pegar Agulha 40X12", 50 ),
             pegarGlicose: new Score("Pegar Ampola de Glicose 50%", 50 ),
             pegarSoro: new Score("Pegar Soro de Macrogotas", 50 ),
-            irFarmacia_horaErrada: new Score("Ir para a farmácia na hora errada", -25),
-            lavarMaos: new Score("Lavar as mãos antes de ir ao leito", 200),
-            conversarPacienteLeito: new Score("Falar com o paciente no leito", 150),
+            irFarmaciaHoraErrada: new Score("Ir para a farmácia na hora errada", -25 ),
+            lavarMaos: new Score("Lavar as mãos antes de ir ao leito", 200 ),
+            conversarPacienteLeito: new Score("Falar com o paciente no leito", 150 )
         }
     };
 });
