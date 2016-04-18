@@ -912,9 +912,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             Prontuario.setPrescMedicaRowData( 0, "", "Soro Glicosado 5%", "Endovenosa", "800ml", "", false, true );
             Prontuario.setPrescMedicaRowData( 1, "", "NaCL 20%", "Endovenosa", "20ml", "", false, true );
-            // Prontuario.setPrescMedicaRowData( 2, "", "Glicose 50%", "Endovenosa", "30ml", "", "(X) Administrado a infusão de  solução de  reposição  hidroeletrolítica  conforme  prescrição  médica, sem  intercorrências.", false );
+            Prontuario.setPrescMedicaRowData( 2, "", "Glicose 50%", "Endovenosa", "30ml", "", "(X) Administrado a infusão de  solução de  reposição  hidroeletrolítica  conforme  prescrição  médica, sem  intercorrências.", false );
+            // Necessário para evitar que valores antigos apareçam no prontuário
+            Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
 
-            // Prontuario.setPrescEnfermagemState("risco de desiquilíbrio eletrolítico");
+            // Prontuario.setPrescEnfermagemState("desiquilibrio_eletrolitico_fase9");
 
             Prontuario.setSsvvRowData( 0, "", "130X70", "82", "19", "96", "35.9", true );
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );

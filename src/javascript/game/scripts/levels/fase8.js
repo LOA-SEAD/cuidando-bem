@@ -1183,12 +1183,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setPrescMedicaRowData( 0, "", "Midazolam", "Oral", "15 mg", "01x/dia antes do procedimento cirúrgico", false, true );
             // Necessário para evitar que valores antigos apareçam no prontuário
             Prontuario.setPrescMedicaRowData( 1, "", "", "", "", "", false, true );
-            // Prontuario.setPrescMedicaRowData(2, '', '', '', '', '', true, true);
-            // Prontuario.setPrescMedicaRowData(3, '', '', '', '', '', true, true);
+            Prontuario.setPrescMedicaRowData( 2, "", "", "", "", "", false, true );
+            Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
 
-            // Prontuario.setPrescEnfermagemState("Encaminhar o paciente ao centro cirúrgico");
-            // Prontuario.setPrescEnfermagemState("Realizar Check list da Primeira Fase da Cirurgia segura");
-            // Prontuario.setPrescEnfermagemState("Placa Neutra");
+            // Prontuario.setPrescEnfermagemState("encaminhar_paciente_cc");
+            //Caso não for possível escolher o local onde está a placa neutra terá que fazer um desse para cada fase que usa
+            // Prontuario.setPrescEnfermagemState("check_list_cirurgia");
+            // Prontuario.setPrescEnfermagemState("placa_neutra");
 
             Prontuario.setSsvvRowData( 0, "", "120x70", "72", "16", "96", "35,5", true );
             // Disable 2 row

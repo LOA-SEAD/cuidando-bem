@@ -117,6 +117,24 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
             posologia: "",
             horario: "",
             relatorio: false
+        },
+        {
+            disabled: false,
+            data: "",
+            medicacao: "",
+            via: "",
+            posologia: "",
+            horario: "",
+            relatorio: false
+        },
+        {
+            disabled: false,
+            data: "",
+            medicacao: "",
+            via: "",
+            posologia: "",
+            horario: "",
+            relatorio: false
         }
     ];
 
@@ -143,7 +161,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
     var prescEnfermagemCheckSelector = "";
 
 
-    var ssvvTbodySelector = "#ssvv_tbody";
+    var ssvvTbodySelector = "#ssvv_tbody";''
 
     var ssvvDataSelector = ".data";
     var ssvvPressaoArterialSelector = ".pa";
