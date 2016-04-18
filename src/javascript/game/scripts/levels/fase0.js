@@ -14,19 +14,13 @@ This file is part of Cuidando Bem.
     You should have received a copy of the GNU General Public License
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
-/*
- This module has every wrold variable from each game level so it can be easily loaded inside the game.
- New levels can easily be made by adding new game levels.
- */
 
 define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
 
-        // region Imports
         var Dialogs = require("DialogsData").tutorial;
         var Alertas = require("DialogsData").alertas;
         var Player = require("Player");
-        // endregion
 
         var level = new Level("Level 0 - Tutorial");
         console.groupCollapsed( level.getName() );
@@ -38,9 +32,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             visibility = true;
         }
 
-        // region Scenes
-
-        // region Recepcao
         function recepcaoIrCorredor() {
             console.log("Funcao: recepcao_ir_corredor");
             // wont check for flags
@@ -117,10 +108,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( visibility )
         ]);
-
-        // endregion
-
-        // region Corredor
 
         function corredorIrSalaLeitos() {
             if ( !flagsOn ) {
@@ -249,9 +236,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( visibility )
         ]);
-        // endregion
 
-        // region Sala de Leitos
         var salaDeLeitos = new Scene("salaDeLeitos", "scene-salaDeLeitos")
             .setCssClass("scene-bedroom-level0")
             .onLoad(function() {
@@ -293,9 +278,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( visibility )
         ]);
 
-        // endregion
-
-        // region Leito
         var leito = lib.scenes.leitos.joao.getClone()
             .onLoad(function() {
                 console.log("Leito: Onload");
@@ -325,8 +307,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.closeCommandBar();
             });
 
-
-        // region Leito - Dialogs
         leito.registerDialogs([
             // Dialog 0 - mentor
             new Dialog( lib.characters.mentor )
@@ -506,9 +486,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openCommandBar();
                 })
         ]);
-        // endregion
 
-        // region Leito - interactiveObjects and Actions
         leito.registerInteractiveObjects([
 
             new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
@@ -692,10 +670,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( visibility )
         ]);
-        // endregion
-        // endregion
 
-        // region Posto de Enfermagem
         var postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
                 core.setInteractiveObjectVisible("io-abrirGaveta", true );
@@ -769,9 +744,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( visibility )
         ]);
-        // endregion
 
-        // region Fim do Level
         var fimTutorial = lib.scenes.finalDeFase.getClone()
             .onLoad(function() {
                 core.setActionVisible("btn-proxima_fase", true );
@@ -786,13 +759,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( visibility )
         ]);
-        // endregion
 
-        // endregion
-
-        // region Modal Scenes
-
-        // region Gaveta
         var gaveta = new Scene("Gaveta", "Gaveta")
             .setCssClass("modalScene-drawer");
 
@@ -866,7 +833,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( visibility )
         ]);
-        // endregion
 
         function checouTodosAparelhos() {
             return level.getFlag("mediuTemperatura").getValue() &&
@@ -875,7 +841,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 level.getFlag("mediuBatimentosESaturacao").getValue();
         }
 
-        // region Prontuario
         var prontuario = new Scene("Prontuario", "modalScene-prontuario_joao");
 
         prontuario.registerActions([
@@ -920,11 +885,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
         ]);
 
-        // endregion
-
-        // region Pulseira
-
-
         var pulseira = new Scene("pulseira", "pulseira");
         // .setCssClass("modalScene-pulseira");
 
@@ -944,8 +904,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true )
         ]);
 
-        // endregion
-        // region termometro
         var termometro = new Scene("modalTermometro", "modalTermometro")
             .setCssClass("modalScene-termometro")
             .setTemplate("<span class='temp_termometro'>35.7º</span>");
@@ -958,9 +916,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
         ]);
-        // endregion
 
-        // region medidor de pressao
         var medidorPressao = new Scene("modalMedidor_pressao", "modalMedidor_pressao")
             .setCssClass("modalScene-medidorPressao")
             .setTemplate("<span class='pressao'>160x100 mmHg</span>");
@@ -973,9 +929,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
         ]);
-        // endregion
 
-        // region oximetro
         var oximetro = new Scene("modalOximetro", "Oxímetro")
             .setCssClass("modalScene-oximetro")
             .setTemplate(
@@ -990,9 +944,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
         ]);
-        // endregion
 
-        // region freqRespiratoria
         var freqRespiratoria = new Scene("freqRespiratoria", "Frequência Respiratória")
             .setCssClass("modalScene-freqRespiratoria");
 
@@ -1005,12 +957,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
         ]);
-
-        // enfregion
-
-        // endregion
-
-        // region Level
 
         level.setSetupScript(function() {
 
@@ -1081,7 +1027,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setPrescEnfermagemState("vazio");
         });
 
-        // region Register Scenes
         level.registerScene( recepcao );
         level.registerScene( corredor );
         level.registerScene( salaDeLeitos );
@@ -1089,9 +1034,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerScene( postoDeEnfermagem );
         level.registerScene( fimTutorial );
 
-        // endregion
-
-        // region Register Modal Scenes
         level.registerModalScene( pulseira );
         level.registerModalScene( prontuario );
         level.registerModalScene( freqRespiratoria );
@@ -1099,9 +1041,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerModalScene( termometro );
         level.registerModalScene( medidorPressao );
         level.registerModalScene( oximetro );
-        // endregion
 
-        // region Flags
         level.registerFlag( new Flag("conversar_recepcionista"), false );
         level.registerFlag( new Flag("conversar_mentor", false ) );
         level.registerFlag( new Flag("passagem_corredor", 0 ) );
@@ -1122,10 +1062,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("mediuFreqRespiratoria", false ) );
         level.registerFlag( new Flag("mediuBatimentosESaturacao", false ) );
 
-        // endregion
-
         level.setInitialScene( 0 );
-        // endregion
 
         game.registerLevel( level, 0 );
 

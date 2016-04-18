@@ -26,7 +26,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         console.groupCollapsed("Commons:");
 
         var lib = {
-            // region Scenes
+
             scenes: {
                 // Default object of "recepcao"
                 recepcao: new Scene("recepcao", "scene-recepcao")
@@ -96,7 +96,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         .setCssClass("scene-bedChar10")
                 }
             },
-            // endregion
+
             modalScenes: {},
             actions: {
                 irCorredor: new Action("btn-ir_corredor", "Ir ao corredor")

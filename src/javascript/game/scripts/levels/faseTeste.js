@@ -22,10 +22,10 @@ This file is part of Cuidando Bem.
 define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria" ],
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, freqRespiratoria ) {
 
-        // region Imports
+
         var Dialogs = require("DialogsData").fase1;
         var Alerts = require("DialogsData").alertas;
-        // endregion
+
 
         var level = new Level("Level TESTE");
         console.groupCollapsed( level.getName() );
@@ -33,7 +33,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var flagsOn = true;
         var visibility = false;
 
-        // region Scenes
 
         level.setSetupScript(function() {
 
@@ -86,7 +85,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         });
 
 
-        // region Recepcao
         var recepcao = new Scene("recepcao", "scene-recepcao")
             .setCssClass("scene-lobby")
             .onLoad(function() {
@@ -97,7 +95,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                 // core.showEndOfLevel();
             });
-        // endregion
+
 
         recepcao.registerActions([
             new Action("btn-ir_corredor", "Ir ao corredor")
@@ -116,17 +114,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setTemplate("<span class='oximetro-text'>valor unidade</span>");
 
 
-        // endregion
-
-        // region Level
-        // region Register Scenes
         level.registerScene( recepcao );
 
         level.registerModalScene( oximetro );
-        // endregion
+
 
         level.setInitialScene( 0 );
-        // endregion
+
 
         game.registerLevel( level, 13 );
 
