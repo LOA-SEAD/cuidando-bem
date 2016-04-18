@@ -1,16 +1,13 @@
 /*
 This file is part of Cuidando Bem.
-
     Cuidando Bem is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-
     Cuidando Bem is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-
     You should have received a copy of the GNU General Public License
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -274,14 +271,18 @@ define(function() {
         },
 
         level9: {
-            lerProntuario: new Score("Ler prontuário do paciente", 150 ),
+            lerProntuario: new Score("Ler prontuario do paciente", 150 ),
+            pegarPrescricaoMedica: new Score("Pegar Prescrição Médica", 150 ),
             pegarFrascoSG: new Score("Pegar Frasco SG 5%", 50 ),
             pegarNACL: new Score("Pegar NaCL 20%", 50 ),
             conferirDieta: new Score("Conferir Medicamento Prescrito", 150 ),
             pegarSeringa: new Score("Pegar Seringa 5ml", 50 ),
             pegarAgulha: new Score("Pegar Agulha 40X12", 50 ),
             pegarGlicose: new Score("Pegar Ampola de Glicose 50%", 50 ),
-            pegarSoro: new Score("Pegar Soro de Macrogotas", 50 )
+            pegarSoro: new Score("Pegar Soro de Macrogotas", 50 ),
+            irFarmacia_horaErrada: new Score("Ir para a farmácia na hora errada", -25),
+            lavarMaos: new Score("Lavar as mãos antes de ir ao leito", 200),
+            conversarPacienteLeito: new Score("Falar com o paciente no leito", 150),
         }
     };
 });
