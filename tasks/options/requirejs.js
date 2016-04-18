@@ -7,14 +7,15 @@ module.exports = {
 
     prod: {
         options: {
-            appDir: "<%= pkg.development %>",
+            appDir: "<%= pkg.production %>",
             dir: "<%= pkg.production %>",
             baseUrl: "./",
             optimize: "uglify",
-            mainConfigFile: "<%= pkg.development %>" + "/javascript/requireConfig.js",
+            mainConfigFile: "<%= pkg.production %>" + "/javascript/requireConfig.js",
+            allowSourceOverwrites: true,
+            keepBuildDir: true,
 
-
-            inlineText:true,
+            inlineText: true,
             stubModules: [ "text" ],
 
             paths: {

@@ -12,7 +12,8 @@ module.exports = function( grunt ) {
             // Build and serve docs
             grunt.task.run([
                 "docs",
-                "connect:docs"
+                "connect:docs",
+                "watch:docs"
             ]);
         } else if ( target == "dev" ) {
             // Build and serve development

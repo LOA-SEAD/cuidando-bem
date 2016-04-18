@@ -1,17 +1,27 @@
 /*
- This module has every wrold variable from each game level so it can be easily loaded inside the game.
- New levels can easily be made by adding new game levels.
- */
+This file is part of Cuidando Bem.
+
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
 
-        // region Imports
         var Dialogs = require("DialogsData").fase1;
         var Alertas = require("DialogsData").alertas;
         var Player = require("Player");
         Scores = Scores.level1;
-        // endregion
 
         var level = new Level("Level 1");
         console.groupCollapsed( level.getName() );
@@ -260,7 +270,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         // Sala de leitos
         salaDeLeitos = new Scene("salaDeLeitos", "scene-salaDeLeitos")
-            .setCssClass("scene-bedroom")
+            .setCssClass("scene-bedroom-level1")
             .onLoad(function() {
                 console.log("Entrando na sala de leitos");
                 if ( level.getFlag("colocou_coxim").getValue() == true ) {
@@ -840,7 +850,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         level.setInitialScene( 0 );
-        // endregion
 
         game.registerLevel( level, 1 );
 

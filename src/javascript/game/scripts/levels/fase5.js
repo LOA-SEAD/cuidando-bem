@@ -1,22 +1,32 @@
 /*
- This module has every wrold variable from each game level so it can be easily loaded inside the game.
- New levels can easily be made by adding new game levels.
- */
+This file is part of Cuidando Bem.
+
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
 
-        // region Imports
         var Dialogs = require("DialogsData").fase5;
         var Alertas = require("DialogsData").alertas;
         var Scores = require("ScoresData").level5;
         var Player = require("Player");
-        // endregion
+
 
         var level = new Level("Level 5");
         console.groupCollapsed( level.getName() );
 
-        // region Scenes
 
         var
             recepcao,
@@ -29,7 +39,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             prontuario,
             glicosimetro;
 
-        // region Recepcao
+
         function recepcaoIrCorredor() {
             console.log("Funcao: recepcao_ir_corredor");
             if ( level.getFlag("conversar_recepcionista").getValue() == true ) {
@@ -79,9 +89,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( true )
         ]);
-        // endregion
 
-        // region Corredor
+
         function corredorIrPostoEnfermagem() {
             if ( level.getFlag("score_ver_prontuario").getValue() == false ) {
                 core.openDialog( 2 );
@@ -230,10 +239,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true )
 
         ]);
-        // endregion
 
-        // region alaFeminina
-        alaFeminina = lib.scenes.alaFeminina.getClone()
+
+        alaFeminina = new Scene("alaMasculina", "Ala Masculina")
+            .setCssClass("scene-bedroom-level5")
             .onLoad(function() {
                 console.log("Load scene: Ala feminina");
                 // Apenas para desaparecer com o mentor do corredor
@@ -345,9 +354,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( false )
         ]);
-        // endregion
 
-        // region Leito
+
         leito = lib.scenes.leitos.esther.getClone()
             .onLoad(function() {
                 core.openCommandBar();
@@ -362,10 +370,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         leito.registerInteractiveObjects([
 
             new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
-                // VAI MUDAR
-                .setCssClass("intObj-paciente_02-checar_pulseira")
+                .setCssClass("intObj-paciente_06-checar_pulseira")
                 .onClick(function() {
-
+                    console.log("IO: pulseira_paciente");
+                    core.openModalScene("pulseira");
+                    if ( level.getFlag("score_verificar_pulseira").getValue() == false ) {
+                        core.registerScoreItem( Scores.verificarPulseira );
+                        level.getFlag("score_verificar_pulseira").setValue( true );
+                    }
+                    Pulseira.open();
+                    core.openCommandBar();
                 })
                 .setVisibility( true ),
 
@@ -414,7 +428,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText("")
                 .registerOption( Dialogs.leitoPaciente[ 4 ], function() {
                     core.closeDialog();
-                    core.setActionVisible("btn-falarPaciente", false );
+                    // core.setActionVisible("btn-falarPaciente", false );
                     core.setActionVisible("btn-realizar_teste_glicemia", true );
                     core.setActionVisible("btn-descartar_agulha", true );
                     core.setActionVisible("btn-jogar_algodao", true );
@@ -655,7 +669,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( false ),
 
             new Action("btn-calcar_luvas_estereis", "Calçar luvas estéreis")
-                .setCssClass("action-luvasEstereis")
+                .setCssClass("action-luvas_estereis")
                 .onClick(function() {
                     console.log("Action: Calçar luvas estéreis");
                     if ( level.getFlag("score_lavou_maos_antes_calcar_luva").getValue() == false ) {
@@ -755,9 +769,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( false )
         ]);
-        // endregion
 
-        // region Posto de enfermagem
+
         postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
                 core.openCommandBar();
@@ -851,13 +864,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeDialog();
                 })
         ]);
-        // endregion
 
-        // endregion
 
-        // region ModalScenes
-
-        // region Gaveta
         gaveta = new Scene("gaveta", "Gaveta")
             .setCssClass("modalScene-drawer");
 
@@ -878,7 +886,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         gaveta.registerInteractiveObjects([
             // Kit glicemia
             new InteractiveObject("io-kit_glicemia", "Pegar Kit de glicemia")
-            // Ainda nao disponivel imagem correta
                 .setCssClass("intObj-aparelhoGlicemia")
                 .onClick(function() {
                     console.log("Action: pegar kit de glicemia");
@@ -905,7 +912,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             // Luvas
             new InteractiveObject("io-luvas", "Pegar luvas")
-                .setCssClass("intObj-luvas_de_procedimento")
+                .setCssClass("intObj-luvas_de_procedimento_fase5")
                 .onClick(function() {
                     console.log("Action: pegar luvas");
                     // Som
@@ -957,8 +964,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             // Soro Fisiológico 0,9% (250 ml) aquecido
             new InteractiveObject("io-soro", "Pegar soro fisiológico 0,9% (250 ml) aquecido")
-            // Ainda nao disponivel imagem correta
-                .setCssClass("intObj-watch")
+                .setCssClass("intObj-soro_fisiologico_250_ml")
                 .onClick(function() {
                     console.log("Action: pegar soro fisiológico 0,9% (250 ml) aquecido");
                     // Som
@@ -995,9 +1001,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
         ]);
-        // endregion
 
-        // region Pulseira
+
         pulseira = new Scene("pulseira", "pulseira");
 
         pulseira.registerInteractiveObjects([]);
@@ -1012,9 +1017,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
         ]);
-        // endregion
 
-        // region Prontuario
+
         prontuario = new Scene("Prontuario", "Prontuario");
 
         prontuario.registerActions([
@@ -1038,9 +1042,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             //  alert(Prontuario.isDataValid() + " Final da fase");
         ]);
-        // endregion
 
-        // region Glicosimetro
+
         glicosimetro = new Scene("modalGlicosimetro", "modalGlicosimetro")
             .setCssClass("modalScene-glicosimetro")
             .setTemplate("<span class='glicosimetro-text'>100 mg/dl</span>");
@@ -1053,9 +1056,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
         ]);
-        // endregion
 
-        // endregion
 
         // Register in level
 
@@ -1176,7 +1177,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAnotacaoEnfermagemRowData("", "");
         });
 
-        // region Flags
+
         level.registerFlag( new Flag("conversar_recepcionista"), false );
         level.registerFlag( new Flag("conversar_mentor"), false );
         level.registerFlag( new Flag("entrou_ala_feminina"), false );
@@ -1226,7 +1227,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("score_ergueu_grade"), false );
         level.registerFlag( new Flag("score_nao_ergueu_grade"), false );
         level.registerFlag( new Flag("score_anotar_prontuario"), false );
-        // endregion
+
 
         level.setInitialScene( 0 );
 

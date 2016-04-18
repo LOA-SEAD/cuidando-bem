@@ -1,4 +1,20 @@
 /*
+This file is part of Cuidando Bem.
+
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/*
  This module has every wrold variable from each game level so it can be easily loaded inside the game.
  New levels can easily be made by adding new game levels.
 
@@ -10,7 +26,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         console.groupCollapsed("Commons:");
 
         var lib = {
-            // region Scenes
+
             scenes: {
                 // Default object of "recepcao"
                 recepcao: new Scene("recepcao", "scene-recepcao")
@@ -22,11 +38,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                 // Default object of "alaMasculina"
                 alaMasculina: new Scene("alaMasculina", "Ala Masculina")
-                    .setCssClass("scene-maleRoom"),
+                    .setCssClass("scene-bedroom"),
 
                 // Default object of "alaFeminina"
                 alaFeminina: new Scene("alaFeminina", "Ala Feminina")
-                    .setCssClass("scene-femaleRoom"),
+                    .setCssClass("scene-bedroom"),
 
                 // Default object of "postoDeEnfermagem"
                 postoDeEnfermagem: new Scene("postoDeEnfermagem", "Posto de Enfermagem")
@@ -80,7 +96,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         .setCssClass("scene-bedChar10")
                 }
             },
-            // endregion
+
             modalScenes: {},
             actions: {
                 irCorredor: new Action("btn-ir_corredor", "Ir ao corredor")
@@ -98,7 +114,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 mentor: new Character("Mentor", "char-mentor"),
                 jogador: new Character("Jogador", "char-player"),
 
-                circulante: new Character("Circulante", "char-player"),
+                circulante: new Character("Circulante", "char-circulante"),
                 // TODO: mudar 'paulo:' para 'farmaceutico:'
                 paulo: new Character("Paulo", "char-paulo"),
 

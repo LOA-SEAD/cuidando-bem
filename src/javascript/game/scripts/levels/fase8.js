@@ -1,22 +1,33 @@
 /*
- This module has every wrold variable from each game level so it can be easily loaded inside the game.
- New levels can easily be made by adding new game levels.
- */
+This file is part of Cuidando Bem.
+
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
 
-        // region Imports
+
         var Dialogs = require("DialogsData").fase8;
         var Alertas = require("DialogsData").alertas;
         var Scores = require("ScoresData").level8;
         var Player = require("Player");
-        // endregion
+
 
         var level = new Level("Level 8");
         console.groupCollapsed( level.getName() );
 
-        // region Scenes
 
         var
             recepcao,
@@ -31,7 +42,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             pulseira,
             prontuario;
 
-        // region Recepcao
+
         function recepcaoIrCorredor() {
             console.log("Funcao: recepcao_ir_corredor");
             core.changeScene( 1 );
@@ -62,9 +73,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( true )
         ]);
-        // endregion
 
-        // region Corredor
+
         function corredorIrAlaMasculina() {
             core.changeScene( 2 );
         }
@@ -146,11 +156,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true )
 
         ]);
-        // endregion
 
-        // region Ala masculina
+
         salaDeLeitos = new Scene("salaDeLeitos", "scene-salaDeLeitos")
-            .setCssClass("scene-bedroom")
+            .setCssClass("scene-bedroom-level8")
             .onLoad(function() {
                 console.log("Load scene: Ala Masculina");
                 // Depois que já ocorreu o diálogo, o botão do prontuário fica liberado
@@ -188,7 +197,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             new InteractiveObject("io-ir_leito", "Ir ao leito")
-                .setCssClass("intObj-ir_leito-tutorial")
+                .setCssClass("intObj-irLeitoEsquerda")
                 .onClick(function() {
                     if ( level.getFlag("score_lavar_maos_antes_leito").getValue() == false ) {
                         if ( level.getFlag("score_nao_lavar_maos_antes_leito").getValue() == false ) {
@@ -273,9 +282,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeDialog();
                 })
         ]);
-        // endregion
 
-        // region Leito
+
         leito = lib.scenes.leitos.yuri.getClone()
             .onLoad(function() {
                 core.openCommandBar();
@@ -297,7 +305,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         leito.registerInteractiveObjects([
             new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
                 // VAI MUDAR
-                .setCssClass("intObj-paciente_02-checar_pulseira")
+                .setCssClass("intObj-paciente_09-checar_pulseira")
                 .onClick(function() {
                     console.log("IO: pulseira_paciente");
                     if ( level.getFlag("score_verificar_pulseira").getValue() == false ) {
@@ -430,7 +438,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( level.getFlag("levou_yuri_centro_cirurgico").getValue() == false ) {
                         level.getFlag("levou_yuri_centro_cirurgico").setValue( true );
                     }
-                    core.setActionVisible("btn-falarPaciente", false );
+                    // core.setActionVisible("btn-falarPaciente", false );
                     core.setActionVisible("btn-oferecer_copo", false );
                     core.setActionVisible("btn-administrar_medicamento", false );
                     core.setActionVisible("btn-levar_yuri_cc", false );
@@ -451,9 +459,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
         ]);
-        // endregion
 
-        // region Farmacia
+
         function farmaciaIrCorredor() {
             console.log("Funcao: farmacia_ir_corredor");
             console.log("Ir para o corredor");
@@ -561,9 +568,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openCommandBar();
                 })
         ]);
-        // endregion
 
-        // region Posto de enfermagem
+
         postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
                 console.log("Load scene: Posto de enfermagem");
@@ -697,9 +703,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeDialog();
                 })
         ]);
-        // endregion
 
-        // region Centro cirurgico
+
         centroCirurgico = lib.scenes.centroCirurgico.getClone()
             .onLoad(function() {
                 console.log("Load scene: Centro cirurgico");
@@ -722,9 +727,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
         ]);
-        // endregion
 
-        // region Ala feminina
+
         alaFeminina = lib.scenes.alaFeminina.getClone()
             .onLoad(function() {
                 console.log("Load scene: Ala feminina");
@@ -742,9 +746,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
         ]);
-        // endregion
 
-        // region Centro cirurgico Yuri
+
         centroCirurgicoYuri = lib.scenes.centroCirurgicoYuri.getClone()
             .onLoad(function() {
                 console.log("Load scene: Centro cirurgico Yuri");
@@ -1027,13 +1030,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openCommandBar();
                 })
         ]);
-        // endregion
 
-        // endregion
 
-        // region ModalScenes
-
-        // region Pulseira
         pulseira = new Scene("pulseira", "pulseira");
 
         pulseira.registerInteractiveObjects([]);
@@ -1048,9 +1046,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
         ]);
-        // endregion
 
-        // region Prontuario
+
         prontuario = new Scene("Prontuario", "Prontuario");
 
         prontuario.registerActions([
@@ -1073,13 +1070,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             //  alert(Prontuario.isDataValid() + " Final da fase");
         ]);
-        // endregion
 
-        // endregion
 
-        // region Level
-
-        // region Register Scenes
         // 0
         level.registerScene( recepcao );
         // 1
@@ -1098,14 +1090,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerScene( alaFeminina );
         // 8
         level.registerScene( centroCirurgicoYuri );
-        // endregion
 
-        // region Register Modal Scenes
+
         level.registerModalScene( pulseira );
         level.registerModalScene( prontuario );
-        // endregion
 
-        // region Flags
+
         level.setSetupScript(function() {
             // Script that runs once when the level is loaded or reloaded
 
@@ -1160,11 +1150,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.getFlag("score_anotar_prontuario_centro_cirurgico").setValue( false );
 
             Pulseira.setNameRegExp( /Yuri de Souza Almeida/ );
-            Pulseira.setLeitoRegExp( /0*2/ );
+            Pulseira.setLeitoRegExp( /0*1/ );
             Pulseira.setDataRegExp( /16\/03\/1993/ );
 
             Pulseira.setName("Yuri de Souza Almeida");
-            Pulseira.setLeito("02");
+            Pulseira.setLeito("01");
             Pulseira.setData("16/03/1993");
             Pulseira.disable();
 
@@ -1181,7 +1171,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAlergiaMedicamentosa( true, "Dipirona, sulfa.");
             Prontuario.setDisableAlergiaMedicamentosa( true );
             Prontuario.setDataInternacao("27/09/2015");
-            Prontuario.setLeito("02 - Enfermaria masculina");
+            Prontuario.setLeito("01 - Enfermaria masculina");
             Prontuario.setAntecedentes("");
             Prontuario.setHipotese("Cirurgia de reconstrução do ligamento cruzado anterior (LCA), no MMII direito.");
             Prontuario.setObservacoes("Acidente automobilístico.");
@@ -1207,7 +1197,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAnotacaoEnfermagemRowData("", "");
         });
 
-        // region Flags
+
         level.registerFlag( new Flag("ja_falou_farmaceutico"), false );
         level.registerFlag( new Flag("pegou_bandeja"), false );
         level.registerFlag( new Flag("ja_falou_paciente"), false );
@@ -1257,7 +1247,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("score_lavar_maos_centro_cirurgico"), false );
         level.registerFlag( new Flag("score_nao_lavar_maos_centro_cirurgico"), false );
         level.registerFlag( new Flag("score_anotar_prontuario_centro_cirurgico"), false );
-        // endregion
+
 
         level.setInitialScene( 0 );
 

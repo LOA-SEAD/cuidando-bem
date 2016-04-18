@@ -1,4 +1,20 @@
 /*
+This file is part of Cuidando Bem.
+
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/*
  This module has every wrold variable from each game level so it can be easily loaded inside the game.
  New levels can easily be made by adding new game levels.
 
@@ -6,10 +22,10 @@
 define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria" ],
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, freqRespiratoria ) {
 
-        // region Imports
+
         var Dialogs = require("DialogsData").fase1;
         var Alerts = require("DialogsData").alertas;
-        // endregion
+
 
         var level = new Level("Level TESTE");
         console.groupCollapsed( level.getName() );
@@ -17,7 +33,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var flagsOn = true;
         var visibility = false;
 
-        // region Scenes
 
         level.setSetupScript(function() {
 
@@ -70,7 +85,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         });
 
 
-        // region Recepcao
         var recepcao = new Scene("recepcao", "scene-recepcao")
             .setCssClass("scene-lobby")
             .onLoad(function() {
@@ -81,7 +95,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                 // core.showEndOfLevel();
             });
-        // endregion
+
 
         recepcao.registerActions([
             new Action("btn-ir_corredor", "Ir ao corredor")
@@ -100,17 +114,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setTemplate("<span class='oximetro-text'>valor unidade</span>");
 
 
-        // endregion
-
-        // region Level
-        // region Register Scenes
         level.registerScene( recepcao );
 
         level.registerModalScene( oximetro );
-        // endregion
+
 
         level.setInitialScene( 0 );
-        // endregion
+
 
         game.registerLevel( level, 13 );
 

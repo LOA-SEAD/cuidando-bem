@@ -1,3 +1,16 @@
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 //region Action Buttons
 @no_image: url(../images/actionButtons/semImagem.jpg);
 
@@ -65,6 +78,7 @@
 @keflinMedicamento : url(../images/actionButtons/keflinMedicamento.jpg);
 @luvasDeProcedimento : url(../images/actionButtons/luvasDeProcedimento.jpg);
 @luvasEstereis : url(../images/actionButtons/luvasEstereis.jpg);
+@glicosimetro : url(../images/actionButtons/glicosimetro.jpg);
 @mentor : url(../images/actionButtons/mentor.jpg);
 @midazolamMedicamento : url(../images/actionButtons/midazolamMedicamento.jpg);
 @paciente1 : url(../images/actionButtons/paciente1.jpg);
@@ -86,11 +100,15 @@
 @soroFisiologico250ml : url(../images/actionButtons/soroFisiologico250ml.jpg);
 @soroGlicofisiologico1000ml : url(../images/actionButtons/soroGlicofisiologico1000ml.jpg);
 @agulha : url(../images/actionButtons/agulha40x12.jpg);
+@lixo_comum : url(../images/actionButtons/lixo_comum.jpg);
+@lixo_infectante : url(../images/actionButtons/lixo_infectante.jpg);
+@lixo_perfuro_cortante : url(../images/actionButtons/lixo_perfuro_cortante.jpg);
 //endregion
 
 //region Characters
 @char-receptionist: url(../images/characters/recepcionista.png);
 @char-mentor: url(../images/characters/mentor.png);
+@char-circulante: url(../images/characters/circulanteDeLeito.png);
 @char-paciente1: url(../images/characters/paciente1.png);
 @char-paciente2: url(../images/characters/paciente2.png);
 @char-paciente3: url(../images/characters/paciente3.png);
@@ -108,6 +126,7 @@
 @intObj-bloodPressureMonitor: url(../images/interactiveObjects/pressao.png);
 @intObj-oximeter: url(../images/interactiveObjects/oximetro.png);
 @intObj-charMentor: url(../images/interactiveObjects/char-mentor.png);
+@intObj-charCirculante: url(../images/interactiveObjects/circulanteDeLeito.png);
 @intObj-braceletConfirmationGray: url(../images/interactiveObjects/checkmark-gray.png);
 @intObj-braceletConfirmationGreen: url(../images/interactiveObjects/checkmark.png);
 @intObj-cushion: url(../images/interactiveObjects/coxim.png);
@@ -124,6 +143,7 @@
 @intObj-watch: url(../images/interactiveObjects/relogio.png);
 @intObj-copoDescartavel: url(../images/interactiveObjects/copo_descartavel.png);
 @intObj-aguaPotavel: url(../images/interactiveObjects/garrafa_agua_potavel.png);
+@intObj-9certos: url(../images/interactiveObjects/9certos.png);
 
 @intObj-algodao: url(../images/interactiveObjects/algodao_seco.png);
 @intObj-luvas: url(../images/interactiveObjects/algodao_seco.png);
@@ -138,22 +158,27 @@
 @intObj-aparelhodepressao_lateral : url(../images/interactiveObjects/aparelhodepressao_lateral.png);
 @intObj-bandeja : url(../images/interactiveObjects/bandeja.png);
 @intObj-carrinho_anestesico : url(../images/interactiveObjects/carrinho_anestesico.png);
+@intObj-cloreto_de_sodio_10__10_ml_ : url(../images/interactiveObjects/cloreto_de_sodio_10__10_ml_.png);
 @intObj-cloreto_de_sodio_20__10_ml_ : url(../images/interactiveObjects/cloreto_de_sodio_20__10_ml_.png);
 @intObj-clorpromazina_medicamento : url(../images/interactiveObjects/clorpromazina_medicamento.png);
+@intObj-clorpropamida_medicamento : url(../images/interactiveObjects/clorpropamida_medicamento.png);
 @intObj-copo_descartavel : url(../images/interactiveObjects/copo_descartavel.png);
 @intObj-coxim : url(../images/interactiveObjects/coxim.png);
 @intObj-equipo_de_infusao_de_dieta : url(../images/interactiveObjects/equipo_de_infusao_de_dieta.png);
+@intObj-equipo_de_soro : url(../images/interactiveObjects/equipo_de_soro.png);
 @intObj-fita_adesiva_hipoalergenica_micropore : url(../images/interactiveObjects/fita_adesiva_hipoalergenica_micropore.png);
 @intObj-frasco_de_alcool : url(../images/interactiveObjects/frasco_de_alcool.png);
 @intObj-frasco_de_dieta : url(../images/interactiveObjects/frasco_de_dieta.png);
 @intObj-garrafa_agua_potavel : url(../images/interactiveObjects/garrafa_agua_potavel.png);
 @intObj-gaveta : url(../images/interactiveObjects/gaveta.png);
 @intObj-gaze_esteril : url(../images/interactiveObjects/gaze_esteril.png);
+@intObj-glicose_30__10_ml : url(../images/interactiveObjects/glicose_30__10_ml.png);
 @intObj-keflin_medicamento : url(../images/interactiveObjects/keflin_medicamento.png);
 @intObj-lixo_comum : url(../images/interactiveObjects/lixo_comum.png);
 @intObj-lixo_infectante : url(../images/interactiveObjects/lixo_infectante.png);
 @intObj-lixo_perfuro_cortante : url(../images/interactiveObjects/lixo_perfuro_cortante.png);
 @intObj-luvas_de_procedimento : url(../images/interactiveObjects/luvas_de_procedimento.png);
+@intObj-luvas_de_procedimento_fase5 : url(../images/interactiveObjects/luvas_de_procedimento.png);
 @intObj-luvas_estereis : url(../images/interactiveObjects/luvas_estereis.png);
 @intObj-midazolam_medicamento : url(../images/interactiveObjects/midazolam_medicamento.png);
 @intObj-oximetro_frontal : url(../images/interactiveObjects/oximetro_frontal.png);
@@ -164,10 +189,15 @@
 @intObj-prontuario : url(../images/interactiveObjects/prontuario.png);
 @intObj-relogiodigital : url(../images/interactiveObjects/relogiodigital.png);
 @intObj-relogiodigital_lateral : url(../images/interactiveObjects/relogiodigital_lateral.png);
+@intObj-seringa_5_ml : url(../images/interactiveObjects/seringa_5_ml.png);
 @intObj-seringa_20_ml : url(../images/interactiveObjects/seringa_20_ml.png);
 @intObj-seringa_de_10_ml : url(../images/interactiveObjects/seringa_de_10_ml.png);
+@intObj-soro_fisiologico_100_ml : url(../images/interactiveObjects/soro_fisiologico_100_ml.png);
+@intObj-soro_fisiologico_250_ml : url(../images/interactiveObjects/soro_fisiologico_250_ml.png);
+@intObj-soro_fisiologico_1000_ml : url(../images/interactiveObjects/soro_fisiologico_1000_ml.png);
 @intObj-soro_glicofisiologico_1000_ml : url(../images/interactiveObjects/soro_glicofisiologico_1000_ml.png);
 @intObj-termometro_frontal : url(../images/interactiveObjects/termometro_frontal.png);
+@intObj-glicose_30_10ml : url(../images/interactiveObjects/glicose30_10ml.png);
 //endregion
 
 //region Misc
@@ -211,7 +241,23 @@
 @scene-maleRoom: url(../images/scenes/alaMasculina.jpg);
 @scene-maleRoom-cushion: url(../images/scenes/alaMasculinaPacienteVirado.jpg);
 @scene-femaleRoom: url(../images/scenes/alaFeminina.png);
-@scene-bedroom: url(../images/scenes/salaDeLeitos.jpg);
+//@scene-bedroom: url(../images/scenes/salaDeLeitos.jpg);
+
+@scene-bedroom: url(../images/scenes/quartos.jpg);
+@scene-bedroom-level0: url(../images/scenes/quartos0.jpg);
+@scene-bedroom-level1: url(../images/scenes/quartos1.jpg);
+@scene-bedroom-level1a: url(../images/scenes/quartos1a.jpg);
+@scene-bedroom-level1b: url(../images/scenes/quartos1.bjpg);
+@scene-bedroom-level1c: url(../images/scenes/quartos1.jcpg);
+@scene-bedroom-level2: url(../images/scenes/quartos2.jpg);
+@scene-bedroom-level3: url(../images/scenes/quartos3.jpg);
+@scene-bedroom-level4: url(../images/scenes/quartos4.jpg);
+@scene-bedroom-level5: url(../images/scenes/quartos5.jpg);
+@scene-bedroom-level6: url(../images/scenes/quartos6.jpg);
+@scene-bedroom-level7: url(../images/scenes/quartos7.jpg);
+@scene-bedroom-level8: url(../images/scenes/quartos8.jpg);
+@scene-bedroom-level9: url(../images/scenes/quartos9.jpg);
+
 // Centro Cirúrgico
 @scene-surgeryCenter: url(../images/scenes/centroCirurgico.jpg);
 @scene-centroCirurgicoRegina: url(../images/scenes/centroCirurgicoRegina.jpg);

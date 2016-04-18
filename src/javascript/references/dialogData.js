@@ -1,3 +1,16 @@
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 /**
  *
  * @author Otho - Marcelo Lopes Lotufo
@@ -192,7 +205,9 @@ define({
             // 2 Jogador
             "Parece que temos um procedimento para ser realizado, vou até o posto de enfermagem e já volto.",
             // 3 Lixo Errado Alerta
-            "Tem certeza que está realizando o descarte no lixo correto?"
+            "Tem certeza que está realizando o descarte no lixo correto?",
+            // 4 Alerta Checar Prontuario
+            "Você deve checar o prontuário."
         ],
         leitoPaciente: [
             // 0 Jogador
@@ -795,7 +810,9 @@ define({
             // 4 Paciente
             "Tá certo! Brigado.",
             // 5 Mentor Alerta
-            "Esqueceu de se apresentar? E como está o paciente?"
+            "Esqueceu de se apresentar? E como está o paciente?",
+            // 6 Esqueceu prescricao ou prontuario
+            "Você está se esquecendo de algo importante."
         ],
         farmacia: [
             // 0 Farmaceutico
@@ -822,7 +839,9 @@ define({
             " Conseguiremos encontrar uma maneira em que o senhor consiga assistir" +
             " à televisão daquela cama.Vamos destrocar?",
             // 5 Jogador op 2
-            "Tudo bem, senhor Raul, porém deixarei apenas desta vez, ok?!"
+            "Tudo bem, senhor Raul, porém deixarei apenas desta vez, ok?!",
+            // 6
+            "Esta não foi a melhor decisão.A permanência do paciente em seu próprio leito evita possíveis erros e confusões. Tente novamente."
         ],
 
         postoDeEnfermagem: [
@@ -830,7 +849,7 @@ define({
             "Lembre-se de pegar todos os equipamentos antes de sair!"
         ],
 
-        alaMasculina: [
+        alaMasculina1: [
             // 0 Jogador
             "Agora estamos no leito correto, senhor Francisco.",
             // 1 Paciente
@@ -969,6 +988,9 @@ define({
             ],
             pegarDieta: [
                 "O paciente necessita da dieta!"
+            ],
+            folheto9certos: [
+                "Pegue o folheto dos 9 certos!"
             ]
         },
         descarte: {

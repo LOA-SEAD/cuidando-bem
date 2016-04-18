@@ -1,3 +1,19 @@
+/*
+This file is part of Cuidando Bem.
+
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 /**
  *
  * @name Prontuario_Controller
@@ -7,7 +23,6 @@
  */
 define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
 
-    // region Attributes
 
     var prontuarioSelector = "#prontuario";
 
@@ -187,9 +202,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
     var anotacaoEnfermagemText = "";
     var anotacaoEnfermagemTextRegExp = "";
 
-    // endregion
 
-    // region Gets
     function getNome() {
         return nomeText;
     }
@@ -258,9 +271,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         return prescEnfermagemState;
     }
 
-    // endregion
 
-    // region Sets
     function setNome( _nomeText ) {
         nomeText = _nomeText;
         $( nomeDisplaySelector ).text( nomeText );
@@ -484,9 +495,6 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         $("." + prescEnfermagemState, prescEnfermagemTbody ).show();
     }
 
-    // endregion
-
-    // region Methods
 
     function init( selector ) {
         $( selector ).append( html );
@@ -743,7 +751,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         return true;
     }
 
-    // endregion
+
     // Public Interface
 
     window.Prontuario = {

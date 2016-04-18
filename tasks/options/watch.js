@@ -5,6 +5,15 @@ module.exports = {
         livereload: false
     },
 
+    docs: {
+        files: [
+            "<%= pkg.source %>" + "/javascript/**/*.js"
+        ],
+        tasks: [
+            "docs"
+        ]
+    },
+
     js: {
         files: [
             "<%= pkg.source %>" + "/javascript/**/*.js"

@@ -1,3 +1,16 @@
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 define(function() {
     function Score( _title, _score ) {
         this.title = _title;
@@ -87,15 +100,19 @@ define(function() {
             irPostoEnfermagemHoraErrada: new Score("Ir ao posto de enfermagem em hora indevida", -25 ),
             irFarmaciaHoraErrada: new Score("Ir à farmácia em hora indevida", -25 ),
             irAlaFeminina: new Score("Ir à ala feminina sem precisar", -25 ),
-            lavarMaosAntesLeito: new Score("Lavou as mãos antes de ir ao leito do paciente", 200 ),
-            lavarMaos: new Score("Lavou as mãos antes", 200 ),
-            notLavarMaos: new Score("Não lavou as mãos antes", -200 ),
-            checarProntuario: new Score("Checar Prontuário", 150 ),
+            checarProntuario: new Score("Checar prontuário", 150 ),
+            naoChecarProntuario: new Score("Não checar prontuário", -150 ),
             pegarPrescricaoMedica: new Score("Pegar prescrição médica", 250 ),
-            pegarMedicamento: new Score("Pegar medicamento", 50 ),
+            naoPegarPrescricaoMedica: new Score("Pegar prescrição médica", -250 ),
+            pegarMedicamento: new Score("Pegar medicamento", 150 ),
             conferirMedicamento: new Score("Conferir medicamento", 300 ),
+            naoConferirMedicamento: new Score("Não conferir medicamento", -300 ),
             calcularValorMedicamento: new Score("Calcular o valor a ser aspirado no frasco", 250 ),
-            pegarSoroFisiológico: new Score("Pegar soro fisiológico 0,9% 100ml", 50 ),
+            calcularErradoValorMedicamento: new Score("Calcular errado o valor a ser aspirado no frasco", -250 ),
+            lavarMaos: new Score("Lavar as mãos antes de pegar os instrumentos", 200 ),
+            naoLavarMaos: new Score("Não lavar as mãos antes de pegar os instrumentos", -200 ),
+            pegarBandeja: new Score("Pegar bandeja", 50 ),
+            pegarSoroFisiologico: new Score("Pegar soro fisiológico 0,9% 100ml", 50 ),
             pegarSeringa5: new Score("Pegar seringa de 5ml", 50 ),
             pegarAgulha: new Score("Pegar agulha 40x12", 50 ),
             pegarAlcool: new Score("Pegar álcool 70%", 50 ),
@@ -104,15 +121,21 @@ define(function() {
             pegarLuvas: new Score("Pegar par de luvas de procedimento", 50 ),
             pegarSeringa10: new Score("Pegar seringa de 10ml", 50 ),
             pegarAmpolaSF: new Score("Pegar ampola de soro fisiológico 0,9% 10ml", 50 ),
-            pegarBandeja: new Score("Pegar bandeja", 50 ),
-            confirmarMedicacao: new Score("Confirmar medicação com mentor", 150 ),
+            naoPegarAlgumInstrumento: new Score("Fechar a gaveta sem pegar todos os instrumentos", -50 ),
+            confirmarMedicacaoPosto: new Score("Confirmar medicação com mentor", 150 ),
             prepararMedicacao: new Score("Preparar medicação", 150 ),
             calcularGotejamento: new Score("Calcular gotejamento de soro", 350 ),
             identificarMedicacao: new Score("Identificar medicacao", 250 ),
-            checarPulseira: new Score("Verificar Pulseira", 50 ),
-            notChecarPulseira: new Score("Verificar Pulseira", -50 ),
-            administrarMedicacao: new Score("Administrar medicação", 250 ),
+            lavarMaosAntesLeito: new Score("Lavar as mãos antes de ir ao leito do paciente", 200 ),
+            naoLavarMaosAntesLeito: new Score("Não lavar as mãos antes de ir ao leito do paciente", -200 ),
+            checarPulseira: new Score("Verificar pulseira", 50 ),
+            naoChecarPulseira: new Score("Não verificar pulseira", -50 ),
+            administrarMedicacao: new Score("Administrar medicamento", 250 ),
+            naoAdministrarMedicacao: new Score("Não administrar medicamento", -250 ),
             gotejarSoroEquipo: new Score("Realizar gotejamento de soro no equipamento", 350 ),
+            naoGotejarSoroEquipo: new Score("Não realizar gotejamento de soro no equipamento", -350 ),
+            lavarMaosAntesProntuario: new Score("Lavar as mãos antes de realizar as anotações no prontuario", 200 ),
+            naoLavarMaosAntesProntuario: new Score("Não lavar as mãos antes de realizar as anotações no prontuario", -200 ),
             anotarNoProntuario: new Score("Anotar no prontuário", 200 )
         },
         level5: {
@@ -198,7 +221,7 @@ define(function() {
            pegarMedicamento: new Score("Pegar medicamento na farmácia", 50 ),
            conferirMedicamentoErrado: new Score("Verificar o medicamento fornecido pelo farmacêutico", 350 ),
            trocarMedicamento: new Score("Trocar o medicamento equivocado", 150 ),
-           conferirMedicamentoCorreto: new Score("Verificar o medicamento fornecido pelo farmacêutico", 150 ),
+           conferirMedicamentoCorreto: new Score("Verificar o novo medicamento fornecido pelo farmacêutico", 150 ),
            pegarAguaPotavel: new Score("Pegar água potável no posto de enfermagem", 50 ),
            pegarCopoDescartavel: new Score("Pegar copo descartável no posto de enfermagem", 50 ),
            lavarMaos: new Score("Lavar as mãos antes de ir ao leito do paciente", 200 ),
@@ -248,14 +271,18 @@ define(function() {
         },
 
         level9: {
-            lerProntuario: new Score("Ler prontuário do paciente", 150 ),
+            lerProntuario: new Score("Ler prontuario do paciente", 150 ),
+            pegarPrescricaoMedica: new Score("Pegar Prescrição Médica", 150 ),
             pegarFrascoSG: new Score("Pegar Frasco SG 5%", 50 ),
             pegarNACL: new Score("Pegar NaCL 20%", 50 ),
             conferirDieta: new Score("Conferir Medicamento Prescrito", 150 ),
             pegarSeringa: new Score("Pegar Seringa 5ml", 50 ),
             pegarAgulha: new Score("Pegar Agulha 40X12", 50 ),
             pegarGlicose: new Score("Pegar Ampola de Glicose 50%", 50 ),
-            pegarSoro: new Score("Pegar Soro de Macrogotas", 50 )
+            pegarSoro: new Score("Pegar Soro de Macrogotas", 50 ),
+            irFarmaciaHoraErrada: new Score("Ir para a farmácia na hora errada", -25 ),
+            lavarMaos: new Score("Lavar as mãos antes de ir ao leito", 200 ),
+            conversarPacienteLeito: new Score("Falar com o paciente no leito", 150 )
         }
     };
 });

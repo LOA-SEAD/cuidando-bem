@@ -7,7 +7,7 @@ module.exports = {
 
     prod: {
         options: {
-            keepSpecialComments: 0
+            keepSpecialComments: 1
         },
 
         prod: {
