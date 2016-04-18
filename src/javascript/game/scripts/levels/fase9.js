@@ -1,16 +1,13 @@
 /*
 This file is part of Cuidando Bem.
-
     Cuidando Bem is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-
     Cuidando Bem is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-
     You should have received a copy of the GNU General Public License
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -240,6 +237,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openDialog(0);
                     level.getFlag("conversar_paciente").setValue(true);
                 }
+                else if (level.getFlag("pegou_tudo_postoEnfermagem").getValue() == true){
+
+                     core.setInteractiveObjectVisible("io-ir_ao_leito", true);
+                     core.setActionVisible("btn-lavarMaos", true);
+                     core.setActionVisible("btn-prescricao_medica", false);
+
+                }
+
+
+
 
                 console.log("Load scene: " + alaMasculina.getName() );
 
@@ -302,12 +309,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     .registerOption("", function() {
                 core.closeDialog(  );
             }),
+          // 6 - MENTOR ALERTA LAVAR MAOS
 
-
-
-
-
-
+           new Dialog( lib.characters.mentor )
+                     .setText( Alertas.lavarMaos.tipo1 )
+                    .registerOption("", function() {
+                core.closeDialog(  );
+            })
     ]);
 
 
@@ -324,25 +332,23 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     else
                 core.changeScene( 1 );
 
-            })
+            }),
 
 
-       /*
-         new InteractiveObject("io-conversar_com_paciente", "Ir ao leito")
-                .setCssClass("intObj-ir_leito_fase3")
+
+         new InteractiveObject("io-ir_ao_leito", "Ir ao leito")
+                .setCssClass("intObj-irLeitoEsquerda")
                 .onClick(function () {
 
-                    if (level.getFlag("ir_leito_paciente").getValue() == false) {
-                        level.getFlag("ir_leito_paciente").setValue(true);
-                        console.log("Abrir diálogo com paciente 6");
-                        core.registerScoreItem(Scores.irAoLeitoCorreto);
+                    if (level.getFlag("lavar_maos").getValue() == true)
                         core.changeScene(3);
-                    }
+                    else
+                        core.openDialog(6);
 
 
             })
-           .setVisibility(true),
-        */
+           .setVisibility(false),
+
 
 
  ]);
@@ -386,7 +392,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( false ),
 
 
+            new Action("btn-lavarMaos", "Lavar as mãos")
+            .setCssClass("action-lavarMaos")
+            .onClick(function() {
+                // Som
+                Player.play( Player.audios.sfx.lavarMaos );
 
+                if(level.getFlag("lavar_maos").getValue() == false){
+                        level.getFlag("lavar_maos").setValue(true);
+                        core.registerScoreItem(Scores.lavarMaos);
+                }
+            })
+            .setVisibility( false )
 
          ]);
 
@@ -550,28 +567,25 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     var postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
     .onLoad(function() {
 
-          if(level.getFlag("pegar_prescricao_medica").getValue() == false){
+        //   if(level.getFlag("pegar_prescricao_medica").getValue() == false){
 
-            //    core.setInteractiveObjectVisible("io-abrir_gaveta", false );
-             //   core.setInteractiveObjectVisible("io-pegar_bandeja", false );
-                core.openDialog(2);
-
-
+        //     //    core.setInteractiveObjectVisible("io-abrir_gaveta", false );
+        //      //   core.setInteractiveObjectVisible("io-pegar_bandeja", false );
+        //         core.openDialog(2);
 
 
 
-        }
-        else {
-            core.changeScene(5);
-            core.setInteractiveObjectVisible("io-abrir_gaveta", true );
-            core.setInteractiveObjectVisible("io-pegar_bandeja", true );
+
+
+        // }
+        // else {
+        //     core.changeScene(5);
+        //     core.setInteractiveObjectVisible("io-abrir_gaveta", true );
+        //     core.setInteractiveObjectVisible("io-pegar_bandeja", true );
 
 
 
-                }
-
-
-
+        //         }
 
 
       console.log("Load scene: " + postoDeEnfermagem.getName() );
@@ -674,6 +688,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
      // region Leito
+
+
         leito = lib.scenes.leitos.francisco.getClone()
             .onLoad(function() {
 
@@ -684,6 +700,98 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
             });
+
+    leito.registerInteractiveObjects([
+
+
+             new InteractiveObject("io-falar_paciente", "Falar com o paciente")
+        .setCssClass("intObj-conversar_paciente")
+        .onClick(function() {
+
+                 if(level.getFlag("conversar_paciente_leito").getValue() == false ) {
+                     level.getFlag("conversar_paciente_leito").setValue(true);
+                     core.registerScoreItem( Scores.conversarPacienteLeito );
+                 }
+
+                 core.openDialog(0);
+
+        })
+        .setVisibility( true ),
+
+
+
+    ]);
+
+
+    leito.registerDialogs([
+
+
+        // 0
+         new Dialog( lib.characters.jogador )
+          .setText(  Dialogs.leitoPaciente[ 0 ] )
+          .registerOption("", function() {
+            core.openDialog(1);
+        }),
+
+        // 1
+         new Dialog( lib.characters.pacientes.francisco )
+          .setText( Dialogs.leitoPaciente [ 1 ] )
+          .registerOption("", function() {
+            core.openDialog(2);
+        }),
+
+
+        // 2
+         new Dialog( lib.characters.jogador )
+          .setText(  Dialogs.leitoPaciente[ 2 ] )
+          .registerOption("", function() {
+            core.openDialog(3);
+        }),
+
+
+         // 3
+         new Dialog( lib.characters.pacientes.francisco )
+          .setText( Dialogs.leitoPaciente [ 3 ] )
+          .registerOption("", function() {
+            core.openDialog(4);
+        }),
+
+
+         // 4
+        new Dialog( lib.characters.jogador )
+        .setText("")
+        .registerOption( Dialogs.leitoPaciente[ 4 ], function() {
+            core.closeDialog();
+        })
+        .registerOption( Dialogs.leitoPaciente[ 5 ], function() {
+            core.openDialog( 5 );
+        })
+        .setRandomize( true ),
+
+
+        // 5
+
+         new Dialog( lib.characters.mentor )
+          .setText(  Dialogs.leitoPaciente[ 6 ] )
+          .registerOption("", function() {
+            core.openDialog(4);
+        }),
+
+
+
+
+
+
+
+
+
+
+
+    ]);
+
+
+
+
     //endregion LEITO
 
 
@@ -870,7 +978,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             level.getFlag("pegar_equipoSoro").setValue( false );
             level.getFlag("pegou_tudo_postoEnfermagem").setValue( false );
-
+            level.getFlag("lavar_maos").setValue( false );
+            level.getFlag("conversar_paciente_leito").setValue( false );
              //  dados do prontuario
             Prontuario.setNome("Pedro Alcides Mendonça");
             Prontuario.setSexo("M");
@@ -918,6 +1027,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("pegar_ampola"), false );
         level.registerFlag( new Flag("pegar_equipoSoro"), false );
         level.registerFlag( new Flag("pegou_tudo_postoEnfermagem"), false );
+        level.registerFlag( new Flag("lavar_maos"), false );
+        level.registerFlag( new Flag("conversar_paciente_leito"), false );
 
         level.setInitialScene( 0 );
         // endregion
