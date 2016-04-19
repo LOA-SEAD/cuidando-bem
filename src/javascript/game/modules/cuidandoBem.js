@@ -390,6 +390,15 @@ define([
             return Level.getFlag( _flagId );
         }
 
+        function flag( _flagId, _value ) {
+
+            if ( _value ) {
+                Level.getFlag( _flagId ).setValue( _value );
+            } else {
+                return Level.getFlag( _flagId ).getValue();
+            }
+        }
+
 // Setters
 
         /**
@@ -532,6 +541,7 @@ define([
             getFlag: getFlag,
 
             setFlag: setFlag,
+            flag: flag,
 
             setActionVisible: setActionVisible,
             toggleActionVisible: toggleActionVisible,
