@@ -896,7 +896,9 @@ define({
             farmacia: [
                 "Você precisa encontrar seu paciente primeiro!"
             ],
-
+            irParaFarmacia: [
+                "Você precisa ir até a farmácia primeiro!"
+            ],
             centroCirurgico: [
                 "Primeiro teste os equipamentos que serão utilizados na cirurgia."
             ],

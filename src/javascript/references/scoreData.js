@@ -236,7 +236,7 @@ define(function() {
            naoLavarMaos2: new Score("Não lavar as mãos antes de fazer anotações no prontuário", -200 ),
            anotarProntuario: new Score("Anotar no Prontuário", 350 ),
            naoPegarCopo: new Score("Não pegar o copo descartável no posto de enfermagem", -50 ),
-           naoPegarAgua: new Score("Não pegar a água potável no posto de enfermagem", -50 ),
+           naoPegarAgua: new Score("Não pegar a água potável no posto de enfermagem", -50 )
         },
 
         level8: {

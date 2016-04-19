@@ -122,7 +122,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
                 level.getFlag("ir_postoEnfermagem_horaErrada").setValue( true );
             }
-            core.changeScene( 5 );
+            //Já falou com a paciente, porém não foi até a farmacia ainda
+            if ( ( level.getFlag("conferir_medicamento_correto").getValue() == false ) &&
+               ( level.getFlag("score_ler_prontuario").getValue() == true ) ) {
+                    core.openDialog( 0 );
+            }
+            else{
+                core.changeScene( 5 );
+            }
         }
 
         function corredorIrAlaFeminina() {
@@ -150,6 +157,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             }
             core.changeScene( 6 );
         }
+
+
+        corredor.registerDialogs([
+            // 0
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.perdido.irParaFarmacia )
+                .registerOption("", function() {
+                    core.closeDialog();
+                })
+        ]);
 
 
         corredor.registerInteractiveObjects([
@@ -366,9 +383,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         level.getFlag("conversarPaciente").setValue( true );
                         core.registerScoreItem( Scores.falarComPaciente );
                         core.openDialog( 0 );
-                    //Não ocorre nada, pois o jogador precisa ir até o posto de enfermagem
-                    } else if ( ( level.getFlag("pegou_tudo_posto").getValue() == false ) &&
-                              ( level.getFlag("conferir_medicamento_correto").getValue() == true ) ) {
+                    //Não ocorre nada, pois o jogador precisa ir na farmácia e no posto de enfermagem primeiro
+                    } else if ( level.getFlag("pegou_tudo_posto").getValue() == false ) {
                     //Ida para o leito sem lavar as mãos, o que impede o jogador ir para o leito
                     } else if ( level.getFlag("lavarMaos").getValue() == false ) {
                         core.openDialog( 7 );
@@ -388,14 +404,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         function farmaciaIrCorredor() {
             console.log("Ir para o corredor");
-            // Só perde pontos caso já esteja liberado para pegar o medicamento
-            /*if ( level.getFlag("score_conferiu_medicacao").getValue() == false ) {
-                if ( level.getFlag("score_nao_conferiu_medicacao").getValue() == false ) {
-                    // core.registerScoreItem( Scores.naoConferirMedicacao );
-                    level.getFlag("score_nao_conferiu_medicacao").setValue( true );
-                }
-                core.openDialog( 4 );
-            }*/
             //Caso o jogador apenas entrou na farmácia no momento errado
             if ( level.getFlag("score_ler_prontuario").getValue() == false ) {
                 core.changeScene( 1 );
