@@ -26,8 +26,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var level = new Level("Level 8");
         console.groupCollapsed( level.getName() );
 
-        var
-            recepcao,
+        var recepcao,
             corredor,
             salaDeLeitos,
             leito,
@@ -77,43 +76,43 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         }
 
         function corredorIrPostoEnfermagem() {
-            if ( core.getFlag("score_pegou_medicamento").getValue() == false ) {
-                if ( core.getFlag("score_ir_posto_hora_errada").getValue() == false ) {
+            if ( core.flag("score_pegou_medicamento") == false ) {
+                if ( core.flag("score_ir_posto_hora_errada") == false ) {
                     core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
-                    core.getFlag("score_ir_posto_hora_errada").setValue( true );
+                    core.flag("score_ir_posto_hora_errada",  true );
                 }
             }
             core.changeScene( 5 );
         }
 
         function corredorIrAlaFeminina() {
-            if ( core.getFlag("score_ir_ala_feminina_hora_errada").getValue() == false ) {
+            if ( core.flag("score_ir_ala_feminina_hora_errada") == false ) {
                 core.registerScoreItem( Scores.irAlaFemininaHoraErrada );
-                core.getFlag("score_ir_ala_feminina_hora_errada").setValue( true );
+                core.flag("score_ir_ala_feminina_hora_errada",  true );
             }
             core.changeScene( 7 );
         }
 
         function corredorIrFarmacia() {
-            if ( core.getFlag("score_viu_prontuario").getValue() == false ) {
-                if ( core.getFlag("score_ir_farmacia_hora_errada").getValue() == false ) {
+            if ( core.flag("score_viu_prontuario") == false ) {
+                if ( core.flag("score_ir_farmacia_hora_errada") == false ) {
                     core.registerScoreItem( Scores.irFarmaciaHoraErrada );
-                    core.getFlag("score_ir_farmacia_hora_errada").setValue( true );
+                    core.flag("score_ir_farmacia_hora_errada",  true );
                 }
             }
             core.changeScene( 4 );
         }
 
         function corredorIrCentroCirurgico() {
-            if ( core.getFlag("levou_yuri_centro_cirurgico").getValue() == false ) {
-                if ( core.getFlag("score_ir_centro_cirurgico_hora_errada").getValue() == false ) {
+            if ( core.flag("levou_yuri_centro_cirurgico") == false ) {
+                if ( core.flag("score_ir_centro_cirurgico_hora_errada") == false ) {
                     core.registerScoreItem( Scores.irCentroCirurgicoHoraErrada );
-                    core.getFlag("score_ir_centro_cirurgico_hora_errada").setValue( true );
+                    core.flag("score_ir_centro_cirurgico_hora_errada",  true );
                 }
                 core.changeScene( 6 );
             } else {
                 // Para liberar final da fase
-                core.getFlag("entrou_centro_cirurgico").setValue( true );
+                core.flag("entrou_centro_cirurgico",  true );
                 core.changeScene( 8 );
             }
         }
@@ -164,22 +163,22 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                 console.log("Load scene: Ala Masculina");
                 // Depois que já ocorreu o diálogo, o botão do prontuário fica liberado
-                if ( core.getFlag("ja_falou_paciente").getValue() == true ) {
+                if ( core.flag("ja_falou_paciente") == true ) {
                     core.openCommandBar();
                 }
                 // Só vai abrir o diálogo na primeira vez
-                if ( core.getFlag("ja_falou_paciente").getValue() == false ) {
-                    core.getFlag("ja_falou_paciente").setValue( true );
+                if ( core.flag("ja_falou_paciente") == false ) {
+                    core.flag("ja_falou_paciente",  true );
                     core.openDialog( 0 );
                 }
                 // Libera para ir ao leito após conversar com o farmacêutico
-                if ( (core.getFlag("ja_falou_farmaceutico").getValue() == true) &&
-                    (core.getFlag("levou_yuri_centro_cirurgico").getValue() == false) ) {
+                if ( (core.flag("ja_falou_farmaceutico") == true) &&
+                    (core.flag("levou_yuri_centro_cirurgico") == false) ) {
                     core.setActionVisible("btn-lavarMaos", true );
                     core.setInteractiveObjectVisible("io-ir_leito", true );
                     core.openCommandBar();
                 }
-                if ( core.getFlag("levou_yuri_centro_cirurgico").getValue() == true ) {
+                if ( core.flag("levou_yuri_centro_cirurgico") == true ) {
                     core.setInteractiveObjectVisible("io-ir_leito", false );
                 }
             })
@@ -200,10 +199,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-ir_leito", "Ir ao leito")
                 .setCssClass("intObj-irLeitoEsquerda")
                 .onClick(function() {
-                    if ( core.getFlag("score_lavar_maos_antes_leito").getValue() == false ) {
-                        if ( core.getFlag("score_nao_lavar_maos_antes_leito").getValue() == false ) {
+                    if ( core.flag("score_lavar_maos_antes_leito") == false ) {
+                        if ( core.flag("score_nao_lavar_maos_antes_leito") == false ) {
                             core.registerScoreItem( Scores.naoLavarMaosAntesLeito );
-                            core.getFlag("score_nao_lavar_maos_antes_leito").setValue( true );
+                            core.flag("score_nao_lavar_maos_antes_leito",  true );
                         }
                     }
                     core.changeScene( 3 );
@@ -216,9 +215,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
                     console.log("Action: ler prontuario");
-                    if ( core.getFlag("score_viu_prontuario").getValue() == false ) {
+                    if ( core.flag("score_viu_prontuario") == false ) {
                         core.registerScoreItem( Scores.verProntuario );
-                        core.getFlag("score_viu_prontuario").setValue( true );
+                        core.flag("score_viu_prontuario",  true );
                     }
                     Prontuario.open();
                     core.openModalScene("Prontuario");
@@ -231,9 +230,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: Lavar as mãos");
                     // Som
                     Player.play( Player.audios.sfx.lavarMaos );
-                    if ( core.getFlag("score_lavar_maos_antes_leito").getValue() == false ) {
+                    if ( core.flag("score_lavar_maos_antes_leito") == false ) {
                         core.registerScoreItem( Scores.lavarMaosAntesLeito );
-                        core.getFlag("score_lavar_maos_antes_leito").setValue( true );
+                        core.flag("score_lavar_maos_antes_leito",  true );
                     }
                 })
                 .setVisibility( false )
@@ -290,11 +289,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.openCommandBar();
                 console.log("Leito: Onload");
                 // Verificações de se o botão de oferecer copo com água e o medicamento estarão ativados
-                if ( (core.getFlag("score_pegou_agua").getValue() == true) &&
-                    (core.getFlag("score_pegou_copo").getValue() == true) ) {
+                if ( (core.flag("score_pegou_agua") == true) &&
+                    (core.flag("score_pegou_copo") == true) ) {
                     core.setActionVisible("btn-oferecer_copo", true );
                 }
-                if ( core.getFlag("score_pegou_medicamento").getValue() == true ) {
+                if ( core.flag("score_pegou_medicamento") == true ) {
                     core.setActionVisible("btn-administrar_medicamento", true );
                 }
             })
@@ -309,8 +308,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-paciente_09-checar_pulseira")
                 .onClick(function() {
                     console.log("IO: pulseira_paciente");
-                    if ( core.getFlag("score_verificar_pulseira").getValue() == false ) {
-                        core.getFlag("score_verificar_pulseira").setValue( true );
+                    if ( core.flag("score_verificar_pulseira") == false ) {
+                        core.flag("score_verificar_pulseira",  true );
                         core.registerScoreItem( Scores.verificarPulseira );
                     }
                     core.openModalScene("pulseira");
@@ -365,9 +364,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-copo_descartavel")
                 .onClick(function() {
                     console.log("Action: Oferecer copo com água para o paciente");
-                    if ( core.getFlag("score_ofereceu_copo").getValue() == false ) {
+                    if ( core.flag("score_ofereceu_copo") == false ) {
                         core.registerScoreItem( Scores.oferecerCopo );
-                        core.getFlag("score_ofereceu_copo").setValue( true );
+                        core.flag("score_ofereceu_copo",  true );
                     }
                 })
                 .setVisibility( false ),
@@ -376,15 +375,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-midazolam_medicamento")
                 .onClick(function() {
                     console.log("Action: Administrar o medicamento");
-                    if ( core.getFlag("score_ofereceu_copo").getValue() == false ) {
-                        if ( core.getFlag("score_nao_ofereceu_copo").getValue() == false ) {
+                    if ( core.flag("score_ofereceu_copo") == false ) {
+                        if ( core.flag("score_nao_ofereceu_copo") == false ) {
                             core.registerScoreItem( Scores.naoOferecerCopo );
-                            core.getFlag("score_nao_ofereceu_copo").setValue( true );
+                            core.flag("score_nao_ofereceu_copo",  true );
                         }
                     }
-                    if ( core.getFlag("score_administrou_medicamento").getValue() == false ) {
+                    if ( core.flag("score_administrou_medicamento") == false ) {
                         core.registerScoreItem( Scores.administrarMedicamento );
-                        core.getFlag("score_administrou_medicamento").setValue( true );
+                        core.flag("score_administrou_medicamento",  true );
                     }
                 })
                 .setVisibility( false ),
@@ -393,15 +392,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-anotarProntuario")
                 .onClick(function() {
                     console.log("Action: Anotar prontuario");
-                    if ( core.getFlag("score_administrou_medicamento").getValue() == false ) {
-                        if ( core.getFlag("score_nao_administrou_medicamento").getValue() == false ) {
+                    if ( core.flag("score_administrou_medicamento") == false ) {
+                        if ( core.flag("score_nao_administrou_medicamento") == false ) {
                             core.registerScoreItem( Scores.naoAdministrarMedicamento );
-                            core.getFlag("score_nao_administrou_medicamento").setValue( true );
+                            core.flag("score_nao_administrou_medicamento",  true );
                         }
                     }
-                    if ( core.getFlag("score_anotar_prontuario").getValue() == false ) {
+                    if ( core.flag("score_anotar_prontuario") == false ) {
                         core.registerScoreItem( Scores.anotarProntuario );
-                        core.getFlag("score_anotar_prontuario").setValue( true );
+                        core.flag("score_anotar_prontuario",  true );
                     }
                     Prontuario.open();
                     core.openModalScene("Prontuario");
@@ -415,27 +414,27 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Som
                     Player.play( Player.audios.sfx.mesaComRodinha );
                     // Como o paciente vai se tornar indisponivel, tudo o que poderia ser feito com ele será descontado
-                    if ( core.getFlag("score_verificar_pulseira").getValue() == false ) {
-                        if ( core.getFlag("score_nao_verificar_pulseira").getValue() == false ) {
+                    if ( core.flag("score_verificar_pulseira") == false ) {
+                        if ( core.flag("score_nao_verificar_pulseira") == false ) {
                             core.registerScoreItem( Scores.naoVerificarPulseira );
-                            core.getFlag("score_nao_verificar_pulseira").setValue( true );
+                            core.flag("score_nao_verificar_pulseira",  true );
                         }
                     }
                     // Repete pois precisa descontar os pontos no medicamento também
-                    if ( core.getFlag("score_ofereceu_copo").getValue() == false ) {
-                        if ( core.getFlag("score_nao_ofereceu_copo").getValue() == false ) {
+                    if ( core.flag("score_ofereceu_copo") == false ) {
+                        if ( core.flag("score_nao_ofereceu_copo") == false ) {
                             core.registerScoreItem( Scores.naoOferecerCopo );
-                            core.getFlag("score_nao_ofereceu_copo").setValue( true );
+                            core.flag("score_nao_ofereceu_copo",  true );
                         }
                     }
-                    if ( core.getFlag("score_administrou_medicamento").getValue() == false ) {
-                        if ( core.getFlag("score_nao_administrou_medicamento").getValue() == false ) {
+                    if ( core.flag("score_administrou_medicamento") == false ) {
+                        if ( core.flag("score_nao_administrou_medicamento") == false ) {
                             core.registerScoreItem( Scores.naoAdministrarMedicamento );
-                            core.getFlag("score_nao_administrou_medicamento").setValue( true );
+                            core.flag("score_nao_administrou_medicamento",  true );
                         }
                     }
-                    if ( core.getFlag("levou_yuri_centro_cirurgico").getValue() == false ) {
-                        core.getFlag("levou_yuri_centro_cirurgico").setValue( true );
+                    if ( core.flag("levou_yuri_centro_cirurgico") == false ) {
+                        core.flag("levou_yuri_centro_cirurgico",  true );
                     }
                     // core.setActionVisible("btn-falarPaciente", false );
                     core.setActionVisible("btn-oferecer_copo", false );
@@ -448,10 +447,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-ir_sala_de_leitos")
                 .onClick(function() {
                     console.log("Action: Voltar para a ala masculina");
-                    if ( core.getFlag("score_anotar_prontuario").getValue() == false ) {
-                        if ( core.getFlag("score_nao_anotar_prontuario").getValue() == false ) {
+                    if ( core.flag("score_anotar_prontuario") == false ) {
+                        if ( core.flag("score_nao_anotar_prontuario") == false ) {
                             core.registerScoreItem( Scores.naoAnotarProntuario );
-                            core.getFlag("score_nao_anotar_prontuario").setValue( true );
+                            core.flag("score_nao_anotar_prontuario",  true );
                         }
                     }
                     core.changeScene( 2 );
@@ -464,11 +463,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             console.log("Funcao: farmacia_ir_corredor");
             console.log("Ir para o corredor");
             // Só perde pontos caso já esteja liberado para pegar o medicamento
-            if ( (core.getFlag("ja_falou_farmaceutico").getValue() == true) &&
-                (core.getFlag("score_conferiu_medicacao").getValue() == false) ) {
-                if ( core.getFlag("score_nao_conferiu_medicacao").getValue() == false ) {
+            if ( (core.flag("ja_falou_farmaceutico") == true) &&
+                (core.flag("score_conferiu_medicacao") == false) ) {
+                if ( core.flag("score_nao_conferiu_medicacao") == false ) {
                     core.registerScoreItem( Scores.naoConferirMedicacao );
-                    core.getFlag("score_nao_conferiu_medicacao").setValue( true );
+                    core.flag("score_nao_conferiu_medicacao",  true );
                 }
             }
             core.changeScene( 1 );
@@ -479,15 +478,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                 console.log("Load scene: Ala Masculina");
                 // Depois que falou com o farmacêutico, é ativado os botões
-                if ( core.getFlag("ja_falou_farmaceutico").getValue() == true ) {
-                    core.setInteractiveObjectVisible("io-midazolam_medicamento", !(core.getFlag("score_pegou_medicamento").getValue()) );
+                if ( core.flag("ja_falou_farmaceutico") == true ) {
+                    core.setInteractiveObjectVisible("io-midazolam_medicamento", !(core.flag("score_pegou_medicamento")) );
                     core.setActionVisible("btn-conferir_midazolam", true );
                     core.openCommandBar();
                 }
                 // Apenas se ele já viu o prontuario que ele sabe o que vai pegar, mas só vai falar uma vez
-                if ( (core.getFlag("score_viu_prontuario").getValue() == true) &&
-                    (core.getFlag("ja_falou_farmaceutico").getValue() == false) ) {
-                    core.getFlag("ja_falou_farmaceutico").setValue( true );
+                if ( (core.flag("score_viu_prontuario") == true) &&
+                    (core.flag("ja_falou_farmaceutico") == false) ) {
+                    core.flag("ja_falou_farmaceutico",  true );
                     core.openDialog( 0 );
                 }
             })
@@ -513,15 +512,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-midazolam_medicamento")
                 .onClick(function() {
                     console.log("Action: Conferir Medicamento");
-                    if ( core.getFlag("score_pegou_medicamento").getValue() == false ) {
-                        if ( core.getFlag("score_nao_pegou_medicamento").getValue() == false ) {
+                    if ( core.flag("score_pegou_medicamento") == false ) {
+                        if ( core.flag("score_nao_pegou_medicamento") == false ) {
                             core.registerScoreItem( Scores.naoPegarMedicamento );
-                            core.getFlag("score_nao_pegou_medicamento").setValue( true );
+                            core.flag("score_nao_pegou_medicamento",  true );
                         }
                     }
-                    if ( core.getFlag("score_conferiu_medicacao").getValue() == false ) {
+                    if ( core.flag("score_conferiu_medicacao") == false ) {
                         core.registerScoreItem( Scores.conferirMedicacao );
-                        core.getFlag("score_conferiu_medicacao").setValue( true );
+                        core.flag("score_conferiu_medicacao",  true );
                     }
                 })
                 .setVisibility( false )
@@ -537,7 +536,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.pegarMedicamento );
-                    core.getFlag("score_pegou_medicamento").setValue( true );
+                    core.flag("score_pegou_medicamento",  true );
                     core.setInteractiveObjectVisible("io-midazolam_medicamento", false );
                 })
                 .setVisibility( false )
@@ -574,11 +573,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 console.log("Load scene: Posto de enfermagem");
                 core.openCommandBar();
                 // Depois que pegou o medicamento, é ativado os botões
-                if ( core.getFlag("score_pegou_medicamento").getValue() == true ) {
+                if ( core.flag("score_pegou_medicamento") == true ) {
                     core.setActionVisible("btn-lavarMaos", true );
-                    core.setInteractiveObjectVisible("io-pegar_agua", !(core.getFlag("score_pegou_agua").getValue()) );
-                    core.setInteractiveObjectVisible("io-pegar_copo", !(core.getFlag("score_pegou_copo").getValue()) );
-                    core.setInteractiveObjectVisible("io-pegar_bandeja", !(core.getFlag("pegou_bandeja").getValue()) );
+                    core.setInteractiveObjectVisible("io-pegar_agua", !(core.flag("score_pegou_agua")) );
+                    core.setInteractiveObjectVisible("io-pegar_copo", !(core.flag("score_pegou_copo")) );
+                    core.setInteractiveObjectVisible("io-pegar_bandeja", !(core.flag("pegou_bandeja")) );
                     core.openCommandBar();
                 }
             })
@@ -593,17 +592,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("Action: ir_corredor");
                     // Verifica o que o jogador não pegou caso ele já possa pegar
-                    if ( core.getFlag("score_pegou_medicamento").getValue() == true ) {
-                        if ( core.getFlag("score_pegou_agua").getValue() == false ) {
-                            if ( core.getFlag("score_nao_pegou_agua").getValue() == false ) {
+                    if ( core.flag("score_pegou_medicamento") == true ) {
+                        if ( core.flag("score_pegou_agua") == false ) {
+                            if ( core.flag("score_nao_pegou_agua") == false ) {
                                 core.registerScoreItem( Scores.naoPegarAguaPotavel );
-                                core.getFlag("score_nao_pegou_agua").setValue( true );
+                                core.flag("score_nao_pegou_agua",  true );
                             }
                         }
-                        if ( core.getFlag("score_pegou_copo").getValue() == false ) {
-                            if ( core.getFlag("score_nao_pegou_copo").getValue() == false ) {
+                        if ( core.flag("score_pegou_copo") == false ) {
+                            if ( core.flag("score_nao_pegou_copo") == false ) {
                                 core.registerScoreItem( Scores.naoPegarCopoDescartavel );
-                                core.getFlag("score_nao_pegou_copo").setValue( true );
+                                core.flag("score_nao_pegou_copo",  true );
                             }
                         }
                     }
@@ -618,9 +617,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: lavarMaos");
                     // Som
                     Player.play( Player.audios.sfx.lavarMaos );
-                    if ( core.getFlag("score_lavar_maos_posto_enfermagem").getValue() == false ) {
+                    if ( core.flag("score_lavar_maos_posto_enfermagem") == false ) {
                         core.registerScoreItem( Scores.lavarMaosPostoEnfermagem );
-                        core.getFlag("score_lavar_maos_posto_enfermagem").setValue( true );
+                        core.flag("score_lavar_maos_posto_enfermagem",  true );
                     }
                 })
                 .setVisibility( false )
@@ -634,18 +633,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
-                    if ( core.getFlag("score_lavar_maos_posto_enfermagem").getValue() == false ) {
-                        if ( core.getFlag("score_nao_lavar_maos_posto_enfermagem").getValue() == false ) {
+                    if ( core.flag("score_lavar_maos_posto_enfermagem") == false ) {
+                        if ( core.flag("score_nao_lavar_maos_posto_enfermagem") == false ) {
                             core.registerScoreItem( Scores.naoLavarMaosPostoEnfermagem );
-                            core.getFlag("score_nao_lavar_maos_posto_enfermagem").setValue( true );
+                            core.flag("score_nao_lavar_maos_posto_enfermagem",  true );
                         }
                     }
-                    if ( core.getFlag("pegou_bandeja").getValue() != true ) {
+                    if ( core.flag("pegou_bandeja") != true ) {
                         core.openDialog( 0 );
                     } else {
                         console.log("Action: Pegar água potável");
                         core.registerScoreItem( Scores.pegarAguaPotavel );
-                        core.getFlag("score_pegou_agua").setValue( true );
+                        core.flag("score_pegou_agua",  true );
                         core.setInteractiveObjectVisible("io-pegar_agua", false );
                     }
                 })
@@ -657,18 +656,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
-                    if ( core.getFlag("score_lavar_maos_posto_enfermagem").getValue() == false ) {
-                        if ( core.getFlag("score_nao_lavar_maos_posto_enfermagem").getValue() == false ) {
+                    if ( core.flag("score_lavar_maos_posto_enfermagem") == false ) {
+                        if ( core.flag("score_nao_lavar_maos_posto_enfermagem") == false ) {
                             core.registerScoreItem( Scores.naoLavarMaosPostoEnfermagem );
-                            core.getFlag("score_nao_lavar_maos_posto_enfermagem").setValue( true );
+                            core.flag("score_nao_lavar_maos_posto_enfermagem",  true );
                         }
                     }
-                    if ( core.getFlag("pegou_bandeja").getValue() != true ) {
+                    if ( core.flag("pegou_bandeja") != true ) {
                         core.openDialog( 0 );
                     } else {
                         console.log("Action: Pegar copo descartavel");
                         core.registerScoreItem( Scores.pegarCopoDescartavel );
-                        core.getFlag("score_pegou_copo").setValue( true );
+                        core.flag("score_pegou_copo",  true );
                         core.setInteractiveObjectVisible("io-pegar_copo", false );
                     }
                 })
@@ -681,14 +680,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: Pegar bandeja");
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
-                    if ( core.getFlag("score_lavar_maos_posto_enfermagem").getValue() == false ) {
-                        if ( core.getFlag("score_nao_lavar_maos_posto_enfermagem").getValue() == false ) {
+                    if ( core.flag("score_lavar_maos_posto_enfermagem") == false ) {
+                        if ( core.flag("score_nao_lavar_maos_posto_enfermagem") == false ) {
                             core.registerScoreItem( Scores.naoLavarMaosPostoEnfermagem );
-                            core.getFlag("score_nao_lavar_maos_posto_enfermagem").setValue( true );
+                            core.flag("score_nao_lavar_maos_posto_enfermagem",  true );
                         }
                     }
-                    core.getFlag("pegou_bandeja").setValue( true );
-                    // core.getFlag("score_pegou_bandeja").setValue( true );
+                    core.flag("pegou_bandeja",  true );
+                    // core.flag("score_pegou_bandeja",  true );
                     core.setInteractiveObjectVisible("io-pegar_bandeja", false );
                 })
                 .setVisibility( false )
@@ -775,9 +774,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: Lavar as mãos técnica cirúrgica");
                     // Som
                     Player.play( Player.audios.sfx.lavarMaos );
-                    if ( core.getFlag("score_lavar_maos_tecnica_cirurgica").getValue() == false ) {
+                    if ( core.flag("score_lavar_maos_tecnica_cirurgica") == false ) {
                         core.registerScoreItem( Scores.lavarMaosTecnicaCirurgica );
-                        core.getFlag("score_lavar_maos_tecnica_cirurgica").setValue( true );
+                        core.flag("score_lavar_maos_tecnica_cirurgica",  true );
                     }
                 })
                 .setVisibility( true ),
@@ -787,16 +786,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-leito-char-02")
                 .onClick(function() {
                     console.log("Action: Falar com circulante de sala");
-                    if ( core.getFlag("score_lavar_maos_tecnica_cirurgica").getValue() == false ) {
-                        if ( core.getFlag("score_nao_lavar_maos_tecnica_cirurgica").getValue() == false ) {
+                    if ( core.flag("score_lavar_maos_tecnica_cirurgica") == false ) {
+                        if ( core.flag("score_nao_lavar_maos_tecnica_cirurgica") == false ) {
                             core.registerScoreItem( Scores.naoLavarMaosTecnicaCirurgica );
-                            core.getFlag("score_nao_lavar_maos_tecnica_cirurgica").setValue( true );
+                            core.flag("score_nao_lavar_maos_tecnica_cirurgica",  true );
                         }
                     }
                     // Caso falar com o paciente dê pontos:
-                    /*if(core.getFlag("score_falar_circulante").getValue() == false) {
+                    /*if(core.flag("score_falar_circulante") == false) {
                      core.registerScoreItem(Scores.conferirMedicacao);
-                     core.getFlag("score_falar_circulante").setValue(true);
+                     core.flag("score_falar_circulante", true);
                      }*/
                     core.openDialog( 0 );
                     core.closeCommandBar();
@@ -809,15 +808,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("Action: Testar Equipamentos");
                     // Caso falar com o paciente dê pontos:
-                    /*if(core.getFlag("score_ofereceu_copo").getValue() == false) {
-                     if(core.getFlag("score_nao_ofereceu_copo").getValue() == false) {
+                    /*if(core.flag("score_ofereceu_copo") == false) {
+                     if(core.flag("score_nao_ofereceu_copo") == false) {
                      core.registerScoreItem(Scores.naoOferecerCopo);
-                     core.getFlag("score_nao_ofereceu_copo").setValue(true);
+                     core.flag("score_nao_ofereceu_copo", true);
                      }
                      }*/
-                    if ( core.getFlag("score_testou_equipamentos").getValue() == false ) {
+                    if ( core.flag("score_testou_equipamentos") == false ) {
                         core.registerScoreItem( Scores.testarEquipamentos );
-                        core.getFlag("score_testou_equipamentos").setValue( true );
+                        core.flag("score_testou_equipamentos",  true );
                     }
                 })
                 .setVisibility( true ),
@@ -827,15 +826,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-fazer_lista")
                 .onClick(function() {
                     console.log("Action: Fazer lista de verificação");
-                    if ( core.getFlag("score_testou_equipamentos").getValue() == false ) {
-                        if ( core.getFlag("score_nao_testou_equipamentos").getValue() == false ) {
+                    if ( core.flag("score_testou_equipamentos") == false ) {
+                        if ( core.flag("score_nao_testou_equipamentos") == false ) {
                             core.registerScoreItem( Scores.naoTestarEquipamentos );
-                            core.getFlag("score_nao_testou_equipamentos").setValue( true );
+                            core.flag("score_nao_testou_equipamentos",  true );
                         }
                     }
-                    if ( core.getFlag("score_fez_lista_verificacao").getValue() == false ) {
+                    if ( core.flag("score_fez_lista_verificacao") == false ) {
                         core.registerScoreItem( Scores.fazerListaVerificacao );
-                        core.getFlag("score_fez_lista_verificacao").setValue( true );
+                        core.flag("score_fez_lista_verificacao",  true );
                     }
                 })
                 .setVisibility( true ),
@@ -845,15 +844,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-mudar_posicao_paciente")
                 .onClick(function() {
                     console.log("Action: Mudar posição do paciente");
-                    if ( core.getFlag("score_fez_lista_verificacao").getValue() == false ) {
-                        if ( core.getFlag("score_nao_fez_lista_verificacao").getValue() == false ) {
+                    if ( core.flag("score_fez_lista_verificacao") == false ) {
+                        if ( core.flag("score_nao_fez_lista_verificacao") == false ) {
                             core.registerScoreItem( Scores.naoFazerListaVerificacao );
-                            core.getFlag("score_nao_fez_lista_verificacao").setValue( true );
+                            core.flag("score_nao_fez_lista_verificacao",  true );
                         }
                     }
-                    if ( core.getFlag("score_mudou_posicao_paciente").getValue() == false ) {
+                    if ( core.flag("score_mudou_posicao_paciente") == false ) {
                         core.registerScoreItem( Scores.mudarPosicaoPaciente );
-                        core.getFlag("score_mudou_posicao_paciente").setValue( true );
+                        core.flag("score_mudou_posicao_paciente",  true );
                     }
                 })
                 .setVisibility( true ),
@@ -862,15 +861,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-placa_neutra")
                 .onClick(function() {
                     console.log("Action: Colocar placa neutra");
-                    if ( core.getFlag("score_mudou_posicao_paciente").getValue() == false ) {
-                        if ( core.getFlag("score_nao_mudou_posicao_paciente").getValue() == false ) {
+                    if ( core.flag("score_mudou_posicao_paciente") == false ) {
+                        if ( core.flag("score_nao_mudou_posicao_paciente") == false ) {
                             core.registerScoreItem( Scores.naoMudarPosicaoPaciente );
-                            core.getFlag("score_nao_mudou_posicao_paciente").setValue( true );
+                            core.flag("score_nao_mudou_posicao_paciente",  true );
                         }
                     }
-                    if ( core.getFlag("score_colocou_placa_neutra").getValue() == false ) {
+                    if ( core.flag("score_colocou_placa_neutra") == false ) {
                         core.registerScoreItem( Scores.colocarPlacaNeutra );
-                        core.getFlag("score_colocou_placa_neutra").setValue( true );
+                        core.flag("score_colocou_placa_neutra",  true );
                     }
                 })
                 .setVisibility( true ),
@@ -881,15 +880,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: Lavar as mãos");
                     // Som
                     Player.play( Player.audios.sfx.lavarMaos );
-                    if ( core.getFlag("score_colocou_placa_neutra").getValue() == false ) {
-                        if ( core.getFlag("score_nao_colocou_placa_neutra").getValue() == false ) {
+                    if ( core.flag("score_colocou_placa_neutra") == false ) {
+                        if ( core.flag("score_nao_colocou_placa_neutra") == false ) {
                             core.registerScoreItem( Scores.naoColocarPlacaNeutra );
-                            core.getFlag("score_nao_colocou_placa_neutra").setValue( true );
+                            core.flag("score_nao_colocou_placa_neutra",  true );
                         }
                     }
-                    if ( core.getFlag("score_lavar_maos_centro_cirurgico").getValue() == false ) {
+                    if ( core.flag("score_lavar_maos_centro_cirurgico") == false ) {
                         core.registerScoreItem( Scores.lavarMaosCentroCirurgico );
-                        core.getFlag("score_lavar_maos_centro_cirurgico").setValue( true );
+                        core.flag("score_lavar_maos_centro_cirurgico",  true );
                     }
                 })
                 .setVisibility( true ),
@@ -898,15 +897,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-anotarProntuario")
                 .onClick(function() {
                     console.log("Action: Anotar prontuario");
-                    if ( core.getFlag("score_lavar_maos_centro_cirurgico").getValue() == false ) {
-                        if ( core.getFlag("score_nao_lavar_maos_centro_cirurgico").getValue() == false ) {
+                    if ( core.flag("score_lavar_maos_centro_cirurgico") == false ) {
+                        if ( core.flag("score_nao_lavar_maos_centro_cirurgico") == false ) {
                             core.registerScoreItem( Scores.naoLavarMaosCentroCirurgico );
-                            core.getFlag("score_nao_lavar_maos_centro_cirurgico").setValue( true );
+                            core.flag("score_nao_lavar_maos_centro_cirurgico",  true );
                         }
                     }
-                    if ( core.getFlag("score_anotar_prontuario_centro_cirurgico").getValue() == false ) {
+                    if ( core.flag("score_anotar_prontuario_centro_cirurgico") == false ) {
                         core.registerScoreItem( Scores.anotarProntuarioCentroCirurgico );
-                        core.getFlag("score_anotar_prontuario_centro_cirurgico").setValue( true );
+                        core.flag("score_anotar_prontuario_centro_cirurgico",  true );
                     }
                     Prontuario.open();
                     core.openModalScene("Prontuario");
@@ -1057,7 +1056,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: Fechar prontuario");
                     Prontuario.close();
                     // Já estava no momento de realizar os procedimentos, portanto pode terminar a fase
-                    if ( core.getFlag("entrou_centro_cirurgico").getValue() == true ) {
+                    if ( core.flag("entrou_centro_cirurgico") == true ) {
                         // core.unlockLevel(6);
                         core.closeCommandBar();
                         core.showEndOfLevel();
