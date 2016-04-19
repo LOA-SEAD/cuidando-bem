@@ -841,7 +841,9 @@ define({
             // 5 Jogador op 2
             "Tudo bem, senhor Raul, porém deixarei apenas desta vez, ok?!",
             // 6
-            "Esta não foi a melhor decisão.A permanência do paciente em seu próprio leito evita possíveis erros e confusões. Tente novamente."
+            "Esta não foi a melhor decisão. A permanência do paciente em seu próprio leito evita possíveis erros e confusões. Tente novamente.",
+            //7
+            "Tente conversar com o paciente primeiro."
         ],
 
         postoDeEnfermagem: [
@@ -849,7 +851,7 @@ define({
             "Lembre-se de pegar todos os equipamentos antes de sair!"
         ],
 
-        alaMasculina1: [
+        leitoPaciente1: [
             // 0 Jogador
             "Agora estamos no leito correto, senhor Francisco.",
             // 1 Paciente

@@ -293,7 +293,12 @@ define(function() {
             pegarSoro: new Score("Pegar Soro de Macrogotas", 50 ),
             irFarmaciaHoraErrada: new Score("Ir para a farmácia na hora errada", -25 ),
             lavarMaos: new Score("Lavar as mãos antes de ir ao leito", 200 ),
-            conversarPacienteLeito: new Score("Falar com o paciente no leito", 150 )
+            conversarPacienteLeito: new Score("Falar com o paciente no leito", 150 ),
+            pegarSuporteSoro: new Score("Pegar suporte de soro", 50 ),
+            administrarMedicamento: new Score("Administrar Medicamento", 150 ),
+            realizarGotejamento: new Score("Realizar Gotejamento de Soro", 350 ),
+            lavarMaos3: new Score("Lavar as mãos antes de anotar no prontuário", 200 ),
+            anotarNoProntuario: new Score("Anotar no prontuário", 350 ),
         }
     };
 });
