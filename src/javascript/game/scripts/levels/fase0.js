@@ -41,7 +41,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.changeScene( 1 );
                 console.log("Ir para o corredor");
             } else {
-                if ( level.getFlag("conversar_recepcionista").getValue() == true ) {
+                if ( core.getFlag("conversar_recepcionista").getValue() == true ) {
                     core.closeDialog( 0 );
                     core.closeDialog( 1 );
                     core.changeScene( 1 );
@@ -68,7 +68,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Dialog( lib.characters.recepcionistaUnknow )
                 .setText( Dialogs.recepcao[ 0 ] )
                 .registerOption("", function() {
-                    level.getFlag("conversar_recepcionista").setValue( true );
+                    core.getFlag("conversar_recepcionista").setValue( true );
                     core.openDialog( 1 );
                 }),
 
@@ -114,7 +114,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 console.log("Action: corredorIrSalaLeitos");
                 core.changeScene( 2 );
             } else {
-                if ( level.getFlag("conversar_mentor").getValue() == true ) {
+                if ( core.getFlag("conversar_mentor").getValue() == true ) {
                     core.changeScene( 2 );
                     console.log("Action: corredorIrSalaLeitos");
                 } else {
@@ -127,7 +127,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                 Player.stopAll();
                 Player.playInLoop( Player.audios.loops.recepcao );
-                switch ( level.getFlag("passagem_corredor").getValue() ) {
+                switch ( core.getFlag("passagem_corredor").getValue() ) {
                     // first time at 'corredor'
                     case 0:
                         core.setInteractiveObjectVisible("io-conversar_mentor", true );
@@ -153,15 +153,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onUnload(function() {
                 Player.stopAll();
                 Player.playInRange( Player.audios.musics.inGame );
-                switch ( level.getFlag("passagem_corredor").getValue() ) {
+                switch ( core.getFlag("passagem_corredor").getValue() ) {
                     case 0:
-                        level.getFlag("passagem_corredor").setValue( 1 );
+                        core.getFlag("passagem_corredor").setValue( 1 );
                         break;
                     case 1:
-                        level.getFlag("passagem_corredor").setValue( 2 );
+                        core.getFlag("passagem_corredor").setValue( 2 );
                         break;
                     case 2:
-                        level.getFlag("passagem_corredor").setValue( 3 );
+                        core.getFlag("passagem_corredor").setValue( 3 );
                         break;
                 }
             });
@@ -171,7 +171,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Dialog( lib.characters.mentor )
                 .setText( Dialogs.corredor[ 0 ] )
                 .registerOption("", function() {
-                    level.getFlag("conversar_mentor").setValue( true );
+                    core.getFlag("conversar_mentor").setValue( true );
                     core.openDialog( 1 );
                 }),
             // Dialog 1
@@ -179,16 +179,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText("")
                 // resposta correta
                 .registerOption( Dialogs.corredor[ 1 ], function() {
-                    level.getFlag("conversar_mentor").setValue( true );
+                    core.getFlag("conversar_mentor").setValue( true );
                     core.openDialog( 4 );
                 })
                 // dialog 2
                 .registerOption( Dialogs.corredor[ 2 ], function() {
-                    level.getFlag("conversar_mentor").setValue( true );
+                    core.getFlag("conversar_mentor").setValue( true );
                     core.openDialog( 2 );
                 })
                 .registerOption( Dialogs.corredor[ 4 ], function() {
-                    level.getFlag("conversar_mentor").setValue( true );
+                    core.getFlag("conversar_mentor").setValue( true );
                     core.openDialog( 3 );
                 })
                 .setRandomize( true ),
@@ -244,7 +244,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var salaDeLeitos = new Scene("salaDeLeitos", "scene-salaDeLeitos")
             .setCssClass("scene-bedroom-level0")
             .onLoad(function() {
-                switch ( level.getFlag("passagem_sala-de-leitos").getValue() ) {
+                switch ( core.getFlag("passagem_sala-de-leitos").getValue() ) {
                     case 0:
                         core.setInteractiveObjectVisible("io-ir_leito", true );
                         core.setInteractiveObjectVisible("io-ir_corredor", false );
@@ -256,12 +256,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }
             })
             .onUnload(function() {
-                switch ( level.getFlag("passagem_sala-de-leitos").getValue() ) {
+                switch ( core.getFlag("passagem_sala-de-leitos").getValue() ) {
                     case 0:
-                        level.getFlag("passagem_sala-de-leitos").setValue( 1 );
+                        core.getFlag("passagem_sala-de-leitos").setValue( 1 );
                         break;
                     case 1:
-                        level.getFlag("passagem_sala-de-leitos").setValue( 0 );
+                        core.getFlag("passagem_sala-de-leitos").setValue( 0 );
                         break;
                 }
             });
@@ -288,26 +288,26 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.setInteractiveObjectVisible("io-pulseira_paciente", true );
 
                 // force case 1
-                // level.getFlag("visita-leito").setValue(1);
+                // core.getFlag("visita-leito").setValue(1);
                 // delete here
 
-                switch ( level.getFlag("visita-leito").getValue() ) {
+                switch ( core.getFlag("visita-leito").getValue() ) {
                     case 0:
                         core.openDialog( 0 );
                         break;
                     case 1:
                         core.setActionVisible("btn-ir_sala_leitos", false );
                         core.openDialog( 11 );
-                        level.getFlag("termometro").setValue( false );
-                        level.getFlag("medidor-pressao").setValue( false );
-                        level.getFlag("oximetro").setValue( false );
-                        level.getFlag("relogio").setValue( false );
+                        core.getFlag("termometro").setValue( false );
+                        core.getFlag("medidor-pressao").setValue( false );
+                        core.getFlag("oximetro").setValue( false );
+                        core.getFlag("relogio").setValue( false );
                         break;
                 }
             })
             .onUnload(function() {
                 console.log("Leito: OnUnload");
-                level.getFlag("visita-leito").setValue( 1 );
+                core.getFlag("visita-leito").setValue( 1 );
                 core.closeCommandBar();
             });
 
@@ -500,7 +500,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openModalScene("pulseira");
                     Pulseira.open();
                     core.openCommandBar();
-                    if ( level.getFlag("pulseira").getValue() == false ) {
+                    if ( core.getFlag("pulseira").getValue() == false ) {
                         // core.setInteractiveObjectVisible("io-pulseira_paciente", true );
                     }
                 })
@@ -547,9 +547,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Player.play( Player.audios.sfx.lavarMaos );
 
                     // TODO Clean this mess PLEASE
-                    switch ( level.getFlag("lavar-maos").getValue() ) {
+                    switch ( core.getFlag("lavar-maos").getValue() ) {
                         case 0:
-                            level.getFlag("lavar-maos").setValue( 1 );
+                            core.getFlag("lavar-maos").setValue( 1 );
                             core.registerScoreItem( Scores.tutorial.lavarMaosAntes );
                             core.setActionVisible("btn-frequencia_respiratoria", true );
                             core.setActionVisible("btn-medir_pulso", true );
@@ -559,14 +559,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             // core.setActionVisible("btn-lavarMaos", false);
                             break;
                         case 2:
-                            // level.getFlag("lavar-maos").setValue(3);
+                            // core.getFlag("lavar-maos").setValue(3);
                             // core.registerScoreItem(Scores.tutorial.lavarMaosDepois);
                             // core.setActionVisible("btn-lavarMaos", false);
                             // core.setActionVisible("btn-ler_prontuario", true);
                             break;
                     }
 
-                    level.getFlag("lavar-maosDepois").setValue( true );
+                    core.getFlag("lavar-maosDepois").setValue( true );
                 })
                 .setVisibility( visibility ),
 
@@ -574,18 +574,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-medir_pulso")
                 .onClick(function() {
                     console.log("Action: medir_pulso");
-                    if ( level.getFlag("lavar-maos").getValue() >= 1 ) {
+                    if ( core.getFlag("lavar-maos").getValue() >= 1 ) {
 
                         // core.setActionVisible("btn-medir_pulso", false);
                         core.openModalScene("modalMedidor_pressao");
-                        level.getFlag("medidor-pressao").setValue( true );
+                        core.getFlag("medidor-pressao").setValue( true );
 
-                        if ( level.getFlag("mediuPressao").getValue() == false ) {
-                            level.getFlag("mediuPressao").setValue( true );
+                        if ( core.getFlag("mediuPressao").getValue() == false ) {
+                            core.getFlag("mediuPressao").setValue( true );
                             core.registerScoreItem( Scores.tutorial.verPressao );
                         }
 
-                        level.getFlag("lavar-maosDepois").setValue( false );
+                        core.getFlag("lavar-maosDepois").setValue( false );
                     }
                 })
                 .setVisibility( visibility ),
@@ -596,17 +596,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // core.setActionVisible("btn-saturacao_02", false);
                     console.log("Action: medir_saturacao_02");
 
-                    if ( level.getFlag("lavar-maos").getValue() >= 1 ) {
+                    if ( core.getFlag("lavar-maos").getValue() >= 1 ) {
 
                         core.openModalScene("modalOximetro");
-                        level.getFlag("oximetro").setValue( true );
+                        core.getFlag("oximetro").setValue( true );
 
-                        if ( level.getFlag("mediuBatimentosESaturacao").getValue() == false ) {
-                            level.getFlag("mediuBatimentosESaturacao").setValue( true );
+                        if ( core.getFlag("mediuBatimentosESaturacao").getValue() == false ) {
+                            core.getFlag("mediuBatimentosESaturacao").setValue( true );
                             core.registerScoreItem( Scores.tutorial.verSaturacao );
                         }
 
-                        level.getFlag("lavar-maosDepois").setValue( false );
+                        core.getFlag("lavar-maosDepois").setValue( false );
                     }
                 })
                 .setVisibility( visibility ),
@@ -615,17 +615,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-medir_freq_respiratoria")
                 .onClick(function() {
                     console.log("Action: medir_freq_respiratoria");
-                    if ( level.getFlag("lavar-maos").getValue() >= 1 ) {
+                    if ( core.getFlag("lavar-maos").getValue() >= 1 ) {
 
                         // core.setActionVisible("btn-frequencia_respiratoria", false);
-                        level.getFlag("relogio").setValue( true );
+                        core.getFlag("relogio").setValue( true );
 
-                        if ( level.getFlag("mediuFreqRespiratoria").getValue() == false ) {
-                            level.getFlag("mediuFreqRespiratoria").setValue( true );
+                        if ( core.getFlag("mediuFreqRespiratoria").getValue() == false ) {
+                            core.getFlag("mediuFreqRespiratoria").setValue( true );
                             core.registerScoreItem( Scores.tutorial.verFrequenciaRespiratoria );
                         }
 
-                        level.getFlag("lavar-maosDepois").setValue( false );
+                        core.getFlag("lavar-maosDepois").setValue( false );
 
                         FreqRespiratoria.open();
                         core.openModalScene("freqRespiratoria");
@@ -637,18 +637,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-medir_temperatura")
                 .onClick(function() {
                     console.log("Action: medir_temperatura");
-                    if ( level.getFlag("lavar-maos").getValue() >= 1 ) {
+                    if ( core.getFlag("lavar-maos").getValue() >= 1 ) {
 
                         // core.setActionVisible("btn-medir_temperatura", false);
                         core.openModalScene("modalTermometro");
-                        level.getFlag("termometro").setValue( true );
+                        core.getFlag("termometro").setValue( true );
 
-                        if ( level.getFlag("mediuTemperatura").getValue() == false ) {
-                            level.getFlag("mediuTemperatura").setValue( true );
+                        if ( core.getFlag("mediuTemperatura").getValue() == false ) {
+                            core.getFlag("mediuTemperatura").setValue( true );
                             core.registerScoreItem( Scores.tutorial.verTemperatura );
                         }
 
-                        level.getFlag("lavar-maosDepois").setValue( false );
+                        core.getFlag("lavar-maosDepois").setValue( false );
                     }
                 })
                 .setVisibility( visibility ),
@@ -657,9 +657,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
                     console.log("Action: ler prontuario");
-                    if ( level.getFlag("lavar-maosDepois").getValue() == true ) {
+                    if ( core.getFlag("lavar-maosDepois").getValue() == true ) {
                         if ( checouTodosAparelhos() ) {
-                            if ( level.getFlag("lavar-maosDepoisScore").getValue() == true ) {
+                            if ( core.getFlag("lavar-maosDepoisScore").getValue() == true ) {
                                 core.registerScoreItem( Scores.tutorial.lavarMaosDepois );
                             }
                         }
@@ -688,7 +688,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-abrirGaveta", "Abrir gaveta")
                 .setCssClass("intObj-openDrawer")
                 .onClick(function() {
-                    if ( level.getFlag("pegou_bandeja").getValue() != true ) {
+                    if ( core.getFlag("pegou_bandeja").getValue() != true ) {
                         core.openDialog( 0 );
                     } else {
                         console.log("Action: abrirGaveta");
@@ -699,16 +699,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                         core.setActionVisible("btn-fecharGaveta", true );
 
-                        if ( level.getFlag("termometro").getValue() != true ) {
+                        if ( core.getFlag("termometro").getValue() != true ) {
                             core.setInteractiveObjectVisible("io-termometro", true );
                         }
-                        if ( level.getFlag("medidor-pressao").getValue() != true ) {
+                        if ( core.getFlag("medidor-pressao").getValue() != true ) {
                             core.setInteractiveObjectVisible("io-medidorPressao", true );
                         }
-                        if ( level.getFlag("oximetro").getValue() != true ) {
+                        if ( core.getFlag("oximetro").getValue() != true ) {
                             core.setInteractiveObjectVisible("io-oximetro", true );
                         }
-                        if ( level.getFlag("relogio").getValue() != true ) {
+                        if ( core.getFlag("relogio").getValue() != true ) {
                             core.setInteractiveObjectVisible("io-relogio", true );
                         }
                     }
@@ -723,7 +723,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: Pegar bandeja");
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
-                    level.getFlag("pegou_bandeja").setValue( true );
+                    core.getFlag("pegou_bandeja").setValue( true );
                     core.setInteractiveObjectVisible("io-pegar_bandeja", false );
                 })
                 .setVisibility( true )
@@ -775,10 +775,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Som
                     Player.play( Player.audios.sfx.fecharGaveta );
                     core.closeModalScene("Gaveta");
-                    if ( level.getFlag("termometro").getValue() == true &&
-                        level.getFlag("oximetro").getValue() == true &&
-                        level.getFlag("medidor-pressao").getValue() == true &&
-                        level.getFlag("relogio").getValue() == true ) {
+                    if ( core.getFlag("termometro").getValue() == true &&
+                        core.getFlag("oximetro").getValue() == true &&
+                        core.getFlag("medidor-pressao").getValue() == true &&
+                        core.getFlag("relogio").getValue() == true ) {
 
                         console.log("Btn ir corredor");
                         core.setActionVisible("btn-ir_corredor", true );
@@ -797,7 +797,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.tutorial.pegarTermometro );
                     core.setInteractiveObjectVisible("io-termometro", false );
-                    level.getFlag("termometro").setValue( true );
+                    core.getFlag("termometro").setValue( true );
                 })
                 .setVisibility( visibility ),
 
@@ -809,7 +809,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.tutorial.pegarAparelhoPressao );
                     core.setInteractiveObjectVisible("io-medidorPressao", false );
-                    level.getFlag("medidor-pressao").setValue( true );
+                    core.getFlag("medidor-pressao").setValue( true );
                 })
                 .setVisibility( visibility ),
 
@@ -821,7 +821,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.tutorial.pegarOximetro );
                     core.setInteractiveObjectVisible("io-oximetro", false );
-                    level.getFlag("oximetro").setValue( true );
+                    core.getFlag("oximetro").setValue( true );
                 })
                 .setVisibility( visibility ),
 
@@ -833,16 +833,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Player.play( Player.audios.sfx.pegarObjeto );
                     core.registerScoreItem( Scores.tutorial.pegarRelogio );
                     core.setInteractiveObjectVisible("io-relogio", false );
-                    level.getFlag("relogio").setValue( true );
+                    core.getFlag("relogio").setValue( true );
                 })
                 .setVisibility( visibility )
         ]);
 
         function checouTodosAparelhos() {
-            return level.getFlag("mediuTemperatura").getValue() &&
-                level.getFlag("mediuPressao").getValue() &&
-                level.getFlag("mediuFreqRespiratoria").getValue() &&
-                level.getFlag("mediuBatimentosESaturacao").getValue();
+            return core.getFlag("mediuTemperatura").getValue() &&
+                core.getFlag("mediuPressao").getValue() &&
+                core.getFlag("mediuFreqRespiratoria").getValue() &&
+                core.getFlag("mediuBatimentosESaturacao").getValue();
         }
 
         var prontuario = new Scene("Prontuario", "modalScene-prontuario_joao");
@@ -861,7 +861,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-abrir_dialogo")
                 .onClick(function() {
                     console.log("Action: Finalizar fase");
-                    if ( level.getFlag("lavar-maosDepois").getValue() == true ) {
+                    if ( core.getFlag("lavar-maosDepois").getValue() == true ) {
                         if ( checouTodosAparelhos() ) {
                             if ( Prontuario.isDataValid() ) {
                                 core.registerScoreItem( Scores.tutorial.anotarNoProntuario );
@@ -900,7 +900,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("Ação: Fechar modal pulseira");
                     core.closeModalScene("Pulseira");
-                    if ( level.getFlag("visita-leito").getValue() == 0 ) {
+                    if ( core.getFlag("visita-leito").getValue() == 0 ) {
                         core.setActionVisible("btn-ir_sala_leitos", true );
                     }
                     Pulseira.close();
@@ -966,26 +966,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             FreqRespiratoria.setFr( 17 );
 
-            level.getFlag("conversar_recepcionista").setValue( false );
-            level.getFlag("conversar_mentor").setValue( false );
-            level.getFlag("passagem_corredor").setValue( 0 );
-            level.getFlag("passagem_sala-de-leitos").setValue( 0 );
-            level.getFlag("visita-leito").setValue( 0 );
-            level.getFlag("pulseira").setValue( false );
-            level.getFlag("lavar-maos").setValue( 0 );
-            level.getFlag("lavar-maosDepois").setValue( false );
-            level.getFlag("lavar-maosDepoisScore").setValue( false );
-            level.getFlag("pegou_bandeja").setValue( false );
-            level.getFlag("termometro").setValue( false );
-            level.getFlag("medidor-pressao").setValue( false );
-            level.getFlag("oximetro").setValue( false );
-            level.getFlag("relogio").setValue( false );
-
-            level.getFlag("mediuTemperatura").setValue( false );
-            level.getFlag("mediuPressao").setValue( false );
-            level.getFlag("mediuFreqRespiratoria").setValue( false );
-            level.getFlag("mediuBatimentosESaturacao").setValue( false );
-
             Pulseira.setNameRegExp( /joão manoel ribeiro/ );
             Pulseira.setLeitoRegExp( /0*2/ );
             Pulseira.setDataRegExp( /07\/06\/1956/ );
@@ -1050,7 +1030,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerModalScene( medidorPressao );
         level.registerModalScene( oximetro );
 
-        level.registerFlag( new Flag("conversar_recepcionista"), false );
+        level.registerFlag( new Flag("conversar_recepcionista", false ) );
         level.registerFlag( new Flag("conversar_mentor", false ) );
         level.registerFlag( new Flag("passagem_corredor", 0 ) );
         level.registerFlag( new Flag("passagem_sala-de-leitos", 0 ) );
