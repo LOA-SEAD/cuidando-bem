@@ -150,7 +150,18 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
     // TODO: Prescrição de Enfermagem
     var prescEnfermagemStates = {
         "vazio": false,
-        "decubito": true
+        "decubito": true,
+        "verificar_glicemia": false,
+        "levantar_grade": false,
+        "encaminhar_paciente_cc": false,
+        "check_list_cirurgia": false,
+        "placa_neutra": false,
+        "risco_infecção": false,
+        "troca_curativo": false,
+        "nutricao_desequilibrada": false,
+        "manutencao_sonda_nasogastrica": false,
+        "desiquilibrio_eletrolitico": false,
+        "desiquilibrio_eletrolitico_fase9": false
     };
 
     var prescEnfermagemState = "vazio";

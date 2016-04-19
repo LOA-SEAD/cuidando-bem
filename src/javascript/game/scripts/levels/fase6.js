@@ -1005,8 +1005,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setPrescMedicaRowData( 2, "", "", "", "", "", false, true );
             Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
 
-            // Prontuario.setPrescEnfermagemState("nutrição_desequilibrada");
-            // Prontuario.setPrescEnfermagemState("manutenção_sonda_nasogastrica");
+            // Prontuario.setPrescEnfermagemState("nutricao_desequilibrada");
+            // Prontuario.setPrescEnfermagemState("manutencao_sonda_nasogastrica");
             // Prontuario.setPrescEnfermagemState("desiquilibrio_eletrolitico");
 
             Prontuario.setSsvvRowData( 0, "", "100X10", "65", "16", "93", "36.5", true );
