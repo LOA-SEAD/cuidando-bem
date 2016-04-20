@@ -566,26 +566,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( visibility ),
 
-            new Action("btn-medir_temperatura", "Ver temperatura")
-                .setCssClass("action-medir_temperatura")
-                .onClick(function() {
-                    console.log("Action: medir_temperatura");
-                    if ( level.getFlag("lavar-maos").getValue() >= 1 ) {
-
-                        // core.setActionVisible("btn-medir_temperatura", false);
-                        core.openModalScene("modalTermometro");
-                        level.getFlag("termometro").setValue( true );
-
-                        if ( level.getFlag("mediuTemperatura").getValue() == false ) {
-                            level.getFlag("mediuTemperatura").setValue( true );
-                            core.registerScoreItem( Scores.tutorial.verTemperatura );
-                        }
-
-                        level.getFlag("lavar-maosDepois").setValue( false );
-                    }
-                })
-                .setVisibility( visibility ),
-
             new Action("btn-medir_pulso", "Ver pressão")
                 .setCssClass("action-medir_pulso")
                 .onClick(function() {
@@ -645,6 +625,26 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                         FreqRespiratoria.open();
                         core.openModalScene("freqRespiratoria");
+                    }
+                })
+                .setVisibility( visibility ),
+
+            new Action("btn-medir_temperatura", "Ver temperatura")
+                .setCssClass("action-medir_temperatura")
+                .onClick(function() {
+                    console.log("Action: medir_temperatura");
+                    if ( level.getFlag("lavar-maos").getValue() >= 1 ) {
+
+                        // core.setActionVisible("btn-medir_temperatura", false);
+                        core.openModalScene("modalTermometro");
+                        level.getFlag("termometro").setValue( true );
+
+                        if ( level.getFlag("mediuTemperatura").getValue() == false ) {
+                            level.getFlag("mediuTemperatura").setValue( true );
+                            core.registerScoreItem( Scores.tutorial.verTemperatura );
+                        }
+
+                        level.getFlag("lavar-maosDepois").setValue( false );
                     }
                 })
                 .setVisibility( visibility ),
