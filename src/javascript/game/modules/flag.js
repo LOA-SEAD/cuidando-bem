@@ -44,11 +44,13 @@ define([], function() {
          */
         var value = _value;
 
+        var initialValue = _value;
+
         // Methods
 
         // Getters
         function getClone() {
-            return new Flag( name, value );
+            return new Flag( name, initialValue );
         }
 
         /**
