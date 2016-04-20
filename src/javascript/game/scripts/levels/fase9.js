@@ -685,6 +685,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                 }
 
+
             })
             .setVisibility( true ),
 
@@ -781,6 +782,104 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                 // core.registerScoreItem( Scores.conversarPacienteLeito );
 
+            
+        })
+        .setVisibility( true ),
+        
+        
+        new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
+                .setCssClass("intObj-paciente_03-checar_pulseira")
+                .onClick(function() {
+                    
+                        core.openModalScene("Pulseira");
+                        Pulseira.open();
+                        core.openCommandBar();
+                    
+                    
+                })
+                .setVisibility( true ),
+
+    ]);
+
+
+    leito.registerDialogs([
+
+
+        // 0
+         new Dialog( lib.characters.jogador )
+          .setText(  Dialogs.leitoPaciente[ 0 ] )
+          .registerOption("", function() {
+            core.openDialog( 1 );
+        }),
+
+        // 1
+         new Dialog( lib.characters.pacientes.francisco )
+          .setText( Dialogs.leitoPaciente [ 1 ] )
+          .registerOption("", function() {
+            core.openDialog( 2 );
+        }),
+
+
+        // 2
+         new Dialog( lib.characters.jogador )
+          .setText(  Dialogs.leitoPaciente[ 2 ] )
+          .registerOption("", function() {
+            core.openDialog( 3 );
+        }),
+
+
+         // 3
+         new Dialog( lib.characters.pacientes.francisco )
+          .setText( Dialogs.leitoPaciente [ 3 ] )
+          .registerOption("", function() {
+            core.openDialog( 4 );
+        }),
+
+
+         // 4
+        new Dialog( lib.characters.jogador )
+        .setText("")
+        .registerOption( Dialogs.leitoPaciente[ 4 ], function() {
+            core.closeDialog();
+        })
+        .registerOption( Dialogs.leitoPaciente[ 5 ], function() {
+            core.openDialog( 5 );
+        })
+        .setRandomize( true ),
+
+
+        // 5
+
+         new Dialog( lib.characters.mentor )
+          .setText(  Dialogs.leitoPaciente[ 6 ] )
+          .registerOption("", function() {
+            core.openDialog( 4 );
+        }),
+        
+        
+        // 6 
+        
+        new Dialog( lib.characters.mentor )
+          .setText(  Dialogs.leitoPaciente[ 7 ] )
+          .registerOption("", function() {
+            core.closeDialog(  );
+        }),
+        
+
+   
+    ]);
+    
+    
+    
+        leito2 = lib.scenes.leitos.francisco.getClone()
+            .onLoad(function() {
+            
+            
+             //   core.setActionVisible("btn-ir_ala_masculina", false );
+             
+               // core.registerScoreItem( Scores.conversarPacienteLeito );
+
+
             })
             .onUnload(function() {
 
@@ -846,8 +945,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         ]);
 
+            
+       leito2.registerInteractiveObjects([  
 
 
+<<<<<<< 04657a9df20fd33675c8f105e71ed13c171e9c1e
         leito2.registerInteractiveObjects([
 
 
@@ -872,14 +974,52 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             })
             .setVisibility( true )
+=======
+             new InteractiveObject("io-falar_paciente", "Falar com o paciente")
+        .setCssClass("intObj-conversar_paciente")
+        .onClick(function() {
+>>>>>>> conflicts fase 9
 
-        ]);
-
-
-        leito2.registerActions([
-
-
-            new Action("btn-pegar_suporte_soro", "Pegar Suporte de Soro")
+                     core.openDialog(0);
+            
+            if(level.getFlag("falar_paciente_correto").getValue() == false) {
+                
+                level.getFlag("falar_paciente_correto").setValue(true);
+                core.registerScoreItem( Scores.conversarPacienteLeito );
+            }
+            
+            core.setActionVisible("btn-pegar_suporte_soro", true );
+            core.setActionVisible("btn-administrar_medicamente", true );
+            core.setActionVisible("btn-realizar_gotejamento", true );
+            core.setActionVisible("btn-lavarMaos", true );
+            core.setActionVisible("btn-anotar_prontuario", true );
+                              
+                
+        })
+        .setVisibility( true ),
+           
+           
+         new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
+                .setCssClass("intObj-paciente_05-checar_pulseira")
+                .onClick(function() {
+                    
+                        core.openModalScene("Pulseira2");
+                        Pulseira2.open();
+                        core.openCommandBar();
+                    
+                    
+                })
+                .setVisibility( true ),
+   
+     ]);      
+    
+   
+    
+    
+    leito2.registerActions([
+        
+        
+             new Action("btn-pegar_suporte_soro", "Pegar Suporte de Soro")
             .setCssClass("action-pegar-soro")
             .onClick(function() {
 
@@ -980,6 +1120,32 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         ]);
 
+            
+    
+    /*  pulseira2 = new Scene("Pulseira2", "Pulseira2");
+    
+    
+    pulseira2.registerInteractiveObjects([
+
+        ]);
+
+
+    pulseira2.registerActions([
+        
+        new Action("btn-largar_pulseira", "Fechar pulseira")
+        .setCssClass("action-pulseira_paciente")
+        .onClick(function() {
+            
+            console.log("Ação: Fechar modal pulseira");
+            core.closeModalScene("Pulseira");
+
+            Pulseira.close();
+            
+                })
+        .setVisibility( true )
+        
+        ]);*/
+        
 
 
         prontuario = new Scene("Prontuario", "Prontuario");
@@ -1013,7 +1179,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-fechar_gaveta", "Fechar gaveta")
             .setCssClass("action-fechar_gaveta")
             .onClick(function() {
-
+         
                 console.log("Action: fechar_gaveta");
                 // Som
                 Player.play( Player.audios.sfx.fecharGaveta );
@@ -1100,9 +1266,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         ]);
 
-        level.registerModalScene( prontuario );
-        level.registerModalScene( gaveta );
-        level.registerModalScene( pulseira );
+      
+
+
+            level.registerModalScene( prontuario );
+            level.registerModalScene( gaveta );
+            level.registerModalScene( pulseira );
+      //      level.registerModalScene( pulseira2 );
+    
 
 
         // 00
@@ -1159,11 +1330,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setSsvvRowData( 0, "", "130X70", "82", "19", "96", "35.9", true );
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
 
+
             //    Prontuario.setAnotacaoEnfermagemRowData( "15/03", "" );
 
 
 
             // 'pulseira' content
+
+        //    Prontuario.setAnotacaoEnfermagemRowData( "15/03", "" );
+            
+            
+            
+         // 'pulseira' content
+
             Pulseira.setNameRegExp( /Raul Gonzales Rodrigues/ );
             Pulseira.setLeitoRegExp( /0*3/ );
             Pulseira.setDataRegExp( /24\/07\/1937/ );
@@ -1172,7 +1351,20 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Pulseira.setLeito("03");
             Pulseira.setData("24/07/1937");
             Pulseira.disable();
+   
+             /*// 'pulseira' content
+            
+            Pulseira2.setNameRegExp( /Pedro Alcides Mendonça/ );
+            Pulseira2.setLeitoRegExp( /0*1/ );
+            Pulseira2.setDataRegExp( /03\/06\/1962/ );
 
+            Pulseira2.setName("Pedro Alcides Mendonça");
+            Pulseira2.setLeito("01");
+            Pulseira2.setData("03/06/1962");
+            Pulseira2.disable();
+*/
+    
+            
         });
 
 
