@@ -1324,7 +1324,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setPrescMedicaRowData( 2, "", "", "", "", "", false, true );
             Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
 
-            // Prontuario.setPrescEnfermagemState("risco_infecção");
+            Prontuario.clearPrescEnfermagemState( );
+            Prontuario.setPrescEnfermagemState("risco_infeccao");
 
             Prontuario.setSsvvRowData( 0, "", "110x70", "55", "16", "96", "37.3", true );
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );

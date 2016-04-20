@@ -1186,10 +1186,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setPrescMedicaRowData( 2, "", "", "", "", "", false, true );
             Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
 
-            // Prontuario.setPrescEnfermagemState("encaminhar_paciente_cc");
+            Prontuario.clearPrescEnfermagemState( );
+            Prontuario.setPrescEnfermagemState("encaminhar_paciente_cc");
             //Caso não for possível escolher o local onde está a placa neutra terá que fazer um desse para cada fase que usa
-            // Prontuario.setPrescEnfermagemState("check_list_cirurgia");
-            // Prontuario.setPrescEnfermagemState("placa_neutra");
+            Prontuario.setPrescEnfermagemState("check_list_cirurgia");
+            Prontuario.setPrescEnfermagemState("placa_neutra");
 
             Prontuario.setSsvvRowData( 0, "", "120x70", "72", "16", "96", "35,5", true );
             // Disable 2 row
