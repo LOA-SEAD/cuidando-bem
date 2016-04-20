@@ -1264,13 +1264,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             Prontuario.setPrescMedicaRowData( 0, "", "Metmorfina", "Oral", "500 mg (2x ao dia)", "07h - 17h", true, true );
             Prontuario.setPrescMedicaRowData( 1, "", "Glibenclamida", "Oral", "4 mg (2x ao dia)", "08h - 18h", true, true );
-            Prontuario.setPrescMedicaRowData( 2, "", "Bicarbonato de sódio", "Endovenoso", "8,4 g + Água destilada 100 ml", "Tempo de 4 horas", true, true);
+            Prontuario.setPrescMedicaRowData( 2, "", "Bicarbonato de sódio", "Endovenoso", "8,4 g + Água destilada 100 ml", "Tempo de 4 horas", true, true );
             // Necessário para evitar que valores antigos apareçam no prontuário
             Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
 
             Prontuario.clearPrescEnfermagemState( );
             Prontuario.setPrescEnfermagemState("decubito");
-            //Caso não for possível digitar o valor da glicemia terá que fazer um desse para cada fase que usa
+            // Caso não for possível digitar o valor da glicemia terá que fazer um desse para cada fase que usa
             Prontuario.setPrescEnfermagemState("verificar_glicemia");
             Prontuario.setPrescEnfermagemState("levantar_grade");
 

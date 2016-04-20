@@ -170,7 +170,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
     var prescEnfermagemCheckSelector = "";
 
 
-    var ssvvTbodySelector = "#ssvv_tbody";''
+    var ssvvTbodySelector = "#ssvv_tbody";"";
 
     var ssvvDataSelector = ".data";
     var ssvvPressaoArterialSelector = ".pa";
@@ -503,8 +503,8 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
             $( $( prescMedicaRelatorioSelector, prescMedicaTbodySelector )[ _row ] ).text("( )");
         }
 
-        //$("tr", prescEnfermagemTbody ).hide();
-        //$("." + prescEnfermagemState, prescEnfermagemTbody ).show();
+        // $("tr", prescEnfermagemTbody ).hide();
+        // $("." + prescEnfermagemState, prescEnfermagemTbody ).show();
     }
 
     function setPrescMedicaRowRegExp( _row, _relatorio ) {
@@ -516,30 +516,29 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
     }
 
     function clearPrescEnfermagemState() {
-        //Limpa tudo o que estiver no prontuario por meio de esconder tudo o que estiver em tags tr
+        // Limpa tudo o que estiver no prontuario por meio de esconder tudo o que estiver em tags tr
         $("tr", prescEnfermagemTbody ).hide();
     }
 
     function setPrescEnfermagemState( _prescEnfermagemState ) {
-        //prescEnfermagemState = _prescEnfermagemState;
+        // prescEnfermagemState = _prescEnfermagemState;
 
-        //Torna todas as classes presentes no prescEnfermagemStates false, menos as que foram passadas como parametro
+        // Torna todas as classes presentes no prescEnfermagemStates false, menos as que foram passadas como parametro
         $.each( prescEnfermagemStates, function( index, value ) {
-            if ( index == _prescEnfermagemState){
+            if ( index == _prescEnfermagemState ) {
                 prescEnfermagemStates[ index ] = true;
-            }
-            else{
+            } else {
                 prescEnfermagemStates[ index ] = false;
             }
         });
 
-        //Passa para o prontuario o parametro dado
-        $.each(prescEnfermagemStates, function( index, value ) {
+        // Passa para o prontuario o parametro dado
+        $.each( prescEnfermagemStates, function( index, value ) {
             if ( value ) {
                 prescEnfermagemState = index;
             }
-        }); 
-        
+        });
+
         $("." + prescEnfermagemState, prescEnfermagemTbody ).show();
     }
 

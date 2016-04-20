@@ -1115,13 +1115,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             Prontuario.setPrescMedicaRowData( 0, "", "Fondaparinux Sódico", "Oral", "7,5 mg (1x ao dia)", "07h", true, true );
             Prontuario.setPrescMedicaRowData( 1, "", "Atenolol", "Oral", "100 mg (2x ao dia)", "08h - 18h", true, true );
-            Prontuario.setPrescMedicaRowData( 2, "", "Metmorfina", "Oral", "750 mg (2x ao dia)", "06h - 17h", true, true);
-            Prontuario.setPrescMedicaRowData( 3, "", "Glibenclamida", "Oral", "4 mg (2x ao dia)", "07:30h - 17:30h", true, true);
+            Prontuario.setPrescMedicaRowData( 2, "", "Metmorfina", "Oral", "750 mg (2x ao dia)", "06h - 17h", true, true );
+            Prontuario.setPrescMedicaRowData( 3, "", "Glibenclamida", "Oral", "4 mg (2x ao dia)", "07:30h - 17:30h", true, true );
 
             Prontuario.clearPrescEnfermagemState( );
             Prontuario.setPrescEnfermagemState("decubito");
-            //Caso não for possível digitar o valor da glicemia terá que fazer um desse para cada fase que usa
-            Prontuario.setPrescEnfermagemState("verificar_glicemia"); 
+            // Caso não for possível digitar o valor da glicemia terá que fazer um desse para cada fase que usa
+            Prontuario.setPrescEnfermagemState("verificar_glicemia");
             Prontuario.setPrescEnfermagemState("levantar_grade");
             Prontuario.setPrescEnfermagemState("troca_curativo");
 

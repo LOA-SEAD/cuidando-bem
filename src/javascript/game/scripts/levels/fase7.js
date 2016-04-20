@@ -126,12 +126,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
                 core.flag("ir_postoEnfermagem_horaErrada",  true );
             }
-            //Já falou com a paciente, porém não foi até a farmacia ainda
+            // Já falou com a paciente, porém não foi até a farmacia ainda
             if ( ( core.flag("conferir_medicamento_correto") == false ) &&
                ( core.flag("score_ler_prontuario") == true ) ) {
                     core.openDialog( 0 );
-            }
-            else{
+            } else {
                 core.changeScene( 5 );
             }
         }
@@ -216,10 +215,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 if ( ( core.flag("pegou_tudo_posto") == false ) &&
                    ( core.flag("conferir_medicamento_correto") == true ) ) {
                     core.setActionVisible("btn-lavarMaos", false );
-                }
-                else{
+                } else {
                     if ( core.flag("pegou_tudo_posto") == true ) {
-                        //Pra reativar esse botão caso ele tenha sido desabilitado alguma vez
+                        // Pra reativar esse botão caso ele tenha sido desabilitado alguma vez
                         core.setActionVisible("btn-lavarMaos", true );
                     }
                 }
@@ -316,7 +314,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.flag("score_ler_prontuario",  true );
                         core.registerScoreItem( Scores.lerProntuario );
                     }
-                    //Parte final da fase
+                    // Parte final da fase
                     if ( core.flag("score_ofereceu_copo") == true ) {
                         if ( core.flag("score_lavar_maos_2") == false ) {
                             if ( core.flag("score_nao_lavou_maos_2") == false ) {
@@ -346,8 +344,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             core.registerScoreItem( Scores.lavarMaos2 );
                             core.flag("score_lavar_maos_2",  true );
                         }
-                    }
-                    else{
+                    } else {
                         if ( core.flag("lavarMaos") == false ) {
                             core.flag("lavarMaos",  true );
                             core.registerScoreItem( Scores.lavarMaos );
@@ -384,20 +381,20 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-conversar_paciente2", "Ir ao leito")
                 .setCssClass("intObj-irLeitoEsquerda")
                 .onClick(function() {
-                    //Primeiro momento onde você apenas irá conversar com o paciente
+                    // Primeiro momento onde você apenas irá conversar com o paciente
                     if ( core.flag("conversarPaciente") == false ) {
                         core.flag("conversarPaciente",  true );
                         core.registerScoreItem( Scores.falarComPaciente );
                         core.openDialog( 0 );
-                    //Não ocorre nada, pois o jogador precisa ir na farmácia e no posto de enfermagem primeiro
+                    // Não ocorre nada, pois o jogador precisa ir na farmácia e no posto de enfermagem primeiro
                     } else if ( core.flag("pegou_tudo_posto") == false ) {
-                    //Ida para o leito sem lavar as mãos, o que impede o jogador ir para o leito
+                    // Ida para o leito sem lavar as mãos, o que impede o jogador ir para o leito
                     } else if ( core.flag("lavarMaos") == false ) {
                         core.openDialog( 7 );
-                    //Ida para o leito sem pegar o medicamento, o que impede o jogador ir para o leito
+                    // Ida para o leito sem pegar o medicamento, o que impede o jogador ir para o leito
                     } else if ( core.flag("pegar_medicamento") == false ) {
                         core.openDialog( 8 );
-                    //Ida para o leito
+                    // Ida para o leito
                     } else {
                         core.changeScene( 3 );
                     }
@@ -411,7 +408,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         function farmaciaIrCorredor() {
             console.log("Ir para o corredor");
 
-            //Caso o jogador apenas entrou na farmácia no momento errado
+            // Caso o jogador apenas entrou na farmácia no momento errado
             if ( core.flag("score_ler_prontuario") == false ) {
                 core.changeScene( 1 );
             } else if ( core.flag("pegar_medicamento") == false ) {
@@ -603,7 +600,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("conferir_medicamento_correto") == false ) {
                         core.flag("conferir_medicamento_correto",  true );
                         core.registerScoreItem( Scores.conferirMedicamentoCorreto );
-                        //Para o caso do jogador não ter falado com a paciente na ala feminina, impedindo-o de fazer isso
+                        // Para o caso do jogador não ter falado com a paciente na ala feminina, impedindo-o de fazer isso
                         /*if ( core.flag("conversarPaciente") == false ) {
                             core.flag("conversarPaciente",  true );
                         }*/
@@ -691,7 +688,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Alertas.esqueceu.verPulseira )
                 .registerOption("", function() {
                     core.closeDialog();
-                }),
+                })
 
         ]);
 
@@ -707,8 +704,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             core.flag("score_nao_verificou_pulseira",  true );
                         }
                         core.openDialog( 8 );
-                    }
-                    else{
+                    } else {
                         if ( core.flag("score_ofereceu_copo") == false ) {
                             core.registerScoreItem( Scores.oferecerCopo );
                             core.flag("score_ofereceu_copo",  true );
@@ -853,7 +849,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             }
                         }
                     } else {
-                        //Para liberar o segundo diálogo com a paciente
+                        // Para liberar o segundo diálogo com a paciente
                         core.flag("pegou_tudo_posto",  true );
                         core.changeScene( 1 );
                     }
@@ -1063,7 +1059,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
 
             Prontuario.clearPrescEnfermagemState( );
-            //Caso não for possível digitar o valor da glicemia terá que fazer um desse para cada fase que usa
+            // Caso não for possível digitar o valor da glicemia terá que fazer um desse para cada fase que usa
             Prontuario.setPrescEnfermagemState("verificar_glicemia");
 
             Prontuario.setSsvvRowData( 0, "", "120X70", "60", "18", "96", "35", true );
