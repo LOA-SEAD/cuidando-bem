@@ -494,7 +494,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setCssClass("scene-bedroom-level3")
             .onLoad(function() {
                 console.log("Load scene: " + alaFeminina.getName() );
-                //
             });
 
 
@@ -713,7 +712,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var farmacia = lib.scenes.farmacia.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + farmacia.getName() );
-                //
             });
 
         // POSTO DE ENFERMAGEM
@@ -721,7 +719,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + postoDeEnfermagem.getName() );
-                //
             });
 
 
@@ -1124,7 +1121,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.clearPrescEnfermagemState( );
             Prontuario.setPrescEnfermagemState("encaminhar_paciente_cc");
             Prontuario.setPrescEnfermagemState("check_list_cirurgia");
-            //Caso não for possível escolher o local onde está a placa neutra terá que fazer um desse para cada fase que usa
+            // Caso não for possível escolher o local onde está a placa neutra terá que fazer um desse para cada fase que usa
             Prontuario.setPrescEnfermagemState("placa_neutra");
 
             Prontuario.setSsvvRowData( 0, "", "120x70", "47", "16", "96", "35,7", true );

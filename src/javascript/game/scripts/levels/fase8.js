@@ -1136,7 +1136,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             Prontuario.clearPrescEnfermagemState( );
             Prontuario.setPrescEnfermagemState("encaminhar_paciente_cc");
-            //Caso não for possível escolher o local onde está a placa neutra terá que fazer um desse para cada fase que usa
+            // Caso não for possível escolher o local onde está a placa neutra terá que fazer um desse para cada fase que usa
             Prontuario.setPrescEnfermagemState("check_list_cirurgia");
             Prontuario.setPrescEnfermagemState("placa_neutra");
 

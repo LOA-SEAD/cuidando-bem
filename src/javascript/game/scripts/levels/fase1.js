@@ -535,7 +535,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.enableInteractiveObject("io-pulseira_paciente", true );
                     core.setActionVisible("btn-ir_sala_leitos", true );
                     // core.setActionVisible("btn-perguntar_nome", true);
-                    //core.setActionVisible("btn-falarPaciente", false );
+                    // core.setActionVisible("btn-falarPaciente", false );
                 })
         ]);
 
@@ -757,14 +757,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: Fechar prontuario");
                     Prontuario.close();
                     core.closeModalScene("Prontuario");
-                    //Retirar esse if após consertar o problema no prontuário
+                    // Retirar esse if após consertar o problema no prontuário
                     if ( level.getFlag("colocou_coxim").getValue() == true ) {
                         core.registerScoreItem( Scores.anotarNoProntuario );
                         core.unlockLevel( 2 );
                         core.closeCommandBar();
                         core.showEndOfLevel();
                     }
-                }),
+                })
 
             /*new Action("btn-terminar_fase", "Conversar com Mentor")
                 .setCssClass("action-abrir_dialogo")
