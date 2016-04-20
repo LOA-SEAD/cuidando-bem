@@ -504,7 +504,26 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // 7
             new Dialog( lib.characters.pacientes.carlos )
                 .setText( Dialogs.enfermaria[ 11 ] )
-                .registerOption( Dialogs.enfermaria[ 12 ], function() {
+                .registerOption("", function() {
+                    core.openDialog( 10 );
+                }),
+            // 8
+            new Dialog( lib.characters.jogador )
+                .setText( Dialogs.perguntarNome )
+                .registerOption("", function() {
+                    core.openDialog( 9 );
+                }),
+            // 9
+            new Dialog( lib.characters.pacientes.carlos )
+                .setText( Dialogs.enfermaria[ 11 ] )
+                .registerOption("", function() {
+                    core.openCommandBar();
+                    core.closeDialog();
+                }),
+            // 10
+            new Dialog( lib.characters.jogador )
+                .setText( Dialogs.enfermaria[ 12 ] )
+                .registerOption("", function() {
                     core.openCommandBar();
                     core.closeDialog();
                     // debugger;
@@ -513,19 +532,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.enableInteractiveObject("io-pulseira_paciente", true );
                     core.setActionVisible("btn-ir_sala_leitos", true );
                     // core.setActionVisible("btn-perguntar_nome", true);
-                    core.setActionVisible("btn-falarPaciente", false );
-                }),
-            // 8
-            new Dialog( lib.characters.jogador )
-                .setText( Dialogs.perguntarNome )
-                .registerOption("", function() {
-                    core.openDialog( 9 );
-                }),
-            new Dialog( lib.characters.pacientes.carlos )
-                .setText( Dialogs.enfermaria[ 11 ] )
-                .registerOption("Obrigado.", function() {
-                    core.openCommandBar();
-                    core.closeDialog();
+                    //core.setActionVisible("btn-falarPaciente", false );
                 })
         ]);
 
@@ -617,13 +624,29 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-abrirGaveta", "Abrir gaveta")
                 .setCssClass("intObj-openDrawer")
                 .onClick(function() {
-                    console.log("Action: abrirGaveta");
-                    // Som
-                    Player.play( Player.audios.sfx.abrirGaveta );
-                    core.openModalScene("gaveta");
-                    core.openCommandBar();
+                    if ( level.getFlag("pegou_bandeja").getValue() != true ) {
+                        core.openDialog( 1 );
+                    } else {
+                        console.log("Action: abrirGaveta");
+                        // Som
+                        Player.play( Player.audios.sfx.abrirGaveta );
+                        core.openModalScene("gaveta");
+                        core.openCommandBar();
 
-                    core.setInteractiveObjectVisible("io-coxim", !(level.getFlag("coxim").getValue()) );
+                        core.setInteractiveObjectVisible("io-coxim", !(level.getFlag("coxim").getValue()) );
+                    }
+                })
+                .setVisibility( true ),
+
+            // Bandeja
+            new InteractiveObject("io-pegar_bandeja", "Pegar bandeja")
+                .setCssClass("intObj-bandeja")
+                .onClick(function() {
+                    console.log("Action: Pegar bandeja");
+                    // Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
+                    level.getFlag("pegou_bandeja").setValue( true );
+                    core.setInteractiveObjectVisible("io-pegar_bandeja", false );
                 })
                 .setVisibility( true )
         ]);
@@ -632,6 +655,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // 0 - Mentor: Esqueceu coxim
             new Dialog( lib.characters.mentor )
                 .setText( Alertas.esqueceu.coxim )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
+            // Dialog 1 - Não pegou bandeja
+            new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.pegarBandeja )
                 .registerOption("", function() {
                     core.closeDialog();
                 })
@@ -725,9 +754,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: Fechar prontuario");
                     Prontuario.close();
                     core.closeModalScene("Prontuario");
+                    //Retirar esse if após consertar o problema no prontuário
+                    if ( level.getFlag("colocou_coxim").getValue() == true ) {
+                        core.registerScoreItem( Scores.anotarNoProntuario );
+                        core.unlockLevel( 2 );
+                        core.closeCommandBar();
+                        core.showEndOfLevel();
+                    }
                 }),
 
-            new Action("btn-terminar_fase", "Conversar com Mentor")
+            /*new Action("btn-terminar_fase", "Conversar com Mentor")
                 .setCssClass("action-abrir_dialogo")
                 .onClick(function() {
                     console.log("Action: Fechar prontuario");
@@ -737,7 +773,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.unlockLevel( 2 );
                     core.closeCommandBar();
                     core.showEndOfLevel();
-                })
+                })*/
         ]);
 
         // Register in level
@@ -778,6 +814,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.getFlag("score_pegar_coxim").setValue( false );
             level.getFlag("score_anotar_prontuario").setValue( false );
             level.getFlag("score_nao_lavar_maos_prontuario").setValue( false );
+            level.getFlag("pegou_bandeja").setValue( false );
 
             Pulseira.setNameRegExp( /Carlos Esme Gouv(e|ê)a/ );
             Pulseira.setLeitoRegExp( /0*3/ );
@@ -847,6 +884,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("score_pegar_coxim"), false );
         level.registerFlag( new Flag("score_anotar_prontuario"), false );
         level.registerFlag( new Flag("score_nao_lavar_maos_prontuario"), false );
+        level.registerFlag( new Flag("pegou_bandeja"), false );
 
 
         level.setInitialScene( 0 );
