@@ -1009,6 +1009,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             Prontuario.setPrescMedicaRowData( 0, "", "Captopril", "Oral", "comp 75 mg", "2x dia", false, true );
             Prontuario.setPrescMedicaRowData( 1, "", "Ácido acetilsalicílico (AAS)", "Oral", "comp 100 mg", "1x dia", false, true );
+            // Necessário para evitar que valores antigos apareçam no prontuário
+            Prontuario.setPrescMedicaRowData( 2, "", "", "", "", "", false, true );
+            Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
 
             Prontuario.setSsvvRowData( 0, "", "", "", "", "", "", false );
             Prontuario.setSsvvRowRegExp( 0,
@@ -1024,6 +1027,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             Prontuario.setAnotacaoEnfermagemRowData("", "");
 
+            Prontuario.clearPrescEnfermagemState( );
             Prontuario.setPrescEnfermagemState("vazio");
         });
 

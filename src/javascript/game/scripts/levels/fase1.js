@@ -830,7 +830,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setEstadoCivil("Casado");
             Prontuario.setDataNascimento("01/12/1945");
             Prontuario.setIdade("69 anos");
-            Prontuario.setProfissao("Advogado aposentado");
+            Prontuario.setProfissao("Aposentado (advogado)");
             Prontuario.setPai("Leonardo Gouvêa");
             Prontuario.setMae("Maria Clara Esme Gouvêa");
 
@@ -842,6 +842,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setHipotese("Pneumonia brônquica, insuficiência respiratória e anemia ferropriva.");
             Prontuario.setObservacoes("Possui incontinência urinária, acamado.");
 
+            Prontuario.clearPrescEnfermagemState( );
             Prontuario.setPrescEnfermagemState("decubito");
 
             Prontuario.setPeso("72");
@@ -850,6 +851,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             Prontuario.setPrescMedicaRowData( 0, "", "Sulfato ferroso", "Oral", "drágea 250 mg", "2x dia", true, true );
             Prontuario.setPrescMedicaRowData( 1, "", "Azitromicina", "Oral", "comp 500 mg", "1x dia", true, true );
+            // Necessário para evitar que valores antigos apareçam no prontuário
+            Prontuario.setPrescMedicaRowData( 2, "", "", "", "", "", false, true );
+            Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
+
 
             Prontuario.setSsvvRowData( 0, "", "130x80", "65", "14", "94", "36", true );
             // Disable 2 row

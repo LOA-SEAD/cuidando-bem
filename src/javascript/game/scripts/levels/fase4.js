@@ -1319,9 +1319,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setCircunferenciaAbdominal("91");
 
             Prontuario.setPrescMedicaRowData( 0, "", "Cefalotina sódica (Keflin®)", "Endovenosa", false, true );
-            Prontuario.setPrescMedicaRowData( 1, "", "", "", "", "", "", false );
+            // Necessário para evitar que valores antigos apareçam no prontuário
+            Prontuario.setPrescMedicaRowData( 1, "", "", "", "", "", false, true );
+            Prontuario.setPrescMedicaRowData( 2, "", "", "", "", "", false, true );
+            Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
 
-            // Prontuario.setPrescEnfermagemState("risco de infecção");
+            Prontuario.clearPrescEnfermagemState( );
+            Prontuario.setPrescEnfermagemState("risco_infeccao");
 
             Prontuario.setSsvvRowData( 0, "", "110x70", "55", "16", "96", "37.3", true );
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );

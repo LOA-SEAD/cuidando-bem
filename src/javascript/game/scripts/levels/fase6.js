@@ -1001,10 +1001,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             Prontuario.setPrescMedicaRowData( 0, "", "Nutrição Enteral (Hipercalórica  0,99 cal/ml)", "Sonda Nasogástrica", "200 ml/01 hora", "06h/06h", false, true );
             Prontuario.setPrescMedicaRowData( 1, "", "Morfina (solução oral/gota)", "Oral", "40mg/ml", "12/12h", true, true );
+            // Necessário para evitar que valores antigos apareçam no prontuário
+            Prontuario.setPrescMedicaRowData( 2, "", "", "", "", "", false, true );
+            Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
 
-            // Prontuario.setPrescEnfermagemState("nutrição desequilibrada");
-            // Prontuario.setPrescEnfermagemState("manutenção correta da sonda nasogástrica");
-            // Prontuario.setPrescEnfermagemState("risco de deiquilibrio eletrolítico");
+            Prontuario.clearPrescEnfermagemState( );
+            Prontuario.setPrescEnfermagemState("nutricao_desequilibrada");
+            Prontuario.setPrescEnfermagemState("manutencao_sonda_nasogastrica");
+            Prontuario.setPrescEnfermagemState("desiquilibrio_eletrolitico");
 
             Prontuario.setSsvvRowData( 0, "", "100X10", "65", "16", "93", "36.5", true );
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
