@@ -214,10 +214,12 @@ define(function() {
            irFarmaciaHoraErrada: new Score("Ir para a Farmacia sem precisar", -25 ),
            irPostoEnfermagemHoraErrada: new Score("Ir para o Posto Enfermagem sem precisar", -25 ),
            irCentroCirurgicoHoraErrada: new Score("Ir para o Centro Cirugico sem precisar", -25 ),
-           irPostoEnfermagemHoraErrada: new Score("Ir para a Ala Masculina sem precisar", -25 ),
+           irAlaMasculinaHoraErrada: new Score("Ir para a Ala Masculina sem precisar", -25 ),
            irAlaFemininaHoraErrada: new Score("Ir para a Ala Feminina sem precisar", -25 ),
-           verProntuario: new Score("Ver o prontuário", 150 ),
-           falarComPaciente: new Score("Falar com o paciente", 150 ),
+           lerProntuario: new Score("Ler o prontuário", 150 ),
+           naoLeuProntuario: new Score("Não leu o prontuário", 150 ),
+           falarComPaciente: new Score("Falar com a paciente", 150 ),
+           naoFalarComPaciente: new Score("Não falar com a paciente", -150 ),
            pegarMedicamento: new Score("Pegar medicamento na farmácia", 50 ),
            conferirMedicamentoErrado: new Score("Verificar o medicamento fornecido pelo farmacêutico", 350 ),
            trocarMedicamento: new Score("Trocar o medicamento equivocado", 150 ),
@@ -225,7 +227,16 @@ define(function() {
            pegarAguaPotavel: new Score("Pegar água potável no posto de enfermagem", 50 ),
            pegarCopoDescartavel: new Score("Pegar copo descartável no posto de enfermagem", 50 ),
            lavarMaos: new Score("Lavar as mãos antes de ir ao leito do paciente", 200 ),
-           calcularInfusaoDieta: new Score("Cálculo da infusão da dieta", 150 )
+           calcularInfusaoDieta: new Score("Cálculo da infusão da dieta", 150 ),
+           explicarAcaoMedicamento: new Score("Explicar a ação do medicamento para o paciente", 150 ),
+           verificarPulseira: new Score("Verificar a pulseira da paciente", 150 ),
+           naoVerificarPulseira: new Score("Não verificar a pulseira da paciente", -150 ),
+           oferecerCopo: new Score("Oferecer água para o paciente tomar o medicamento", 150 ),
+           lavarMaos2: new Score("Lavar as mãos antes de fazer anotações no prontuário", 200 ),
+           naoLavarMaos2: new Score("Não lavar as mãos antes de fazer anotações no prontuário", -200 ),
+           anotarProntuario: new Score("Anotar no Prontuário", 350 ),
+           naoPegarCopo: new Score("Não pegar o copo descartável no posto de enfermagem", -50 ),
+           naoPegarAgua: new Score("Não pegar a água potável no posto de enfermagem", -50 )
         },
 
         level8: {
