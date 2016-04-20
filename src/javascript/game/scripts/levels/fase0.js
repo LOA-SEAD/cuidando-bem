@@ -125,6 +125,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         var corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
+                Player.stopAll();
+                Player.playInLoop( Player.audios.loops.recepcao );
                 switch ( level.getFlag("passagem_corredor").getValue() ) {
                     // first time at 'corredor'
                     case 0:
@@ -149,6 +151,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }
             })
             .onUnload(function() {
+                Player.stopAll();
+                Player.playInRange( Player.audios.musics.inGame );
                 switch ( level.getFlag("passagem_corredor").getValue() ) {
                     case 0:
                         level.getFlag("passagem_corredor").setValue( 1 );

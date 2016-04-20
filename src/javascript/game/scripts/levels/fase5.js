@@ -150,6 +150,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
                 console.log("Entrando no corredor");
+                Player.stopAll();
+                Player.playInLoop( Player.audios.loops.recepcao );
                 // Mentor só aparece no começo da fase
                 if ( level.getFlag("entrou_ala_feminina").getValue() == true ) {
                     core.setInteractiveObjectVisible("io-conversar_mentor", false );
@@ -157,6 +159,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             })
             .onUnload(function() {
                 console.log("Saindo do corredor");
+                Player.stopAll();
+                Player.playInRange( Player.audios.musics.inGame );
             });
 
         corredor.registerDialogs([

@@ -100,6 +100,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
                 console.log("Entrando no corredor");
+                Player.stopAll();
+                Player.playInLoop( Player.audios.loops.recepcao );
                 if ( level.getFlag("conversar_mentor").getValue() == false ) {
                     level.getFlag("conversar_mentor").setValue( true );
                     core.openDialog( 0 );
@@ -109,6 +111,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             })
             .onUnload(function() {
                 console.log("Saindo do corredor");
+                Player.stopAll();
+                Player.playInRange( Player.audios.musics.inGame );
             });
 
         corredor.registerDialogs([
