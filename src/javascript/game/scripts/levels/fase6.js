@@ -813,6 +813,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     } else {
                         Prontuario.close();
                         core.setActionVisible("btn-fechar_prontuario", false );
+                        core.unlockLevel( 7 );
                         core.showEndOfLevel();
                     }
                     console.log("Action: Fechar prontuario");
