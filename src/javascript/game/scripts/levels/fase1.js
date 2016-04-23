@@ -540,7 +540,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
         leito.registerActions([
-            new Action("btn-examinar_paciente", "Examinar Paciente")
+            new Action("btn-examinar_paciente", "Inspecionar Pele")
                 .setCssClass("action-examinar_paciente")
                 .onClick(function() {
                     console.log("Action: btn-examinar_paciente");
@@ -676,7 +676,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setCssClass("modalScene-zoom-char2");
 
         zoom.registerActions([
-            new Action("btn-fechar_zoom", "Terminar exame")
+            new Action("btn-fechar_zoom", "Finalizar Inspeção")
                 .setCssClass("action-terminar_exame")
                 .onClick(function() {
                     console.log("Action: Terminar Exame");

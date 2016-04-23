@@ -906,10 +906,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( false ),
 
-            new Action("btn-por_luvas", "Por Luvas")
+            new Action("btn-por_luvas", "Colocar Luvas")
                 .setCssClass("action-luvas_de_procedimento")
                 .onClick(function() {
-                    console.log("Action: Por Luvas");
+                    console.log("Action: Colocar Luvas");
                     if ( core.flag("score_selecionou_bandeja") == false ) {
                         if ( core.flag("score_nao_selecionou_bandeja") == false ) {
                             core.registerScoreItem( Scores.naoSelecionarBandeja );

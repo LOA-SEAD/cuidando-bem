@@ -616,7 +616,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
     leito.registerInteractiveObjects([
 
-          new InteractiveObject("io-conversar_paciente04", "Falar com o paciente")
+          new InteractiveObject("io-conversar_paciente04", "Falar com a paciente")
                 .setCssClass("intObj-conversar_paciente")
                 .onClick(function() {
 
