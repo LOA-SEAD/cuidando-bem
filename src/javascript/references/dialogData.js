@@ -159,7 +159,7 @@ define({
         perguntarNome: "Me desculpe, mas poderia repetir seu nome completo e sua data de nascimento?",
         enfermaria: [
             // 0 Jogador op 1
-            "Olá! Sou o técnico de enfermagem cuidarei do Sr. hoje. Como o Sr. está se sentindo?",
+            "Olá! Sou técnico de enfermagem e cuidarei do Sr. hoje. Como o Sr. está se sentindo?",
             // 1 Jogador op 2
             "Bom dia. O senhor está se sentindo bem hoje?",
             // 2 Mentor
@@ -169,7 +169,7 @@ define({
             // 4 Mentor
             "Você deve se apresentar ao paciente e perguntar sobre seu estado de saúde atual.",
             // 5 Paciente
-            "Olha, eu poderia estar melhor mas não serviram minha preciosa gelatina hoje. HAHAHAHAHA.",
+            "Olha, eu poderia estar melhor, mas não serviram minha preciosa gelatina hoje. HAHAHAHAHA.",
             // 6 Jogador op 1
             "A gelatina daqui é ótima mesmo. O senhor poderia me dizer" +
             " seu nome completo e data de nascimento, por favor?",
@@ -283,7 +283,7 @@ define({
                 "cirúrgico.  É  um  documento  de  extrema importância!",
 
                 // 7
-                "A paciente o espera na enfermaria masculina."
+                "A paciente o espera na enfermaria feminina."
             ],
             fala2: [
                 // 0 Jogador
@@ -413,7 +413,7 @@ define({
             // 0 Jogador
             "Bom dia, Clarice.",
             // 1 Recepcionista Clarice
-            "Bom dia! O paciente já está à sua espera."
+            "Bom dia! O paciente está à sua espera. Mas antes quero lhe entregar o folheto dos 'Nove Certos' da administração de medicação."
         ],
         alaMasculina: [
             // 0 Jogador
@@ -940,7 +940,7 @@ define({
                 "Previna a paciente de futuras quedas! Pense e encontre a solução."
             ],
             falarPaciente: [
-                "Tente conversar com a paciente."
+                "Tente conversar com o paciente."
             ],
             verPulseira: [
                 "Nunca se esqueça de verificar a identificação da paciente!"

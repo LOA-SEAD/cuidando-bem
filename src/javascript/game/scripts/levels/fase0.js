@@ -483,7 +483,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }),
             // Dialog 22 - Final de fase, não lavou as mãos após usar aparelho
             new Dialog( lib.characters.mentor )
-                .setText("Você deve lavar as mãos após utilizar os aparelhos.")
+                .setText("Você deve lavar as mãos após aferir os sinais vitais do paciente.")
                 .registerOption("", function() {
                     core.closeDialog();
                     // Prontuario.open();
