@@ -531,7 +531,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeDialog();
                     // debugger;
                     // core.setActionVisible("btn-examinar_paciente", true);
-                    level.getFlag("conversarPaciente").setValue( true );
+                    core.flag( "conversarPaciente",  true  );
                     core.enableInteractiveObject("io-pulseira_paciente", true );
                     core.setActionVisible("btn-ir_sala_leitos", true );
                     // core.setActionVisible("btn-perguntar_nome", true);
@@ -627,7 +627,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-abrirGaveta", "Abrir gaveta")
                 .setCssClass("intObj-openDrawer")
                 .onClick(function() {
-                    if ( level.getFlag("pegou_bandeja").getValue() != true ) {
+                    if ( core.flag( "pegou_bandeja" ) != true ) {
                         core.openDialog( 1 );
                     } else {
                         console.log("Action: abrirGaveta");
@@ -758,7 +758,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Prontuario.close();
                     core.closeModalScene("Prontuario");
                     // Retirar esse if após consertar o problema no prontuário
-                    if ( level.getFlag("colocou_coxim").getValue() == true ) {
+                    if ( core.flag( "colocou_coxim" ) == true ) {
                         core.registerScoreItem( Scores.anotarNoProntuario );
                         core.unlockLevel( 2 );
                         core.closeCommandBar();
@@ -842,31 +842,31 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         // Flags
 
-        level.registerFlag( new Flag("conversar_recepcionista"), false );
-        level.registerFlag( new Flag("conversar_mentor"), false );
-        level.registerFlag( new Flag("conversar_mentor2"), false );
-        level.registerFlag( new Flag("foi_ao_leito"), false );
-        level.registerFlag( new Flag("conversarPaciente"), false );
-        level.registerFlag( new Flag("confirmou_pulseira"), false );
-        level.registerFlag( new Flag("examinar_paciente"), false );
-        level.registerFlag( new Flag("mudar_posicao_paciente"), false );
-        level.registerFlag( new Flag("lavarMaos"), false );
-        level.registerFlag( new Flag("lavar_maos2"), false );
-        level.registerFlag( new Flag("lavar_maos3"), false );
-        level.registerFlag( new Flag("coxim"), false );
-        level.registerFlag( new Flag("colocou_coxim"), false );
-        level.registerFlag( new Flag("score_lavar_maos_antes_exame"), false );
-        level.registerFlag( new Flag("score_lavar_maos_depois_exame"), false );
-        level.registerFlag( new Flag("score_lavar_maos_prontuario"), false );
-        level.registerFlag( new Flag("score_ir_posto_hora_errada"), false );
-        level.registerFlag( new Flag("score_falar_paciente"), false );
-        level.registerFlag( new Flag("score_verificar_pulseira"), false );
-        level.registerFlag( new Flag("score_examinar_paciente"), false );
-        level.registerFlag( new Flag("score_falar_com_mentor"), false );
-        level.registerFlag( new Flag("score_pegar_coxim"), false );
-        level.registerFlag( new Flag("score_anotar_prontuario"), false );
-        level.registerFlag( new Flag("score_nao_lavar_maos_prontuario"), false );
-        level.registerFlag( new Flag("pegou_bandeja"), false );
+        level.registerFlag( new Flag( "conversar_recepcionista",  false  ) );
+        level.registerFlag( new Flag( "conversar_mentor",  false  ) );
+        level.registerFlag( new Flag( "conversar_mentor2",  false  ) );
+        level.registerFlag( new Flag( "foi_ao_leito",  false  ) );
+        level.registerFlag( new Flag( "conversarPaciente",  false  ) );
+        level.registerFlag( new Flag( "confirmou_pulseira",  false  ) );
+        level.registerFlag( new Flag( "examinar_paciente",  false  ) );
+        level.registerFlag( new Flag( "mudar_posicao_paciente",  false  ) );
+        level.registerFlag( new Flag( "lavarMaos",  false  ) );
+        level.registerFlag( new Flag( "lavar_maos2",  false  ) );
+        level.registerFlag( new Flag( "lavar_maos3",  false  ) );
+        level.registerFlag( new Flag( "coxim",  false  ) );
+        level.registerFlag( new Flag( "colocou_coxim",  false  ) );
+        level.registerFlag( new Flag( "score_lavar_maos_antes_exame",  false  ) );
+        level.registerFlag( new Flag( "score_lavar_maos_depois_exame",  false  ) );
+        level.registerFlag( new Flag( "score_lavar_maos_prontuario",  false  ) );
+        level.registerFlag( new Flag( "score_ir_posto_hora_errada",  false  ) );
+        level.registerFlag( new Flag( "score_falar_paciente",  false  ) );
+        level.registerFlag( new Flag( "score_verificar_pulseira",  false  ) );
+        level.registerFlag( new Flag( "score_examinar_paciente",  false  ) );
+        level.registerFlag( new Flag( "score_falar_com_mentor",  false  ) );
+        level.registerFlag( new Flag( "score_pegar_coxim",  false  ) );
+        level.registerFlag( new Flag( "score_anotar_prontuario",  false  ) );
+        level.registerFlag( new Flag( "score_nao_lavar_maos_prontuario",  false  ) );
+        level.registerFlag( new Flag( "pegou_bandeja",  false  ) );
 
 
         level.setInitialScene( 0 );
