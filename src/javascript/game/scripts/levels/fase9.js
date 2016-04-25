@@ -32,6 +32,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var recepcao,
             corredor,
             alaMasculina,
+            alaMasculina2,
             alaFeminina,
             centroCirurgico,
             salaDeLeitos,
@@ -240,22 +241,100 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         function corredorIrAlaMasculina() {
-            core.changeScene( 2 );
+            
+            if(core.flag("pegou_tudo_postoEnfermagem") == true ){
+                    core.changeScene(9);
+            }
+            else
+                core.changeScene( 2 );
         }
+    
+    
+       var alaMasculina2 = lib.scenes.alaMasculina.getClone()
+            .setCssClass("scene-bedroom-level9")
+            .onLoad(function() {
+                
+                    
+                    core.setInteractiveObjectVisible("io-ir_ao_leito", true );
+                    core.setActionVisible("btn-lavarMaos", true );
+                    core.setActionVisible("btn-prescricao_medica", false );
+                    
+            });
+    
+    
+            alaMasculina2.registerInteractiveObjects([ 
+            
+            
+            new InteractiveObject("io-ir_ao_leito", "Ir ao leito")
+            .setCssClass("intObj-irLeitoEsquerda")
+            .onClick(function() {
+
+                    if ( core.flag( "lavar_maos" ) == true ) {
+                        core.changeScene( 3 );
+                    } else {
+                        core.openDialog( 0 );
+                    }
+               
+
+
+            })
+            .setVisibility( false )
+                
+                
+            
+            ]);
+    
+    
+            alaMasculina2.registerActions ([ 
+            
+                new Action("btn-lavarMaos", "Lavar as mãos")
+            .setCssClass("action-lavarMaos")
+            .onClick(function() {
+                // Som
+                Player.play( Player.audios.sfx.lavarMaos );
+
+                if ( core.flag("lavar_maos") == false ) {
+                    core.flag("lavar_maos", true );
+                    core.registerScoreItem( Scores.lavarMaos );
+                }
+
+            })
+            .setVisibility( false ),
+            
+            ]);
+    
+            alaMasculina2.registerDialogs([ 
+                
+                
+            // 0
+                 new Dialog( lib.characters.mentor )
+            .setText( Alertas.lavarMaos.tipo1 )
+            .registerOption("", function() {
+                core.closeDialog();
+            })
+                
+            ]);
+    
 
 
         var alaMasculina = lib.scenes.alaMasculina.getClone()
-            .setCssClass("scene-bedroom-level9")
+            .setCssClass("scene-bedroom-level9-trocado")
             .onLoad(function() {
 
                 if ( core.flag("conversar_paciente") == false ) {
                     core.openDialog( 0 );
                     core.flag("conversar_paciente", true );
-                } else if ( core.flag("pegou_tudo_postoEnfermagem") == true ) {
+                    
+                }
+                
+                
+                else if( core.flag( "trocou_de_leito" ) == true )
+                
+            {
 
                     core.setInteractiveObjectVisible("io-ir_ao_leito", true );
-                    core.setActionVisible("btn-lavarMaos", true );
                     core.setActionVisible("btn-prescricao_medica", false );
+                    core.setActionVisible("btn-ler_prontuario", false );
 
                 }
 
@@ -340,27 +419,28 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }
 
             }),
-
-
+            
+            
             new InteractiveObject("io-ir_ao_leito", "Ir ao leito")
             .setCssClass("intObj-irLeitoEsquerda")
             .onClick(function() {
 
-                if ( core.flag( "trocou_de_leito" ) == false ) {
-
-                    if ( core.flag( "lavar_maos" ) == true ) {
-                        core.changeScene( 3 );
-                    } else {
-                        core.openDialog( 6 );
-                    }
-                } else {
-                    core.changeScene( 8 );
-                }
-
+                
+                    core.setInteractiveObjectVisible("io-ir_ao_leito", true );
+                    core.setActionVisible("btn-lavarMaos", false );
+                    core.setActionVisible("btn-prescricao_medica", false );    
+                
+                
+                core.changeScene( 8 );
+                   
+               
 
 
             })
             .setVisibility( false )
+                
+
+
 
 
         ]);
@@ -727,7 +807,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setCssClass("intObj-paciente_03-checar_pulseira")
             .onClick(function() {
 
-                core.openModalScene("pulseira");
+                core.openModalScene("Pulseira");
                 Pulseira.open();
                 core.openCommandBar();
 
@@ -1203,6 +1283,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerScene( alaFeminina );
         // 08
         level.registerScene( leito2 );
+        // 09
+        level.registerScene( alaMasculina2 );
 
 
         level.setSetupScript(function() {
@@ -1300,7 +1382,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "administrar_medicamento",  false  ) );
         level.registerFlag( new Flag( "lavar_maos3",  false  ) );
         level.registerFlag( new Flag( "score_anotar_prontuario",  false  ) );
-        level.registerFlag( new Flag("irCentroCirurgicoHoraErrada", false ) ;
+        level.registerFlag( new Flag( "irCentroCirurgicoHoraErrada", false ) );
 
         level.setInitialScene( 0 );
 
