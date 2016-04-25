@@ -1144,28 +1144,28 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         });
 
 
-        level.registerFlag( new Flag("conversar_mentor"), false );
-        level.registerFlag( new Flag("conversar_recepcionista"), false );
-        level.registerFlag( new Flag("testar_equipamentos"), false );
-        level.registerFlag( new Flag("conversar_mentor2"), false );
-        level.registerFlag( new Flag("ir_corredor_centro_cirurgico"), false );
-        level.registerFlag( new Flag("conversar_circulante"), false );
-        level.registerFlag( new Flag("lavar_maos_cirurgica"), false );
-        level.registerFlag( new Flag("lavarMaos"), false );
-        level.registerFlag( new Flag("lavar_maos2"), false );
-        level.registerFlag( new Flag("lavar_maos3"), false );
-        level.registerFlag( new Flag("primeira_saida_centro_cirurgico"), false );
-        level.registerFlag( new Flag("conversarPaciente"), false );
-        level.registerFlag( new Flag("ir_alaFeminina_horaErrada"), false );
-        level.registerFlag( new Flag("ir_farmacia_horaErrada"), false );
-        level.registerFlag( new Flag("ir_postoEnfermagem_horaErrada"), false );
-        level.registerFlag( new Flag("score_anotar_prontuario"), false );
-        level.registerFlag( new Flag("colocar_placa_neutra"), false );
-        level.registerFlag( new Flag("score_placa_neutra"), false );
-        level.registerFlag( new Flag("verificar_oximetro_local_cirurgia"), false );
-        level.registerFlag( new Flag("fim_fase"), false );
-        level.registerFlag( new Flag("ir_leito_paciente"), false );
-        level.registerFlag( new Flag("ler_prontuario"), false );
+        level.registerFlag( new Flag( "conversar_mentor",  false  ) );
+        level.registerFlag( new Flag( "conversar_recepcionista",  false  ) );
+        level.registerFlag( new Flag( "testar_equipamentos",  false  ) );
+        level.registerFlag( new Flag( "conversar_mentor2",  false  ) );
+        level.registerFlag( new Flag( "ir_corredor_centro_cirurgico",  false  ) );
+        level.registerFlag( new Flag( "conversar_circulante",  false  ) );
+        level.registerFlag( new Flag( "lavar_maos_cirurgica",  false  ) );
+        level.registerFlag( new Flag( "lavarMaos",  false  ) );
+        level.registerFlag( new Flag( "lavar_maos2",  false  ) );
+        level.registerFlag( new Flag( "lavar_maos3",  false  ) );
+        level.registerFlag( new Flag( "primeira_saida_centro_cirurgico",  false  ) );
+        level.registerFlag( new Flag( "conversarPaciente",  false  ) );
+        level.registerFlag( new Flag( "ir_alaFeminina_horaErrada",  false  ) );
+        level.registerFlag( new Flag( "ir_farmacia_horaErrada",  false  ) );
+        level.registerFlag( new Flag( "ir_postoEnfermagem_horaErrada",  false  ) );
+        level.registerFlag( new Flag( "score_anotar_prontuario",  false  ) );
+        level.registerFlag( new Flag( "colocar_placa_neutra",  false  ) );
+        level.registerFlag( new Flag( "score_placa_neutra",  false  ) );
+        level.registerFlag( new Flag( "verificar_oximetro_local_cirurgia",  false  ) );
+        level.registerFlag( new Flag( "fim_fase",  false  ) );
+        level.registerFlag( new Flag( "ir_leito_paciente",  false  ) );
+        level.registerFlag( new Flag( "ler_prontuario",  false  ) );
 
 
         level.setInitialScene( 0 );
