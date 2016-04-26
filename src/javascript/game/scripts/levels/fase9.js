@@ -235,7 +235,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         function corredorIrPostoEnfermagem() {
 
 
+
             core.changeScene( 5 );
+
 
 
         }
@@ -258,8 +260,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                     core.setInteractiveObjectVisible("io-ir_ao_leito", true );
                     core.setActionVisible("btn-lavarMaos", true );
-                    core.setActionVisible("btn-prescricao_medica", false );
-
             });
 
 
@@ -326,20 +326,23 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openDialog( 0 );
                     core.flag("conversar_paciente", true );
 
+
                 }
-
-
                 else if( core.flag( "trocou_de_leito" ) == true )
 
             {
 
-                    core.setInteractiveObjectVisible("io-ir_ao_leito", true );
-                    core.setActionVisible("btn-prescricao_medica", false );
+                    core.setInteractiveObjectVisible("io-ir_ao_leito1", true );
+
                     core.setActionVisible("btn-ler_prontuario", false );
 
                 }
 
             });
+
+    //    core.setInteractiveObjectVisible("io-ir_ao_leito", true );
+        //            core.setActionVisible("btn-lavarMaos", false );
+
 
 
         alaMasculina.registerDialogs([
@@ -422,20 +425,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             }),
 
 
-            new InteractiveObject("io-ir_ao_leito", "Ir ao leito")
+
+            new InteractiveObject("io-ir_ao_leito1", "Ir ao leito")
             .setCssClass("intObj-irLeitoEsquerda")
             .onClick(function() {
 
-
-                    core.setInteractiveObjectVisible("io-ir_ao_leito", true );
-                    core.setActionVisible("btn-lavarMaos", false );
-                    core.setActionVisible("btn-prescricao_medica", false );
-
-
                 core.changeScene( 8 );
-
-
-
 
             })
             .setVisibility( false )
@@ -456,9 +451,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 if ( core.flag("ler_prontuario") == false ) {
                     core.flag("ler_prontuario", true );
                     core.registerScoreItem( Scores.lerProntuario );
-                    core.setActionVisible("btn-prescricao_medica", true );
 
                 }
+
+                 if ( core.flag("pegar_prescricao_medica") == false ) {
+
+                    core.flag("pegar_prescricao_medica", true );
+                    core.registerScoreItem( Scores.pegarPrescricaoMedica );
+
+                }
+
+
+
 
                 Prontuario.open();
                 core.openModalScene("Prontuario");
@@ -469,19 +473,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setVisibility( true ),
 
 
-            new Action("btn-prescricao_medica", "Pegar prescrição médica")
-            .setCssClass("action-pegar_prescricao")
-            .onClick(function() {
-
-                if ( core.flag("pegar_prescricao_medica") == false ) {
-
-                    core.flag("pegar_prescricao_medica", true );
-                    core.registerScoreItem( Scores.pegarPrescricaoMedica );
-
-                }
-
-            })
-            .setVisibility( false ),
 
 
             new Action("btn-lavarMaos", "Lavar as mãos")
@@ -507,12 +498,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
                 if ( core.flag("pegar_prescricao_medica") == false ) {
-                    core.openDialog( 4 );
-                } else {
+                     core.openDialog( 4 );
+                     core.setInteractiveObjectVisible("io-pegarFrascoDieta", false );
+                     core.setInteractiveObjectVisible("io-cloretoSodio_20_10ml", false );
+                     core.setActionVisible("btn-conferirMedicamento", false );
+                 }
+                else {
 
                     core.openDialog( 0 );
-                    core.setActionVisible("btn-pegarFrascoDieta", true );
-                    core.setActionVisible("btn-cloretoSodio_20_10ml", true );
+                    core.setInteractiveObjectVisible("io-pegarFrascoDieta", true );
+                    core.setInteractiveObjectVisible("io-cloretoSodio_20_10ml", true );
                     core.setActionVisible("btn-conferirMedicamento", true );
                 }
 
@@ -578,10 +573,46 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setText( Dialogs.farmacia[ 4 ] )
             .registerOption("", function() {
                 core.closeDialog();
-            }),
+            })
+        ]);
+
+
+        farmacia.registerInteractiveObjects([
+
+
+         new InteractiveObject("io-pegarFrascoDieta", "Pegar Frasco de SG 5%")
+            .setCssClass("intObj-frasco_de_dieta")
+            .onClick(function() {
+
+                 Player.play( Player.audios.sfx.pegarObjeto );
+
+                if ( core.flag("pegarFrascoSG") == false ) {
+
+                    core.flag("pegarFrascoSG", true );
+                    core.registerScoreItem( Scores.pegarFrascoSG );
+                    core.setInteractiveObjectVisible("io-pegarFrascoDieta", false );
+                }
+
+            })
+            .setVisibility( true ),
 
 
 
+             new InteractiveObject("io-cloretoSodio_20_10ml", "Pegar NaCL 20%")
+            .setCssClass("intObj-cloreto_de_sodio_10__10_ml_")
+            .onClick(function() {
+
+                 Player.play( Player.audios.sfx.pegarObjeto );
+
+                if ( core.flag("pegarNACL") == false ) {
+
+                    core.flag("pegarNACL", true );
+                    core.registerScoreItem( Scores.pegarNACL );
+                    core.setInteractiveObjectVisible("io-cloretoSodio_20_10ml", false );
+                }
+
+            })
+            .setVisibility( true ),
 
 
         ]);
@@ -594,52 +625,28 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
 
-                if ( core.flag("conferirMedicamento") == true ) {
-                    core.changeScene( 1 );
-                } else {
+                if(core.flag("pegar_prescricao_medica") == false){
 
-                    core.openDialog( 5 );
 
+                    core.changeScene(1);
+
+              }
+
+                else if(core.flag("pegarNACL") == false || core.flag("pegarFrascoSG") == false ) {
+
+                    core.openDialog( 6 );
                 }
 
-
-
+                else if(core.flag("conferirMedicamento") == false){
+                    core.openDialog(3);
+                }
+                else
+                    core.changeScene(1);
 
 
 
             })
             .setVisibility( true ),
-
-            new Action("btn-pegarFrascoDieta", "Pegar Frasco de SG 5%")
-            .setCssClass("action-frasco_dieta")
-            .onClick(function() {
-                // Som
-                Player.play( Player.audios.sfx.pegarObjeto );
-                if ( core.flag("pegarFrascoSG") == false ) {
-
-                    core.flag("pegarFrascoSG", true );
-                    core.registerScoreItem( Scores.pegarFrascoSG );
-
-                }
-
-            })
-            .setVisibility( false ),
-
-
-            new Action("btn-cloretoSodio_20_10ml", "Pegar NaCL 20%")
-            .setCssClass("action-cloreto_sodio_20_10ml")
-            .onClick(function() {
-                // Som
-                Player.play( Player.audios.sfx.pegarObjeto );
-                if ( core.flag("pegarNACL") == false ) {
-
-                    core.flag("pegarNACL", true );
-                    core.registerScoreItem( Scores.pegarNACL );
-
-                }
-
-            })
-            .setVisibility( false ),
 
 
             new Action("btn-conferirMedicamento", "Conferir Medicamento")
@@ -655,25 +662,29 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                 }
             })
-            .setVisibility( false )
+            .setVisibility( true )
+
         ]);
 
 
         var postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
 
-              //    console.log("Load scene: " + postoDeEnfermagem.getName() );
+                  console.log("Load scene: " + postoDeEnfermagem.getName() );
 
-                   if(core.flag("pegar_prescricao_medica") == false){
+
+               if(core.flag("conferirMedicamento") == false){
+
                     core.setInteractiveObjectVisible("io-abrir_gaveta", false );
-                   core.setInteractiveObjectVisible("io-pegar_bandeja", false );
-                         core.openDialog(2);
+                    core.setInteractiveObjectVisible("io-pegar_bandeja", false );
+                    core.openDialog(2);
                  }
                  else {
-                     core.changeScene(5);
                      core.setInteractiveObjectVisible("io-abrir_gaveta", true );
-                     core.setInteractiveObjectVisible("io-pegar_bandeja", true );
-                         }
+                    }
+
+
+
 
             });
 
@@ -742,13 +753,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
                 if(core.flag("pegar_prescricao_medica") == false ){
-                        core.changeScene( 1 );
-                }
-
-                else if (core.flag("pegar_prescricao_medica") == true && core.flag("pegou_tudo_postoEnfermagem") == false) {
-                        core.openDialog(1);
-                }
-
                     core.changeScene(1);
 
 
@@ -772,7 +776,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
 
-        leito = lib.scenes.leitos.raul.getClone()
+        leito = lib.scenes.leitos.raul_leito01.getClone()
             .onLoad(function() {
 
 
@@ -786,10 +790,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         leito.registerActions([
 
             new Action("btn-ir_ala_masculina", "Voltar a Ala Masculina")
-            .setCssClass("action-ir-ala-masculina")
+            .setCssClass("action-ir_sala_de_leitos")
             .onClick(function() {
 
-                core.changeScene( 2 );
+
+                if(core.flag("trocou_de_leito") == true)
+                    core.changeScene( 2 );
+                else
+                    core.openDialog(7);
 
 
             })
@@ -894,7 +902,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setText( Dialogs.leitoPaciente[ 7 ] )
             .registerOption("", function() {
                 core.closeDialog();
-            })
+            }),
+
+            // 7 - falar com o paciente
+
+            new Dialog( lib.characters.mentor )
+            .setText( Alertas.esqueceu.falarPaciente )
+            .registerOption("", function() {
+                core.closeDialog();
+            }),
+
+
+
 
 
 
@@ -905,11 +924,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         leito2 = lib.scenes.leitos.francisco.getClone()
             .onLoad(function() {
 
-
-             //   core.setActionVisible("btn-ir_ala_masculina", false );
-
                // core.registerScoreItem( Scores.conversarPacienteLeito );
-
 
             })
             .onUnload(function() {
@@ -1163,6 +1178,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 if ( core.flag( "score_anotar_prontuario" ) == true ) {
                     Prontuario.close();
                     core.closeModalScene("Prontuario");
+                    core.setActionVisible("btn-pegar_suporte_soro", false );
+                    core.setActionVisible("btn-administrar_medicamente", false );
+                    core.setActionVisible("btn-realizar_gotejamento", false );
+                    core.setActionVisible("btn-lavarMaos", false );
+                    core.setActionVisible("btn-anotar_prontuario", false );
                     core.showEndOfLevel();
                 } else {
                     Prontuario.close();
