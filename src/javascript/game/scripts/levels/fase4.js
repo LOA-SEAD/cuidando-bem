@@ -168,7 +168,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         }
 
         corredor.registerInteractiveObjects([
-            new InteractiveObject("io-ir_sala_leitos", "Ir para a sala de Leitos Masculino")
+            new InteractiveObject("io-ir_sala_leitos", "Ir para a Enfermaria Masculina")
                 .setCssClass("intObj-goToBedroom")
                 .onClick( corredorIrSalaLeitos )
                 .setVisibility( true ),
@@ -183,7 +183,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick( corredorIrFarmacia )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_ala_feminina", "Ir para a Ala Feminina")
+            new InteractiveObject("io-ir_ala_feminina", "Ir para a Enfermaria Feminina")
                 .setCssClass("intObj-goToAlaFeminina")
                 .onClick( corredorIrAlaFeminina )
                 .setVisibility( true )

@@ -246,7 +246,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         }
 
         corredor.registerInteractiveObjects([
-            new InteractiveObject("io-ir_sala_leitos", "Ir para a sala de Leitos Masculino")
+            new InteractiveObject("io-ir_sala_leitos", "Ir para a Enfermaria Masculina")
                 .setCssClass("intObj-goToBedroom")
                 .onClick( corredorIrSalaLeitos )
                 .setVisibility( true ),

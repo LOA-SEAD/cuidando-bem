@@ -282,7 +282,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
 
-            new InteractiveObject("io-ir_ala_feminina", "Ir para a Ala Feminina")
+            new InteractiveObject("io-ir_ala_feminina", "Ir para a Enfermaria Feminina")
                 .setCssClass("intObj-goToAlaFeminina")
                 .onClick( corredorIrAlaFeminina )
                 .setVisibility( true ),
