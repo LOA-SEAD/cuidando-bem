@@ -223,9 +223,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 if ( core.flag("score_ir_farmacia_horaErrada") == false ) {
                     core.flag("score_ir_farmacia_horaErrada", true );
                     core.registerScoreItem( Scores.irFarmaciaHoraErrada );
+                }
 
                     core.changeScene( 4 );
-                }
+
             } else {
                 core.changeScene( 4 );
             }
@@ -241,30 +242,30 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         function corredorIrAlaMasculina() {
-            
+
             if(core.flag("pegou_tudo_postoEnfermagem") == true ){
                     core.changeScene(9);
             }
             else
                 core.changeScene( 2 );
         }
-    
-    
+
+
        var alaMasculina2 = lib.scenes.alaMasculina.getClone()
             .setCssClass("scene-bedroom-level9")
             .onLoad(function() {
-                
-                    
+
+
                     core.setInteractiveObjectVisible("io-ir_ao_leito", true );
                     core.setActionVisible("btn-lavarMaos", true );
                     core.setActionVisible("btn-prescricao_medica", false );
-                    
+
             });
-    
-    
-            alaMasculina2.registerInteractiveObjects([ 
-            
-            
+
+
+            alaMasculina2.registerInteractiveObjects([
+
+
             new InteractiveObject("io-ir_ao_leito", "Ir ao leito")
             .setCssClass("intObj-irLeitoEsquerda")
             .onClick(function() {
@@ -274,19 +275,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     } else {
                         core.openDialog( 0 );
                     }
-               
+
 
 
             })
             .setVisibility( false )
-                
-                
-            
+
+
+
             ]);
-    
-    
-            alaMasculina2.registerActions ([ 
-            
+
+
+            alaMasculina2.registerActions ([
+
                 new Action("btn-lavarMaos", "Lavar as mãos")
             .setCssClass("action-lavarMaos")
             .onClick(function() {
@@ -300,21 +301,21 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             })
             .setVisibility( false ),
-            
+
             ]);
-    
-            alaMasculina2.registerDialogs([ 
-                
-                
+
+            alaMasculina2.registerDialogs([
+
+
             // 0
                  new Dialog( lib.characters.mentor )
             .setText( Alertas.lavarMaos.tipo1 )
             .registerOption("", function() {
                 core.closeDialog();
             })
-                
+
             ]);
-    
+
 
 
         var alaMasculina = lib.scenes.alaMasculina.getClone()
@@ -324,12 +325,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 if ( core.flag("conversar_paciente") == false ) {
                     core.openDialog( 0 );
                     core.flag("conversar_paciente", true );
-                    
+
                 }
-                
-                
+
+
                 else if( core.flag( "trocou_de_leito" ) == true )
-                
+
             {
 
                     core.setInteractiveObjectVisible("io-ir_ao_leito", true );
@@ -419,26 +420,26 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }
 
             }),
-            
-            
+
+
             new InteractiveObject("io-ir_ao_leito", "Ir ao leito")
             .setCssClass("intObj-irLeitoEsquerda")
             .onClick(function() {
 
-                
+
                     core.setInteractiveObjectVisible("io-ir_ao_leito", true );
                     core.setActionVisible("btn-lavarMaos", false );
-                    core.setActionVisible("btn-prescricao_medica", false );    
-                
-                
+                    core.setActionVisible("btn-prescricao_medica", false );
+
+
                 core.changeScene( 8 );
-                   
-               
+
+
 
 
             })
             .setVisibility( false )
-                
+
 
 
 
@@ -569,7 +570,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setText( Alertas.esqueceu.verificarMedicamento3 )
             .registerOption("", function() {
                 core.closeDialog();
-            })
+            }),
+
+            // 6
+
+              new Dialog( lib.characters.mentor )
+            .setText( Dialogs.farmacia[ 4 ] )
+            .registerOption("", function() {
+                core.closeDialog();
+            }),
+
+
+
 
 
         ]);
@@ -581,6 +593,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onClick(function() {
 
 
+
                 if ( core.flag("conferirMedicamento") == true ) {
                     core.changeScene( 1 );
                 } else {
@@ -588,6 +601,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openDialog( 5 );
 
                 }
+
+
+
+
 
 
             })
@@ -610,7 +627,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
             new Action("btn-cloretoSodio_20_10ml", "Pegar NaCL 20%")
-            .setCssClass("action-cloretoSodio_20_10ml")
+            .setCssClass("action-cloreto_sodio_20_10ml")
             .onClick(function() {
                 // Som
                 Player.play( Player.audios.sfx.pegarObjeto );
@@ -645,26 +662,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
 
-                //   if(core.flag("pegar_prescricao_medica") == false){
+              //    console.log("Load scene: " + postoDeEnfermagem.getName() );
 
-                //     //    core.setInteractiveObjectVisible("io-abrir_gaveta", false );
-                //      //   core.setInteractiveObjectVisible("io-pegar_bandeja", false );
-                //         core.openDialog(2);
-
-
-                // }
-                // else {
-                //     core.changeScene(5);
-                //     core.setInteractiveObjectVisible("io-abrir_gaveta", true );
-                //     core.setInteractiveObjectVisible("io-pegar_bandeja", true );
-
-
-                //         }
-
-
-                console.log("Load scene: " + postoDeEnfermagem.getName() );
-
-                //     if(core.flag("ler_prontuario") == false || core.flag("conferirDieta") == false)
+                   if(core.flag("pegar_prescricao_medica") == false){
+                    core.setInteractiveObjectVisible("io-abrir_gaveta", false );
+                   core.setInteractiveObjectVisible("io-pegar_bandeja", false );
+                         core.openDialog(2);
+                 }
+                 else {
+                     core.changeScene(5);
+                     core.setInteractiveObjectVisible("io-abrir_gaveta", true );
+                     core.setInteractiveObjectVisible("io-pegar_bandeja", true );
+                         }
 
             });
 
@@ -732,11 +741,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onClick(function() {
 
 
-                if ( core.flag("pegou_tudo_postoEnfermagem") == false ) {
-                    core.openDialog( 1 );
-                } else {
-                    core.changeScene( 1 );
+                if(core.flag("pegar_prescricao_medica") == false ){
+                        core.changeScene( 1 );
                 }
+
+                else if (core.flag("pegar_prescricao_medica") == true && core.flag("pegou_tudo_postoEnfermagem") == false) {
+                        core.openDialog(1);
+                }
+
+                    core.changeScene(1);
+
+
             })
             .setVisibility( true ),
 
@@ -1166,7 +1181,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         gaveta.registerActions([
             new Action("btn-fechar_gaveta", "Fechar gaveta")
-            .setCssClass("action-fechar_gaveta")
+            .setCssClass("action-fecharGaveta")
             .onClick(function() {
 
                 console.log("Action: fechar_gaveta");
