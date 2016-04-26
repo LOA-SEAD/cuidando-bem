@@ -1106,7 +1106,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setDataInternacao("02/11/2015");
             Prontuario.setLeito("02 - Enfermaria Feminina");
             Prontuario.setAntecedentes("Quatro internações devido à quadro de hiperglicemia entre os anos de 2012 à 2013.");
-            Prontuario.setHipotese("Acidente vascular encefálico isquêmico (AVCI).");
+            Prontuario.setHipotese("Acidente vascular encefálico isquêmico (AVCI). Possui lesão no braço esquerdo devido à queda.");
             Prontuario.setObservacoes("Teve trombose venosa profunda, diabetes mellitus tipo II e pressão arterial sistêmica. Tabagista há 40 anos.");
 
             Prontuario.setPeso("56");
