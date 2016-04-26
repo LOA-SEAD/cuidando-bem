@@ -75,8 +75,10 @@ define(function() {
             naoUsarAlgodao2: new Score("Não usar algodão no momento correto", -50 ),
             explicarResultado: new Score("Explicar resultado do teste para o paciente", 150 ),
             naoExplicarResultado: new Score("Não explicar resultado do teste para o paciente no momento correto", -150 ),
-            algodaoLixoCerto: new Score("Jogar algodão no lixo branco", 50 ),
+            algodaoLixoCerto: new Score("Jogar algodão no lixo infectante", 50 ),
             agulhaLixoCerto: new Score("Jogar agulha no lixo de perfuro cortante", 50 ),
+            algodaoLixoErrado: new Score("Jogar algodão no lixo errado", -50 ),
+            agulhaLixoErrado: new Score("Jogar agulha no lixo errado", -50 ),
             elevarGradeDaCama: new Score("Elevar grade da cama", 150 ),
             lavarMaosAposLixos: new Score("Lavar as mãos após procedimentos", 200 ),
             anotarNoProntuario: new Score("Anotar no prontuário", 250 )
