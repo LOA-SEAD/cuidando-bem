@@ -88,14 +88,14 @@ define(function( require ) {
     }
 
     var breathing = new Animation();
-    breathing.x = 50;
-    breathing.y = 180;
-    breathing.width = 400;
-    breathing.height = 240;
-    breathing.srWidth = 1920;
-    breathing.srHeight = 1152;
-    breathing.frameTotal = 12;
-    breathing.cyclesPerMinute = 18;
+    breathing.x = 0;
+    breathing.y = 0;
+    breathing.width = 196;
+    breathing.height = 854;
+    breathing.srWidth = 196;
+    breathing.srHeight = 854;
+    breathing.frameTotal = 20;
+    breathing.cyclesPerMinute = 60;
     breathing.frameTime = 1000 * 60 / breathing.cyclesPerMinute / breathing.frameTotal;
 
     var imgsLoaded = 0;
@@ -116,7 +116,7 @@ define(function( require ) {
             i = "0" + i;
         }
 
-        img.src = "./images/modalScenes/01_" + i + ".png";
+        img.src = "./images/modalScenes/equipo/gotejamento" + i + ".png";
     }
 
     function init( selector ) {
@@ -125,6 +125,16 @@ define(function( require ) {
         var canvas = $( canvasSelector )[ 0 ];
         canvas.setAttribute("width", 800 );
         canvas.setAttribute("height", 600 );
+
+        $( ".less" ).click(function() {
+            console.log("less");
+            slower();
+        });
+
+        $( ".plus" ).click(function() {
+            console.log("plus");
+            faster();
+        });
 
         console.info("FreqRespiratoria added to stage");
     }
@@ -185,8 +195,10 @@ define(function( require ) {
     }
 
     function slower() {
-        breathing.cyclesPerMinute -= 1;
-        breathing.frameTime = 1000 * 60 / breathing.cyclesPerMinute / breathing.frameTotal;
+        if ( breathing.cyclesPerMinute - 1 > 0 ) {
+            breathing.cyclesPerMinute -= 1;
+            breathing.frameTime = 1000 * 60 / breathing.cyclesPerMinute / breathing.frameTotal;
+        }
     }
 
     function setFr( _fr ) {
