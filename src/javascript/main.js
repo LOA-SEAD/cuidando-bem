@@ -59,7 +59,7 @@ require([ "requireConfig" ], function() {
     });
 
 
-    // Load jquery and less libs
+    // Load jquery
     require([ "jquery" ], function( $ ) {
         window.$ = $;
 
@@ -69,29 +69,31 @@ require([ "requireConfig" ], function() {
             // Load Stage module, stage configuration, game main Module, game configuration and all dialogs that will be used in game
             require([ "Stage", "stageConfig" ], function( Stage ) {
 
-                require([ "CuidandoBem", "gameConfig", "DialogsData" ]);
+                require([ "gameConfig", "CuidandoBem", "DialogsData" ], function( config ) {
+                    config.load(function() {
+                        $("document").ready(function() {
+                            // As soon as the html has been loaded, set the container for the Stage module and start it
+                            // The game will only be initiated when a level is selected
 
-                $("document").ready(function() {
-                    // As soon as the html has been loaded, set the container for the Stage module and start it
-                    // The game will only be initiated when a level is selected
-
-                    Stage.setContainer("#stage");
-                    Stage.start();
+                            Stage.setContainer("#stage");
+                            Stage.start();
 
 
-                    var width = $("#stage").width(),
-                        fontSize =  width / 150 ;
+                            var width = $("#stage").width(),
+                                fontSize =  width / 150 ;
 
-                    fontSize = +fontSize.toFixed( 2 );
+                            fontSize = +fontSize.toFixed( 2 );
 
-                    $("html").css("font-size", fontSize + "px");
-                    $( window ).resize(function() {
-                        var width = $("#stage").width(),
-                            fontSize =  width / 150 ;
+                            $("html").css("font-size", fontSize + "px");
+                            $( window ).resize(function() {
+                                var width = $("#stage").width(),
+                                    fontSize =  width / 150 ;
 
-                        fontSize = +fontSize.toFixed( 2 );
+                                fontSize = +fontSize.toFixed( 2 );
 
-                        $("html").css("font-size", fontSize + "px");
+                                $("html").css("font-size", fontSize + "px");
+                            });
+                        });
                     });
                 });
             });

@@ -25,7 +25,7 @@ define(function() {
     var generalPath = "./game/scripts/levels/";
     var filePaths = [
 
-        // "faseTeste"
+        "faseTeste",
         "testeEndOfLevel",
         "fase0",
         "fase1",
@@ -40,9 +40,31 @@ define(function() {
 
     ];
 
-    var i;
-    for ( i = 0; i < filePaths.length; i++ ) {
-        console.log("\tRequiring Level module: ", filePaths[ i ] );
-        require([ generalPath + filePaths[ i ] ]);
+    var cb;
+    var loaded;
+
+    function load( _callback ) {
+        cb = _callback;
+        loaded = 0;
+
+        var i;
+        for ( i = 0; i < filePaths.length; i++ ) {
+            console.log("\tRequiring Level module: ", filePaths[ i ] );
+            require([ generalPath + filePaths[ i ] ], function() {
+                hasFinished();
+            });
+        }
     }
+
+    function hasFinished() {
+        loaded++;
+
+        if ( loaded >= filePaths.length ) {
+            cb();
+        }
+    }
+
+    return {
+        load: load
+    };
 });
