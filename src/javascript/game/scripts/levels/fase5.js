@@ -556,6 +556,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-realizar_teste_glicemia")
                 .onClick(function() {
                     console.log("Action: Fazer teste de glicemia capilar");
+                    //Bip
+                    Player.play( Player.audios.sfx.bip );
                     // Desabilita acesso a pulseira
                     Pulseira.disable();
                     if ( core.flag("score_verificar_pulseira") == false ) {

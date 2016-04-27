@@ -1008,6 +1008,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-realizar_teste_glicemia")
                 .onClick(function() {
                     console.log("Action: Realizar teste de glicemia capilar");
+                    //Bip
+                    Player.play( Player.audios.sfx.bip );
                     if ( core.flag("score_utilizou_algodao1") == false ) {
                         if ( core.flag("score_nao_utilizou_algodao1") == false ) {
                             core.registerScoreItem( Scores.naoUsarAlgodao );

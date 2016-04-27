@@ -586,6 +586,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-medir_pulso")
                 .onClick(function() {
                     console.log("Action: medir_pulso");
+                    //Bip
+                    Player.play( Player.audios.sfx.bip );
                     if ( core.flag("lavar-maos") >= 1 ) {
 
                         // core.setActionVisible("btn-medir_pulso", false);
@@ -607,6 +609,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     // core.setActionVisible("btn-saturacao_02", false);
                     console.log("Action: medir_saturacao_02");
+                    //Bip
+                    Player.play( Player.audios.sfx.bip );
 
                     if ( core.flag("lavar-maos") >= 1 ) {
 
@@ -627,6 +631,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-medir_freq_respiratoria")
                 .onClick(function() {
                     console.log("Action: medir_freq_respiratoria");
+                    //Tic-Tac relógio
+                    Player.play( Player.audios.sfx.ticTac );
                     if ( core.flag("lavar-maos") >= 1 ) {
 
                         // core.setActionVisible("btn-frequencia_respiratoria", false);
@@ -649,6 +655,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-medir_temperatura")
                 .onClick(function() {
                     console.log("Action: medir_temperatura");
+                    //Bip
+                    Player.play( Player.audios.sfx.bip );
                     if ( core.flag("lavar-maos") >= 1 ) {
 
                         // core.setActionVisible("btn-medir_temperatura", false);

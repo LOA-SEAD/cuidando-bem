@@ -436,8 +436,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-carrinho_anestesico", "Testar Equipamentos")
                 .setCssClass("intObj-carrinho_anestesico")
                 .onClick(function() {
-
-                      if ( core.flag("lavar_maos_cirurgica") == false ) {
+                    //Bip
+                    Player.play( Player.audios.sfx.bip );
+                    if ( core.flag("lavar_maos_cirurgica") == false ) {
                         core.openDialog( 5 );
                     } else {
 
@@ -445,7 +446,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         if ( core.flag("testar_equipamentos") == false ) {
                             core.flag("testar_equipamentos",  true );
                             core.registerScoreItem( Scores.testarEquipamentos );
-                            // FALTA COLOCAR BEEP DO SOM DE CONFIRMAÇÃO -----------------------
                             core.openDialog( 4 );
                         }
 
@@ -782,6 +782,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-pegar_oximetro")
                 .onClick(function() {
                     console.log("Action: Verificando Paciente");
+                    //Bip
+                    Player.play( Player.audios.sfx.bip );
                     core.flag("verificar_oximetro_local_cirurgia",  true );
                 })
                 .setVisibility( true ),
