@@ -254,7 +254,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.changeScene( 5 );
             }
 
-            /* if(core.flag("pegarDieta").getValue() == true && core.getFlag("conferirDieta") == true)
+            /* if(core.flag("pegarDieta") == true && core.flag("conferirDieta") == true)
                     core.changeScene(6);
             else
                 {
@@ -454,11 +454,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.openDialog( 4 );
                     }
 
-                    if ( core.flag("pegarDieta").getValue() == true && core.getFlag("conferirDieta") == false ) {
+                    if ( core.flag("pegarDieta") == true && core.flag("conferirDieta") == false ) {
                         core.openDialog( 5 );
                     }
 
-                    if ( core.flag("pegarDieta").getValue() == true && core.getFlag("conferirDieta") == true ) {
+                    if ( core.flag("pegarDieta") == true && core.flag("conferirDieta") == true ) {
                         core.changeScene( 1 );
                     }
                 }),
@@ -493,7 +493,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
       console.log("Load scene: " + postoDeEnfermagem.getName() );
 
-      //     if(core.flag("ler_prontuario").getValue() == false || core.getFlag("conferirDieta") == false)
+      //     if(core.flag("ler_prontuario") == false || core.flag("conferirDieta") == false)
 
   });
 

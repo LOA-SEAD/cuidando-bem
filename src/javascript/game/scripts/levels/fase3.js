@@ -423,7 +423,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-talkToCirculante")
                 .onClick(function() {
                     console.log("Abrir diálogo com a circulante");
-                    if ( core.flag("conversarPaciente").getValue() == false || core.getFlag("testar_equipamentos") == false ) {
+                    if ( core.flag("conversarPaciente") == false || core.flag("testar_equipamentos") == false ) {
                         core.openDialog( 0 );
                     } else {
                         core.openDialog( 5 );

@@ -516,7 +516,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onClick(function() {
 
 
-                if ( core.flag("pegarFrascoSG").getValue() == false || core.getFlag("pegarNACL") == false ) {
+                if ( core.flag("pegarFrascoSG") == false || core.flag("pegarNACL") == false ) {
                     core.openDialog( 3 );
                 } else {
 
@@ -552,7 +552,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                 console.log("Load scene: " + postoDeEnfermagem.getName() );
 
-                //     if(core.flag("ler_prontuario").getValue() == false || core.getFlag("conferirDieta") == false)
+                //     if(core.flag("ler_prontuario") == false || core.flag("conferirDieta") == false)
 
             });
 
