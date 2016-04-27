@@ -86,12 +86,13 @@ define(function() {
 
         level3: {
             irPostoEnfermagemHoraErrada: new Score("Ir ao posto de enfermagem sem precisar", -25 ),
-            irFarmaciaHoraErrada: new Score("Ir ao posto de enfermagem sem precisar", -25 ),
-            irAlaFemininaHoraErrada: new Score("Ir ao posto de enfermagem sem precisar", -25 ),
+            irFarmaciaHoraErrada: new Score("Ir à farmácia sem precisar", -25 ),
+            irAlaFemininaHoraErrada: new Score("Ir à ala feminina em hora indevida", -25 ),
             lavarMaosHoraErrada: new Score("Lavar mãos ao inves de lavar mãos técnica cirúrgica", -200 ),
             lavarMaosCirurgica: new Score("Lavar mãos tecnica cirurgica", 200 ),
             testarEquipamentos: new Score("Testar Equipamentos", 250 ),
             lavarMaos2: new Score("Lavar mãos antes de ir ao leito", 200 ),
+            naoLavarMaos: new Score("Não lavar mãos antes de ir ao leito", -200 ),
             irAoLeitoCorreto: new Score("Ir ao leito correto", 150 ),
             pegarProntuario: new Score("Ver e pegar prontuário", 150 ),
             encaminharPacienteCentroCirurgico: new Score("Encaminhar Paciente ao Centro Cirurgico", 150 ),

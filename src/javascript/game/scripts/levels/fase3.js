@@ -36,6 +36,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             leito,
             postoDeEnfermagem,
             farmacia,
+            alaFemininaVazia,
             gaveta,
             pulseira,
             prontuario,
@@ -107,6 +108,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // primeira passada
                     core.flag("conversar_mentor",  true );
                     core.openDialog( 0 );
+                }
+                //Desabilita o mentor por um tempinho
+                if ( core.flag("testar_equipamentos") == true && 
+                    core.flag("conversarPaciente") == true ) {
+                    core.setInteractiveObjectVisible("io-conversar_mentor", false );
+                }
+                //Reabilita o mentor para o final da fase
+                if ( core.flag("fim_fase") == true ) {
+                    core.setInteractiveObjectVisible("io-conversar_mentor", true );
                 }
             })
             .onUnload(function() {
@@ -227,18 +237,22 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         function corredorIrAlaFeminina() {
             console.log("Action: corredorIrAlaFeminina");
             if ( core.flag("testar_equipamentos") == true ) {
-                core.changeScene( 3 );
+                if ( core.flag("conversarPaciente") == false ) {
+                    core.changeScene( 3 );
+                } else {
+                    if ( core.flag("ir_alaFeminina_horaErrada") == false ) {
+                        core.registerScoreItem( Scores.irAlaFemininaHoraErrada );
+                        core.flag("ir_alaFeminina_horaErrada",  true );
+                    }
+                    core.changeScene( 8 );
+                }
             } else {
+                if ( core.flag("ir_alaFeminina_horaErrada") == false ) {
+                    core.registerScoreItem( Scores.irAlaFemininaHoraErrada );
+                    core.flag("ir_alaFeminina_horaErrada",  true );
+                }
                 core.openDialog( 9 );
             }
-
-
-            if ( core.flag("ir_alaFeminina_horaErrada") == false ) {
-                core.registerScoreItem( Scores.irAlaFemininaHoraErrada );
-                core.flag("ir_alaFeminina_horaErrada",  true );
-
-            }
-
         }
 
 
@@ -295,9 +309,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Abrir diálogo com o mentor");
                     if ( core.flag("testar_equipamentos") == false ) {
                         core.openDialog( 0 );
-                    } else if ( core.flag("testar_equipamentos").getValue() == true && core.getFlag("conversarPaciente") == false ) {
-                        // segunda passada
-                        core.openDialog( 5 );
+                    } else {
+                        if ( core.flag("testar_equipamentos") == true && 
+                            core.flag("conversarPaciente") == false ) {
+                            // segunda passada
+                            core.openDialog( 5 );
+                        }
                     }
 
 
@@ -459,7 +476,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }),
 
 
-            new Action("btn-lavar_maos_cirurgica", "Lavar as mãos técnica cirúrgica")
+            new Action("btn-lavar_maos_cirurgica", "Anti-sepsia cirúrgica")
                 .setCssClass("action-lavar_maos_escova")
                 .onClick(function() {
                     // Som
@@ -494,6 +511,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setCssClass("scene-bedroom-level3")
             .onLoad(function() {
                 console.log("Load scene: " + alaFeminina.getName() );
+                if ( core.flag("conversarPaciente") == true ) {
+                    //Desabilita conversar novamente com a Regina
+                    core.setInteractiveObjectVisible("io-conversar_com_paciente", false );
+                }
             });
 
 
@@ -545,6 +566,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-ir_leito_fase3")
                 .onClick(function() {
                     if ( core.flag("lavar_maos2") == false ) {
+                        if ( core.flag("score_nao_lavou_maos") == false ) {
+                            core.registerScoreItem( Scores.naoLavarMaos );
+                            core.flag("score_nao_lavou_maos",  true );
+                        }
                         core.openDialog( 2 );
                     } else {
                         if ( core.flag("ir_leito_paciente") == false ) {
@@ -575,7 +600,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                 console.log("Load scene: " + leito.getName() );
                 console.log("Abrindo dialogo com paciente");
-                core.flag("conversarPaciente",  true );
               //  core.openDialog( 0 );
             });
 
@@ -614,7 +638,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
 
-    leito.registerInteractiveObjects([
+        leito.registerInteractiveObjects([
 
           new InteractiveObject("io-conversar_paciente04", "Falar com a paciente")
                 .setCssClass("intObj-conversar_paciente")
@@ -693,6 +717,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     // Som
                     Player.play( Player.audios.sfx.mesaComRodinha );
+                    //Só aqui é habilitado a Regina ir para o centro cirurgico
+                    core.flag("conversarPaciente",  true );
+                    //Desabilita conversar novamente com a Regina
+                    core.setInteractiveObjectVisible("io-conversar_paciente04", false );
                     core.closeDialog();
                 }),
 
@@ -750,8 +778,35 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }),
 
 
+            new Action("btn-verificar_oximetro_local_cirurgia", "Verificar Oxímetro e Local da Cirurgia")
+                .setCssClass("action-pegar_oximetro")
+                .onClick(function() {
+                    console.log("Action: Verificando Paciente");
+                    core.flag("verificar_oximetro_local_cirurgia",  true );
+                })
+                .setVisibility( true ),
+
+
+            new Action("btn-colocar_placa_neutra", "Colocar Placa Neutra")
+                .setCssClass("action-placa_neutra")
+                .onClick(function() {
+                    console.log("Action: Colocando placa neutra");
+                    core.flag("colocar_placa_neutra",  true );
+                    if ( core.flag("score_placa_neutra") == false ) {
+                        core.registerScoreItem( Scores.colocarPlacaNeutra );
+                        core.flag("score_placa_neutra",  true );
+                    }
+
+                    if ( core.flag("verificar_oximetro_local_cirurgia") == false ) {
+                        core.openDialog( 21 );
+                    }
+                    core.setActionVisible("btn-colocar_placa_neutra", false );
+                })
+                .setVisibility( true ),
+
+
             new Action("btn-anotarProntuario", "Anotar prontuario")
-                .setCssClass("action-anotarProntuario")
+                .setCssClass("action-anotar_prontuario")
                 .onClick(function() {
                     console.log("Action: Anotar prontuario");
                     if ( core.flag("lavar_maos3") == false ) {
@@ -771,33 +826,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true ),
 
-
-            new Action("btn-colocar_placa_neutra", "Colocar Placa Neutra")
-                .setCssClass("action-colocar_placa_neutra")
+            new Action("btn-ir_corredor", "Ir ao corredor")
+                .setCssClass("action-ir_corredor")
                 .onClick(function() {
-                    console.log("Action: Colocando placa neutra");
-                    core.flag("colocar_placa_neutra",  true );
-                    if ( core.flag("score_placa_neutra") == false ) {
-                        core.registerScoreItem( Scores.colocarPlacaNeutra );
-                        core.flag("score_placa_neutra",  true );
-                    }
-
-                    if ( core.flag("verificar_oximetro_local_cirurgia") == false ) {
-                        core.openDialog( 21 );
-                    }
-                })
-                .setVisibility( true ),
-
-
-            new Action("btn-verificar_oximetro_local_cirurgia", "Verificar Oxímetro e Local da Cirurgia")
-                .setCssClass("action-verificar_oximetro_local_cirurgia")
-                .onClick(function() {
-                    console.log("Action: Verificando Paciente");
-                    core.flag("verificar_oximetro_local_cirurgia",  true );
+                    console.log("Action: ir_corredor");
+                    // Voltar para o corredor
+                    core.changeScene( 1 );
                 })
                 .setVisibility( true )
-
-
         ]);
 
 
@@ -1023,6 +1059,25 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         ]);
 
+        var alaFemininaVazia = new Scene("alaFemininaVazia", "scene-bedroom")
+            .setCssClass("scene-bedroom")
+            .onLoad(function() {
+                console.log("Load scene: Ala feminina vazia");
+            })
+            .onUnload(function() {
+                console.log("Ala feminina: OnUnload");
+            });
+
+        alaFemininaVazia.registerInteractiveObjects([
+            new InteractiveObject("io-ir_corredor", "Ir ao Corredor")
+                .setCssClass("intObj-bedroomToHallway")
+                .onClick(function() {
+                    // Voltar para o corredor
+                    core.changeScene( 1 );
+                })
+                .setVisibility( true )
+        ]);
+
 
         prontuario = new Scene("Prontuario", "Prontuario");
 
@@ -1034,10 +1089,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Prontuario.close();
                     core.closeModalScene("Prontuario");
 
-                    if ( core.flag("verificar_oximetro_local_cirurgia").getValue() == true && core.getFlag("colocar_placa_neutra") == true ) {
+                    if ( core.flag("verificar_oximetro_local_cirurgia") == true && 
+                        core.flag("colocar_placa_neutra") == true ) {
                         core.flag("fim_fase",  true );
-
-                        core.changeScene( 1 );
                     }
 
                 })
@@ -1087,7 +1141,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // 7
         level.registerScene( centroCirurgicoRegina );
         // 8
-        level.registerScene( prontuario );
+        level.registerScene( alaFemininaVazia );
 
 
         level.setSetupScript(function() {
@@ -1154,6 +1208,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "lavarMaos",  false  ) );
         level.registerFlag( new Flag( "lavar_maos2",  false  ) );
         level.registerFlag( new Flag( "lavar_maos3",  false  ) );
+        level.registerFlag( new Flag( "score_nao_lavou_maos",  false  ) );
         level.registerFlag( new Flag( "primeira_saida_centro_cirurgico",  false  ) );
         level.registerFlag( new Flag( "conversarPaciente",  false  ) );
         level.registerFlag( new Flag( "ir_alaFeminina_horaErrada",  false  ) );
