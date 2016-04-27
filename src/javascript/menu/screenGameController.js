@@ -43,10 +43,32 @@ define([ "Stage", "CuidandoBem" ], function( Stage, Core ) {
             Stage.changeScreen( 0 );
         });
 
+        $("#pauseButton").click(function() {
+            $( "#pauseMenu" ).toggle();
+        });
+
+        $(".quit.button").click(function() {
+            Stage.changeScreen( 6 );
+        });
+
+        $(".replay.button").click(function() {
+            Core.restartLevel();
+            $( "#pauseMenu" ).hide();
+        });
+
+        $(".config.button").click(function() {
+            //TODO não é possível voltar ao jogo depois de ir à tela de configuração
+            Stage.changeScreen( 4 );
+        });
+
+        $(".back.button").click(function() {
+            $( "#pauseMenu" ).hide();
+        });
+
         Core.init();
         Player.stopAll();
         Player.playInRange( Player.audios.musics.inGame );
-    }
+    };
 
     /**
      * This method is called when the screen Game is unloaded

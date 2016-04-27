@@ -1,9 +1,13 @@
 
 #pauseButton {
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    background-image: @pauseCog;
     position: absolute;
     top: 2%;
     right: 2%;
-    background-color: blue;
+
     width: 2%;
     height: 3.25%;
     z-index: 1;
@@ -13,7 +17,7 @@
 #pauseButton:hover {
     @scale: 1.1;
     transform: scale( @scale, @scale );
-    filter: drop-shadow(0 0 8px @pause-glow-color);
+    //filter: drop-shadow(0 0 2px @pause-glow-color);
 }
 
 #pauseButton:active {
@@ -23,7 +27,7 @@
 }
 
 #pauseMenu {
-
+    display: none;
     background-color: rgba( 0, 0, 0, 0.5 );
     width: 100%;
     height: 100%;
