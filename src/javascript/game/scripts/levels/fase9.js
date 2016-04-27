@@ -69,14 +69,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         function corredorIrCentroCirurgico() {
 
             core.changeScene( 6 );
-            /*if ( core.flag("score_irCentroCirurgico_horaErrada") == false ) {
+            if ( core.flag("score_irCentroCirurgico_horaErrada") == false ) {
 
                 core.flag("score_irCentroCirurgico_horaErrada", true );
                 core.registerScoreItem( Scores.irCentroCirurgico_horaErrada );
                 console.log("PERDEU 25 PONTOS");
 
             }
-*/
+
 
         }
 
@@ -245,11 +245,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         function corredorIrAlaMasculina() {
 
-            if(core.flag("pegou_tudo_postoEnfermagem") == true ){
+            if(core.flag("pegou_tudo_postoEnfermagem") == true && core.flag("trocou_de_leito") == false){
+
                     core.changeScene(9);
             }
-            else
+            else if(core.flag("trocou_de_leito") == true || core.flag("conversar_paciente") == false || core.flag("conferirMedicamento") == true) {
+
                 core.changeScene( 2 );
+
+            }
         }
 
 
@@ -466,7 +470,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                 Prontuario.open();
                 core.openModalScene("Prontuario");
-                core.registerScoreItem( Scores.verProntuario );
+
 
 
             })
@@ -497,15 +501,22 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
 
 
-                if ( core.flag("pegar_prescricao_medica") == false ) {
+                if ( core.flag("pegar_prescricao_medica") == false  ) {
                      core.openDialog( 4 );
                      core.setInteractiveObjectVisible("io-pegarFrascoDieta", false );
                      core.setInteractiveObjectVisible("io-cloretoSodio_20_10ml", false );
                      core.setActionVisible("btn-conferirMedicamento", false );
                  }
+                else if(core.flag("pegou_tudo_postoEnfermagem") == true || core.flag("trocou_de_leito") == true || core.flag("conferirMedicamento") == true) {
+
+                     core.setInteractiveObjectVisible("io-pegarFrascoDieta", false );
+                     core.setInteractiveObjectVisible("io-cloretoSodio_20_10ml", false );
+                     core.setActionVisible("btn-conferirMedicamento", false );
+
+                }
                 else {
 
-                    core.openDialog( 0 );
+                     core.openDialog( 0 );
                     core.setInteractiveObjectVisible("io-pegarFrascoDieta", true );
                     core.setInteractiveObjectVisible("io-cloretoSodio_20_10ml", true );
                     core.setActionVisible("btn-conferirMedicamento", true );
@@ -581,17 +592,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
          new InteractiveObject("io-pegarFrascoDieta", "Pegar Frasco de SG 5%")
-            .setCssClass("intObj-frasco_de_dieta")
+            .setCssClass("intObj-soro_glicofisiologico_1000_ml")
             .onClick(function() {
 
                  Player.play( Player.audios.sfx.pegarObjeto );
 
-                if ( core.flag("pegarFrascoSG") == false ) {
 
                     core.flag("pegarFrascoSG", true );
                     core.registerScoreItem( Scores.pegarFrascoSG );
+                console.log("GANHOU 50 PTS");
                     core.setInteractiveObjectVisible("io-pegarFrascoDieta", false );
-                }
 
             })
             .setVisibility( true ),
@@ -673,6 +683,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                   console.log("Load scene: " + postoDeEnfermagem.getName() );
 
 
+                // falta dar um tapa aqui
+
                if(core.flag("conferirMedicamento") == false){
 
                     core.setInteractiveObjectVisible("io-abrir_gaveta", false );
@@ -681,8 +693,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                  }
                  else {
                      core.setInteractiveObjectVisible("io-abrir_gaveta", true );
+                     core.setInteractiveObjectVisible("io-pegar_bandeja", true );
                     }
-
 
 
 
@@ -1273,7 +1285,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
             new InteractiveObject("io-equipoSoro", "Equipamento de Soro Macrogotas")
-            .setCssClass("intObj-soro_glicofisiologico_1000_ml")
+            .setCssClass("intObj-equipo_de_soro")
             .onClick(function() {
 
                 console.log("intObj-equipoSoro");
