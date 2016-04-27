@@ -42,13 +42,15 @@ p.title {
     z-index: 5;
 }
 
-.level:hover:not(.disabled){
+.level:hover:not(.disabled),
+.level:focus:not(.disabled){
     z-index: 3;
 }
 .level.selected {
     z-index: 2;
 }
 .level:hover:not(.disabled),
+.level:focus:not(.disabled),
 .level.selected {
     .back {
         @size: 100%;
@@ -66,7 +68,8 @@ p.title {
     }
 }
 
-.level.selected:hover {
+.level.selected:hover,
+.level.selected:focus{
     .back {
         background-color: #ffa44a;
     }
@@ -75,7 +78,6 @@ p.title {
 .level {
     width: 15%;
     height: 25%;
-    //display: inline-block;
     cursor: hand;
     display: block;
     position: absolute;
@@ -83,6 +85,9 @@ p.title {
     left: 50%;
     margin: -7.5% -7.5%;
     border-radius: 50%;
+    background-color: transparent;
+    border: none;
+    padding: 0;
     .back {
         @size: 70%;
         background-color: #E39341;
@@ -91,6 +96,8 @@ p.title {
         margin: (100% - @size)/2;
         display: block;
         position: absolute;
+        top: 0;
+        left: 0;
         border-radius: 50%;
         transition-duration: 0.3s;
         transition-property: width, height, margin;
@@ -102,6 +109,8 @@ p.title {
         margin: (100% - @size)/2;
         display: block;
         position: absolute;
+        top: 0;
+        left: 0;
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
