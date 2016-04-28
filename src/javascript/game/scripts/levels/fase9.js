@@ -115,7 +115,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             if ( core.flag("score_iralaFeminina_horaErrada") == false ) {
 
                 core.flag("score_iralaFeminina_horaErrada", true );
-                // core.registerScoreItem( Scores.irAlaFeminina_horaErrada );
+                 core.registerScoreItem( Scores.irAlaFeminina_horaErrada );
 
 
             }
@@ -216,20 +216,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
         function corredorIrFarmacia() {
-
-
-            if ( core.flag("conversar_paciente") == false ) {
-
-                if ( core.flag("score_ir_farmacia_horaErrada") == false ) {
-                    core.flag("score_ir_farmacia_horaErrada", true );
-                    core.registerScoreItem( Scores.irFarmaciaHoraErrada );
-                }
-
-                    core.changeScene( 4 );
-
-            } else {
                 core.changeScene( 4 );
-            }
+
         }
 
         function corredorIrPostoEnfermagem() {
@@ -506,7 +494,21 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                      core.setInteractiveObjectVisible("io-pegarFrascoDieta", false );
                      core.setInteractiveObjectVisible("io-cloretoSodio_20_10ml", false );
                      core.setActionVisible("btn-conferirMedicamento", false );
+
+
+
+             if ( core.flag("score_ir_farmacia_horaErrada") == false ) {
+
+                    core.flag("score_ir_farmacia_horaErrada", true );
+                    core.registerScoreItem( Scores.irFarmaciaHoraErrada );
+
+                }
+
+
+
+
                  }
+
                 else if(core.flag("pegou_tudo_postoEnfermagem") == true || core.flag("trocou_de_leito") == true || core.flag("conferirMedicamento") == true) {
 
                      core.setInteractiveObjectVisible("io-pegarFrascoDieta", false );
@@ -635,23 +637,24 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
 
-                if(core.flag("pegar_prescricao_medica") == false){
+                        if(core.flag("pegar_prescricao_medica") == false){
 
 
-                    core.changeScene(1);
+                            core.changeScene(1);
 
-              }
+                      }
 
-                else if(core.flag("pegarNACL") == false || core.flag("pegarFrascoSG") == false ) {
+                        else if(core.flag("pegarNACL") == false || core.flag("pegarFrascoSG") == false ) {
 
-                    core.openDialog( 6 );
-                }
+                            core.openDialog( 6 );
+                        }
 
-                else if(core.flag("conferirMedicamento") == false){
-                    core.openDialog(3);
-                }
-                else
-                    core.changeScene(1);
+                        else if(core.flag("conferirMedicamento") == false){
+                            core.openDialog(3);
+                        }
+                        else
+                            core.changeScene(1);
+
 
 
 
@@ -662,15 +665,25 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-conferirMedicamento", "Conferir Medicamento")
             .setCssClass("action-conferirMedicamento")
             .onClick(function() {
-                if ( (core.flag("pegarFrascoSG") == false) || (core.flag("pegarNACL") == false ) {
-                    core.openDialog( 3 );
-                } else {
 
-                    if ( core.flag("conferirMedicamento") == false ) {
-                        core.flag("conferirMedicamento", true );
-                        core.registerScoreItem( Scores.conferirDieta );
-                    }
-                }
+
+                if ( (core.flag("pegarFrascoSG") == false) || (core.flag("pegarNACL") == false) ) {
+
+                    core.openDialog( 3 );
+                } else if ( (core.flag("pegarFrascoSG") == true) && (core.flag("pegarNACL") == true) ) {
+
+                           if(core.flag("conferirMedicamento") == false) {
+
+                            core.flag("conferirMedicamento", true );
+                            core.registerScoreItem( Scores.conferirDieta );
+
+                           }
+
+            }
+
+
+
+
             })
             .setVisibility( true )
 
@@ -681,22 +694,34 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
 
                   console.log("Load scene: " + postoDeEnfermagem.getName() );
-
-
-                // falta dar um tapa aqui
-
                if(core.flag("conferirMedicamento") == false){
 
                     core.setInteractiveObjectVisible("io-abrir_gaveta", false );
                     core.setInteractiveObjectVisible("io-pegar_bandeja", false );
                     core.openDialog(2);
+
+
+            if ( core.flag("score_irPosto_horaErrada") == false ) {
+
+                core.flag("score_irPosto_horaErrada", true );
+                 core.registerScoreItem( Scores.irPosto_horaErrada );
+
+
+            }
+
+
+
+
+
                  }
-                 else {
+                 else if(core.flag("pegou_tudo_postoEnfermagem") == true) {
                      core.setInteractiveObjectVisible("io-abrir_gaveta", true );
-                     core.setInteractiveObjectVisible("io-pegar_bandeja", true );
+
+                     core.setInteractiveObjectVisible("io-pegar_bandeja", false );
                     }
-
-
+                else
+                    core.setInteractiveObjectVisible("io-abrir_gaveta", true );
+                     core.setInteractiveObjectVisible("io-pegar_bandeja", true );
 
             });
 
@@ -776,6 +801,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onClick(function() {
                 // Som
                 Player.play( Player.audios.sfx.lavarMaos );
+
                 if ( core.flag("score_lavarMaos1") == false ) {
                     core.flag("score_lavarMaos1", true );
                     core.registerScoreItem( Scores.lavarMaos1 );
@@ -1245,10 +1271,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 console.log("IntObj: io-seringa");
                 // Som
                 Player.play( Player.audios.sfx.pegarObjeto );
-                core.flag("pegar_seringa", true );
-                core.setInteractiveObjectVisible("io-seringa", false );
 
                 core.registerScoreItem( Scores.pegarSeringa );
+
+                core.flag("pegar_seringa", true );
+
+                core.setInteractiveObjectVisible("io-seringa", false );
+
+
 
             })
             .setVisibility( true ),
@@ -1260,10 +1290,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 console.log("intObj-agulha_40x12");
                 // Som
                 Player.play( Player.audios.sfx.pegarObjeto );
-                core.flag("pegar_agulha", true );
-                core.setInteractiveObjectVisible("io-agulha", false );
 
                 core.registerScoreItem( Scores.pegarAgulha );
+
+
+                core.flag("pegar_agulha", true );
+
+                core.setInteractiveObjectVisible("io-agulha", false );
+
 
             })
             .setVisibility( true ),
@@ -1275,10 +1309,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 console.log("intObj-glicose");
                 // Som
                 Player.play( Player.audios.sfx.pegarObjeto );
+
+                 core.registerScoreItem( Scores.pegarAmpola );
+
+
                 core.flag("pegar_ampola", true );
+
                 core.setInteractiveObjectVisible("io-ampola", false );
 
-                core.registerScoreItem( Scores.pegarAmpola );
 
             })
             .setVisibility( true ),
@@ -1291,10 +1329,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 console.log("intObj-equipoSoro");
                 // Som
                 Player.play( Player.audios.sfx.pegarObjeto );
-                core.flag("pegar_equipoSoro", true );
-                core.setInteractiveObjectVisible("io-equipoSoro", false );
 
                 core.registerScoreItem( Scores.pegarSoro );
+
+
+                core.flag("pegar_equipoSoro", true );
+
+                core.setInteractiveObjectVisible("io-equipoSoro", false );
+
 
             })
             .setVisibility( true )
@@ -1409,6 +1451,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "score_irCentroCirurgico_horaErrada",  false  ) );
         level.registerFlag( new Flag( "conversar_paciente",  false  ) );
         level.registerFlag( new Flag( "score_ir_farmacia_horaErrada",  false  ) );
+        level.registerFlag( new Flag( "score_irPosto_horaErrada",  false  ) );
         level.registerFlag( new Flag( "pegar_prescricao_medica",  false  ) );
         level.registerFlag( new Flag( "ler_prontuario",  false  ) );
         level.registerFlag( new Flag( "pegarFrascoSG",  false  ) );
@@ -1430,6 +1473,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "lavar_maos3",  false  ) );
         level.registerFlag( new Flag( "score_anotar_prontuario",  false  ) );
         level.registerFlag( new Flag( "irCentroCirurgicoHoraErrada", false ) );
+        level.registerFlag( new Flag( "score_lavarMaos1", false ) );
 
         level.setInitialScene( 0 );
 
