@@ -190,9 +190,9 @@ define(function() {
         },
 
         level6: {
-            scoreIrCentroCirurgicoHoraErrada: new Score("Ir para o Centro Cirugico sem precisar", -25 ),
-            scoreIrAlaFemininaHoraErrada: new Score("Ir para a Ala Feminina sem precisar", -25 ),
-            scoreIrFarmaciaHoraErrada: new Score("Ir para a Farmácia sem precisar", -25 ),
+            irCentroCirurgicoHoraErrada: new Score("Ir para o Centro Cirugico sem precisar", -25 ),
+            irAlaFemininaHoraErrada: new Score("Ir para a Ala Feminina sem precisar", -25 ),
+            irFarmaciaHoraErrada: new Score("Ir para a Farmácia sem precisar", -25 ),
             pegarDieta: new Score("Pegar a dieta do paciente", 50 ),
             conferirDieta: new Score("Conferir medicamento/dieta", 150 ),
             lavarMaos1: new Score("Lavar as mãos no posto de enfermagem", 200 ),
@@ -210,7 +210,8 @@ define(function() {
             verificarSonda: new Score("Verificar Localização da Sonda", 350 ),
             administrarDieta: new Score("Administrar Dieta", 150 ),
             colocarGotejamento: new Score("Colocar Gotejamento", 350 ),
-            anotarNoProntuario: new Score("Anotar no Prontuário", 350 )
+            anotarNoProntuario: new Score("Anotar no Prontuário", 350 ),
+            calcularInfusaoDieta: new Score("Calcular infusão da dieta corretamente", 150 )
         },
 
         level7: {

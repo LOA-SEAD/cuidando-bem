@@ -47,6 +47,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 console.log("Load scene: " + centroCirurgico.getName() );
             });
 
+        centroCirurgico.registerActions([
+            new Action("btn-ir_corredor", "Ir ao corredor")
+                .setCssClass("action-ir_corredor")
+                .onClick(function() {
+                    console.log("Action: ir_corredor");
+                    // Voltar para o corredor
+                    core.changeScene( 1 );
+                })
+                .setVisibility( true )
+        ]);
+
         function corredorIrCentroCirurgico() {
             core.changeScene( 6 );
             if ( core.flag("scoreIrCentroCirurgicoHoraErrada") == false ) {
@@ -484,16 +495,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                 }),
 
-            /*new Action("btn-pegarFrascoDieta", "Pegar Frasco de Dieta")
-                .setCssClass("action-frasco_dieta")
-                .onClick(function() {
-                    // Som
-                    Player.play( Player.audios.sfx.pegarObjeto );
-                    core.flag("pegarDieta",  true );
-                    core.registerScoreItem( Scores.pegarDieta );
-                    console.log("GANHA 50 PONTOS");
-                }),*/
-
             new Action("btn-conferirMedicamento", "Conferir Dieta Prescrita")
                 .setCssClass("action-frasco_dieta")
                 .onClick(function() {
@@ -605,6 +606,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }
 
                 core.flag("score_lavarMaos1",  true );
+            })
+            .setVisibility( true ),
+
+        new Action("btn-ler_prontuario", "Ler prontuario")
+            .setCssClass("action-ler_prontuario")
+            .onClick(function() {
+                console.log("Action: ler prontuario");
+                Prontuario.open();
+                core.openModalScene("Prontuario");
             })
             .setVisibility( true )
 
@@ -829,13 +839,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-fechar_prontuario", "Fechar prontuário")
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
-                    if ( core.flag("pegou_tudo_postoEnfermagem") == false ) {
+                    if ( core.flag("pegarDieta") == false ) {
                         core.openDialog( 2 );
                     } else {
                         Prontuario.close();
-                        core.setActionVisible("btn-fechar_prontuario", false );
-                        core.unlockLevel( 7 );
-                        core.showEndOfLevel();
+                        //core.setActionVisible("btn-fechar_prontuario", false );
+                        if ( core.flag("score_colocar_gotejamento") == true ) {
+                            core.unlockLevel( 7 );
+                            core.closeCommandBar();
+                            core.showEndOfLevel();
+                        }
                     }
                     console.log("Action: Fechar prontuario");
                     Prontuario.close();
@@ -863,8 +876,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         (core.flag("pegar_equipoCorreto") == true) )  {
 
                         core.openDialog( 0 );
-                        core.openDialog( 0 );
-                        core.flag("pegou_tudo_postoEnfermagem",  true );
+                        /*core.openDialog( 0 );
+                        core.flag("pegou_tudo_postoEnfermagem",  true );*/
                         core.flag("pegou_tudo_postoEnfermagem",  true );
                     }
                 })
@@ -1064,6 +1077,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "score_verificar_pulseira",  false  ) );
         level.registerFlag( new Flag( "score_falarComPaciente",  false  ) );
         level.registerFlag( new Flag( "score_pegar_suporte_soro",  false  ) );
+        level.registerFlag( new Flag( "score_elevar_cama",  false  ) );
         level.registerFlag( new Flag( "score_verificar_sonda",  false  ) );
         level.registerFlag( new Flag( "score_administrar_dieta",  false  ) );
         level.registerFlag( new Flag( "score_colocar_gotejamento",  false  ) );

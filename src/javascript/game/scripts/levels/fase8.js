@@ -321,11 +321,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
               new InteractiveObject("io-conversar_paciente09", "Falar com o paciente")
 
-                .setCssClass("intObjconversar_paciente")
+                .setCssClass("intObj-conversar_paciente")
                 .onClick(function() {
 
 
-               core.openDialog( 0 );
+                    core.openDialog( 0 );
                     core.closeCommandBar();
 
                 })
@@ -390,7 +390,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( false ),
 
             new Action("btn-anotarProntuario", "Anotar prontuario")
-                .setCssClass("action-anotarProntuario")
+                .setCssClass("action-anotar_prontuario")
                 .onClick(function() {
                     console.log("Action: Anotar prontuario");
                     if ( core.flag("score_administrou_medicamento") == false ) {
@@ -441,6 +441,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.setActionVisible("btn-oferecer_copo", false );
                     core.setActionVisible("btn-administrar_medicamento", false );
                     core.setActionVisible("btn-levar_yuri_cc", false );
+                    core.setInteractiveObjectVisible("io-conversar_paciente09", false );
                 })
                 .setVisibility( true ),
 
@@ -898,7 +899,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             new Action("btn-anotarProntuario", "Anotar prontuario")
-                .setCssClass("action-anotarProntuario")
+                .setCssClass("action-anotar_prontuario")
                 .onClick(function() {
                     console.log("Action: Anotar prontuario");
                     if ( core.flag("score_lavar_maos_centro_cirurgico") == false ) {
