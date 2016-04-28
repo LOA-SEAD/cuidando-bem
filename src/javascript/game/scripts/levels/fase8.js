@@ -36,7 +36,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             alaFeminina,
             centroCirurgicoYuri,
             pulseira,
-            prontuario;
+            prontuario,
+            midazolam;
 
 
         function recepcaoIrCorredor() {
@@ -522,6 +523,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.conferirMedicacao );
                         core.flag("score_conferiu_medicacao",  true );
                     }
+                    core.openModalScene("conferirMidazolam");
                 })
                 .setVisibility( false )
         ]);
@@ -1071,6 +1073,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             //  alert(Prontuario.isDataValid() + " Final da fase");
         ]);
 
+        midazolam = new Scene("conferirMidazolam", "Conferir Midazolam")
+            .setCssClass("modalScene-midazolamMedicamento");
+
+        midazolam.registerActions([
+            new Action("btn-fechar_zoom", "Finalizar conferição")
+                .setCssClass("action-midazolam_medicamento")
+                .onClick(function() {
+                    console.log("Action: Finalizar conferição");
+                    core.closeModalScene("conferirMidazolam");
+                })
+        ]);
+
 
         // 0
         level.registerScene( recepcao );
@@ -1094,6 +1108,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         level.registerModalScene( pulseira );
         level.registerModalScene( prontuario );
+        level.registerModalScene( midazolam );
 
 
         level.setSetupScript(function() {

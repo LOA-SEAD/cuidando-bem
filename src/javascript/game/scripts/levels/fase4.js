@@ -36,7 +36,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             gavetaEsquerda,
             gavetaDireita,
             prontuario,
-            pulseira;
+            pulseira,
+            keflin;
 
 
         function recepcaoIrCorredor() {
@@ -662,6 +663,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.conferirMedicamento );
                         core.flag("score_conferiu_medicacao",  true );
                     }
+                    core.openModalScene("conferirKeflin");
                 })
                 .setVisibility( false )
         ]);
@@ -780,6 +782,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.confirmarMedicacaoPosto );
                         core.flag("score_conferiu_medicacao_posto",  true );
                     }
+                    core.openModalScene("conferirKeflin");
 
                 })
                 .setVisibility( false ),
@@ -1250,6 +1253,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true )
         ]);
 
+        keflin = new Scene("conferirKeflin", "Conferir Keflin")
+            .setCssClass("modalScene-keflinMedicamento");
+
+        keflin.registerActions([
+            new Action("btn-fechar_zoom", "Finalizar conferição")
+                .setCssClass("action-keflin_medicamento")
+                .onClick(function() {
+                    console.log("Action: Finalizar conferição");
+                    core.closeModalScene("conferirKeflin");
+                })
+        ]);
+
 
         level.registerScene( recepcao );
         level.registerScene( corredor );
@@ -1263,6 +1278,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerModalScene( prontuario );
         level.registerModalScene( gavetaEsquerda );
         // level.registerModalScene( gavetaDireita );
+        level.registerModalScene( keflin );
 
 
         level.setSetupScript(function() {
