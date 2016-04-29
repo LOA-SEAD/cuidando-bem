@@ -81,6 +81,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         }
 
 
+
+
+
         var alaFeminina = new Scene("alaFeminina", "Ala Feminina")
             .setCssClass("scene-bedroom-level9")
             .onLoad(function() {
@@ -958,11 +961,28 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
 
+     function setPulseiraData() {
+
+
+
+            Pulseira.setNameRegExp( /Pedro Alcides Mendonça/ );
+            Pulseira.setLeitoRegExp( /0*1/ );
+            Pulseira.setDataRegExp( /03\/06\/1962/ );
+
+            Pulseira.setName("Pedro Alcides Mendonça");
+            Pulseira.setLeito("01");
+            Pulseira.setData("03/06/1962");
+            Pulseira.disable();
+
+
+
+
+        }
+
+
 
         leito2 = lib.scenes.leitos.francisco.getClone()
             .onLoad(function() {
-
-               // core.registerScoreItem( Scores.conversarPacienteLeito );
 
             })
             .onUnload(function() {
@@ -1039,10 +1059,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                      core.openDialog(0);
 
-            if(level.getFlag("falar_paciente_correto").getValue() == false) {
+            if(core.flag("falar_paciente_correto") == false) {
 
-                level.getFlag("falar_paciente_correto").setValue(true);
+                core.flag("falar_paciente_correto", true);
                 core.registerScoreItem( Scores.conversarPacienteLeito );
+
             }
 
             core.setActionVisible("btn-pegar_suporte_soro", true );
@@ -1060,8 +1081,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-paciente_05-checar_pulseira")
                 .onClick(function() {
 
-                        core.openModalScene("Pulseira2");
-                        Pulseira2.open();
+                    setPulseiraData();
+
+
+                        core.openModalScene("Pulseira");
+                        Pulseira.open();
                         core.openCommandBar();
 
 
@@ -1083,6 +1107,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 if ( core.flag( "pegar_suporte_soro" ) == false ) {
                     core.flag( "pegar_suporte_soro",  true  );
                     core.registerScoreItem( Scores.pegarSuporteSoro );
+
+
                 }
 
             })
@@ -1096,6 +1122,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 if ( core.flag( "administrar_medicamento" ) == false ) {
                     core.flag( "administrar_medicamento",  true  );
                     core.registerScoreItem( Scores.administrarMedicamento );
+
+
                 }
 
             })
@@ -1221,6 +1249,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.setActionVisible("btn-realizar_gotejamento", false );
                     core.setActionVisible("btn-lavarMaos", false );
                     core.setActionVisible("btn-anotar_prontuario", false );
+                    core.closeCommandBar();
                     core.showEndOfLevel();
                 } else {
                     Prontuario.close();
@@ -1253,7 +1282,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     (core.flag("pegar_equipoSoro") == true) ) {
 
 
-                    //  core.openDialog( 0 );
+                    core.setActionVisible("btn-lavarMaos", false );
                     core.flag("pegou_tudo_postoEnfermagem", true );
 
                 }
@@ -1273,6 +1302,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 Player.play( Player.audios.sfx.pegarObjeto );
 
                 core.registerScoreItem( Scores.pegarSeringa );
+
 
                 core.flag("pegar_seringa", true );
 
@@ -1294,6 +1324,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.registerScoreItem( Scores.pegarAgulha );
 
 
+
                 core.flag("pegar_agulha", true );
 
                 core.setInteractiveObjectVisible("io-agulha", false );
@@ -1311,6 +1342,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 Player.play( Player.audios.sfx.pegarObjeto );
 
                  core.registerScoreItem( Scores.pegarAmpola );
+
+
 
 
                 core.flag("pegar_ampola", true );
@@ -1350,8 +1383,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.registerModalScene( prontuario );
             level.registerModalScene( gaveta );
             level.registerModalScene( pulseira );
-      //      level.registerModalScene( pulseira2 );
-
 
 
         // 00
@@ -1431,20 +1462,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Pulseira.setLeito("03");
             Pulseira.setData("24/07/1937");
             Pulseira.disable();
-
-             /*// 'pulseira' content
-
-            Pulseira2.setNameRegExp( /Pedro Alcides Mendonça/ );
-            Pulseira2.setLeitoRegExp( /0*1/ );
-            Pulseira2.setDataRegExp( /03\/06\/1962/ );
-
-            Pulseira2.setName("Pedro Alcides Mendonça");
-            Pulseira2.setLeito("01");
-            Pulseira2.setData("03/06/1962");
-            Pulseira2.disable();
-*/
-
-
         });
 
         level.registerFlag( new Flag( "score_iralaFeminina_horaErrada",  false  ) );
