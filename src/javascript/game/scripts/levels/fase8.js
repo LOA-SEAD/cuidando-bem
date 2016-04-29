@@ -810,7 +810,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-testar_equipamentos")
                 .onClick(function() {
                     console.log("Action: Testar Equipamentos");
-                    //Bip
+                    // Bip
                     Player.play( Player.audios.sfx.bip );
                     // Caso falar com o paciente dê pontos:
                     /*if(core.flag("score_ofereceu_copo") == false) {

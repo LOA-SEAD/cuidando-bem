@@ -253,7 +253,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.setInteractiveObjectVisible("io-ir_leito", false );
                         core.setInteractiveObjectVisible("io-ir_corredor", true );
                         break;
-                    //Não sei o motivo, mas ele não volta o valor desta flag para 0, por isso que foi necessário a duplicação do código
+                    // Não sei o motivo, mas ele não volta o valor desta flag para 0, por isso que foi necessário a duplicação do código
                     case 2:
                         core.setInteractiveObjectVisible("io-ir_leito", true );
                         core.setInteractiveObjectVisible("io-ir_corredor", false );
@@ -265,7 +265,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     case 0:
                         core.flag("passagem_sala-de-leitos",  1 );
                         break;
-                    //Não sei o motivo, mas ele não volta o valor desta flag para 0, por isso que foi necessário a duplicação do código
+                    // Não sei o motivo, mas ele não volta o valor desta flag para 0, por isso que foi necessário a duplicação do código
                     case 1:
                         core.flag("passagem_sala-de-leitos",  2 );
                         break;
@@ -303,7 +303,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         break;
                     case 1:
                         core.setActionVisible("btn-ir_sala_leitos", false );
-                        //core.openDialog( 11 );
+                        // core.openDialog( 11 );
                         core.setActionVisible("btn-lavarMaos", true );
                         core.setInteractiveObjectVisible("io-conversar_paciente", false );
                         core.flag("termometro",  false );
@@ -451,7 +451,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Dialogs.leito.conversa2[ 7 ] )
                 .registerOption("", function() {
                     core.closeDialog( 16 );
-                    //Já que a pulseira está correta, desabilita o acesso ao paciente
+                    // Já que a pulseira está correta, desabilita o acesso ao paciente
                     core.setInteractiveObjectVisible("io-conversar_paciente", false );
                     core.openCommandBar();
                 }),
@@ -586,7 +586,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-medir_pulso")
                 .onClick(function() {
                     console.log("Action: medir_pulso");
-                    //Bip
+                    // Bip
                     Player.play( Player.audios.sfx.bip );
                     if ( core.flag("lavar-maos") >= 1 ) {
 
@@ -609,7 +609,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     // core.setActionVisible("btn-saturacao_02", false);
                     console.log("Action: medir_saturacao_02");
-                    //Bip
+                    // Bip
                     Player.play( Player.audios.sfx.bip );
 
                     if ( core.flag("lavar-maos") >= 1 ) {
@@ -631,7 +631,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-medir_freq_respiratoria")
                 .onClick(function() {
                     console.log("Action: medir_freq_respiratoria");
-                    //Tic-Tac relógio
+                    // Tic-Tac relógio
                     Player.play( Player.audios.sfx.ticTac );
                     if ( core.flag("lavar-maos") >= 1 ) {
 
@@ -655,7 +655,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-medir_temperatura")
                 .onClick(function() {
                     console.log("Action: medir_temperatura");
-                    //Bip
+                    // Bip
                     Player.play( Player.audios.sfx.bip );
                     if ( core.flag("lavar-maos") >= 1 ) {
 
@@ -919,7 +919,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-pulseira_paciente")
                 .onClick(function() {
                     console.log("Ação: Fechar modal pulseira");
-                    //Como o jogador pode não ter visto os dados do paciente, é fechada a modal scene da pulseira
+                    // Como o jogador pode não ter visto os dados do paciente, é fechada a modal scene da pulseira
                     core.closeModalScene("Pulseira");
                     Pulseira.close();
                     if ( Pulseira.isAllDataValid() ) {
@@ -928,8 +928,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             core.setActionVisible("btn-ir_sala_leitos", true );
                         }
                         Pulseira.disable();
-                        //Para conversar com o paciente e registrar a pontuação apenas uma vez 
-                        if ( core.flag("conversouPacienteSegundaVez") == false ){
+                        // Para conversar com o paciente e registrar a pontuação apenas uma vez
+                        if ( core.flag("conversouPacienteSegundaVez") == false ) {
                             core.flag("conversouPacienteSegundaVez",  true );
                             core.registerScoreItem( Scores.tutorial.identificarPaciente );
                             core.openDialog( 11 );
