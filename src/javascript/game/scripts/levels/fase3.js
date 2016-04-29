@@ -109,12 +109,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.flag("conversar_mentor",  true );
                     core.openDialog( 0 );
                 }
-                //Desabilita o mentor por um tempinho
-                if ( core.flag("testar_equipamentos") == true && 
+                // Desabilita o mentor por um tempinho
+                if ( core.flag("testar_equipamentos") == true &&
                     core.flag("conversarPaciente") == true ) {
                     core.setInteractiveObjectVisible("io-conversar_mentor", false );
                 }
-                //Reabilita o mentor para o final da fase
+                // Reabilita o mentor para o final da fase
                 if ( core.flag("fim_fase") == true ) {
                     core.setInteractiveObjectVisible("io-conversar_mentor", true );
                 }
@@ -310,7 +310,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("testar_equipamentos") == false ) {
                         core.openDialog( 0 );
                     } else {
-                        if ( core.flag("testar_equipamentos") == true && 
+                        if ( core.flag("testar_equipamentos") == true &&
                             core.flag("conversarPaciente") == false ) {
                             // segunda passada
                             core.openDialog( 5 );
@@ -436,7 +436,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-carrinho_anestesico", "Testar Equipamentos")
                 .setCssClass("intObj-carrinho_anestesico")
                 .onClick(function() {
-                    //Bip
+                    // Bip
                     Player.play( Player.audios.sfx.bip );
                     if ( core.flag("lavar_maos_cirurgica") == false ) {
                         core.openDialog( 5 );
@@ -512,7 +512,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                 console.log("Load scene: " + alaFeminina.getName() );
                 if ( core.flag("conversarPaciente") == true ) {
-                    //Desabilita conversar novamente com a Regina
+                    // Desabilita conversar novamente com a Regina
                     core.setInteractiveObjectVisible("io-conversar_com_paciente", false );
                 }
             });
@@ -717,9 +717,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     // Som
                     Player.play( Player.audios.sfx.mesaComRodinha );
-                    //Só aqui é habilitado a Regina ir para o centro cirurgico
+                    // Só aqui é habilitado a Regina ir para o centro cirurgico
                     core.flag("conversarPaciente",  true );
-                    //Desabilita conversar novamente com a Regina
+                    // Desabilita conversar novamente com a Regina
                     core.setInteractiveObjectVisible("io-conversar_paciente04", false );
                     core.closeDialog();
                 }),
@@ -782,7 +782,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-pegar_oximetro")
                 .onClick(function() {
                     console.log("Action: Verificando Paciente");
-                    //Bip
+                    // Bip
                     Player.play( Player.audios.sfx.bip );
                     core.flag("verificar_oximetro_local_cirurgia",  true );
                 })
@@ -1091,7 +1091,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Prontuario.close();
                     core.closeModalScene("Prontuario");
 
-                    if ( core.flag("verificar_oximetro_local_cirurgia") == true && 
+                    if ( core.flag("verificar_oximetro_local_cirurgia") == true &&
                         core.flag("colocar_placa_neutra") == true ) {
                         core.flag("fim_fase",  true );
                     }

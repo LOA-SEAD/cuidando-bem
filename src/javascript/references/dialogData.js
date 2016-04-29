@@ -823,9 +823,9 @@ define({
             "Aqui está. Boa sorte!",
             // 3 MENTOR ALERTA
             "Você está se esquecendo de uma etapa muito importante!",
-            // 4 
-            "Você deve pegar os medicamentos para auxiliar o paciente.",
-            
+            // 4
+            "Você deve pegar os medicamentos para auxiliar o paciente."
+
         ],
         leitoPaciente: [
             // 0 Jogador

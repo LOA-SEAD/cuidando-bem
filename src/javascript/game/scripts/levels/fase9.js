@@ -61,7 +61,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.changeScene( 1 );
 
             })
-            .setVisibility( true ),
+            .setVisibility( true )
 
         ]);
 
@@ -102,7 +102,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.changeScene( 1 );
 
 
-            }),
+            })
 
 
 
@@ -236,11 +236,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         function corredorIrAlaMasculina() {
 
-            if(core.flag("pegou_tudo_postoEnfermagem") == true && core.flag("trocou_de_leito") == false){
+            if ( core.flag("pegou_tudo_postoEnfermagem") == true && core.flag("trocou_de_leito") == false ) {
 
-                    core.changeScene(9);
-            }
-            else if(core.flag("trocou_de_leito") == true || core.flag("conversar_paciente") == false || core.flag("conferirMedicamento") == true) {
+                    core.changeScene( 9 );
+            } else if ( core.flag("trocou_de_leito") == true || core.flag("conversar_paciente") == false || core.flag("conferirMedicamento") == true ) {
 
                 core.changeScene( 2 );
 
@@ -281,7 +280,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             ]);
 
 
-            alaMasculina2.registerActions ([
+            alaMasculina2.registerActions([
 
                 new Action("btn-lavarMaos", "Lavar as mãos")
             .setCssClass("action-lavarMaos")
@@ -295,7 +294,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }
 
             })
-            .setVisibility( false ),
+            .setVisibility( false )
 
             ]);
 
@@ -322,8 +321,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.flag("conversar_paciente", true );
 
 
-                }
-                else if( core.flag( "trocou_de_leito" ) == true )
+                } else if ( core.flag( "trocou_de_leito" ) == true )
 
             {
 
@@ -482,7 +480,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }
 
             })
-            .setVisibility( false ),
+            .setVisibility( false )
 
 
         ]);
@@ -510,16 +508,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
 
-                 }
-
-                else if(core.flag("pegou_tudo_postoEnfermagem") == true || core.flag("trocou_de_leito") == true || core.flag("conferirMedicamento") == true) {
+                 } else if ( core.flag("pegou_tudo_postoEnfermagem") == true || core.flag("trocou_de_leito") == true || core.flag("conferirMedicamento") == true ) {
 
                      core.setInteractiveObjectVisible("io-pegarFrascoDieta", false );
                      core.setInteractiveObjectVisible("io-cloretoSodio_20_10ml", false );
                      core.setActionVisible("btn-conferirMedicamento", false );
 
-                }
-                else {
+                } else {
 
                      core.openDialog( 0 );
                     core.setInteractiveObjectVisible("io-pegarFrascoDieta", true );
@@ -627,7 +622,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }
 
             })
-            .setVisibility( true ),
+            .setVisibility( true )
 
 
         ]);
@@ -640,23 +635,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
 
-                        if(core.flag("pegar_prescricao_medica") == false){
+                        if ( core.flag("pegar_prescricao_medica") == false ) {
 
 
-                            core.changeScene(1);
+                            core.changeScene( 1 );
 
-                      }
-
-                        else if(core.flag("pegarNACL") == false || core.flag("pegarFrascoSG") == false ) {
+                      } else if ( core.flag("pegarNACL") == false || core.flag("pegarFrascoSG") == false ) {
 
                             core.openDialog( 6 );
-                        }
-
-                        else if(core.flag("conferirMedicamento") == false){
-                            core.openDialog(3);
-                        }
-                        else
-                            core.changeScene(1);
+                        } else if ( core.flag("conferirMedicamento") == false ) {
+                            core.openDialog( 3 );
+                        } else
+                            core.changeScene( 1 );
 
 
 
@@ -675,7 +665,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openDialog( 3 );
                 } else if ( (core.flag("pegarFrascoSG") == true) && (core.flag("pegarNACL") == true) ) {
 
-                           if(core.flag("conferirMedicamento") == false) {
+                           if ( core.flag("conferirMedicamento") == false ) {
 
                             core.flag("conferirMedicamento", true );
                             core.registerScoreItem( Scores.conferirDieta );
@@ -697,11 +687,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
 
                   console.log("Load scene: " + postoDeEnfermagem.getName() );
-               if(core.flag("conferirMedicamento") == false){
+               if ( core.flag("conferirMedicamento") == false ) {
 
                     core.setInteractiveObjectVisible("io-abrir_gaveta", false );
                     core.setInteractiveObjectVisible("io-pegar_bandeja", false );
-                    core.openDialog(2);
+                    core.openDialog( 2 );
 
 
             if ( core.flag("score_irPosto_horaErrada") == false ) {
@@ -716,13 +706,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
 
-                 }
-                 else if(core.flag("pegou_tudo_postoEnfermagem") == true) {
+                 } else if ( core.flag("pegou_tudo_postoEnfermagem") == true ) {
                      core.setInteractiveObjectVisible("io-abrir_gaveta", true );
 
                      core.setInteractiveObjectVisible("io-pegar_bandeja", false );
-                    }
-                else
+                    } else
                     core.setInteractiveObjectVisible("io-abrir_gaveta", true );
                      core.setInteractiveObjectVisible("io-pegar_bandeja", true );
 
@@ -792,8 +780,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onClick(function() {
 
 
-                if(core.flag("pegar_prescricao_medica") == false ){
-                    core.changeScene(1);
+                if ( core.flag("pegar_prescricao_medica") == false ) {
+                    core.changeScene( 1 );
+                }
 
 
             })
@@ -835,10 +824,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onClick(function() {
 
 
-                if(core.flag("trocou_de_leito") == true)
+                if ( core.flag("trocou_de_leito") == true )
                     core.changeScene( 2 );
                 else
-                    core.openDialog(7);
+                    core.openDialog( 7 );
 
 
             })
@@ -951,7 +940,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setText( Alertas.esqueceu.falarPaciente )
             .registerOption("", function() {
                 core.closeDialog();
-            }),
+            })
 
 
 
@@ -1057,11 +1046,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
 
-                     core.openDialog(0);
+                     core.openDialog( 0 );
 
-            if(core.flag("falar_paciente_correto") == false) {
+            if ( core.flag("falar_paciente_correto") == false ) {
 
-                core.flag("falar_paciente_correto", true);
+                core.flag("falar_paciente_correto", true );
                 core.registerScoreItem( Scores.conversarPacienteLeito );
 
             }
@@ -1090,7 +1079,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
                 })
-                .setVisibility( true ),
+                .setVisibility( true )
 
      ]);
 

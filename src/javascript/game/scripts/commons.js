@@ -73,7 +73,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                     raul: new Scene("leito_03", "scene-leito-char-03")
                         .setCssClass("scene-bedChar03"),
-                    
+
                     raul_leito01: new Scene("leito_01", "scene-leito-char-03-01")
                         .setCssClass("scene-bedChar03-01"),
 

@@ -209,7 +209,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }),
             // 2 Mentor Ação errada: Ir ao posto de enfermagem
             new Dialog( lib.characters.mentor )
-                .setText( Alertas.perdido.enfermagem[1] )
+                .setText( Alertas.perdido.enfermagem[ 1 ] )
                 .registerOption("", function() {
                     core.closeDialog();
                 })
@@ -224,8 +224,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.setInteractiveObjectVisible("io-ir_corredor", true );
                 core.setActionVisible("btn-ler_prontuario", true );
 
-                //Só após ter ido no posto de enfermagem é que libera a ida ao leito do paciente
-                if (core.flag("score_falou_com_mentor") == false) {
+                // Só após ter ido no posto de enfermagem é que libera a ida ao leito do paciente
+                if ( core.flag("score_falou_com_mentor") == false ) {
                     core.openDialog( 0 );
                 } else {
                     core.setActionVisible("btn-lavarMaos", true );
@@ -823,7 +823,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
 
                 })
-                .setVisibility( false ), 
+                .setVisibility( false ),
 
             new Action("btn-visualizarFolheto", "Visualizar o folheto dos 9 certos")
                 .setCssClass("action-visualizar_folheto")

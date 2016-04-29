@@ -843,7 +843,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.openDialog( 2 );
                     } else {
                         Prontuario.close();
-                        //core.setActionVisible("btn-fechar_prontuario", false );
+                        // core.setActionVisible("btn-fechar_prontuario", false );
                         if ( core.flag("score_colocar_gotejamento") == true ) {
                             core.unlockLevel( 7 );
                             core.closeCommandBar();
