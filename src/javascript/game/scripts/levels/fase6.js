@@ -38,13 +38,25 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             gaveta,
             pulseira,
             prontuario,
-            zoom;
+            zoom,
+            frascoDieta;
 
 
         var centroCirurgico = lib.scenes.centroCirurgico.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + centroCirurgico.getName() );
             });
+
+        centroCirurgico.registerActions([
+            new Action("btn-ir_corredor", "Ir ao corredor")
+                .setCssClass("action-ir_corredor")
+                .onClick(function() {
+                    console.log("Action: ir_corredor");
+                    // Voltar para o corredor
+                    core.changeScene( 1 );
+                })
+                .setVisibility( true )
+        ]);
 
         function corredorIrCentroCirurgico() {
             core.changeScene( 6 );
@@ -215,12 +227,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick( corredorIrPostoEnfermagem )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_ala_feminina", "Ir para a Ala Feminina")
+            new InteractiveObject("io-ir_ala_feminina", "Ir para a Enfermaria Feminina")
                 .setCssClass("intObj-goToAlaFeminina")
                 .onClick( corredorIrAlaFeminina )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_alaMasculina", "Ir para a Ala Masculina")
+            new InteractiveObject("io-ir_alaMasculina", "Ir para a Enfermaria Masculina")
                 .setCssClass("intObj-goToAlaMasculina")
                 .onClick( corredorIrAlaMasculina )
                 .setVisibility( true ),
@@ -254,7 +266,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.changeScene( 5 );
             }
 
-            /* if(core.flag("pegarDieta").getValue() == true && core.getFlag("conferirDieta") == true)
+            /* if(core.flag("pegarDieta") == true && core.flag("conferirDieta") == true)
                     core.changeScene(6);
             else
                 {
@@ -402,6 +414,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Dialogs.farmacia[ 2 ] )
                 .registerOption("", function() {
                     core.closeDialog();
+                    // Ativando o frasco de dieta e o seu botão para conferí-lo
+                    core.setInteractiveObjectVisible("io-frasco_de_dieta", true );
+                    core.openCommandBar();
                 }),
 
             // 2
@@ -441,6 +456,23 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
         ]);
 
+        farmacia.registerInteractiveObjects([
+            // Frasco de dieta
+            new InteractiveObject("io-frasco_de_dieta", "Pegar frasco de dieta")
+                .setCssClass("intObj-frasco_de_dieta")
+                .onClick(function() {
+                    // Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
+                    if ( core.flag("pegarDieta") == false ) {
+                        core.flag("pegarDieta",  true );
+                        core.registerScoreItem( Scores.pegarDieta );
+                    }
+                    console.log("GANHA 50 PONTOS");
+                    core.setInteractiveObjectVisible("io-frasco_de_dieta", false );
+                })
+                .setVisibility( false )
+        ]);
+
         farmacia.registerActions([
             new Action("btn-ir_corredor", "Ir ao corredor")
                .setCssClass("action-ir_corredor")
@@ -454,27 +486,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.openDialog( 4 );
                     }
 
-                    if ( core.flag("pegarDieta").getValue() == true && core.getFlag("conferirDieta") == false ) {
+                    if ( core.flag("pegarDieta") == true && core.flag("conferirDieta") == false ) {
                         core.openDialog( 5 );
                     }
 
-                    if ( core.flag("pegarDieta").getValue() == true && core.getFlag("conferirDieta") == true ) {
+                    if ( core.flag("pegarDieta") == true && core.flag("conferirDieta") == true ) {
                         core.changeScene( 1 );
                     }
                 }),
 
-            new Action("btn-pegarFrascoDieta", "Pegar Frasco de Dieta")
-                .setCssClass("action-frasco_dieta")
-                .onClick(function() {
-                    // Som
-                    Player.play( Player.audios.sfx.pegarObjeto );
-                    core.flag("pegarDieta",  true );
-                    core.registerScoreItem( Scores.pegarDieta );
-                    console.log("GANHA 50 PONTOS");
-                }),
-
             new Action("btn-conferirMedicamento", "Conferir Dieta Prescrita")
-                .setCssClass("action-conferirDieta")
+                .setCssClass("action-frasco_dieta")
                 .onClick(function() {
                     if ( core.flag("pegarDieta") == false ) {
 
@@ -482,7 +504,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.flag("conferirDieta",  true );
                         core.registerScoreItem( Scores.conferirDieta );
                         console.log("GANHA 150 PONTOS");
-                        core.openDialog( 2 );
+                        core.openModalScene("conferirFrascoDieta");
                     }
                 })
            ]);
@@ -493,7 +515,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
       console.log("Load scene: " + postoDeEnfermagem.getName() );
 
-      //     if(core.flag("ler_prontuario").getValue() == false || core.getFlag("conferirDieta") == false)
+      //     if(core.flag("ler_prontuario") == false || core.flag("conferirDieta") == false)
 
   });
 
@@ -584,6 +606,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }
 
                 core.flag("score_lavarMaos1",  true );
+            })
+            .setVisibility( true ),
+
+        new Action("btn-ler_prontuario", "Ler prontuario")
+            .setCssClass("action-ler_prontuario")
+            .onClick(function() {
+                console.log("Action: ler prontuario");
+                Prontuario.open();
+                core.openModalScene("Prontuario");
             })
             .setVisibility( true )
 
@@ -808,13 +839,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-fechar_prontuario", "Fechar prontuário")
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
-                    if ( core.flag("pegou_tudo_postoEnfermagem") == false ) {
+                    if ( core.flag("pegarDieta") == false ) {
                         core.openDialog( 2 );
                     } else {
                         Prontuario.close();
-                        core.setActionVisible("btn-fechar_prontuario", false );
-                        core.unlockLevel( 7 );
-                        core.showEndOfLevel();
+                        //core.setActionVisible("btn-fechar_prontuario", false );
+                        if ( core.flag("score_colocar_gotejamento") == true ) {
+                            core.unlockLevel( 7 );
+                            core.closeCommandBar();
+                            core.showEndOfLevel();
+                        }
                     }
                     console.log("Action: Fechar prontuario");
                     Prontuario.close();
@@ -842,8 +876,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         (core.flag("pegar_equipoCorreto") == true) )  {
 
                         core.openDialog( 0 );
-                        core.openDialog( 0 );
-                        core.flag("pegou_tudo_postoEnfermagem",  true );
+                        /*core.openDialog( 0 );
+                        core.flag("pegou_tudo_postoEnfermagem",  true );*/
                         core.flag("pegou_tudo_postoEnfermagem",  true );
                     }
                 })
@@ -929,10 +963,24 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setVisibility( true )
     ]);
 
+        frascoDieta = new Scene("conferirFrascoDieta", "Conferir Frasco de Dieta")
+            .setCssClass("modalScene-frascoDieta");
+
+        frascoDieta.registerActions([
+            new Action("btn-fechar_zoom", "Finalizar conferição")
+                .setCssClass("action-frasco_dieta")
+                .onClick(function() {
+                    console.log("Action: Finalizar conferição");
+                    core.closeModalScene("conferirFrascoDieta");
+                    core.openDialog( 2 );
+                })
+        ]);
+
 
         level.registerModalScene( prontuario );
         level.registerModalScene( gaveta );
         level.registerModalScene( pulseira );
+        level.registerModalScene( frascoDieta );
 
 
         // 0
@@ -1029,6 +1077,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "score_verificar_pulseira",  false  ) );
         level.registerFlag( new Flag( "score_falarComPaciente",  false  ) );
         level.registerFlag( new Flag( "score_pegar_suporte_soro",  false  ) );
+        level.registerFlag( new Flag( "score_elevar_cama",  false  ) );
         level.registerFlag( new Flag( "score_verificar_sonda",  false  ) );
         level.registerFlag( new Flag( "score_administrar_dieta",  false  ) );
         level.registerFlag( new Flag( "score_colocar_gotejamento",  false  ) );

@@ -222,7 +222,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         }
 
         corredor.registerInteractiveObjects([
-            new InteractiveObject("io-ir_sala_leitos", "Ir para a sala de Leitos Masculino")
+            new InteractiveObject("io-ir_sala_leitos", "Ir para a Enfermaria Masculina")
                 .setCssClass("intObj-goToBedroom")
                 .onClick( corredorIrSalaLeitos )
                 .setVisibility( visibility ),
@@ -253,6 +253,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.setInteractiveObjectVisible("io-ir_leito", false );
                         core.setInteractiveObjectVisible("io-ir_corredor", true );
                         break;
+                    //Não sei o motivo, mas ele não volta o valor desta flag para 0, por isso que foi necessário a duplicação do código
+                    case 2:
+                        core.setInteractiveObjectVisible("io-ir_leito", true );
+                        core.setInteractiveObjectVisible("io-ir_corredor", false );
+                        break;
                 }
             })
             .onUnload(function() {
@@ -260,8 +265,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     case 0:
                         core.flag("passagem_sala-de-leitos",  1 );
                         break;
+                    //Não sei o motivo, mas ele não volta o valor desta flag para 0, por isso que foi necessário a duplicação do código
                     case 1:
-                        core.flag("passagem_sala-de-leitos",  0 );
+                        core.flag("passagem_sala-de-leitos",  2 );
                         break;
                 }
             });
@@ -297,11 +303,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         break;
                     case 1:
                         core.setActionVisible("btn-ir_sala_leitos", false );
-                        core.openDialog( 11 );
+                        //core.openDialog( 11 );
+                        core.setActionVisible("btn-lavarMaos", true );
+                        core.setInteractiveObjectVisible("io-conversar_paciente", false );
                         core.flag("termometro",  false );
                         core.flag("medidor-pressao",  false );
                         core.flag("oximetro",  false );
                         core.flag("relogio",  false );
+                        core.openCommandBar();
                         break;
                 }
             })
@@ -442,7 +451,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Dialogs.leito.conversa2[ 7 ] )
                 .registerOption("", function() {
                     core.closeDialog( 16 );
-                    core.setActionVisible("btn-lavarMaos", true );
+                    //Já que a pulseira está correta, desabilita o acesso ao paciente
+                    core.setInteractiveObjectVisible("io-conversar_paciente", false );
                     core.openCommandBar();
                 }),
             // Dialog 17 - Mentor
@@ -525,16 +535,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
                 .setCssClass("action-ir_sala_de_leitos")
                 .onClick(function() {
-                    if ( Pulseira.isAllDataValid() ) {
+                    core.changeScene( 2 );
+                    /*if ( Pulseira.isAllDataValid() ) {
                         console.log("Action: action-ir_sala_de_leitos");
                         core.registerScoreItem( Scores.tutorial.identificarPaciente );
                         core.changeScene( 2 );
                         Pulseira.disable();
+                        core.openDialog( 11 );
                     } else {
                         core.closeCommandBar();
                         core.openDialog( 17 );
                         console.log("Alguns dados da pulseira estão incorretos");
-                    }
+                    }*/
                 })
                 .setVisibility( visibility ),
 
@@ -574,6 +586,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-medir_pulso")
                 .onClick(function() {
                     console.log("Action: medir_pulso");
+                    //Bip
+                    Player.play( Player.audios.sfx.bip );
                     if ( core.flag("lavar-maos") >= 1 ) {
 
                         // core.setActionVisible("btn-medir_pulso", false);
@@ -595,6 +609,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     // core.setActionVisible("btn-saturacao_02", false);
                     console.log("Action: medir_saturacao_02");
+                    //Bip
+                    Player.play( Player.audios.sfx.bip );
 
                     if ( core.flag("lavar-maos") >= 1 ) {
 
@@ -615,6 +631,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-medir_freq_respiratoria")
                 .onClick(function() {
                     console.log("Action: medir_freq_respiratoria");
+                    //Tic-Tac relógio
+                    Player.play( Player.audios.sfx.ticTac );
                     if ( core.flag("lavar-maos") >= 1 ) {
 
                         // core.setActionVisible("btn-frequencia_respiratoria", false);
@@ -637,6 +655,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-medir_temperatura")
                 .onClick(function() {
                     console.log("Action: medir_temperatura");
+                    //Bip
+                    Player.play( Player.audios.sfx.bip );
                     if ( core.flag("lavar-maos") >= 1 ) {
 
                         // core.setActionVisible("btn-medir_temperatura", false);
@@ -899,11 +919,26 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-pulseira_paciente")
                 .onClick(function() {
                     console.log("Ação: Fechar modal pulseira");
+                    //Como o jogador pode não ter visto os dados do paciente, é fechada a modal scene da pulseira
                     core.closeModalScene("Pulseira");
-                    if ( core.flag("visita-leito") == 0 ) {
-                        core.setActionVisible("btn-ir_sala_leitos", true );
-                    }
                     Pulseira.close();
+                    if ( Pulseira.isAllDataValid() ) {
+                        console.log("Action: action-ir_sala_de_leitos");
+                        if ( core.flag("visita-leito") == 0 ) {
+                            core.setActionVisible("btn-ir_sala_leitos", true );
+                        }
+                        Pulseira.disable();
+                        //Para conversar com o paciente e registrar a pontuação apenas uma vez 
+                        if ( core.flag("conversouPacienteSegundaVez") == false ){
+                            core.flag("conversouPacienteSegundaVez",  true );
+                            core.registerScoreItem( Scores.tutorial.identificarPaciente );
+                            core.openDialog( 11 );
+                        }
+                    } else {
+                        core.closeCommandBar();
+                        core.openDialog( 17 );
+                        console.log("Alguns dados da pulseira estão incorretos");
+                    }
                 })
                 .setVisibility( true )
         ]);
@@ -1044,6 +1079,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("medidor-pressao", false ) );
         level.registerFlag( new Flag("oximetro", false ) );
         level.registerFlag( new Flag("relogio", false ) );
+        level.registerFlag( new Flag("conversouPacienteSegundaVez", false ) );
 
         level.registerFlag( new Flag("mediuTemperatura", false ) );
         level.registerFlag( new Flag("mediuPressao", false ) );

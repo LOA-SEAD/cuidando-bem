@@ -185,7 +185,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
         corredor.registerInteractiveObjects([
-            new InteractiveObject("io-ir_sala_leitos", "Ir para a sala de Leitos Masculino")
+            new InteractiveObject("io-ir_sala_leitos", "Ir para a Enfermaria Masculina")
                 .setCssClass("intObj-goToAlaMasculina")
                 .onClick( corredorIrSalaLeitos )
                 .setVisibility( true ),
@@ -195,7 +195,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick( corredorIrPostoEnfermagem )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_ala_feminina", "Ir para a Ala Feminina")
+            new InteractiveObject("io-ir_ala_feminina", "Ir para a Enfermaria Feminina")
                 .setCssClass("intObj-goToAlaFeminina")
                 .onClick( corredorIrAlaFeminina )
                 .setVisibility( true ),
@@ -221,18 +221,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                 console.log("Entrando na sala de leitos");
                 // Na primeira vez o leito vai estar desabilitado e ocorrerá uma conversa com o paciente
-                if ( core.flag("segunda_ida_leito_paciente") == false ) {
-                    core.setInteractiveObjectVisible("io-ir_leito", false );
-                    core.openDialog( 0 );
-                } else {
+                if ( core.flag("segunda_ida_leito_paciente") == true ) {
+                    /*core.setInteractiveObjectVisible("io-ir_leito", false );
+                    //core.openDialog( 0 );
+                } else {*/
                     core.setInteractiveObjectVisible("io-ir_leito", true );
-                    core.setActionVisible("btn-lavarMaos", true );
                     if ( core.flag("tem_fala") == false ) {
                         core.openCommandBar();
                     }
                 }
                 // Caso ele já tenha realizado os procedimentos, são habilitados os botões de descarte dos itens utilizados
-                if ( (core.flag("score_explicou_resultado") == true) ) {
+                if ( (core.flag("score_explicou_resultado") == true ) ) {
                     core.setActionVisible("btn-jogar_algodao_lixo", true );
                     core.setActionVisible("btn-jogar_agulha_perfuro", true );
                     core.setActionVisible("btn-elevar_grade_cama", true );
@@ -263,11 +262,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-ir_leito", "Ir ao leito")
                 .setCssClass("intObj-ir_leito-fase2")
                 .onClick(function() {
-                    if ( core.flag("lavar_maos2") == false ) {
-                        // Mentor corrige
-                        core.openDialog( 3 );
+                    if ( core.flag("segunda_ida_leito_paciente") == false ){
+                        core.openDialog( 0 );
                     } else {
-                        core.changeScene( 3 );
+                        if ( core.flag("lavar_maos2") == false ) {
+                            // Mentor corrige
+                            core.openDialog( 3 );
+                        } else {
+                            core.changeScene( 3 );
+                        } 
                     }
                 })
                 .setVisibility( true ),
@@ -419,7 +422,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         }
                     }
                 })
-                .setVisibility( true ),
+                .setVisibility( false ),
 
 
             new Action("btn-ler_prontuario", "Ler prontuario")
@@ -438,15 +441,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.openModalScene("Prontuario");
                     }
                 })
-                .setVisibility( true ),
+                .setVisibility( false ),
 
 
             new Action("btn-jogar_agulha_perfuro", "Descartar Agulha")
-                // CONSERTAR
                 .setCssClass("action-agulha_40x12")
                 .onClick(function() {
 
                   core.flag("descartar_agulha",  true );
+                  core.flag("descartar_algodao",  false );
 
                     core.setActionVisible("btn-lavarMaos", false );
                     core.setActionVisible("btn-jogar_algodao_lixo",  false );
@@ -469,9 +472,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: Descartar Algodão");
 
 
-                        core.flag("descartar_algodao",  true );
+                    core.flag("descartar_algodao",  true );
+                    core.flag("descartar_agulha",  false );
 
-                     core.setActionVisible("btn-lavarMaos", false );
+                    core.setActionVisible("btn-lavarMaos", false );
                     core.setActionVisible("btn-jogar_algodao_lixo",  false );
                     core.setActionVisible("btn-jogar_agulha_perfuro",  false );
                     core.setActionVisible("btn-elevar_grade_cama",  false );
@@ -526,29 +530,36 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-lixoComum", "Lixo Comum")
                 .setCssClass("action-lixo_comum")
                 .onClick(function() {
-                    // score
+
+                    //Independente do que se está jogando aqui está errado
+                    core.openDialog( 7 );
+
+                    core.setActionVisible("btn-lixoComum", false );
+                    core.setActionVisible("btn-lixoInfectante", false  );
+                    core.setActionVisible("btn-perfuroCortante", false  );
+
+
+                    core.setActionVisible("btn-lavarMaos", true );
+                    core.setActionVisible("btn-elevar_grade_cama", true );
+                    core.setActionVisible("btn-anotarProntuario", true );
+                    core.setActionVisible("btn-jogar_agulha_perfuro", true );
+                    core.setActionVisible("btn-jogar_algodao_lixo", true );
 
                     if ( core.flag("descartar_algodao") == true ) {
-
-                        core.setActionVisible("btn-lixoComum", false );
-                        core.setActionVisible("btn-lixoInfectante", false  );
-                        core.setActionVisible("btn-perfuroCortante", false  );
-
-
-                        core.setActionVisible("btn-lavarMaos", true );
-                        core.setActionVisible("btn-jogar_algodao_lixo", false );
-                        core.setActionVisible("btn-jogar_agulha_perfuro", true );
-                        core.setActionVisible("btn-ler_prontuario", true );
-                        core.setActionVisible("btn-elevar_grade_cama", true );
-                        core.setActionVisible("btn-anotarProntuario", true );
-
-                        if ( core.flag("descartar_agulha") == true ) {
-                            core.setActionVisible("btn-jogar_agulha_perfuro", false );
+                        if ( core.flag("score_jogou_algodao_errado") == false ){
+                            core.flag("score_jogou_algodao_errado",  true );
+                            core.registerScoreItem( Scores.algodaoLixoErrado );
+                            core.setActionVisible("btn-jogar_algodao_lixo", false );
                         }
-                    } else {
-                         core.openDialog( 7 );
                     }
 
+                    if ( core.flag("descartar_agulha") == true ) {
+                        if ( core.flag("score_jogou_agulha_errado") == false ){
+                            core.flag("score_jogou_agulha_errado",  true );
+                            core.registerScoreItem( Scores.agulhaLixoErrado );
+                            core.setActionVisible("btn-jogar_agulha_perfuro", false );
+                        }
+                    }
 
                 })
                 .setVisibility( false ),
@@ -558,9 +569,33 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-lixo_infectante")
                 .onClick(function() {
 
-                        core.openDialog( 7 );
-                    // fazer score?
+                    core.setActionVisible("btn-lixoComum", false );
+                    core.setActionVisible("btn-lixoInfectante", false  );
+                    core.setActionVisible("btn-perfuroCortante", false  );
 
+
+                    core.setActionVisible("btn-lavarMaos", true );
+                    core.setActionVisible("btn-elevar_grade_cama", true );
+                    core.setActionVisible("btn-anotarProntuario", true );
+                    core.setActionVisible("btn-jogar_agulha_perfuro", true );
+                    core.setActionVisible("btn-jogar_algodao_lixo", true );
+
+                    if ( core.flag("descartar_algodao") == true ) {
+                        if ( core.flag("score_jogou_algodao_lixo") == false ){
+                            core.flag("score_jogou_algodao_lixo",  true );
+                            core.registerScoreItem( Scores.algodaoLixoCerto );
+                            core.setActionVisible("btn-jogar_algodao_lixo", false );
+                        }
+                    }
+
+                    if ( core.flag("descartar_agulha") == true ) {
+                        if ( core.flag("score_jogou_agulha_errado") == false ){
+                            core.flag("score_jogou_agulha_errado",  true );
+                            core.registerScoreItem( Scores.agulhaLixoErrado );
+                            core.setActionVisible("btn-jogar_agulha_perfuro", false );
+                            core.openDialog( 7 );
+                        }
+                    }
                 })
                 .setVisibility( false ),
 
@@ -569,28 +604,31 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-lixo_perfuro_cortante")
                 .onClick(function() {
 
+                    core.setActionVisible("btn-lixoComum", false );
+                    core.setActionVisible("btn-lixoInfectante", false  );
+                    core.setActionVisible("btn-perfuroCortante", false  );
 
-                            if ( core.flag("descartar_agulha") == true ) {
+                    core.setActionVisible("btn-lavarMaos", true );
+                    core.setActionVisible("btn-elevar_grade_cama", true );
+                    core.setActionVisible("btn-anotarProntuario", true );
+                    core.setActionVisible("btn-jogar_agulha_perfuro", true );
+                    core.setActionVisible("btn-jogar_algodao_lixo", true );
 
+                    if ( core.flag("descartar_algodao") == true ) {
+                        if ( core.flag("score_jogou_algodao_errado") == false ){
+                            core.flag("score_jogou_algodao_errado",  true );
+                            core.registerScoreItem( Scores.algodaoLixoErrado );
+                            core.setActionVisible("btn-jogar_algodao_lixo", false );
+                            core.openDialog( 7 );
+                        }
+                    }
 
-                                core.setActionVisible("btn-lixoComum", false );
-                                core.setActionVisible("btn-lixoInfectante", false  );
-                                core.setActionVisible("btn-perfuroCortante", false  );
-
-                                core.setActionVisible("btn-lavarMaos", true );
-                                core.setActionVisible("btn-jogar_algodao_lixo", true );
-                                core.setActionVisible("btn-jogar_agulha_perfuro", false );
-                                core.setActionVisible("btn-ler_prontuario", true );
-                                core.setActionVisible("btn-elevar_grade_cama", true );
-                                core.setActionVisible("btn-anotarProntuario", true );
-
-                                if ( core.flag("descartar_algodao") == true ) {
-                                    core.setActionVisible("btn-jogar_algodao_lixo", false );
-                                }
-
-                            } else {
-
-                         core.openDialog( 7 );
+                    if ( core.flag("descartar_agulha") == true ) {
+                        if ( core.flag("score_jogou_agulha_perfuro") == false ){
+                            core.flag("score_jogou_agulha_perfuro",  true );
+                            core.registerScoreItem( Scores.agulhaLixoCerto );
+                            core.setActionVisible("btn-jogar_agulha_perfuro", false );
+                        }
                     }
 
 
@@ -612,6 +650,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Dialog( lib.characters.pacientes.raulUnknow )
                 .setText( Dialogs.alaMasculina[ 1 ] )
                 .registerOption("", function() {
+                    core.setInteractiveObjectVisible("io-ir_leito", false );
                     core.setActionVisible("btn-ler_prontuario", true );
                     core.setActionVisible("btn-lavarMaos", true );
                     core.closeDialog();
@@ -671,7 +710,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.openCommandBar();
                 console.log("Leito: Onload");
                 core.setInteractiveObjectVisible("io-pulseira_paciente", true );
-                core.setActionVisible("btn-falarPaciente", true );
+                //core.setActionVisible("btn-falarPaciente", true );
             })
             .onUnload(function() {
                 console.log("Leito: OnUnload");
@@ -687,8 +726,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.closeCommandBar();
                         core.openDialog( 15 );
                     } else {
-                        // Desabilita o primeiro diálogo com o paciente
-                        core.flag("conversar_paciente2",  false );
                         core.flag("selecionar_bandeja",  true );
                         console.log("IO: pulseira_paciente");
                         core.openModalScene("pulseira");
@@ -698,12 +735,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true ),
 
-                    new InteractiveObject("io-conversar_paciente03", "Falar com o paciente")
+            new InteractiveObject("io-conversar_paciente03", "Falar com o paciente")
                 .setCssClass("intObj-conversar_paciente")
                 .onClick(function() {
 
 
-                     if ( core.flag("conversar_paciente2") == true ) {
+                     if ( core.flag("conversar_paciente2") == false ) {
                         console.log("Action: btn-conversarPaciente");
                         if ( core.flag("score_falar_paciente") == false ) {
                             core.registerScoreItem( Scores.falarComPaciente );
@@ -714,10 +751,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     } else {
                         // Já realizou os procedimentos
                         console.log("Action: Explicar o resultado");
-                        if ( core.flag("score_realizou_teste_glicemia") == false ) {
-                            if ( core.flag("score_nao_realizou_teste_glicemia") == false ) {
+                        if ( core.flag("score_utilizou_algodao2") == false ) {
+                            if ( core.flag("score_nao_utilizou_algodao2") == false ) {
                                 core.registerScoreItem( Scores.naoUsarAlgodao2 );
-                                core.flag("score_nao_realizou_teste_glicemia",  true );
+                                core.flag("score_nao_utilizou_algodao2",  true );
                             }
                             core.closeCommandBar();
                             core.openDialog( 12 );
@@ -768,7 +805,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Dialogs.leitoPaciente[ 5 ] )
                 .registerOption("", function() {
                     core.closeDialog();
-                    core.setActionVisible("btn-selecionar_bandeja", true );
+                    //core.setActionVisible("btn-selecionar_bandeja", true );
                     core.setActionVisible("btn-por_luvas", true );
                     core.setActionVisible("btn-utilizar_algodao", true );
                     core.setActionVisible("btn-realizar_teste_glicemia", true );
@@ -883,7 +920,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true ),*/
 
-            new Action("btn-selecionar_bandeja", "Selecionar Bandeja")
+            /*new Action("btn-selecionar_bandeja", "Selecionar Bandeja")
                 // CONSERTAR
                 .setCssClass("action-selecionar_bandeja")
                 .onClick(function() {
@@ -904,26 +941,26 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         }
                     }
                 })
-                .setVisibility( false ),
+                .setVisibility( false ),*/
 
             new Action("btn-por_luvas", "Colocar Luvas")
                 .setCssClass("action-luvas_de_procedimento")
                 .onClick(function() {
                     console.log("Action: Colocar Luvas");
-                    if ( core.flag("score_selecionou_bandeja") == false ) {
+                    /*if ( core.flag("score_selecionou_bandeja") == false ) {
                         if ( core.flag("score_nao_selecionou_bandeja") == false ) {
                             core.registerScoreItem( Scores.naoSelecionarBandeja );
                             core.flag("score_nao_selecionou_bandeja",  true );
                         }
                         // Não será utilizada uma fala caso não selecione a bandeja
-                        /*core.closeCommandBar();
-                         core.openDialog(15);*/
-                    } else {
+                        // core.closeCommandBar();
+                        // core.openDialog(15);
+                    } else {*/
                         if ( core.flag("score_vestiu_luvas") == false ) {
                             core.flag("score_vestiu_luvas",  true );
                             core.registerScoreItem( Scores.porLuvas );
                         }
-                    }
+                    //}
                 })
                 .setVisibility( false ),
 
@@ -971,6 +1008,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-realizar_teste_glicemia")
                 .onClick(function() {
                     console.log("Action: Realizar teste de glicemia capilar");
+                    //Bip
+                    Player.play( Player.audios.sfx.bip );
                     if ( core.flag("score_utilizou_algodao1") == false ) {
                         if ( core.flag("score_nao_utilizou_algodao1") == false ) {
                             core.registerScoreItem( Scores.naoUsarAlgodao );
@@ -979,6 +1018,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.closeCommandBar();
                         core.openDialog( 12 );
                     } else {
+                        // Habilita o segundo diálogo com o paciente
+                        core.flag("conversar_paciente2",  true );
                         if ( core.flag("score_realizou_teste_glicemia") == false ) {
                             core.flag("score_realizou_teste_glicemia",  true );
                             core.registerScoreItem( Scores.realizarTesteGlicemia );
@@ -1026,8 +1067,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.flag("score_pegou_algodao") == true &&
                         core.flag("score_pegou_luvas") == true /*&&
                         core.flag("score_pegou_bandeja") == true*/ ) {
-                        // Libera para dialogo com o paciente
-                        core.flag("conversar_paciente2",  true );
                         if ( core.flag("pegou_tudo_gaveta") == false ) {
                             core.flag("pegou_tudo_gaveta",  true );
                         }
@@ -1284,7 +1323,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // Flags
 
         level.registerFlag( new Flag( "conversar_recepcionista",  false  ) );
-        level.registerFlag( new Flag( "conversarPaciente",  false  ) );
+        level.registerFlag( new Flag( "conversarPaciente",  true  ) );
         level.registerFlag( new Flag( "lavarMaos",  false  ) );
         level.registerFlag( new Flag( "checar_prontuario",  false  ) );
         level.registerFlag( new Flag( "frase_apos_prontuario",  false  ) );
@@ -1339,7 +1378,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "descartar_agulha",  false  ) );
         level.registerFlag( new Flag( "score_agulha",  false  ) );
         level.registerFlag( new Flag( "score_algodao",  false  ) );
-
+        level.registerFlag( new Flag( "score_jogou_agulha_errado",  false  ) );
+        level.registerFlag( new Flag( "score_jogou_algodao_errado",  false  ) );
 
         level.setInitialScene( 0 );
 

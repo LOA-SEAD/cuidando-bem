@@ -82,8 +82,7 @@ define({
                 " Está certo, seu João. Já tenho todas as informações de que preciso.",
                 // 14 Mentor
                 "Sua primeira missão é admitir o Sr. João nesta enfermaria, identificando-o" +
-                " com uma pulseira e verificando os seus sinais vitais. Antes de começar," +
-                " vá até o posto de enfermagem retirar os instrumentos necessários."
+                " com uma pulseira e verificando os seus sinais vitais. Vamos lá?"
             ],
             conversa2: [
                 // 0 Jogador op 1
@@ -106,7 +105,8 @@ define({
                 "De nada.",
                 // 7 Mentor
                 "Parabéns, você conseguiu admitir o paciente neste hospital! Agora falta algo muito importante:" +
-                " anotar os procedimentos realizados e os dados obtidos dos sinais vitais (SSVV) do paciente. Vamos lá?"
+                " anotar os procedimentos realizados e os dados obtidos dos sinais vitais (SSVV) do paciente." +
+                " Antes de começar, vá até o posto de enfermagem retirar os instrumentos necessários."
             ],
             pulseiraIncorreta: "Você tem certeza que as informações do paciente estão corretas?"
         }

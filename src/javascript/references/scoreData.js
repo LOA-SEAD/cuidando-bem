@@ -75,8 +75,10 @@ define(function() {
             naoUsarAlgodao2: new Score("Não usar algodão no momento correto", -50 ),
             explicarResultado: new Score("Explicar resultado do teste para o paciente", 150 ),
             naoExplicarResultado: new Score("Não explicar resultado do teste para o paciente no momento correto", -150 ),
-            algodaoLixoCerto: new Score("Jogar algodão no lixo branco", 50 ),
+            algodaoLixoCerto: new Score("Jogar algodão no lixo infectante", 50 ),
             agulhaLixoCerto: new Score("Jogar agulha no lixo de perfuro cortante", 50 ),
+            algodaoLixoErrado: new Score("Jogar algodão no lixo errado", -50 ),
+            agulhaLixoErrado: new Score("Jogar agulha no lixo errado", -50 ),
             elevarGradeDaCama: new Score("Elevar grade da cama", 150 ),
             lavarMaosAposLixos: new Score("Lavar as mãos após procedimentos", 200 ),
             anotarNoProntuario: new Score("Anotar no prontuário", 250 )
@@ -84,12 +86,13 @@ define(function() {
 
         level3: {
             irPostoEnfermagemHoraErrada: new Score("Ir ao posto de enfermagem sem precisar", -25 ),
-            irFarmaciaHoraErrada: new Score("Ir ao posto de enfermagem sem precisar", -25 ),
-            irAlaFemininaHoraErrada: new Score("Ir ao posto de enfermagem sem precisar", -25 ),
+            irFarmaciaHoraErrada: new Score("Ir à farmácia sem precisar", -25 ),
+            irAlaFemininaHoraErrada: new Score("Ir à ala feminina em hora indevida", -25 ),
             lavarMaosHoraErrada: new Score("Lavar mãos ao inves de lavar mãos técnica cirúrgica", -200 ),
             lavarMaosCirurgica: new Score("Lavar mãos tecnica cirurgica", 200 ),
             testarEquipamentos: new Score("Testar Equipamentos", 250 ),
             lavarMaos2: new Score("Lavar mãos antes de ir ao leito", 200 ),
+            naoLavarMaos: new Score("Não lavar mãos antes de ir ao leito", -200 ),
             irAoLeitoCorreto: new Score("Ir ao leito correto", 150 ),
             pegarProntuario: new Score("Ver e pegar prontuário", 150 ),
             encaminharPacienteCentroCirurgico: new Score("Encaminhar Paciente ao Centro Cirurgico", 150 ),
@@ -187,9 +190,9 @@ define(function() {
         },
 
         level6: {
-            scoreIrCentroCirurgicoHoraErrada: new Score("Ir para o Centro Cirugico sem precisar", -25 ),
-            scoreIrAlaFemininaHoraErrada: new Score("Ir para a Ala Feminina sem precisar", -25 ),
-            scoreIrFarmaciaHoraErrada: new Score("Ir para a Farmácia sem precisar", -25 ),
+            irCentroCirurgicoHoraErrada: new Score("Ir para o Centro Cirugico sem precisar", -25 ),
+            irAlaFemininaHoraErrada: new Score("Ir para a Ala Feminina sem precisar", -25 ),
+            irFarmaciaHoraErrada: new Score("Ir para a Farmácia sem precisar", -25 ),
             pegarDieta: new Score("Pegar a dieta do paciente", 50 ),
             conferirDieta: new Score("Conferir medicamento/dieta", 150 ),
             lavarMaos1: new Score("Lavar as mãos no posto de enfermagem", 200 ),
@@ -207,7 +210,8 @@ define(function() {
             verificarSonda: new Score("Verificar Localização da Sonda", 350 ),
             administrarDieta: new Score("Administrar Dieta", 150 ),
             colocarGotejamento: new Score("Colocar Gotejamento", 350 ),
-            anotarNoProntuario: new Score("Anotar no Prontuário", 350 )
+            anotarNoProntuario: new Score("Anotar no Prontuário", 350 ),
+            calcularInfusaoDieta: new Score("Calcular infusão da dieta corretamente", 150 )
         },
 
         level7: {

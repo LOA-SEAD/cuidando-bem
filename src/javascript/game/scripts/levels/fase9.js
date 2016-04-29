@@ -167,13 +167,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setVisibility( true ),
 
 
-            new InteractiveObject("io-ir_ala_feminina", "Ir para a Ala Feminina")
+            new InteractiveObject("io-ir_ala_feminina", "Ir para a Enfermaria Feminina")
             .setCssClass("intObj-goToAlaFeminina")
             .onClick( corredorIrAlaFeminina )
             .setVisibility( true ),
 
 
-            new InteractiveObject("io-ir_ala_masculina", "Ir para a Ala Masculina")
+            new InteractiveObject("io-ir_ala_masculina", "Ir para a Enfermaria Masculina")
             .setCssClass("intObj-goToAlaMasculina")
             .onClick( corredorIrAlaMasculina )
             .setVisibility( true )
@@ -516,7 +516,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onClick(function() {
 
 
-                if ( core.flag("pegarFrascoSG").getValue() == false || core.getFlag("pegarNACL") == false ) {
+                if ( core.flag("pegarFrascoSG") == false || core.flag("pegarNACL") == false ) {
                     core.openDialog( 3 );
                 } else {
 
@@ -552,7 +552,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                 console.log("Load scene: " + postoDeEnfermagem.getName() );
 
-                //     if(core.flag("ler_prontuario").getValue() == false || core.getFlag("conferirDieta") == false)
+                //     if(core.flag("ler_prontuario") == false || core.flag("conferirDieta") == false)
 
             });
 

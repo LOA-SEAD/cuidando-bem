@@ -209,7 +209,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
         corredor.registerInteractiveObjects([
-            new InteractiveObject("io-ir_sala_leitos", "Ir para a sala de Leitos Masculino")
+            new InteractiveObject("io-ir_sala_leitos", "Ir para a Enfermaria Masculina")
                 .setCssClass("intObj-goToBedroom")
                 .onClick( corredorIrAlaMasculina )
                 .setVisibility( true ),
@@ -219,7 +219,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick( corredorIrPostoEnfermagem )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_ala_feminina", "Ir para a Ala Feminina")
+            new InteractiveObject("io-ir_ala_feminina", "Ir para a Enfermaria Feminina")
                 .setCssClass("intObj-goToAlaFeminina")
                 .onClick( corredorIrAlaFeminina )
                 .setVisibility( true ),
@@ -556,6 +556,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-realizar_teste_glicemia")
                 .onClick(function() {
                     console.log("Action: Fazer teste de glicemia capilar");
+                    //Bip
+                    Player.play( Player.audios.sfx.bip );
                     // Desabilita acesso a pulseira
                     Pulseira.disable();
                     if ( core.flag("score_verificar_pulseira") == false ) {
@@ -1106,7 +1108,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setDataInternacao("02/11/2015");
             Prontuario.setLeito("02 - Enfermaria Feminina");
             Prontuario.setAntecedentes("Quatro internações devido à quadro de hiperglicemia entre os anos de 2012 à 2013.");
-            Prontuario.setHipotese("Acidente vascular encefálico isquêmico (AVCI).");
+            Prontuario.setHipotese("Acidente vascular encefálico isquêmico (AVCI). Possui lesão no braço esquerdo devido à queda.");
             Prontuario.setObservacoes("Teve trombose venosa profunda, diabetes mellitus tipo II e pressão arterial sistêmica. Tabagista há 40 anos.");
 
             Prontuario.setPeso("56");

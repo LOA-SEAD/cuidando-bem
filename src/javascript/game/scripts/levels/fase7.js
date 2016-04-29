@@ -194,12 +194,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
 
-            new InteractiveObject("io-ir_ala_feminina", "Ir para a Ala Feminina")
+            new InteractiveObject("io-ir_ala_feminina", "Ir para a Enfermaria Feminina")
                 .setCssClass("intObj-goToAlaFeminina")
                 .onClick( corredorIrAlaFeminina )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_alaMasculina", "Ir para a Ala Masculina")
+            new InteractiveObject("io-ir_alaMasculina", "Ir para a Enfermaria Masculina")
                 .setCssClass("intObj-goToAlaMasculina")
                 .onClick( corredorIrAlaMasculina )
                 .setVisibility( true )
@@ -439,6 +439,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.changeScene( 1 );
                     }
                 }
+                core.setActionVisible("btn-clorpropamidaMedicamento", false );
             });
 
 
@@ -588,9 +589,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("conferir_medicamento_errado") == false ) {
                         core.flag("conferir_medicamento_errado",  true );
                         core.registerScoreItem( Scores.conferirMedicamentoErrado );
-                        core.setActionVisible("btn-clorpromazinaMedicamento", false );
-                        core.openDialog( 2 );
                     }
+                    core.setActionVisible("btn-clorpromazinaMedicamento", false );
+                    core.openModalScene("conferirClorpromazina");
                 })
                 .setVisibility( false ),
 
@@ -605,6 +606,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             core.flag("conversarPaciente",  true );
                         }*/
                     }
+                    core.openModalScene("conferirClorpropamida");
                 })
                 .setVisibility( false )
         ]);
@@ -992,10 +994,37 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true )
         ]);
 
+        clorpropamida = new Scene("conferirClorpropamida", "Conferir Clorpropamida")
+            .setCssClass("modalScene-clorpropamidaMedicamento");
+
+        clorpropamida.registerActions([
+            new Action("btn-fechar_zoom", "Finalizar conferição")
+                .setCssClass("action-clorpropamida_medicamento")
+                .onClick(function() {
+                    console.log("Action: Finalizar conferição");
+                    core.closeModalScene("conferirClorpropamida");
+                })
+        ]);
+
+        clorpromazina = new Scene("conferirClorpromazina", "Conferir Clorpromazina")
+            .setCssClass("modalScene-clorpromazinaMedicamento");
+
+        clorpromazina.registerActions([
+            new Action("btn-fechar_zoom", "Finalizar conferição")
+                .setCssClass("action-clorpromazina_medicamento")
+                .onClick(function() {
+                    console.log("Action: Finalizar conferição");
+                    core.closeModalScene("conferirClorpromazina");
+                    core.openDialog( 2 );
+                })
+        ]);
+
 
         level.registerModalScene( prontuario );
         level.registerModalScene( gaveta );
         level.registerModalScene( pulseira );
+        level.registerModalScene( clorpropamida );
+        level.registerModalScene( clorpromazina );
 
 
         // id 0

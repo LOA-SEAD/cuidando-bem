@@ -36,7 +36,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             alaFeminina,
             centroCirurgicoYuri,
             pulseira,
-            prontuario;
+            prontuario,
+            midazolam;
 
 
         function recepcaoIrCorredor() {
@@ -130,7 +131,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
         corredor.registerInteractiveObjects([
-            new InteractiveObject("io-ir_sala_leitos", "Ir para a sala de Leitos Masculino")
+            new InteractiveObject("io-ir_sala_leitos", "Ir para a Enfermaria Masculina")
                 .setCssClass("intObj-goToBedroom")
                 .onClick( corredorIrAlaMasculina )
                 .setVisibility( true ),
@@ -140,7 +141,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick( corredorIrPostoEnfermagem )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_ala_feminina", "Ir para a Ala Feminina")
+            new InteractiveObject("io-ir_ala_feminina", "Ir para a Enfermaria Feminina")
                 .setCssClass("intObj-goToAlaFeminina")
                 .onClick( corredorIrAlaFeminina )
                 .setVisibility( true ),
@@ -320,11 +321,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
               new InteractiveObject("io-conversar_paciente09", "Falar com o paciente")
 
-                .setCssClass("intObjconversar_paciente")
+                .setCssClass("intObj-conversar_paciente")
                 .onClick(function() {
 
 
-               core.openDialog( 0 );
+                    core.openDialog( 0 );
                     core.closeCommandBar();
 
                 })
@@ -389,7 +390,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( false ),
 
             new Action("btn-anotarProntuario", "Anotar prontuario")
-                .setCssClass("action-anotarProntuario")
+                .setCssClass("action-anotar_prontuario")
                 .onClick(function() {
                     console.log("Action: Anotar prontuario");
                     if ( core.flag("score_administrou_medicamento") == false ) {
@@ -440,6 +441,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.setActionVisible("btn-oferecer_copo", false );
                     core.setActionVisible("btn-administrar_medicamento", false );
                     core.setActionVisible("btn-levar_yuri_cc", false );
+                    core.setInteractiveObjectVisible("io-conversar_paciente09", false );
                 })
                 .setVisibility( true ),
 
@@ -522,6 +524,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.conferirMedicacao );
                         core.flag("score_conferiu_medicacao",  true );
                     }
+                    core.openModalScene("conferirMidazolam");
                 })
                 .setVisibility( false )
         ]);
@@ -807,6 +810,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-testar_equipamentos")
                 .onClick(function() {
                     console.log("Action: Testar Equipamentos");
+                    //Bip
+                    Player.play( Player.audios.sfx.bip );
                     // Caso falar com o paciente dê pontos:
                     /*if(core.flag("score_ofereceu_copo") == false) {
                      if(core.flag("score_nao_ofereceu_copo") == false) {
@@ -894,7 +899,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             new Action("btn-anotarProntuario", "Anotar prontuario")
-                .setCssClass("action-anotarProntuario")
+                .setCssClass("action-anotar_prontuario")
                 .onClick(function() {
                     console.log("Action: Anotar prontuario");
                     if ( core.flag("score_lavar_maos_centro_cirurgico") == false ) {
@@ -1069,6 +1074,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             //  alert(Prontuario.isDataValid() + " Final da fase");
         ]);
 
+        midazolam = new Scene("conferirMidazolam", "Conferir Midazolam")
+            .setCssClass("modalScene-midazolamMedicamento");
+
+        midazolam.registerActions([
+            new Action("btn-fechar_zoom", "Finalizar conferição")
+                .setCssClass("action-midazolam_medicamento")
+                .onClick(function() {
+                    console.log("Action: Finalizar conferição");
+                    core.closeModalScene("conferirMidazolam");
+                })
+        ]);
+
 
         // 0
         level.registerScene( recepcao );
@@ -1092,6 +1109,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         level.registerModalScene( pulseira );
         level.registerModalScene( prontuario );
+        level.registerModalScene( midazolam );
 
 
         level.setSetupScript(function() {

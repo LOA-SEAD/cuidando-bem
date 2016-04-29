@@ -36,7 +36,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             gavetaEsquerda,
             gavetaDireita,
             prontuario,
-            pulseira;
+            pulseira,
+            keflin;
 
 
         function recepcaoIrCorredor() {
@@ -138,7 +139,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             if ( core.flag("score_conferiu_medicacao") == true ) {
                 core.changeScene( 5 );
             } else {
-                core.openDialog( 0 );
+                if ( core.flag("score_viu_prontuario") == false ) {
+                    core.openDialog( 0 );
+                } else {
+                    core.openDialog( 2 );
+                }
                 if ( core.flag("score_ir_posto_enfermagem_hora_errada") == false ) {
                     core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
                     core.flag("score_ir_posto_enfermagem_hora_errada",  true );
@@ -168,7 +173,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         }
 
         corredor.registerInteractiveObjects([
-            new InteractiveObject("io-ir_sala_leitos", "Ir para a sala de Leitos Masculino")
+            new InteractiveObject("io-ir_sala_leitos", "Ir para a Enfermaria Masculina")
                 .setCssClass("intObj-goToBedroom")
                 .onClick( corredorIrSalaLeitos )
                 .setVisibility( true ),
@@ -183,7 +188,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick( corredorIrFarmacia )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_ala_feminina", "Ir para a Ala Feminina")
+            new InteractiveObject("io-ir_ala_feminina", "Ir para a Enfermaria Feminina")
                 .setCssClass("intObj-goToAlaFeminina")
                 .onClick( corredorIrAlaFeminina )
                 .setVisibility( true )
@@ -204,7 +209,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }),
             // 2 Mentor Ação errada: Ir ao posto de enfermagem
             new Dialog( lib.characters.mentor )
-                .setText( Alertas.perdido.farmacia )
+                .setText( Alertas.perdido.enfermagem[1] )
                 .registerOption("", function() {
                     core.closeDialog();
                 })
@@ -219,10 +224,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.setInteractiveObjectVisible("io-ir_corredor", true );
                 core.setActionVisible("btn-ler_prontuario", true );
 
-                /*O fato de já ter verificado o prontuario ou ter tentado sair sem vê-lo é o que
-                 determina se é a primeira ou segunda vez que o jogador veio até a ala masculina*/
-                if ( (core.flag("score_viu_prontuario") == false) &&
-                    (core.flag("score_nao_viu_prontuario") == false) ) {
+                //Só após ter ido no posto de enfermagem é que libera a ida ao leito do paciente
+                if (core.flag("score_falou_com_mentor") == false) {
                     core.openDialog( 0 );
                 } else {
                     core.setActionVisible("btn-lavarMaos", true );
@@ -493,7 +496,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             new Action("btn-administrarMedicamento", "Administrar medicamento")
-                .setCssClass("action-keflin_medicamento")
+                .setCssClass("action-administrar_medicamento")
                 .onClick(function() {
                     if ( core.flag("score_administrar_medicacao") == false ) {
                         core.registerScoreItem( Scores.administrarMedicacao );
@@ -660,6 +663,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.conferirMedicamento );
                         core.flag("score_conferiu_medicacao",  true );
                     }
+                    core.openModalScene("conferirKeflin");
                 })
                 .setVisibility( false )
         ]);
@@ -778,12 +782,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.confirmarMedicacaoPosto );
                         core.flag("score_conferiu_medicacao_posto",  true );
                     }
+                    core.openModalScene("conferirKeflin");
 
                 })
                 .setVisibility( false ),
 
             new Action("btn-prepararMedicacao", "Preparar medicação")
-                .setCssClass("action-prepararMedicacao")
+                .setCssClass("action-preparar_medicacao")
                 .onClick(function() {
                     console.log("Action: Preparar medicação");
                     if ( core.flag("score_preparar_medicacao") == false ) {
@@ -816,6 +821,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.identificarMedicacao );
                         core.flag("score_identificar_medicacao",  true );
                     }
+
+                })
+                .setVisibility( false ), 
+
+            new Action("btn-visualizarFolheto", "Visualizar o folheto dos 9 certos")
+                .setCssClass("action-visualizar_folheto")
+                .onClick(function() {
+                    console.log("Action: Visualizando folheto");
+                    // Vai abrir uma modal scene com o folheto
 
                 })
                 .setVisibility( false )
@@ -863,6 +877,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.setActionVisible("btn-prepararMedicacao", true );
                     core.setActionVisible("btn-gotejamentoSoro", true );
                     core.setActionVisible("btn-identificarMedicacao", true );
+                    core.setActionVisible("btn-visualizarFolheto", true );
                     core.openCommandBar();
                     core.closeDialog();
                 }),
@@ -1102,7 +1117,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             // Seringa de 10 ml
             new InteractiveObject("io-seringa10ml", "Pegar seringa de 10 ml")
-                .setCssClass("intObj-seringa_de_10_ml")
+                .setCssClass("intObj-seringa_de_10_ml_fase4")
                 .onClick(function() {
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
@@ -1195,7 +1210,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeModalScene("Prontuario");
                     Prontuario.close();
                     // Já estava na parte final da fase, então a termina
-                    if ( core.flag("score_falou_com_mentor") == true ) {
+                    if ( core.flag("score_gotejar_soro_equipo") == true ) {
                         core.unlockLevel( 5 );
                         core.closeCommandBar();
                         core.showEndOfLevel();
@@ -1204,7 +1219,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             new Action("btn-pegar_prescricao_medica", "Pegar prescrição médica")
-                .setCssClass("action-pegar_prescricao_medica")
+                .setCssClass("action-ler_prontuario")
                 .onClick(function() {
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
@@ -1238,6 +1253,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true )
         ]);
 
+        keflin = new Scene("conferirKeflin", "Conferir Keflin")
+            .setCssClass("modalScene-keflinMedicamento");
+
+        keflin.registerActions([
+            new Action("btn-fechar_zoom", "Finalizar conferição")
+                .setCssClass("action-keflin_medicamento")
+                .onClick(function() {
+                    console.log("Action: Finalizar conferição");
+                    core.closeModalScene("conferirKeflin");
+                })
+        ]);
+
 
         level.registerScene( recepcao );
         level.registerScene( corredor );
@@ -1251,6 +1278,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerModalScene( prontuario );
         level.registerModalScene( gavetaEsquerda );
         // level.registerModalScene( gavetaDireita );
+        level.registerModalScene( keflin );
 
 
         level.setSetupScript(function() {
@@ -1275,7 +1303,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAltura("1,77");
             Prontuario.setCircunferenciaAbdominal("91");
 
-            Prontuario.setPrescMedicaRowData( 0, "", "Cefalotina sódica (Keflin®)", "Endovenosa", false, true );
+            Prontuario.setPrescMedicaRowData( 0, "", "Cefalotina sódica (Keflin®)", "Endovenosa", "800 mg diluído em 100 ml de SF (soro fisiológico) 0,9% em 01 hora", "6/6h", false, true );
             // Necessário para evitar que valores antigos apareçam no prontuário
             Prontuario.setPrescMedicaRowData( 1, "", "", "", "", "", false, true );
             Prontuario.setPrescMedicaRowData( 2, "", "", "", "", "", false, true );

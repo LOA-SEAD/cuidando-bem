@@ -104,7 +104,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 if ( core.flag("conversar_mentor") == false ) {
                     core.flag("conversar_mentor",  true );
                     core.openDialog( 0 );
-                } else if ( core.flag("examinar_paciente").getValue() == true && core.getFlag("conversar_mentor2") == false ) {
+                } else if ( core.flag("examinar_paciente") == true && core.flag("conversar_mentor2") == false ) {
                     core.openDialog( 2 );
                 }
             })
@@ -246,7 +246,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         }
 
         corredor.registerInteractiveObjects([
-            new InteractiveObject("io-ir_sala_leitos", "Ir para a sala de Leitos Masculino")
+            new InteractiveObject("io-ir_sala_leitos", "Ir para a Enfermaria Masculina")
                 .setCssClass("intObj-goToBedroom")
                 .onClick( corredorIrSalaLeitos )
                 .setVisibility( true ),
@@ -331,7 +331,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             core.flag("score_lavar_maos_antes_exame",  true );
                         }
                         // core.setInteractiveObjectVisible("io-ir_leito", true);
-                    } else if ( core.flag("lavar_maos2").getValue() == false && core.getFlag("examinar_paciente") == true ) {
+                    } else if ( core.flag("lavar_maos2") == false && core.flag("examinar_paciente") == true ) {
                         console.log("Action: lavar_maos2");
                         core.flag("lavar_maos2",  true );
 
@@ -340,7 +340,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             core.flag("score_lavar_maos_depois_exame",  true );
                         }
                         // core.setActionVisible("ir_corredor", true);
-                    } else if ( core.flag("lavar_maos3").getValue() == false && core.getFlag("colocou_coxim") == true ) {
+                    } else if ( core.flag("lavar_maos3") == false && core.flag("colocou_coxim") == true ) {
                         console.log("Action: lavar_maos3");
                         core.flag("lavar_maos3",  true );
 
@@ -700,7 +700,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("Ação: Fechar modal pulseira");
                     core.closeModalScene("Pulseira");
-                    if ( core.flag("confirmou_pulseira").getValue() == false && core.getFlag("conversarPaciente") == true ) {
+                    if ( core.flag("confirmou_pulseira") == false && core.flag("conversarPaciente") == true ) {
                         core.flag("confirmou_pulseira",  true );
                         core.setActionVisible("btn-examinar_paciente", true );
 
