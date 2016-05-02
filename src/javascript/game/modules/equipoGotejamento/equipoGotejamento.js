@@ -88,12 +88,12 @@ define(function( require ) {
     }
 
     var breathing = new Animation();
-    breathing.x = 0;
+    breathing.x = 120;
     breathing.y = 0;
-    breathing.width = 196;
-    breathing.height = 854;
-    breathing.srWidth = 196;
-    breathing.srHeight = 854;
+    breathing.width = 140;
+    breathing.height = 610;
+    breathing.srWidth = 314;
+    breathing.srHeight = 1426;
     breathing.frameTotal = 20;
     breathing.cyclesPerMinute = 60;
     breathing.frameTime = 1000 * 60 / breathing.cyclesPerMinute / breathing.frameTotal;
@@ -116,7 +116,7 @@ define(function( require ) {
             i = "0" + i;
         }
 
-        img.src = "./images/modalScenes/equipo/gotejamento" + i + ".png";
+        img.src = "./images/modalScenes/equipo/gotas_0" + i + ".png";
     }
 
     function init( selector ) {
