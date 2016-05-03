@@ -261,7 +261,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.checarProntuario );
                         core.flag("score_viu_prontuario",  true );
                     }
-                    
+
                          // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     console.log("Action: Pegar prescrição médica");
@@ -269,7 +269,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.pegarPrescricaoMedica );
                         core.flag("score_pegou_prescricao_medica",  true );
                     }
-                
+
                     Prontuario.open(`prescMedica`);      // abre prontuario na aba correta
                     core.openModalScene("Prontuario");
                 })
@@ -1157,7 +1157,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             // Equipo de soro macrogotas
             new InteractiveObject("io-equipo_soro", "Pegar equipo de soro macrogotas")
-                .setCssClass("intObj-equipo_de_soro")
+                .setCssClass("intObj-equipo_de_soro_fase4")
                 .onClick(function() {
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
@@ -1248,7 +1248,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         pulseira.registerActions([
             new Action("btn-largar_pulseira", "Fechar pulseira")
-                .setCssClass("action-pulseira_pedro")
+                .setCssClass("action-pulseira_paciente")
                 .onClick(function() {
                     console.log("Ação: Fechar modal pulseira");
                     core.closeModalScene("Pulseira");
