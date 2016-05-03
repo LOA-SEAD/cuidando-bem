@@ -46,6 +46,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         var centroCirurgico = lib.scenes.centroCirurgico.getClone()
             .onLoad(function() {
+                core.openCommandBar();
                 console.log("Load scene: " + centroCirurgico.getName() );
             });
 
