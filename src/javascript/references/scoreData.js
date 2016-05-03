@@ -17,9 +17,7 @@ define(function() {
         this.score = _score;
     }
 
-    return {
-        general: {},
-
+    var scores = {
         tutorial: {
             identificarPaciente: new Score("Ver pulseira/identificação do paciente", 100 ),
             pegarOximetro: new Score("Pegar oxímetro", 50 ),
@@ -309,4 +307,24 @@ define(function() {
             anotarNoProntuario: new Score("Anotar no prontuário", 350 )
         }
     };
+
+    // Sum all positive scores
+    var maxScore = 0;
+
+    for ( levelId in scores ) {
+        var level = scores[ levelId ];
+        level._sum = 0;
+        for ( scoreId in level ) {
+            if ( scoreId !== "_sum" ) {
+                var score = level[ scoreId ];
+                if ( score.score > 0 ) {
+                    level._sum += score.score;
+                }
+            }
+        }
+        maxScore += level._sum;
+    }
+    scores.max = maxScore;
+
+    return scores;
 });
