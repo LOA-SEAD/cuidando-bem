@@ -586,7 +586,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         $(".content").tabs();
     }
 
-    function open() {
+    function open( _tab ) {
         $( prontuarioSelector ).show();
 
         for ( row = 0; row < ssvvData.length; row++ ) {
@@ -599,6 +599,31 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
             $( $( ssvvTemperaturaSelector, ssvvTbodySelector )[ row ] ).mask("00.0");
         }
         updateData();
+
+        var iTab = 0;
+        switch ( _tab ) {
+            case "internacao":
+                iTab = 1;
+            break;
+            case "prescMedica":
+                iTab = 2;
+            break;
+            case "prescEnfermagem":
+                iTab = 3;
+            break;
+            case "sinaisVitais":
+                iTab = 4;
+            break;
+            case "anotacoes":
+                iTab = 5;
+            break;
+            case "paciente":
+            default:
+                iTab = 0;
+            break;
+        }
+
+        $(".content").tabs( "option", "active", iTab );
     }
 
     function updateData() {
