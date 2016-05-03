@@ -41,7 +41,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             if ( core.flag("conversar_recepcionista") == true ) {
                 core.closeDialog();
                 core.changeScene( 1 );
-                console.log("Ir para o corredor");
+                console.log("Ir ao corredor");
             } else {
                 console.log("Necessita ação: conversar com a recepcionista");
             }
@@ -176,30 +176,30 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         corredor.registerInteractiveObjects([
 
-            new InteractiveObject("io-ir_centro_cirurgico", "Ir para o Centro Cirurgico")
+            new InteractiveObject("io-ir_centro_cirurgico", "Ir ao Centro Cirurgico")
                 .setCssClass("intObj-goToCentroCirurgico")
                 .onClick( corredorIrCentroCirurgico )
                 .setVisibility( true ),
 
 
-            new InteractiveObject("io-ir_farmacia", "Ir para a Farmacia")
+            new InteractiveObject("io-ir_farmacia", "Ir à Farmacia")
                 .setCssClass("intObj-goToFarmacia")
                 .onClick( corredorIrFarmacia )
                 .setVisibility( true ),
 
 
-            new InteractiveObject("io-ir_posto_enfermagem", "Ir para o Posto de Enfermagem")
+            new InteractiveObject("io-ir_posto_enfermagem", "Ir ao Posto de Enfermagem")
                 .setCssClass("intObj-goToPostoEnfermagem")
                 .onClick( corredorIrPostoEnfermagem )
                 .setVisibility( true ),
 
 
-            new InteractiveObject("io-ir_ala_feminina", "Ir para a Enfermaria Feminina")
+            new InteractiveObject("io-ir_ala_feminina", "Ir à Enfermaria Feminina")
                 .setCssClass("intObj-goToAlaFeminina")
                 .onClick( corredorIrAlaFeminina )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_alaMasculina", "Ir para a Enfermaria Masculina")
+            new InteractiveObject("io-ir_alaMasculina", "Ir à Enfermaria Masculina")
                 .setCssClass("intObj-goToAlaMasculina")
                 .onClick( corredorIrAlaMasculina )
                 .setVisibility( true )
@@ -388,10 +388,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.openDialog( 0 );
                     // Não ocorre nada, pois o jogador precisa ir na farmácia e no posto de enfermagem primeiro
                     } else if ( core.flag("pegou_tudo_posto") == false ) {
-                    // Ida para o leito sem lavar as mãos, o que impede o jogador ir para o leito
+                    // Ida para o leito sem lavar as mãos, o que impede o jogador Ir ao leito
                     } else if ( core.flag("lavarMaos") == false ) {
                         core.openDialog( 7 );
-                    // Ida para o leito sem pegar o medicamento, o que impede o jogador ir para o leito
+                    // Ida para o leito sem pegar o medicamento, o que impede o jogador Ir ao leito
                     } else if ( core.flag("pegar_medicamento") == false ) {
                         core.openDialog( 8 );
                     // Ida para o leito
@@ -406,7 +406,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         function farmaciaIrCorredor() {
-            console.log("Ir para o corredor");
+            console.log("Ir ao corredor");
 
             // Caso o jogador apenas entrou na farmácia no momento errado
             if ( core.flag("score_ler_prontuario") == false ) {

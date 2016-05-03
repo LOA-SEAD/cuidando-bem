@@ -55,7 +55,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             if ( core.flag("conversar_recepcionista") == true ) {
                 core.closeDialog();
                 core.changeScene( 1 );
-                console.log("Ir para o corredor");
+                console.log("Ir ao corredor");
             } else {
                 console.log("Necessita ação: conversar com a recepcionista");
             }
@@ -278,25 +278,25 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         corredor.registerInteractiveObjects([
 
-            new InteractiveObject("io-ir_centro_cirurgico", "Ir para o Centro Cirurgico")
+            new InteractiveObject("io-ir_centro_cirurgico", "Ir ao Centro Cirurgico")
                 .setCssClass("intObj-goToCentroCirurgico")
                 .onClick( corredorIrCentroCirurgico )
                 .setVisibility( true ),
 
 
-            new InteractiveObject("io-ir_farmacia", "Ir para a Farmacia")
+            new InteractiveObject("io-ir_farmacia", "Ir à Farmacia")
                 .setCssClass("intObj-goToFarmacia")
                 .onClick( corredorIrFarmacia )
                 .setVisibility( true ),
 
 
-            new InteractiveObject("io-ir_posto_enfermagem", "Ir para o Posto de Enfermagem")
+            new InteractiveObject("io-ir_posto_enfermagem", "Ir ao Posto de Enfermagem")
                 .setCssClass("intObj-goToPostoEnfermagem")
                 .onClick( corredorIrPostoEnfermagem )
                 .setVisibility( true ),
 
 
-            new InteractiveObject("io-ir_ala_feminina", "Ir para a Enfermaria Feminina")
+            new InteractiveObject("io-ir_ala_feminina", "Ir à Enfermaria Feminina")
                 .setCssClass("intObj-goToAlaFeminina")
                 .onClick( corredorIrAlaFeminina )
                 .setVisibility( true ),
@@ -717,7 +717,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     // Som
                     Player.play( Player.audios.sfx.mesaComRodinha );
-                    // Só aqui é habilitado a Regina ir para o centro cirurgico
+                    // Só aqui é habilitado a Regina Ir ao centro cirurgico
                     core.flag("conversarPaciente",  true );
                     // Desabilita conversar novamente com a Regina
                     core.setInteractiveObjectVisible("io-conversar_paciente04", false );

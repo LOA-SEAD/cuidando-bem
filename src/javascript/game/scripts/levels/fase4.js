@@ -48,7 +48,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.closeDialog();
                 core.changeScene( 1 );
             }
-            console.log("Ir para o corredor");
+            console.log("Ir ao corredor");
         }
 
         function conversarRecepcionista() {
@@ -173,29 +173,29 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         }
 
         corredor.registerInteractiveObjects([
-            new InteractiveObject("io-ir_sala_leitos", "Ir para a Enfermaria Masculina")
+            new InteractiveObject("io-ir_sala_leitos", "Ir à Enfermaria Masculina")
                 .setCssClass("intObj-goToBedroom")
                 .onClick( corredorIrSalaLeitos )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_posto_enfermagem", "Ir para o Posto de Enfermagem")
+            new InteractiveObject("io-ir_posto_enfermagem", "Ir ao Posto de Enfermagem")
                 .setCssClass("intObj-goToNursingStation")
                 .onClick( corredorIrPostoEnfermagem )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_farmacia", "Ir para a Farmácia")
+            new InteractiveObject("io-ir_farmacia", "Ir à Farmácia")
                 .setCssClass("intObj-goToPharmacy")
                 .onClick( corredorIrFarmacia )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_ala_feminina", "Ir para a Enfermaria Feminina")
+            new InteractiveObject("io-ir_ala_feminina", "Ir à Enfermaria Feminina")
                 .setCssClass("intObj-goToAlaFeminina")
                 .onClick( corredorIrAlaFeminina )
                 .setVisibility( true )
         ]);
 
         corredor.registerDialogs([
-            // 0 Mentor Ação errada: Ir para a enfermaria masculina
+            // 0 Mentor Ação errada: Ir à enfermaria masculina
             new Dialog( lib.characters.mentor )
                 .setText( Alertas.perdido.farmacia )
                 .registerOption("", function() {
@@ -311,7 +311,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.closeDialog();
                 }),
-            // Dialog 6 - Não lavou as mãos antes de ir para o leito
+            // Dialog 6 - Não lavou as mãos antes de Ir ao leito
             new Dialog( lib.characters.mentor )
                 .setText( Alertas.lavarMaos.tipo1 )
                 .registerOption("", function() {
@@ -576,7 +576,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         function farmaciaIrCorredor() {
             console.log("Funcao: farmacia_ir_corredor");
-            console.log("Ir para o corredor");
+            console.log("Ir ao corredor");
             // Só perde pontos caso já esteja liberado para pegar o medicamento
             if ( core.flag("score_conferiu_medicacao") == false ) {
                 if ( core.flag("score_nao_conferiu_medicacao") == false ) {

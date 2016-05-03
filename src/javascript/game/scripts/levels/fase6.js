@@ -142,7 +142,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         );
 
         function recepcaoIrCorredor() {
-            console.log("Ir para o corredor");
+            console.log("Ir ao corredor");
             core.changeScene( 1 );
         }
 
@@ -212,27 +212,27 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         corredor.registerInteractiveObjects([
 
-            new InteractiveObject("io-ir_centro_cirurgico", "Ir para o Centro Cirurgico")
+            new InteractiveObject("io-ir_centro_cirurgico", "Ir ao Centro Cirurgico")
                 .setCssClass("intObj-goToCentroCirurgico")
                 .onClick( corredorIrCentroCirurgico )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_farmacia", "Ir para a Farmacia")
+            new InteractiveObject("io-ir_farmacia", "Ir à Farmacia")
                 .setCssClass("intObj-goToFarmacia")
                 .onClick( corredorIrFarmacia )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_posto_enfermagem", "Ir para o Posto de Enfermagem")
+            new InteractiveObject("io-ir_posto_enfermagem", "Ir ao Posto de Enfermagem")
                 .setCssClass("intObj-goToPostoEnfermagem")
                 .onClick( corredorIrPostoEnfermagem )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_ala_feminina", "Ir para a Enfermaria Feminina")
+            new InteractiveObject("io-ir_ala_feminina", "Ir à Enfermaria Feminina")
                 .setCssClass("intObj-goToAlaFeminina")
                 .onClick( corredorIrAlaFeminina )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_alaMasculina", "Ir para a Enfermaria Masculina")
+            new InteractiveObject("io-ir_alaMasculina", "Ir à Enfermaria Masculina")
                 .setCssClass("intObj-goToAlaMasculina")
                 .onClick( corredorIrAlaMasculina )
                 .setVisibility( true ),
