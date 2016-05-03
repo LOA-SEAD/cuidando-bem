@@ -622,6 +622,8 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
                 iTab = 0;
             break;
         }
+
+        $(".content").tabs( "option", "active", iTab );
     }
 
     function updateData() {
