@@ -38,6 +38,12 @@ define(function( require ) {
         rate: 60
     };
 
+    var minRate = 0;
+    var maxRate = 120;
+    var rightRate = 60;
+    var mode = "soro";
+    var currentAnimation;
+
     tick.time = 1000 / tick.rate;
 
     function Animation() {
@@ -87,36 +93,62 @@ define(function( require ) {
         };
     }
 
-    var breathing = new Animation();
-    breathing.x = 120;
-    breathing.y = 0;
-    breathing.width = 140;
-    breathing.height = 610;
-    breathing.srWidth = 314;
-    breathing.srHeight = 1426;
-    breathing.frameTotal = 20;
-    breathing.cyclesPerMinute = 60;
-    breathing.frameTime = 1000 * 60 / breathing.cyclesPerMinute / breathing.frameTotal;
+    var soroAnimation = new Animation();
+    soroAnimation.x = 120;
+    soroAnimation.y = 0;
+    soroAnimation.width = 140;
+    soroAnimation.height = 610;
+    soroAnimation.srWidth = 314;
+    soroAnimation.srHeight = 1426;
+    soroAnimation.frameTotal = 20;
+    soroAnimation.cyclesPerMinute = 60;
+    soroAnimation.frameTime = 1000 * 60 / soroAnimation.cyclesPerMinute / soroAnimation.frameTotal;
 
-    var imgsLoaded = 0;
-    for ( i = 0; i < breathing.frameTotal; i++ ) {
-        breathing.img.push( new Image() );
+    var soroImgsLoaded = 0;
+    for ( i = 0; i < soroAnimation.frameTotal; i++ ) {
+        soroAnimation.img.push( new Image() );
 
-        breathing.img[ i ].onload = function() {
+        soroAnimation.img[ i ].onload = function() {
             console.log("Image " + i + " loaded");
-            imgsLoaded++;
-            // if(imgsLoaded==coin.frameTotal){
-            // 	gameLoop();
-            // }
+            soroImgsLoaded++;
         };
 
-        var img = breathing.img[ i ];
+        var img = soroAnimation.img[ i ];
 
         if ( i < 10 ) {
             i = "0" + i;
         }
 
-        img.src = "./images/modalScenes/equipo/gotas_0" + i + ".png";
+        img.src = "./images/modalScenes/soro/gotas_0" + i + ".png";
+    }
+
+    var dietaAnimation = new Animation();
+    dietaAnimation.x = 120;
+    dietaAnimation.y = 0;
+    dietaAnimation.width = 140;
+    dietaAnimation.height = 610;
+    dietaAnimation.srWidth = 314;
+    dietaAnimation.srHeight = 1426;
+    dietaAnimation.frameTotal = 20;
+    dietaAnimation.cyclesPerMinute = 60;
+    dietaAnimation.frameTime = 1000 * 60 / dietaAnimation.cyclesPerMinute / dietaAnimation.frameTotal;
+
+    var dietaImgsLoaded = 0;
+    for ( i = 0; i < dietaAnimation.frameTotal; i++ ) {
+        dietaAnimation.img.push( new Image() );
+
+        dietaAnimation.img[ i ].onload = function() {
+            console.log("Image " + i + " loaded");
+            dietaImgsLoaded++;
+        };
+
+        var img = dietaAnimation.img[ i ];
+
+        if ( i < 10 ) {
+            i = "0" + i;
+        }
+
+        img.src = "./images/modalScenes/dieta/gotas_0" + i + ".png";
     }
 
     function init( selector ) {
@@ -136,13 +168,25 @@ define(function( require ) {
             faster();
         });
 
+        $( ".sliderFront" ).slider({
+            orientation: "vertical",
+            min: minRate,
+            max: maxRate,
+            value: 60,
+            slide: function( event, ui ) {
+                setCyclesPerMinute( ui.value );
+            }
+        });
+
+        setMode( mode );
+
         console.info("FreqRespiratoria added to stage");
     }
 
     function open() {
         $( canvasSelector ).show();
 
-        breathing.frameCounter = 0;
+        currentAnimation.frameCounter = 0;
 
         tick.accumulator = 0;
         tick.last = new Date().getTime();
@@ -159,14 +203,14 @@ define(function( require ) {
 
 
     function update() {
-        breathing.update();
+        currentAnimation.update();
     }
 
     function draw( canvas ) {
         ctx = canvas.getContext("2d");
         ctx.clearRect( 0, 0, 800, 600 );
 
-        breathing.draw( canvas );
+        currentAnimation.draw( canvas );
     }
 
     function animationLoop() {
@@ -190,27 +234,57 @@ define(function( require ) {
     }
 
     function faster() {
-        breathing.cyclesPerMinute += 1;
-        breathing.frameTime = 1000 * 60 / breathing.cyclesPerMinute / breathing.frameTotal;
-    }
-
-    function slower() {
-        if ( breathing.cyclesPerMinute - 1 > 0 ) {
-            breathing.cyclesPerMinute -= 1;
-            breathing.frameTime = 1000 * 60 / breathing.cyclesPerMinute / breathing.frameTotal;
+        if ( currentAnimation.cyclesPerMinute + 1 < maxRate ) {
+            currentAnimation.cyclesPerMinute += 1;
+            currentAnimation.frameTime = 1000 * 60 / currentAnimation.cyclesPerMinute / currentAnimation.frameTotal;
+            currentAnimation.frameCounter = 0;
         }
     }
 
-    function setFr( _fr ) {
+    function slower() {
+        if ( currentAnimation.cyclesPerMinute - 1 > minRate ) {
+            currentAnimation.cyclesPerMinute -= 1;
+            currentAnimation.frameTime = 1000 * 60 / currentAnimation.cyclesPerMinute / currentAnimation.frameTotal;
+            currentAnimation.frameCounter = 0;
+        }
+    }
 
-        breathing.cyclesPerMinute = _fr;
-        breathing.frameTime = 1000 * 60 / breathing.cyclesPerMinute / breathing.frameTotal;
+    function setCyclesPerMinute( _cpm ) {
 
+        currentAnimation.cyclesPerMinute = _cpm;
+        currentAnimation.frameTime = 1000 * 60 / currentAnimation.cyclesPerMinute / currentAnimation.frameTotal;
+        currentAnimation.frameCounter = 0;
+
+    }
+
+    function setRightValue( value ) {
+        rightRate = value;
+    }
+
+    function isValueRight() {
+        return rightRate == currentAnimation.cyclesPerMinute;
+    }
+
+    function setMode( mode ) {
+        if ( mode == "soro" ) {
+            $( ".slider" ).removeClass( "dieta" );
+            $( ".slider" ).addClass( "soro" );
+            currentAnimation = soroAnimation;
+        } else {
+            $( ".slider" ).removeClass( "soro" );
+            $( ".slider" ).addClass( "dieta" );
+            currentAnimation = dietaAnimation;
+        }
     }
 
     return {
         init: init,
-        setFr: setFr,
+        setCyclesPerMinute: setCyclesPerMinute,
+
+        setMode: setMode,
+
+        isValueRight: isValueRight,
+        setRightValue: setRightValue,
 
         open: open,
         close: close
