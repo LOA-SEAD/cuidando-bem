@@ -131,27 +131,27 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
         corredor.registerInteractiveObjects([
-            new InteractiveObject("io-ir_sala_leitos", "Ir para a Enfermaria Masculina")
+            new InteractiveObject("io-ir_sala_leitos", "Ir à Enfermaria Masculina")
                 .setCssClass("intObj-goToBedroom")
                 .onClick( corredorIrAlaMasculina )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_posto_enfermagem", "Ir para o Posto de Enfermagem")
+            new InteractiveObject("io-ir_posto_enfermagem", "Ir ao Posto de Enfermagem")
                 .setCssClass("intObj-goToNursingStation")
                 .onClick( corredorIrPostoEnfermagem )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_ala_feminina", "Ir para a Enfermaria Feminina")
+            new InteractiveObject("io-ir_ala_feminina", "Ir à Enfermaria Feminina")
                 .setCssClass("intObj-goToAlaFeminina")
                 .onClick( corredorIrAlaFeminina )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_farmacia", "Ir para a Farmácia")
+            new InteractiveObject("io-ir_farmacia", "Ir à Farmácia")
                 .setCssClass("intObj-goToPharmacy")
                 .onClick( corredorIrFarmacia )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_centro_cirurgico", "Ir para o Centro Cirurgico")
+            new InteractiveObject("io-ir_centro_cirurgico", "Ir ao Centro Cirurgico")
                 .setCssClass("intObj-goToCentroCirurgico")
                 .onClick( corredorIrCentroCirurgico )
                 .setVisibility( true )
@@ -463,7 +463,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         function farmaciaIrCorredor() {
             console.log("Funcao: farmacia_ir_corredor");
-            console.log("Ir para o corredor");
+            console.log("Ir ao corredor");
             // Só perde pontos caso já esteja liberado para pegar o medicamento
             if ( (core.flag("ja_falou_farmaceutico") == true) &&
                 (core.flag("score_conferiu_medicacao") == false) ) {

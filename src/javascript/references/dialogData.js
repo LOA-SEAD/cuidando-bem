@@ -53,16 +53,16 @@ define({
                 "Olá Sr. João. Sou profissional de enfermagem e cuidarei do Sr. hoje." +
                 " Como está se sentindo?",
                 // 2 Jogador op 2
-                "Olá, sou eu quem cuidará do senhor hoje. Está se sentindo bem?",
+                "Olá, sou eu quem cuidará do Sr. hoje. Está se sentindo bem?",
                 // 3 Mentor
                 "Você precisa se apresentar como profissional de enfermagem!",
                 // 4 Jogador op 3
-                "Olá, senhor João. Sou profissional de enfermagem do hospital, tenho 28 anos e cuidarei" +
-                " do senhor hoje. É um prazer conhecê-lo. Como está se sentindo?",
+                "Olá, Sr. João. Sou profissional de enfermagem do hospital, tenho 28 anos e cuidarei" +
+                " do Sr. hoje. É um prazer conhecê-lo. Como está se sentindo?",
                 // 5 Mentor
                 "Sua apresentação contém informações desnecessárias.",
                 // 6 Paciente
-                "Estou com muita dor de cabeça e passei muito nervoso hoje, acho que minha pressão subiu" +
+                "Estou com muita dor de cabeça e passei muito nervoso hoje, acho que minha pressão subiu." +
                 " É a primeira vez que preciso ser internado em um hospital e estou com um pouco de medo.",
                 // 7 Jogador op 1
                 "Vamos fazer o possível para que sua estadia aqui seja rápida e que se sinta em casa." +
@@ -72,7 +72,7 @@ define({
                 // 9 Mentor
                 "Você precisa das informações sobre o paciente.",
                 // 10 Jogador op 3
-                "HAHAHA fique sussa, seu João, o senhor vai pra casa em breve. Mas primeiro preciso" +
+                "HAHAHA fique sussa, seu João, o Sr. vai pra casa em breve. Mas primeiro preciso" +
                 " dos seus dados.",
                 // 11 Mentor
                 "Sua resposta está vaga e informal. Você pode melhorar!",
@@ -82,7 +82,7 @@ define({
                 " Está certo, seu João. Já tenho todas as informações de que preciso.",
                 // 14 Mentor
                 "Sua primeira missão é admitir o Sr. João nesta enfermaria, identificando-o" +
-                " com uma pulseira e verificando os seus sinais vitais. Vamos lá?"
+                " com uma pulseira e verificando seus sinais vitais. Vamos lá?"
             ],
             conversa2: [
                 // 0 Jogador op 1
@@ -91,12 +91,12 @@ define({
                 " médico, peça ao profissional de saúde para verificar essa identificação." +
                 " Agora preciso verificar seus sinais vitais, ok?",
                 // 1 Jogador op 2
-                "Senhor João, fique com esta pulseira de identificação até o fim de sua" +
+                "Sr. João, fique com esta pulseira de identificação até o fim de sua" +
                 " estadia aqui. Vamos realizar alguns procedimentos médicos?",
                 // 2 Mentor
                 "Você deve explicar ao paciente a função da pulseira de identificação.",
                 // 3 Jogador op 3
-                "Senhor João, vamos verificar seus sinais vitais?",
+                "Sr. João, vamos verificar seus sinais vitais?",
                 // 4 Mentor
                 "Não se esqueça: A pulseira de identificação é importante!",
                 // 5 Paciente
@@ -124,7 +124,7 @@ define({
             fala1: [
                 // 0 Mentor
                 "Bom dia! Seu segundo paciente tem 69 anos, está acamado e sabemos que isso é um fator de" +
-                " risco para o desenvolvimento de úlcera por pressão, a mudança de posição é essencial!",
+                " risco para o desenvolvimento de úlcera por pressão. A mudança de posição é essencial!",
                 // 1 Jogador
                 "Bom dia, Alberto! Vou até a enfermaria conhecê-lo."
             ],
@@ -159,9 +159,9 @@ define({
         perguntarNome: "Me desculpe, mas poderia repetir seu nome completo e sua data de nascimento?",
         enfermaria: [
             // 0 Jogador op 1
-            "Olá! Sou técnico de enfermagem e cuidarei do Sr. hoje. Como o Sr. está se sentindo?",
+            "Olá! Sou técnico de enfermagem e cuidarei do Sr. hoje. Como o está se sentindo?",
             // 1 Jogador op 2
-            "Bom dia. O senhor está se sentindo bem hoje?",
+            "Bom dia. O Sr. está se sentindo bem hoje?",
             // 2 Mentor
             "Você deve se apresentar ao paciente.",
             // 3 Jogador op 3
@@ -171,7 +171,7 @@ define({
             // 5 Paciente
             "Olha, eu poderia estar melhor, mas não serviram minha preciosa gelatina hoje. HAHAHAHAHA.",
             // 6 Jogador op 1
-            "A gelatina daqui é ótima mesmo. O senhor poderia me dizer" +
+            "A gelatina daqui é ótima mesmo. O Sr. poderia me dizer" +
             " seu nome completo e data de nascimento, por favor?",
             // 7 Jogador op 2
             "Nome completo, por favor.",
@@ -186,7 +186,7 @@ define({
             // 11 Paciente
             "Carlos Esme Gouvêa, nasci em 01/12/1945.",
             // 12 Jogador
-            "Vou verificar sua pulseira e depois examiná-lo, senhor Carlos. Com licença."
+            "Vou verificar sua pulseira e depois examiná-lo, Sr. Carlos. Com licença."
         ]
     },
 
@@ -194,7 +194,7 @@ define({
         recepcao: [
             // 0 Recepcionista
             "Bom dia! Hoje o mentor não poderá te apresentar seu novo paciente, mas estará aqui no hospital" +
-            " caso precise dele. Ele também pediu que você comece pela enfermaria masculina. Boa Sorte!"
+            " caso precise. Ele também pediu para que você comece pela enfermaria masculina. Boa Sorte!"
         ],
         alaMasculina: [
             // 0 Jogador
@@ -217,14 +217,14 @@ define({
             "Pero de nuevo?",
             // 2 Jogador
             "É um procedimento padrão. Raul Gonzales, 78 anos, certo?" +
-            " Pelo sotaque dá para perceber que o senhor não é daqui. Espanha?",
+            " Pelo sotaque dá para perceber que o Sr. não é daqui. Espanha?",
             // 3 Paciente
             "No no no, soy de mi amada Argentina.",
             // 4 Jogador
-            "Justo a Argentina, senhor Raul? Hahaha. Vou verificar sua glicemia para que possamos acompanhar" +
+            "Justo a Argentina, Sr. Raul? Hahaha. Vou verificar sua glicemia para que possamos acompanhar" +
             " a diabetes. Quando precisar se levantar, aperte a campainha e terá auxílio imediato.",
             // 5 Paciente
-            "Gracias! Soy velho e últimamente já no consigo estar de pie.",
+            "Gracias! Soy velho e últimamente já no consigo estar en pie.",
             // Ação - medir a glicemia
             // 6 Paciente
             "Cuál foi el resultado?",
@@ -273,13 +273,13 @@ define({
                 // mensagem do mentor em caso de resposta incorreta
 
                 // 5 - resposta a OP2
-                "Imagine  todos  os  riscos  existentes  nos" +
-                "procedimentos  cirúrgicos!  A  lista  é  um  das" +
+                "Imagine  todos  os  riscos  existentes  nos " +
+                "procedimentos  cirúrgicos!  A  lista  é  um  das " +
                 "estratégias para tentar amenizá-los.",
 
                 // 6 - resposta a OP3
-                "A lista  é  uma  estratégia muito  importante  para" +
-                "evitar  erros  durante  todo  o  procedimento" +
+                "A lista  é  uma  estratégia muito  importante  para " +
+                "evitar  erros  durante  todo  o  procedimento " +
                 "cirúrgico.  É  um  documento  de  extrema importância!",
 
                 // 7
@@ -307,7 +307,7 @@ define({
                 "Terminamos, Aline. Vou buscar a paciente.",
                 // 5 op errada1
                 "Você  ainda  irá  conhecer  a  paciente  e  é  o" +
-                " responsável por levá-la ao centro cirúrgico!",
+                " responsável por trazê-la ao centro cirúrgico!",
                 // 6 op errada2
                 "Nunca  se  esqueça  de  verificar  todos  os" +
                 " equipamento, pois  assim  evitamos  a ocorrência" +
@@ -336,7 +336,7 @@ define({
                 // 3 Jogador op 3
                 "Claro! A primeira fase é antes do paciente sair da sala de operação.",
                 // 4 Jogador
-                "Regina, preciso fazer algumas perguntas antes da indução anestésica, tudo bem?" +
+                "Sra. Regina, preciso fazer algumas perguntas antes da indução anestésica, tudo bem?" +
                 " Apenas para verificar se está tudo em ordem.",
                 // 5 Paciente
                 "Magina! Pode fazer quantas perguntas quiser.",
@@ -355,19 +355,19 @@ define({
                 " Ah, vão colocar enxerto também.",
                 // 12 Jogador
                 "Certo! O nome do procedimento é Amputação transmetatársica à esquerda e Enxerto Poplíteo." +
-                " A senhora assinou o termo de consentimento?",
+                " A Sra. assinou o termo de consentimento?",
                 // 13 Paciente
                 "Sim.",
                 // 14 Jogador
-                "A senhora possui algum tipo de alergia?",
+                "A Sra. possui algum tipo de alergia?",
                 // 15 Paciente
                 "Que eu saiba, não.",
                 // 16 Jogador op 1
-                "Tudo certo até agora, Regina. Agora preciso verificar o oxímetro de pulso e o local da cirurgia.",
+                "Tudo certo até agora, Sra. Regina. Agora preciso verificar o oxímetro de pulso e o local da cirurgia.",
                 // 17 Jogador op 2
-                "Tudo certo até agora, Regina. Vamos para a sala de cirurgia?",
+                "Tudo certo até agora, Sra. Regina.",
                 // 18 Jogador op 3
-                "Desculpe, Regina, preciso fazer mais algumas perguntas.",
+                "Desculpe, Sra. Regina, preciso fazer mais algumas perguntas.",
 
                 // 19 op2 - primeira parte
                 "Tem certeza? Talvez a primeira fase deva ser" +
@@ -378,11 +378,11 @@ define({
                 " apenas no fim do procedimento?",
 
                 // 21 op2 - segunda parte
-                "O oxímetro de pulso do paciente e a indicação" +
+                "O oxímetro de pulso do paciente e a indicação " +
                 "do local cirúrgico devem ser verificados!",
 
                 // 22 op3 - segunda parte
-                "Você já possui todas informações necessárias!"
+                "Você já possui todas as informações necessárias!"
             ]
         },
         alaFeminina: [
@@ -390,18 +390,18 @@ define({
         ],
         leitoPaciente: [
             // 0 Jogador
-            "Bom dia! Sou profissional de enfermagem e levarei a senhora para a sala de cirurgia." +
+            "Bom dia! Sou profissional de enfermagem e levarei a Sra. para a sala de cirurgia." +
             " Qual é o seu nome?",
             // 1 Paciente
             "Bom dia! Regina Oliveira, muito prazer.",
             // 2 Jogador
-            "O prazer é meu. A senhora está agendada para uma cirurgia hoje, certo?!" +
+            "O prazer é meu. A Sra. está agendada para uma cirurgia hoje, certo?!" +
             " Como está se sentindo?",
             // 3 Paciente
             "Certo. Tô um tiquinho nervosa, pra mim agulha só é boa com linha.",
             // 4 Jogador
-            "A senhora costura? Que legal! Fique tranquila, Regina, estamos cuidando de todos os detalhes de sua cirurgia." +
-            " A senhora não pode entrar no centro cirúrgico com adornos ou próteses. Está ou tem algo do gênero?",
+            "A Sra. costura? Que legal! Fique tranquila, Sra. Regina, estamos cuidando de todos os detalhes de sua cirurgia." +
+            " A Sra. não pode entrar no centro cirúrgico com adornos ou próteses. Está ou tem algo do gênero?",
             // 5 Paciente
             "Num tô não! Minha filha já tá com tudinho lá fora."
         ]
@@ -417,11 +417,11 @@ define({
         ],
         alaMasculina: [
             // 0 Jogador
-            "Bom dia! Sou profissional de enfermagem e atenderei o senhor hoje. Deixe-me ver seu prontuário...",
+            "Bom dia! Sou profissional de enfermagem e atenderei o Sr. hoje. Deixe-me ver seu prontuário...",
             // 1 Paciente Pedro
             "Bom dia. Hora da medicação? Qual é a de hoje?",
             // 2 Jogador op 1
-            "Sim senhor! Ainda é o segundo dia de uso do Keflin. Vou preparar sua medicação e já volto.",
+            "Sim Sr.! Ainda é o segundo dia de uso do Keflin. Vou preparar sua medicação e já volto.",
             // 3 Jogador op 2
             "Sim, mas o nome da medicação não é uma informação importante, não se preocupe.",
             // 4 Jogador op 3
@@ -447,7 +447,7 @@ define({
             "No prontuário estava prescrita uma dose de 800 mg," +
             " portanto o valor a ser aspirado é de 4 ml do frasco de 1g.",
             // 1 Jogador
-            "Deverá ser aspirado apenas 2 ml.",
+            "Deverão ser aspirados apenas 2 ml.",
             // 2 Jogador
             "No prontuário estava prescrita uma dose de 800 mg," +
             " portanto o valor a ser aspirado é de 8 ml do frasco de 1 g.",
@@ -462,17 +462,17 @@ define({
         ],
         leitoPaciente: [
             // 0 Jogador
-            "Voltei. Antes da administração do medicamento, o senhor poderia me dizer" +
+            "Voltei. Antes da administração do medicamento, o Sr. poderia me dizer" +
             " seu nome e data de nascimento, por favor?",
             // 1 Paciente Pedro
             "Claro. Pedro Alcídes Mendonça, nasci em 03 de junho de 1962.",
             // 2 Jogador op 1
-            "Senhor Pedro, este medicamento é o Keflin; sua ação é antimicrobiana" +
+            "Sr. Pedro, este medicamento é o Keflin; sua ação é antimicrobiana" +
             " e ele vai correr no período de uma hora, tudo bem?",
             // 3 Jogador op 2
-            "Senhor Pedro, vou administrar o medicamento. Tudo bem?",
+            "Sr. Pedro, vou administrar o medicamento. Tudo bem?",
             // 4 Jogador op 3
-            "Senhor Pedro, vou administrar o medicamento. Caso queira saber sua função," +
+            "Sr. Pedro, vou administrar o medicamento. Caso queira saber sua função," +
             " pergunte ao médico responsável e ele saberá te informar.",
             // 5 Paciente Pedro
             "Muito obrigado. E me desculpe pelas perguntas, é mania de professor.",
@@ -520,20 +520,20 @@ define({
         ],
         leitoPaciente: [
             // 0 Jogador
-            "Antes de começarmos, a senhora poderia me dizer seu nome completo, por favor?",
+            "Antes de começarmos, a Sra. poderia me dizer seu nome completo, por favor?",
             // 1 Paciente
             "Esther Fidelis.",
             // 2 Jogador
-            "Senhora Esther, temos dois procedimentos a serem realizados: o primeiro será" +
+            "Sra. Esther, temos dois procedimentos a serem realizados: o primeiro será" +
             " um teste de glicemia capilar. O segundo será um curativo no local machucado pela queda." +
-            " A senhora sofreu um acidente vascular, não é mesmo?",
+            " A Sra. sofreu um acidente vascular, não é mesmo?",
             // 3 Paciente
             "Sim. O estress e a correria no Consulado são diárias, eu já esperava que isso talvez" +
             " pudesse acabar acontecendo. Ao menos os movimentos do meu lado direito estão voltando," +
             " tudo estava paralisado. E caso ajude, sou diabética e hipertensa.",
             // 4 Jogador op 1 - Certa
             "Realizarei alguns procedimentos, qualquer dúvida basta perguntar." +
-            " Além disso, deixarei sua grade sempre erguida; a senhora pode ter" +
+            " Além disso, deixarei sua grade sempre erguida; a Sra. pode ter" +
             " sensação de desequilíbrio devido à queda e a medicação.",
             // 5 Jogador op 2
             "Vou começar a realizar os procedimentos!",
@@ -551,7 +551,7 @@ define({
         ],
         corredor: [
             // 0 Mentor
-            "Bom dia! Hoje seu paciente será o senhor Josivaldo Silva. A alimentação dele" +
+            "Bom dia! Hoje seu paciente será o Sr. Josivaldo Silva. A alimentação dele" +
             " está sendo realizada através de uma sonda nasogástrica. Lembre-se de que os" +
             " cuidados na administração de dietas são iguais aos da administração de medicamentos.",
             // 1 Jogador op 1
@@ -566,15 +566,15 @@ define({
         ],
         alaMasculina: [
             // 0 Jogador
-            "Bom dia! Sou profissional de enfermagem e acompanharei o senhor esta manhã." +
+            "Bom dia! Sou profissional de enfermagem e acompanharei o Sr. esta manhã." +
             " Como está se sentindo?",
             // 1 Paciente
             "Bom dia! Tô marromeno, mas nada que me aperreie.",
             // 2 Jogador op 1
-            "Senhor Josivaldo... Seu prontuário tem uma prescrição de dieta," +
+            "Sr. Josivaldo... Seu prontuário tem uma prescrição de dieta," +
             " vou até a farmácia buscar os equipamentos necessários e já volto.",
             // 3 Jogador op 2
-            "Senhor Josivaldo... Além de sua sonda nasogástrica, por hora não há nada prescrito.",
+            "Sr. Josivaldo... Além de sua sonda nasogástrica, por hora não há nada prescrito.",
             // 4 Mentor Corrige
             "O prontuário do paciente precisa ser consultado!"
         ],
@@ -599,7 +599,7 @@ define({
             // 2 Jogador op 3
             "A infusão da dieta ocorrerá em 67 gotas no período de uma hora.",
             // 3 Mentor Corrige
-            "Acho que você se enganou. Tente novamente."
+            "Parece que você se enganou. Tente novamente."
         ],
         leitoPaciente: [
             // 0 Jogador
@@ -798,14 +798,14 @@ define({
     fase9: {
         alaMasculina: [
             // 0 Jogador op 1
-            "Bom dia! Sou profissional de enfermagem deste hospital e cuidarei do senhor hoje." +
+            "Bom dia! Sou profissional de enfermagem deste hospital e cuidarei do Sr. hoje." +
             " Qual seu nome e como se sente esta manhã?",
             // 1 Jogador op 2
-            "Bom dia! Vim para cuidar do senhor esta manhã.",
+            "Bom dia! Vim para cuidar do Sr. esta manhã.",
             // 2 Paciente
             "Francisco Rodrigues, ao seu dispor. Tô bem não, tô meio mole.",
             // 3 Jogador
-            "O senhor parece muito desidratado. Vou até a farmácia buscar o soro prescrito" +
+            "O Sr. parece muito desidratado. Vou até a farmácia buscar o soro prescrito" +
             " pelo médico e, assim que eu voltar, verificaremos seus sinais vitais.",
             // 4 Paciente
             "Tá certo! Brigado.",
@@ -829,20 +829,20 @@ define({
         ],
         leitoPaciente: [
             // 0 Jogador
-            "Senhor Francisco, antes de começarmos, o senhor poderia me dizer sua" +
+            "Sr. Francisco, antes de começarmos, o Sr. poderia me dizer sua" +
             " data de nascimento e me deixar verificar sua pulseira de identificação?",
             // 1 Paciente
             "Sí. 02 de deciembro de 1937.",
             // 2 Jogador
-            "Opa! Senhor Raul? Porque está no leito do senhor Francisco?",
+            "Opa! Sr. Raul? Porque está no leito do Sr. Francisco?",
             // 3 Paciente
             "Trocámos de cama, no és possible assistir a la pelicula daquele lado!",
             // 4 Jogador op 1
-            "Desculpe senhor Raul, mas por medidas de segurança os pacientes não podem trocar de leito." +
-            " Conseguiremos encontrar uma maneira em que o senhor consiga assistir" +
+            "Desculpe Sr. Raul, mas por medidas de segurança os pacientes não podem trocar de leito." +
+            " Conseguiremos encontrar uma maneira em que o Sr. consiga assistir" +
             " à televisão daquela cama.Vamos destrocar?",
             // 5 Jogador op 2
-            "Tudo bem, senhor Raul, porém deixarei apenas desta vez, ok?!",
+            "Tudo bem, Sr. Raul, porém deixarei apenas desta vez, ok?!",
             // 6
             "Esta não foi a melhor decisão. A permanência do paciente em seu próprio leito evita possíveis erros e confusões. Tente novamente.",
             // 7
@@ -856,13 +856,13 @@ define({
 
         leitoPaciente1: [
             // 0 Jogador
-            "Agora estamos no leito correto, senhor Francisco.",
+            "Agora estamos no leito correto, Sr. Francisco.",
             // 1 Paciente
             "Desculpa aí pela confusão, pensei que pudia mudar de cama." +
             " O argentino queria ver a novela e essa aqui tá me dando dor nas costas…" +
             " ou pode ser por causa do caminhão. Achei melhor trocar pra ter certeza.",
             // 2 Jogador
-            "O senhor é caminhoneiro? Suas dores nas costas realmente podem ser consequência" +
+            "O Sr. é caminhoneiro? Suas dores nas costas realmente podem ser consequência" +
             " de sua posição lombar ao dirigir. Vou pedir para a manutenção verificar sua cama e," +
             " caso seja necessário, ela será substituída. Vamos checar seus sinais vitais?",
             // 3 Paciente

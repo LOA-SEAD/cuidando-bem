@@ -45,7 +45,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             if ( core.flag("conversar_recepcionista") == true ) {
                 core.closeDialog();
                 core.changeScene( 1 );
-                console.log("Ir para o corredor");
+                console.log("Ir ao corredor");
             } else {
                 console.log("Necessita ação: conversar com a recepcionista");
             }
@@ -246,12 +246,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         }
 
         corredor.registerInteractiveObjects([
-            new InteractiveObject("io-ir_sala_leitos", "Ir para a Enfermaria Masculina")
+            new InteractiveObject("io-ir_sala_leitos", "Ir à Enfermaria Masculina")
                 .setCssClass("intObj-goToBedroom")
                 .onClick( corredorIrSalaLeitos )
                 .setVisibility( true ),
 
-            new InteractiveObject("io-ir_posto_enfermagem", "Ir para o Posto de Enfermagem")
+            new InteractiveObject("io-ir_posto_enfermagem", "Ir ao Posto de Enfermagem")
                 .setCssClass("intObj-goToNursingStation")
                 .onClick( corredorIrPostoEnfermagem )
                 .setVisibility( true ),
