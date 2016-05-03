@@ -81,7 +81,7 @@ define([ "Stage", "levelsData" ], function( Stage, game ) {
 
         $(".level").click(function() {
             var index = $(".level").index( this );
-            var levelId = index;
+            var levelId = index + 1;
 
             if ( levelId <= save.lastLevel + 1 ) {
                 text = levelNames[ index ];

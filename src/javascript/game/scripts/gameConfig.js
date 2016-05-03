@@ -27,7 +27,6 @@ define(function() {
 
         "faseTeste",
         "testeEndOfLevel",
-        "fase0",
         "fase1",
         "fase2",
         "fase3",
@@ -36,7 +35,8 @@ define(function() {
         "fase6",
         "fase7",
         "fase8",
-        "fase9"
+        "fase9",
+        "fase10"
 
     ];
 

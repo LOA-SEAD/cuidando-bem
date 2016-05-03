@@ -24,8 +24,8 @@ define([ "SimpleStorage" ], function( Storage ) {
     console.info("SaveLoadGame - module loaded");
 
     var
-        MINLEVEL = 0,
-        MAXLEVEL = 9;
+        MINLEVEL = 1,
+        MAXLEVEL = 10;
 
 
     function SaveObject( name ) {
