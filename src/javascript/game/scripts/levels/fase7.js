@@ -455,16 +455,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.closeDialog();
                 }),
-            
+
             //7
                new Dialog( lib.characters.mentor )
                 .setText( Dialogs.farmacia[5] )
                 .registerOption("", function() {
                     core.closeDialog();
                 }),
-            
-            
-                        
+
+
+
 
         ]);
 
@@ -512,14 +512,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("pegarDieta") == false ) {
                             core.openDialog(7);
                     } else {
-                        
+
                         if( core.flag("conferirDieta") == false)  {
                         core.flag("conferirDieta",  true );
                         core.registerScoreItem( Scores.conferirDieta );
                         }
-                        
+
                         core.openModalScene("conferirFrascoDieta");
-                        
+
                     }
                 })
            ]);
@@ -761,7 +761,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       .setVisibility( true ),
 
       new Action("btn-administrar_dieta", "Administrar Dieta")
-      .setCssClass("action-administrar_dieta")
+      .setCssClass("action-frasco_dieta")
       .onClick(function() {
 
         if ( core.flag("score_administrar_dieta") == false ) {

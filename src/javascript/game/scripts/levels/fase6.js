@@ -580,8 +580,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( false ),
 
             new Action("btn-descartar_agulha", "Jogar agulha no descarpax")
-                // CONSERTAR
-                .setCssClass("action-descartar_agulha")
+                .setCssClass("action-agulha_40x12")
                 .onClick(function() {
                     console.log("Action: Jogar agulha no descarpax");
                     // Som
@@ -754,7 +753,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( false ),
 
             new Action("btn-anotarProntuario", "Anotar prontuario")
-                .setCssClass("action-anotarProntuario")
+                .setCssClass("action-anotar_prontuario")
                 .onClick(function() {
                     console.log("Action: Anotar prontuario");
                     if ( core.flag("score_ergueu_grade") == false ) {

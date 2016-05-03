@@ -41,7 +41,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             gaveta,
             pulseira,
             prontuario,
-            zoom;
+            zoom,
+            soroGlicofisiologico,
+            cloretoSodio;
 
 
         var centroCirurgico = lib.scenes.centroCirurgico.getClone()
@@ -493,7 +495,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                      core.openDialog( 4 );
                      core.setInteractiveObjectVisible("io-pegarFrascoDieta", false );
                      core.setInteractiveObjectVisible("io-cloretoSodio_20_10ml", false );
-                     core.setActionVisible("btn-conferirMedicamento", false );
+                     // core.setActionVisible("btn-conferirMedicamento", false );
 
 
 
@@ -511,14 +513,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                      core.setInteractiveObjectVisible("io-pegarFrascoDieta", false );
                      core.setInteractiveObjectVisible("io-cloretoSodio_20_10ml", false );
-                     core.setActionVisible("btn-conferirMedicamento", false );
+                     //core.setActionVisible("btn-conferirMedicamento", false );
 
                 } else {
 
                      core.openDialog( 0 );
-                    core.setInteractiveObjectVisible("io-pegarFrascoDieta", true );
-                    core.setInteractiveObjectVisible("io-cloretoSodio_20_10ml", true );
-                    core.setActionVisible("btn-conferirMedicamento", true );
+                    // core.setInteractiveObjectVisible("io-pegarFrascoDieta", true );
+                    // core.setInteractiveObjectVisible("io-cloretoSodio_20_10ml", true );
+                    // core.setActionVisible("btn-conferirMedicamento", true );
                 }
 
                 console.log("Load scene: " + farmacia.getName() );
@@ -549,6 +551,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setText( Dialogs.farmacia[ 2 ] )
             .registerOption("", function() {
                 core.closeDialog();
+                core.setInteractiveObjectVisible("io-pegarFrascoDieta", true );
+                core.setInteractiveObjectVisible("io-cloretoSodio_20_10ml", true );
             }),
 
             // 3 MENTOR CORRIGE
@@ -599,11 +603,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                     core.flag("pegarFrascoSG", true );
                     core.registerScoreItem( Scores.pegarFrascoSG );
-                console.log("GANHOU 50 PTS");
+                    console.log("GANHOU 50 PTS");
                     core.setInteractiveObjectVisible("io-pegarFrascoDieta", false );
 
             })
-            .setVisibility( true ),
+            .setVisibility( false ),
 
 
 
@@ -618,10 +622,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.flag("pegarNACL", true );
                     core.registerScoreItem( Scores.pegarNACL );
                     core.setInteractiveObjectVisible("io-cloretoSodio_20_10ml", false );
+                    core.setActionVisible("btn-conferirCloreto", true );
                 }
 
             })
-            .setVisibility( true )
+            .setVisibility( false )
 
 
         ]);
@@ -642,10 +647,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                       } else if ( core.flag("pegarNACL") == false || core.flag("pegarFrascoSG") == false ) {
 
                             core.openDialog( 6 );
-                        } else if ( core.flag("conferirMedicamento") == false ) {
+                        } else if ( !(core.flag("conferirMedicamento")) || !(core.flag("conferirNACL")) ) {
                             core.openDialog( 3 );
-                        } else
+                        } else {
                             core.changeScene( 1 );
+                            console.log("Ativou");
+                            core.flag("conferirMedicamento", true );
+                            core.registerScoreItem( Scores.conferirDieta );
+                        }
 
 
 
@@ -654,30 +663,30 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setVisibility( true ),
 
 
-            new Action("btn-conferirMedicamento", "Conferir Medicamento")
-            .setCssClass("action-conferirMedicamento")
+            new Action("btn-conferirSoro", "Conferir Soro Glicofisiologico")
+            .setCssClass("action-soro_glicofisiologico_1000ml")
             .onClick(function() {
+                // if ( (core.flag("pegarFrascoSG") == false) || (core.flag("pegarNACL") == false) ) {
 
+                //     core.openDialog( 3 );
+                // } else if ( (core.flag("pegarFrascoSG") == true) && (core.flag("pegarNACL") == true) ) {
 
-                if ( (core.flag("pegarFrascoSG") == false) || (core.flag("pegarNACL") == false) ) {
+                //            if ( core.flag("conferirMedicamento") == false ) {
 
-                    core.openDialog( 3 );
-                } else if ( (core.flag("pegarFrascoSG") == true) && (core.flag("pegarNACL") == true) ) {
+                //             core.flag("conferirMedicamento", true );
+                //             core.registerScoreItem( Scores.conferirDieta );
 
-                           if ( core.flag("conferirMedicamento") == false ) {
-
-                            core.flag("conferirMedicamento", true );
-                            core.registerScoreItem( Scores.conferirDieta );
-
-                           }
-
-            }
-
-
-
-
+                //            }
+                core.openModalScene("conferirSoroGlicofisiologico1000");
             })
-            .setVisibility( true )
+            .setVisibility( false ),
+
+            new Action("btn-conferirCloreto", "Conferir Cloreto de Sodio")
+                .setCssClass("action-cloreto_sodio_20_10ml")
+                .onClick(function() {
+                    core.openModalScene("conferirCloretoSodio");
+                })
+                .setVisibility( false )
 
         ]);
 
@@ -779,11 +788,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onClick(function() {
 
 
-                if ( core.flag("pegou_tudo_postoEnfermagem") ) {
+                // if ( core.flag("pegou_tudo_postoEnfermagem") ) {
                     core.changeScene( 1 );
-                } else {
-                    core.openDialog( 0 );
-                }
+                // } else {
+                    // core.openDialog( 0 );
+                // }
 
 
             })
@@ -1347,12 +1356,37 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         ]);
 
+       soroGlicofisiologico = new Scene("conferirSoroGlicofisiologico1000", "Conferir Soro Glicofisiologico")
+            .setCssClass("modalScene-soroGlicofisiologico1000");
 
+        soroGlicofisiologico.registerActions([
+            new Action("btn-fechar_zoom", "Finalizar conferição")
+                .setCssClass("action-soro_glicofisiologico_1000ml")
+                .onClick(function() {
+                    console.log("Action: Finalizar conferição");
+                    core.flag("conferirFrascoSG", true );
+                    core.closeModalScene("conferirSoroGlicofisiologico1000");
+                })
+        ]);
+        cloretoSodio = new Scene("conferirCloretoSodio", "Conferir Cloreto de Sodio")
+            .setCssClass("modalScene-cloretoSodio20");
+
+        cloretoSodio.registerActions([
+             new Action("btn-fechar_zoom", "Finalizar conferição")
+               .setCssClass("action-cloreto_sodio_20_10ml")
+                .onClick(function() {
+                    console.log("Action: Finalizar conferição");
+                    core.flag("conferirNACL", true );
+                    core.closeModalScene("conferirCloretoSodio");
+                })
+        ]);
 
 
             level.registerModalScene( prontuario );
             level.registerModalScene( gaveta );
             level.registerModalScene( pulseira );
+            level.registerModalScene( soroGlicofisiologico );
+            level.registerModalScene( cloretoSodio );
 
 
         // 00
@@ -1461,6 +1495,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "score_anotar_prontuario",  false  ) );
         level.registerFlag( new Flag( "irCentroCirurgicoHoraErrada", false ) );
         level.registerFlag( new Flag( "score_lavarMaos1", false ) );
+        level.registerFlag( new Flag( "conferirFrascoSG", false ) );
+        level.registerFlag( new Flag( "conferirNACL", false ) );
         level.registerFlag( new Flag( "score_verPulseira", false ) );
 
         level.setInitialScene( 0 );
