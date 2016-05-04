@@ -23,7 +23,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var Scores = require("ScoresData").level8;
         var Player = require("Player");
 
-        var level = new Level("Level 8");
+        var level = new Level("Level 9");
+        level.setMaxPoints( Scores._sum );
         console.groupCollapsed( level.getName() );
 
         var recepcao,

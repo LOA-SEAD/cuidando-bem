@@ -288,7 +288,8 @@ define([
          * @memberOf module:CuidandoBem
          */
         function showEndOfLevel() {
-            endOfLevel.show( scoreList );
+            debugger;
+            endOfLevel.show( scoreList, Level.getMaxPoints() );
         }
 
         /**

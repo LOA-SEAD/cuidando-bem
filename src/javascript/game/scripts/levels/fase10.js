@@ -18,16 +18,14 @@ This file is part of Cuidando Bem.
 define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
 
-
         var Dialogs = require("DialogsData").fase9;
         var Alertas = require("DialogsData").alertas;
         var Scores = require("ScoresData").level9;
         var Player = require("Player");
 
-
-        var level = new Level("Level 9");
+        var level = new Level("Level 10");
+        level.setMaxPoints( Scores._sum );
         console.groupCollapsed( level.getName() );
-
 
         var recepcao,
             corredor,
