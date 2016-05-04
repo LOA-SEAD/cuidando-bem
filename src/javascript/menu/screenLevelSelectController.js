@@ -69,6 +69,11 @@ define([ "Stage", "levelsData" ], function( Stage, game ) {
             }
         }
 
+        // adding the name of each level by attributes aria-label
+        for(var j = 0; j < levelNames.length; j++) {
+            $(".l" + j ).attr("aria-label", "Fase " + levelNames[ j ]);
+        }
+        
         $(".image", $(".level")[ save.lastLevel + 1 ] ).addClass("next");
 
         $(".menuButton").click(function() {
