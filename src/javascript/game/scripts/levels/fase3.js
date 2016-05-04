@@ -94,6 +94,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             if ( core.flag("pegou_tudo_gaveta") == false ) {
                 core.openDialog( 5 );
             } else {
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
                 core.changeScene( 2 );
             }
         }
@@ -157,6 +159,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.unlockLevel( 3 );
                     core.closeCommandBar();
                     core.showEndOfLevel();
+                    Player.stopAll();
+                    Player.play( Player.audios.sfx.missaoCumprida );
                 }),
             // 2 Mentor Ação errada: Ir ao posto de enfermagem
             new Dialog( lib.characters.mentor )
@@ -947,6 +951,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-luvas_de_procedimento")
                 .onClick(function() {
                     console.log("Action: Colocar Luvas");
+                    // Som
+                    Player.play( Player.audios.sfx.colocarLuvas );
                     /*if ( core.flag("score_selecionou_bandeja") == false ) {
                         if ( core.flag("score_nao_selecionou_bandeja") == false ) {
                             core.registerScoreItem( Scores.naoSelecionarBandeja );
@@ -1053,6 +1059,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
                 core.openCommandBar();
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
             })
             .onUnload(function() {
                 core.closeCommandBar();

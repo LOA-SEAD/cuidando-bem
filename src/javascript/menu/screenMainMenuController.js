@@ -53,24 +53,28 @@ define([ "Stage" ], function( Stage ) {
         // Iniciar Jogo
         $("#initGame_btn").click(function() {
             console.log( this );
+            Player.play( Player.audios.sfx.selecionarMenu );
             Stage.changeScreen( 5 );
         });
 
         // Carregar Jogo
         $("#conteudo_btn").click(function() {
             console.log( this );
+            Player.play( Player.audios.sfx.selecionarMenu );
             Stage.changeScreen( 7 );
         });
 
         // Configurações
         $("#config_btn").click(function() {
             console.log( this );
+            Player.play( Player.audios.sfx.selecionarMenu );
             Stage.changeScreen( 4 );
         });
 
         // Créditos
         $("#credits_btn").click(function() {
             console.log( this );
+            Player.play( Player.audios.sfx.selecionarMenu );
             Stage.changeScreen( 3 );
         });
     }

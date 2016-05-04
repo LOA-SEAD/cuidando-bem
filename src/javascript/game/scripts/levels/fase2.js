@@ -232,9 +232,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         function corredorIrSalaLeitos() {
             if ( core.flag("conversar_mentor") == true ) {
                 if ( core.flag("examinar_paciente") == false ) {
+                    // Som
+                    Player.play( Player.audios.sfx.abrirPorta );
                     core.changeScene( 2 );
                 } else {
                     if ( core.flag("coxim") == true ) {
+                        // Som
+                        Player.play( Player.audios.sfx.abrirPorta );
                         core.changeScene( 2 );
                     } else {
                         core.openDialog( 11 );
@@ -585,6 +589,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-mudar_posicao", "Mudar posição do paciente")
                 .setCssClass("action-mudar_posicao_paciente")
                 .onClick(function() {
+                    // Som
+                    Player.play( Player.audios.sfx.roupaRocando );
                     core.changeSceneCssClassTo("scene-bedChar02-turned");
                     core.setActionVisible("btn-mudar_posicao", false );
                     core.setInteractiveObjectVisible("io-pulseira_paciente", false );
@@ -595,6 +601,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-posicionar_coxim_e_travesseiro", "Posicionar coxim e travesseiro")
                 .setCssClass("action-posicionar_coxim")
                 .onClick(function() {
+                    // Som
+                    Player.play( Player.audios.sfx.objetoRocando );
                     core.changeSceneCssClassTo("scene-bedChar02-cushion");
                     core.setActionVisible("btn-posicionar_coxim_e_travesseiro", false );
                     core.flag("colocou_coxim",  true );
@@ -605,6 +613,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
                 core.openCommandBar();
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
             })
             .onUnload(function() {
                 core.closeCommandBar();
@@ -764,6 +774,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.unlockLevel( 2 );
                         core.closeCommandBar();
                         core.showEndOfLevel();
+                        Player.stopAll();
+                        Player.play( Player.audios.sfx.missaoCumprida );
                     }
                 })
 

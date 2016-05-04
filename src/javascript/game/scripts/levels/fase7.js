@@ -863,6 +863,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             core.unlockLevel( 7 );
                             core.closeCommandBar();
                             core.showEndOfLevel();
+                            Player.stopAll();
+                            Player.play( Player.audios.sfx.missaoCumprida );
                         }
                     }
                     console.log("Action: Fechar prontuario");

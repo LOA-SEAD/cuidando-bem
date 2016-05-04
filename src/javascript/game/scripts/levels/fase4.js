@@ -201,6 +201,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.unlockLevel( 3 );
                     core.closeCommandBar();
                     core.showEndOfLevel();
+                    Player.stopAll();
+                    Player.play( Player.audios.sfx.missaoCumprida );
                 }),
 
 
@@ -239,12 +241,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             console.log("Action: corredorIrAlaFeminina");
             if ( core.flag("testar_equipamentos") == true ) {
                 if ( core.flag("conversarPaciente") == false ) {
+                    // Som
+                    Player.play( Player.audios.sfx.abrirPorta );
                     core.changeScene( 3 );
                 } else {
                     if ( core.flag("ir_alaFeminina_horaErrada") == false ) {
                         core.registerScoreItem( Scores.irAlaFemininaHoraErrada );
                         core.flag("ir_alaFeminina_horaErrada",  true );
                     }
+                    // Som
+                    Player.play( Player.audios.sfx.abrirPorta );
                     core.changeScene( 8 );
                 }
             } else {
@@ -334,6 +340,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 // Som
                 Player.play( Player.audios.sfx.abrirPorta );
                 core.openDialog( 0 );
+            })
+            .onUnload(function() {
+              core.closeCommandBar();
             });
 
 
@@ -516,6 +525,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Desabilita conversar novamente com a Regina
                     core.setInteractiveObjectVisible("io-conversar_com_paciente", false );
                 }
+            })
+            .onUnload(function() {
+                core.closeCommandBar();
             });
 
 
@@ -588,7 +600,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-irAlaFeminina_corredor")
                 .onClick(function() {
                     console.log("voltando para corredor");
-
+                    // Som
+                    Player.play( Player.audios.sfx.abrirPorta );
                     core.changeScene( 1 );
 
                 })
@@ -784,7 +797,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("Action: Verificando Paciente");
                     // Bip
-                    Player.play( Player.audios.sfx.bip );
+                    Player.play( Player.audios.sfx.bipOximetro );
                     core.flag("verificar_oximetro_local_cirurgia",  true );
                 })
                 .setVisibility( true ),

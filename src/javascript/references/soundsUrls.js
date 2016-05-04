@@ -31,8 +31,18 @@ define(function() {
                 "portaAbrindo1.mp3",
                 "portaAbrindo2.mp3"
             ],
+            avancarMensagens: [
+                "avancandoMensagens.mp3"
+            ],
+            //Para os outros objetos usa-se este bip
             bip: [
-                "beepTermometroOximetro.mp3"
+                "beep.mp3"
+            ],
+            bipOximetro: [
+                "beepOximetro.mp3"
+            ],
+            bipTermometro: [
+                "beepTermometro.mp3"
             ],
             bombinha: [
                 "bombinhaEsfigmnanometro.mp3"
@@ -44,11 +54,20 @@ define(function() {
             clique: [
                 "cliqueDeLuzBotaoCampainhaEtc.mp3"
             ],
+            colocarLuvas: [
+                "colocandoLuvas.mp3"
+            ],
             escrever: [
                 "escrevendoPapel.mp3"
             ],
+            expirando: [
+                "expirando.mp3"
+            ],
             fecharGaveta: [
                 "gavetaFechando.mp3"
+            ],
+            inspirando: [
+                "inspirando.mp3"
             ],
             jogandoLixo: [
                 "jogandoLixo.mp3"
@@ -70,8 +89,17 @@ define(function() {
                 "efeitoObjeto2.mp3",
                 "efeitoObjeto3.mp3"
             ],
+            objetoRocando: [
+                "objetoRocando.mp3"
+            ],
+            passarMouse: [
+                "passarMouseBotao.mp3"
+            ],
             pegarObjeto: [
                 "somParaColetarItens.mp3"
+            ],
+            roupaRocando: [
+                "roupaRocando.mp3"
             ],
             selecionarMenu: [
                 "menuSelect.mp3"

@@ -1230,6 +1230,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.setActionVisible("btn-anotar_prontuario", false );
                     core.closeCommandBar();
                     core.showEndOfLevel();
+                    Player.stopAll();
+                    Player.play( Player.audios.sfx.missaoCumprida );
                 } else {
                     Prontuario.close();
                 }

@@ -850,6 +850,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-mudar_posicao_paciente")
                 .onClick(function() {
                     console.log("Action: Mudar posição do paciente");
+                    // Som
+                    Player.play( Player.audios.sfx.roupaRocando );
                     if ( core.flag("score_fez_lista_verificacao") == false ) {
                         if ( core.flag("score_nao_fez_lista_verificacao") == false ) {
                             core.registerScoreItem( Scores.naoFazerListaVerificacao );
@@ -1063,9 +1065,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Prontuario.close();
                     // Já estava no momento de realizar os procedimentos, portanto pode terminar a fase
                     if ( core.flag("entrou_centro_cirurgico") == true ) {
-                        // core.unlockLevel(6);
+                        core.unlockLevel(10);
                         core.closeCommandBar();
                         core.showEndOfLevel();
+                        Player.stopAll();
+                        Player.play( Player.audios.sfx.missaoCumprida );
                     } else {
                         core.closeModalScene("Prontuario");
                     }

@@ -113,9 +113,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         function corredorIrSalaLeitos() {
             if ( !flagsOn ) {
                 console.log("Action: corredorIrSalaLeitos");
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
                 core.changeScene( 2 );
             } else {
                 if ( core.flag("conversar_mentor") == true ) {
+                    // Som
+                    Player.play( Player.audios.sfx.abrirPorta );
                     core.changeScene( 2 );
                     console.log("Action: corredorIrSalaLeitos");
                 } else {
@@ -588,7 +592,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("Action: medir_pulso");
                     // Bip
-                    Player.play( Player.audios.sfx.bip );
+                    Player.play( Player.audios.sfx.bombinha );
                     if ( core.flag("lavar-maos") >= 1 ) {
 
                         // core.setActionVisible("btn-medir_pulso", false);
@@ -611,7 +615,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // core.setActionVisible("btn-saturacao_02", false);
                     console.log("Action: medir_saturacao_02");
                     // Bip
-                    Player.play( Player.audios.sfx.bip );
+                    Player.play( Player.audios.sfx.bipOximetro );
 
                     if ( core.flag("lavar-maos") >= 1 ) {
 
@@ -657,7 +661,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("Action: medir_temperatura");
                     // Bip
-                    Player.play( Player.audios.sfx.bip );
+                    Player.play( Player.audios.sfx.bipTermometro );
                     if ( core.flag("lavar-maos") >= 1 ) {
 
                         // core.setActionVisible("btn-medir_temperatura", false);
@@ -699,6 +703,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
                 core.setInteractiveObjectVisible("io-abrirGaveta", true );
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
             })
             .onUnload(function() {
                 core.closeCommandBar();
@@ -890,6 +896,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                                 core.closeCommandBar();
                                 core.showEndOfLevel();
                                 core.unlockLevel( 1 );
+                                Player.stopAll();
+                                Player.play( Player.audios.sfx.missaoCumprida );
                             } else {
                                 // In case form data is not valid
                                 Prontuario.close();
@@ -994,6 +1002,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     FreqRespiratoria.close();
                     core.closeModalScene("freqRespiratoria");
+                    Player.stop();
                 })
                 .setVisibility( true )
         ]);

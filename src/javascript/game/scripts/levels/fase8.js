@@ -918,6 +918,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.unlockLevel( 8 );
                         core.closeCommandBar();
                         core.showEndOfLevel();
+                        Player.stopAll();
+                        Player.play( Player.audios.sfx.missaoCumprida );
                     } else {
                         core.closeModalScene("Prontuario");
                     }

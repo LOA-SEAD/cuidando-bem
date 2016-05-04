@@ -65,6 +65,7 @@ define([
 
         var scoreList;
 
+        var Player = require("Player");
 
         function ScoreItem( _title, _score ) {
             this.title = _title;
@@ -263,6 +264,7 @@ define([
             var dialog = Dialogs[ _dialogId ];
             Dialog.show( dialog );
 
+            Player.play( Player.audios.sfx.avancarMensagens );
             disableAllActionButtons();
             disableAllInteractiveObjects();
             closeCommandBar();
@@ -276,6 +278,7 @@ define([
         function closeDialog() {
             Dialog.close();
 
+            Player.play( Player.audios.sfx.avancarMensagens );
             updateAllActionButtons();
             updateAllInteractiveObjects();
             openCommandBar();
