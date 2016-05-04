@@ -38,7 +38,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             gavetaDireita,
             prontuario,
             pulseira,
-            keflin;
+            keflin,
+            noveCertosMedicacao;
 
 
         function recepcaoIrCorredor() {
@@ -113,6 +114,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Player.play( Player.audios.sfx.pegarObjeto );
                     core.setInteractiveObjectVisible("io-pegar_folheto_dos_9_certos", false );
                     core.flag("pegarFolheto9Certos",  true );
+                    core.openModalScene("noveCertosMedicacao");
                 })
                 .setVisibility( true )
         ]);
@@ -839,7 +841,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-visualizar_folheto")
                 .onClick(function() {
                     console.log("Action: Visualizando folheto");
-                    // Vai abrir uma modal scene com o folheto
+                    core.openModalScene("noveCertosMedicacao");
 
                 })
                 .setVisibility( false )
@@ -1277,6 +1279,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
         ]);
 
+        noveCertosMedicacao = new Scene("noveCertosMedicacao", "Visualizar o folheto dos 9 certos")
+             .setCssClass("modalScene-noveCertosMedicacao");
+
+        noveCertosMedicacao.registerActions([
+            new Action("btn-fechar_zoom", "Fechar folheto")
+                .setCssClass("action-visualizar_folheto")
+                .onClick(function() {
+                    console.log("Action: Fechar folheto");
+                    core.closeModalScene("noveCertosMedicacao");
+                })
+        ]);
+
+
 
         level.registerScene( recepcao );
         level.registerScene( corredor );
@@ -1290,6 +1305,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerModalScene( prontuario );
         level.registerModalScene( gavetaEsquerda );
         // level.registerModalScene( gavetaDireita );
+        level.registerModalScene( noveCertosMedicacao );
         level.registerModalScene( keflin );
 
 
