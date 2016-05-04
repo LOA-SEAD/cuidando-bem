@@ -22,7 +22,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var Alertas = require("DialogsData").alertas;
         var Player = require("Player");
 
-        var level = new Level("Level 0 - Tutorial");
+        var level = new Level("Level 1 - Tutorial");
+        level.setMaxPoints( Scores.tutorial._sum );
         console.groupCollapsed( level.getName() );
 
         // if false it wont check for flags -- tests purpose
