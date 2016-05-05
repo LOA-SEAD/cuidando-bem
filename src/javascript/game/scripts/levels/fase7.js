@@ -734,7 +734,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       .setVisibility( true ),
 
       new Action("btn-verificar_sonda", "Verificar Local da Sonda")
-      .setCssClass("action-verificar_sonda")
+      .setCssClass("action-verificar-sonda")
       .onClick(function() {
 
         if ( core.flag("score_verificar_sonda") == false ) {
