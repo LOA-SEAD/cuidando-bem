@@ -104,6 +104,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 console.log("Entrando no corredor");
 
                 Player.stopAll();
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInLoop( Player.audios.loops.recepcao );
                 if ( core.flag("conversar_mentor") == false ) {
                     // primeira passada
@@ -123,6 +125,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onUnload(function() {
                 console.log("Saindo do corredor");
                 Player.stopAll();
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInRange( Player.audios.musics.inGame );
             });
 
@@ -241,16 +245,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             console.log("Action: corredorIrAlaFeminina");
             if ( core.flag("testar_equipamentos") == true ) {
                 if ( core.flag("conversarPaciente") == false ) {
-                    // Som
-                    Player.play( Player.audios.sfx.abrirPorta );
                     core.changeScene( 3 );
                 } else {
                     if ( core.flag("ir_alaFeminina_horaErrada") == false ) {
                         core.registerScoreItem( Scores.irAlaFemininaHoraErrada );
                         core.flag("ir_alaFeminina_horaErrada",  true );
                     }
-                    // Som
-                    Player.play( Player.audios.sfx.abrirPorta );
                     core.changeScene( 8 );
                 }
             } else {
@@ -337,8 +337,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var centroCirurgico = lib.scenes.centroCirurgico.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + centroCirurgico.getName() );
-                // Som
-                Player.play( Player.audios.sfx.abrirPorta );
                 core.openDialog( 0 );
             })
             .onUnload(function() {
@@ -600,10 +598,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-irAlaFeminina_corredor")
                 .onClick(function() {
                     console.log("voltando para corredor");
-                    // Som
-                    Player.play( Player.audios.sfx.abrirPorta );
                     core.changeScene( 1 );
-
                 })
 
 
@@ -768,8 +763,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setCssClass("scene-centroCirurgicoRegina")
             .onLoad(function() {
                 console.log("Entrando no centro cirurgico segunda vez");
-                // Som
-                Player.play( Player.audios.sfx.abrirPorta );
                 core.openDialog( 0 );
             })
             .onUnload(function() {

@@ -101,6 +101,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                 console.log("Entrando no corredor");
                 Player.stopAll();
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInLoop( Player.audios.loops.recepcao );
                 if ( core.flag("conversar_mentor") == false ) {
                     core.flag("conversar_mentor",  true );
@@ -112,6 +114,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onUnload(function() {
                 console.log("Saindo do corredor");
                 Player.stopAll();
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInRange( Player.audios.musics.inGame );
             });
 
@@ -232,13 +236,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         function corredorIrSalaLeitos() {
             if ( core.flag("conversar_mentor") == true ) {
                 if ( core.flag("examinar_paciente") == false ) {
-                    // Som
-                    Player.play( Player.audios.sfx.abrirPorta );
                     core.changeScene( 2 );
                 } else {
                     if ( core.flag("coxim") == true ) {
-                        // Som
-                        Player.play( Player.audios.sfx.abrirPorta );
                         core.changeScene( 2 );
                     } else {
                         core.openDialog( 11 );
@@ -613,8 +613,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
                 core.openCommandBar();
-                // Som
-                Player.play( Player.audios.sfx.abrirPorta );
             })
             .onUnload(function() {
                 core.closeCommandBar();

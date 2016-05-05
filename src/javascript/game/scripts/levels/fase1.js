@@ -113,14 +113,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         function corredorIrSalaLeitos() {
             if ( !flagsOn ) {
                 console.log("Action: corredorIrSalaLeitos");
-                // Som
-                Player.play( Player.audios.sfx.abrirPorta );
-                core.changeScene( 2 );
             } else {
                 if ( core.flag("conversar_mentor") == true ) {
-                    // Som
-                    Player.play( Player.audios.sfx.abrirPorta );
-                    core.changeScene( 2 );
                     console.log("Action: corredorIrSalaLeitos");
                 } else {
                     console.log("Necessita ação: falar com mentor");
@@ -131,6 +125,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
                 Player.stopAll();
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInLoop( Player.audios.loops.recepcao );
                 switch ( core.flag("passagem_corredor") ) {
                     // first time at 'corredor'
@@ -157,6 +153,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             })
             .onUnload(function() {
                 Player.stopAll();
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInRange( Player.audios.musics.inGame );
                 switch ( core.flag("passagem_corredor") ) {
                     case 0:
@@ -703,8 +701,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
                 core.setInteractiveObjectVisible("io-abrirGaveta", true );
-                // Som
-                Player.play( Player.audios.sfx.abrirPorta );
             })
             .onUnload(function() {
                 core.closeCommandBar();
