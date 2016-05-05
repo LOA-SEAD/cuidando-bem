@@ -549,10 +549,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-examinar_paciente")
                 .onClick(function() {
                     console.log("Action: btn-examinar_paciente");
-                    Player.play( Player.audios.sfx.objeto );
+                    Player.play( Player.audios.sfx.toquePele );
                     core.openModalScene("zoomChar2");
                     core.flag("examinar_paciente",  true );
-                    core.setActionVisible("btn-ir_sala_leitos", true );
+                    // core.setActionVisible("btn-ir_sala_leitos", true );
                 })
                 .setVisibility( false ),
 

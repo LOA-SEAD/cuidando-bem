@@ -106,6 +106,10 @@ define(function() {
             ],
             ticTac: [
                 "tictacRelogioDePulso.mp3"
+            ],
+            toquePele: [
+                "toquePele1.mp3",
+                "toquePele2.mp3"
             ]
         },
         musics: {
