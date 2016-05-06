@@ -341,7 +341,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.verProntuario );
                         core.flag("score_ver_prontuario",  true );
                     }
-                    Prontuario.open();
+                    Prontuario.open(`prescMedica`);
                     core.openModalScene("Prontuario");
                 })
                 .setVisibility( true ),

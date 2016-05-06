@@ -261,7 +261,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.checarProntuario );
                         core.flag("score_viu_prontuario",  true );
                     }
-                    Prontuario.open();
+                    
+                         // Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
+                    console.log("Action: Pegar prescrição médica");
+                    if ( core.flag("score_pegou_prescricao_medica") == false ) {
+                        core.registerScoreItem( Scores.pegarPrescricaoMedica );
+                        core.flag("score_pegou_prescricao_medica",  true );
+                    }
+                
+                    Prontuario.open(`prescMedica`);      // abre prontuario na aba correta
                     core.openModalScene("Prontuario");
                 })
                 .setVisibility( true )
@@ -1219,7 +1228,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true ),
 
-            new Action("btn-pegar_prescricao_medica", "Pegar prescrição médica")
+          /*  new Action("btn-pegar_prescricao_medica", "Pegar prescrição médica")
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
                     // Som
@@ -1231,7 +1240,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                     core.setActionVisible("btn-pegar_prescricao_medica", false );
                 })
-                .setVisibility( true )
+                .setVisibility( true )*/
         ]);
 
 
