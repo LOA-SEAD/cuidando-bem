@@ -589,7 +589,9 @@ define({
             "Você conferiu a dieta corretamente. Parabéns! A partir deste momento, tenha em mente que" +
             " neste hospital usamos equipos de cores específicas para evitar possíveis erros de conexão.",
             // 4 Mentor Corrige
-            "A administração de dieta é um procedimento que requer muita atenção e seus cuidados são essenciais para um tratamento efetivo!"
+            "A administração de dieta é um procedimento que requer muita atenção e seus cuidados são essenciais para um tratamento efetivo!",
+             // 5 Pegar MEdicamento
+            "Pegue a dieta para depois conferi-la."
         ],
         postoEnfermagem: [
             // 0 Jogador op 1
