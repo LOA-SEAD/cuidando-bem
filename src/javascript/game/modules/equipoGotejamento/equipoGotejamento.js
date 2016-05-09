@@ -18,6 +18,7 @@ define(function( require ) {
 
     var html = require("text!../html/equipoGotejamento/equipoGotejamento.html");
 
+    var equipoSelector = "#equipo";
     var canvasSelector = "#equipoGotejamento";
 
     var STATES = {
@@ -148,7 +149,7 @@ define(function( require ) {
             i = "0" + i;
         }
 
-        img.src = "./images/modalScenes/dieta/gotas_0" + i + ".png";
+        img.src = "./images/modalScenes/dieta/gotaDieta_0" + i + ".png";
     }
 
     function init( selector ) {
@@ -184,7 +185,7 @@ define(function( require ) {
     }
 
     function open() {
-        $( canvasSelector ).show();
+        $( equipoSelector ).show();
 
         currentAnimation.frameCounter = 0;
 
@@ -196,7 +197,7 @@ define(function( require ) {
     }
 
     function close() {
-        $( canvasSelector ).hide();
+        $( equipoSelector ).hide();
 
         state = STATES.stopped;
     }
@@ -234,18 +235,20 @@ define(function( require ) {
     }
 
     function faster() {
-        if ( currentAnimation.cyclesPerMinute + 1 < maxRate ) {
+        if ( currentAnimation.cyclesPerMinute + 1 <= maxRate ) {
             currentAnimation.cyclesPerMinute += 1;
             currentAnimation.frameTime = 1000 * 60 / currentAnimation.cyclesPerMinute / currentAnimation.frameTotal;
             currentAnimation.frameCounter = 0;
+            $( ".sliderFront" ).slider("value", currentAnimation.cyclesPerMinute );
         }
     }
 
     function slower() {
-        if ( currentAnimation.cyclesPerMinute - 1 > minRate ) {
+        if ( currentAnimation.cyclesPerMinute - 1 >= minRate ) {
             currentAnimation.cyclesPerMinute -= 1;
             currentAnimation.frameTime = 1000 * 60 / currentAnimation.cyclesPerMinute / currentAnimation.frameTotal;
             currentAnimation.frameCounter = 0;
+            $( ".sliderFront" ).slider("value", currentAnimation.cyclesPerMinute );
         }
     }
 

@@ -94,6 +94,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 // freqRespiratoria.open();
 
                 // core.showEndOfLevel();
+                //EquipoGotejamento.setMode( "dieta" );
                 EquipoGotejamento.open();
             });
 
