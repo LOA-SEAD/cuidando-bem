@@ -379,7 +379,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-ler_prontuario", "Ler prontuario")
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
-                    Prontuario.open();
+                    Prontuario.open(`prescMedica`);
                     core.openModalScene("Prontuario");
                 })
                 .setVisibility( true )
@@ -454,7 +454,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Alertas.perdido.farmacia )
                 .registerOption("", function() {
                     core.closeDialog();
-                })
+                }),
+            
+            //7
+               new Dialog( lib.characters.mentor )
+                .setText( Dialogs.farmacia[5] )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
+            
+            
+                        
+
         ]);
 
         farmacia.registerInteractiveObjects([
@@ -468,7 +479,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.flag("pegarDieta",  true );
                         core.registerScoreItem( Scores.pegarDieta );
                     }
-                    console.log("GANHA 50 PONTOS");
                     core.setInteractiveObjectVisible("io-frasco_de_dieta", false );
                 })
                 .setVisibility( false )
@@ -500,12 +510,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-frasco_dieta")
                 .onClick(function() {
                     if ( core.flag("pegarDieta") == false ) {
-
+                            core.openDialog(7);
                     } else {
+                        
+                        if( core.flag("conferirDieta") == false)  {
                         core.flag("conferirDieta",  true );
                         core.registerScoreItem( Scores.conferirDieta );
-                        console.log("GANHA 150 PONTOS");
+                        }
+                        
                         core.openModalScene("conferirFrascoDieta");
+                        
                     }
                 })
            ]);
@@ -734,7 +748,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       .setVisibility( true ),
 
       new Action("btn-verificar_sonda", "Verificar Local da Sonda")
-      .setCssClass("action-verificar_sonda")
+      .setCssClass("action-verificar-sonda")
       .onClick(function() {
 
         if ( core.flag("score_verificar_sonda") == false ) {
