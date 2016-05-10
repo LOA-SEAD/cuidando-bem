@@ -1130,6 +1130,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.registerScoreItem( Scores.realizarGotejamento );
                 }
                 
+                    EquipoGotejamento.open();
                     core.openModalScene("equipoSoro");
                  //   core.openModalScene("EquipamentoSoro");
                  
@@ -1242,6 +1243,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setCssClass("action-fecharEquipoSoro")
             .onClick(function() {
 
+                EquipoGotejamento.close();
                 core.closeModalScene("equipoSoro");
                
                 
