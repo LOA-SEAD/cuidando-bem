@@ -341,7 +341,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.verProntuario );
                         core.flag("score_ver_prontuario",  true );
                     }
-                    Prontuario.open(`prescMedica`);
+                    Prontuario.open();
                     core.openModalScene("Prontuario");
                 })
                 .setVisibility( true ),
@@ -440,10 +440,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.setActionVisible("btn-lavarMaos", true );
                     core.setActionVisible("btn-calcar_luvas_procedimento", true );
                     core.setActionVisible("btn-calcar_luvas_estereis", true );
-                    core.setActionVisible("btn-fazer_curativo", true );
-                    core.setActionVisible("btn-identificarCurativo", true );
-                    core.setActionVisible("btn-erguer_grade", true );
-                    core.setActionVisible("btn-anotarProntuario", true );
+                    core.setActionVisible("btn-fazer_curativo", false );
+                    core.setActionVisible("btn-identificarCurativo", false );
+                    core.setActionVisible("btn-erguer_grade", false );
+                    core.setActionVisible("btn-anotarProntuario", false );
                     core.openCommandBar();
                 })
                 .registerOption( Dialogs.leitoPaciente[ 5 ], function() {
@@ -579,7 +579,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( false ),
 
-            new Action("btn-descartar_agulha", "Jogar agulha no descarpax")
+            new Action("btn-descartar_agulha", "Jogar agulha no descarpax")      
                 // CONSERTAR
                 .setCssClass("action-descartar_agulha")
                 .onClick(function() {
@@ -600,8 +600,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                 })
                 .setVisibility( false ),
-
-            new Action("btn-jogar_algodao", "Jogar algodão na bandeja")
+ 
+            new Action("btn-jogar_algodao", "Jogar algodão na bandeja")   
                 .setCssClass("action-algodao_seco")
                 .onClick(function() {
                     console.log("Action: Jogar algodão na bandeja");
@@ -615,12 +615,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                     if ( core.flag("score_jogou_algodao_na_bandeja") == false ) {
                         core.flag("score_jogou_algodao_na_bandeja",  true );
-                        core.registerScoreItem( Scores.jogarAlgodaoBandeja );
+                        core.registerScoreItem( Scores.jogarAlgodaoBandeja );   
                     }
                 })
                 .setVisibility( false ),
 
-            new Action("btn-materiaisCurativo", "Selecionar materiais do curativo")
+            new Action("btn-materiaisCurativo", "Selecionar materiais do curativo")    
                 // CONSERTAR
                 .setCssClass("action-selecionar_materiais_curativo")
                 .onClick(function() {
@@ -689,9 +689,43 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("score_luva_esteril") == false ) {
                         core.flag("score_luva_esteril",  true );
                         core.registerScoreItem( Scores.calcarLuvaEsteril );
+                        
+                        // divide os botoes
+                        if (core.flag("score_fez_teste_glicemia") == true && core.flag("score_jogou_algodao_na_bandeja") == true && core.flag("score_selecionou_materiais_curativo") == true &&
+               core.flag("score_lavou_maos_antes_calcar_luva") == true  && core.flag("score_luva_esteril") == true && core.flag("score_jogou_agulha_lixo_certo") == true) {
+
+                            core.setActionVisible("btn-realizar_teste_glicemia", false );
+                            core.setActionVisible("btn-descartar_agulha", false );
+                            core.setActionVisible("btn-jogar_algodao", false );
+                            core.setActionVisible("btn-materiaisCurativo", false );
+                            core.setActionVisible("btn-calcar_luvas_procedimento", false );
+                            core.setActionVisible("btn-calcar_luvas_estereis", false );
+                            core.setActionVisible("btn-lavarMaos", false );
+                            core.setActionVisible("btn-fazer_curativo", true );
+                            core.setActionVisible("btn-identificarCurativo", true );
+                            core.setActionVisible("btn-erguer_grade", true );
+                            core.setActionVisible("btn-anotarProntuario", true );
+
+                                
+                            
+           }
+                        
+                        
+                        
+                        
                     }
                 })
                 .setVisibility( false ),
+            
+         
+            
+            
+            // separacao
+            
+            
+          
+            
+            
 
             new Action("btn-fazer_curativo", "Fazer curativo")
                 // CONSERTAR
@@ -754,7 +788,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( false ),
 
             new Action("btn-anotarProntuario", "Anotar prontuario")
-                .setCssClass("action-anotarProntuario")
+                .setCssClass("action-anotar_prontuario")
                 .onClick(function() {
                     console.log("Action: Anotar prontuario");
                     if ( core.flag("score_ergueu_grade") == false ) {
