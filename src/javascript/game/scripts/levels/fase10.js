@@ -15,8 +15,8 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
-    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
+define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData", "EquipoGotejamento" ],
+    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores, EquipoGotejamento ) {
 
         var Dialogs = require("DialogsData").fase9;
         var Alertas = require("DialogsData").alertas;
@@ -455,7 +455,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
 
-                Prontuario.open();
+                Prontuario.open('prescMedica');
                 core.openModalScene("Prontuario");
 
 
@@ -778,9 +778,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onClick(function() {
 
 
-                if ( core.flag("pegar_prescricao_medica") == false ) {
+                if ( core.flag("pegar_prescricao_medica") == false ||  core.flag("pegar_prescricao_medica") == true  ) {
                     core.changeScene( 1 );
                 }
+                
+                
+                if(core.flag("pegou_tudo_postoEnfermagem") == true)
+                        core.changeScene(1);
 
 
             })
@@ -1125,6 +1129,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.flag( "realizar_gotejamento",  true  );
                     core.registerScoreItem( Scores.realizarGotejamento );
                 }
+                
+                    core.openModalScene("equipoSoro");
+                 //   core.openModalScene("EquipamentoSoro");
+                 
+              
+
 
             })
             .setVisibility( false ),
@@ -1193,33 +1203,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
 
-
-    /*  pulseira2 = new Scene("Pulseira2", "Pulseira2");
-
-
-    pulseira2.registerInteractiveObjects([
-
-        ]);
-
-
-    pulseira2.registerActions([
-
-        new Action("btn-largar_pulseira", "Fechar pulseira")
-        .setCssClass("action-pulseira_paciente")
-        .onClick(function() {
-
-            console.log("Ação: Fechar modal pulseira");
-            core.closeModalScene("Pulseira");
-
-            Pulseira.close();
-
-                })
-        .setVisibility( true )
-
-        ]);*/
-
-
-
         prontuario = new Scene("Prontuario", "Prontuario");
 
         prontuario.registerActions([
@@ -1247,6 +1230,28 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.closeModalScene("Prontuario");
             })
             .setVisibility( true )
+        ]);
+    
+    
+    
+        equipoSoro = new Scene("equipoSoro", "EquipamentoSoro")
+        
+        equipoSoro.registerActions([
+            
+            new Action("btn-fecharEquipoSoro", "Fechar Equipamento de Soro")
+            .setCssClass("action-fecharEquipoSoro")
+            .onClick(function() {
+
+                core.closeModalScene("equipoSoro");
+               
+                
+
+                
+            })
+            .setVisibility( true )
+            
+            
+            
         ]);
 
 
@@ -1370,6 +1375,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.registerModalScene( prontuario );
             level.registerModalScene( gaveta );
             level.registerModalScene( pulseira );
+            level.registerModalScene( equipoSoro );
 
 
         // 00
