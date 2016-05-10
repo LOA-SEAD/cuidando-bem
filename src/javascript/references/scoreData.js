@@ -304,7 +304,8 @@ define(function() {
             administrarMedicamento: new Score("Administrar Medicamento", 150 ),
             realizarGotejamento: new Score("Realizar Gotejamento de Soro", 350 ),
             lavarMaos3: new Score("Lavar as mãos antes de anotar no prontuário", 200 ),
-            anotarNoProntuario: new Score("Anotar no prontuário", 350 )
+            anotarNoProntuario: new Score("Anotar no prontuário", 350 ),
+            verPulseira: new Score("Ver pulseria do paciente", 150 )
         }
     };
 
