@@ -15,8 +15,8 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "ScoresData" ],
-    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, Scores ) {
+define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "ScoresData", "EquipoGotejamento" ],
+    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, Scores, EquipoGotejamento ) {
 
         var Dialogs = require("DialogsData").fase4;
         var Alertas = require("DialogsData").alertas;
@@ -544,6 +544,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         }
                     }
                     console.log("Action: Realizar gotejamento de soro no equipo");
+                    
+                    EquipoGotejamento.open();
+                    core.openModalScene("equipoSoro");
+                    
                 })
                 .setVisibility( true ),
 
@@ -1000,6 +1004,28 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true )
 
         ]);
+    
+       equipoSoro = new Scene("equipoSoro", "EquipamentoSoro")
+        
+        equipoSoro.registerActions([
+            
+            new Action("btn-fecharEquipoSoro", "Fechar Equipamento de Soro")
+            .setCssClass("action-fecharEquipoSoro")
+            .onClick(function() {
+
+                 EquipoGotejamento.close();
+                core.closeModalScene("equipoSoro");
+               
+               
+                
+
+                
+            })
+            .setVisibility( true )
+            
+            
+            
+        ]);
 
 
         gavetaEsquerda = new Scene("gavetaEsquerda", "Gaveta esquerda")
@@ -1311,6 +1337,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // level.registerModalScene( gavetaDireita );
         level.registerModalScene( noveCertosMedicacao );
         level.registerModalScene( keflin );
+        level.registerModalScene( equipoSoro );
 
 
         level.setSetupScript(function() {

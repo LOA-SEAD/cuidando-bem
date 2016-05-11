@@ -595,6 +595,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
         postoDeEnfermagem.registerActions([
+            
             new Action("btn-ir_corredor", "Ir ao corredor")
                 .setCssClass("action-ir_corredor")
                 .onClick(function() {
@@ -734,6 +735,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         alaFeminina = lib.scenes.alaFeminina.getClone()
+            .setCssClass("scene-bedroom-level7")
             .onLoad(function() {
                 console.log("Load scene: Ala feminina");
             })

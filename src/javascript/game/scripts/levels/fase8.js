@@ -866,6 +866,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         var alaMasculina = lib.scenes.alaMasculina.getClone()
+            .setCssClass("scene-bedroom-level6")
             .onLoad(function() {
                 console.log("Load scene: " + alaMasculina.getName() );
             });

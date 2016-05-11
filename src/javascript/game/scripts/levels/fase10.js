@@ -15,8 +15,8 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
-    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
+define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData", "EquipoGotejamento" ],
+    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores, EquipoGotejamento ) {
 
         var Dialogs = require("DialogsData").fase9;
         var Alertas = require("DialogsData").alertas;
@@ -86,7 +86,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         var alaFeminina = new Scene("alaFeminina", "Ala Feminina")
-            .setCssClass("scene-bedroom-level9")
+            .setCssClass("scene-bedroom-level7")
             .onLoad(function() {
 
             });
@@ -462,7 +462,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
 
-                Prontuario.open();
+                Prontuario.open('prescMedica');
                 core.openModalScene("Prontuario");
 
 
@@ -792,11 +792,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onClick(function() {
 
 
-                // if ( core.flag("pegou_tudo_postoEnfermagem") ) {
+                if ( core.flag("pegar_prescricao_medica") == false ) {
                     core.changeScene( 1 );
-                // } else {
-                    // core.openDialog( 0 );
-                // }
+                }
+                
+                
+                if(core.flag("pegou_tudo_postoEnfermagem") == true) {
+                	core.changeScene(1);
+		}
 
 
             })
@@ -1148,6 +1151,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.flag( "realizar_gotejamento",  true  );
                     core.registerScoreItem( Scores.realizarGotejamento );
                 }
+                
+                    EquipoGotejamento.open();
+                    core.openModalScene("equipoSoro");
+                 //   core.openModalScene("EquipamentoSoro");
+                 
+              
+
 
             })
             .setVisibility( false ),
@@ -1245,6 +1255,29 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.closeModalScene("Prontuario");
             })
             .setVisibility( true )
+        ]);
+    
+    
+    
+        equipoSoro = new Scene("equipoSoro", "EquipamentoSoro")
+        
+        equipoSoro.registerActions([
+            
+            new Action("btn-fecharEquipoSoro", "Fechar Equipamento de Soro")
+            .setCssClass("action-fecharEquipoSoro")
+            .onClick(function() {
+
+                EquipoGotejamento.close();
+                core.closeModalScene("equipoSoro");
+               
+                
+
+                
+            })
+            .setVisibility( true )
+            
+            
+            
         ]);
 
 
@@ -1391,6 +1424,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             level.registerModalScene( prontuario );
             level.registerModalScene( gaveta );
             level.registerModalScene( pulseira );
+            level.registerModalScene( equipoSoro );
             level.registerModalScene( soroGlicofisiologico );
             level.registerModalScene( cloretoSodio );
 

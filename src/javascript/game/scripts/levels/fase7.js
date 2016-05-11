@@ -15,8 +15,8 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
-    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
+define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData", "EquipoGotejamento" ],
+    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores, EquipoGotejamento ) {
 
         var Dialogs = require("DialogsData").fase6;
         var Alertas = require("DialogsData").alertas;
@@ -71,6 +71,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         var alaFeminina = lib.scenes.alaFeminina.getClone()
+        .setCssClass("scene-bedroom-level5")
         .onLoad(function() {
 
         });
@@ -786,6 +787,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         }
 
         core.flag("score_colocar_gotejamento",  true );
+          
+             EquipoGotejamento.open();
+             core.openModalScene("equipoSoro");
 
     })
       .setVisibility( true ),
@@ -996,12 +1000,35 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openDialog( 2 );
                 })
         ]);
+    
+        equipoSoro = new Scene("equipoSoro", "EquipamentoSoro")
+        
+        equipoSoro.registerActions([
+            
+            new Action("btn-fecharEquipoSoro", "Fechar Equipamento de Soro")
+            .setCssClass("action-fecharEquipoSoro")
+            .onClick(function() {
+
+                 EquipoGotejamento.close();
+                core.closeModalScene("equipoSoro");
+               
+               
+                
+
+                
+            })
+            .setVisibility( true )
+            
+            
+            
+        ]);
 
 
         level.registerModalScene( prontuario );
         level.registerModalScene( gaveta );
         level.registerModalScene( pulseira );
         level.registerModalScene( frascoDieta );
+        level.registerModalScene( equipoSoro );
 
 
         // 0

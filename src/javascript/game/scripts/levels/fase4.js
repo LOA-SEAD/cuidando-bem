@@ -516,7 +516,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         var alaFeminina = new Scene("alaMasculina", "Ala Masculina")
-            .setCssClass("scene-bedroom-level3")
+            .setCssClass("scene-bedroom-level2")
             .onLoad(function() {
                 console.log("Load scene: " + alaFeminina.getName() );
                 if ( core.flag("conversarPaciente") == true ) {
