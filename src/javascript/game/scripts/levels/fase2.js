@@ -101,6 +101,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                 console.log("Entrando no corredor");
                 Player.stopAll();
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInLoop( Player.audios.loops.recepcao );
                 if ( core.flag("conversar_mentor") == false ) {
                     core.flag("conversar_mentor",  true );
@@ -112,6 +114,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onUnload(function() {
                 console.log("Saindo do corredor");
                 Player.stopAll();
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInRange( Player.audios.musics.inGame );
             });
 
@@ -545,10 +549,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-examinar_paciente")
                 .onClick(function() {
                     console.log("Action: btn-examinar_paciente");
-                    Player.play( Player.audios.sfx.objeto );
+                    Player.play( Player.audios.sfx.toquePele );
                     core.openModalScene("zoomChar2");
                     core.flag("examinar_paciente",  true );
-                    core.setActionVisible("btn-ir_sala_leitos", true );
+                    // core.setActionVisible("btn-ir_sala_leitos", true );
                 })
                 .setVisibility( false ),
 
@@ -585,6 +589,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-mudar_posicao", "Mudar posição do paciente")
                 .setCssClass("action-mudar_posicao_paciente")
                 .onClick(function() {
+                    // Som
+                    Player.play( Player.audios.sfx.roupaRocando );
                     core.changeSceneCssClassTo("scene-bedChar02-turned");
                     core.setActionVisible("btn-mudar_posicao", false );
                     core.setInteractiveObjectVisible("io-pulseira_paciente", false );
@@ -595,6 +601,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-posicionar_coxim_e_travesseiro", "Posicionar coxim e travesseiro")
                 .setCssClass("action-posicionar_coxim")
                 .onClick(function() {
+                    // Som
+                    Player.play( Player.audios.sfx.objetoRocando );
                     core.changeSceneCssClassTo("scene-bedChar02-cushion");
                     core.setActionVisible("btn-posicionar_coxim_e_travesseiro", false );
                     core.flag("colocou_coxim",  true );
@@ -764,6 +772,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.unlockLevel( 2 );
                         core.closeCommandBar();
                         core.showEndOfLevel();
+                        Player.stopAll();
+                        Player.play( Player.audios.sfx.missaoCumprida );
                     }
                 })
 

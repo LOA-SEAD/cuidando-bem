@@ -151,6 +151,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                 console.log("Entrando no corredor");
                 Player.stopAll();
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInLoop( Player.audios.loops.recepcao );
                 // Mentor só aparece no começo da fase
                 if ( core.flag("entrou_ala_feminina") == true ) {
@@ -160,6 +162,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onUnload(function() {
                 console.log("Saindo do corredor");
                 Player.stopAll();
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInRange( Player.audios.musics.inGame );
             });
 
@@ -580,8 +584,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( false ),
 
             new Action("btn-descartar_agulha", "Jogar agulha no descarpax")
-                // CONSERTAR
-                .setCssClass("action-descartar_agulha")
+                .setCssClass("action-agulha_40x12")
                 .onClick(function() {
                     console.log("Action: Jogar agulha no descarpax");
                     // Som
@@ -665,6 +668,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-luvas_de_procedimento")
                 .onClick(function() {
                     console.log("Action: Calçar luvas de procedimento");
+                    // Som
+                    Player.play( Player.audios.sfx.colocarLuvas );
                     if ( core.flag("score_luvas_de_procedimento") == false ) {
                         core.registerScoreItem( Scores.calcarLuvaProcedimento );
                         core.flag("score_luvas_de_procedimento",  true );
@@ -678,6 +683,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-luvas_estereis")
                 .onClick(function() {
                     console.log("Action: Calçar luvas estéreis");
+                    // Som
+                    Player.play( Player.audios.sfx.colocarLuvas );
                     if ( core.flag("score_lavou_maos_antes_calcar_luva") == false ) {
                         if ( core.flag("score_nao_lavou_maos_antes_calcar_luva") == false ) {
                             core.registerScoreItem( Scores.naoLavarMaosAntesLuva );
@@ -754,7 +761,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( false ),
 
             new Action("btn-anotarProntuario", "Anotar prontuario")
-                .setCssClass("action-anotarProntuario")
+                .setCssClass("action-anotar_prontuario")
                 .onClick(function() {
                     console.log("Action: Anotar prontuario");
                     if ( core.flag("score_ergueu_grade") == false ) {
@@ -1039,6 +1046,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.unlockLevel( 6 );
                         core.closeCommandBar();
                         core.showEndOfLevel();
+                        Player.stopAll();
+                        Player.play( Player.audios.sfx.missaoCumprida );
                     } else {
                         core.closeModalScene("Prontuario");
                         core.setInteractiveObjectVisible("io-ir_corredor", true );

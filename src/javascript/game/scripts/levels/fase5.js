@@ -38,7 +38,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             gavetaDireita,
             prontuario,
             pulseira,
-            keflin;
+            keflin,
+            noveCertosMedicacao;
 
 
         function recepcaoIrCorredor() {
@@ -113,6 +114,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Player.play( Player.audios.sfx.pegarObjeto );
                     core.setInteractiveObjectVisible("io-pegar_folheto_dos_9_certos", false );
                     core.flag("pegarFolheto9Certos",  true );
+                    core.openModalScene("noveCertosMedicacao");
                 })
                 .setVisibility( true )
         ]);
@@ -122,11 +124,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                 console.log("Entrando no corredor");
                 Player.stopAll();
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInLoop( Player.audios.loops.recepcao );
             })
             .onUnload(function() {
                 console.log("Saindo do corredor");
                 Player.stopAll();
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInRange( Player.audios.musics.inGame );
             });
 
@@ -261,7 +267,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.checarProntuario );
                         core.flag("score_viu_prontuario",  true );
                     }
-                    
+
                          // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     console.log("Action: Pegar prescrição médica");
@@ -269,7 +275,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.pegarPrescricaoMedica );
                         core.flag("score_pegou_prescricao_medica",  true );
                     }
-                
+
                     Prontuario.open(`prescMedica`);      // abre prontuario na aba correta
                     core.openModalScene("Prontuario");
                 })
@@ -839,7 +845,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-visualizar_folheto")
                 .onClick(function() {
                     console.log("Action: Visualizando folheto");
-                    // Vai abrir uma modal scene com o folheto
+                    core.openModalScene("noveCertosMedicacao");
 
                 })
                 .setVisibility( false )
@@ -1157,7 +1163,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             // Equipo de soro macrogotas
             new InteractiveObject("io-equipo_soro", "Pegar equipo de soro macrogotas")
-                .setCssClass("intObj-equipo_de_soro")
+                .setCssClass("intObj-equipo_de_soro_fase4")
                 .onClick(function() {
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
@@ -1224,6 +1230,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.unlockLevel( 5 );
                         core.closeCommandBar();
                         core.showEndOfLevel();
+                        Player.stopAll();
+                        Player.play( Player.audios.sfx.missaoCumprida );
                     }
                 })
                 .setVisibility( true ),
@@ -1248,7 +1256,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         pulseira.registerActions([
             new Action("btn-largar_pulseira", "Fechar pulseira")
-                .setCssClass("action-pulseira_pedro")
+                .setCssClass("action-pulseira_paciente")
                 .onClick(function() {
                     console.log("Ação: Fechar modal pulseira");
                     core.closeModalScene("Pulseira");
@@ -1275,6 +1283,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
         ]);
 
+        noveCertosMedicacao = new Scene("noveCertosMedicacao", "Visualizar o folheto dos 9 certos")
+             .setCssClass("modalScene-noveCertosMedicacao");
+
+        noveCertosMedicacao.registerActions([
+            new Action("btn-fechar_zoom", "Fechar folheto")
+                .setCssClass("action-visualizar_folheto")
+                .onClick(function() {
+                    console.log("Action: Fechar folheto");
+                    core.closeModalScene("noveCertosMedicacao");
+                })
+        ]);
+
+
 
         level.registerScene( recepcao );
         level.registerScene( corredor );
@@ -1288,6 +1309,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerModalScene( prontuario );
         level.registerModalScene( gavetaEsquerda );
         // level.registerModalScene( gavetaDireita );
+        level.registerModalScene( noveCertosMedicacao );
         level.registerModalScene( keflin );
 
 

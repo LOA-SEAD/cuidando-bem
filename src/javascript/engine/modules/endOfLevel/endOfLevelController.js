@@ -37,6 +37,8 @@ define([
     var scoreSelector = ".score";
 
     var isOpen = false;
+
+    var Player = require("Player");
 // Methods
     // Init
     /**
@@ -50,6 +52,7 @@ define([
         $(".goToMenu").click(function() {
             isOpen = false;
             Stage.changeScreen( 6 );
+            Player.playInLoop( Player.audios.musics.menu );
         });
 
         $(".playAgain").click(function() {

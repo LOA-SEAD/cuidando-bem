@@ -158,6 +158,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 console.log("Entrando no corredor");
 
                 Player.stopAll();
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInLoop( Player.audios.loops.recepcao );
                 if ( core.flag("conversar_mentor") == false ) {
                     core.flag("conversar_mentor",  true );
@@ -167,6 +169,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onUnload(function() {
                 console.log("Saindo do corredor");
                 Player.stopAll();
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInRange( Player.audios.musics.inGame );
             });
 
@@ -455,16 +459,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.closeDialog();
                 }),
-            
+
             //7
                new Dialog( lib.characters.mentor )
                 .setText( Dialogs.farmacia[5] )
                 .registerOption("", function() {
                     core.closeDialog();
                 }),
-            
-            
-                        
+
+
+
 
         ]);
 
@@ -512,14 +516,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("pegarDieta") == false ) {
                             core.openDialog(7);
                     } else {
-                        
+
                         if( core.flag("conferirDieta") == false)  {
                         core.flag("conferirDieta",  true );
                         core.registerScoreItem( Scores.conferirDieta );
                         }
-                        
+
                         core.openModalScene("conferirFrascoDieta");
-                        
+
                     }
                 })
            ]);
@@ -761,7 +765,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       .setVisibility( true ),
 
       new Action("btn-administrar_dieta", "Administrar Dieta")
-      .setCssClass("action-administrar_dieta")
+      .setCssClass("action-frasco_dieta")
       .onClick(function() {
 
         if ( core.flag("score_administrar_dieta") == false ) {
@@ -863,6 +867,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             core.unlockLevel( 7 );
                             core.closeCommandBar();
                             core.showEndOfLevel();
+                            Player.stopAll();
+                            Player.play( Player.audios.sfx.missaoCumprida );
                         }
                     }
                     console.log("Action: Fechar prontuario");

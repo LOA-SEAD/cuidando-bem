@@ -40,28 +40,36 @@ define([ "Stage", "CuidandoBem" ], function( Stage, Core ) {
         });
 
         $(".backButton").click(function() {
+            Player.play( Player.audios.sfx.selecionarMenu );
             Stage.changeScreen( 0 );
         });
 
         $("#pauseButton").click(function() {
+            Player.play( Player.audios.sfx.selecionarMenu );
             $( "#pauseMenu" ).toggle();
         });
 
         $(".quit.button").click(function() {
+            Player.stopAll();
+            Player.play( Player.audios.sfx.selecionarMenu );
+            Player.playInLoop( Player.audios.musics.menu );
             Stage.changeScreen( 6 );
         });
 
         $(".replay.button").click(function() {
+            Player.play( Player.audios.sfx.selecionarMenu );
             Core.restartLevel();
             $( "#pauseMenu" ).hide();
         });
 
         $(".config.button").click(function() {
+            Player.play( Player.audios.sfx.selecionarMenu );
             //TODO não é possível voltar ao jogo depois de ir à tela de configuração
             Stage.changeScreen( 4 );
         });
 
         $(".back.button").click(function() {
+            Player.play( Player.audios.sfx.selecionarMenu );
             $( "#pauseMenu" ).hide();
         });
 
