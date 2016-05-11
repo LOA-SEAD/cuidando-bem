@@ -733,6 +733,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         alaFeminina = lib.scenes.alaFeminina.getClone()
+            .setCssClass("scene-bedroom-level7")
             .onLoad(function() {
                 console.log("Load scene: Ala feminina");
             })

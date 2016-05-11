@@ -83,7 +83,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         var alaFeminina = new Scene("alaFeminina", "Ala Feminina")
-            .setCssClass("scene-bedroom-level9")
+            .setCssClass("scene-bedroom-level7")
             .onLoad(function() {
 
             });

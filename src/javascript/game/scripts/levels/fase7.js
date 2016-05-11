@@ -71,6 +71,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         var alaFeminina = lib.scenes.alaFeminina.getClone()
+        .setCssClass("scene-bedroom-level5")
         .onLoad(function() {
 
         });
