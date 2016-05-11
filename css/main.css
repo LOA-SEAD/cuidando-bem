@@ -316,13 +316,20 @@ This file is part of Cuidando Bem.
   height: 50%;
 }
 .ui-tooltip {
-  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwIi8+PHN0b3Agb2Zmc2V0PSIxNSUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC41Ii8+PHN0b3Agb2Zmc2V0PSI4NSUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC41Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDAwMDAwIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZGllbnQpIiAvPjwvc3ZnPg==');
+  background: linear-gradient(90deg, transparent 0%, rgba(20, 20, 20, 0.5) 10%, rgba(20, 20, 20, 0.5) 90%, transparent 100%);
   float: left;
   position: absolute;
   color: white;
   font-family: "Indie Flower", sans-serif;
   padding: 5px 45px;
   font-size: 22px;
+}
+.menuButton.backButton {
+  position: absolute;
+  bottom: 8%;
+  right: 6%;
+  margin: 0;
+  padding: 0 2%;
 }
 /*
 This file is part of Cuidando Bem.
@@ -350,31 +357,31 @@ This file is part of Cuidando Bem.
 }
 .menuButtonBlue {
   background-color: #3498db;
-  border-bottom: 5px solid #2980B9;
+  border-bottom: 5px solid #2980b9;
 }
 .menuButtonBlue:hover {
-  background-color: #5FAEE3;
+  background-color: #5faee3;
 }
 .menuButtonRed {
   background-color: #e74c3c;
-  border-bottom: 5px solid #BD3E31;
+  border-bottom: 5px solid #bd3e31;
 }
 .menuButtonRed:hover {
-  background-color: #EC7669;
+  background-color: #ec7669;
 }
 .menuButtonGreen {
   background-color: #82bf56;
   border-bottom: 5px solid #669644;
 }
 .menuButtonGreen:hover {
-  background-color: #9CCD7A;
+  background-color: #9ccd7a;
 }
 .menuButtonYellow {
   background-color: #e4bc47;
-  border-bottom: 5px solid #A38426;
+  border-bottom: 5px solid #a38426;
 }
 .menuButtonYellow:hover {
-  background-color: #EACD75;
+  background-color: #eacd75;
 }
 .menuButton.disabled {
   background-color: #8E8F8E !important;
@@ -598,6 +605,101 @@ This file is part of Cuidando Bem.
   width: 100%;
   height: 100%;
 }
+#configMenu {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+}
+#pauseButton {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url(../images/misc/pauseButton.png);
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  width: 2%;
+  height: 3.25%;
+  z-index: 1;
+  cursor: pointer;
+}
+#pauseButton:hover {
+  -webkit-transform: scale(1.1, 1.1);
+          transform: scale(1.1, 1.1);
+}
+#pauseButton:active {
+  -webkit-transform: scale(1, 1);
+          transform: scale(1, 1);
+  -webkit-filter: none;
+          filter: none;
+}
+#pauseMenu {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  position: absolute;
+}
+#pauseMenu .background {
+  width: 24%;
+  height: 46%;
+  border-radius: 10% / 10%;
+  position: absolute;
+  top: 27%;
+  left: 38%;
+  background-color: lightgray;
+}
+#pauseMenu .pauseSeparator {
+  width: 70%;
+  height: 1%;
+  background-color: grey;
+  left: 15%;
+  position: relative;
+  border-radius: 15px;
+  margin-bottom: 5%;
+}
+#pauseMenu #front {
+  position: relative;
+  top: 28%;
+  z-index: 1;
+  font-size: 3em;
+  width: 30%;
+  left: 35%;
+}
+#pauseMenu #front div:not(.pauseSeparator):not(.title) {
+  width: 70%;
+  position: relative;
+  left: 15%;
+  margin: 4% 0;
+  border-radius: 4% / 20%;
+  box-sizing: border-box;
+}
+#pauseMenu #front .quit {
+  background-color: #e74c3c;
+  border-bottom: 5px solid #bd3e31;
+}
+#pauseMenu #front .replay {
+  background-color: #82bf56;
+  border-bottom: 5px solid #669644;
+}
+#pauseMenu #front .config {
+  background-color: #3498db;
+  border-bottom: 5px solid #2980b9;
+}
+#pauseMenu #front .back {
+  background-color: #e4bc47;
+  border-bottom: 5px solid #a38426;
+}
+#pauseMenu #front .button {
+  cursor: pointer;
+}
+#pauseMenu #front .button:active {
+  border-bottom: 5px solid transparent;
+  -webkit-transform: translate(0px, 2px);
+          transform: translate(0px, 2px);
+}
 /*
 This file is part of Cuidando Bem.
     Cuidando Bem is free software: you can redistribute it and/or modify
@@ -767,12 +869,6 @@ p.title {
 .l9 > .image {
   background-image: url(../images/interactiveObjects/soro_glicofisiologico_1000_ml.png);
 }
-.levelSelect-button {
-  bottom: 2%;
-  position: absolute;
-  width: 15%;
-  right: 1%;
-}
 /*
 This file is part of Cuidando Bem.
     Cuidando Bem is free software: you can redistribute it and/or modify
@@ -795,15 +891,6 @@ This file is part of Cuidando Bem.
 #slotSelect #menuContainer {
   top: 10%;
   width: 20%;
-}
-#slotSelect #menuContainer .menuButton:first-child {
-  margin: 0;
-}
-#slotSelect #menuContainer .menuSeparator {
-  width: 100%;
-  height: 1%;
-  background-color: rgba(145, 145, 145, 0.5);
-  margin: 5% 0;
 }
 .slotSelect-logo {
   background: center no-repeat url(../images/misc/logo.png);
@@ -967,7 +1054,7 @@ This file is part of Cuidando Bem.
 }
 .config.menuHorizontal .menuButton {
   display: inline;
-  padding: 0 25px;
+  padding: 0 3rem;
 }
 .configTitle {
   top: 6%;
@@ -977,11 +1064,11 @@ This file is part of Cuidando Bem.
 }
 .configTitle .titleText {
   display: inline;
-  padding: 10px 50px;
+  padding: 1rem 8rem;
   background-color: rgba(204, 214, 229, 0.6);
   font-family: 'Pacifico', cursive;
-  font-size: 45px;
-  border-radius: 12px;
+  font-size: 8rem;
+  border-radius: 2rem;
 }
 #configContent {
   position: absolute;
@@ -1001,10 +1088,10 @@ This file is part of Cuidando Bem.
   position: absolute;
   left: 0%;
   font-family: 'Pacifico', cursive;
-  font-size: 25px;
-  padding: 10px 50px;
+  font-size: 3rem;
+  padding: 1rem 8rem;
   background-color: rgba(204, 214, 229, 0.6);
-  border-radius: 12px;
+  border-radius: 1rem;
 }
 #configContent .controlRow .control {
   width: 100%;
@@ -1012,15 +1099,15 @@ This file is part of Cuidando Bem.
 #configContent .controlRow .control .slider {
   background-color: white;
   width: 50%;
-  height: 7px;
-  margin-bottom: 5px;
+  height: 1rem;
+  margin-bottom: 0.3rem;
 }
 #configContent .controlRow .control .slider span {
   background-color: #e8b36d;
-  border-radius: 25px;
-  width: 30px;
-  height: 30px;
-  top: -10px;
+  border-radius: 3rem;
+  width: 3rem;
+  height: 3rem;
+  top: -1rem;
 }
 #configContent .controlRow .control .mute.desactive {
   background: url(../images/misc/muteButtonDesativado.png);
@@ -1029,15 +1116,15 @@ This file is part of Cuidando Bem.
 #configContent .controlRow .control .mute {
   background: url(../images/misc/muteButtonAtivo.png);
   background-size: cover;
-  width: 30px;
-  height: 30px;
+  width: 3rem;
+  height: 3rem;
   position: relative;
-  top: 7px;
+  top: 1rem;
 }
 #configContent .controlRow .control > span {
   font-family: 'Pacifico', cursive;
-  font-size: 30px;
-  padding: 0 20px;
+  font-size: 3rem;
+  padding: 0 2rem;
 }
 #configContent .controlRow .control .plus {
   position: relative;
@@ -1393,7 +1480,7 @@ This file is part of Cuidando Bem.
   height: 5.4%;
 }
 .intObj-paciente_10-checar_pulseira {
-  background-image: url(../images/interactiveObjects/pulseira10.png);
+  background-image: url(../images/interactiveObjects/pulseira05.png);
   background-size: contain;
   background-repeat: no-repeat;
   top: 72.5%;
@@ -1510,10 +1597,10 @@ This file is part of Cuidando Bem.
   background-image: url(../images/interactiveObjects/glicose30_10ml.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 50%;
-  left: 50%;
-  width: 9%;
-  height: 20%;
+  top: 45%;
+  left: 40%;
+  width: 12%;
+  height: 22%;
 }
 .intObj-algodao_seco {
   background-image: url(../images/interactiveObjects/algodao_seco.png);
@@ -1564,8 +1651,8 @@ This file is part of Cuidando Bem.
   background-image: url(../images/interactiveObjects/cloreto_de_sodio_10__10_ml_.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 37%;
-  left: 23%;
+  top: 55%;
+  left: 40%;
   width: 9%;
   height: 20%;
 }
@@ -1582,7 +1669,7 @@ This file is part of Cuidando Bem.
   background-image: url(../images/interactiveObjects/clorpromazina_medicamento.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 58%;
+  top: 64%;
   left: 38%;
   width: 9%;
   height: 20%;
@@ -1591,7 +1678,7 @@ This file is part of Cuidando Bem.
   background-image: url(../images/interactiveObjects/clorpropamida_medicamento.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 60%;
+  top: 64%;
   left: 38%;
   width: 10%;
   height: 20%;
@@ -1628,9 +1715,18 @@ This file is part of Cuidando Bem.
   background-size: contain;
   background-repeat: no-repeat;
   top: 34%;
-  left: 43%;
-  width: 9%;
-  height: 20%;
+  left: 33%;
+  width: 13%;
+  height: 13%;
+}
+.intObj-equipo_de_soro_fase4 {
+  background-image: url(../images/interactiveObjects/equipo_de_soro.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 34%;
+  left: 42%;
+  width: 10%;
+  height: 11%;
 }
 .intObj-fita_adesiva_hipoalergenica_micropore {
   background-image: url(../images/interactiveObjects/fita_adesiva_hipoalergenica_micropore.png);
@@ -1654,8 +1750,8 @@ This file is part of Cuidando Bem.
   background-image: url(../images/interactiveObjects/frasco_de_dieta.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 37%;
-  left: 23%;
+  top: 55%;
+  left: 40%;
   width: 9%;
   height: 20%;
 }
@@ -1699,7 +1795,7 @@ This file is part of Cuidando Bem.
   background-image: url(../images/interactiveObjects/keflin_medicamento.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 50%;
+  top: 55%;
   left: 40%;
   width: 9%;
   height: 20%;
@@ -1746,7 +1842,7 @@ This file is part of Cuidando Bem.
   background-repeat: no-repeat;
   top: 34%;
   left: 28%;
-  width: 19%;
+  width: 14%;
   height: 15%;
 }
 .intObj-luvas_estereis {
@@ -1762,7 +1858,7 @@ This file is part of Cuidando Bem.
   background-image: url(../images/interactiveObjects/midazolam_medicamento.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 55%;
+  top: 59%;
   left: 38%;
   width: 9%;
   height: 20%;
@@ -1861,8 +1957,17 @@ This file is part of Cuidando Bem.
   background-image: url(../images/interactiveObjects/seringa_de_10_ml.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 33%;
-  left: 63%;
+  top: 48%;
+  left: 65%;
+  width: 9%;
+  height: 17%;
+}
+.intObj-seringa_de_10_ml_fase4 {
+  background-image: url(../images/interactiveObjects/seringa_de_10_ml.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 48%;
+  left: 25%;
   width: 9%;
   height: 17%;
 }
@@ -1897,8 +2002,8 @@ This file is part of Cuidando Bem.
   background-image: url(../images/interactiveObjects/soro_glicofisiologico_1000_ml.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 37%;
-  left: 23%;
+  top: 55%;
+  left: 28%;
   width: 9%;
   height: 20%;
 }
@@ -1918,15 +2023,6 @@ This file is part of Cuidando Bem.
   top: 44%;
   left: 53%;
   width: 9%;
-  height: 20%;
-}
-.intObj-clorpropamida_medicamento {
-  background-image: url(../images/interactiveObjects/clorpropamida_medicamento.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  top: 60%;
-  left: 38%;
-  width: 10%;
   height: 20%;
 }
 /*
@@ -1951,7 +2047,6 @@ This file is part of Cuidando Bem.
 .scene-bedroom-level1,
 .scene-bedroom-level1a,
 .scene-bedroom-level1b,
-.scene-bedroom-level1c,
 .scene-bedroom-level2,
 .scene-bedroom-level3,
 .scene-bedroom-level4,
@@ -1960,11 +2055,13 @@ This file is part of Cuidando Bem.
 .scene-bedroom-level7,
 .scene-bedroom-level8,
 .scene-bedroom-level9,
+.scene-bedroom-level9-trocado,
 .scene-bedChar01,
 .scene-bedChar02,
 .scene-bedChar02-turned,
 .scene-bedChar02-cushion,
 .scene-bedChar03,
+.scene-bedChar03-01,
 .scene-bedChar04,
 .scene-bedChar05,
 .scene-bedChar06,
@@ -2012,10 +2109,7 @@ This file is part of Cuidando Bem.
   background-image: url(../images/scenes/quartos1a.jpg);
 }
 .scene-bedroom-level1b {
-  background-image: url(../images/scenes/quartos1.bjpg);
-}
-.scene-bedroom-level1c {
-  background-image: url(../images/scenes/quartos1.jcpg);
+  background-image: url(../images/scenes/quartos1b.jpg);
 }
 .scene-bedroom-level2 {
   background-image: url(../images/scenes/quartos2.jpg);
@@ -2041,6 +2135,9 @@ This file is part of Cuidando Bem.
 .scene-bedroom-level9 {
   background-image: url(../images/scenes/quartos9.jpg);
 }
+.scene-bedroom-level9-trocado {
+  background-image: url(../images/scenes/quartos10.jpg);
+}
 .scene-bedChar01 {
   background-image: url(../images/scenes/leitoChar01.jpg);
 }
@@ -2055,6 +2152,9 @@ This file is part of Cuidando Bem.
 }
 .scene-bedChar03 {
   background-image: url(../images/scenes/leitoChar03.jpg);
+}
+.scene-bedChar03-01 {
+  background-image: url(../images/scenes/leitoChar03-01.jpg);
 }
 .scene-bedChar04 {
   background-image: url(../images/scenes/leitoChar04.jpg);
@@ -2254,9 +2354,89 @@ This file is part of Cuidando Bem.
 .modalScene-glicosimetro .glicosimetro-text {
   position: absolute;
   top: 39%;
-  left: 45.5%;
+  left: 45%;
   font-size: 3.5em;
   color: #000;
+}
+.modalScene-cloretoSodio20 {
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: url(../images/modalScenes/cloreto_de_sodio_20__10_ml_.png);
+  background-position: center;
+  background-size: 20%;
+  background-repeat: no-repeat;
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.modalScene-clorpromazinaMedicamento {
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: url(../images/modalScenes/clorpromazina_medicamento.png);
+  background-position: center;
+  background-size: 25%;
+  background-repeat: no-repeat;
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.modalScene-clorpropamidaMedicamento {
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: url(../images/modalScenes/clorpropamida_medicamento.png);
+  background-position: center;
+  background-size: 25%;
+  background-repeat: no-repeat;
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.modalScene-frascoDieta {
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: url(../images/modalScenes/frasco_de_dieta.png);
+  background-position: center;
+  background-size: 18%;
+  background-repeat: no-repeat;
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.modalScene-keflinMedicamento {
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: url(../images/modalScenes/keflin_medicamento.png);
+  background-position: center;
+  background-size: 16%;
+  background-repeat: no-repeat;
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.modalScene-midazolamMedicamento {
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: url(../images/modalScenes/midazolam_medicamento.png);
+  background-position: center;
+  background-size: 25%;
+  background-repeat: no-repeat;
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.modalScene-soroGlicofisiologico1000 {
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: url(../images/modalScenes/soro_glicofisiologico_1000_ml.png);
+  background-position: center;
+  background-size: 17%;
+  background-repeat: no-repeat;
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.modalScene-noveCertosMedicacao {
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: url(../images/modalScenes/9_certos_da_medicacao.png);
+  background-position: center;
+  background-size: 27%;
+  background-repeat: no-repeat;
+  display: table;
+  width: 100%;
+  height: 100%;
 }
 /*
 This file is part of Cuidando Bem.
@@ -2641,6 +2821,106 @@ This file is part of Cuidando Bem.
   border-radius: 10% / 13%;
   border: 5px solid black;
   box-sizing: border-box;
+}
+#equipoGotejamento {
+  position: absolute;
+  width: 66%;
+  height: 86%;
+  left: 17%;
+  top: 6%;
+  background-color: white;
+  background-image: radial-gradient(#ffffff 31%, #b7b7b7 131%);
+  border-radius: 10% / 13%;
+  border: 1rem solid black;
+  box-sizing: border-box;
+}
+#equipo {
+  display: none;
+}
+#equipo .border {
+  z-index: 2;
+  position: absolute;
+  width: 66%;
+  height: 86%;
+  left: 17%;
+  top: 6%;
+  background-color: transparent;
+  border-radius: 10% / 13%;
+  border: 1rem solid black;
+  box-sizing: border-box;
+}
+#equipo .plus,
+#equipo .less {
+  position: absolute;
+  width: 5%;
+  height: 8%;
+  background-color: #90DEEE;
+  border-radius: 100%;
+  border: 0.4rem solid black;
+  z-index: 4;
+  font-family: arial;
+  font-size: 3rem;
+  padding: 1%;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+#equipo .plus:hover,
+#equipo .less:hover {
+  -webkit-transform: scale(1.05, 1.05);
+          transform: scale(1.05, 1.05);
+  background-color: #D3F2F8;
+}
+#equipo .plus:active,
+#equipo .less:active {
+  -webkit-transform: scale(1, 1);
+          transform: scale(1, 1);
+  background-color: #D3F2F8;
+}
+#equipo .plus {
+  right: 26%;
+  top: 24%;
+}
+#equipo .less {
+  right: 26%;
+  top: 70%;
+}
+#equipo .slider.soro .sliderBackground {
+  background-image: url(../images/modalScenes/soro/controleGotejadorSoro.png);
+}
+#equipo .slider.soro .sliderFront .ui-slider-handle {
+  background-image: url(../images/modalScenes/soro/sliderSoro.png);
+}
+#equipo .slider.dieta .sliderBackground {
+  background-image: url(../images/modalScenes/dieta/controleGotejadorDieta.png);
+}
+#equipo .slider.dieta .sliderFront .ui-slider-handle {
+  background-image: url(../images/modalScenes/dieta/sliderDieta.png);
+}
+#equipo .sliderBackground {
+  position: absolute;
+  width: 11%;
+  height: 85%;
+  top: 6.5%;
+  left: 58%;
+  z-index: 1;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#equipo .sliderFront {
+  
+  position: absolute;
+  right: 34.3%;
+  z-index: 3;
+  top: 38%;
+  height: 39%;
+  width: 5%;
+}
+#equipo .sliderFront .ui-slider-handle {
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 40%;
+  left: 0%;
 }
 /*
 This file is part of Cuidando Bem.
@@ -3110,11 +3390,23 @@ This file is part of Cuidando Bem.
 .action-soro_fisiologico_100ml {
   background-image: url(../images/actionButtons/soroFisiologico100ml.jpg);
 }
-.action-soro_fisiologico_250ml {
-  background-image: url(../images/actionButtons/soroFisiologico250ml.jpg);
+.action-verificar-sonda {
+  background-image: url(../images/actionButtons/seringa20ml.jpg);
 }
 .action-soro_glicofisiologico_1000ml {
   background-image: url(../images/actionButtons/soroGlicofisiologico1000ml.jpg);
+}
+.action-lixo_perfuro_cortante {
+  background-image: url(../images/actionButtons/lixo_perfuro_cortante.jpg);
+}
+.action-lixo_infectante {
+  background-image: url(../images/actionButtons/lixo_infectante.jpg);
+}
+.action-lixo_comum {
+  background-image: url(../images/actionButtons/lixo_comum.jpg);
+}
+.action-preparar_medicacao {
+  background-image: url(../images/actionButtons/prepararMedicacao.jpg);
 }
 /*
 This file is part of Cuidando Bem.
@@ -3194,16 +3486,22 @@ This file is part of Cuidando Bem.
   width: 30%;
   height: 100%;
   display: inline-block;
+  background-color: #AFB4B6;
+}
+.percentBar .fill {
+  width: 0%;
+  height: 100%;
   background-color: #67D6C5;
 }
 .percentBar .percent {
   position: absolute;
-  top: 0;
+  top: -25%;
   bottom: 0;
-  margin: auto;
+  
   height: 50%;
   display: inline-block;
   padding: 0 1%;
+  font-size: 3rem;
 }
 .percentBar .tab {
   position: absolute;
@@ -3222,14 +3520,14 @@ This file is part of Cuidando Bem.
 .endOfLevel-title > span {
   position: absolute;
   display: block;
-  top: 0;
+  top: -10%;
   left: 0;
   right: 0;
   bottom: 0;
   width: 100%;
   height: 50%;
-  margin: auto;
-  font-size: 1.25em;
+  
+  font-size: 3.5rem;
 }
 .separator {
   width: 96%;
@@ -3323,4 +3621,7 @@ html {
 }
 body {
   font-family: 'Pacifico', cursive;
+}
+*:focus {
+  outline: none;
 }
