@@ -34,6 +34,11 @@ define([ "Stage", "Storage" ], function( Stage, Storage ) {
     var sfxVolumeBeforeMute = Storage.getSfxVolume();
     var musicVolumeBeforeMute = Storage.getMusicVolume();
 
+    var defaultBackFun = function() {
+        Player.play( Player.audios.sfx.selecionarMenu );
+        Stage.changeScreen( 0 );
+    };
+
     /**
      * This method is called when the screen Configuration is loaded
      *
@@ -42,14 +47,25 @@ define([ "Stage", "Storage" ], function( Stage, Storage ) {
      *
      * @memberOf module:Screen_configuration_Controller
      */
-    function load() {
+    function load( cb ) {
+        sfxMuted = Storage.isSfxMuted();
+        sfxVolume = Storage.getSfxVolume();
+        musicMuted = Storage.isMusicMuted();
+        musicVolume = Storage.getMusicVolume();
+
+        sfxVolumeBeforeMute = Storage.getSfxVolume();
+        musicVolumeBeforeMute = Storage.getMusicVolume();
+
+
         $(".menuButton").click(function() {
             Player.play( Player.audios.sfx.selecionarMenu );
         });
 
-        $(".backButton").click(function() {
-            Stage.changeScreen( 0 );
-        });
+        if ( cb ) {
+            $(".backButton").click( cb );
+        } else {
+            $(".backButton").click( defaultBackFun );
+        }
 
         $(".slider.sfx").slider({
             value: sfxVolume * 100,

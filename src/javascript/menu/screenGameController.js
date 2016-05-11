@@ -22,7 +22,7 @@ This file is part of Cuidando Bem.
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define([ "Stage", "CuidandoBem" ], function( Stage, Core ) {
+define([ "Stage", "CuidandoBem", "text!../../html/screens/configuration.html", "./screenConfigurationController" ], function( Stage, Core, configHtml, configCon ) {
 
     var Player = require("Player");
 
@@ -35,14 +35,19 @@ define([ "Stage", "CuidandoBem" ], function( Stage, Core ) {
      * @memberOf module:Screen_game_Controller
      */
     function load() {
-        $(".menuButton").click(function() {
+        $("#configMenu").append( configHtml );
+        configCon.load(function() {
             Player.play( Player.audios.sfx.selecionarMenu );
+            $( "#configMenu" ).hide();
         });
+        // $(".menuButton").click(function() {
+        //     Player.play( Player.audios.sfx.selecionarMenu );
+        // });
 
-        $(".backButton").click(function() {
-            Player.play( Player.audios.sfx.selecionarMenu );
-            Stage.changeScreen( 0 );
-        });
+        // $(".backButton").click(function() {
+        //     Player.play( Player.audios.sfx.selecionarMenu );
+        //     Stage.changeScreen( 0 );
+        // });
 
         $("#pauseButton").click(function() {
             Player.play( Player.audios.sfx.selecionarMenu );
@@ -64,8 +69,8 @@ define([ "Stage", "CuidandoBem" ], function( Stage, Core ) {
 
         $(".config.button").click(function() {
             Player.play( Player.audios.sfx.selecionarMenu );
-            //TODO não é possível voltar ao jogo depois de ir à tela de configuração
-            Stage.changeScreen( 4 );
+            $( "#pauseMenu" ).toggle();
+            $( "#configMenu" ).show();
         });
 
         $(".back.button").click(function() {
