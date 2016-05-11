@@ -38,7 +38,12 @@ This file is part of Cuidando Bem.
 }
 
 .ui-tooltip {
-    background-image: svg-gradient(to right, transparent, rgba(0, 0, 0, 0.5) 15%, rgba(0, 0, 0, 0.5) 85%,transparent);
+    //background-color: red;
+    @color: rgba( 20, 20, 20, 0.5);
+    @markA: 10%;
+    @markB: 100% - @markA;
+    background: linear-gradient( 90deg, transparent 0%, @color @markA, @color @markB, transparent 100%);
+    //background-image: svg-gradient(to right, transparent, rgba(0, 0, 0, 0.5) 15%, rgba(0, 0, 0, 0.5) 85%,transparent);
     float: left;
     //left: 50%;
     position: absolute;
@@ -46,4 +51,13 @@ This file is part of Cuidando Bem.
     font-family: @font-menu;
     padding: 5px 45px;
     font-size: 22px;
+}
+
+
+.menuButton.backButton {
+    position: absolute;
+    bottom: 8%;
+    right: 6%;
+    margin: 0;
+    padding: 0 2%;
 }

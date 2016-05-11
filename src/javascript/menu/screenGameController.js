@@ -22,7 +22,7 @@ This file is part of Cuidando Bem.
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define([ "Stage", "CuidandoBem" ], function( Stage, Core ) {
+define([ "Stage", "CuidandoBem", "text!../../html/screens/configuration.html", "./screenConfigurationController" ], function( Stage, Core, configHtml, configCon ) {
 
     var Player = require("Player");
 
@@ -35,18 +35,53 @@ define([ "Stage", "CuidandoBem" ], function( Stage, Core ) {
      * @memberOf module:Screen_game_Controller
      */
     function load() {
-        $(".menuButton").click(function() {
+        $("#configMenu").append( configHtml );
+        configCon.load(function() {
             Player.play( Player.audios.sfx.selecionarMenu );
+            $( "#configMenu" ).hide();
+        });
+        // $(".menuButton").click(function() {
+        //     Player.play( Player.audios.sfx.selecionarMenu );
+        // });
+
+        // $(".backButton").click(function() {
+        //     Player.play( Player.audios.sfx.selecionarMenu );
+        //     Stage.changeScreen( 0 );
+        // });
+
+        $("#pauseButton").click(function() {
+            Player.play( Player.audios.sfx.selecionarMenu );
+            $( "#pauseMenu" ).toggle();
         });
 
-        $(".backButton").click(function() {
-            Stage.changeScreen( 0 );
+        $(".quit.button").click(function() {
+            Player.stopAll();
+            Player.play( Player.audios.sfx.selecionarMenu );
+            Player.playInLoop( Player.audios.musics.menu );
+            Stage.changeScreen( 6 );
+        });
+
+        $(".replay.button").click(function() {
+            Player.play( Player.audios.sfx.selecionarMenu );
+            Core.restartLevel();
+            $( "#pauseMenu" ).hide();
+        });
+
+        $(".config.button").click(function() {
+            Player.play( Player.audios.sfx.selecionarMenu );
+            $( "#pauseMenu" ).toggle();
+            $( "#configMenu" ).show();
+        });
+
+        $(".back.button").click(function() {
+            Player.play( Player.audios.sfx.selecionarMenu );
+            $( "#pauseMenu" ).hide();
         });
 
         Core.init();
         Player.stopAll();
         Player.playInRange( Player.audios.musics.inGame );
-    }
+    };
 
     /**
      * This method is called when the screen Game is unloaded

@@ -103,6 +103,8 @@ define([], function() {
          */
         var initialScene = 0;
 
+        var maxPoints = 0;
+
         var setupScript = function() {
         };
 
@@ -125,6 +127,7 @@ define([], function() {
                 newLevel.registerFlag( flags[ flag ].getClone() );
             }
 
+            newLevel.setMaxPoints( maxPoints );
             newLevel.setInitialScene( initialScene );
             newLevel.setCurrentSceneById( currentScene );
             newLevel.setSetupScript( setupScript );
@@ -368,6 +371,14 @@ define([], function() {
             console.log("Registering flag: ", _flag.getName() );
         }
 
+        function setMaxPoints( _points ) {
+            maxPoints = _points;
+        }
+
+        function getMaxPoints() {
+            return maxPoints;
+        }
+
 
         // Public interface
         return {
@@ -385,6 +396,7 @@ define([], function() {
             getCurrentSceneId: getCurrentSceneId,
             getScene: getScene,
             getModalScene: getModalScene,
+            getMaxPoints: getMaxPoints,
 
             setInitialScene: setInitialScene,
             setCurrentSceneById: setCurrentSceneById,
@@ -394,7 +406,7 @@ define([], function() {
             setup: function() {
                 setupScript();
             },
-
+            setMaxPoints: setMaxPoints,
 
             registerScene: registerScene,
             registerModalScene: registerModalScene,

@@ -37,6 +37,8 @@ define([
     var scoreSelector = ".score";
 
     var isOpen = false;
+
+    var Player = require("Player");
 // Methods
     // Init
     /**
@@ -50,6 +52,7 @@ define([
         $(".goToMenu").click(function() {
             isOpen = false;
             Stage.changeScreen( 6 );
+            Player.playInLoop( Player.audios.musics.menu );
         });
 
         $(".playAgain").click(function() {
@@ -59,10 +62,11 @@ define([
         });
     }
 
-    function show( _scoreList ) {
+    function show( _scoreList, max ) {
         if ( !isOpen ) {
             $( modalSelector ).show();
 
+            var actualScore = 0;
             for ( i = 0; i < _scoreList.length; i++ ) {
                 var scoreItem = _scoreList[ i ];
 
@@ -73,8 +77,14 @@ define([
                 score.html( scoreItem.score );
                 title.html( scoreItem.title );
 
+                actualScore += scoreItem.score;
+
                 $( scoreListSelector ).append( element );
             }
+            var percent = Math.floor( (actualScore / max) * 100 );
+
+            $(".percent").text( percent + "%" );
+            $(".fill").css("width", percent + "%");
 
             isOpen = true;
         }

@@ -26,7 +26,7 @@ This file is part of Cuidando Bem.
 .interactiveObject:hover:not(.no-glow) {
     @scale: 1.05;
     transform: scale( @scale, @scale );
-    filter: drop-shadow(0 0 8px #91FF00);
+    filter: drop-shadow(0 0 8px @io-glow-color);
 }
 
 .interactiveObject.disabled {
@@ -510,10 +510,10 @@ This file is part of Cuidando Bem.
     background-image: @intObj-glicose_30_10ml;
     background-size: contain;
     background-repeat: no-repeat;
-    top: 50%;
-    left: 50%;
-    width: 9%;
-    height: 20%;
+    top: 45%;
+    left: 40%;
+    width: 12%;
+    height: 22%;
 }
 
 .intObj-algodao_seco {
@@ -570,8 +570,8 @@ This file is part of Cuidando Bem.
     background-image: @intObj-cloreto_de_sodio_10__10_ml_;
     background-size: contain;
     background-repeat: no-repeat;
-    top: 37%;
-    left: 23%;
+    top: 55%;
+    left: 40%;
     width: 9%;
     height: 20%;
 }
@@ -590,7 +590,7 @@ This file is part of Cuidando Bem.
     background-image: @intObj-clorpromazina_medicamento;
     background-size: contain;
     background-repeat: no-repeat;
-    top: 58%;
+    top: 64%;
     left: 38%;
     width: 9%;
     height: 20%;
@@ -600,7 +600,7 @@ This file is part of Cuidando Bem.
     background-image: @intObj-clorpropamida_medicamento;
     background-size: contain;
     background-repeat: no-repeat;
-    top: 60%;
+    top: 64%;
     left: 38%;
     width: 10%;
     height: 20%;
@@ -641,9 +641,19 @@ This file is part of Cuidando Bem.
     background-size: contain;
     background-repeat: no-repeat;
     top: 34%;
-    left: 43%;
-    width: 9%;
-    height: 20%;
+    left: 33%;
+    width: 13%;
+    height: 13%;
+}
+
+.intObj-equipo_de_soro_fase4 {
+    background-image: @intObj-equipo_de_soro_fase4;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 34%;
+    left: 42%;
+    width: 10%;
+    height: 11%;
 }
 
 .intObj-fita_adesiva_hipoalergenica_micropore {
@@ -670,8 +680,8 @@ This file is part of Cuidando Bem.
     background-image: @intObj-frasco_de_dieta;
     background-size: contain;
     background-repeat: no-repeat;
-    top: 37%;
-    left: 23%;
+    top: 55%;
+    left: 40%;
     width: 9%;
     height: 20%;
 }
@@ -720,7 +730,7 @@ This file is part of Cuidando Bem.
     background-image: @intObj-keflin_medicamento;
     background-size: contain;
     background-repeat: no-repeat;
-    top: 50%;
+    top: 55%;
     left: 40%;
     width: 9%;
     height: 20%;
@@ -772,7 +782,7 @@ This file is part of Cuidando Bem.
     background-repeat: no-repeat;
     top: 34%;
     left: 28%;
-    width: 19%;
+    width: 14%;
     height: 15%;
 }
 
@@ -790,7 +800,7 @@ This file is part of Cuidando Bem.
     background-image: @intObj-midazolam_medicamento;
     background-size: contain;
     background-repeat: no-repeat;
-    top: 55%;
+    top: 59%;
     left: 38%;
     width: 9%;
     height: 20%;
@@ -900,8 +910,18 @@ This file is part of Cuidando Bem.
     background-image: @intObj-seringa_de_10_ml;
     background-size: contain;
     background-repeat: no-repeat;
-    top: 33%;
-    left: 63%;
+    top: 48%;
+    left: 65%;
+    width: 9%;
+    height: 17%;
+}
+
+.intObj-seringa_de_10_ml_fase4 {
+    background-image: @intObj-seringa_de_10_ml_fase4;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 48%;
+    left: 25%;
     width: 9%;
     height: 17%;
 }
@@ -940,8 +960,8 @@ This file is part of Cuidando Bem.
     background-image: @intObj-soro_glicofisiologico_1000_ml;
     background-size: contain;
     background-repeat: no-repeat;
-    top: 37%;
-    left: 23%;
+    top: 55%;
+    left: 28%;
     width: 9%;
     height: 20%;
 }
@@ -963,15 +983,5 @@ This file is part of Cuidando Bem.
     top: 44%;
     left: 53%;
     width: 9%;
-    height: 20%;
-}
-
-.intObj-clorpropamida_medicamento {
-    background-image: @intObj-clorpropamida_medicamento;
-    background-size: contain;
-    background-repeat: no-repeat;
-    top: 60%;
-    left: 38%;
-    width: 10%;
     height: 20%;
 }

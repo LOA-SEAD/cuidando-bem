@@ -117,6 +117,24 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
             posologia: "",
             horario: "",
             relatorio: false
+        },
+        {
+            disabled: false,
+            data: "",
+            medicacao: "",
+            via: "",
+            posologia: "",
+            horario: "",
+            relatorio: false
+        },
+        {
+            disabled: false,
+            data: "",
+            medicacao: "",
+            via: "",
+            posologia: "",
+            horario: "",
+            relatorio: false
         }
     ];
 
@@ -132,10 +150,19 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
     // TODO: Prescrição de Enfermagem
     var prescEnfermagemStates = {
         "vazio": false,
-        "decubito": true
+        "decubito": false,
+        "verificar_glicemia": false,
+        "levantar_grade": false,
+        "encaminhar_paciente_cc": false,
+        "check_list_cirurgia": false,
+        "placa_neutra": false,
+        "risco_infeccao": false,
+        "troca_curativo": false,
+        "nutricao_desequilibrada": false,
+        "manutencao_sonda_nasogastrica": false,
+        "desiquilibrio_eletrolitico": false,
+        "desiquilibrio_eletrolitico_fase9": false
     };
-
-    var prescEnfermagemState = "vazio";
 
     // Enfermagem: virarDecubito
     var prescEnfermagemTbody = "#prescEnfermagem_tbody";
@@ -143,7 +170,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
     var prescEnfermagemCheckSelector = "";
 
 
-    var ssvvTbodySelector = "#ssvv_tbody";
+    var ssvvTbodySelector = "#ssvv_tbody";"";
 
     var ssvvDataSelector = ".data";
     var ssvvPressaoArterialSelector = ".pa";
@@ -476,8 +503,8 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
             $( $( prescMedicaRelatorioSelector, prescMedicaTbodySelector )[ _row ] ).text("( )");
         }
 
-        $("tr", prescEnfermagemTbody ).hide();
-        $("." + prescEnfermagemState, prescEnfermagemTbody ).show();
+        // $("tr", prescEnfermagemTbody ).hide();
+        // $("." + prescEnfermagemState, prescEnfermagemTbody ).show();
     }
 
     function setPrescMedicaRowRegExp( _row, _relatorio ) {
@@ -488,10 +515,30 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         prescMedicaRelatorioRegExp[ _row ] = _relatorio;
     }
 
-    function setPrescEnfermagemState( _prescEnfermagemState ) {
-        prescEnfermagemState = _prescEnfermagemState;
-
+    function clearPrescEnfermagemState() {
+        // Limpa tudo o que estiver no prontuario por meio de esconder tudo o que estiver em tags tr
         $("tr", prescEnfermagemTbody ).hide();
+    }
+
+    function setPrescEnfermagemState( _prescEnfermagemState ) {
+        // prescEnfermagemState = _prescEnfermagemState;
+
+        // Torna todas as classes presentes no prescEnfermagemStates false, menos as que foram passadas como parametro
+        $.each( prescEnfermagemStates, function( index, value ) {
+            if ( index == _prescEnfermagemState ) {
+                prescEnfermagemStates[ index ] = true;
+            } else {
+                prescEnfermagemStates[ index ] = false;
+            }
+        });
+
+        // Passa para o prontuario o parametro dado
+        $.each( prescEnfermagemStates, function( index, value ) {
+            if ( value ) {
+                prescEnfermagemState = index;
+            }
+        });
+
         $("." + prescEnfermagemState, prescEnfermagemTbody ).show();
     }
 
@@ -539,7 +586,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         $(".content").tabs();
     }
 
-    function open() {
+    function open( _tab ) {
         $( prontuarioSelector ).show();
 
         for ( row = 0; row < ssvvData.length; row++ ) {
@@ -552,6 +599,31 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
             $( $( ssvvTemperaturaSelector, ssvvTbodySelector )[ row ] ).mask("00.0");
         }
         updateData();
+
+        var iTab = 0;
+        switch ( _tab ) {
+            case "internacao":
+                iTab = 1;
+            break;
+            case "prescMedica":
+                iTab = 2;
+            break;
+            case "prescEnfermagem":
+                iTab = 3;
+            break;
+            case "sinaisVitais":
+                iTab = 4;
+            break;
+            case "anotacoes":
+                iTab = 5;
+            break;
+            case "paciente":
+            default:
+                iTab = 0;
+            break;
+        }
+
+        $(".content").tabs( "option", "active", iTab );
     }
 
     function updateData() {
@@ -803,6 +875,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         setAltura: setAltura,
         setCircunferenciaAbdominal: setCircunferenciaAbdominal,
 
+        clearPrescEnfermagemState: clearPrescEnfermagemState,
         getPrescEnfermagemState: getPrescEnfermagemState,
         setPrescEnfermagemState: setPrescEnfermagemState,
 

@@ -34,7 +34,8 @@ define([
         "endOfLevel",
         "Prontuario",
         "Pulseira",
-        "FreqRespiratoria"
+        "FreqRespiratoria",
+        "EquipoGotejamento"
     ],
     function(
         Stage,
@@ -47,7 +48,8 @@ define([
         endOfLevel,
         prontuario,
         Pulseira,
-        freqRespiratoria ) {
+        freqRespiratoria,
+        EquipoGotejamento ) {
 
 // Attributes
         var Storage = require("Storage");
@@ -63,6 +65,7 @@ define([
 
         var scoreList;
 
+        var Player = require("Player");
 
         function ScoreItem( _title, _score ) {
             this.title = _title;
@@ -82,6 +85,7 @@ define([
             prontuario.init( gameStageSelector );
             Pulseira.init( gameStageSelector );
             freqRespiratoria.init( gameStageSelector );
+            EquipoGotejamento.init( gameStageSelector );
 
             Dialog.init( gameStageSelector );
 
@@ -260,6 +264,7 @@ define([
             var dialog = Dialogs[ _dialogId ];
             Dialog.show( dialog );
 
+            Player.play( Player.audios.sfx.avancarMensagens );
             disableAllActionButtons();
             disableAllInteractiveObjects();
             closeCommandBar();
@@ -273,6 +278,7 @@ define([
         function closeDialog() {
             Dialog.close();
 
+            Player.play( Player.audios.sfx.avancarMensagens );
             updateAllActionButtons();
             updateAllInteractiveObjects();
             openCommandBar();
@@ -285,7 +291,8 @@ define([
          * @memberOf module:CuidandoBem
          */
         function showEndOfLevel() {
-            endOfLevel.show( scoreList );
+            debugger;
+            endOfLevel.show( scoreList, Level.getMaxPoints() );
         }
 
         /**
@@ -388,6 +395,15 @@ define([
          */
         function getFlag( _flagId ) {
             return Level.getFlag( _flagId );
+        }
+
+        function flag( _flagId, _value ) {
+
+            if ( _value ) {
+                Level.getFlag( _flagId ).setValue( _value );
+            } else {
+                return Level.getFlag( _flagId ).getValue();
+            }
         }
 
 // Setters
@@ -532,6 +548,7 @@ define([
             getFlag: getFlag,
 
             setFlag: setFlag,
+            flag: flag,
 
             setActionVisible: setActionVisible,
             toggleActionVisible: toggleActionVisible,

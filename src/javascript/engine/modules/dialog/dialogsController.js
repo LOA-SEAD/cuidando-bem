@@ -170,7 +170,7 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             // if only one option and there's no text on it
             // the 'next' arrow will show up on the dialog
             if ( _options.length == 1 && _options[ 0 ].text == "") {
-                console.log("Show `next arrow` on dialog");
+                console.log("Show "next arrow" on dialog");
                 var element = $( dialogButtonSelector );
                 element.click( _options[ 0 ].actionFunction );
                 element.on();

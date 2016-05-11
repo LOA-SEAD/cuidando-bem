@@ -40,6 +40,7 @@ define([ "Stage" ], function( Stage ) {
         // });
 
         $(".backButton").click(function() {
+            Player.play( Player.audios.sfx.selecionarMenu );
             Stage.changeScreen( 0 );
         });
     }

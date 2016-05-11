@@ -64,6 +64,7 @@ require.config({
         Prontuario: "game/modules/prontuario/prontuario",
         levelsData: "game/modules/levelsData",
         FreqRespiratoria: "game/modules/freqRespiratoria/freqRespiratoria",
+        EquipoGotejamento: "game/modules/equipoGotejamento/equipoGotejamento",
 
         // Configs
         gameConfig: "game/scripts/gameConfig",
