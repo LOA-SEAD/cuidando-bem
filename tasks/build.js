@@ -44,6 +44,8 @@ module.exports = function( grunt ) {
             grunt.task.run([
                 "version::" + ver
             ]);
+
+            pkg = grunt.file.readJSON("package.json");
         }
 
         // Build for development

@@ -384,7 +384,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-ler_prontuario", "Ler prontuario")
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
-                    Prontuario.open(`prescMedica`);
+                    Prontuario.open("prescMedica");
                     core.openModalScene("Prontuario");
                 })
                 .setVisibility( true )
@@ -787,7 +787,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         }
 
         core.flag("score_colocar_gotejamento",  true );
-          
+
              EquipoGotejamento.open();
              core.openModalScene("equipoSoro");
 
@@ -1000,27 +1000,27 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openDialog( 2 );
                 })
         ]);
-    
+
         equipoSoro = new Scene("equipoSoro", "EquipamentoSoro")
-        
+
         equipoSoro.registerActions([
-            
+
             new Action("btn-fecharEquipoSoro", "Fechar Equipamento de Soro")
             .setCssClass("action-fecharEquipoSoro")
             .onClick(function() {
 
                  EquipoGotejamento.close();
                 core.closeModalScene("equipoSoro");
-               
-               
-                
 
-                
+
+
+
+
             })
             .setVisibility( true )
-            
-            
-            
+
+
+
         ]);
 
 
