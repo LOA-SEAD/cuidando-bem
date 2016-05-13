@@ -37,6 +37,8 @@ module.exports = function( grunt ) {
         var target = grunt.option("target") || "dev";
         // Get ver option or set it to "minor"
         var ver = grunt.option("ver") || "minor";
+        // Get electron option
+        var electron = grunt.option("electron");
 
         grunt.log.write("Building " + pkg.name + ":" + target );
 
@@ -84,9 +86,13 @@ module.exports = function( grunt ) {
         */
         if ( target == "rel" ) {
             grunt.task.run([
-                "compress:rel",
-                "electron"
+                "compress:rel"
             ]);
+            if ( electron ) {
+                grunt.task.run([
+                    "electron"
+                ]);
+            }
         }
     });
 };
