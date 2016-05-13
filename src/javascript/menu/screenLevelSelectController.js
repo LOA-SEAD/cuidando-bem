@@ -102,7 +102,7 @@ define([ "Stage", "levelsData" ], function( Stage, game ) {
                 var index = $(".level").index( this );
                 var levelId = index;
 
-                //Som para quando o mouse é passado por cima
+                // Som para quando o mouse é passado por cima
                 Player.play( Player.audios.sfx.passarMouse );
 
                 if ( levelId <= save.lastLevel + 1 ) {

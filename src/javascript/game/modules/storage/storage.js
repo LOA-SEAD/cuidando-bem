@@ -32,7 +32,7 @@ define([ "SimpleStorage" ], function( Storage ) {
         this.name = name;
         this.empty = true;
 
-        this.lastLevel = -1;
+        this.lastLevel = 0;
 
         this.levels = [
             undefined,
