@@ -116,6 +116,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             } else {
                 if ( core.flag("conversar_mentor") == true ) {
                     console.log("Action: corredorIrSalaLeitos");
+                    core.changeScene( 2 ); 
                 } else {
                     console.log("Necessita ação: falar com mentor");
                 }
