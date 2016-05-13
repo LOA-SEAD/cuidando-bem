@@ -64,12 +64,12 @@ define([ "Stage", "levelsData" ], function( Stage, game ) {
 
         var i;
         for ( i in save.levels ) {
-            if ( i > save.lastLevel + 1 ) {
+            if ( +i + 1 > save.lastLevel + 1 ) {
                 $( $(".level")[ i ] ).addClass("disabled");
             }
         }
 
-        $(".image", $(".level")[ save.lastLevel + 2 ] ).addClass("next");
+        $(".image", $(".level")[ save.lastLevel + 1 ] ).addClass("next");
 
         $(".menuButton").click(function() {
             Player.play( Player.audios.sfx.selecionarMenu );
