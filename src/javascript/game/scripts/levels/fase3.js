@@ -1043,24 +1043,31 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         postoDeEnfermagem.registerActions([
             new Action("btn-ir_corredor", "Ir ao corredor")
                 .setCssClass("action-ir_corredor")
-                .onClick(function() {
-                    console.log("Action: ir_corredor");
-                    if ( core.flag("score_pegou_kit_glicemia") == true &&
-                        core.flag("score_pegou_algodao") == true &&
-                        core.flag("score_pegou_luvas") == true /*&&
-                        core.flag("score_pegou_bandeja") == true*/ ) {
-                        if ( core.flag("pegou_tudo_gaveta") == false ) {
-                            core.flag("pegou_tudo_gaveta",  true );
-                        }
-                        core.changeScene( 1 );
-                    } else {
-                        // Pode sair caso nao pegou tudo mas não pode ir pra ala masculina
-                        core.flag("pegou_tudo_gaveta",  false );
-                        core.changeScene( 1 );
-                    }
-                })
-                .setVisibility( true )
+                .onClick(function () {
+                  console.log("Action: ir_corredor");
+                  if (core.flag("score_pegou_kit_glicemia") == true &&
+                      core.flag("score_pegou_algodao") == true &&
+                      core.flag("score_pegou_luvas") == true) {
+
+            
+                      core.flag("pegou_tudo_gaveta", true);
+                    
+                      
+                      core.changeScene(1);
+                  } else {
+                      // Pode sair caso nao pegou tudo mas não pode ir pra ala masculina
+                      core.flag("pegou_tudo_gaveta", false);
+
+                    //  core.changeScene(1);
+                      
+                      core.openDialog(1);
+                  }
+              })
+                .setVisibility(true)
         ]);
+    
+       
+        
 
         postoDeEnfermagem.registerInteractiveObjects([
             new InteractiveObject("io-abrirGaveta", "Abrir gaveta")
@@ -1102,7 +1109,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Alertas.esqueceu.pegarBandeja )
                 .registerOption("", function() {
                     core.closeDialog();
-                })
+                }),
+            
+             new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.objetosGaveta )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
+            
+            
         ]);
 
 
@@ -1186,7 +1201,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.setInteractiveObjectVisible("io-luvas", false );
                     core.flag("score_pegou_luvas",  true );
                 })
-                .setVisibility( true )
+                .setVisibility( true ),
+            
+           
+            
         ]);
 
 

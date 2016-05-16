@@ -1000,6 +1000,10 @@ define({
             ],
             folheto9certos: [
                 "Pegue o folheto dos 9 certos!"
+            ],
+            objetosGaveta: [
+                "Você já pegou todos os equipamentos necessários?"
+                
             ]
         },
         descarte: {
