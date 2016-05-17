@@ -773,8 +773,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.flag("score_pegou_equipo_soro") == false /*||
                         core.flag("pegarBandeja") == true*/ ) {
                         core.openDialog( 4 );
-                    } else {
-                        core.changeScene( 1 );
+                    } else if(core.flag("score_conferiu_medicacao_posto") == true &&
+                              core.flag("score_preparar_medicacao") == true &&
+                              core.flag("score_calculou_gotejamento") == true &&
+                              core.flag("score_identificar_medicacao") == true)
+                    
+                    {
+                            core.changeScene( 1 );
+                            
+                        
+                            
+                    }
+                    else {
+                        core.openDialog(8);
                     }
 
                 })
@@ -798,7 +809,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-keflin_medicamento")
                 .onClick(function() {
                     console.log("Action: Confirmar medicação com o mentor");
-                    if ( core.flag("score_conferiu_medicacao_posto") == false ) {
+                    if ( core.flag("score_conferiu_medicacao_posto") == false ) {  
+                        console.log("TRUE1");
                         core.registerScoreItem( Scores.confirmarMedicacaoPosto );
                         core.flag("score_conferiu_medicacao_posto",  true );
                     }
@@ -812,6 +824,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("Action: Preparar medicação");
                     if ( core.flag("score_preparar_medicacao") == false ) {
+                         console.log("TRUE2");
                         core.registerScoreItem( Scores.prepararMedicacao );
                         core.flag("score_preparar_medicacao",  true );
                     }
@@ -824,6 +837,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("Action: Calcular gotejamento do soro");
                     if ( core.flag("score_calculou_gotejamento") == false ) {
+                         console.log("TRUE3");
                         core.registerScoreItem( Scores.calcularGotejamento );
                         core.flag("score_calculou_gotejamento",  true );
                     }
@@ -834,10 +848,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-identificarMedicacao", "Identificar medicação")
                 .setCssClass("action-identificarMedicacao")
                 .onClick(function() {
-                    console.log("Action: lavarMaos");
-                    // Aqui irá abrir a ficha sobre a medicação que é para o jogador preencher
-
+                 
                     if ( core.flag("score_identificar_medicacao") == false ) {
+                         console.log("TRUE4");
                         core.registerScoreItem( Scores.identificarMedicacao );
                         core.flag("score_identificar_medicacao",  true );
                     }
@@ -897,7 +910,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.setActionVisible("btn-prepararMedicacao", true );
                     core.setActionVisible("btn-gotejamentoSoro", true );
                     core.setActionVisible("btn-identificarMedicacao", true );
-                    core.setActionVisible("btn-visualizarFolheto", true );
+                    core.setActionVisible("btn-visualizarFolheto", false );  // PRECISA DISSO?
+                    core.setActionVisible("btn-lavarMaos", false );  // PRECISA DISSO?
                     core.openCommandBar();
                     core.closeDialog();
                 }),
@@ -927,7 +941,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Alertas.esqueceu.pegarBandeja )
                 .registerOption("", function() {
                     core.closeDialog();
-                })
+                }),
+            // 8
+             new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.verificarTudoPostoEnfermagem )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
+            
+            
 
         ]);
 

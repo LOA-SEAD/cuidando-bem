@@ -362,8 +362,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( false ),
 
 
-            new Action("btn-jogar_agulha_perfuro", "Descartar Agulha")
-                .setCssClass("action-agulha_40x12")
+            new Action("btn-jogar_agulha_perfuro", "Descartar Agulhas")
+                .setCssClass("action-agulhas")
                 .onClick(function() {
 
                   core.flag("descartar_agulha",  true );
@@ -411,7 +411,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             new Action("btn-elevar_grade_cama", "Elevar a grade da cama")
                 // CONSERTAR
-                .setCssClass("action-elevar_grade_cama")
+                .setCssClass("action-elevarCama")
                 .onClick(function() {
                     if ( core.flag("descartar_agulha") == true ) {
                         console.log("Action: Elevar a grade da cama");
@@ -1047,7 +1047,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                   console.log("Action: ir_corredor");
                   if (core.flag("score_pegou_kit_glicemia") == true &&
                       core.flag("score_pegou_algodao") == true &&
-                      core.flag("score_pegou_luvas") == true) {
+                      core.flag("score_pegou_luvas") == true &&
+                      core.flag("pegou_agulhas") == true) {
 
             
                       core.flag("pegou_tudo_gaveta", true);
@@ -1055,10 +1056,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                       
                       core.changeScene(1);
                   } else {
-                      // Pode sair caso nao pegou tudo mas não pode ir pra ala masculina
+                   
                       core.flag("pegou_tudo_gaveta", false);
 
-                    //  core.changeScene(1);
+               
                       
                       core.openDialog(1);
                   }
@@ -1176,6 +1177,22 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.flag("score_pegou_kit_glicemia",  true );
                 })
                 .setVisibility( true ),
+            
+            // Agulhas
+            
+             new InteractiveObject("io-agulhas", "Pegar Agulhas")
+                .setCssClass("intObj-agulhas")
+                .onClick(function() {
+                    
+                    // Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
+                    
+                    core.setInteractiveObjectVisible("io-agulhas", false );
+                    core.flag("pegou_agulhas",  true );
+                })
+                .setVisibility( true ),      
+
+            
 
             // Algodao
             new InteractiveObject("io-algodao", "Pegar algodao")
@@ -1241,12 +1258,36 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setTemplate("<span class='glicosimetro-text'>180 mg/dl</span>");
 
         glicosimetro.registerActions([
+            
             new Action("btn-realizar_teste_glicemia", "Terminar teste de glicemia capilar")
                 .setCssClass("action-realizar_teste_glicemia")
                 .onClick(function() {
+                    
+                    // VERIFICAR SE JOGADOR FEZ A AÇÃO DE BAIXO
                     core.closeModalScene("modalGlicosimetro");
+                    
                 })
-                .setVisibility( true )
+                .setVisibility( true ),
+            
+            
+             new Action("btn-?????????????", "Não sei o que colocar aqui")
+                .setCssClass("action-temporario")
+                .onClick(function() {
+                    
+                    
+                    //
+                    //
+                    //
+                    
+                    
+                })
+                .setVisibility( true ),
+                        
+            
+
+                        
+
+            
         ]);
 
 
@@ -1380,6 +1421,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "score_algodao",  false  ) );
         level.registerFlag( new Flag( "score_jogou_agulha_errado",  false  ) );
         level.registerFlag( new Flag( "score_jogou_algodao_errado",  false  ) );
+        level.registerFlag( new Flag( "pegou_agulhas",  false  ) );
 
         level.setInitialScene( 0 );
 

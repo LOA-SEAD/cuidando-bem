@@ -1002,8 +1002,10 @@ define({
                 "Pegue o folheto dos 9 certos!"
             ],
             objetosGaveta: [
-                "Você já pegou todos os equipamentos necessários?"
-                
+                "Você já pegou todos os equipamentos necessários?"  
+            ],
+            verificarTudoPostoEnfermagem: [
+                "Certifique-se de realizar todos os procedimentos antes de sair!"
             ]
         },
         descarte: {
