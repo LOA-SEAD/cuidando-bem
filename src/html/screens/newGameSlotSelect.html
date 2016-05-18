@@ -3,18 +3,18 @@
     <div class="slotSelect-prontuario">
         <div id="saveSlotMain">
             <div id="slotsContainer">
-                <button id="slot1" class="slot"></button>
-                <button id="slot2" class="slot"></button>
-                <button id="slot3" class="slot"></button>
+                <button id="slot1" class="slot" tabindex="0"></button>
+                <button id="slot2" class="slot" tabindex="0"></button>
+                <button id="slot3" class="slot" tabindex="0"></button>
             </div>
         </div>
         <div class="slotSelect-logo"></div>
     </div>
     <div id="menuContainer">
         <div class="menuSeparator"></div>
-        <button id="deleteSlot" class="menuButton menuButtonRed menuButtonAnimate">Apagar</button>
-        <button id="loadSlot" class="menuButton menuButtonBlue menuButtonAnimate">Carregar</button>
-        <button class="menuButton menuButtonYellow menuButtonAnimate">Voltar</button>
+        <button id="deleteSlot" class="menuButton menuButtonRed menuButtonAnimate" tabindex="0">Apagar</button>
+        <button id="loadSlot" class="menuButton menuButtonBlue menuButtonAnimate" tabindex="0">Carregar</button>
+        <button class="menuButton menuButtonYellow menuButtonAnimate" tabindex="0">Voltar</button>
     </div>
 </div>
 <div id="dialog-confirmDelete" role="alert" aria-alive="assertive" title="Apagar jogo">
@@ -22,5 +22,6 @@
 </div>
 <div id="dialog-typeName" title="Digite seu nome">
     <p>Por favor, digite seu nome no campo abaixo:</p>
-    <input id="nameInput" type="text" value="">
+    <label for="name">Nome:</label>
+    <input name="name" id="nameInput" type="text" value="">
 </div>

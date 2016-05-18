@@ -36,7 +36,8 @@ This file is part of Cuidando Bem.
     border-bottom: 5px solid @button-blue-shadow;
 }
 
-.menuButtonBlue:hover {
+.menuButtonBlue:hover,
+.menuButtonBlue:focus {
     background-color: @button-blue-highlight;
 }
 
@@ -45,7 +46,8 @@ This file is part of Cuidando Bem.
     border-bottom: 5px solid @button-red-shadow;
 }
 
-.menuButtonRed:hover {
+.menuButtonRed:hover,
+.menuButtonRed:focus {
     background-color: @button-red-highlight;
 }
 
@@ -54,7 +56,8 @@ This file is part of Cuidando Bem.
     border-bottom: 5px solid @button-green-shadow;
 }
 
-.menuButtonGreen:hover {
+.menuButtonGreen:hover,
+.menuButtonGreen:focus {
     background-color: @button-green-highlight;
 }
 
@@ -63,7 +66,8 @@ This file is part of Cuidando Bem.
     border-bottom: 5px solid @button-yellow-shadow;
 }
 
-.menuButtonYellow:hover {
+.menuButtonYellow:hover,
+.menuButtonYellow:focus {
     background-color: @button-yellow-highlight;
 }
 
@@ -83,6 +87,7 @@ This file is part of Cuidando Bem.
     &:extend(.menuButton);
 }
 
-.backButton:hover {
-    &:extend(.menuButton:hover);
+.backButton:hover,
+.backButton:focus {
+    &:extend(.menuButton:hover, .menuButton:focus);
 }
