@@ -100,16 +100,21 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
          */
         function changeDialogTo( _dialog ) {
 
-            // set the text for charName, dialog text and answer options
+            // set the text for charName and provide accessibility
             $( dialogCharNameSelector ).text( _dialog.getSpeakerName() );
             $( dialogCharImg ).removeClass();
             $( dialogCharImg ).addClass( _dialog.getSpeakerCssClass() );
             $( dialogCharImg ).show();
-            $( dialogTextSelector ).text( _dialog.getText() );
-            changeDialogOptionsTo( _dialog.getOptions(), _dialog.getRandomize() );
+            $( '<span>' + _dialog.getSpeakerName() + ': </span>' ).appendTo( "#accessible_log" );
 
-            // accessibility
-            $( '<span>' + _dialog.getSpeakerName() + ': ' + _dialog.getText() + '</span>').appendTo( "#accessible_log" );
+            // set the text for dialog text and provide accessibilty
+            $( dialogTextSelector ).text( _dialog.getText() );
+            if( _dialog.getText() != "" ){
+                $( '<span>' + _dialog.getText() + '</span><br>' ).appendTo( "#accessible_log" );
+            }
+
+            // set the text for answer options (accessibility is provided in the method addAllDialogButtons)
+            changeDialogOptionsTo( _dialog.getOptions(), _dialog.getRandomize() );
 
             // type of animation to be executed
             var charNameAnimation = "blind";
@@ -239,11 +244,8 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             element.click( _option.actionFunction );
             $(".text", element ).text( _option.text );
 
-
             $( dialogOptionsSelector ).append( element );
 
-            // accessibility
-            $( _option.text ).appendTo( "#accessible_log" );
         }
 
         // Fisher–Yates Shuffle
@@ -272,10 +274,7 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
          * @memberOf module:DialogModal
          */
         function addAllDialogButtons( _options, randomize ) {
-            var i;
-
-            // accessiblity
-            $( "#accessible_log" ).empty();
+            var i, op;
 
             if ( randomize ) {
                 _options = shuffle( _options );
@@ -283,6 +282,18 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
 
             for ( i = 0; i < _options.length; i++ ) {
                 addDialogButton( _options[ i ] );
+
+                // accessibility
+                if(_options.length == 1){
+                    op = "única";
+                }
+                else{
+                    op = i + 1;
+                }
+
+                $( '<span>' + 'Opção ' + op + ': ' + _options[ i ].text + '</span><br>' ).appendTo( "#accessible_log" );
+
+
             }
 
         }
