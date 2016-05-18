@@ -90,6 +90,14 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             });
 
             isDialogOpen = true;
+
+            // accessibility: disable navigation for interactive objects
+            $( '#interactiveObjects .interactiveObject' ).each(function(){
+               $(this).attr('tabindex', '-1');
+            })
+            $( '.dialog_mainText', '.dialog_button' ).each(function(){
+               $(this).attr('tabindex', '0');
+            })
         }
 
         /**
@@ -210,6 +218,15 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             $( dialogMaskSelector ).hide();
             $( dialogModalSelector ).hide("fade", 200 );
             isDialogOpen = false;
+
+            // accessibility: enable navigation for interactive objects
+            $( '#interactiveObjects .interactiveObject' ).each(function(){
+               $(this).attr('tabindex', '0');
+            })
+            $( '.dialog_mainText', '.dialog_button' ).each(function(){
+               $(this).attr('tabindex', '-1');
+            })
+
         }
 
         /**
@@ -285,17 +302,14 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
 
                 // accessibility
                 if(_options.length == 1){
-                    op = "única";
+                    op = 'única';
                 }
                 else{
                     op = i + 1;
                 }
 
-                $( '<span>' + 'Opção ' + op + ': ' + _options[ i ].text + '</span><br>' ).appendTo( "#accessible_log" );
-
-
+                $( '<span>Opção ' + op + ': ' + _options[ i ].text + '</span><br>' ).appendTo( "#accessible_log" );
             }
-
         }
 
         /**
