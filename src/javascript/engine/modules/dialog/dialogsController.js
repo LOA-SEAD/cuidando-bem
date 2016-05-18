@@ -108,6 +108,9 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             $( dialogTextSelector ).text( _dialog.getText() );
             changeDialogOptionsTo( _dialog.getOptions(), _dialog.getRandomize() );
 
+            // accessibility
+            $( '<span>' + _dialog.getSpeakerName() + ': ' + _dialog.getText() + '</span>').appendTo( "#accessible_log" );
+
             // type of animation to be executed
             var charNameAnimation = "blind";
             var textAnimation = "clip";
@@ -121,6 +124,7 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
                 $( dialogCharImg ).show(  );
                 $( dialogTextSelector ).show();
                 $( dialogOptionsSelector ).show(  );
+
             }
             // if already opened, keep the charName and animate the rest
             else {
@@ -237,6 +241,9 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
 
 
             $( dialogOptionsSelector ).append( element );
+
+            // accessibility
+            $( _option.text ).appendTo( "#accessible_log" );
         }
 
         // Fisher–Yates Shuffle
@@ -267,6 +274,9 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
         function addAllDialogButtons( _options, randomize ) {
             var i;
 
+            // accessiblity
+            $( "#accessible_log" ).empty();
+
             if ( randomize ) {
                 _options = shuffle( _options );
             }
@@ -274,6 +284,7 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             for ( i = 0; i < _options.length; i++ ) {
                 addDialogButton( _options[ i ] );
             }
+
         }
 
         /**
