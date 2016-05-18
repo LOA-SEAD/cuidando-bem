@@ -86,6 +86,7 @@ define([
 
 
         element.attr("title", _interactiveObject.getName() );
+        element.attr("aria-label", _interactiveObject.getName() );
         element.attr("id", _interactiveObject.getId() );
         element.addClass( _interactiveObject.getCssClass() );
 

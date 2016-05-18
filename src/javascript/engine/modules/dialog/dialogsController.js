@@ -302,7 +302,7 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
 
                 // accessibility
                 if(_options.length == 1){
-                    op = 'única';
+                    op = "única";
                 }
                 else{
                     op = i + 1;
