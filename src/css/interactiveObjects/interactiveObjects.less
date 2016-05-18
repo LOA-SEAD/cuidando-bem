@@ -18,6 +18,11 @@ This file is part of Cuidando Bem.
     height: 100%;
 }
 
+/* temp solution - remove automatic logs of jQuery UI Tooltip */
+div[role="log"]:not(#accessible_log){
+    display: none;
+}
+
 .interactiveObject {
     position: absolute;
     cursor: hand;
@@ -26,7 +31,8 @@ This file is part of Cuidando Bem.
     padding: 0;
 }
 
-.interactiveObject:hover:not(.no-glow):not(.disabled) {
+.interactiveObject:hover:not(.no-glow):not(.disabled),
+.interactiveObject:focus:not(.no-glow):not(.disabled), {
     @scale: 1.05;
     transform: scale( @scale, @scale );
     filter: drop-shadow(0 0 8px @io-glow-color);
@@ -65,7 +71,8 @@ This file is part of Cuidando Bem.
 }
 
 
-.intObj-lobbyToHallway-right:hover {
+.intObj-lobbyToHallway-right:hover,
+.intObj-lobbyToHallway-right:focus {
     background-image: svg-gradient(to right, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.2) 25%, transparent);
 }
 
@@ -76,7 +83,8 @@ This file is part of Cuidando Bem.
     width: 8%;
 }
 
-.intObj-lobbyToHallway-left:hover {
+.intObj-lobbyToHallway-left:hover,
+.intObj-lobbyToHallway-left:focus {
     background-image: svg-gradient(to right, transparent, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0.7));
 }
 
