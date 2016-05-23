@@ -46,13 +46,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             core.changeScene( 1 );
         }
 
-        function conversarRecepcionista() {
-            console.log("Action: Nada");
-        }
+      
 
         recepcao = lib.scenes.recepcao.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + recepcao.getName() );
+                core.openDialog( 0 );
             });
 
         recepcao.registerInteractiveObjects([
@@ -71,6 +70,22 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( true )
         ]);
+    
+     recepcao.registerDialogs([
+            
+             // 0
+            
+               new Dialog( lib.characters.recepcionista )
+            .setText( Dialogs.recepcao[ 0 ] )
+            .registerOption("", function() {
+                core.closeDialog(  );
+            }),
+
+        ]);
+    
+      function conversarRecepcionista() {
+            core.openDialog( 0 );
+        }
 
 
         function corredorIrAlaMasculina() {

@@ -158,6 +158,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 if ( core.flag("entrou_ala_feminina") == true ) {
                     core.setInteractiveObjectVisible("io-conversar_mentor", false );
                 }
+            
+            if(core.flag("conversar_mentor") == false) { 
+                
+                core.openDialog( 0 );
+            
+            }
+            
             })
             .onUnload(function() {
                 console.log("Saindo do corredor");

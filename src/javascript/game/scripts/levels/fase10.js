@@ -130,8 +130,24 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var recepcao = lib.scenes.recepcao.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + recepcao.getName() );
+                core.openDialog( 0 );
 
             });
+    
+        recepcao.registerDialogs([
+            
+             // 0
+            
+               new Dialog( lib.characters.recepcionista )
+            .setText( Dialogs.recepcao[ 0 ] )
+            .registerOption("", function() {
+                core.closeDialog(  );
+            }),
+
+        ]);
+    
+    
+        
 
 
         recepcao.registerInteractiveObjects([
@@ -163,6 +179,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         function conversarRecepcionista() {
 
+                core.openDialog( 0 );
 
         }
 
@@ -185,6 +202,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         corredor.registerDialogs([
+            
+           
 
         ]);
 
