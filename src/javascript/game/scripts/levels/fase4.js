@@ -519,9 +519,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setCssClass("scene-bedroom-level3")
             .onLoad(function() {
                 console.log("Load scene: " + alaFeminina.getName() );
+           
                 if ( core.flag("conversarPaciente") == true ) {
                     // Desabilita conversar novamente com a Regina
                     core.setInteractiveObjectVisible("io-conversar_com_paciente", false );
+            
                 }
             })
             .onUnload(function() {
@@ -545,6 +547,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true ),     // ???????????????????????????????
             
+         
          
             
     
