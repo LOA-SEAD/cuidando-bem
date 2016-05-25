@@ -147,6 +147,15 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
         showing = true;
         $( divSelector ).show();
         $( dataInputSelector ).mask("00/00/0000");
+
+        // accessibility: narration of "pulseira"
+        var data = $( dataInputSelector ).val().toLowerCase();
+        var leito = $( leitoInputSelector ).val().toLowerCase();
+        var name = $( nameInputSelector ).val().toLowerCase();
+
+        $( '<span>Data: <time datetime="' + data.replace(/\//g, '-') + '">' + data + '</time></span><br>' ).appendTo( "#accessible_log" );
+        $( '<span>Leito: ' + leito + '</span><br>' ).appendTo( "#accessible_log" );
+        $( '<span>Nome: ' + name + '</span><br>' ).appendTo( "#accessible_log" );
     }
 
     /**
