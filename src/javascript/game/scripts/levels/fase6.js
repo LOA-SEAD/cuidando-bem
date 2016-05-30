@@ -158,6 +158,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 if ( core.flag("entrou_ala_feminina") == true ) {
                     core.setInteractiveObjectVisible("io-conversar_mentor", false );
                 }
+            
+            if(core.flag("conversar_mentor") == false) { 
+                
+                core.openDialog( 0 );
+            
+            }
+            
             })
             .onUnload(function() {
                 console.log("Saindo do corredor");
@@ -932,7 +939,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // Acertar posicoes
         gaveta.registerInteractiveObjects([
             // Kit glicemia
-            new InteractiveObject("io-kit_glicemia", "Pegar Kit de glicemia")
+            new InteractiveObject("io-kit_glicemia", "Kit de glicemia")
                 .setCssClass("intObj-aparelhoGlicemia")
                 .onClick(function() {
                     console.log("Action: pegar kit de glicemia");
@@ -945,7 +952,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             // Algodao
-            new InteractiveObject("io-algodao", "Pegar algodao")
+            new InteractiveObject("io-algodao", "Algodão")
                 .setCssClass("intObj-algodao_seco")
                 .onClick(function() {
                     console.log("Action: pegar algodao ");
@@ -958,7 +965,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             // Luvas
-            new InteractiveObject("io-luvas", "Pegar luvas")
+            new InteractiveObject("io-luvas", "Luvas")
                 .setCssClass("intObj-luvas_de_procedimento_fase5")
                 .onClick(function() {
                     console.log("Action: pegar luvas");
@@ -971,7 +978,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             // Luvas estéreis
-            new InteractiveObject("io-luvas_estereis", "Pegar luvas estéreis")
+            new InteractiveObject("io-luvas_estereis", "Luvas Estéreis")
                 .setCssClass("intObj-luvas_estereis")
                 .onClick(function() {
                     console.log("Action: pegar luvas estéreis");
@@ -984,7 +991,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             // Gaze esterelizada
-            new InteractiveObject("io-gaze", "Pegar gaze esterelizada")
+            new InteractiveObject("io-gaze", "Gaze Esterelizada")
                 .setCssClass("intObj-gaze_esteril")
                 .onClick(function() {
                     console.log("Action: pegar gaze ");
@@ -997,7 +1004,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             // Fita adesiva hipoalergênica
-            new InteractiveObject("io-fita_hipoalergenica", "Pegar fita adesiva hipoalergênica")
+            new InteractiveObject("io-fita_hipoalergenica", "Fita Adesiva Hipoalergênica")
                 .setCssClass("intObj-fita_adesiva_hipoalergenica_micropore")
                 .onClick(function() {
                     console.log("Action: pegar fita adesiva hipoalergênica");
@@ -1010,7 +1017,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             // Soro Fisiológico 0,9% (250 ml) aquecido
-            new InteractiveObject("io-soro", "Pegar soro fisiológico 0,9% (250 ml) aquecido")
+            new InteractiveObject("io-soro", "Soro Fisiológico 0,9% (250 ml) Aquecido")
                 .setCssClass("intObj-soro_fisiologico_250_ml")
                 .onClick(function() {
                     console.log("Action: pegar soro fisiológico 0,9% (250 ml) aquecido");
@@ -1023,7 +1030,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             // Seringa de 20 ml
-            new InteractiveObject("io-seringa", "Pegar seringa de 20 ml")
+            new InteractiveObject("io-seringa", "Seringa de 20 ml")
                 .setCssClass("intObj-seringa_20_ml")
                 .onClick(function() {
                     console.log("Action: pegar seringa de 20 ml");
@@ -1036,7 +1043,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             // Agulha 40X12
-            new InteractiveObject("io-agulha", "Pegar agulha 40X12")
+            new InteractiveObject("io-agulha", "Agulha 40X12")
                 .setCssClass("intObj-agulha_40x12")
                 .onClick(function() {
                     console.log("Action: pegar agulha 40X12 ");

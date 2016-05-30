@@ -413,7 +413,7 @@ define({
             // 0 Jogador
             "Bom dia, Clarice.",
             // 1 Recepcionista Clarice
-            "Bom dia! O paciente está à sua espera. Mas antes quero lhe entregar o folheto dos 'Nove Certos' da administração de medicação."
+            "Bom dia! Um paciente o aguarda na enfermaria masculina. Mas antes quero lhe entregar o folheto dos 'Nove Certos' da administração de medicação."
         ],
         alaMasculina: [
             // 0 Jogador
@@ -716,6 +716,15 @@ define({
     },
 
     fase8: {
+        
+         recepcao: [
+            
+            // 0 
+              "Bom dia. Um novo paciente o aguarda na enfermaria masculina."
+            
+        ],
+        
+        
         alaMasculina: [
             // 0 Jogador
             "Boa noite! Sou responsável por levá-lo até o centro cirúrgico. Como é o seu nome?",
@@ -798,6 +807,14 @@ define({
     },
 
     fase9: {
+        
+        recepcao: [
+            
+            // 0 
+              "Bom dia. Uma paciente te espera na enfermaria masculina."
+            
+        ],
+        
         alaMasculina: [
             // 0 Jogador op 1
             "Bom dia! Sou profissional de enfermagem deste hospital e cuidarei do Sr. hoje." +
@@ -1000,6 +1017,12 @@ define({
             ],
             folheto9certos: [
                 "Pegue o folheto dos 9 certos!"
+            ],
+            objetosGaveta: [
+                "Você já pegou todos os equipamentos necessários?"  
+            ],
+            verificarTudoPostoEnfermagem: [
+                "Certifique-se de realizar todos os procedimentos antes de sair!"
             ]
         },
         descarte: {

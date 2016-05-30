@@ -34,8 +34,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             alaMasculina,
             leito,
             postoDeEnfermagem,
-            gavetaEsquerda,
-            gavetaDireita,
+            gaveta,
             prontuario,
             pulseira,
             keflin,
@@ -571,10 +570,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true ),
 
-            new Action("btn-ler_prontuario", "Ler prontuario")
+            new Action("btn-ler_prontuario", "Anotar prontuario")
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
-                    console.log("Action: ler prontuario");
+                    console.log("Action: anotar no prontuario");
                     Prontuario.open();
                     core.openModalScene("Prontuario");
                     // Marcar pontos
@@ -749,8 +748,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
-                core.openCommandBar();
+                core.openCommandBar();         
                 core.setActionVisible("btn-lavarMaos", true );
+                core.setActionVisible("btn-ir_corredor", true );
+                core.setActionVisible("btn-visualizarFolheto", true );
                 core.openDialog( 0 );
 
             })
@@ -773,8 +774,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.flag("score_pegou_equipo_soro") == false /*||
                         core.flag("pegarBandeja") == true*/ ) {
                         core.openDialog( 4 );
-                    } else {
-                        core.changeScene( 1 );
+                    } else if(core.flag("score_conferiu_medicacao_posto") == true &&
+                              core.flag("score_preparar_medicacao") == true &&
+                              core.flag("score_calculou_gotejamento") == true &&
+                              core.flag("score_identificar_medicacao") == true)
+                    
+                    {
+                            core.changeScene( 1 );
+                            
+                        
+                            
+                    }
+                    else {
+                        core.openDialog(8);
                     }
 
                 })
@@ -798,7 +810,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-keflin_medicamento")
                 .onClick(function() {
                     console.log("Action: Confirmar medicação com o mentor");
-                    if ( core.flag("score_conferiu_medicacao_posto") == false ) {
+                    if ( core.flag("score_conferiu_medicacao_posto") == false ) {  
                         core.registerScoreItem( Scores.confirmarMedicacaoPosto );
                         core.flag("score_conferiu_medicacao_posto",  true );
                     }
@@ -824,6 +836,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("Action: Calcular gotejamento do soro");
                     if ( core.flag("score_calculou_gotejamento") == false ) {
+                         console.log("TRUE3");
                         core.registerScoreItem( Scores.calcularGotejamento );
                         core.flag("score_calculou_gotejamento",  true );
                     }
@@ -834,9 +847,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-identificarMedicacao", "Identificar medicação")
                 .setCssClass("action-identificarMedicacao")
                 .onClick(function() {
-                    console.log("Action: lavarMaos");
-                    // Aqui irá abrir a ficha sobre a medicação que é para o jogador preencher
-
+                 
                     if ( core.flag("score_identificar_medicacao") == false ) {
                         core.registerScoreItem( Scores.identificarMedicacao );
                         core.flag("score_identificar_medicacao",  true );
@@ -893,11 +904,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Dialog( lib.characters.mentor )
                 .setText( Dialogs.postoDeEnfermagem[ 5 ] )
                 .registerOption("", function() {
-                    core.setActionVisible("btn-confirmarMedicamento", true );
-                    core.setActionVisible("btn-prepararMedicacao", true );
-                    core.setActionVisible("btn-gotejamentoSoro", true );
-                    core.setActionVisible("btn-identificarMedicacao", true );
-                    core.setActionVisible("btn-visualizarFolheto", true );
                     core.openCommandBar();
                     core.closeDialog();
                 }),
@@ -927,13 +933,21 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Alertas.esqueceu.pegarBandeja )
                 .registerOption("", function() {
                     core.closeDialog();
-                })
+                }),
+            // 8
+             new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.verificarTudoPostoEnfermagem )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
+            
+            
 
         ]);
 
         postoDeEnfermagem.registerInteractiveObjects([
 
-            new InteractiveObject("io-abrir_gaveta_esquerda", "Abrir gaveta esquerda")
+            new InteractiveObject("io-abrir_gaveta_esquerda", "Abrir gaveta")
                 .setCssClass("intObj-openDrawer_left")
                 .onClick(function() {
                     if ( core.flag("score_pegou_bandeja") != true ) {
@@ -948,7 +962,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                                 core.flag("score_nao_lavar_maos_posto_enfermagem",  true );
                             }
                         }
-                        core.openModalScene("gavetaEsquerda");
+                        core.openModalScene("gaveta");
                         core.openCommandBar();
 
                         core.setInteractiveObjectVisible("io-soro", !(core.flag("score_pegou_soro")) );
@@ -964,23 +978,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true ),
 
-            /*new InteractiveObject("io-abrir_gaveta_direita", "Abrir gaveta direita")
-                .setCssClass("intObj-openDrawer_right")
-                .onClick(function() {
-                    if ( core.flag("score_pegou_bandeja") != true ) {
-                        core.openDialog( 7 );
-                    }
-                    else{
-                        console.log("Action: abrir_gaveta_direita");
-                        // Som
-                        Player.play( Player.audios.sfx.abrirGaveta );
-                        core.openModalScene("gavetaDireita");
-                        core.openCommandBar();
-
-                        // core.setInteractiveObjectVisible("io-coxim", !(core.flag("coxim")));
-                    }
-                })
-                .setVisibility( true ),*/
+         
 
             // Bandeja
             new InteractiveObject("io-pegar_bandeja", "Pegar bandeja")
@@ -1026,16 +1024,20 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         ]);
+    
+  
+    
 
-
-        gavetaEsquerda = new Scene("gavetaEsquerda", "Gaveta esquerda")
+         gaveta = new Scene("gaveta", "Gaveta")
             .setCssClass("modalScene-drawer");
 
-        gavetaEsquerda.registerActions([
+        gaveta.registerActions([
             new Action("btn-fecharGaveta", "Fechar gaveta")
                 .setCssClass("action-fecharGaveta")
                 .onClick(function() {
-                    // Verifica se pegou todos os itens e ainda não abriu o diálogo com o mentor
+                   
+                    
+                    
                     if ( core.flag("score_pegou_soro") == true &&
                         core.flag("score_pegou_algodao") == true &&
                         core.flag("score_pegou_luvas") == true &&
@@ -1045,28 +1047,60 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.flag("score_pegou_seringa_10ml") == true &&
                         core.flag("score_pegou_agulha") == true &&
                         core.flag("score_pegou_equipo_soro") == true &&
-                        core.flag("score_falou_com_mentor") == false ) {
-                        // Para não abrir outra vez esse diálogo
+                        core.flag("score_falou_com_mentor") == false ) 
+                    {
+                        
+                            core.flag("pegou_todos_instrumentos", true);  
+                   
                             core.flag("score_falou_com_mentor",  true );
-                            console.log("Action: fechar_gaveta_esquerda");
+                        
+                      
                             // Som
                             Player.play( Player.audios.sfx.fecharGaveta );
-                            core.closeModalScene("Gaveta esquerda");
+                        
+                            core.closeModalScene("Gaveta");
                             core.closeCommandBar();
                             core.openDialog( 2 );
+                                 
+                            core.setActionVisible("btn-confirmarMedicamento", true );
+                            core.setActionVisible("btn-prepararMedicacao", true );
+                            core.setActionVisible("btn-gotejamentoSoro", true );
+                            core.setActionVisible("btn-identificarMedicacao", true );
+                            core.setActionVisible("btn-visualizarFolheto", false );  
+                            core.setActionVisible("btn-lavarMaos", false ); 
+                        
                         } else {
-                            if ( core.flag("score_nao_pegou_todos_instrumentos") == false ) {
-                                core.registerScoreItem( Scores.naoPegarAlgumInstrumento );
-                                core.flag("score_nao_pegou_todos_instrumentos",  true );
-                            }
-                            core.closeCommandBar();
-                            core.openDialog( 4 );
+                            
+                        core.flag("pegou_todos_instrumentos", false);
+                        core.flag("score_falou_com_mentor",  false );
+                            
+                        Player.play(Player.audios.sfx.fecharGaveta);
+                            
+                        core.closeModalScene("Gaveta");
+                        core.closeCommandBar();
+                            
+                        //    core.openDialog(4); 
+                            
+                        core.setActionVisible("btn-visualizarFolheto", true );  
+                        core.setActionVisible("btn-lavarMaos", true );
+                
+                            
+                         
+
+                            
+                            
+                     //       if ( core.flag("score_nao_pegou_todos_instrumentos") == false ) {
+                      //          core.registerScoreItem( Scores.naoPegarAlgumInstrumento );
+                      //          core.flag("score_nao_pegou_todos_instrumentos",  true );
+                      //      }
+                            
+                            
                     }
                 })
                 .setVisibility( true )
         ]);
 
-        gavetaEsquerda.registerInteractiveObjects([
+        gaveta.registerInteractiveObjects([
             // Soro Fisiológico 0,9% (100 ml)
             new InteractiveObject("io-soro", "Pegar soro fisiológico 0,9% (100 ml)")
                 .setCssClass("intObj-soro_fisiologico_100_ml")
@@ -1202,40 +1236,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
         ]);
-/*
-
-        gavetaDireita = new Scene("gavetaDireita", "Gaveta direita")
-            .setCssClass("modalScene-drawer");
-
-        gavetaDireita.registerActions([
-            new Action("btn-fecharGaveta", "Fechar gaveta")
-                .setCssClass("action-fecharGaveta")
-                .onClick(function() {
-                    // Som
-                    Player.play( Player.audios.sfx.fecharGaveta );
-                    console.log("Action: fechar_gaveta_direita");
-                    core.closeModalScene("Gaveta direita");
-                })
-                .setVisibility( true )
-        ]);
-
-        gavetaDireita.registerInteractiveObjects([
-            new InteractiveObject("io-coxim", "Coxim")
-                .setCssClass("intObj-cushion")
-                .onClick(function() {
-                    console.log("IntObj: io-coxim");
-                    // core.flag("coxim", true);
-                    // core.setInteractiveObjectVisible("io-coxim", false);
-
-                    // if(core.flag("score_pegar_coxim") == false) {
-                    //     core.registerScoreItem(Scores.pegarCoxim);
-                    // core.flag("score_pegar_coxim", true);
-                    // }
-                })
-                .setVisibility( true )
-        ]);
-*/
-
 
         prontuario = new Scene("Prontuario", "Prontuario")
             .onLoad(function() {
@@ -1333,8 +1333,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         level.registerModalScene( pulseira );
         level.registerModalScene( prontuario );
-        level.registerModalScene( gavetaEsquerda );
-        // level.registerModalScene( gavetaDireita );
+        level.registerModalScene( gaveta );
         level.registerModalScene( noveCertosMedicacao );
         level.registerModalScene( keflin );
         level.registerModalScene( equipoSoro );
@@ -1432,6 +1431,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("score_gotejar_soro_equipo", false ) );
         level.registerFlag( new Flag("score_nao_gotejar_soro_equipo", false ) );
         level.registerFlag( new Flag("score_anotou_prontuario", false ) );
+        level.registerFlag( new Flag("pegou_todos_instrumentos", false ) );
 
 
         level.setInitialScene( 0 );

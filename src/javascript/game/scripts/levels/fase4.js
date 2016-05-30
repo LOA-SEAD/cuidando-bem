@@ -515,13 +515,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
 
-        var alaFeminina = new Scene("alaMasculina", "Ala Masculina")
-            .setCssClass("scene-bedroom-level2")
+        var alaFeminina = new Scene("alaFeminina", "Ala Feminina")
+            .setCssClass("scene-bedroom-level3")
             .onLoad(function() {
                 console.log("Load scene: " + alaFeminina.getName() );
+           
                 if ( core.flag("conversarPaciente") == true ) {
                     // Desabilita conversar novamente com a Regina
                     core.setInteractiveObjectVisible("io-conversar_com_paciente", false );
+            
                 }
             })
             .onUnload(function() {
@@ -531,6 +533,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         alaFeminina.registerActions([
 
+              
             new Action("btn-lavarMaos", "Lavar as mãos")
                 .setCssClass("action-lavarMaos")
                 .onClick(function() {
@@ -542,6 +545,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.lavarMaos2 );
                     }
                 })
+                .setVisibility( true ),     // ???????????????????????????????
+            
+         
+         
+            
+    
 
 
         ]);
