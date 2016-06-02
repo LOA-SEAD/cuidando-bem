@@ -822,7 +822,7 @@ define({
             // 1 Jogador op 2
             "Bom dia! Vim para cuidar do Sr. esta manhã.",
             // 2 Paciente
-            "Francisco Rodrigues, ao seu dispor. Tô bem não, tô meio mole.",
+            "Pedro Alcides Mendonça, ao seu dispor. Tô bem não, tô meio mole.",
             // 3 Jogador
             "O Sr. parece muito desidratado. Vou até a farmácia buscar o soro prescrito" +
             " pelo médico e, assim que eu voltar, verificaremos seus sinais vitais.",
@@ -848,7 +848,7 @@ define({
         ],
         leitoPaciente: [
             // 0 Jogador
-            "Sr. Francisco, antes de começarmos, o Sr. poderia me dizer sua" +
+            "Sr. Pedro, antes de começarmos, o Sr. poderia me dizer sua" +
             " data de nascimento e me deixar verificar sua pulseira de identificação?",
             // 1 Paciente
             "Sí. 02 de deciembro de 1937.",
@@ -875,7 +875,7 @@ define({
 
         leitoPaciente1: [
             // 0 Jogador
-            "Agora estamos no leito correto, Sr. Francisco.",
+            "Agora estamos no leito correto, Sr. Pedro.",
             // 1 Paciente
             "Desculpa aí pela confusão, pensei que pudia mudar de cama." +
             " O argentino queria ver a novela e essa aqui tá me dando dor nas costas…" +

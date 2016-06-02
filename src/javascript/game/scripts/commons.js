@@ -131,7 +131,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     josivaldo: new Character("Sr. Josivaldo", "char-paciente_07"),
                     ana: new Character("Sra. Ana", "char-paciente_08"),
                     yuri: new Character("Sr. Yuri", "char-paciente_09"),
-                    francisco: new Character("Sr. Francisco", "char-paciente_10"),
+                    francisco: new Character("Sr. Pedro", "char-paciente_10"),
 
                     joaoUnknow: new Character("Paciente", "char-paciente_01"),
                     carlosUnknow: new Character("Paciente", "char-paciente_02"),
