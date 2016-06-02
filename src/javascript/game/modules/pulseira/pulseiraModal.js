@@ -284,6 +284,8 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
         setName("");
         setLeito("");
         setData("");
+
+        enable();
     }
 
 

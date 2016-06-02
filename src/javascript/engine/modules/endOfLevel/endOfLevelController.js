@@ -32,6 +32,7 @@ define([
     var Stage = require("Stage");
     var modalSelector = "#endOfLevel";
     var scoreListSelector = "#scoreList";
+    var scoreListBodySelector = "#scoreList_tbody";
 
     var titleSelector = ".title";
     var scoreSelector = ".score";
@@ -91,7 +92,7 @@ define([
     }
 
     function close() {
-        $( scoreListSelector ).empty();
+        $( scoreListBodySelector ).empty();
         $( modalSelector ).hide();
         isOpen = false;
     }
