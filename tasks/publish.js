@@ -5,7 +5,6 @@ module.exports = function( grunt ) {
         grunt.option( "target", "prod" );
 
         grunt.task.run([
-            "build",
             "gh-pages"
         ]);
     });
