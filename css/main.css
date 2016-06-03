@@ -1453,13 +1453,13 @@ This file is part of Cuidando Bem.
   height: 5%;
 }
 .intObj-paciente_07-checar_pulseira {
-  background-image: url(../images/interactiveObjects/pulseira03.png);
+  background-image: url(../images/interactiveObjects/pulseira07.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 63.5%;
-  left: 47.5%;
-  width: 5%;
-  height: 5%;
+  top: 69%;
+  left: 41.8%;
+  width: 3.5%;
+  height: 3.5%;
 }
 .intObj-paciente_08-checar_pulseira {
   background-image: url(../images/interactiveObjects/pulseira08.png);
@@ -1561,7 +1561,7 @@ This file is part of Cuidando Bem.
   background-image: url(../images/interactiveObjects/garrafa_agua_potavel.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 33%;
+  top: 34%;
   left: 55%;
   width: 9%;
   height: 20%;
@@ -1572,8 +1572,8 @@ This file is part of Cuidando Bem.
   background-repeat: no-repeat;
   top: 40%;
   left: 40%;
-  width: 9%;
-  height: 20%;
+  width: 7%;
+  height: 13%;
 }
 .intObj-cushion {
   background-image: url(../images/interactiveObjects/coxim.png);
@@ -2024,6 +2024,15 @@ This file is part of Cuidando Bem.
   left: 53%;
   width: 9%;
   height: 20%;
+}
+.intObj-agulhas {
+  background-image: url(../images/interactiveObjects/agulhas.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 50%;
+  left: 65%;
+  width: 9%;
+  height: 10%;
 }
 /*
 This file is part of Cuidando Bem.
@@ -3407,6 +3416,15 @@ This file is part of Cuidando Bem.
 }
 .action-preparar_medicacao {
   background-image: url(../images/actionButtons/prepararMedicacao.jpg);
+}
+.action-temporario {
+  background-image: url(../images/actionButtons/temporario.jpg);
+}
+.action-agulhas {
+  background-image: url(../images/actionButtons/agulhas.jpg);
+}
+.action-elevarCama {
+  background-image: url(../images/actionButtons/elevarCama.jpg);
 }
 /*
 This file is part of Cuidando Bem.
