@@ -413,7 +413,7 @@ define({
             // 0 Jogador
             "Bom dia, Clarice.",
             // 1 Recepcionista Clarice
-            "Bom dia! O paciente está à sua espera. Mas antes quero lhe entregar o folheto dos 'Nove Certos' da administração de medicação."
+            "Bom dia! Um paciente o aguarda na enfermaria masculina. Mas antes quero lhe entregar o folheto dos 'Nove Certos' da administração de medicação."
         ],
         alaMasculina: [
             // 0 Jogador
@@ -716,6 +716,15 @@ define({
     },
 
     fase8: {
+        
+         recepcao: [
+            
+            // 0 
+              "Bom dia. Um novo paciente o aguarda na enfermaria masculina."
+            
+        ],
+        
+        
         alaMasculina: [
             // 0 Jogador
             "Boa noite! Sou responsável por levá-lo até o centro cirúrgico. Como é o seu nome?",
@@ -798,6 +807,14 @@ define({
     },
 
     fase9: {
+        
+        recepcao: [
+            
+            // 0 
+              "Bom dia. Uma paciente te espera na enfermaria masculina."
+            
+        ],
+        
         alaMasculina: [
             // 0 Jogador op 1
             "Bom dia! Sou profissional de enfermagem deste hospital e cuidarei do Sr. hoje." +
@@ -805,7 +822,7 @@ define({
             // 1 Jogador op 2
             "Bom dia! Vim para cuidar do Sr. esta manhã.",
             // 2 Paciente
-            "Francisco Rodrigues, ao seu dispor. Tô bem não, tô meio mole.",
+            "Pedro Alcides Mendonça, ao seu dispor. Tô bem não, tô meio mole.",
             // 3 Jogador
             "O Sr. parece muito desidratado. Vou até a farmácia buscar o soro prescrito" +
             " pelo médico e, assim que eu voltar, verificaremos seus sinais vitais.",
@@ -831,7 +848,7 @@ define({
         ],
         leitoPaciente: [
             // 0 Jogador
-            "Sr. Francisco, antes de começarmos, o Sr. poderia me dizer sua" +
+            "Sr. Pedro, antes de começarmos, o Sr. poderia me dizer sua" +
             " data de nascimento e me deixar verificar sua pulseira de identificação?",
             // 1 Paciente
             "Sí. 02 de deciembro de 1937.",
@@ -858,7 +875,7 @@ define({
 
         leitoPaciente1: [
             // 0 Jogador
-            "Agora estamos no leito correto, Sr. Francisco.",
+            "Agora estamos no leito correto, Sr. Pedro.",
             // 1 Paciente
             "Desculpa aí pela confusão, pensei que pudia mudar de cama." +
             " O argentino queria ver a novela e essa aqui tá me dando dor nas costas…" +
@@ -1000,6 +1017,12 @@ define({
             ],
             folheto9certos: [
                 "Pegue o folheto dos 9 certos!"
+            ],
+            objetosGaveta: [
+                "Você já pegou todos os equipamentos necessários?"  
+            ],
+            verificarTudoPostoEnfermagem: [
+                "Certifique-se de realizar todos os procedimentos antes de sair!"
             ]
         },
         descarte: {

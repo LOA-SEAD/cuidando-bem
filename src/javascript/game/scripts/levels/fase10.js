@@ -130,8 +130,24 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var recepcao = lib.scenes.recepcao.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + recepcao.getName() );
+                core.openDialog( 0 );
 
             });
+    
+        recepcao.registerDialogs([
+            
+             // 0
+            
+               new Dialog( lib.characters.recepcionista )
+            .setText( Dialogs.recepcao[ 0 ] )
+            .registerOption("", function() {
+                core.closeDialog(  );
+            }),
+
+        ]);
+    
+    
+        
 
 
         recepcao.registerInteractiveObjects([
@@ -163,6 +179,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         function conversarRecepcionista() {
 
+                core.openDialog( 0 );
 
         }
 
@@ -185,6 +202,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         corredor.registerDialogs([
+            
+           
 
         ]);
 
@@ -607,8 +626,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                     core.flag("pegarFrascoSG", true );
                     core.registerScoreItem( Scores.pegarFrascoSG );
-                    console.log("GANHOU 50 PTS");
                     core.setInteractiveObjectVisible("io-pegarFrascoDieta", false );
+                    core.setActionVisible("btn-conferirSoro", true );
 
             })
             .setVisibility( false ),
@@ -641,8 +660,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setCssClass("action-ir_corredor")
             .onClick(function() {
 
-
-
                         if ( core.flag("pegar_prescricao_medica") == false ) {
 
 
@@ -651,15 +668,25 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                       } else if ( core.flag("pegarNACL") == false || core.flag("pegarFrascoSG") == false ) {
 
                             core.openDialog( 6 );
-                        } else if ( !(core.flag("conferirMedicamento")) || !(core.flag("conferirNACL")) ) {
-                            core.openDialog( 3 );
-                        } else {
-                            core.changeScene( 1 );
-                            console.log("Ativou");
-                            core.flag("conferirMedicamento", true );
-                            core.registerScoreItem( Scores.conferirDieta );
+                        } 
+                
+                
+                
+                    if(core.flag("pegarNACL") == true && core.flag("pegarFrascoSG") == true){
+                        
+                        if(core.flag("conferirNACL") == true || core.flag("conferirFrascoSG") == true){
+                               core.registerScoreItem( Scores.conferirDieta );
+                               core.flag("conferirMedicamento", true );
+                               core.changeScene( 1 ); 
                         }
-
+                        else {
+                             core.flag("conferirMedicamento", true );
+                            core.changeScene( 1 );
+                        }
+                        
+                    }
+                
+        
 
 
 
@@ -667,9 +694,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setVisibility( true ),
 
 
-            new Action("btn-conferirSoro", "Conferir Soro Glicofisiologico")
+            new Action("btn-conferirSoro", "Conferir Soro Glicofisiológico")
             .setCssClass("action-soro_glicofisiologico_1000ml")
             .onClick(function() {
+                core.openModalScene("conferirSoroGlicofisiologico1000");
+                    
+                
+                
                 // if ( (core.flag("pegarFrascoSG") == false) || (core.flag("pegarNACL") == false) ) {
 
                 //     core.openDialog( 3 );
@@ -1415,7 +1446,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                .setCssClass("action-cloreto_sodio_20_10ml")
                 .onClick(function() {
                     console.log("Action: Finalizar conferição");
-                    core.flag("conferirNACL", true );
+                    core.flag("conferirNACL", true );   
                     core.closeModalScene("conferirCloretoSodio");
                 })
         ]);
