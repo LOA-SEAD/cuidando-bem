@@ -35,7 +35,8 @@ define([
         "Prontuario",
         "Pulseira",
         "FreqRespiratoria",
-        "EquipoGotejamento"
+        "EquipoGotejamento",
+        "Ficha"
     ],
     function(
         Stage,
@@ -49,7 +50,9 @@ define([
         prontuario,
         Pulseira,
         freqRespiratoria,
-        EquipoGotejamento ) {
+        EquipoGotejamento,
+        Ficha
+    ) {
 
 // Attributes
         var Storage = require("Storage");
@@ -86,6 +89,7 @@ define([
             Pulseira.init( gameStageSelector );
             freqRespiratoria.init( gameStageSelector );
             EquipoGotejamento.init( gameStageSelector );
+            Ficha.init( gameStageSelector );
 
             Dialog.init( gameStageSelector );
 

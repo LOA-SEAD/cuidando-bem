@@ -23,6 +23,8 @@ This file is part of Cuidando Bem.
  */
 define([ "text!../html/ficha/ficha.html" ], function( html ) {
 
+
+    var divSelector = "#ficha_medicacao";
     // Estados podem ser medicação por soro ou oral
     var state;
 
@@ -52,6 +54,10 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
     }
 
     function open( state, id ) {
+        if ( typeof state === "undefined" || typeof state === "undefined" ) {
+            throw new Error("You must define a state to open ficha and the level");
+        }
+
         if ( state === "soro" ) {
 
         } else if ( state === "oral" ) {
@@ -59,10 +65,11 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
         } else {
             throw new Error("Estado da ficha não existe.");
         }
+        $( divSelector ).show();
     }
 
     function close() {
-
+        $( divSelector ).hide();
     }
 
     function isDataValid() {
