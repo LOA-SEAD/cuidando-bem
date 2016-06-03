@@ -1268,24 +1268,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     
                 })
                 .setVisibility( true ),
-            
-            
-             new Action("btn-?????????????", "Não sei o que colocar aqui")
-                .setCssClass("action-temporario")
-                .onClick(function() {
-                    
-                    
-                    //
-                    //
-                    //
-                    
-                    
-                })
-                .setVisibility( true ),
-                        
-            
-
-                        
+                             
 
             
         ]);
