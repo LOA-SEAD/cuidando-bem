@@ -517,6 +517,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("pulseira") == false ) {
                         // core.setInteractiveObjectVisible("io-pulseira_paciente", true );
                     }
+                    
+                    if(core.flag("score_checar_pulseira") == false){
+                        core.flag("score_checar_pulseira", true);
+                        core.registerScoreItem( Scores.tutorial.identificarPaciente );
+                    }
+                    
                 })
                 .setVisibility( visibility ),
 
@@ -1087,7 +1093,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("oximetro", false ) );
         level.registerFlag( new Flag("relogio", false ) );
         level.registerFlag( new Flag("conversouPacienteSegundaVez", false ) );
-
+        level.registerFlag( new Flag("score_checar_pulseira", false ) );
         level.registerFlag( new Flag("mediuTemperatura", false ) );
         level.registerFlag( new Flag("mediuPressao", false ) );
         level.registerFlag( new Flag("mediuFreqRespiratoria", false ) );

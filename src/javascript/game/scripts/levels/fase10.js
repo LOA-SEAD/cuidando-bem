@@ -728,34 +728,36 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         var postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
-
-                  console.log("Load scene: " + postoDeEnfermagem.getName() );
-               if ( core.flag("conferirMedicamento") == false ) {
-
-                    core.setInteractiveObjectVisible("io-abrir_gaveta", false );
-                    core.setInteractiveObjectVisible("io-pegar_bandeja", false );
-                    core.openDialog( 2 );
-
-
-            if ( core.flag("score_irPosto_horaErrada") == false ) {
+                
+                  core.setInteractiveObjectVisible("io-pegar_bandeja", false );
+                  core.setInteractiveObjectVisible("io-abrir_gaveta", false );    
+                
+                
+                if( core.flag("conferirMedicamento") == true){
+                    
+                  core.setInteractiveObjectVisible("io-pegar_bandeja", true );
+                  core.setInteractiveObjectVisible("io-abrir_gaveta", true );
+                    
+                    if(core.flag("pegou_tudo_postoEnfermagem") == true || core.flag("pegar_bandeja") == true){
+                         core.setInteractiveObjectVisible("io-pegar_bandeja", false );
+                        core.setInteractiveObjectVisible("io-abrir_gaveta", true );
+                        
+                    }
+                    
+                }
+                else {
+                      core.openDialog( 2 );
+                    
+                    if ( core.flag("score_irPosto_horaErrada") == false ) {
 
                 core.flag("score_irPosto_horaErrada", true );
                  core.registerScoreItem( Scores.irPosto_horaErrada );
-
-
             }
-
-
-
-
-
-                 } else if ( core.flag("pegou_tudo_postoEnfermagem") == true ) {
-                     core.setInteractiveObjectVisible("io-abrir_gaveta", true );
-
-                     core.setInteractiveObjectVisible("io-pegar_bandeja", false );
-                    } else
-                    core.setInteractiveObjectVisible("io-abrir_gaveta", true );
-                     core.setInteractiveObjectVisible("io-pegar_bandeja", true );
+                    
+                }
+                
+                
+           
 
             });
 
@@ -823,15 +825,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onClick(function() {
 
 
-                if ( core.flag("pegar_prescricao_medica") == false ) {
+          /*      if ( core.flag("pegar_prescricao_medica") == false || core.flag("") ) {
                     core.changeScene( 1 );
                 }
                 
                 
                 if(core.flag("pegou_tudo_postoEnfermagem") == true) {
                 	core.changeScene(1);
-		}
-
+		}*/
+core.changeScene(1);
 
             })
             .setVisibility( true ),
