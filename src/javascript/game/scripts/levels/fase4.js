@@ -518,6 +518,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var alaFeminina = new Scene("alaFeminina", "Ala Feminina")
             .setCssClass("scene-bedroom-level3")
             .onLoad(function() {
+                  core.openCommandBar();
                 console.log("Load scene: " + alaFeminina.getName() );
            
                 if ( core.flag("conversarPaciente") == true ) {
@@ -529,6 +530,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onUnload(function() {
                 core.closeCommandBar();
             });
+    
+  
 
 
         alaFeminina.registerActions([
@@ -545,7 +548,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.lavarMaos2 );
                     }
                 })
-                .setVisibility(true)     // ??????????????????????????????? 
+                .setVisibility(true)     
             
                         
             
@@ -799,6 +802,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Bip
                     Player.play( Player.audios.sfx.bipOximetro );
                     core.flag("verificar_oximetro_local_cirurgia",  true );
+                    core.openModalScene("modalOximetro");
+                    
                 })
                 .setVisibility( true ),
 
@@ -1093,6 +1098,23 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
         ]);
+    
+    
+        var oximetro = new Scene("modalOximetro", "Oxímetro")
+            .setCssClass("modalScene-oximetro")
+            .setTemplate(
+                "<span class='oximetro-st-text'>97% Sat.O2</span>" + "<span class='oximetro-fc-text'>69 bpm</span>"
+            );
+
+        oximetro.registerActions([
+            new Action("btn-largar_oximetro", "Fechar Oxímetro")
+                .setCssClass("action-largar_oximetro")
+                .onClick(function() {
+                    core.closeModalScene("modalOximetro");
+                })
+                .setVisibility( true )
+        ]);
+        
 
 
         prontuario = new Scene("Prontuario", "Prontuario");
@@ -1138,6 +1160,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         level.registerModalScene( prontuario );
         level.registerModalScene( pulseira );
+        level.registerModalScene( oximetro );
 
 
         // 0

@@ -517,19 +517,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.closeCommandBar();
             });
 
-        farmacia.registerInteractiveObjects([
-            new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-left")
-                .onClick( farmaciaIrCorredor )
-                .setVisibility( true ),
-
-            new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-right")
-                .onClick( farmaciaIrCorredor )
-                .setVisibility( true )
-        ]);
 
         farmacia.registerActions([
+            
+               new Action("btn-ir_corredor", "Ir ao corredor")
+         .setCssClass("action-ir_corredor")
+         .onClick(function () {
+
+             farmaciaIrCorredor();
+
+         })
+         .setVisibility(true),
+            
+            
             new Action("btn-conferir_midazolam", "Conferir Medicamento")
                 .setCssClass("action-midazolam_medicamento")
                 .onClick(function() {

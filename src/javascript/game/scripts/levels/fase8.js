@@ -449,6 +449,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         farmacia.registerInteractiveObjects([
+       /*     
             new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
                 .setCssClass("intObj-lobbyToHallway-left")
                 .onClick( farmaciaIrCorredor )
@@ -457,7 +458,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
                 .setCssClass("intObj-lobbyToHallway-right")
                 .onClick( farmaciaIrCorredor )
-                .setVisibility( true ),
+                .setVisibility( true ),*/
 
             // Clorpromazina
             new InteractiveObject("io-clorpromazina_medicamento", "Pegar Medicamento")
@@ -586,6 +587,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         farmacia.registerActions([
+            
+               new Action("btn-ir_corredor", "Ir ao corredor")
+         .setCssClass("action-ir_corredor")
+         .onClick(function () {
+
+             farmaciaIrCorredor();
+
+         })
+         .setVisibility(true),
 
 
             new Action("btn-clorpromazinaMedicamento", "Conferir Medicamento")

@@ -485,6 +485,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.pegarDieta );
                     }
                     core.setInteractiveObjectVisible("io-frasco_de_dieta", false );
+                    core.setActionVisible("btn-conferirMedicamento", true);
                 })
                 .setVisibility( false )
         ]);
@@ -527,6 +528,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                     }
                 })
+                .setVisibility(false)
            ]);
 
 
