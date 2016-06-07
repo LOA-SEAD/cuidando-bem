@@ -96,7 +96,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 // core.showEndOfLevel();
                 // EquipoGotejamento.setMode( "dieta" );
                 // EquipoGotejamento.open();
-                Ficha.open( "soro", 2 );
+                // Ficha.open( "soro", 4 );
+                Ficha.open( "oral", 7 );
             });
 
 

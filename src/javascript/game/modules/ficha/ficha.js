@@ -53,18 +53,24 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
         $( selector ).append( html );
     }
 
-    function open( state, id ) {
+    function open( state, levelId ) {
         if ( typeof state === "undefined" || typeof state === "undefined" ) {
             throw new Error("You must define a state to open ficha and the level");
         }
 
         if ( state === "soro" ) {
-
+            $(".soro").show();
+            $(".oral").hide();
         } else if ( state === "oral" ) {
-
+            $(".oral").show();
+            $(".soro").hide();
         } else {
             throw new Error("Estado da ficha não existe.");
         }
+
+        $(".titulo > span").hide();
+        $(".corpo > div > div").hide();
+        $( ".ficha-l" + levelId ).show();
         $( divSelector ).show();
     }
 

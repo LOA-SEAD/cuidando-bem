@@ -1,13 +1,77 @@
+/*
+This file is part of Cuidando Bem.
+
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 #ficha_medicacao {
     display: none;
 
     position: absolute;
     font-family: @font-printed;
+    font-size: 1.5rem;
     box-sizing: border-box;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+
+    text-align: left;
+
+    p {
+        margin: 0;
+        padding: 2% 0%;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    .in_data {
+        width: 20%;
+    }
+
+    .in_enfermaria {
+        width: 20%;
+    }
+
+    .in_leito {
+        width: 20%;
+    }
+
+    .in_paciente {
+        width: 50%;
+    }
+
+    .in_ini {
+        width: 20%;
+    }
+
+    .in_ter {
+        width: 20%;
+    }
+
+    .in_volume {
+        width: 30%;
+    }
+
+    .in_horario {
+        width: 20%;
+    }
+
+    .in_funcionario {
+        width: 70%;
+    }
 
     .container {
 
@@ -26,6 +90,70 @@
     .conteudo {
         border: 0.1em black solid;
         box-sizing: border-box;
+        height: 100%;
+        padding: 2%;
+    }
+
+    .cabecalho {
+        height: 40%;
+    }
+
+    .corpo {
+        height: 50%
+    }
+
+    .rodape {
+        height: 10%;
+    }
+
+    .titulo > span {
+        display: none;
+    }
+
+    .hospital {
+        font-weight: bold;
+        font-size: 2rem;
+        text-align: center;
+    }
+    .titulo {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .data {
+        text-align: right;
+    }
+
+    .enfermaria {
+        float: left;
+        text-align: left;
+        display: inline-block;
+        width: 50%;
+    }
+    .leito {
+        float: right;
+        text-align: right;
+        display: inline-block;
+        width: 50%;
+    }
+    .paciente {
+        clear: both;
+        text-align: left;
+    }
+    .ini_ter{
+        display: inline-block;
+        float: left;
+        width: 69%
+    }
+    .volume{
+        display: inline-block;
+        float: right;
+        text-align: right;
+        width: 30%;
+    }
+
+    .gotejamento {
+        text-align: center;
     }
 }
 
