@@ -253,13 +253,15 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
          * @param {} _option
          * @memberOf module:DialogModal
          */
-        function addDialogButton( _option ) {
+        function addDialogButton( _option, _number ) {
             console.log( _option );
 
             var element = $( dialogButtonTemplate );
 
             element.click( _option.actionFunction );
+
             $(".text", element ).text( _option.text );
+            $(".dialog_button").attr('value', _number );
 
             $( dialogOptionsSelector ).append( element );
 
@@ -298,15 +300,15 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             }
 
             for ( i = 0; i < _options.length; i++ ) {
-                addDialogButton( _options[ i ] );
-
                 // accessibility
+                addDialogButton( _options[ i ], i + 1 );
+
                 if(_options.length == 1){
                     op = "única";
                 }
                 else{
                     op = i + 1;
-                }
+                }                
 
                 $( '<span>Opção ' + op + ': ' + _options[ i ].text + '</span><br>' ).appendTo( "#accessible_log" );
             }
