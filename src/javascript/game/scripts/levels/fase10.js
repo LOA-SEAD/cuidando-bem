@@ -1300,8 +1300,19 @@ core.changeScene(1);
             .setCssClass("action-fecharEquipoSoro")
             .onClick(function() {
 
-                EquipoGotejamento.close();
-                core.closeModalScene("equipoSoro");
+                 if(EquipoGotejamento.isValueRight()){
+                    
+                    EquipoGotejamento.close();
+                    core.closeModalScene("equipoSoro");
+                    
+                }
+                
+                else {
+                    
+                    // colocar algo aqui
+                    
+                }
+                
                
                 
 
@@ -1539,6 +1550,10 @@ core.changeScene(1);
             Pulseira.setLeito("03");
             Pulseira.setData("24/07/1937");
             Pulseira.disable();
+            
+            
+            EquipoGotejamento.setRightValue(120);
+            
         });
 
         level.registerFlag( new Flag( "score_iralaFeminina_horaErrada",  false  ) );

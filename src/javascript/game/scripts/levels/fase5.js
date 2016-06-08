@@ -997,8 +997,21 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setCssClass("action-fecharEquipoSoro")
             .onClick(function() {
 
-                 EquipoGotejamento.close();
-                core.closeModalScene("equipoSoro");
+                if(EquipoGotejamento.isValueRight()){
+                    
+                    EquipoGotejamento.close();
+                    core.closeModalScene("equipoSoro");
+                    
+                }
+                
+                else {
+                    
+                    // colocar algo aqui
+                    
+                }
+                
+                
+                
 
 
 
@@ -1371,6 +1384,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Pulseira.setLeito("01");
             Pulseira.setData("03/06/1962");
             Pulseira.disable();
+            
+            EquipoGotejamento.setRightValue(120);
         });
 
 
