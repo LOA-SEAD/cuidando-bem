@@ -35,6 +35,13 @@ This file is part of Cuidando Bem.
 
     input {
         width: 100%;
+        border: none;
+        border-bottom: 0.1rem solid black;
+        background-color: transparent;
+    }
+
+    .bold {
+        font-weight: bold;
     }
 
     .in_data {
@@ -42,11 +49,11 @@ This file is part of Cuidando Bem.
     }
 
     .in_enfermaria {
-        width: 20%;
+        width: 40%;
     }
 
     .in_leito {
-        width: 20%;
+        width: 40%;
     }
 
     .in_paciente {
@@ -54,15 +61,15 @@ This file is part of Cuidando Bem.
     }
 
     .in_ini {
-        width: 20%;
+        width: 17%;
     }
 
     .in_ter {
-        width: 20%;
+        width: 17%;
     }
 
     .in_volume {
-        width: 30%;
+        width: 20%;
     }
 
     .in_horario {
@@ -78,8 +85,8 @@ This file is part of Cuidando Bem.
         overflow: hidden;
         background-color: white;
         position: absolute;
-        width: 40%;
-        height: 80%;
+        width: 44%;
+        height: 85%;
 
         top: 5%;
         left: 30%;
@@ -92,6 +99,13 @@ This file is part of Cuidando Bem.
         box-sizing: border-box;
         height: 100%;
         padding: 2%;
+    }
+
+    .medicao_complementos {
+        font-weight: bold;
+    }
+    .med_com_conteudo {
+        display: block;
     }
 
     .cabecalho {
@@ -143,17 +157,35 @@ This file is part of Cuidando Bem.
     .ini_ter{
         display: inline-block;
         float: left;
-        width: 69%
+        width: 60%
     }
     .volume{
         display: inline-block;
         float: right;
         text-align: right;
-        width: 30%;
+        width: 37%;
     }
 
     .gotejamento {
         text-align: center;
+    }
+
+    table.fraction {
+        font-size: 2rem;
+        width: 100%;
+
+        td {
+            width: 20%;
+        }
+
+        input {
+            width: 100%;
+        }
+    }
+
+    .info_gotejamento > p {
+        margin: 0;
+        padding: 0;
     }
 }
 
