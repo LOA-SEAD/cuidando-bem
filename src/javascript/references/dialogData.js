@@ -741,7 +741,8 @@ define({
             // 5 Paciente
             "Nervoso não, um pouco ansioso, eu diria. E talvez com um pouco de medo, nunca fiz uma cirurgia.",
             // 6 Jogador
-            "Fique calmo, Yuri, vai dar tudo certo!"
+            "Fique calmo, Yuri, vai dar tudo certo!",
+           
         ],
         farmacia: [
             // 0 Farmaceutico
@@ -759,7 +760,9 @@ define({
             // 1 Paciente
             "Ok. Yuri de Souza Almeida.",
             // 2 Jogador
-            "Certo, Yuri. Por favor tome a medicação e iremos para o centro cirúrgico em seguida."
+            "Certo, Yuri. Por favor tome a medicação e iremos para o centro cirúrgico em seguida.",
+             // 3 Jogador
+            "Pronto Yuri! Agora por favor me acompanhe até o centro cirúrgico."
         ],
         centroCirurgico: [
             // 0 Jogador op 1

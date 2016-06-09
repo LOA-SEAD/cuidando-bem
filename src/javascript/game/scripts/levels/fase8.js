@@ -742,7 +742,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }*/
                     core.changeScene( 2 );
                 })
-                .setVisibility( true )
+                .setVisibility( false )
 
         ]);
 
