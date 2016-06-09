@@ -632,29 +632,30 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
          farmacia.registerActions([
+             
+               new Action("btn-ir_corredor", "Ir ao corredor")
+         .setCssClass("action-ir_corredor")
+         .onClick(function () {
 
-            new Action("io-ler_prontuario", "Ler prontuário")
-                .setCssClass("action-ler_prontuario")
-                .onClick(function() {
-                    console.log("Action: ler prontuario");
-                    Prontuario.open();
-                    core.openModalScene("Prontuario");
+             farmaciaIrCorredor();
 
-                })
-                .setVisibility( true )
-        ]);
+         })
+         .setVisibility(true),
 
+         new Action("io-ler_prontuario", "Ler prontuário")
+         .setCssClass("action-ler_prontuario")
+         .onClick(function () {
+             console.log("Action: ler prontuario");
+             Prontuario.open();
+             core.openModalScene("Prontuario");
+
+         })
+         .setVisibility(true),
+
+
+     ]);
 
         farmacia.registerInteractiveObjects([
-            new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-left")
-                .onClick( farmaciaIrCorredor )
-                .setVisibility( true ),
-
-            new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-right")
-                .onClick( farmaciaIrCorredor )
-                .setVisibility( true ),
 
             // Keflin
             new InteractiveObject("io-keflin_medicamento", "Pegar Medicamento")
@@ -728,21 +729,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeDialog();
                     core.changeScene( 1 );
                 })
-        ]);
-
-        farmacia.registerInteractiveObjects([
-
-            new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-left no-glow")
-                .onClick( farmaciaIrCorredor )
-                .setVisibility( true ),
-
-
-            new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-right no-glow")
-                .onClick( farmaciaIrCorredor )
-                .setVisibility( true )
-
         ]);
 
 
@@ -1011,8 +997,21 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setCssClass("action-fecharEquipoSoro")
             .onClick(function() {
 
-                 EquipoGotejamento.close();
-                core.closeModalScene("equipoSoro");
+                if(EquipoGotejamento.isValueRight()){
+                    
+                    EquipoGotejamento.close();
+                    core.closeModalScene("equipoSoro");
+                    
+                }
+                
+                else {
+                    
+                    // colocar algo aqui
+                    
+                }
+                
+                
+                
 
 
 
@@ -1035,6 +1034,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-fecharGaveta", "Fechar gaveta")
                 .setCssClass("action-fecharGaveta")
                 .onClick(function() {
+                    
+                
                    
                     
                     
@@ -1059,7 +1060,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             Player.play( Player.audios.sfx.fecharGaveta );
                         
                             core.closeModalScene("Gaveta");
-                            core.closeCommandBar();
+                     
                             core.openDialog( 2 );
                                  
                             core.setActionVisible("btn-confirmarMedicamento", true );
@@ -1077,7 +1078,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         Player.play(Player.audios.sfx.fecharGaveta);
                             
                         core.closeModalScene("Gaveta");
-                        core.closeCommandBar();
+            
                             
                         //    core.openDialog(4); 
                             
@@ -1383,6 +1384,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Pulseira.setLeito("01");
             Pulseira.setData("03/06/1962");
             Pulseira.disable();
+            
+            EquipoGotejamento.setRightValue(120);
         });
 
 
