@@ -201,6 +201,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }
                 if ( core.flag("levou_yuri_centro_cirurgico") == true ) {
                     core.setInteractiveObjectVisible("io-ir_leito", false );
+                    core.setActionVisible("btn-ler_prontuario", false );
+                    core.setActionVisible("btn-lavarMaos", false );
                     core.changeSceneCssClassTo("scene-bedroom-level8b");
                 }
             })
@@ -479,6 +481,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         }
                     }
                     core.changeScene( 2 );
+                 //   core.changeSceneCssClassTo("scene-bedroom-level8b");
                 })
                 .setVisibility( false )
         ]);
