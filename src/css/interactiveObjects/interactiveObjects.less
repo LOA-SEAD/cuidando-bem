@@ -23,7 +23,7 @@ This file is part of Cuidando Bem.
     cursor: hand;
 }
 
-.interactiveObject:hover:not(.no-glow) {
+.interactiveObject:hover:not(.no-glow):not(.disabled) {
     @scale: 1.05;
     transform: scale( @scale, @scale );
     filter: drop-shadow(0 0 8px @io-glow-color);
@@ -997,7 +997,7 @@ This file is part of Cuidando Bem.
 }
 
 .intObj-agulhas {
-    
+
     background-image: @intObj-agulhas;
     background-size: contain;
     background-repeat: no-repeat;
@@ -1005,5 +1005,5 @@ This file is part of Cuidando Bem.
     left: 65%;
     width: 9%;
     height: 10%;
-    
+
 }
