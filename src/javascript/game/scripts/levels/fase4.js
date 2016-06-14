@@ -202,7 +202,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.flag("conversar_mentor2",  true );
                     core.closeDialog();
-                    core.unlockLevel( 3 );
+                    core.unlockLevel( 5 );
                     core.closeCommandBar();
                     core.showEndOfLevel();
                     Player.stopAll();
@@ -520,23 +520,23 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                   core.openCommandBar();
                 console.log("Load scene: " + alaFeminina.getName() );
-           
+
                 if ( core.flag("conversarPaciente") == true ) {
                     // Desabilita conversar novamente com a Regina
                     core.setInteractiveObjectVisible("io-conversar_com_paciente", false );
-            
+
                 }
             })
             .onUnload(function() {
                 core.closeCommandBar();
             });
-    
-  
+
+
 
 
         alaFeminina.registerActions([
 
-              
+
             new Action("btn-lavarMaos", "Lavar as mãos")
                 .setCssClass("action-lavarMaos")
                 .onClick(function() {
@@ -548,11 +548,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.lavarMaos2 );
                     }
                 })
-                .setVisibility(true)     
-            
-                        
-            
-            
+                .setVisibility(true)
+
+
+
+
 
         ]);
 
@@ -803,7 +803,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Player.play( Player.audios.sfx.bipOximetro );
                     core.flag("verificar_oximetro_local_cirurgia",  true );
                     core.openModalScene("modalOximetro");
-                    
+
                 })
                 .setVisibility( true ),
 
@@ -1098,8 +1098,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
         ]);
-    
-    
+
+
         var oximetro = new Scene("modalOximetro", "Oxímetro")
             .setCssClass("modalScene-oximetro")
             .setTemplate(
@@ -1114,7 +1114,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
         ]);
-        
+
 
 
         prontuario = new Scene("Prontuario", "Prontuario");

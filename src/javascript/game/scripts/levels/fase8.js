@@ -449,7 +449,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         farmacia.registerInteractiveObjects([
-       /*     
+       /*
             new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
                 .setCssClass("intObj-lobbyToHallway-left")
                 .onClick( farmaciaIrCorredor )
@@ -587,7 +587,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         farmacia.registerActions([
-            
+
                new Action("btn-ir_corredor", "Ir ao corredor")
          .setCssClass("action-ir_corredor")
          .onClick(function () {
@@ -930,7 +930,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Prontuario.close();
                     // Já estava no momento de realizar os procedimentos, portanto pode terminar a fase
                     if ( core.flag("score_ofereceu_copo") == true ) {
-                        core.unlockLevel( 8 );
+                        core.unlockLevel( 9 );
                         core.closeCommandBar();
                         core.showEndOfLevel();
                         Player.stopAll();

@@ -408,7 +408,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         } else {
                             if ( core.flag("colocou_coxim") == false ) {
                                 core.setActionVisible("btn-mudar_posicao", false );
-                                core.setInteractiveObjectVisible("io-pulseira_paciente", false );   
+                                core.setInteractiveObjectVisible("io-pulseira_paciente", false );
                                 core.setActionVisible("btn-posicionar_coxim_e_travesseiro", true );
                             } else {
 
@@ -434,7 +434,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
                 .setEnable( false ),
-            
+
                     new InteractiveObject("io-pulseira_paciente2", "Checar pulseira do paciente")
                 .setCssClass("intObj-paciente_02-checar_pulseira_virado")
                 .onClick(function() {
@@ -444,7 +444,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openCommandBar();
                 })
                 .setVisibility( false ),
-            
+
                new InteractiveObject("io-conversar_paciente02", "Falar com o paciente")
                 .setCssClass("intObj-conversar_paciente")
                 .onClick(function() {
@@ -735,8 +735,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
         ]);
-    
-    
+
+
            pulseira2 = new Scene("pulseira2", "pulseira2");
 
         pulseira2.registerInteractiveObjects([]);
@@ -751,8 +751,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
         ]);
-    
-    
+
+
 
         gaveta = new Scene("gaveta", "Gaveta")
             .setCssClass("modalScene-drawer");
@@ -778,8 +778,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
                     core.setInteractiveObjectVisible("io-coxim", false );
-                   
-                    
+
+
 
                     if ( core.flag("score_pegar_coxim") == false ) {
                         core.registerScoreItem( Scores.pegarCoxim );
@@ -801,25 +801,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Retirar esse if após consertar o problema no prontuário
                     if ( core.flag( "colocou_coxim" ) == true ) {
                         core.registerScoreItem( Scores.anotarNoProntuario );
-                        core.unlockLevel( 2 );
+                        core.unlockLevel( 3 );
                         core.closeCommandBar();
                         core.showEndOfLevel();
                         Player.stopAll();
                         Player.play( Player.audios.sfx.missaoCumprida );
                     }
                 })
-
-            /*new Action("btn-terminar_fase", "Conversar com Mentor")
-                .setCssClass("action-abrir_dialogo")
-                .onClick(function() {
-                    console.log("Action: Fechar prontuario");
-                    // TODO Verificar se prontuario está preenchido
-                    core.registerScoreItem( Scores.anotarNoProntuario );
-                    Prontuario.close();
-                    core.unlockLevel( 2 );
-                    core.closeCommandBar();
-                    core.showEndOfLevel();
-                })*/
         ]);
 
         // Register in level
