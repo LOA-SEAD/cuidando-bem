@@ -462,7 +462,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Dialogs.leitoPaciente[ 9 ] )
                 .registerOption("", function() {
                     core.openDialog( 2 );
-                })
+                }),
+            // 8
+                 new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.erroGotejamento )
+                .registerOption("", function() {
+                    core.closeDialog(  );
+                }),
+            
+            
+            
 
         ]);
 
@@ -511,7 +520,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             new Action("btn-administrarMedicamento", "Administrar medicamento")
-                .setCssClass("action-administrar_medicamento")
+                .setCssClass("action-admnistrar_medicacao")
                 .onClick(function() {
                     if ( core.flag("score_administrar_medicacao") == false ) {
                         core.registerScoreItem( Scores.administrarMedicacao );
@@ -718,7 +727,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }),
             // Dialog 4
             new Dialog( lib.characters.mentor )
-                .setText( Alertas.esqueceu.verificarMedicamento3 )
+                .setText( Alertas.esqueceu.verificarMedicamento3 ) 
                 .registerOption("", function() {
                     core.closeDialog();
                 }),
@@ -991,6 +1000,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
        equipoSoro = new Scene("equipoSoro", "EquipamentoSoro")
 
+       var erro = 0;
+        
         equipoSoro.registerActions([
 
             new Action("btn-fecharEquipoSoro", "Fechar Equipamento de Soro")
@@ -999,15 +1010,25 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                 if(EquipoGotejamento.isValueRight()){
                     
+                    if(core.flag("score_gotejar_soro") == false){
+                         core.registerScoreItem( Scores.gotejarSoroEquipo );
+                         core.flag("score_gotejar_soro", true);
+                    }
+                   
                     EquipoGotejamento.close();
                     core.closeModalScene("equipoSoro");
                     
                 }
                 
                 else {
-                    
-                    // colocar algo aqui
-                    
+                    core.closeCommandBar();
+                    core.openDialog(8);
+                    erro = erro + 1;
+
+                    if(erro == 3){
+                        core.registerScoreItem( Scores.naoGotejarSoroEquipo );
+                        erro = -100;
+                    }                   
                 }
                 
                 
@@ -1435,6 +1456,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("score_nao_gotejar_soro_equipo", false ) );
         level.registerFlag( new Flag("score_anotou_prontuario", false ) );
         level.registerFlag( new Flag("pegou_todos_instrumentos", false ) );
+        level.registerFlag( new Flag("score_gotejar_soro", false ) );
 
 
         level.setInitialScene( 0 );

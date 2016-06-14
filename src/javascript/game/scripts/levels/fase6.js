@@ -545,24 +545,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         leito.registerActions([
 
-
-         /*   new Action("btn-falarPaciente", "Conversar com Paciente")
-                // Será outro
-                .setCssClass("action-leito-char-02")
-                .onClick(function() {
-
-
-                    if ( core.flag("score_falar_paciente") == false ) {
-                        core.registerScoreItem( Scores.falarComPaciente );
-                        core.flag("score_falar_paciente",  true );
-                    }
-                    core.openDialog( 0 );
-                    core.closeCommandBar();
-                })
-                .setVisibility( true ),
-            */
-
-
             new Action("btn-realizar_teste_glicemia", "Realizar teste de glicemia capilar")
                 // CONSERTAR
                 .setCssClass("action-realizar_teste_glicemia")
@@ -590,49 +572,58 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( false ),
 
-            new Action("btn-descartar_agulha", "Jogar agulha no descarpax")
+            new Action("btn-descartar_agulha", "Descartar agulha")
                 .setCssClass("action-agulha_40x12")
                 .onClick(function() {
-                    console.log("Action: Jogar agulha no descarpax");
+            
                     // Som
                     Player.play( Player.audios.sfx.jogandoLixo );
-                    if ( core.flag("score_fez_teste_glicemia") == false ) {
-                        if ( core.flag("score_nao_fez_teste_glicemia") == false ) {
-                            core.registerScoreItem( Scores.naoFazerTesteGlicemia );
-                            core.flag("score_nao_fez_teste_glicemia",  true );
-                        }
-                        core.closeCommandBar();
-                        core.openDialog( 8 );
-                    }
-                    if ( core.flag("score_jogou_agulha_lixo_certo") == false ) {
-                        core.flag("score_jogou_agulha_lixo_certo",  true );
-                        core.registerScoreItem( Scores.jogarAgulhaLixoCerto );
-                    }
+                    
+                    core.flag("descartar_agulha", true);
+                    
+                    core.setActionVisible("btn-realizar_teste_glicemia", false );
+                    core.setActionVisible("btn-descartar_agulha",  false );
+                    core.setActionVisible("btn-jogar_algodao",  false );
+                    core.setActionVisible("btn-materiaisCurativo",  false );
+                    core.setActionVisible("btn-lavarMaos", false );
+                    core.setActionVisible("btn-calcar_luvas_procedimento",  false );
+                    core.setActionVisible("btn-calcar_luvas_estereis",  false );
+
+                    core.setActionVisible("btn-lixoComum", true );
+                    core.setActionVisible("btn-lixoInfectante", true  );
+                    core.setActionVisible("btn-perfuroCortante", true  );
+                    
+                    
                 })
                 .setVisibility( false ),
 
-            new Action("btn-jogar_algodao", "Jogar algodão na bandeja")
+            new Action("btn-jogar_algodao", "Descartar algodão")
                 .setCssClass("action-algodao_seco")
                 .onClick(function() {
-                    console.log("Action: Jogar algodão na bandeja");
-                    if ( core.flag("score_jogou_agulha_lixo_certo") == false ) {
-                        if ( core.flag("score_nao_jogou_agulha_lixo_certo") == false ) {
-                            core.registerScoreItem( Scores.naoJogarAgulhaLixoCerto );
-                            core.flag("score_nao_jogou_agulha_lixo_certo",  true );
-                        }
-                        core.closeCommandBar();
-                        core.openDialog( 9 );
-                    }
-                    if ( core.flag("score_jogou_algodao_na_bandeja") == false ) {
-                        core.flag("score_jogou_algodao_na_bandeja",  true );
-                        core.registerScoreItem( Scores.jogarAlgodaoBandeja );
-                    }
+                 
+                     // Som
+                    Player.play( Player.audios.sfx.jogandoLixo );
+                    
+                    core.flag("descartar_algodao", true);
+                    
+                    core.setActionVisible("btn-realizar_teste_glicemia", false );
+                    core.setActionVisible("btn-descartar_agulha",  false );
+                    core.setActionVisible("btn-jogar_algodao",  false );
+                    core.setActionVisible("btn-materiaisCurativo",  false );
+                    core.setActionVisible("btn-lavarMaos", false );
+                    core.setActionVisible("btn-calcar_luvas_procedimento",  false );
+                    core.setActionVisible("btn-calcar_luvas_estereis",  false );
+
+                    core.setActionVisible("btn-lixoComum", true );
+                    core.setActionVisible("btn-lixoInfectante", true  );
+                    core.setActionVisible("btn-perfuroCortante", true  );
+                    
                 })
                 .setVisibility( false ),
 
             new Action("btn-materiaisCurativo", "Selecionar materiais do curativo")
                 // CONSERTAR
-                .setCssClass("action-selecionar_materiais_curativo")
+                .setCssClass("action-fazer_curativo")
                 .onClick(function() {
                     console.log("Action: Selecionar materiais do curativo");
                     if ( core.flag("score_jogou_algodao_na_bandeja") == false ) {
@@ -722,11 +713,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                                 
                             
-           }
-                        
-                        
-                        
-                        
+           }                          
                     }
                 })
                 .setVisibility( false ),
@@ -821,7 +808,143 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.openModalScene("Prontuario");
                     }
                 })
+                .setVisibility( false ),
+            
+            
+            
+            // LIXOS 
+            
+              new Action("btn-lixoComum", "Lixo Comum")
+                .setCssClass("action-lixo_comum")
+                .onClick(function() {
+                                        
+                    core.setActionVisible("btn-lixoComum", false );
+                    core.setActionVisible("btn-lixoInfectante", false  );
+                    core.setActionVisible("btn-perfuroCortante", false  );
+                    
+                    core.setActionVisible("btn-realizar_teste_glicemia", true );
+                    core.setActionVisible("btn-materiaisCurativo",  true );
+                    core.setActionVisible("btn-lavarMaos", true );
+                    core.setActionVisible("btn-calcar_luvas_procedimento",  true );
+                    core.setActionVisible("btn-calcar_luvas_estereis",  true );
+                    
+                    
+                    if(core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == true){
+                              core.setActionVisible("btn-jogar_algodao", false );  
+                              core.setActionVisible("btn-descartar_agulha", false );  
+                    }
+                    
+                     if(core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == false){
+                              core.setActionVisible("btn-jogar_algodao", false );  
+                              core.setActionVisible("btn-descartar_agulha", true );  
+                    }
+                    
+                     if(core.flag("descartar_algodao") == false && core.flag("descartar_agulha") == true){
+                              core.setActionVisible("btn-jogar_algodao", true );  
+                              core.setActionVisible("btn-descartar_agulha", false );  
+                    }               
+                    
+                                        
+
+                })
+                .setVisibility( false ),
+
+
+              new Action("btn-lixoInfectante", "Lixo Infectante")
+                .setCssClass("action-lixo_infectante")
+                .onClick(function() {
+                    
+                                         
+                    core.setActionVisible("btn-lixoComum", false );
+                    core.setActionVisible("btn-lixoInfectante", false  );
+                    core.setActionVisible("btn-perfuroCortante", false  );
+                    
+                    core.setActionVisible("btn-realizar_teste_glicemia", true );
+                    core.setActionVisible("btn-materiaisCurativo",  true );
+                    core.setActionVisible("btn-lavarMaos", true );
+                    core.setActionVisible("btn-calcar_luvas_procedimento",  true );
+                    core.setActionVisible("btn-calcar_luvas_estereis",  true );
+                    
+                    
+                    if(core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == true){
+                              core.setActionVisible("btn-jogar_algodao", false );  
+                              core.setActionVisible("btn-descartar_agulha", false );  
+                        
+                            if(core.flag("score_algodao") == false){
+                                core.flag("score_algodao", true);
+                                 core.registerScoreItem( Scores.jogarAlgodaoBandeja ); 
+                            }     
+                    }
+                    
+                     if(core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == false){
+                              core.setActionVisible("btn-jogar_algodao", false );  
+                              core.setActionVisible("btn-descartar_agulha", true );  
+                         
+                          if(core.flag("score_algodao") == false){
+                                core.flag("score_algodao", true);
+                                 core.registerScoreItem( Scores.jogarAlgodaoBandeja ); 
+                            }
+                         
+                    }
+                    
+                     if(core.flag("descartar_algodao") == false && core.flag("descartar_agulha") == true){
+                              core.setActionVisible("btn-jogar_algodao", true );  
+                              core.setActionVisible("btn-descartar_agulha", false );  
+                    }               
+                    
+                })
+                .setVisibility( false ),
+
+
+              new Action("btn-perfuroCortante", "Perfuro Cortante")
+                .setCssClass("action-lixo_perfuro_cortante")
+                .onClick(function() {
+                    
+                                       
+                    core.setActionVisible("btn-lixoComum", false );
+                    core.setActionVisible("btn-lixoInfectante", false  );
+                    core.setActionVisible("btn-perfuroCortante", false  );
+                    
+                    core.setActionVisible("btn-realizar_teste_glicemia", true );
+                    core.setActionVisible("btn-materiaisCurativo",  true );
+                    core.setActionVisible("btn-lavarMaos", true );
+                    core.setActionVisible("btn-calcar_luvas_procedimento",  true );
+                    core.setActionVisible("btn-calcar_luvas_estereis",  true );
+                    
+                    
+                    if(core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == true){
+                              core.setActionVisible("btn-jogar_algodao", false );  
+                              core.setActionVisible("btn-descartar_agulha", false );  
+                        
+                            if(core.flag("score_agulha") == false){
+                                core.flag("score_agulha", true);
+                                 core.registerScoreItem( Scores.jogarAgulhaLixoCerto ); 
+                            }     
+                    }
+                    
+                     if(core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == false){
+                              core.setActionVisible("btn-jogar_algodao", false );  
+                              core.setActionVisible("btn-descartar_agulha", true );  
+                         
+                         
+                         
+                    }
+                    
+                     if(core.flag("descartar_algodao") == false && core.flag("descartar_agulha") == true){
+                              core.setActionVisible("btn-jogar_algodao", true );  
+                              core.setActionVisible("btn-descartar_agulha", false );  
+                         
+                         
+                          if(core.flag("score_agulha") == false){
+                                core.flag("score_agulha", true);
+                                 core.registerScoreItem( Scores.jogarAgulhaLixoCerto ); 
+                            }
+                    }               
+                    
+                })
                 .setVisibility( false )
+            
+            
         ]);
 
 
@@ -1234,6 +1357,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "score_ergueu_grade",  false  ) );
         level.registerFlag( new Flag( "score_nao_ergueu_grade",  false  ) );
         level.registerFlag( new Flag( "score_anotar_prontuario",  false  ) );
+        level.registerFlag( new Flag( "descartar_agulha",  false  ) );
+        level.registerFlag( new Flag( "descartar_algodao",  false  ) );
+        level.registerFlag( new Flag( "score_agulha",  false  ) );
+        level.registerFlag( new Flag( "score_algodao",  false  ) );
 
 
         level.setInitialScene( 0 );

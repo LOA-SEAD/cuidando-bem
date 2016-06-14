@@ -367,7 +367,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
 
                   core.flag("descartar_agulha",  true );
-                  core.flag("descartar_algodao",  false );
+
 
                     core.setActionVisible("btn-lavarMaos", false );
                     core.setActionVisible("btn-jogar_algodao_lixo",  false );
@@ -391,7 +391,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
                     core.flag("descartar_algodao",  true );
-                    core.flag("descartar_agulha",  false );
+            
 
                     core.setActionVisible("btn-lavarMaos", false );
                     core.setActionVisible("btn-jogar_algodao_lixo",  false );
@@ -411,7 +411,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             new Action("btn-elevar_grade_cama", "Elevar a grade da cama")
                 // CONSERTAR
-                .setCssClass("action-elevarCama")
+                .setCssClass("action-elevarGrade")
                 .onClick(function() {
                     if ( core.flag("descartar_agulha") == true ) {
                         console.log("Action: Elevar a grade da cama");
@@ -448,53 +448,30 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-lixoComum", "Lixo Comum")
                 .setCssClass("action-lixo_comum")
                 .onClick(function() {
-                    
-                    
-                      if(core.flag("descartar_agulha")){
-                        
-                    core.registerScoreItem( Scores.agulhaLixoErrado );
-        
-                    core.setActionVisible("btn-lixoComum", false );
+                                        
+                     core.setActionVisible("btn-lixoComum", false );
                     core.setActionVisible("btn-lixoInfectante", false  );
                     core.setActionVisible("btn-perfuroCortante", false  );
-                        
+                    
                     core.setActionVisible("btn-lavarMaos", true );
                     core.setActionVisible("btn-elevar_grade_cama", true );
                     core.setActionVisible("btn-anotarProntuario", true );
-                    core.setActionVisible("btn-jogar_agulha_perfuro", false );
-                    core.setActionVisible("btn-jogar_algodao_lixo", true );    
-                        
-                        if(core.flag("descartar_algodao")){
-                        
-                        core.setActionVisible("btn-jogar_algodao_lixo", false );                                                                        
-                                                   
-                            }
                     
+                    
+                    if(core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == true){
+                              core.setActionVisible("btn-jogar_algodao_lixo", false );  
+                              core.setActionVisible("btn-jogar_agulha_perfuro", false );  
                     }
                     
-                    
-                    if(core.flag("descartar_algodao")){
-                        
-                        core.registerScoreItem( Scores.algodaoLixoCerto );
-        
-                        core.setActionVisible("btn-lixoComum", false );
-                        core.setActionVisible("btn-lixoInfectante", false  );
-                        core.setActionVisible("btn-perfuroCortante", false  );
-                        
-                        core.setActionVisible("btn-lavarMaos", true );
-                        core.setActionVisible("btn-elevar_grade_cama", true );
-                        core.setActionVisible("btn-anotarProntuario", true );
-                        core.setActionVisible("btn-jogar_agulha_perfuro", true );
-                        core.setActionVisible("btn-jogar_algodao_lixo", false ); 
-                        
-                        
-                           if(core.flag("descartar_agulha")){
-                        
-                           core.setActionVisible("btn-jogar_agulha_perfuro", false );                                                                      
-                                                   
-                            }
-                        
+                     if(core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == false){
+                              core.setActionVisible("btn-jogar_algodao_lixo", false );  
+                              core.setActionVisible("btn-jogar_agulha_perfuro", true );  
                     }
+                    
+                     if(core.flag("descartar_algodao") == false && core.flag("descartar_agulha") == true){
+                              core.setActionVisible("btn-jogar_algodao_lixo", true );  
+                              core.setActionVisible("btn-jogar_agulha_perfuro", false );  
+                    }               
                     
                                         
 
@@ -506,55 +483,40 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-lixo_infectante")
                 .onClick(function() {
                     
-                    
-                     if(core.flag("descartar_agulha")){
-                        
-                    core.registerScoreItem( Scores.agulhaLixoErrado );
-        
                     core.setActionVisible("btn-lixoComum", false );
                     core.setActionVisible("btn-lixoInfectante", false  );
                     core.setActionVisible("btn-perfuroCortante", false  );
-                        
+                    
                     core.setActionVisible("btn-lavarMaos", true );
                     core.setActionVisible("btn-elevar_grade_cama", true );
                     core.setActionVisible("btn-anotarProntuario", true );
-                    core.setActionVisible("btn-jogar_agulha_perfuro", false );
-                    core.setActionVisible("btn-jogar_algodao_lixo", true );    
-                        
-                        if(core.flag("descartar_algodao")){
-                        
-                        core.setActionVisible("btn-jogar_algodao_lixo", false );                                                                        
-                                                   
-                            }
                     
+                    
+                    if(core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == true){
+                              core.setActionVisible("btn-jogar_algodao_lixo", false );  
+                              core.setActionVisible("btn-jogar_agulha_perfuro", false );  
+                        
+                            if(core.flag("score_algodao") == false){
+                                core.flag("score_algodao", true);
+                                 core.registerScoreItem( Scores.algodaoLixoCerto ); 
+                            }     
                     }
                     
-                    
-                    if(core.flag("descartar_algodao")){
-                        
-                        core.registerScoreItem( Scores.algodaoLixoErrado );
-        
-                        core.setActionVisible("btn-lixoComum", false );
-                        core.setActionVisible("btn-lixoInfectante", false  );
-                        core.setActionVisible("btn-perfuroCortante", false  );
-                        
-                        core.setActionVisible("btn-lavarMaos", true );
-                        core.setActionVisible("btn-elevar_grade_cama", true );
-                        core.setActionVisible("btn-anotarProntuario", true );
-                        core.setActionVisible("btn-jogar_agulha_perfuro", true );
-                        core.setActionVisible("btn-jogar_algodao_lixo", false ); 
-                        
-                        
-                           if(core.flag("descartar_agulha")){
-                        
-                           core.setActionVisible("btn-jogar_agulha_perfuro", false );                                                                      
-                                                   
+                     if(core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == false){
+                              core.setActionVisible("btn-jogar_algodao_lixo", false );  
+                              core.setActionVisible("btn-jogar_agulha_perfuro", true );  
+                         
+                          if(core.flag("score_algodao") == false){
+                                core.flag("score_algodao", true);
+                                 core.registerScoreItem( Scores.algodaoLixoCerto ); 
                             }
-                        
+                         
                     }
                     
-                    
-                    
+                     if(core.flag("descartar_algodao") == false && core.flag("descartar_agulha") == true){
+                              core.setActionVisible("btn-jogar_algodao_lixo", true );  
+                              core.setActionVisible("btn-jogar_agulha_perfuro", false );  
+                    }               
                     
                 })
                 .setVisibility( false ),
@@ -564,54 +526,44 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-lixo_perfuro_cortante")
                 .onClick(function() {
                     
-                    if(core.flag("descartar_agulha")){
-                        
-                    core.registerScoreItem( Scores.agulhaLixoCerto );
-        
                     core.setActionVisible("btn-lixoComum", false );
                     core.setActionVisible("btn-lixoInfectante", false  );
                     core.setActionVisible("btn-perfuroCortante", false  );
-                        
+                    
                     core.setActionVisible("btn-lavarMaos", true );
                     core.setActionVisible("btn-elevar_grade_cama", true );
                     core.setActionVisible("btn-anotarProntuario", true );
-                    core.setActionVisible("btn-jogar_agulha_perfuro", false );
-                    core.setActionVisible("btn-jogar_algodao_lixo", true );    
-                        
-                        if(core.flag("descartar_algodao")){
-                        
-                        core.setActionVisible("btn-jogar_algodao_lixo", false );                                                                        
-                                                   
-                            }
                     
+                    
+                    if(core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == true){
+                              core.setActionVisible("btn-jogar_algodao_lixo", false );  
+                              core.setActionVisible("btn-jogar_agulha_perfuro", false );  
+                        
+                            if(core.flag("score_agulha") == false){
+                                core.flag("score_agulha", true);
+                                 core.registerScoreItem( Scores.agulhaLixoCerto ); 
+                            }     
                     }
                     
-                    
-                    if(core.flag("descartar_algodao")){
-                        
-                        core.registerScoreItem( Scores.algodaoLixoErrado );
-        
-                        core.setActionVisible("btn-lixoComum", false );
-                        core.setActionVisible("btn-lixoInfectante", false  );
-                        core.setActionVisible("btn-perfuroCortante", false  );
-                        
-                        core.setActionVisible("btn-lavarMaos", true );
-                        core.setActionVisible("btn-elevar_grade_cama", true );
-                        core.setActionVisible("btn-anotarProntuario", true );
-                        core.setActionVisible("btn-jogar_agulha_perfuro", true );
-                        core.setActionVisible("btn-jogar_algodao_lixo", false ); 
-                        
-                        
-                           if(core.flag("descartar_agulha")){
-                        
-                           core.setActionVisible("btn-jogar_agulha_perfuro", false );                                                                      
-                                                   
-                            }
-                        
+                     if(core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == false){
+                              core.setActionVisible("btn-jogar_algodao_lixo", false );  
+                              core.setActionVisible("btn-jogar_agulha_perfuro", true );  
+                         
+                         
+                         
                     }
                     
-            
-
+                     if(core.flag("descartar_algodao") == false && core.flag("descartar_agulha") == true){
+                              core.setActionVisible("btn-jogar_algodao_lixo", true );  
+                              core.setActionVisible("btn-jogar_agulha_perfuro", false );  
+                         
+                         
+                          if(core.flag("score_agulha") == false){
+                                core.flag("score_agulha", true);
+                                 core.registerScoreItem( Scores.agulhaLixoCerto ); 
+                            }
+                    }               
+                    
                 })
                 .setVisibility( false )
 

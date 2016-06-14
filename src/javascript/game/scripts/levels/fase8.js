@@ -224,6 +224,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("pegou_tudo_posto") == true ) {
                         // Pra reativar esse botão caso ele tenha sido desabilitado alguma vez
                         core.setActionVisible("btn-lavarMaos", true );
+                        core.setActionVisible("btn-ler_prontuario", false );
+                        
                     }
                 }
                 console.log("Load scene: " + alaFeminina.getName() );
@@ -319,19 +321,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.flag("score_ler_prontuario",  true );
                         core.registerScoreItem( Scores.lerProntuario );
                     }
-                    // Parte final da fase
-                    if ( core.flag("score_ofereceu_copo") == true ) {
-                        if ( core.flag("score_lavar_maos_2") == false ) {
-                            if ( core.flag("score_nao_lavou_maos_2") == false ) {
-                                core.flag("score_nao_lavou_maos_2",  true );
-                                core.registerScoreItem( Scores.naoLavarMaos2 );
-                            }
-                        }
-                        if ( core.flag("score_anotar_prontuario") == false ) {
-                            core.registerScoreItem( Scores.anotarProntuario );
-                            core.flag("score_anotar_prontuario",  true );
-                        }
-                    }
+                   
                     console.log("Action: ler prontuario");
                     Prontuario.open();
                     core.openModalScene("Prontuario");
@@ -705,7 +695,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Alertas.esqueceu.verPulseira )
                 .registerOption("", function() {
                     core.closeDialog();
-                })
+                }),
+            // 9
+              new Dialog( lib.characters.mentor )
+                .setText( Alertas.lavarMaos.tipo1 )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
 
         ]);
 
@@ -725,24 +721,57 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         if ( core.flag("score_ofereceu_copo") == false ) {
                             core.registerScoreItem( Scores.oferecerCopo );
                             core.flag("score_ofereceu_copo",  true );
+                            core.setActionVisible("btn-ler_prontuario",true);
+                            core.setActionVisible("btn-lavarMaos",true);
+                            core.setActionVisible("btn-oferecer_copo",false);
                         }
                     }
                 })
                 .setVisibility( true ),
-
-            new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
-                .setCssClass("action-ir_sala_de_leitos")
+            
+            
+            
+            new Action("btn-ler_prontuario", "Anotar prontuario")
+                .setCssClass("action-ler_prontuario")
                 .onClick(function() {
-                    console.log("Action: Voltar para a ala feminina");
-                    /*if ( core.flag("score_anotar_prontuario") == false ) {
-                        if ( core.flag("score_nao_anotar_prontuario") == false ) {
-                            core.registerScoreItem( Scores.naoAnotarProntuario );
-                            core.flag("score_nao_anotar_prontuario",  true );
+                    
+                    if(core.flag("score_lavar_maos_2") == false){
+                        core.openDialog(9);
+                    }
+                    else {
+                    
+                       if ( core.flag("score_anotar_prontuario") == false ) {
+                            core.registerScoreItem( Scores.anotarProntuario );
+                            core.flag("score_anotar_prontuario",  true );
                         }
-                    }*/
-                    core.changeScene( 2 );
+                        
+                    Prontuario.open();
+                    core.openModalScene("Prontuario");
+                        
+                    }
+                })
+                .setVisibility( false ),
+
+
+            new Action("btn-lavarMaos", "Lavar as mãos")
+                .setCssClass("action-lavarMaos")
+                .onClick(function() {
+                    // Som
+                    Player.play( Player.audios.sfx.lavarMaos );
+                    
+                        if ( core.flag("score_lavar_maos_2") == false ) {
+                                core.flag("score_lavar_maos_2",  true );
+                                core.registerScoreItem( Scores.lavarMaos2 );
+                        }
+                       
+                    
                 })
                 .setVisibility( false )
+
+            
+            
+
+           
 
         ]);
 
@@ -929,7 +958,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: Fechar prontuario");
                     Prontuario.close();
                     // Já estava no momento de realizar os procedimentos, portanto pode terminar a fase
-                    if ( core.flag("score_ofereceu_copo") == true ) {
+                    if ( core.flag("score_anotar_prontuario") == true ) {
                         core.unlockLevel( 8 );
                         core.closeCommandBar();
                         core.showEndOfLevel();

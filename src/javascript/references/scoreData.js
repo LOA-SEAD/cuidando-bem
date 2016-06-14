@@ -134,7 +134,7 @@ define(function() {
             administrarMedicacao: new Score("Administrar medicamento", 250 ),
             naoAdministrarMedicacao: new Score("Não administrar medicamento", -250 ),
             gotejarSoroEquipo: new Score("Realizar gotejamento de soro no equipamento", 350 ),
-            naoGotejarSoroEquipo: new Score("Não realizar gotejamento de soro no equipamento", -350 ),
+            naoGotejarSoroEquipo: new Score("Errar 3 ou mais vezes o cálculo do gotejamento", -350 ),
             lavarMaosAntesProntuario: new Score("Lavar as mãos antes de realizar as anotações no prontuario", 200 ),
             naoLavarMaosAntesProntuario: new Score("Não lavar as mãos antes de realizar as anotações no prontuario", -200 ),
             anotarNoProntuario: new Score("Anotar no prontuário", 200 )
@@ -169,7 +169,7 @@ define(function() {
             naoFazerTesteGlicemia: new Score("Não fazer teste de glicemia capilar no momento correto", -100 ),
             jogarAgulhaLixoCerto: new Score("Jogar agulha no descarpax", 50 ),
             naoJogarAgulhaLixoCerto: new Score("Não jogar agulha no descarpax no momento correto", -50 ),
-            jogarAlgodaoBandeja: new Score("Jogar agulha na bandeja", 50 ),
+            jogarAlgodaoBandeja: new Score("Jogar algodão no lixo infectante", 50 ),
             naoJogarAlgodaoBandeja: new Score("Não jogar o algodão na bandeja no momento correto", -50 ),
             selecionarMateriaisCurativo: new Score("Selecionar todos os materiais do curativo", 350 ),
             naoSelecionarMateriaisCurativo: new Score("Não selecionar todos os materiais do curativo no momento correto", -350 ),
@@ -207,7 +207,8 @@ define(function() {
             elevarCama: new Score("Elevar Cabeceira da Cama", 150 ),
             verificarSonda: new Score("Verificar Localização da Sonda", 350 ),
             administrarDieta: new Score("Administrar Dieta", 150 ),
-            colocarGotejamento: new Score("Colocar Gotejamento", 350 ),
+            gotejarSoroEquipo: new Score("Realizar gotejamento de soro no equipamento", 350 ),
+            naoGotejarSoroEquipo: new Score("Errar 3 ou mais vezes o cálculo do gotejamento", -350 ),
             anotarNoProntuario: new Score("Anotar no Prontuário", 350 ),
             calcularInfusaoDieta: new Score("Calcular infusão da dieta corretamente", 150 )
         },
@@ -302,7 +303,8 @@ define(function() {
             conversarPacienteLeito: new Score("Falar com o paciente no leito", 150 ),
             pegarSuporteSoro: new Score("Pegar suporte de soro", 50 ),
             administrarMedicamento: new Score("Administrar Medicamento", 150 ),
-            realizarGotejamento: new Score("Realizar Gotejamento de Soro", 350 ),
+            gotejarSoroEquipo: new Score("Realizar gotejamento de soro no equipamento", 350 ),
+            naoGotejarSoroEquipo: new Score("Errar 3 ou mais vezes o cálculo do gotejamento", -350 ),
             lavarMaos3: new Score("Lavar as mãos antes de anotar no prontuário", 200 ),
             anotarNoProntuario: new Score("Anotar no prontuário", 350 ),
             verPulseira: new Score("Ver pulseria do paciente", 150 )

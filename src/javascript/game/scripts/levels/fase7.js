@@ -696,7 +696,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setText( Dialogs.leitoPaciente[ 5 ] )
         .registerOption("", function() {
             core.closeDialog();
-        })
+        }),
+        
+        // 6
+        new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.erroGotejamento )
+                .registerOption("", function() {
+                    core.closeDialog(  );
+                }),
+            
 
         ]);
 
@@ -1005,23 +1013,35 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         equipoSoro = new Scene("equipoSoro", "EquipamentoSoro")
 
+        var erro = 0;
+        
         equipoSoro.registerActions([
 
             new Action("btn-fecharEquipoSoro", "Fechar Equipamento de Soro")
             .setCssClass("action-fecharEquipoSoro")
             .onClick(function() {
 
-                 if(EquipoGotejamento.isValueRight()){
+                  if(EquipoGotejamento.isValueRight()){
                     
+                    if(core.flag("score_gotejar_soro") == false){
+                         core.registerScoreItem( Scores.gotejarSoroEquipo );
+                         core.flag("score_gotejar_soro", true);
+                    }
+                   
                     EquipoGotejamento.close();
                     core.closeModalScene("equipoSoro");
                     
                 }
                 
                 else {
-                    
-                    // colocar algo aqui
-                    
+                    core.closeCommandBar();
+                    core.openDialog(6);
+                    erro = erro + 1;
+
+                    if(erro == 3){
+                        core.registerScoreItem( Scores.naoGotejarSoroEquipo );
+                        erro = -100;
+                    }                   
                 }
                 
 
@@ -1144,6 +1164,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "score_administrar_dieta",  false  ) );
         level.registerFlag( new Flag( "score_colocar_gotejamento",  false  ) );
         level.registerFlag( new Flag( "score_anotar_prontuario",  false  ) );
+        level.registerFlag( new Flag( "score_gotejar_soro",  false  ) );
 
         level.setInitialScene( 0 );
 

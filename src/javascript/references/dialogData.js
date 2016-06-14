@@ -1026,7 +1026,10 @@ define({
             ],
             verificarTudoPostoEnfermagem: [
                 "Certifique-se de realizar todos os procedimentos antes de sair!"
-            ]
+            ],
+            erroGotejamento: [
+                "O cálculo incorreto do gojetamento pode ter sérias consequências! Tente novamente."
+            ],
         },
         descarte: {
             algodão: [
