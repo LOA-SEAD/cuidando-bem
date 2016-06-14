@@ -158,13 +158,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 if ( core.flag("entrou_ala_feminina") == true ) {
                     core.setInteractiveObjectVisible("io-conversar_mentor", false );
                 }
-            
-            if(core.flag("conversar_mentor") == false) { 
-                
+
+            if(core.flag("conversar_mentor") == false) {
+
                 core.openDialog( 0 );
-            
+
             }
-            
+
             })
             .onUnload(function() {
                 console.log("Saindo do corredor");
@@ -703,7 +703,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("score_luva_esteril") == false ) {
                         core.flag("score_luva_esteril",  true );
                         core.registerScoreItem( Scores.calcarLuvaEsteril );
-                        
+
                         // divide os botoes
                         if (core.flag("score_fez_teste_glicemia") == true && core.flag("score_jogou_algodao_na_bandeja") == true && core.flag("score_selecionou_materiais_curativo") == true &&
                core.flag("score_lavou_maos_antes_calcar_luva") == true  && core.flag("score_luva_esteril") == true && core.flag("score_jogou_agulha_lixo_certo") == true) {
@@ -720,26 +720,26 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             core.setActionVisible("btn-erguer_grade", true );
                             core.setActionVisible("btn-anotarProntuario", true );
 
-                                
-                            
+
+
            }
-                        
-                        
-                        
-                        
+
+
+
+
                     }
                 })
                 .setVisibility( false ),
-            
-         
-            
-            
+
+
+
+
             // separacao
-            
-            
-          
-            
-            
+
+
+
+
+
 
             new Action("btn-fazer_curativo", "Fazer curativo")
                 // CONSERTAR
@@ -1084,7 +1084,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Prontuario.close();
                     // Já estava no momento de realizar os procedimentos, portanto pode terminar a fase
                     if ( core.flag("score_falar_paciente") == true ) {
-                        core.unlockLevel( 6 );
+                        core.unlockLevel( 7 );
                         core.closeCommandBar();
                         core.showEndOfLevel();
                         Player.stopAll();

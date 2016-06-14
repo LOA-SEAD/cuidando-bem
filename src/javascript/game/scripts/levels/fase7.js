@@ -870,7 +870,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         Prontuario.close();
                         // core.setActionVisible("btn-fechar_prontuario", false );
                         if ( core.flag("score_colocar_gotejamento") == true ) {
-                            core.unlockLevel( 7 );
+                            core.unlockLevel( 8 );
                             core.closeCommandBar();
                             core.showEndOfLevel();
                             Player.stopAll();
@@ -1012,18 +1012,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onClick(function() {
 
                  if(EquipoGotejamento.isValueRight()){
-                    
+
                     EquipoGotejamento.close();
                     core.closeModalScene("equipoSoro");
-                    
+
                 }
-                
+
                 else {
-                    
+
                     // colocar algo aqui
-                    
+
                 }
-                
+
 
 
 
@@ -1108,7 +1108,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Pulseira.setLeito("03");
             Pulseira.setData("02/02/1961");
             Pulseira.disable();
-            
+
             EquipoGotejamento.setRightValue(120);
 
 

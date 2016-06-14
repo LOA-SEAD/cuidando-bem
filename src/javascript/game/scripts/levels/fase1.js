@@ -116,7 +116,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             } else {
                 if ( core.flag("conversar_mentor") == true ) {
                     console.log("Action: corredorIrSalaLeitos");
-                    core.changeScene( 2 ); 
+                    core.changeScene( 2 );
                 } else {
                     console.log("Necessita ação: falar com mentor");
                 }
@@ -448,7 +448,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption( Dialogs.leito.conversa2[ 6 ], function() {
                     core.openDialog( 16 );
                     // Som
-                    Player.play( Player.audios.sfx.missaoCumprida );
+                    // Player.play( Player.audios.sfx.missaoCumprida );
                 }),
             // Dialog 16
             new Dialog( lib.characters.mentor )
@@ -517,12 +517,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("pulseira") == false ) {
                         // core.setInteractiveObjectVisible("io-pulseira_paciente", true );
                     }
-                    
+
                     if(core.flag("score_checar_pulseira") == false){
                         core.flag("score_checar_pulseira", true);
                         core.registerScoreItem( Scores.tutorial.identificarPaciente );
                     }
-                    
+
                 })
                 .setVisibility( visibility ),
 
@@ -898,7 +898,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                                 Prontuario.close();
                                 core.closeCommandBar();
                                 core.showEndOfLevel();
-                                core.unlockLevel( 1 );
+                                core.unlockLevel( 2 );
                                 Player.stopAll();
                                 Player.play( Player.audios.sfx.missaoCumprida );
                             } else {
