@@ -97,9 +97,9 @@ define([
             },
             position: {
                 within: "#stage",
-                of: "#gameStage",
+                of: "#stage",
                 my: "center top",
-                at: "center top+20"
+                at: "center top+5%"
             }
         });
         if ( _interactiveObject.isEnabled() ) {
