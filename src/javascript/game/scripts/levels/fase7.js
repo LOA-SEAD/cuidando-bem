@@ -572,9 +572,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .registerOption("", function() {
             core.openDialog( 0 );
         }),
-        
+
         // 3
-   
+
         new Dialog( lib.characters.mentor )
         .setText( Dialogs.postoEnfermagem[ 4 ] )
         .registerOption("", function() {
@@ -705,14 +705,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .registerOption("", function() {
             core.closeDialog();
         }),
-        
+
         // 6
         new Dialog( lib.characters.mentor )
                 .setText( Alertas.esqueceu.erroGotejamento )
                 .registerOption("", function() {
                     core.closeDialog(  );
                 }),
-            
+
 
         ]);
 
@@ -886,7 +886,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         Prontuario.close();
                         // core.setActionVisible("btn-fechar_prontuario", false );
                         if ( core.flag("score_colocar_gotejamento") == true ) {
-                            core.unlockLevel( 7 );
+                            core.unlockLevel( 8 );
                             core.closeCommandBar();
                             core.showEndOfLevel();
                             Player.stopAll();
@@ -990,16 +990,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         })
         .setVisibility( true ),
 
-      
+
             new InteractiveObject("io-equipoSoro", "Equipamento de soro")
             .setCssClass("intObj-equipo_de_soro")
             .onClick(function() {
 
                 // Som
                 Player.play( Player.audios.sfx.pegarObjeto );
-                
+
                 core.openDialog( 3 );
-                
+
                 if(core.flag("pegar_equipoSoro") == false) {
                 core.registerScoreItem( Scores.pegarEquipoErrado );
                 core.flag("pegar_equipoSoro", true );
@@ -1009,7 +1009,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             })
             .setVisibility( true )
 
-        
+
     ]);
 
         frascoDieta = new Scene("conferirFrascoDieta", "Conferir Frasco de Dieta")
@@ -1028,7 +1028,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         equipoSoro = new Scene("equipoSoro", "EquipamentoSoro")
 
         var erro = 0;
-        
+
         equipoSoro.registerActions([
 
             new Action("btn-fecharEquipoSoro", "Fechar Equipamento de Soro")
@@ -1036,17 +1036,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onClick(function() {
 
                   if(EquipoGotejamento.isValueRight()){
-                    
+
                     if(core.flag("score_gotejar_soro") == false){
                          core.registerScoreItem( Scores.gotejarSoroEquipo );
                          core.flag("score_gotejar_soro", true);
                     }
-                   
+
                     EquipoGotejamento.close();
                     core.closeModalScene("equipoSoro");
-                    
+
                 }
-                
+
                 else {
                     core.closeCommandBar();
                     core.openDialog(6);
@@ -1055,9 +1055,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if(erro == 3){
                         core.registerScoreItem( Scores.naoGotejarSoroEquipo );
                         erro = -100;
-                    }                   
+                    }
                 }
-                
+
 
 
 
@@ -1142,7 +1142,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Pulseira.setLeito("03");
             Pulseira.setData("02/02/1961");
             Pulseira.disable();
-            
+
             EquipoGotejamento.setRightValue(67);
 
 
