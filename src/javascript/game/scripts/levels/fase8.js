@@ -32,8 +32,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var recepcao = lib.scenes.recepcao.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + recepcao.getName() );
-                core.flag("conversar_recepcionista",  true );
-                core.openDialog( 0 );
+                
+               if(core.flag("conversar_recepcionista") == false) {
+                    core.flag("conversar_recepcionista", true);
+                    core.openDialog( 0 ); 
+                
+                }
+                
             });
 
 
@@ -167,6 +172,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             }
             core.changeScene( 6 );
         }
+    
+     corredor.registerActions([ 
+            
+             new Action("btn-ir_recepcao", "Voltar para a recepção")
+                .setCssClass("action-voltarRecepcao")
+                .onClick(function() {
+                    
+                    core.changeScene( 0 );
+                   
+                })
+                .setVisibility( true ),    
+            
+        ]);
 
 
         corredor.registerDialogs([
@@ -217,9 +235,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setCssClass("scene-bedroom-level7")
             .onLoad(function() {
 
-                if(core.flag("ir_ala_feminina_primeira_vez") == false){
-                    core.openDialog( 0 );
-                }
+
 
 
                 core.flag("ir_ala_feminina_primeira_vez",  true );
