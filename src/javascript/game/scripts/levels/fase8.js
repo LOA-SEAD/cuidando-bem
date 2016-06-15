@@ -216,12 +216,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var alaFeminina = new Scene("alaMasculina", "Ala Masculina")
             .setCssClass("scene-bedroom-level7")
             .onLoad(function() {
-                
+
                 if(core.flag("ir_ala_feminina_primeira_vez") == false){
                     core.openDialog( 0 );
                 }
-                        
-                
+
+
                 core.flag("ir_ala_feminina_primeira_vez",  true );
                 if ( ( core.flag("pegou_tudo_posto") == false ) &&
                    ( core.flag("conferir_medicamento_correto") == true ) ) {
@@ -231,7 +231,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         // Pra reativar esse botão caso ele tenha sido desabilitado alguma vez
                         core.setActionVisible("btn-lavarMaos", true );
                         core.setActionVisible("btn-ler_prontuario", false );
-                        
+
                     }
                 }
                 console.log("Load scene: " + alaFeminina.getName() );
@@ -327,7 +327,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.flag("score_ler_prontuario",  true );
                         core.registerScoreItem( Scores.lerProntuario );
                     }
-                   
+
                     console.log("Action: ler prontuario");
                     Prontuario.open();
                     core.openModalScene("Prontuario");
@@ -445,7 +445,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         farmacia.registerInteractiveObjects([
-       /*     
+       /*
             new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
                 .setCssClass("intObj-lobbyToHallway-left")
                 .onClick( farmaciaIrCorredor )
@@ -583,7 +583,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         farmacia.registerActions([
-            
+
                new Action("btn-ir_corredor", "Ir ao corredor")
          .setCssClass("action-ir_corredor")
          .onClick(function () {
@@ -734,26 +734,26 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                 })
                 .setVisibility( true ),
-            
-            
-            
+
+
+
             new Action("btn-ler_prontuario", "Anotar prontuario")
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
-                    
+
                     if(core.flag("score_lavar_maos_2") == false){
                         core.openDialog(9);
                     }
                     else {
-                    
+
                        if ( core.flag("score_anotar_prontuario") == false ) {
                             core.registerScoreItem( Scores.anotarProntuario );
                             core.flag("score_anotar_prontuario",  true );
                         }
-                        
+
                     Prontuario.open();
                     core.openModalScene("Prontuario");
-                        
+
                     }
                 })
                 .setVisibility( false ),
@@ -764,20 +764,20 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     // Som
                     Player.play( Player.audios.sfx.lavarMaos );
-                    
+
                         if ( core.flag("score_lavar_maos_2") == false ) {
                                 core.flag("score_lavar_maos_2",  true );
                                 core.registerScoreItem( Scores.lavarMaos2 );
                         }
-                       
-                    
+
+
                 })
                 .setVisibility( false )
 
-            
-            
 
-           
+
+
+
 
         ]);
 
@@ -965,7 +965,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Prontuario.close();
                     // Já estava no momento de realizar os procedimentos, portanto pode terminar a fase
                     if ( core.flag("score_anotar_prontuario") == true ) {
-                        core.unlockLevel( 8 );
+                        core.unlockLevel( 9 );
                         core.closeCommandBar();
                         core.showEndOfLevel();
                         Player.stopAll();
