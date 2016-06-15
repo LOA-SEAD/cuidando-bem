@@ -601,7 +601,9 @@ define({
             // 2 Jogador op 3
             "A infusão da dieta ocorrerá em 67 gotas no período de uma hora.",
             // 3 Mentor Corrige
-            "Parece que você se enganou. Tente novamente."
+            "Parece que você se enganou. Tente novamente.",
+            // 4
+            "O equipamento necessário possui cor específica."
         ],
         leitoPaciente: [
             // 0 Jogador
@@ -741,7 +743,8 @@ define({
             // 5 Paciente
             "Nervoso não, um pouco ansioso, eu diria. E talvez com um pouco de medo, nunca fiz uma cirurgia.",
             // 6 Jogador
-            "Fique calmo, Yuri, vai dar tudo certo!"
+            "Fique calmo, Yuri, vai dar tudo certo!",
+           
         ],
         farmacia: [
             // 0 Farmaceutico
@@ -759,7 +762,9 @@ define({
             // 1 Paciente
             "Ok. Yuri de Souza Almeida.",
             // 2 Jogador
-            "Certo, Yuri. Por favor tome a medicação e iremos para o centro cirúrgico em seguida."
+            "Certo, Yuri. Por favor tome a medicação e iremos para o centro cirúrgico em seguida.",
+             // 3 Jogador
+            "Pronto Yuri! Agora por favor me acompanhe até o centro cirúrgico."
         ],
         centroCirurgico: [
             // 0 Jogador op 1
@@ -1023,7 +1028,10 @@ define({
             ],
             verificarTudoPostoEnfermagem: [
                 "Certifique-se de realizar todos os procedimentos antes de sair!"
-            ]
+            ],
+            erroGotejamento: [
+                "O cálculo incorreto do gojetamento pode ter sérias consequências! Tente novamente."
+            ],
         },
         descarte: {
             algodão: [

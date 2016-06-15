@@ -202,7 +202,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.flag("conversar_mentor2",  true );
                     core.closeDialog();
-                    core.unlockLevel( 3 );
+                    core.unlockLevel( 5 );
                     core.closeCommandBar();
                     core.showEndOfLevel();
                     Player.stopAll();
@@ -518,12 +518,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var alaFeminina = new Scene("alaFeminina", "Ala Feminina")
             .setCssClass("scene-bedroom-level3")
             .onLoad(function() {
+                  core.openCommandBar();
                 console.log("Load scene: " + alaFeminina.getName() );
-           
+
                 if ( core.flag("conversarPaciente") == true ) {
                     // Desabilita conversar novamente com a Regina
                     core.setInteractiveObjectVisible("io-conversar_com_paciente", false );
-            
+
                 }
             })
             .onUnload(function() {
@@ -531,9 +532,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
 
+
+
         alaFeminina.registerActions([
 
-              
+
             new Action("btn-lavarMaos", "Lavar as mãos")
                 .setCssClass("action-lavarMaos")
                 .onClick(function() {
@@ -545,11 +548,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.lavarMaos2 );
                     }
                 })
-                .setVisibility(true)     // ??????????????????????????????? 
-            
-                        
-            
-            
+                .setVisibility(true)
+
+
+
+
 
         ]);
 
@@ -799,6 +802,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Bip
                     Player.play( Player.audios.sfx.bipOximetro );
                     core.flag("verificar_oximetro_local_cirurgia",  true );
+                    core.openModalScene("modalOximetro");
+
                 })
                 .setVisibility( true ),
 
@@ -1095,6 +1100,23 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
 
+        var oximetro = new Scene("modalOximetro", "Oxímetro")
+            .setCssClass("modalScene-oximetro")
+            .setTemplate(
+                "<span class='oximetro-st-text'>97% Sat.O2</span>" + "<span class='oximetro-fc-text'>69 bpm</span>"
+            );
+
+        oximetro.registerActions([
+            new Action("btn-largar_oximetro", "Fechar Oxímetro")
+                .setCssClass("action-largar_oximetro")
+                .onClick(function() {
+                    core.closeModalScene("modalOximetro");
+                })
+                .setVisibility( true )
+        ]);
+
+
+
         prontuario = new Scene("Prontuario", "Prontuario");
 
         prontuario.registerActions([
@@ -1138,6 +1160,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         level.registerModalScene( prontuario );
         level.registerModalScene( pulseira );
+        level.registerModalScene( oximetro );
 
 
         // 0

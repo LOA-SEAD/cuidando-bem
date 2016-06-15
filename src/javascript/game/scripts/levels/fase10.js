@@ -728,34 +728,36 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         var postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
-
-                  console.log("Load scene: " + postoDeEnfermagem.getName() );
-               if ( core.flag("conferirMedicamento") == false ) {
-
-                    core.setInteractiveObjectVisible("io-abrir_gaveta", false );
-                    core.setInteractiveObjectVisible("io-pegar_bandeja", false );
-                    core.openDialog( 2 );
-
-
-            if ( core.flag("score_irPosto_horaErrada") == false ) {
+                
+                  core.setInteractiveObjectVisible("io-pegar_bandeja", false );
+                  core.setInteractiveObjectVisible("io-abrir_gaveta", false );    
+                
+                
+                if( core.flag("conferirMedicamento") == true){
+                    
+                  core.setInteractiveObjectVisible("io-pegar_bandeja", true );
+                  core.setInteractiveObjectVisible("io-abrir_gaveta", true );
+                    
+                    if(core.flag("pegou_tudo_postoEnfermagem") == true || core.flag("pegar_bandeja") == true){
+                         core.setInteractiveObjectVisible("io-pegar_bandeja", false );
+                        core.setInteractiveObjectVisible("io-abrir_gaveta", true );
+                        
+                    }
+                    
+                }
+                else {
+                      core.openDialog( 2 );
+                    
+                    if ( core.flag("score_irPosto_horaErrada") == false ) {
 
                 core.flag("score_irPosto_horaErrada", true );
                  core.registerScoreItem( Scores.irPosto_horaErrada );
-
-
             }
-
-
-
-
-
-                 } else if ( core.flag("pegou_tudo_postoEnfermagem") == true ) {
-                     core.setInteractiveObjectVisible("io-abrir_gaveta", true );
-
-                     core.setInteractiveObjectVisible("io-pegar_bandeja", false );
-                    } else
-                    core.setInteractiveObjectVisible("io-abrir_gaveta", true );
-                     core.setInteractiveObjectVisible("io-pegar_bandeja", true );
+                    
+                }
+                
+                
+           
 
             });
 
@@ -823,15 +825,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onClick(function() {
 
 
-                if ( core.flag("pegar_prescricao_medica") == false ) {
+          /*      if ( core.flag("pegar_prescricao_medica") == false || core.flag("") ) {
                     core.changeScene( 1 );
                 }
                 
                 
                 if(core.flag("pegou_tudo_postoEnfermagem") == true) {
                 	core.changeScene(1);
-		}
-
+		}*/
+core.changeScene(1);
 
             })
             .setVisibility( true ),
@@ -988,7 +990,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setText( Alertas.esqueceu.falarPaciente )
             .registerOption("", function() {
                 core.closeDialog();
-            })
+            }),
+            
+            // 8
+             new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.erroGotejamento )
+                .registerOption("", function() {
+                    core.closeDialog(  );
+                }),
+            
 
 
 
@@ -1079,7 +1089,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setText( Alertas.lavarMaos.tipo3 )
             .registerOption("", function() {
                 core.closeDialog();
-            })
+            }),
+            
+            // 6
+            
+              new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.erroGotejamento )
+                .registerOption("", function() {
+                    core.closeDialog(  );
+                }),
+            
 
 
 
@@ -1104,6 +1123,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             }
 
             core.setActionVisible("btn-pegar_suporte_soro", true );
+            core.setActionVisible("btn-colocarSoro", true );
             core.setActionVisible("btn-administrar_medicamente", true );
             core.setActionVisible("btn-realizar_gotejamento", true );
             core.setActionVisible("btn-lavarMaos", true );
@@ -1145,22 +1165,40 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
              new Action("btn-pegar_suporte_soro", "Pegar Suporte de Soro")
-            .setCssClass("action-pegar-soro")
+            .setCssClass("action-pegarSuporte")
             .onClick(function() {
 
                 if ( core.flag( "pegar_suporte_soro" ) == false ) {
                     core.flag( "pegar_suporte_soro",  true  );
                     core.registerScoreItem( Scores.pegarSuporteSoro );
+                    
+                core.changeSceneCssClassTo("scene-bedChar10B");
+                core.setActionVisible("btn-pegar_suporte_soro", false);
 
 
                 }
 
             })
             .setVisibility( false ),
+        
+      
+        
+           new Action("btn-colocarSoro", "Colocar Soro")
+            .setCssClass("action-soro_fisiologico_1000ml")
+            .onClick(function() {
+                
+        
+                core.changeSceneCssClassTo("scene-bedChar10C");
+                core.setActionVisible("btn-colocarSoro", false);
+                
+                
+
+            })
+            .setVisibility( false ),
 
 
             new Action("btn-administrar_medicamente", "Administrar Medicamento")
-            .setCssClass("action-administrar-medicamento")
+            .setCssClass("action-admnistrar_medicacao")
             .onClick(function() {
 
                 if ( core.flag( "administrar_medicamento" ) == false ) {
@@ -1175,7 +1213,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
             new Action("btn-realizar_gotejamento", "Realizar Gotejamento de Soro")
-            .setCssClass("action-realizar-gotejamento")
+            .setCssClass("action-colocarSoro")
             .onClick(function() {
 
                 if ( core.flag( "realizar_gotejamento" ) == false ) {
@@ -1292,14 +1330,38 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     
         equipoSoro = new Scene("equipoSoro", "EquipamentoSoro")
         
+        var erro = 0;
+    
         equipoSoro.registerActions([
             
             new Action("btn-fecharEquipoSoro", "Fechar Equipamento de Soro")
-            .setCssClass("action-fecharEquipoSoro")
+            .setCssClass("action-colocarSoro")
             .onClick(function() {
 
-                EquipoGotejamento.close();
-                core.closeModalScene("equipoSoro");
+                if(EquipoGotejamento.isValueRight()){
+                    
+                    if(core.flag("score_gotejar_soro") == false){
+                         core.registerScoreItem( Scores.gotejarSoroEquipo );
+                         core.flag("score_gotejar_soro", true);
+                    }
+                   
+                    EquipoGotejamento.close();
+                    core.closeModalScene("equipoSoro");
+                    
+                }
+                
+                else {
+                    core.closeCommandBar();
+                    core.openDialog( 6 );
+                    erro = erro + 1;
+
+                    if(erro == 3){
+                        core.registerScoreItem( Scores.naoGotejarSoroEquipo );
+                        erro = -100;
+                    }                   
+                }
+                
+                
                
                 
 
@@ -1537,6 +1599,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Pulseira.setLeito("03");
             Pulseira.setData("24/07/1937");
             Pulseira.disable();
+            
+            
+            EquipoGotejamento.setRightValue(120);
+            
         });
 
         level.registerFlag( new Flag( "score_iralaFeminina_horaErrada",  false  ) );
@@ -1569,6 +1635,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "conferirFrascoSG", false ) );
         level.registerFlag( new Flag( "conferirNACL", false ) );
         level.registerFlag( new Flag( "score_verPulseira", false ) );
+        level.registerFlag( new Flag( "score_gotejar_soro", false ) );
 
         level.setInitialScene( 0 );
 
