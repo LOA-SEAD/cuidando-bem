@@ -601,7 +601,9 @@ define({
             // 2 Jogador op 3
             "A infusão da dieta ocorrerá em 67 gotas no período de uma hora.",
             // 3 Mentor Corrige
-            "Parece que você se enganou. Tente novamente."
+            "Parece que você se enganou. Tente novamente.",
+            // 4
+            "O equipamento necessário possui cor específica."
         ],
         leitoPaciente: [
             // 0 Jogador
@@ -1026,7 +1028,10 @@ define({
             ],
             verificarTudoPostoEnfermagem: [
                 "Certifique-se de realizar todos os procedimentos antes de sair!"
-            ]
+            ],
+            erroGotejamento: [
+                "O cálculo incorreto do gojetamento pode ter sérias consequências! Tente novamente."
+            ],
         },
         descarte: {
             algodão: [

@@ -283,6 +283,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 console.log("Entrando na sala de leitos");
                 if ( core.flag("colocou_coxim") == true ) {
                     core.setActionVisible("btn-ler_prontuario", true );
+                    core.changeSceneCssClassTo("scene-bedroom-level1b");
+                    // ARRUMAR PARA PODER IR SEMPRE AO LEITO
+                    core.setInteractiveObjectVisible("io-ir_leito", false);
                 }
                 core.openCommandBar();
             })
