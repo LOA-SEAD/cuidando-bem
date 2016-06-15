@@ -852,7 +852,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( false ),
 
             new Action("btn-visualizarFolheto", "Visualizar o folheto dos 9 certos")
-                .setCssClass("action-visualizar_folheto")
+                .setCssClass("action-folheto_9certos")
                 .onClick(function() {
                     console.log("Action: Visualizando folheto");
                     core.openModalScene("noveCertosMedicacao");
@@ -1336,7 +1336,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         noveCertosMedicacao.registerActions([
             new Action("btn-fechar_zoom", "Fechar folheto")
-                .setCssClass("action-visualizar_folheto")
+                .setCssClass("action-folheto_9certos")
                 .onClick(function() {
                     console.log("Action: Fechar folheto");
                     core.closeModalScene("noveCertosMedicacao");
