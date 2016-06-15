@@ -1089,7 +1089,16 @@ core.changeScene(1);
             .setText( Alertas.lavarMaos.tipo3 )
             .registerOption("", function() {
                 core.closeDialog();
-            })
+            }),
+            
+            // 6
+            
+              new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.erroGotejamento )
+                .registerOption("", function() {
+                    core.closeDialog(  );
+                }),
+            
 
 
 
@@ -1114,6 +1123,7 @@ core.changeScene(1);
             }
 
             core.setActionVisible("btn-pegar_suporte_soro", true );
+            core.setActionVisible("btn-colocarSoro", true );
             core.setActionVisible("btn-administrar_medicamente", true );
             core.setActionVisible("btn-realizar_gotejamento", true );
             core.setActionVisible("btn-lavarMaos", true );
@@ -1155,22 +1165,40 @@ core.changeScene(1);
 
 
              new Action("btn-pegar_suporte_soro", "Pegar Suporte de Soro")
-            .setCssClass("action-pegar-soro")
+            .setCssClass("action-pegarSuporte")
             .onClick(function() {
 
                 if ( core.flag( "pegar_suporte_soro" ) == false ) {
                     core.flag( "pegar_suporte_soro",  true  );
                     core.registerScoreItem( Scores.pegarSuporteSoro );
+                    
+                core.changeSceneCssClassTo("scene-bedChar10B");
+                core.setActionVisible("btn-pegar_suporte_soro", false);
 
 
                 }
 
             })
             .setVisibility( false ),
+        
+      
+        
+           new Action("btn-colocarSoro", "Colocar Soro")
+            .setCssClass("action-soro_fisiologico_1000ml")
+            .onClick(function() {
+                
+        
+                core.changeSceneCssClassTo("scene-bedChar10C");
+                core.setActionVisible("btn-colocarSoro", false);
+                
+                
+
+            })
+            .setVisibility( false ),
 
 
             new Action("btn-administrar_medicamente", "Administrar Medicamento")
-            .setCssClass("action-administrar-medicamento")
+            .setCssClass("action-admnistrar_medicacao")
             .onClick(function() {
 
                 if ( core.flag( "administrar_medicamento" ) == false ) {
@@ -1185,7 +1213,7 @@ core.changeScene(1);
 
 
             new Action("btn-realizar_gotejamento", "Realizar Gotejamento de Soro")
-            .setCssClass("action-realizar-gotejamento")
+            .setCssClass("action-colocarSoro")
             .onClick(function() {
 
                 if ( core.flag( "realizar_gotejamento" ) == false ) {
@@ -1307,7 +1335,7 @@ core.changeScene(1);
         equipoSoro.registerActions([
             
             new Action("btn-fecharEquipoSoro", "Fechar Equipamento de Soro")
-            .setCssClass("action-fecharEquipoSoro")
+            .setCssClass("action-colocarSoro")
             .onClick(function() {
 
                 if(EquipoGotejamento.isValueRight()){
@@ -1324,7 +1352,7 @@ core.changeScene(1);
                 
                 else {
                     core.closeCommandBar();
-                    core.openDialog(8);
+                    core.openDialog( 6 );
                     erro = erro + 1;
 
                     if(erro == 3){

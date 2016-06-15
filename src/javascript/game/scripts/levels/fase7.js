@@ -571,7 +571,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setText( Dialogs.postoEnfermagem[ 3 ] )
         .registerOption("", function() {
             core.openDialog( 0 );
-        })
+        }),
+        
+        // 3
+   
+        new Dialog( lib.characters.mentor )
+        .setText( Dialogs.postoEnfermagem[ 4 ] )
+        .registerOption("", function() {
+            core.closeDialog(  );
+        }),
 
         ]);
 
@@ -737,7 +745,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     leito.registerActions([
 
       new Action("btn-pegar_suporte_soro", "Pegar Suporte de Soro")
-      .setCssClass("action-pegar_suporte_soro")
+      .setCssClass("action-pegarSuporte")
       .onClick(function() {
 
         if ( core.flag("score_pegar_suporte_soro") == false ) {
@@ -750,7 +758,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       .setVisibility( true ),
 
       new Action("btn-elevar_cama", "Elevar Cabeceira da Cama em 90º")
-      .setCssClass("action-elevar_cama")
+      .setCssClass("action-elevarCama")
       .onClick(function() {
 
         if ( core.flag("score_elevar_cama") == false ) {
@@ -789,7 +797,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       .setVisibility( true ),
 
       new Action("btn-colocar_gotejamento", "Colocar Gotejamento")
-      .setCssClass("action-colocar_gotejamento")
+      .setCssClass("action-colocarSoroDieta")
       .onClick(function() {
 
         if ( core.flag("score_colocar_gotejamento") == false ) {
@@ -982,20 +990,26 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         })
         .setVisibility( true ),
 
-        new InteractiveObject("io-equipoErrado", "Equipamento ??????????????????")
-        .setCssClass("equipo")
-        .onClick(function() {
+      
+            new InteractiveObject("io-equipoSoro", "Equipamento de soro")
+            .setCssClass("intObj-equipo_de_soro")
+            .onClick(function() {
 
-            console.log("intObj-equipo");
-            // Som
-            Player.play( Player.audios.sfx.pegarObjeto );
-            core.flag("pegar_equipoErrado",  true );
-            core.setInteractiveObjectVisible("io-equipoErrado", false );
+                // Som
+                Player.play( Player.audios.sfx.pegarObjeto );
+                
+                core.openDialog( 3 );
+                
+                if(core.flag("pegar_equipoSoro") == false) {
+                core.registerScoreItem( Scores.pegarEquipoErrado );
+                core.flag("pegar_equipoSoro", true );
+                }
 
-            core.registerScoreItem( Scores.pegarEquipoErrado );
 
-        })
-        .setVisibility( true )
+            })
+            .setVisibility( true )
+
+        
     ]);
 
         frascoDieta = new Scene("conferirFrascoDieta", "Conferir Frasco de Dieta")
@@ -1018,7 +1032,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         equipoSoro.registerActions([
 
             new Action("btn-fecharEquipoSoro", "Fechar Equipamento de Soro")
-            .setCssClass("action-fecharEquipoSoro")
+            .setCssClass("action-colocarSoroDieta")
             .onClick(function() {
 
                   if(EquipoGotejamento.isValueRight()){
@@ -1129,7 +1143,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Pulseira.setData("02/02/1961");
             Pulseira.disable();
             
-            EquipoGotejamento.setRightValue(120);
+            EquipoGotejamento.setRightValue(67);
 
 
         });

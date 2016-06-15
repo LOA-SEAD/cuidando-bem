@@ -538,7 +538,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             new Action("btn-realizarGotejamento", "Realizar gotejamento de soro no equipo")
-                .setCssClass("action-equipo")
+                .setCssClass("action-colocarSoro")
                 .onClick(function() {
                     if ( core.flag("score_gotejar_soro_equipo") == false ) {
                         core.registerScoreItem( Scores.gotejarSoroEquipo );
@@ -1005,7 +1005,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         equipoSoro.registerActions([
 
             new Action("btn-fecharEquipoSoro", "Fechar Equipamento de Soro")
-            .setCssClass("action-fecharEquipoSoro")
+            .setCssClass("action-colocarSoro")
             .onClick(function() {
 
                 if(EquipoGotejamento.isValueRight()){

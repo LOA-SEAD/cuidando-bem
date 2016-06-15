@@ -198,7 +198,7 @@ define(function() {
             pegarCopoDescartavel: new Score("Pegar copo descartável", 50 ),
             pegarAguaPotavel: new Score("Pegar agua potável", 50 ),
             pegarSeringa: new Score("Pegar seringa", 50 ),
-            pegarEquipoCorreto: new Score("Pegar equipamento correto", 150 ),
+            pegarEquipoCorreto: new Score("Pegar equipamento correto de infusão de dieta", 150 ),
             pegarEquipoErrado: new Score("Pegar equipamento errado", -150 ),
             irAoLeitoCorreto: new Score("Ir ao leito do paciente", 50 ),
             verificarPulseira: new Score("Verificar pulseira do paciente", 150 ),

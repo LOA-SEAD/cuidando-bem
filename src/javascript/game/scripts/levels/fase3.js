@@ -225,8 +225,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         salaDeLeitos = new Scene("salaDeLeitos", "scene-salaDeLeitos")
             .setCssClass("scene-bedroom-level2")
             .onLoad(function() {
-                console.log("Entrando na sala de leitos");
-                // Na primeira vez o leito vai estar desabilitado e ocorrerá uma conversa com o paciente
+                
+                
+            if ( core.flag("segunda_ida_leito_paciente") == false ) {
+                        core.openDialog( 0 );
+                    }
+                
+     
+            
                 if ( core.flag("segunda_ida_leito_paciente") == true ) {
                     /*core.setInteractiveObjectVisible("io-ir_leito", false );
                     // core.openDialog( 0 );
@@ -268,6 +274,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-ir_leito", "Ir ao leito")
                 .setCssClass("intObj-ir_leito-fase2")
                 .onClick(function() {
+                    
                     if ( core.flag("segunda_ida_leito_paciente") == false ) {
                         core.openDialog( 0 );
                     } else {

@@ -216,6 +216,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var alaFeminina = new Scene("alaMasculina", "Ala Masculina")
             .setCssClass("scene-bedroom-level7")
             .onLoad(function() {
+                
+                if(core.flag("ir_ala_feminina_primeira_vez") == false){
+                    core.openDialog( 0 );
+                }
+                        
+                
                 core.flag("ir_ala_feminina_primeira_vez",  true );
                 if ( ( core.flag("pegou_tudo_posto") == false ) &&
                    ( core.flag("conferir_medicamento_correto") == true ) ) {
