@@ -108,6 +108,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
                 console.log("Entrando no corredor");
+            
+                core.openCommandBar();
+                core.setActionVisible("btn-ir_recepcao", true);
 
                 Player.stopAll();
                 // Som

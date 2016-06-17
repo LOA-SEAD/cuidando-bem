@@ -130,6 +130,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         var corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
+                
+                core.openCommandBar();
+                core.setActionVisible("btn-ir_recepcao", true);
+                
                 Player.stopAll();
                 // Som
                 Player.play( Player.audios.sfx.abrirPorta );
