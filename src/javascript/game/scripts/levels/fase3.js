@@ -439,7 +439,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( false ),
 
 
-            new Action("btn-elevar_grade_cama", "Elevar a grade da cama")
+            new Action("btn-elevar_grade_cama", "Elevar grade da cama")
                 // CONSERTAR
                 .setCssClass("action-elevarGrade")
                 .onClick(function() {
@@ -448,6 +448,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         if ( core.flag("score_elevou_grade_cama") == false ) {
                             core.flag("score_elevou_grade_cama",  true );
                             core.registerScoreItem( Scores.elevarGradeDaCama );
+                            core.changeSceneCssClassTo("scene-bedroom-level2b");
+                            core.setActionVisible("btn-elevar_grade_cama", false);
                         }
                     } else {
                         core.closeCommandBar();

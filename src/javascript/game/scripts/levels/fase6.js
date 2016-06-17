@@ -814,9 +814,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( false ),
 
-            new Action("btn-erguer_grade", "Erguer grade da cama")
+            new Action("btn-erguer_grade", "Elevar grade da cama")
                 // CONSERTAR
-                .setCssClass("action-erguer_grade")
+                .setCssClass("action-elevarGrade")
                 .onClick(function() {
                     console.log("Action: Erguer grade da cama");
                     if ( core.flag("score_identificou_curativo") == false ) {
@@ -830,7 +830,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("score_ergueu_grade") == false ) {
                         core.flag("score_ergueu_grade",  true );
                         core.registerScoreItem( Scores.elevarGradeDaCama );
+                        core.changeSceneCssClassTo("scene-bedChar06Grade");  
+                          core.setActionVisible("btn-erguer_grade", false);
                     }
+                
                 })
                 .setVisibility( false ),
 
