@@ -113,7 +113,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true ),
 
             new InteractiveObject("io-pegar_folheto_dos_9_certos", "Pegar Folheto dos 9 Certos")
-                .setCssClass("intObj-9Certos")
+                .setCssClass("intObj-9certos")
                 .onClick(function() {
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
@@ -875,7 +875,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( false ),
 
             new Action("btn-visualizarFolheto", "Visualizar o folheto dos 9 certos")
-                .setCssClass("action-folheto_9certos")
+                .setCssClass("action-9certos")
                 .onClick(function() {
                     console.log("Action: Visualizando folheto");
                     core.openModalScene("noveCertosMedicacao");
@@ -1359,7 +1359,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         noveCertosMedicacao.registerActions([
             new Action("btn-fechar_zoom", "Fechar folheto")
-                .setCssClass("action-folheto_9certos")
+                .setCssClass("action-9certos")
                 .onClick(function() {
                     console.log("Action: Fechar folheto");
                     core.closeModalScene("noveCertosMedicacao");
