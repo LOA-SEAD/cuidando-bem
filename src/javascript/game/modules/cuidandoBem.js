@@ -399,7 +399,7 @@ define([
 
         function flag( _flagId, _value ) {
 
-            if ( _value ) {
+            if ( typeof _value !== "undefined" ) {
                 Level.getFlag( _flagId ).setValue( _value );
             } else {
                 return Level.getFlag( _flagId ).getValue();
@@ -428,7 +428,7 @@ define([
          */
         function setActionEnable( _actionId, _value ) {
             var action = Scene.getAction( _actionId );
-            if ( _value ) {
+            if ( typeof _value !== "undefined" ) {
                 enableActionButton( action );
             } else {
                 disableActionButton( action );
