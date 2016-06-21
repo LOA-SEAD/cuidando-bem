@@ -876,7 +876,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true ),
 */
-            new Action("btn-fazer_lista", "Fazer lista de verificação")
+          /*  new Action("btn-fazer_lista", "Fazer lista de verificação")
                 // Será outro
                 .setCssClass("action-fazer_lista")
                 .onClick(function() {
@@ -892,7 +892,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.flag("score_fez_lista_verificacao",  true );
                     }
                 })
-                .setVisibility( true ),
+                .setVisibility( true ),*/
 
             new Action("btn-mudar_posicao_paciente", "Mudar posição do paciente")
                 // Será outro

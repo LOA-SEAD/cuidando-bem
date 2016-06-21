@@ -492,6 +492,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.closeDialog(  );
                 }),
+            // 9
+            
+                new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.verPulseira )
+                .registerOption("", function() {
+                    core.closeDialog(  );
+                }),
 
 
 
@@ -506,9 +513,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("IO: pulseira_paciente");
                     core.openModalScene("Pulseira");
-                    if ( core.flag("score_checar_pulseira") == false ) {
+                    if ( core.flag("checar_pulseira") == false ) {
                         core.registerScoreItem( Scores.checarPulseira );
-                        core.flag("score_checar_pulseira",  true );
+                        core.flag("checar_pulseira",  true );
                     }
                     Pulseira.open();
                     core.openCommandBar();
@@ -545,39 +552,52 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-administrarMedicamento", "Administrar medicamento")
                 .setCssClass("action-admnistrar_medicacao")
                 .onClick(function() {
-                    if ( core.flag("score_administrar_medicacao") == false ) {
-                        core.registerScoreItem( Scores.administrarMedicacao );
-                        core.flag("score_administrar_medicacao",  true );
+                    
+                    if(core.flag("checar_pulseira") == false){
+                        core.openDialog(9);
                     }
-                    // Tirar pontos se não verificou pulseira
-                    if ( core.flag("score_checar_pulseira") == false ) {
-                        if ( core.flag("score_nao_checar_pulseira") == false ) {
-                            core.registerScoreItem( Scores.naoChecarPulseira );
-                            core.flag("score_nao_checar_pulseira",  true );
-                        }
-                    }
-                    console.log("Action: Administrar medicamento");
+                    else{
+                        
+                         if (core.flag("score_administrar_medicacao") == false) {
+                                core.registerScoreItem(Scores.administrarMedicacao);
+                                core.flag("score_administrar_medicacao", true);
+                            }
+                        }   
+                    
+              
+       
+                
                 })
                 .setVisibility( true ),
 
             new Action("btn-realizarGotejamento", "Realizar gotejamento de soro no equipo")
                 .setCssClass("action-colocarSoro")
                 .onClick(function() {
-                    if ( core.flag("score_gotejar_soro_equipo") == false ) {
+                    
+                     if(core.flag("checar_pulseira") == false){
+                        core.openDialog(9);
+                    }
+                    else{
+                        
+                         if ( core.flag("score_gotejar_soro_equipo") == false ) {
                         core.registerScoreItem( Scores.gotejarSoroEquipo );
                         core.flag("score_gotejar_soro_equipo",  true );
                     }
+                         EquipoGotejamento.open();
+                        core.openModalScene("equipoSoro");
+                        }  
+                
                     // Tirar pontos se não administrou medicamento
-                    if ( core.flag("score_administrar_medicacao") == false ) {
+                   /* if ( core.flag("score_administrar_medicacao") == false ) {
                         if ( core.flag("score_nao_administrar_medicacao") == false ) {
                             core.registerScoreItem( Scores.naoAdministrarMedicacao );
                             core.flag("score_nao_administrar_medicacao",  true );
                         }
-                    }
-                    console.log("Action: Realizar gotejamento de soro no equipo");
+                    }*/
+                    
+              
 
-                    EquipoGotejamento.open();
-                    core.openModalScene("equipoSoro");
+                   
 
                 })
                 .setVisibility( true ),
@@ -873,6 +893,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                 })
                 .setVisibility( false ),
+            
+               new Action("btn-ler_prontuario", "Ler prontuario")
+                .setCssClass("action-ler_prontuario")
+                .onClick(function() {
+    
+                         // Som
+                    Player.play( Player.audios.sfx.pegarObjeto );
+                    
+                    Prontuario.open("prescMedica");      // abre prontuario na aba correta
+                    core.openModalScene("Prontuario");
+                    
+                })
+                .setVisibility( true ),
 
             new Action("btn-visualizarFolheto", "Visualizar o folheto dos 9 certos")
                 .setCssClass("action-9certos")
@@ -1113,6 +1146,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             core.setActionVisible("btn-identificarMedicacao", true );
                             core.setActionVisible("btn-visualizarFolheto", false );
                             core.setActionVisible("btn-lavarMaos", false );
+                          
 
                         } else {
 
@@ -1429,7 +1463,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Pulseira.setData("03/06/1962");
             Pulseira.disable();
 
-            EquipoGotejamento.setRightValue(120);
+            EquipoGotejamento.setRightValue(35);
         });
 
 
@@ -1481,6 +1515,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("pegou_todos_instrumentos", false ) );
         level.registerFlag( new Flag("score_gotejar_soro", false ) );
         level.registerFlag( new Flag("conversar_recepcionista", false ) );
+        level.registerFlag( new Flag("checar_pulseira", false ) );
 
 
         level.setInitialScene( 0 );

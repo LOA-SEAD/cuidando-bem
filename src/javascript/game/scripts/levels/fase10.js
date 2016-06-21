@@ -1625,7 +1625,7 @@ core.changeScene(1);
             Pulseira.disable();
             
             
-            EquipoGotejamento.setRightValue(120);
+            EquipoGotejamento.setRightValue(12);
             
         });
 
