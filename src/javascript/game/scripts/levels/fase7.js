@@ -550,7 +550,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                     }
                 })
-                .setVisibility(false)
+                .setVisibility(false),
+            
+                    new Action("btn-ler_prontuario", "Ler prontuario")
+                .setCssClass("action-ler_prontuario")
+                .onClick(function() {
+              
+                    Prontuario.open("prescMedica");
+                    core.openModalScene("Prontuario");
+                })
+                .setVisibility( true ),
            ]);
 
 

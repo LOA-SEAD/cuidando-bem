@@ -379,6 +379,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
         alaFeminina.registerActions([
+            
             new Action("btn-ler_prontuario", "Ler prontuario")
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
@@ -1040,7 +1041,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.flag("score_lavar_maos_posto_enfermagem",  true );
                     }
                 })
-                .setVisibility( true )
+                .setVisibility( true ),
+            
+             new Action("btn-ler_prontuario", "Ler prontuario")
+                .setCssClass("action-ler_prontuario")
+                .onClick(function() {
+              
+                    Prontuario.open("prescMedica");
+                    core.openModalScene("Prontuario");
+                })
+                .setVisibility( true ),
+            
         ]);
 
         postoDeEnfermagem.registerInteractiveObjects([

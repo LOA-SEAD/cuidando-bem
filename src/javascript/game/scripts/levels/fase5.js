@@ -309,7 +309,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Dialog( lib.characters.jogador )
                 .setText( Dialogs.alaMasculina[ 0 ] )
                 .registerOption("", function() {
-                    core.openDialog( 1 );
+                    core.closeDialog(  );
                 }),
             // Dialog 1
             new Dialog( lib.characters.pacientes.pedroUnknow )
@@ -1338,6 +1338,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         Player.stopAll();
                         Player.play( Player.audios.sfx.missaoCumprida );
                     }
+                    
+                    if(core.flag("score_viu_prontuario") == true){
+                       core.openDialog( 1 );
+                    }
+                    
+                   
+                    
                 })
                 .setVisibility( true ),
 

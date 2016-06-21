@@ -181,11 +181,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.closeDialog();
                     // Fim do nível após este diálogo
-                    core.unlockLevel( 4 );
+                 /*   core.unlockLevel( 4 );
                     core.closeCommandBar();
                     core.showEndOfLevel();
                     Player.stopAll();
-                    Player.play( Player.audios.sfx.missaoCumprida );
+                    Player.play( Player.audios.sfx.missaoCumprida );*/
                 }),
             // 2 Mentor Ação errada: Ir ao posto de enfermagem
             new Dialog( lib.characters.mentor )
@@ -250,9 +250,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
 
 
-            if ( core.flag("segunda_ida_leito_paciente") == false ) {
+           /* if ( core.flag("segunda_ida_leito_paciente") == false ) {
                         core.openDialog( 0 );
-                    }
+                    }*/
 
 
 
@@ -1192,6 +1192,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             core.openDialog( 2 );
                         }
                     }
+                    
+                    
+                    if(core.flag("score_anotar_prontuario") == true){
+                    
+                    
+                        
+                    core.unlockLevel( 4 );
+                    core.closeCommandBar();
+                    core.showEndOfLevel();
+                    Player.stopAll();
+                    Player.play( Player.audios.sfx.missaoCumprida );
+                    }
+                    
                 })
                 .setVisibility( true )
         ]);
