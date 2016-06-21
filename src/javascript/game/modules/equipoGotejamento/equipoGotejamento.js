@@ -39,11 +39,25 @@ define(function( require ) {
         rate: 60
     };
 
+    var clock = {
+        x: 375,
+        y: 300,
+        radius: 60,
+        angle: 0,
+        line: 20,
+        img: undefined,
+
+        accumulator: 0,
+        time: 1
+    };
+
     var minRate = 0;
     var maxRate = 120;
     var rightRate = 60;
     var mode = "soro";
     var currentAnimation;
+
+    var margem = 1;
 
     tick.time = 1000 / tick.rate;
 
@@ -152,6 +166,14 @@ define(function( require ) {
         img.src = "./images/modalScenes/dieta/gotaDieta_0" + i + ".png";
     }
 
+    clock.img = new Image();
+
+    clock.img.src = "./images/modalScenes/relogioDigital.png";
+
+    clock.img.onLoad = function() {
+        console.log("Clock ('watch') image loaded");
+    };
+
     function init( selector ) {
         $( selector ).append( html );
 
@@ -193,6 +215,8 @@ define(function( require ) {
         tick.last = new Date().getTime();
         state = STATES.playing;
 
+        resetClock();
+
         animationLoop();
     }
 
@@ -205,6 +229,13 @@ define(function( require ) {
 
     function update() {
         currentAnimation.update();
+
+        clock.accumulator += tick.time;
+        while ( clock.accumulator >= clock.time ) {
+            clock.angle += Math.PI * 2 / 1000 / 60;
+
+            clock.accumulator -= clock.time;
+        }
     }
 
     function draw( canvas ) {
@@ -212,6 +243,42 @@ define(function( require ) {
         ctx.clearRect( 0, 0, 800, 600 );
 
         currentAnimation.draw( canvas );
+
+        ctx.drawImage( clock.img, 0, 0, 350, 600, clock.x - 99, clock.y - 165, 200, 330 );
+
+        ctx.beginPath();
+        ctx.moveTo( clock.x, clock.y - clock.radius );
+        ctx.lineTo( clock.x, clock.y - clock.radius + clock.line );
+
+        ctx.moveTo( clock.x, clock.y + clock.radius );
+        ctx.lineTo( clock.x, clock.y + clock.radius - clock.line );
+
+        ctx.moveTo( clock.x - clock.radius, clock.y );
+        ctx.lineTo( clock.x - clock.radius + clock.line, clock.y );
+
+        ctx.moveTo( clock.x + clock.radius, clock.y );
+        ctx.lineTo( clock.x + clock.radius - clock.line, clock.y );
+
+        // ctx.arc(clock.x, clock.y, clock.radius, 0, Math.PI*2);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "rgba(0,0,0,130)";
+        ctx.stroke();
+
+        ctx.beginPath();
+        px = Math.cos( clock.angle ) * clock.radius + clock.x;
+        py = Math.sin( clock.angle ) * clock.radius + clock.y;
+
+        ctx.moveTo( clock.x, clock.y );
+        ctx.lineTo( px, py );
+
+        ctx.lineWidth = 5;
+        ctx.strokeStyle = "rgba(0,0,0,255)";
+        ctx.stroke();
+    }
+
+    function resetClock() {
+      clock.angle = -Math.PI / 2;
+      clock.accumulator = 0;
     }
 
     function animationLoop() {
@@ -236,6 +303,7 @@ define(function( require ) {
 
     function faster() {
         if ( currentAnimation.cyclesPerMinute + 1 <= maxRate ) {
+            resetClock();
             currentAnimation.cyclesPerMinute += 1;
             currentAnimation.frameTime = 1000 * 60 / currentAnimation.cyclesPerMinute / currentAnimation.frameTotal;
             currentAnimation.frameCounter = 0;
@@ -245,6 +313,7 @@ define(function( require ) {
 
     function slower() {
         if ( currentAnimation.cyclesPerMinute - 1 >= minRate ) {
+            resetClock();
             currentAnimation.cyclesPerMinute -= 1;
             currentAnimation.frameTime = 1000 * 60 / currentAnimation.cyclesPerMinute / currentAnimation.frameTotal;
             currentAnimation.frameCounter = 0;
@@ -253,6 +322,7 @@ define(function( require ) {
     }
 
     function setCyclesPerMinute( _cpm ) {
+        resetClock();
 
         currentAnimation.cyclesPerMinute = _cpm;
         currentAnimation.frameTime = 1000 * 60 / currentAnimation.cyclesPerMinute / currentAnimation.frameTotal;
@@ -265,7 +335,7 @@ define(function( require ) {
     }
 
     function isValueRight() {
-        return rightRate == currentAnimation.cyclesPerMinute;
+        return currentAnimation.cyclesPerMinute >= rightRate - margem && currentAnimation.cyclesPerMinute <= rightRate + margem;
     }
 
     function setMode( mode ) {
