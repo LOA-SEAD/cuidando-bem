@@ -107,7 +107,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var recepcao = lib.scenes.recepcao.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + recepcao.getName() );
-                core.openDialog( 0 );
+                
+                 if(core.flag("conversar_recepcionista") == false) {
+                    core.flag("conversar_recepcionista", true);
+                    core.openDialog( 0 ); 
+                
+                }
+                
             });
 
         recepcao.registerInteractiveObjects([
@@ -157,6 +163,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
                 console.log("Entrando no corredor");
+            
+                 core.openCommandBar();
+                core.setActionVisible("btn-ir_recepcao", true);
 
                 Player.stopAll();
                 // Som
@@ -174,6 +183,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInRange( Player.audios.musics.inGame );
             });
+    
+     corredor.registerActions([ 
+            
+             new Action("btn-ir_recepcao", "Voltar para a recepção")
+                .setCssClass("action-voltarRecepcao")
+                .onClick(function() {
+                    
+                    core.changeScene( 0 );
+                   
+                })
+                .setVisibility( true ),    
+            
+        ]);
 
         corredor.registerDialogs([
                 // 0
@@ -528,7 +550,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                     }
                 })
-                .setVisibility(false)
+                .setVisibility(false),
+            
+                    new Action("btn-ler_prontuario", "Ler prontuario")
+                .setCssClass("action-ler_prontuario")
+                .onClick(function() {
+              
+                    Prontuario.open("prescMedica");
+                    core.openModalScene("Prontuario");
+                })
+                .setVisibility( true ),
            ]);
 
 
@@ -1179,6 +1210,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "score_colocar_gotejamento",  false  ) );
         level.registerFlag( new Flag( "score_anotar_prontuario",  false  ) );
         level.registerFlag( new Flag( "score_gotejar_soro",  false  ) );
+        level.registerFlag( new Flag( "conversar_recepcionista",  false  ) );
 
         level.setInitialScene( 0 );
 

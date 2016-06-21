@@ -58,7 +58,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         recepcao = lib.scenes.recepcao.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + recepcao.getName() );
-                core.openDialog( 0 );
+            
+                   if(core.flag("conversar_recepcionista") == false) {
+                    core.flag("conversar_recepcionista", true);
+                    core.openDialog( 0 ); 
+                
+                }
+            
             });
 
         recepcao.registerDialogs([
@@ -128,6 +134,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
+            
+                 core.openCommandBar();
+                core.setActionVisible("btn-ir_recepcao", true);
+            
                 console.log("Entrando no corredor");
                 Player.stopAll();
                 // Som
@@ -144,6 +154,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInRange( Player.audios.musics.inGame );
             });
+    
+     corredor.registerActions([ 
+            
+             new Action("btn-ir_recepcao", "Voltar para a recepção")
+                .setCssClass("action-voltarRecepcao")
+                .onClick(function() {
+                    
+                    core.changeScene( 0 );
+                   
+                })
+                .setVisibility( true ),    
+            
+        ]);
 
         corredor.registerDialogs([
             // 0
@@ -158,11 +181,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.closeDialog();
                     // Fim do nível após este diálogo
-                    core.unlockLevel( 4 );
+                 /*   core.unlockLevel( 4 );
                     core.closeCommandBar();
                     core.showEndOfLevel();
                     Player.stopAll();
-                    Player.play( Player.audios.sfx.missaoCumprida );
+                    Player.play( Player.audios.sfx.missaoCumprida );*/
                 }),
             // 2 Mentor Ação errada: Ir ao posto de enfermagem
             new Dialog( lib.characters.mentor )
@@ -227,9 +250,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
 
 
-            if ( core.flag("segunda_ida_leito_paciente") == false ) {
+           /* if ( core.flag("segunda_ida_leito_paciente") == false ) {
                         core.openDialog( 0 );
-                    }
+                    }*/
 
 
 
@@ -266,7 +289,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 console.log("Saindo da sala de leitos");
                 // Habilitar o fato de que a proxima ida ao leito do paciente seja no mínimo a segunda
                 core.flag("segunda_ida_leito_paciente",  true );
-                core.closeCommandBar();
+                // core.closeCommandBar();
             });
 
         salaDeLeitos.registerInteractiveObjects([
@@ -416,7 +439,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( false ),
 
 
-            new Action("btn-elevar_grade_cama", "Elevar a grade da cama")
+            new Action("btn-elevar_grade_cama", "Elevar grade da cama")
                 // CONSERTAR
                 .setCssClass("action-elevarGrade")
                 .onClick(function() {
@@ -425,6 +448,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         if ( core.flag("score_elevou_grade_cama") == false ) {
                             core.flag("score_elevou_grade_cama",  true );
                             core.registerScoreItem( Scores.elevarGradeDaCama );
+                            core.changeSceneCssClassTo("scene-bedroom-level2b");
+                            core.setActionVisible("btn-elevar_grade_cama", false);
                         }
                     } else {
                         core.closeCommandBar();
@@ -821,67 +846,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
         leito.registerActions([
-
-
-            /*new Action("btn-falarPaciente", "Conversar com Paciente")
-                // Será outro
-                .setCssClass("action-leito-char-02")
-                .onClick(function() {
-
-                    if ( core.flag("conversar_paciente2") == true ) {
-                        console.log("Action: btn-conversarPaciente");
-                        if ( core.flag("score_falar_paciente") == false ) {
-                            core.registerScoreItem( Scores.falarComPaciente );
-                            core.flag("score_falar_paciente",  true );
-                        }
-                        core.closeCommandBar();
-                        core.openDialog( 0 );
-                    } else {
-                        // Já realizou os procedimentos
-                        console.log("Action: Explicar o resultado");
-                        if ( core.flag("score_realizou_teste_glicemia") == false ) {
-                            if ( core.flag("score_nao_realizou_teste_glicemia") == false ) {
-                                core.registerScoreItem( Scores.naoUsarAlgodao2 );
-                                core.flag("score_nao_realizou_teste_glicemia",  true );
-                            }
-                            core.closeCommandBar();
-                            core.openDialog( 12 );
-                        } else {
-                            if ( core.flag("score_explicou_resultado") == false ) {
-                                core.flag("score_explicou_resultado",  true );
-                                core.registerScoreItem( Scores.explicarResultado );
-                            }
-                            core.openDialog( 6 );
-                            // Para o caso dele ter tentado sair sem explicar o resultado para o paciente antes
-                            core.flag("tem_fala",  false );
-                        }
-                    }
-                })
-                .setVisibility( true ),*/
-
-            /*new Action("btn-selecionar_bandeja", "Selecionar Bandeja")
-                // CONSERTAR
-                .setCssClass("action-selecionar_bandeja")
-                .onClick(function() {
-                    console.log("Action: Fazer teste de glicemia capilar");
-                    // Desabilita acesso a pulseira
-                    Pulseira.disable();
-                    if ( core.flag("score_verificar_pulseira") == false ) {
-                        if ( core.flag("score_nao_verificar_pulseira") == false ) {
-                            core.registerScoreItem( Scores.naoVerificarPulseira );
-                            core.flag("score_nao_verificar_pulseira",  true );
-                        }
-                        core.closeCommandBar();
-                        core.openDialog( 10 );
-                    } else {
-                        if ( core.flag("score_selecionou_bandeja") == false ) {
-                            core.flag("score_selecionou_bandeja",  true );
-                            core.registerScoreItem( Scores.selecionarBandeja );
-                        }
-                    }
-                })
-                .setVisibility( false ),*/
-
+            
+          
             new Action("btn-por_luvas", "Colocar Luvas")
                 .setCssClass("action-luvas_de_procedimento")
                 .onClick(function() {
@@ -900,10 +866,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         if ( core.flag("score_vestiu_luvas") == false ) {
                             core.flag("score_vestiu_luvas",  true );
                             core.registerScoreItem( Scores.porLuvas );
+                            core.setActionVisible("btn-por_luvas", false);
                         }
                     // }
                 })
                 .setVisibility( false ),
+            
+            
 
             new Action("btn-utilizar_algodao", "Utilizar Algodão")
                 .setCssClass("action-algodao_seco")
@@ -943,6 +912,21 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                 })
                 .setVisibility( false ),
+            
+            
+              new Action("btn-verificar_teste_glicemia", "Verificar resultado")
+            
+                .setCssClass("action-realizar_teste_glicemia")
+                .onClick(function() {
+                    
+                     Player.play( Player.audios.sfx.bip );
+                     core.openModalScene("modalGlicosimetro"); 
+                    
+                    
+                })
+                .setVisibility( false ),
+            
+            
 
             new Action("btn-realizar_teste_glicemia", "Realizar teste de glicemia capilar")
                 // CONSERTAR
@@ -956,7 +940,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             core.registerScoreItem( Scores.naoUsarAlgodao );
                             core.flag("score_nao_utilizou_algodao1",  true );
                         }
-                        core.closeCommandBar();
+                     //   core.closeCommandBar();
                         core.openDialog( 12 );
                     } else {
                         // Habilita o segundo diálogo com o paciente
@@ -966,10 +950,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             core.registerScoreItem( Scores.realizarTesteGlicemia );
                         }
                         // Abre a cena do glicosimetro
-                        core.openModalScene("modalGlicosimetro");
+                        core.openModalScene("modalGlicosimetroComFita");
                     }
                 })
                 .setVisibility( false ),
+            
+                
+            
 
             new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
                 .setCssClass("action-ir_sala_de_leitos")
@@ -1205,25 +1192,44 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             core.openDialog( 2 );
                         }
                     }
+                    
+                    
+                    if(core.flag("score_anotar_prontuario") == true){
+                    
+                    
+                        
+                    core.unlockLevel( 4 );
+                    core.closeCommandBar();
+                    core.showEndOfLevel();
+                    Player.stopAll();
+                    Player.play( Player.audios.sfx.missaoCumprida );
+                    }
+                    
                 })
                 .setVisibility( true )
         ]);
+    
 
         //      alert(Prontuario.isDataValid() + " Final da fase");
 
 
-        glicosimetro = new Scene("modalGlicosimetro", "modalGlicosimetro")
-            .setCssClass("modalScene-glicosimetro")
+        glicosimetroComFita = new Scene("modalGlicosimetroComFita", "modalGlicosimetroComFita")
+            .setCssClass("modalScene-glicosimetroComFita")
             .setTemplate("<span class='glicosimetro-text'>180 mg/dl</span>");
 
-        glicosimetro.registerActions([
+        glicosimetroComFita.registerActions([
 
             new Action("btn-realizar_teste_glicemia", "Terminar teste de glicemia capilar")
                 .setCssClass("action-realizar_teste_glicemia")
                 .onClick(function() {
-
-                    // VERIFICAR SE JOGADOR FEZ A AÇÃO DE BAIXO
-                    core.closeModalScene("modalGlicosimetro");
+                        
+                    core.closeModalScene("modalGlicosimetroComFita");
+                    
+       
+                    core.setActionVisible("btn-realizar_teste_glicemia", false);
+                    core.setActionVisible("btn-verificar_teste_glicemia", true);
+                      
+                    
 
                 })
                 .setVisibility( true ),
@@ -1231,6 +1237,31 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         ]);
+    
+    
+    
+       glicosimetro = new Scene("modalGlicosimetro", "modalGlicosimetro")
+            .setCssClass("modalScene-glicosimetro")
+            .setTemplate("<span class='glicosimetro-text'>180 mg/dl</span>");
+
+        glicosimetro.registerActions([
+
+            new Action("btn-realizar_teste_glicemia", "Fechar verificação")
+                .setCssClass("action-realizar_teste_glicemia")
+                .onClick(function() {
+                        
+                    core.closeModalScene("modalGlicosimetro");
+                    
+             
+                    
+
+                })
+                .setVisibility( true ),
+
+
+
+        ]);
+    
 
 
         // Register in level
@@ -1248,6 +1279,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerModalScene( pulseira );
         level.registerModalScene( gaveta );
         level.registerModalScene( prontuario );
+        level.registerModalScene( glicosimetroComFita );
         level.registerModalScene( glicosimetro );
 
         // level init script
@@ -1364,6 +1396,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "score_jogou_agulha_errado",  false  ) );
         level.registerFlag( new Flag( "score_jogou_algodao_errado",  false  ) );
         level.registerFlag( new Flag( "pegou_agulhas",  false  ) );
+        level.registerFlag( new Flag( "fez_teste_glicemia",  false  ) );
 
         level.setInitialScene( 0 );
 

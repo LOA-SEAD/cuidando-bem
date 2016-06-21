@@ -51,7 +51,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         recepcao = lib.scenes.recepcao.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + recepcao.getName() );
-                core.openDialog( 0 );
+            
+                  
+               if(core.flag("conversar_recepcionista") == false) {
+                    core.flag("conversar_recepcionista", true);
+                    core.openDialog( 0 ); 
+                
+                }
+            
             });
 
         recepcao.registerInteractiveObjects([
@@ -136,6 +143,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
+            
+                 core.openCommandBar();
+                core.setActionVisible("btn-ir_recepcao", true);
+            
                 console.log("Entrando no corredor");
                 Player.stopAll();
                 // Som
@@ -149,6 +160,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInRange( Player.audios.musics.inGame );
             });
+    
+     corredor.registerActions([ 
+            
+             new Action("btn-ir_recepcao", "Voltar para a recepção")
+                .setCssClass("action-voltarRecepcao")
+                .onClick(function() {
+                    
+                    core.changeScene( 0 );
+                   
+                })
+                .setVisibility( true ),    
+            
+        ]);
 
         corredor.registerInteractiveObjects([
             new InteractiveObject("io-ir_sala_leitos", "Ir à Enfermaria Masculina")
@@ -852,7 +876,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true ),
 */
-            new Action("btn-fazer_lista", "Fazer lista de verificação")
+          /*  new Action("btn-fazer_lista", "Fazer lista de verificação")
                 // Será outro
                 .setCssClass("action-fazer_lista")
                 .onClick(function() {
@@ -868,7 +892,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.flag("score_fez_lista_verificacao",  true );
                     }
                 })
-                .setVisibility( true ),
+                .setVisibility( true ),*/
 
             new Action("btn-mudar_posicao_paciente", "Mudar posição do paciente")
                 // Será outro
@@ -1313,6 +1337,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "score_anotar_prontuario_centro_cirurgico",  false  ) );
         level.registerFlag( new Flag( "pegou_copo",  false  ) );
         level.registerFlag( new Flag( "pegou_agua",  false  ) );
+        level.registerFlag( new Flag( "conversar_recepcionista",  false  ) );
 
 
         level.setInitialScene( 0 );

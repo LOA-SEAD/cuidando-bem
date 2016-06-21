@@ -61,7 +61,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var recepcao = lib.scenes.recepcao.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + recepcao.getName() );
-                core.openDialog( 0 );
+                
+                if(core.flag("conversar_recepcionista") == false) {
+                    core.flag("conversar_recepcionista", true);
+                    core.openDialog( 0 ); 
+                
+                }
             });
 
         recepcao.registerDialogs([
@@ -125,6 +130,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         var corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
+                
+                core.openCommandBar();
+                core.setActionVisible("btn-ir_recepcao", true);
+                
                 Player.stopAll();
                 // Som
                 Player.play( Player.audios.sfx.abrirPorta );
@@ -169,6 +178,21 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         break;
                 }
             });
+    
+    
+        corredor.registerActions([ 
+            
+             new Action("btn-ir_recepcao", "Voltar para a recepção")
+                .setCssClass("action-voltarRecepcao")
+                .onClick(function() {
+                    
+                    core.changeScene( 0 );
+                   
+                })
+                .setVisibility( true ),    
+            
+        ]);
+        
 
         corredor.registerDialogs([
             // Dialog 0
@@ -542,6 +566,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
         leito.registerActions([
+            
             new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
                 .setCssClass("action-ir_sala_de_leitos")
                 .onClick(function() {
