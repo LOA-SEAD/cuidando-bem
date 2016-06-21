@@ -79,7 +79,7 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
     }
 
     function isDataValid() {
-
+      return true;
     }
 
     // setters
