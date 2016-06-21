@@ -19,7 +19,7 @@ module.exports = function( grunt ) {
     // Automatically load required grunt tasks
     // load all grunt tasks matching the ['grunt-*', '@*/grunt-*'] patterns
     require( "load-grunt-tasks" )( grunt );
-    grunt.loadTasks( "tasks" );
+    grunt.loadTasks( "./grunt/tasks/" );
 
     grunt.task.run([
         "configDev"
@@ -42,7 +42,7 @@ module.exports = function( grunt ) {
     }
 
     // Magical line that actually load tasks configs from path below
-    grunt.util._.extend( config, loadConfig( "./tasks/options/" ) );
+    grunt.util._.extend( config, loadConfig( "./grunt/options/" ) );
 
     // Inits configuration
     grunt.initConfig( config );
