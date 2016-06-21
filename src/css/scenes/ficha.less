@@ -80,6 +80,9 @@ This file is part of Cuidando Bem.
         width: 70%;
     }
 
+    .in_volumeAprox {
+        width: 8%;
+    }
     .container {
 
         overflow: hidden;
@@ -171,16 +174,49 @@ This file is part of Cuidando Bem.
     }
 
     table.fraction {
-        font-size: 2rem;
+        font-size: 1.5rem;
         width: 100%;
 
-        td {
-            width: 20%;
+        td.infoFicha {
+            width: 60%;
+        }
+        tr {
+        td:nth-child(1) {
+          width: 10%;
         }
 
-        input {
-            width: 100%;
+        td:nth-child(2) {
+          width: 1%;
         }
+
+        td:nth-child(3) {
+          width: 10%;
+        }
+
+        td:nth-child(4) {
+          width: 1%;
+        }
+
+        td:nth-child(5) {
+          width: 8%;
+          input {
+            width: 100%;
+          }
+        }
+
+        td:nth-child(6) {
+          width: 1%;
+        }
+
+        td:nth-child(7) {
+          width: 8%;
+          input {
+            width: 100%;
+          }
+        }
+}
+
+
     }
 
     .info_gotejamento > p {
