@@ -43,6 +43,18 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
     var gotasRegexp;
     var gotasAproxRegexp;
 
+    var inData = "in_data";
+    var inEnfermaria = "in_enfermaria";
+    var inLeito = "in_leito";
+    var inPaciente = "in_paciente";
+    var inIni = "in_ini";
+    var inTer = "in_ter";
+    var inVolume = "in_volume";
+    var inTempo = "in_tempo";
+    var inHorario = "in_horario";
+    var inFuncionario = "in_funcionario";
+    var inGtsAprox = "in_gtsAprox";
+
     // Corpo oral
     // horario é verificado em relação ao horário atual
 
@@ -79,6 +91,28 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
     }
 
     function isDataValid() {
+      // Geral
+      // data - Verificar em relação ao dia mes e ano atual
+      var today = new Date();
+      var inDataVal = $( inData ).val().split("/");
+      if ( inDataVal[ 0 ] != today.getDate() ) {
+        return false;
+      }
+      // Enfermaria - Informação passada por regExp  *
+      // Leito - Informação passada por regExp  *
+      // Nome do paciente - Informação passada por regExp  *
+      // Funcionario - Nome do jogador
+
+      // soro
+      // inicio - Horario atual
+      // termino - Horario atual + duração
+      // volume - Informação passada por regExp  *
+      // horario - Informação passada por regExp  *
+      // gts - Informação passada por regExp  *
+      // gts Aproximado - Informação passada por regExp  *
+
+      // oral
+      // horario - Horario atual
       return true;
     }
 
