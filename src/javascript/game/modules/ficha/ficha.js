@@ -51,9 +51,11 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
     var inPaciente = ".in_paciente";
     var inIni = ".in_ini";
     var inTer = ".in_ter";
-    var inVolume = ".in_volume";
+    var inVolume1 = ".in_volume1";
+    var inVolume2 = ".in_volume2";
     var inTempo = ".in_tempo";
-    var inDuracao = ".in_horario";
+    var inHorario = ".in_horario";
+    var inDuracao = ".in_duracao";
     var inFuncionario = ".in_funcionario";
     var inGotasAprox = ".in_gtsAprox";
     var inGotas = ".in_gts";
@@ -66,6 +68,26 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
 
     function init( selector ) {
         $( selector ).append( html );
+
+        // Syncronize volume inputs
+        $( inVolume1 ).on("keyup paste change", function() {
+            $( inVolume2 ).val( $( this ).val() );
+        });
+
+        $( inVolume2 ).on("keyup paste change", function() {
+            $( inVolume1 ).val( $( this ).val() );
+        });
+
+        $( inData ).mask("00/00/0000");
+        $( inLeito ).mask("00");
+        $( inVolume1 ).mask("000");
+        $( inVolume2 ).mask("000");
+        $( inDuracao ).mask("00");
+        $( inGotas ).mask("00,00");
+        $( inGotasAprox ).mask("000");
+        $( inIni ).mask("00:00");
+        $( inTer ).mask("00:00");
+        $( inTer ).mask("00:00");
     }
 
     function open( _state, levelId ) {
@@ -89,6 +111,10 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
         $(".corpo > div > div").hide();
         $( ".ficha-l" + levelId ).show();
         $( divSelector ).show();
+
+
+
+
     }
 
     function close() {
@@ -145,14 +171,14 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
         }
         // termino - Horario atual + duração
         var termino = $( inTer ).val().split(":");
-        if ( termino[ 0 ] != horas + duracao ) {
+        if ( termino[ 0 ] != (horas + duracao) % 24 ) {
           return false;
         }
         if ( termino[ 1 ] != minutos ) {
           return false;
         }
         // volume - Informação passada por regExp  *
-        var volume = $( inVolume ).val();
+        var volume = $( inVolume1 ).val();
         if ( !volumeRegexp.test( volume ) ) {
           return false;
         }
