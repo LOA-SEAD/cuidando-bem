@@ -82,6 +82,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             );
 
             Prontuario.setAnotacaoEnfermagemRowData("15/03", "");
+
+            Ficha.setEnfermeiraRegexp( /Masculina/i );
+            Ficha.setPacienteRegexp( /Pedro Alc(í|i)des Mendon(ç|c)a/i );
+            Ficha.setLeitoRegexp( /0?1/ );
+            Ficha.setVolumeRegexp( /104/ );
+            Ficha.setDuracao( 1 );
+            Ficha.setGotasRegexp( /34,66/ );
+            Ficha.setGotasAproxRegexp( /35/ );
         });
 
 
@@ -99,6 +107,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                 // Soro
                 Ficha.open( "soro", 4 );
+                core.openCommandBar();
                 // Ficha.open( "soro", 6 );
                 // Ficha.open( "soro", 9 );
 
@@ -113,7 +122,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-ir_corredor")
                 .onClick(function() {
                     console.log("Action: ir_corredor");
-                    core.changeScene( 1 );
+                    alert( Ficha.isDataValid() );
                 })
                 .setVisibility( true )
         ]);
