@@ -915,14 +915,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( false ),
 
             new Action("btn-identificarMedicacao", "Identificar medicação")
-                .setCssClass("action-identificarMedicacao")
+                .setCssClass("action-fichaMedicacao")
                 .onClick(function() {
-
-                    if ( core.flag("score_identificar_medicacao") == false ) {
-                        core.registerScoreItem( Scores.identificarMedicacao );
-                        core.flag("score_identificar_medicacao",  true );
-                    }
-
+                    Ficha.open( "soro", 5 );
+                    core.openModalScene("identificarMedicacao");
                 })
                 .setVisibility( false ),
 
@@ -1439,6 +1435,24 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
         ]);
 
+        fichaMedicacao = new Scene("identificarMedicacao", "Identificar Medicação");
+
+        fichaMedicacao.registerActions([
+            new Action("btn-fecharFicha", "Fechar ficha")
+                .setCssClass("action-fichaMedicacao")
+                .onClick(function() {
+                    console.log("Action: Fechar ficha");
+                    core.closeModalScene("identificarMedicacao");
+                    Ficha.close();
+                    if( Ficha.isDataValid() ) {
+                      if ( core.flag("score_identificar_medicacao") == false ) {
+                          core.registerScoreItem( Scores.identificarMedicacao );
+                          core.flag("score_identificar_medicacao",  true );
+                      }
+                    }
+                })
+        ]);
+
 
 
         level.registerScene( recepcao );
@@ -1455,6 +1469,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerModalScene( noveCertosMedicacao );
         level.registerModalScene( keflin );
         level.registerModalScene( equipoSoro );
+        level.registerModalScene( fichaMedicacao );
 
 
         level.setSetupScript(function() {

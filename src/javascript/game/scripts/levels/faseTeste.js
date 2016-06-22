@@ -106,7 +106,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 // EquipoGotejamento.open();
 
                 // Soro
-                Ficha.open( "soro", 4 );
+                Ficha.open( "soro", 5 );
                 core.openCommandBar();
                 // Ficha.open( "soro", 6 );
                 // Ficha.open( "soro", 9 );
