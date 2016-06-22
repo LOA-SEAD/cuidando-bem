@@ -548,6 +548,38 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Pulseira.disable();
                 })
                 .setVisibility( true ),
+            
+            
+             new Action("btn-pegar_suporte_soro", "Pegar Suporte de Soro")
+      .setCssClass("action-pegarSuporte")
+      .onClick(function() {
+
+        /*if ( core.flag("score_pegar_suporte_soro") == false ) {
+            core.registerScoreItem( Scores.pegarSuporteSoro );
+            core.changeSceneCssClassTo("scene-bedChar07b");   
+        }*/
+          
+           core.changeSceneCssClassTo("scene-bedChar05b");  
+
+       // core.flag("score_pegar_suporte_soro",  true );
+        core.setActionVisible("btn-pegar_suporte_soro", false);
+
+    })
+      .setVisibility( true ),
+            
+             new Action("btn-colocarSoro", "Colocar Soro")
+            .setCssClass("action-soro_fisiologico_1000ml")
+            .onClick(function() {
+                
+        
+                core.changeSceneCssClassTo("scene-bedChar05c");
+                core.setActionVisible("btn-colocarSoro", false);
+                
+                
+
+            })
+            .setVisibility( true ), 
+            
 
             new Action("btn-administrarMedicamento", "Administrar medicamento")
                 .setCssClass("action-admnistrar_medicacao")

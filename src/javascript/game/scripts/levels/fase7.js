@@ -781,9 +781,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         if ( core.flag("score_pegar_suporte_soro") == false ) {
             core.registerScoreItem( Scores.pegarSuporteSoro );
+            core.changeSceneCssClassTo("scene-bedChar07b");   
         }
 
         core.flag("score_pegar_suporte_soro",  true );
+        core.setActionVisible("btn-pegar_suporte_soro", false);
 
     })
       .setVisibility( true ),
@@ -794,12 +796,30 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         if ( core.flag("score_elevar_cama") == false ) {
             core.registerScoreItem( Scores.elevarCama );
+            core.changeSceneCssClassTo("scene-bedChar07d");
         }
 
         core.flag("score_elevar_cama",  true );
+        core.setActionVisible("btn-elevar_cama", false);
 
     })
       .setVisibility( true ),
+        
+        
+       
+           new Action("btn-colocarSoro", "Colocar Soro")
+            .setCssClass("action-frasco_dieta")
+            .onClick(function() {
+                
+        
+                core.changeSceneCssClassTo("scene-bedChar07c");
+                core.setActionVisible("btn-colocarSoro", false);
+                
+                
+
+            })
+            .setVisibility( true ),    
+        
 
       new Action("btn-verificar_sonda", "Verificar Local da Sonda")
       .setCssClass("action-verificar-sonda")
