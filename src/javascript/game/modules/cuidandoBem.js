@@ -177,6 +177,8 @@ define([
             SceneController.setScene( Scene );
             CommandBar.changeToActionsButtons( Actions );
             CommandBar.hide();
+            EquipoGotejamento.close();
+            Ficha.close();
             InteractiveObject.changeToInteractiveObjects( InteractiveObjects );
 
             Scene.load();
