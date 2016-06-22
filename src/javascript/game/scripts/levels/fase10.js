@@ -15,8 +15,8 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData", "EquipoGotejamento" ],
-    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores, EquipoGotejamento ) {
+define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData", "EquipoGotejamento", "Ficha" ],
+    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores, EquipoGotejamento, Ficha ) {
 
         var Dialogs = require("DialogsData").fase9;
         var Alertas = require("DialogsData").alertas;
@@ -130,21 +130,21 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var recepcao = lib.scenes.recepcao.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + recepcao.getName() );
-                
-                   
+
+
                if(core.flag("conversar_recepcionista") == false) {
                     core.flag("conversar_recepcionista", true);
-                    core.openDialog( 0 ); 
-                
+                    core.openDialog( 0 );
+
                 }
-                
+
 
             });
-    
+
         recepcao.registerDialogs([
-            
+
              // 0
-            
+
                new Dialog( lib.characters.recepcionista )
             .setText( Dialogs.recepcao[ 0 ] )
             .registerOption("", function() {
@@ -152,9 +152,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             }),
 
         ]);
-    
-    
-        
+
+
+
 
 
         recepcao.registerInteractiveObjects([
@@ -193,10 +193,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
-            
+
                  core.openCommandBar();
                 core.setActionVisible("btn-ir_recepcao", true);
-            
+
                 console.log("Entrando no corredor");
                 Player.stopAll();
                 // Som
@@ -210,24 +210,24 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInRange( Player.audios.musics.inGame );
             });
-    
-     corredor.registerActions([ 
-            
+
+     corredor.registerActions([
+
              new Action("btn-ir_recepcao", "Voltar para a recepção")
                 .setCssClass("action-voltarRecepcao")
                 .onClick(function() {
-                    
+
                     core.changeScene( 0 );
-                   
+
                 })
-                .setVisibility( true ),    
-            
+                .setVisibility( true ),
+
         ]);
 
 
         corredor.registerDialogs([
-            
-           
+
+
 
         ]);
 
@@ -692,25 +692,25 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                       } else if ( core.flag("pegarNACL") == false || core.flag("pegarFrascoSG") == false ) {
 
                             core.openDialog( 6 );
-                        } 
-                
-                
-                
+                        }
+
+
+
                     if(core.flag("pegarNACL") == true && core.flag("pegarFrascoSG") == true){
-                        
+
                         if(core.flag("conferirNACL") == true || core.flag("conferirFrascoSG") == true){
                                core.registerScoreItem( Scores.conferirDieta );
                                core.flag("conferirMedicamento", true );
-                               core.changeScene( 1 ); 
+                               core.changeScene( 1 );
                         }
                         else {
                              core.flag("conferirMedicamento", true );
                             core.changeScene( 1 );
                         }
-                        
+
                     }
-                
-        
+
+
 
 
 
@@ -722,9 +722,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setCssClass("action-soro_glicofisiologico_1000ml")
             .onClick(function() {
                 core.openModalScene("conferirSoroGlicofisiologico1000");
-                    
-                
-                
+
+
+
                 // if ( (core.flag("pegarFrascoSG") == false) || (core.flag("pegarNACL") == false) ) {
 
                 //     core.openDialog( 3 );
@@ -752,36 +752,36 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         var postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
-                
+
                   core.setInteractiveObjectVisible("io-pegar_bandeja", false );
-                  core.setInteractiveObjectVisible("io-abrir_gaveta", false );    
-                
-                
+                  core.setInteractiveObjectVisible("io-abrir_gaveta", false );
+
+
                 if( core.flag("conferirMedicamento") == true){
-                    
+
                   core.setInteractiveObjectVisible("io-pegar_bandeja", true );
                   core.setInteractiveObjectVisible("io-abrir_gaveta", true );
-                    
+
                     if(core.flag("pegou_tudo_postoEnfermagem") == true || core.flag("pegar_bandeja") == true){
                          core.setInteractiveObjectVisible("io-pegar_bandeja", false );
                         core.setInteractiveObjectVisible("io-abrir_gaveta", true );
-                        
+
                     }
-                    
+
                 }
                 else {
                       core.openDialog( 2 );
-                    
+
                     if ( core.flag("score_irPosto_horaErrada") == false ) {
 
                 core.flag("score_irPosto_horaErrada", true );
                  core.registerScoreItem( Scores.irPosto_horaErrada );
             }
-                    
+
                 }
-                
-                
-           
+
+
+
 
             });
 
@@ -852,8 +852,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           /*      if ( core.flag("pegar_prescricao_medica") == false || core.flag("") ) {
                     core.changeScene( 1 );
                 }
-                
-                
+
+
                 if(core.flag("pegou_tudo_postoEnfermagem") == true) {
                 	core.changeScene(1);
 		}*/
@@ -1015,14 +1015,14 @@ core.changeScene(1);
             .registerOption("", function() {
                 core.closeDialog();
             }),
-            
+
             // 8
              new Dialog( lib.characters.mentor )
                 .setText( Alertas.esqueceu.erroGotejamento )
                 .registerOption("", function() {
                     core.closeDialog(  );
                 }),
-            
+
 
 
 
@@ -1114,15 +1114,15 @@ core.changeScene(1);
             .registerOption("", function() {
                 core.closeDialog();
             }),
-            
+
             // 6
-            
+
               new Dialog( lib.characters.mentor )
                 .setText( Alertas.esqueceu.erroGotejamento )
                 .registerOption("", function() {
                     core.closeDialog(  );
                 }),
-            
+
 
 
 
@@ -1195,7 +1195,7 @@ core.changeScene(1);
                 if ( core.flag( "pegar_suporte_soro" ) == false ) {
                     core.flag( "pegar_suporte_soro",  true  );
                     core.registerScoreItem( Scores.pegarSuporteSoro );
-                    
+
                 core.changeSceneCssClassTo("scene-bedChar10B");
                 core.setActionVisible("btn-pegar_suporte_soro", false);
 
@@ -1204,18 +1204,18 @@ core.changeScene(1);
 
             })
             .setVisibility( false ),
-        
-      
-        
+
+
+
            new Action("btn-colocarSoro", "Colocar Soro")
             .setCssClass("action-soro_fisiologico_1000ml")
             .onClick(function() {
-                
-        
+
+
                 core.changeSceneCssClassTo("scene-bedChar10C");
                 core.setActionVisible("btn-colocarSoro", false);
-                
-                
+
+
 
             })
             .setVisibility( false ),
@@ -1244,12 +1244,12 @@ core.changeScene(1);
                     core.flag( "realizar_gotejamento",  true  );
                     core.registerScoreItem( Scores.realizarGotejamento );
                 }
-                
+
                     EquipoGotejamento.open();
                     core.openModalScene("equipoSoro");
                  //   core.openModalScene("EquipamentoSoro");
-                 
-              
+
+
 
 
             })
@@ -1349,31 +1349,31 @@ core.changeScene(1);
             })
             .setVisibility( true )
         ]);
-    
-    
-    
+
+
+
         equipoSoro = new Scene("equipoSoro", "EquipamentoSoro")
-        
+
         var erro = 0;
-    
+
         equipoSoro.registerActions([
-            
+
             new Action("btn-fecharEquipoSoro", "Fechar Equipamento de Soro")
             .setCssClass("action-colocarSoro")
             .onClick(function() {
 
                 if(EquipoGotejamento.isValueRight()){
-                    
+
                     if(core.flag("score_gotejar_soro") == false){
                          core.registerScoreItem( Scores.gotejarSoroEquipo );
                          core.flag("score_gotejar_soro", true);
                     }
-                   
+
                     EquipoGotejamento.close();
                     core.closeModalScene("equipoSoro");
-                    
+
                 }
-                
+
                 else {
                     core.closeCommandBar();
                     core.openDialog( 6 );
@@ -1382,19 +1382,19 @@ core.changeScene(1);
                     if(erro == 3){
                         core.registerScoreItem( Scores.naoGotejarSoroEquipo );
                         erro = -100;
-                    }                   
+                    }
                 }
-                
-                
-               
-                
 
-                
+
+
+
+
+
             })
             .setVisibility( true )
-            
-            
-            
+
+
+
         ]);
 
 
@@ -1532,7 +1532,7 @@ core.changeScene(1);
                .setCssClass("action-cloreto_sodio_20_10ml")
                 .onClick(function() {
                     console.log("Action: Finalizar conferição");
-                    core.flag("conferirNACL", true );   
+                    core.flag("conferirNACL", true );
                     core.closeModalScene("conferirCloretoSodio");
                 })
         ]);
@@ -1623,10 +1623,17 @@ core.changeScene(1);
             Pulseira.setLeito("03");
             Pulseira.setData("24/07/1937");
             Pulseira.disable();
-            
-            
+
+
             EquipoGotejamento.setRightValue(12);
-            
+
+            Ficha.setEnfermeiraRegexp( /Masculina/i );
+            Ficha.setPacienteRegexp( /Pedro Alc(í|i)des Mendon(ç|c)a/i );
+            Ficha.setLeitoRegexp( /0?1/ );
+            Ficha.setVolumeRegexp( /850/ );
+            Ficha.setDuracao( 24 );
+            Ficha.setGotasRegexp( /11,80/ );
+            Ficha.setGotasAproxRegexp( /12/ );
         });
 
         level.registerFlag( new Flag( "score_iralaFeminina_horaErrada",  false  ) );

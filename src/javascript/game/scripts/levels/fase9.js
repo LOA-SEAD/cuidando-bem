@@ -15,8 +15,8 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
-    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
+define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData", "Ficha" ],
+    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores, Ficha ) {
 
         var Dialogs = require("DialogsData").fase8;
         var Alertas = require("DialogsData").alertas;
@@ -46,19 +46,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             core.changeScene( 1 );
         }
 
-      
+
 
         recepcao = lib.scenes.recepcao.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + recepcao.getName() );
-            
-                  
+
+
                if(core.flag("conversar_recepcionista") == false) {
                     core.flag("conversar_recepcionista", true);
-                    core.openDialog( 0 ); 
-                
+                    core.openDialog( 0 );
+
                 }
-            
+
             });
 
         recepcao.registerInteractiveObjects([
@@ -77,11 +77,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( true )
         ]);
-    
+
      recepcao.registerDialogs([
-            
+
              // 0
-            
+
                new Dialog( lib.characters.recepcionista )
             .setText( Dialogs.recepcao[ 0 ] )
             .registerOption("", function() {
@@ -89,7 +89,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             }),
 
         ]);
-    
+
       function conversarRecepcionista() {
             core.openDialog( 0 );
         }
@@ -143,10 +143,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
-            
+
                  core.openCommandBar();
                 core.setActionVisible("btn-ir_recepcao", true);
-            
+
                 console.log("Entrando no corredor");
                 Player.stopAll();
                 // Som
@@ -160,18 +160,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInRange( Player.audios.musics.inGame );
             });
-    
-     corredor.registerActions([ 
-            
+
+     corredor.registerActions([
+
              new Action("btn-ir_recepcao", "Voltar para a recepção")
                 .setCssClass("action-voltarRecepcao")
                 .onClick(function() {
-                    
+
                     core.changeScene( 0 );
-                   
+
                 })
-                .setVisibility( true ),    
-            
+                .setVisibility( true ),
+
         ]);
 
         corredor.registerInteractiveObjects([
@@ -329,8 +329,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.closeDialog();
                 }),
-          
-            
+
+
         ]);
 
 
@@ -382,7 +382,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
         leito.registerDialogs([
-            
+
             new Dialog( lib.characters.jogador )
                 .setText( Dialogs.leitoPaciente[ 0 ] )
                 .registerOption("", function() {
@@ -408,7 +408,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         leito.registerActions([
 
-            
+
 
             new Action("btn-oferecer_copo", "Oferecer copo com água para o paciente")
                 .setCssClass("action-copo_descartavel")
@@ -549,7 +549,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         farmacia.registerActions([
-            
+
                new Action("btn-ir_corredor", "Ir ao corredor")
          .setCssClass("action-ir_corredor")
          .onClick(function () {
@@ -558,8 +558,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
          })
          .setVisibility(true),
-            
-            
+
+
             new Action("btn-conferir_midazolam", "Conferir Medicamento")
                 .setCssClass("action-midazolam_medicamento")
                 .onClick(function() {
@@ -639,7 +639,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
         postoDeEnfermagem.registerActions([
-            
+
             new Action("btn-ir_corredor", "Ir ao corredor")
                 .setCssClass("action-ir_corredor")
                 .onClick(function() {
@@ -680,7 +680,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         // Acertar posicoes
         postoDeEnfermagem.registerInteractiveObjects([
-            
+
                 new InteractiveObject("io-abrirGaveta", "Abrir gaveta")
                 .setCssClass("intObj-openDrawer")
                 .onClick(function() {
@@ -773,42 +773,42 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 console.log("Centro cirurgico: OnUnload");
                 core.closeCommandBar();
             });
-    
-    
+
+
         centroCirurgicoYuri.registerInteractiveObjects([
-            
+
              new InteractiveObject("io-conversar_circulante", "Conversar com Circulante")
                 .setCssClass("intObj-talkToCirculante")
                 .onClick(function() {
-                    
+
                     core.openDialog( 0 );
-                 
+
                 })
                 .setVisibility( true ),
-            
+
                new InteractiveObject("io-carrinho_anestesico", "Testar Equipamentos")
                 .setCssClass("intObj-carrinho_anestesico")
                 .onClick(function() {
                     // Bip
                     Player.play( Player.audios.sfx.bip );
-                    
-                    
+
+
                     // PRECISA VERIFICAR SE O PACIENTE LAVOU AS MAOS COM TECNICA CIRURGICA??????
-                    
+
                      if ( core.flag("score_testou_equipamentos") == false ) {
                         core.registerScoreItem( Scores.testarEquipamentos );
                         core.flag("score_testou_equipamentos",  true );
                     }
-                 
+
                 })
                 .setVisibility( false )
-            
-           
 
-            
-            
-            
-            
+
+
+
+
+
+
         ]);
 
         centroCirurgicoYuri.registerActions([
@@ -854,7 +854,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeCommandBar();
                 })
                 .setVisibility( true ),  */
-            
+
   /*          new Action("btn-testar_equipamentos", "Testar Equipamentos")
                 // Será outro
                 .setCssClass("action-testar_equipamentos")
@@ -1112,7 +1112,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("Action: Fechar prontuario");
                     Prontuario.close();
-                    
+
                     if(core.flag("score_anotar_prontuario") == true && core.flag("entrou_centro_cirurgico") == false){
                         Prontuario.close();
                         core.closeModalScene("Prontuario");
@@ -1120,7 +1120,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.flag("levou_yuri_centro_cirurgico",true);
                         core.setActionVisible("btn-ir_sala_leitos", true);
                     }
-                    
+
                     // Já estava no momento de realizar os procedimentos, portanto pode terminar a fase
                     if ( core.flag("entrou_centro_cirurgico") == true ) {
                         core.unlockLevel(10);
@@ -1131,9 +1131,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     } else {
                         core.closeModalScene("Prontuario");
                     }
-                    
-                    
-                    
+
+
+
                 })
                 .setVisibility( true )
 
@@ -1151,9 +1151,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeModalScene("conferirMidazolam");
                 })
         ]);
-    
-    
-    
+
+
+
            gaveta = new Scene("gaveta", "Gaveta")
             .setCssClass("modalScene-drawer");
 
@@ -1178,10 +1178,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("IntObj: io-copo_descartavel");
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
-                    core.setInteractiveObjectVisible("io-copo_descartavel", false );    
+                    core.setInteractiveObjectVisible("io-copo_descartavel", false );
                     core.registerScoreItem( Scores.pegarCopoDescartavel );
                     core.flag("pegou_copo",true);
-                    
+
                 })
                 .setVisibility( true ),
 
@@ -1195,15 +1195,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.setInteractiveObjectVisible("io-agua_potavel", false );
                     core.registerScoreItem( Scores.pegarAguaPotavel );
                      core.flag("pegou_agua",true);
-                
-                    
+
+
                 })
                 .setVisibility( true )
 
 
         ]);
 
-    
+
 
 
         // 0
@@ -1283,6 +1283,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
 
             Prontuario.setAnotacaoEnfermagemRowData("", "");
+
+            Ficha.setEnfermeiraRegexp( /Masculina/i );
+            Ficha.setPacienteRegexp( /Yuri de Souza Almeida/i );
+            Ficha.setLeitoRegexp( /0?1/ );
         });
 
 

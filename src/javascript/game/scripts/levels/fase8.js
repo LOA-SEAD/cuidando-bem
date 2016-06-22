@@ -15,8 +15,8 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
-    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
+define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData", "Ficha" ],
+    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores, Ficha ) {
 
         var Dialogs = require("DialogsData").fase7;
         var Alertas = require("DialogsData").alertas;
@@ -32,13 +32,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var recepcao = lib.scenes.recepcao.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + recepcao.getName() );
-                
+
                if(core.flag("conversar_recepcionista") == false) {
                     core.flag("conversar_recepcionista", true);
-                    core.openDialog( 0 ); 
-                
+                    core.openDialog( 0 );
+
                 }
-                
+
             });
 
 
@@ -103,10 +103,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
-            
+
                  core.openCommandBar();
                 core.setActionVisible("btn-ir_recepcao", true);
-            
+
                 console.log("Entrando no corredor");
                 Player.stopAll();
                 // Som
@@ -176,18 +176,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             }
             core.changeScene( 6 );
         }
-    
-     corredor.registerActions([ 
-            
+
+     corredor.registerActions([
+
              new Action("btn-ir_recepcao", "Voltar para a recepção")
                 .setCssClass("action-voltarRecepcao")
                 .onClick(function() {
-                    
+
                     core.changeScene( 0 );
-                   
+
                 })
-                .setVisibility( true ),    
-            
+                .setVisibility( true ),
+
         ]);
 
 
@@ -1167,6 +1167,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setSsvvRowData( 0, "", "120X70", "60", "18", "96", "35", true );
             Prontuario.setSsvvRowData( 1, "", "130X70", "68", "20", "96", "36.4", true );
             Prontuario.setAnotacaoEnfermagemRowData("", "");
+
+            Ficha.setEnfermeiraRegexp( /Feminina/i );
+            Ficha.setPacienteRegexp( /Ana Beatriz Galv(ã|a)o/i );
+            Ficha.setLeitoRegexp( /0?1/ );
         });
 
 

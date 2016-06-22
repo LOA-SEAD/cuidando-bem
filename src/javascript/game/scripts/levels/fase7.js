@@ -15,8 +15,8 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData", "EquipoGotejamento" ],
-    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores, EquipoGotejamento ) {
+define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData", "EquipoGotejamento", "Ficha" ],
+    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores, EquipoGotejamento, Ficha ) {
 
         var Dialogs = require("DialogsData").fase6;
         var Alertas = require("DialogsData").alertas;
@@ -107,13 +107,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var recepcao = lib.scenes.recepcao.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + recepcao.getName() );
-                
+
                  if(core.flag("conversar_recepcionista") == false) {
                     core.flag("conversar_recepcionista", true);
-                    core.openDialog( 0 ); 
-                
+                    core.openDialog( 0 );
+
                 }
-                
+
             });
 
         recepcao.registerInteractiveObjects([
@@ -163,7 +163,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
                 console.log("Entrando no corredor");
-            
+
                  core.openCommandBar();
                 core.setActionVisible("btn-ir_recepcao", true);
 
@@ -183,18 +183,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInRange( Player.audios.musics.inGame );
             });
-    
-     corredor.registerActions([ 
-            
+
+     corredor.registerActions([
+
              new Action("btn-ir_recepcao", "Voltar para a recepção")
                 .setCssClass("action-voltarRecepcao")
                 .onClick(function() {
-                    
+
                     core.changeScene( 0 );
-                   
+
                 })
-                .setVisibility( true ),    
-            
+                .setVisibility( true ),
+
         ]);
 
         corredor.registerDialogs([
@@ -551,11 +551,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                 })
                 .setVisibility(false),
-            
+
                     new Action("btn-ler_prontuario", "Ler prontuario")
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
-              
+
                     Prontuario.open("prescMedica");
                     core.openModalScene("Prontuario");
                 })
@@ -781,7 +781,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         if ( core.flag("score_pegar_suporte_soro") == false ) {
             core.registerScoreItem( Scores.pegarSuporteSoro );
-            core.changeSceneCssClassTo("scene-bedChar07b");   
+            core.changeSceneCssClassTo("scene-bedChar07b");
         }
 
         core.flag("score_pegar_suporte_soro",  true );
@@ -804,22 +804,22 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
     })
       .setVisibility( true ),
-        
-        
-       
+
+
+
            new Action("btn-colocarSoro", "Colocar Soro")
             .setCssClass("action-frasco_dieta")
             .onClick(function() {
-                
-        
+
+
                 core.changeSceneCssClassTo("scene-bedChar07c");
                 core.setActionVisible("btn-colocarSoro", false);
-                
-                
+
+
 
             })
-            .setVisibility( true ),    
-        
+            .setVisibility( true ),
+
 
       new Action("btn-verificar_sonda", "Verificar Local da Sonda")
       .setCssClass("action-verificar-sonda")
@@ -1194,8 +1194,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Pulseira.setData("02/02/1961");
             Pulseira.disable();
 
-            EquipoGotejamento.setRightValue(67);
+            EquipoGotejamento.setRightValue( 67 );
 
+            Ficha.setEnfermeiraRegexp( /Masculina/i );
+            Ficha.setPacienteRegexp( /Josivaldo Silva/i );
+            Ficha.setLeitoRegexp( /0?3/ );
+            Ficha.setVolumeRegexp( /200/ );
+            Ficha.setDuracao( 1 );
+            Ficha.setGotasRegexp( /66,66/ );
+            Ficha.setGotasAproxRegexp( /67/ );
 
         });
 
