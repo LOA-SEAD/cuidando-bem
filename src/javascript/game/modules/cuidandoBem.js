@@ -97,8 +97,6 @@ define([
 
             changeLevel( game.getCurrentLevel() );
             startLevel();
-
-            CommandBar.hide();
         }
 
         /**
@@ -178,6 +176,7 @@ define([
 
             SceneController.setScene( Scene );
             CommandBar.changeToActionsButtons( Actions );
+            CommandBar.hide();
             InteractiveObject.changeToInteractiveObjects( InteractiveObjects );
 
             Scene.load();
