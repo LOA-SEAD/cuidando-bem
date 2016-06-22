@@ -1041,7 +1041,10 @@ define({
             ],
             agulha: [
                 "Faça o descarte da agulha em local adequado para evitar acidentes de trabalho."
-            ]
+            ],
+            objetos: [
+                "Primeiro realize o descarte dos materiais nos lixos adequados."
+            ],
         },
         luvasErradas: [
             "Esta realmente é a luva utilizada para curativos?"

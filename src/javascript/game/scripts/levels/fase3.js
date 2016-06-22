@@ -250,12 +250,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
 
 
-           /* if ( core.flag("segunda_ida_leito_paciente") == false ) {
-                        core.openDialog( 0 );
-                    }*/
-
-
-
                 if ( core.flag("segunda_ida_leito_paciente") == true ) {
                     /*core.setInteractiveObjectVisible("io-ir_leito", false );
                     // core.openDialog( 0 );
@@ -264,14 +258,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("tem_fala") == false ) {
                         core.openCommandBar();
                     }
-                }
+                }   
                 // Caso ele já tenha realizado os procedimentos, são habilitados os botões de descarte dos itens utilizados
                 if ( (core.flag("score_explicou_resultado") == true ) ) {
+            
                     core.setActionVisible("btn-jogar_algodao_lixo", true );
+                    core.setActionVisible("btn-lavarMaos", false );
                     core.setActionVisible("btn-jogar_agulha_perfuro", true );
                     core.setActionVisible("btn-elevar_grade_cama", true );
                     core.setActionVisible("btn-ler_prontuario", false );
-                    core.setActionVisible("btn-anotarProntuario", true );
+                    core.setActionVisible("btn-anotarProntuario", false );
                     core.openCommandBar();
                 }
 
@@ -443,6 +439,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 // CONSERTAR
                 .setCssClass("action-elevarGrade")
                 .onClick(function() {
+                                      
                     if ( core.flag("descartar_agulha") == true ) {
                         console.log("Action: Elevar a grade da cama");
                         if ( core.flag("score_elevou_grade_cama") == false ) {
@@ -450,6 +447,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             core.registerScoreItem( Scores.elevarGradeDaCama );
                             core.changeSceneCssClassTo("scene-bedroom-level2b");
                             core.setActionVisible("btn-elevar_grade_cama", false);
+                             core.setActionVisible("btn-anotarProntuario", true );
+                             core.setActionVisible("btn-lavarMaos", true );
                         }
                     } else {
                         core.closeCommandBar();
@@ -485,9 +484,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.setActionVisible("btn-lixoInfectante", false  );
                     core.setActionVisible("btn-perfuroCortante", false  );
 
-                    core.setActionVisible("btn-lavarMaos", true );
+                    core.setActionVisible("btn-lavarMaos", false );
                     core.setActionVisible("btn-elevar_grade_cama", true );
-                    core.setActionVisible("btn-anotarProntuario", true );
+                    core.setActionVisible("btn-anotarProntuario", false );
 
 
                     if(core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == true){
@@ -519,9 +518,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.setActionVisible("btn-lixoInfectante", false  );
                     core.setActionVisible("btn-perfuroCortante", false  );
 
-                    core.setActionVisible("btn-lavarMaos", true );
+                    core.setActionVisible("btn-lavarMaos", false );
                     core.setActionVisible("btn-elevar_grade_cama", true );
-                    core.setActionVisible("btn-anotarProntuario", true );
+                    core.setActionVisible("btn-anotarProntuario", false );
 
 
                     if(core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == true){
@@ -562,9 +561,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.setActionVisible("btn-lixoInfectante", false  );
                     core.setActionVisible("btn-perfuroCortante", false  );
 
-                    core.setActionVisible("btn-lavarMaos", true );
+                    core.setActionVisible("btn-lavarMaos", false );
                     core.setActionVisible("btn-elevar_grade_cama", true );
-                    core.setActionVisible("btn-anotarProntuario", true );
+                    core.setActionVisible("btn-anotarProntuario", false );
 
 
                     if(core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == true){
@@ -634,7 +633,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }),
             // 4 - Mentor corrigindo o fato de não descartar a agulha
             new Dialog( lib.characters.mentor )
-                .setText( Alertas.descarte.agulha )
+                .setText( Alertas.descarte.objetos )
                 .registerOption("", function() {
                     core.closeDialog();
                 }),
@@ -1185,7 +1184,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.flag("checar_prontuario",  true );
                     // Verifica se é apenas a verificação do prontuário no início ou se é no final, para anotar os valores
                     if ( core.flag("score_falar_paciente") == false ) {
-                        core.closeCommandBar();
+                      //  core.closeCommandBar();
                         // Vai abrir o segundo diálogo da ala masculina caso ele ainda não tenha dito esta frase
                         if ( core.flag("frase_apos_prontuario") == false ) {
                             core.flag("frase_apos_prontuario",  true );
