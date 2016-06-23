@@ -833,17 +833,20 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-colocar_placa_neutra", "Colocar Placa Neutra")
                 .setCssClass("action-placa_neutra")
                 .onClick(function() {
+                    
                     console.log("Action: Colocando placa neutra");
+                    
                     core.flag("colocar_placa_neutra",  true );
-                    if ( core.flag("score_placa_neutra") == false ) {
-                        core.registerScoreItem( Scores.colocarPlacaNeutra );
-                        core.flag("score_placa_neutra",  true );
-                    }
-
+                    
                     if ( core.flag("verificar_oximetro_local_cirurgia") == false ) {
-                        core.openDialog( 21 );
+                        core.openDialog( 21 ); 
                     }
-                    core.setActionVisible("btn-colocar_placa_neutra", false );
+                    else {
+                        core.registerScoreItem( Scores.colocarPlacaNeutra );
+                        core.changeSceneCssClassTo("scene-surgeryCenter-reginaComPlaca");
+                        core.setActionVisible("btn-colocar_placa_neutra", false);       
+                    }
+                    
                 })
                 .setVisibility( true ),
 

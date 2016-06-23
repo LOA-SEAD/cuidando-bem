@@ -628,7 +628,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     // Som
                     Player.play( Player.audios.sfx.roupaRocando );
-                    core.changeSceneCssClassTo("scene-bedChar02-turned");   
+                    core.changeSceneCssClassTo("scene-bedChar02-turned");     
                     core.setActionVisible("btn-mudar_posicao", false );
                     core.setInteractiveObjectVisible("io-pulseira_paciente", false );
                     core.setInteractiveObjectVisible("io-pulseira_paciente2", true );
