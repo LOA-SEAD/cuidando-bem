@@ -207,7 +207,8 @@ define([ "SimpleStorage" ], function( Storage ) {
         Storage.set( KEY_SAVES_CONTAINER, saves );
     }
 
-    function addScore( levelId, score ) {
+    function addScore( _levelId, score ) {
+        var levelId = _levelId - 1;
         if ( levelId < MINLEVEL || levelId > MAXLEVEL ) {
             throw new Error("LevelId Failed");
         }
@@ -225,7 +226,8 @@ define([ "SimpleStorage" ], function( Storage ) {
         saves[ loadedId ].levels[ levelId ] = level;
     }
 
-    function resetScore( levelId ) {
+    function resetScore( _levelId ) {
+        var levelId = _levelId - 1;
         if ( levelId < MINLEVEL || levelId > MAXLEVEL ) {
             throw new Error("LevelId Failed");
         }
