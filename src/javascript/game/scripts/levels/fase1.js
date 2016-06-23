@@ -21,9 +21,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var Dialogs = require("DialogsData").fase1;
         var Alertas = require("DialogsData").alertas;
         var Player = require("Player");
+        Scores = Scores.fase1;
 
         var level = new Level("Level 1 - Tutorial");
-        level.setMaxPoints( Scores.tutorial._sum );
+        level.setMaxPoints( Scores._sum );
         console.groupCollapsed( level.getName() );
 
         // if false it wont check for flags -- tests purpose
@@ -544,7 +545,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                     if(core.flag("score_checar_pulseira") == false){
                         core.flag("score_checar_pulseira", true);
-                        core.registerScoreItem( Scores.tutorial.identificarPaciente );
+                        core.registerScoreItem( Scores.identificarPaciente );
                     }
 
                 })
@@ -573,7 +574,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.changeScene( 2 );
                     /*if ( Pulseira.isAllDataValid() ) {
                         console.log("Action: action-ir_sala_de_leitos");
-                        core.registerScoreItem( Scores.tutorial.identificarPaciente );
+                        core.registerScoreItem( Scores.identificarPaciente );
                         core.changeScene( 2 );
                         Pulseira.disable();
                         core.openDialog( 11 );
@@ -597,7 +598,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     switch ( core.flag("lavar-maos") ) {
                         case 0:
                             core.flag("lavar-maos",  1 );
-                            core.registerScoreItem( Scores.tutorial.lavarMaosAntes );
+                            core.registerScoreItem( Scores.lavarMaosAntes );
                             core.setActionVisible("btn-frequencia_respiratoria", true );
                             core.setActionVisible("btn-medir_pulso", true );
                             core.setActionVisible("btn-medir_temperatura", true );
@@ -607,7 +608,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             break;
                         case 2:
                             // core.flag("lavar-maos", 3);
-                            // core.registerScoreItem(Scores.tutorial.lavarMaosDepois);
+                            // core.registerScoreItem(Scores.lavarMaosDepois);
                             // core.setActionVisible("btn-lavarMaos", false);
                             // core.setActionVisible("btn-ler_prontuario", true);
                             break;
@@ -631,7 +632,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                         if ( core.flag("mediuPressao") == false ) {
                             core.flag("mediuPressao",  true );
-                            core.registerScoreItem( Scores.tutorial.verPressao );
+                            core.registerScoreItem( Scores.verPressao );
                         }
 
                         core.flag("lavar-maosDepois",  false );
@@ -654,7 +655,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                         if ( core.flag("mediuBatimentosESaturacao") == false ) {
                             core.flag("mediuBatimentosESaturacao",  true );
-                            core.registerScoreItem( Scores.tutorial.verSaturacao );
+                            core.registerScoreItem( Scores.verSaturacao );
                         }
 
                         core.flag("lavar-maosDepois",  false );
@@ -675,7 +676,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                         if ( core.flag("mediuFreqRespiratoria") == false ) {
                             core.flag("mediuFreqRespiratoria",  true );
-                            core.registerScoreItem( Scores.tutorial.verFrequenciaRespiratoria );
+                            core.registerScoreItem( Scores.verFrequenciaRespiratoria );
                         }
 
                         core.flag("lavar-maosDepois",  false );
@@ -700,7 +701,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                         if ( core.flag("mediuTemperatura") == false ) {
                             core.flag("mediuTemperatura",  true );
-                            core.registerScoreItem( Scores.tutorial.verTemperatura );
+                            core.registerScoreItem( Scores.verTemperatura );
                         }
 
                         core.flag("lavar-maosDepois",  false );
@@ -715,7 +716,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("lavar-maosDepois") == true ) {
                         if ( checouTodosAparelhos() ) {
                             if ( core.flag("lavar-maosDepoisScore") == true ) {
-                                core.registerScoreItem( Scores.tutorial.lavarMaosDepois );
+                                core.registerScoreItem( Scores.lavarMaosDepois );
                             }
                         }
 
@@ -850,7 +851,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: pegar_termometro");
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
-                    core.registerScoreItem( Scores.tutorial.pegarTermometro );
+                    core.registerScoreItem( Scores.pegarTermometro );
                     core.setInteractiveObjectVisible("io-termometro", false );
                     core.flag("termometro",  true );
                 })
@@ -862,7 +863,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("O medidor de pressão foi ativado");
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
-                    core.registerScoreItem( Scores.tutorial.pegarAparelhoPressao );
+                    core.registerScoreItem( Scores.pegarAparelhoPressao );
                     core.setInteractiveObjectVisible("io-medidorPressao", false );
                     core.flag("medidor-pressao",  true );
                 })
@@ -874,7 +875,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: pegar_oximetro");
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
-                    core.registerScoreItem( Scores.tutorial.pegarOximetro );
+                    core.registerScoreItem( Scores.pegarOximetro );
                     core.setInteractiveObjectVisible("io-oximetro", false );
                     core.flag("oximetro",  true );
                 })
@@ -886,7 +887,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: pegar_relogio");
                     // Som
                     Player.play( Player.audios.sfx.pegarObjeto );
-                    core.registerScoreItem( Scores.tutorial.pegarRelogio );
+                    core.registerScoreItem( Scores.pegarRelogio );
                     core.setInteractiveObjectVisible("io-relogio", false );
                     core.flag("relogio",  true );
                 })
@@ -919,7 +920,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("lavar-maosDepois") == true ) {
                         if ( checouTodosAparelhos() ) {
                             if ( Prontuario.isDataValid() ) {
-                                core.registerScoreItem( Scores.tutorial.anotarNoProntuario );
+                                core.registerScoreItem( Scores.anotarNoProntuario );
                                 Prontuario.close();
                                 core.closeCommandBar();
                                 core.showEndOfLevel();
@@ -968,7 +969,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         // Para conversar com o paciente e registrar a pontuação apenas uma vez
                         if ( core.flag("conversouPacienteSegundaVez") == false ) {
                             core.flag("conversouPacienteSegundaVez",  true );
-                            core.registerScoreItem( Scores.tutorial.identificarPaciente );
+                            core.registerScoreItem( Scores.identificarPaciente );
                             core.openDialog( 11 );
                         }
                     } else {

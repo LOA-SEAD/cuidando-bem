@@ -21,7 +21,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var Dialogs = require("DialogsData").fase2;
         var Alertas = require("DialogsData").alertas;
         var Player = require("Player");
-        Scores = Scores.level1;
+        Scores = Scores.fase2;
 
         var level = new Level("Level 2");
         level.setMaxPoints( Scores._sum );

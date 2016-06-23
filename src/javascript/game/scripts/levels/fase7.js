@@ -20,7 +20,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         var Dialogs = require("DialogsData").fase7;
         var Alertas = require("DialogsData").alertas;
-        var Scores = Scores.level6;
+        var Scores = Scores.fase7;
         var Player = require("Player");
 
 
