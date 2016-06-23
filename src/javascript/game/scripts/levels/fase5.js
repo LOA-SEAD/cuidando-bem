@@ -846,7 +846,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.openDialog( 4 );
                     } else if(core.flag("score_conferiu_medicacao_posto") == true &&
                               core.flag("score_preparar_medicacao") == true &&
-                              core.flag("score_calculou_gotejamento") == true &&
                               core.flag("score_identificar_medicacao") == true)
 
                     {
@@ -901,7 +900,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( false ),
 
-            new Action("btn-gotejamentoSoro", "Calcular gotejamento do soro")
+          /*  new Action("btn-gotejamentoSoro", "Calcular gotejamento do soro")
                 .setCssClass("action-equipo")
                 .onClick(function() {
                     console.log("Action: Calcular gotejamento do soro");
@@ -912,7 +911,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
 
                 })
-                .setVisibility( false ),
+                .setVisibility( false ),*/
 
             new Action("btn-identificarMedicacao", "Identificar medicação")
                 .setCssClass("action-fichaMedicacao")
@@ -1170,7 +1169,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                             core.setActionVisible("btn-confirmarMedicamento", true );
                             core.setActionVisible("btn-prepararMedicacao", true );
-                            core.setActionVisible("btn-gotejamentoSoro", true );
+                        //    core.setActionVisible("btn-gotejamentoSoro", true );
                             core.setActionVisible("btn-identificarMedicacao", true );
                             core.setActionVisible("btn-visualizarFolheto", false );
                             core.setActionVisible("btn-lavarMaos", false );
@@ -1356,9 +1355,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
                     console.log("Action: Fechar prontuario");
-                    core.closeModalScene("Prontuario");
-                    Prontuario.close();
-                    // Já estava na parte final da fase, então a termina
+                    
+                     if(core.flag("score_viu_prontuario") == true && core.flag("score_gotejar_soro_equipo") == false){
+                       core.openDialog( 1 );
+                    }
+                    
+
                     if ( core.flag("score_gotejar_soro_equipo") == true ) {
                         core.unlockLevel( 6 );
                         core.closeCommandBar();
@@ -1366,10 +1368,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         Player.stopAll();
                         Player.play( Player.audios.sfx.missaoCumprida );
                     }
+                    
+                    core.closeModalScene("Prontuario");
+                    Prontuario.close();
+                    
 
-                    if(core.flag("score_viu_prontuario") == true){
-                       core.openDialog( 1 );
-                    }
 
 
 

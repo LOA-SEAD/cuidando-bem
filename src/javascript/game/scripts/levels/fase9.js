@@ -624,10 +624,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
                 console.log("Load scene: Posto de enfermagem");
-                core.openCommandBar();
+ 
+            
+                core.setInteractiveObjectVisible("io-abrirGaveta",false);
+                core.setInteractiveObjectVisible("io-pegar_bandeja",false);
+                core.setActionVisible("btn-lavarMaos",false);
+ 
                 // Depois que pegou o medicamento, é ativado os botões
-                if ( core.flag("score_pegou_medicamento") == true ) {
-                    core.setActionVisible("btn-lavarMaos", true );
+                if ( core.flag("score_conferiu_medicacao") == true ) {
+                    
+                       core.setInteractiveObjectVisible("io-abrirGaveta",true);
+                core.setInteractiveObjectVisible("io-pegar_bandeja",true);
+                core.setActionVisible("btn-lavarMaos",true);
+                    
                    /* core.setInteractiveObjectVisible("io-pegar_agua", !(core.flag("score_pegou_agua")) );
                     core.setInteractiveObjectVisible("io-pegar_copo", !(core.flag("score_pegou_copo")) );*/
                     core.openCommandBar();
