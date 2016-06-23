@@ -18,9 +18,9 @@ This file is part of Cuidando Bem.
 define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
 
-        var Dialogs = require("DialogsData").fase2;
+        var Dialogs = require("DialogsData").fase3;
         var Alertas = require("DialogsData").alertas;
-        var Scores = require("ScoresData").level2;
+        var Scores = require("ScoresData").fase3;
         var Player = require("Player");
 
         var level = new Level("Level 3");
@@ -58,13 +58,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         recepcao = lib.scenes.recepcao.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + recepcao.getName() );
-            
+
                    if(core.flag("conversar_recepcionista") == false) {
                     core.flag("conversar_recepcionista", true);
-                    core.openDialog( 0 ); 
-                
+                    core.openDialog( 0 );
+
                 }
-            
+
             });
 
         recepcao.registerDialogs([
@@ -134,10 +134,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
-            
+
                  core.openCommandBar();
                 core.setActionVisible("btn-ir_recepcao", true);
-            
+
                 console.log("Entrando no corredor");
                 Player.stopAll();
                 // Som
@@ -154,18 +154,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInRange( Player.audios.musics.inGame );
             });
-    
-     corredor.registerActions([ 
-            
+
+     corredor.registerActions([
+
              new Action("btn-ir_recepcao", "Voltar para a recepção")
                 .setCssClass("action-voltarRecepcao")
                 .onClick(function() {
-                    
+
                     core.changeScene( 0 );
-                   
+
                 })
-                .setVisibility( true ),    
-            
+                .setVisibility( true ),
+
         ]);
 
         corredor.registerDialogs([
@@ -258,10 +258,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("tem_fala") == false ) {
                         core.openCommandBar();
                     }
-                }   
+                }
                 // Caso ele já tenha realizado os procedimentos, são habilitados os botões de descarte dos itens utilizados
                 if ( (core.flag("score_explicou_resultado") == true ) ) {
-            
+
                     core.setActionVisible("btn-jogar_algodao_lixo", true );
                     core.setActionVisible("btn-lavarMaos", false );
                     core.setActionVisible("btn-jogar_agulha_perfuro", true );
@@ -439,7 +439,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 // CONSERTAR
                 .setCssClass("action-elevarGrade")
                 .onClick(function() {
-                                      
+
                     if ( core.flag("descartar_agulha") == true ) {
                         console.log("Action: Elevar a grade da cama");
                         if ( core.flag("score_elevou_grade_cama") == false ) {
@@ -845,8 +845,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
         leito.registerActions([
-            
-          
+
+
             new Action("btn-por_luvas", "Colocar Luvas")
                 .setCssClass("action-luvas_de_procedimento")
                 .onClick(function() {
@@ -870,8 +870,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // }
                 })
                 .setVisibility( false ),
-            
-            
+
+
 
             new Action("btn-utilizar_algodao", "Utilizar Algodão")
                 .setCssClass("action-algodao_seco")
@@ -911,21 +911,21 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                 })
                 .setVisibility( false ),
-            
-            
+
+
               new Action("btn-verificar_teste_glicemia", "Verificar resultado")
-            
+
                 .setCssClass("action-realizar_teste_glicemia")
                 .onClick(function() {
-                    
+
                      Player.play( Player.audios.sfx.bip );
-                     core.openModalScene("modalGlicosimetro"); 
-                    
-                    
+                     core.openModalScene("modalGlicosimetro");
+
+
                 })
                 .setVisibility( false ),
-            
-            
+
+
 
             new Action("btn-realizar_teste_glicemia", "Realizar teste de glicemia capilar")
                 // CONSERTAR
@@ -953,9 +953,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                 })
                 .setVisibility( false ),
-            
-                
-            
+
+
+
 
             new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
                 .setCssClass("action-ir_sala_de_leitos")
@@ -1191,23 +1191,23 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             core.openDialog( 2 );
                         }
                     }
-                    
-                    
+
+
                     if(core.flag("score_anotar_prontuario") == true){
-                    
-                    
-                        
+
+
+
                     core.unlockLevel( 4 );
                     core.closeCommandBar();
                     core.showEndOfLevel();
                     Player.stopAll();
                     Player.play( Player.audios.sfx.missaoCumprida );
                     }
-                    
+
                 })
                 .setVisibility( true )
         ]);
-    
+
 
         //      alert(Prontuario.isDataValid() + " Final da fase");
 
@@ -1221,14 +1221,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-realizar_teste_glicemia", "Terminar teste de glicemia capilar")
                 .setCssClass("action-realizar_teste_glicemia")
                 .onClick(function() {
-                        
+
                     core.closeModalScene("modalGlicosimetroComFita");
-                    
-       
+
+
                     core.setActionVisible("btn-realizar_teste_glicemia", false);
                     core.setActionVisible("btn-verificar_teste_glicemia", true);
-                      
-                    
+
+
 
                 })
                 .setVisibility( true ),
@@ -1236,9 +1236,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         ]);
-    
-    
-    
+
+
+
        glicosimetro = new Scene("modalGlicosimetro", "modalGlicosimetro")
             .setCssClass("modalScene-glicosimetro")
             .setTemplate("<span class='glicosimetro-text'>180 mg/dl</span>");
@@ -1248,11 +1248,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-realizar_teste_glicemia", "Fechar verificação")
                 .setCssClass("action-realizar_teste_glicemia")
                 .onClick(function() {
-                        
+
                     core.closeModalScene("modalGlicosimetro");
-                    
-             
-                    
+
+
+
 
                 })
                 .setVisibility( true ),
@@ -1260,7 +1260,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         ]);
-    
+
 
 
         // Register in level

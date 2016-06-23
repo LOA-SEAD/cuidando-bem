@@ -18,7 +18,7 @@ define(function() {
     }
 
     var scores = {
-        tutorial: {
+        fase1: {
             identificarPaciente: new Score("Ver pulseira/identificação do paciente", 100 ),
             pegarOximetro: new Score("Pegar oxímetro", 50 ),
             pegarAparelhoPressao: new Score("Pegar aparelho de pressão", 50 ),
@@ -33,7 +33,7 @@ define(function() {
             anotarNoProntuario: new Score("Anotar no prontuário", 250 )
         },
 
-        level1: {
+        fase2: {
             irPostoEnfermagemHoraErrada: new Score("Ir ao posto de enfermagem em hora indevida", -50 ),
             lavarMaosAntes: new Score("Lavar as mãos antes de examinar paciente", 200 ),
             falarComPaciente: new Score("Falar com Paciente", 50 ),
@@ -47,7 +47,7 @@ define(function() {
             anotarNoProntuario: new Score("Anotar no prontuário", 50 )
         },
 
-        level2: {
+        fase3: {
             irPostoEnfermagemHoraErrada: new Score("Ir ao posto de enfermagem em hora indevida", -25 ),
             irFarmaciaHoraErrada: new Score("Ir à farmácia sem precisar", -25 ),
             irAlaFemininaHoraErrada: new Score("Ir à ala feminina sem precisar", -25 ),
@@ -82,7 +82,7 @@ define(function() {
             anotarNoProntuario: new Score("Anotar no prontuário", 250 )
         },
 
-        level3: {
+        fase4: {
             irPostoEnfermagemHoraErrada: new Score("Ir ao posto de enfermagem sem precisar", -25 ),
             irFarmaciaHoraErrada: new Score("Ir à farmácia sem precisar", -25 ),
             irAlaFemininaHoraErrada: new Score("Ir à ala feminina em hora indevida", -25 ),
@@ -97,7 +97,8 @@ define(function() {
             anotarNoProntuario: new Score("Anotar no prontuário", 250 ),
             colocarPlacaNeutra: new Score("Colocar placa neutra antes da cirurgia no paciente", 250 )
         },
-        level4: {
+
+        fase5: {
             irPostoEnfermagemHoraErrada: new Score("Ir ao posto de enfermagem em hora indevida", -25 ),
             irFarmaciaHoraErrada: new Score("Ir à farmácia em hora indevida", -25 ),
             irAlaFeminina: new Score("Ir à ala feminina sem precisar", -25 ),
@@ -139,7 +140,8 @@ define(function() {
             naoLavarMaosAntesProntuario: new Score("Não lavar as mãos antes de realizar as anotações no prontuario", -200 ),
             anotarNoProntuario: new Score("Anotar no prontuário", 200 )
         },
-        level5: {
+
+        fase6: {
             irPostoEnfermagemHoraErrada: new Score("Ir ao posto de enfermagem em hora indevida", -25 ),
             irFarmaciaHoraErrada: new Score("Ir à farmácia sem precisar", -25 ),
             irAlaFemininaHoraErrada: new Score("Ir à ala feminina em hora indevida", -25 ),
@@ -187,7 +189,7 @@ define(function() {
             anotarNoProntuario: new Score("Anotar no prontuário", 350 )
         },
 
-        level6: {
+        fase7: {
             irCentroCirurgicoHoraErrada: new Score("Ir para o Centro Cirugico sem precisar", -25 ),
             irAlaFemininaHoraErrada: new Score("Ir para a Ala Feminina sem precisar", -25 ),
             irFarmaciaHoraErrada: new Score("Ir para a Farmácia sem precisar", -25 ),
@@ -213,7 +215,7 @@ define(function() {
             calcularInfusaoDieta: new Score("Calcular infusão da dieta corretamente", 150 )
         },
 
-        level7: {
+        fase8: {
            irFarmaciaHoraErrada: new Score("Ir para a Farmacia sem precisar", -25 ),
            irPostoEnfermagemHoraErrada: new Score("Ir para o Posto Enfermagem sem precisar", -25 ),
            irCentroCirurgicoHoraErrada: new Score("Ir para o Centro Cirugico sem precisar", -25 ),
@@ -242,7 +244,7 @@ define(function() {
            naoPegarAgua: new Score("Não pegar a água potável no posto de enfermagem", -50 )
         },
 
-        level8: {
+        fase9: {
             irPostoEnfermagemHoraErrada: new Score("Ir ao posto de enfermagem em hora indevida", -25 ),
             irFarmaciaHoraErrada: new Score("Ir à farmácia em hora indevida", -25 ),
             irAlaFemininaHoraErrada: new Score("Ir à ala feminina sem precisar", -25 ),
@@ -284,7 +286,7 @@ define(function() {
             anotarProntuarioCentroCirurgico: new Score("Anotar no prontuário após realizar os procedimentos", 350 )
         },
 
-        level9: {
+        fase10: {
             lerProntuario: new Score("Ler prontuario do paciente", 150 ),
             pegarPrescricaoMedica: new Score("Pegar Prescrição Médica", 150 ),
             pegarFrascoSG: new Score("Pegar Frasco SG 5%", 50 ),

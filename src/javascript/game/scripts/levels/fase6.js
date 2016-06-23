@@ -18,9 +18,9 @@ This file is part of Cuidando Bem.
 define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
 
-        var Dialogs = require("DialogsData").fase5;
+        var Dialogs = require("DialogsData").fase6;
         var Alertas = require("DialogsData").alertas;
-        var Scores = require("ScoresData").level5;
+        var Scores = require("ScoresData").fase6;
         var Player = require("Player");
 
 
@@ -58,13 +58,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         recepcao = lib.scenes.recepcao.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + recepcao.getName() );
-            
+
                   if(core.flag("conversar_recepcionista") == false) {
                     core.flag("conversar_recepcionista", true);
-                    core.openDialog( 0 ); 
-                
+                    core.openDialog( 0 );
+
                 }
-            
+
             });
 
         recepcao.registerDialogs([
@@ -155,10 +155,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
-            
+
                  core.openCommandBar();
                 core.setActionVisible("btn-ir_recepcao", true);
-            
+
                 console.log("Entrando no corredor");
                 Player.stopAll();
                 // Som
@@ -183,18 +183,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInRange( Player.audios.musics.inGame );
             });
-    
-     corredor.registerActions([ 
-            
+
+     corredor.registerActions([
+
              new Action("btn-ir_recepcao", "Voltar para a recepção")
                 .setCssClass("action-voltarRecepcao")
                 .onClick(function() {
-                    
+
                     core.changeScene( 0 );
-                   
+
                 })
-                .setVisibility( true ),    
-            
+                .setVisibility( true ),
+
         ]);
 
         corredor.registerDialogs([
@@ -379,7 +379,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
         alaFeminina.registerActions([
-            
+
             new Action("btn-ler_prontuario", "Ler prontuario")
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
@@ -831,10 +831,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("score_ergueu_grade") == false ) {
                         core.flag("score_ergueu_grade",  true );
                         core.registerScoreItem( Scores.elevarGradeDaCama );
-                        core.changeSceneCssClassTo("scene-bedChar06Grade");  
+                        core.changeSceneCssClassTo("scene-bedChar06Grade");
                           core.setActionVisible("btn-erguer_grade", false);
                     }
-                
+
                 })
                 .setVisibility( false ),
 
@@ -1042,16 +1042,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                 })
                 .setVisibility( true ),
-            
+
              new Action("btn-ler_prontuario", "Ler prontuario")
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
-              
+
                     Prontuario.open("prescMedica");
                     core.openModalScene("Prontuario");
                 })
                 .setVisibility( true ),
-            
+
         ]);
 
         postoDeEnfermagem.registerInteractiveObjects([

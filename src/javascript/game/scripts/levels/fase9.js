@@ -18,9 +18,9 @@ This file is part of Cuidando Bem.
 define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData", "Ficha" ],
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores, Ficha ) {
 
-        var Dialogs = require("DialogsData").fase8;
+        var Dialogs = require("DialogsData").fase9;
         var Alertas = require("DialogsData").alertas;
-        var Scores = require("ScoresData").level8;
+        var Scores = require("ScoresData").fase9;
         var Player = require("Player");
 
         var level = new Level("Level 9");
