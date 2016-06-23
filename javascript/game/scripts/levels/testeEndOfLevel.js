@@ -15,4 +15,4 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define(["levelsData","Scene","Action","Level","Dialog","InteractiveObject","Flag","CuidandoBem","Commons","Pulseira","Prontuario","FreqRespiratoria","ScoresData"],function(e,t,n,r,i,s,o,u,a,f,l,c,h){var p=require("DialogsData").fase3,d=new r("Level 9"),v=a.scenes.recepcao.getClone().onLoad(function(){u.showEndOfLevel()});v.registerDialogs([]),d.registerScene(v),d.setSetupScript(function(){}),d.setInitialScene(0),e.registerLevel(d,12)});
+define(["levelsData","Scene","Action","Level","Dialog","InteractiveObject","Flag","CuidandoBem","Commons","Pulseira","Prontuario","FreqRespiratoria","ScoresData"],function(e,t,n,r,i,s,o,u,a,f,l,c,h){var p=require("DialogsData").fase3,d=new r("Level 9");console.groupCollapsed(d.getName());var v=a.scenes.recepcao.getClone().onLoad(function(){u.showEndOfLevel()});v.registerDialogs([]),d.registerScene(v),d.setSetupScript(function(){}),d.setInitialScene(0),e.registerLevel(d,12),console.groupEnd()});

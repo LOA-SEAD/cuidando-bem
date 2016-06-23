@@ -15,4 +15,4 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define([],function(){function n(t,n){e[n]!=null,e[n]=t}function r(){return e[t]}function i(){return t}function s(e){t=e}var e={},t=0;return{registerLevel:n,getCurrentLevel:r,getCurrentLevelId:i,setCurrentLevel:s}});
+define([],function(){function r(t,r){e[r]!=null&&console.warn("O id: "+r+" já está em uso. O level anterior com esse mesmo id vai ser reescrito."),e[r]=t,n+=t.getMaxPoints(),console.log("\nAdding new Level:",t.getName())}function i(){return e[t]}function s(){return t}function o(){return n}function u(e){t=e}var e={},t=0,n=0;return{registerLevel:r,getCurrentLevel:i,getCurrentLevelId:s,getMaxGamePoints:o,setCurrentLevel:u}});

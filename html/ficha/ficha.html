@@ -1,0 +1,176 @@
+<div id="ficha_medicacao">
+    <div class="container">
+        <div class="conteudo">
+            <div class="cabecalho">
+                <p class="hospital">
+                    Hospital Cuidando Bem
+                </p>
+                <p class="titulo">
+                    <span class="ficha-l5">
+                        Ficha de identificação da medicação
+                    </span>
+                    <span class="ficha-l7">
+                        Ficha de identificação da dieta nutricional
+                    </span>
+                    <span class="ficha-l10">
+                        Ficha de identificação da medicação
+                    </span>
+                    <span class="ficha-l8">
+                        Ficha de identificação da medicação
+                    </span>
+                    <span class="ficha-l9">
+                        Ficha de identificação da medicação
+                    </span>
+                </p>
+                <p class="data">
+                    <span class="bold">Data:</span>
+                    <input type="text" class="in_data" maxlength="10">
+                </p>
+                <p class="enfermaria">
+                    <span class="bold">Enfermaria:</span>
+                    <input type="text" class="in_enfermaria" maxlength="10">
+                </p>
+                <p class="leito">
+                    <span class="bold">Leito:</span>
+                    <input type="text" class="in_leito" maxlength="2">
+                </p>
+                <p class="paciente">
+                    <span class="bold">Nome do paciente:</span>
+                    <input type="text" class="in_paciente" maxlength="25">
+                </p>
+            </div>
+            <div class="corpo">
+                <div class="soro">
+                    <div class="ficha-l5">
+                        <p>
+                            <span class="medicao_complementos">Medicação e complementos:</span>
+                            <span class="med_com_conteudo">
+                                Cefalotina sódica (Keflin&reg;) 800mg
+                                diluído em 100 ml de SF (soro fisiológico) 0,9% em 01 hora, via endovenosa.
+                            </span>
+                        </p>
+                    </div>
+                    <div class="ficha-l7">
+                        <p>
+                            <span class="medicao_complementos">Medicação e complementos:</span>
+                            <span class="med_com_conteudo">
+                                Nutrição (Hipercalórica 0,99 cal/ml),
+                                200 ml em 01 hora. Via sonda nasogástrica.
+                            </span>
+                        </p>
+                    </div>
+                    <div class="ficha-l10">
+                        <p>
+                            <span class="medicao_complementos">Medicação e complementos:</span>
+                            <span class="med_com_conteudo">
+                                Soro glicosado 5% (800 ml) + NaCl 20% (20 ml) +
+                                 Glicose 50% (30 ml), em 24 horas. Via endovenosa.
+                            </span>
+                        </p>
+                    </div>
+                    <p class="ini_ter">
+                        <span class="bold">Início/Término:</span>
+                        <input type="text" class="in_ini" maxlength="6">
+                        às
+                        <input type="text" class="in_ter" maxlength="6">
+                    </p>
+                    <p class="volume">
+                        <span class="bold">Volume total:</span>
+                        <input type="text" class="in_volume1" maxlength="3">
+                    </p>
+                    <p class="gotejamento">
+
+                        <table class="fraction" align="center" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td>
+                                    gts/min
+                                </td>
+                                <td>
+                                    =
+                                </td>
+                                <td nowrap="nowrap">
+                                    V
+                                </td>
+                                <td>
+                                    =
+                                </td>
+                                <td>
+                                    <input type="text" class="in_volume2" maxlength="3">
+                                </td>
+                                <td>
+                                    =
+                                </td>
+                                <td>
+                                  <input type="text" class="in_gts" maxlength="6">
+                                </td>
+                                <td class="infoFicha">
+                                    gts/min aproximando para <input type="text" class="in_gtsAprox" maxlength="3"> gts/min
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td class="upper_line">
+                                    <i>T</i> x 3
+                                </td>
+                                <td>
+                                    =
+                                </td>
+                                <td>
+                                    <input type="text" class="in_duracao" maxlength="2">hx3
+                                </td>
+                                <td>
+                                    =
+                                </td>
+                                <td>
+
+                                </td>
+                                <td class="infoFicha">
+
+                                </td>
+                            </tr>
+                        </table>
+                    </p>
+                    <span class="info_gotejamento">
+                        <p>gts = gotas</p>
+                        <p>V = Volume a ser infundido</p>
+                        <p>T = Tempo estipulado para a infusão</p>
+                        <p>3 = constante</p>
+                    </span>
+                </div>
+                <div class="oral">
+                    <div class="ficha-l8">
+                        <p>
+                            <span class="medicao_complementos">Medicação e complementos:</span>
+                            <span class="med_com_conteudo">
+                                Clorpropamida 250mg (1x/dia). Via oral.
+                            </span>
+                        </p>
+                    </div>
+                    <div class="ficha-l9">
+                        <p>
+                            <span class="medicao_complementos">Medicação e complementos:</span>
+                            <span class="med_com_conteudo">
+                                Midazolam 15 mg (1x antes do procedimento cirúrgico). Via oral.
+                            </span>
+                        </p>
+                    </div>
+                    <p class="horario">
+                        <span class="bold">Horário:</span>
+                        <input type="text" class="in_horario" maxlength="5">
+                    </p>
+                </div>
+            </div>
+            <div class="rodape">
+                <p>
+                    <span class="bold">Funcionário:</span>
+                    <input type="text" class="in_funcionario" maxlength="25">
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
