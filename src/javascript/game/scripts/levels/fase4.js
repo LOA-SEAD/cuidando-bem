@@ -18,7 +18,7 @@ This file is part of Cuidando Bem.
 define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
 
-        var Dialogs = require("DialogsData").fase3;
+        var Dialogs = require("DialogsData").fase4;
         var Alertas = require("DialogsData").alertas;
         Scores = Scores.level3;
         var Player = require("Player");
@@ -47,14 +47,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var recepcao = lib.scenes.recepcao.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + recepcao.getName() );
-                
+
                 if(core.flag("conversar_recepcionista") == false) {
-                    
+
                     core.flag("conversar_recepcionista", true);
-                    core.openDialog( 0 ); 
-                
+                    core.openDialog( 0 );
+
                 }
-                
+
             });
 
         function recepcaoIrCorredor() {
@@ -108,7 +108,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
                 console.log("Entrando no corredor");
-            
+
                 core.openCommandBar();
                 core.setActionVisible("btn-ir_recepcao", true);
 
@@ -138,18 +138,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInRange( Player.audios.musics.inGame );
             });
-    
-     corredor.registerActions([ 
-            
+
+     corredor.registerActions([
+
              new Action("btn-ir_recepcao", "Voltar para a recepção")
                 .setCssClass("action-voltarRecepcao")
                 .onClick(function() {
-                    
+
                     core.changeScene( 0 );
-                   
+
                 })
-                .setVisibility( true ),    
-            
+                .setVisibility( true ),
+
         ]);
 
         corredor.registerDialogs([
