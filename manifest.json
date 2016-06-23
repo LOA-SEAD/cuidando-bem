@@ -1,7 +1,8 @@
 {
   "name": "Cuidando Bem",
   "start_url": ".",
-  "display": "landscape",
+  "display": "standalone",
+  "orientation": "landscape",
   "icons": [],
   "related_applications": [{
     "platform": "web"
