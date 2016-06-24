@@ -30,6 +30,9 @@ define([
 // Attributes
 
     var Stage = require("Stage");
+    var levelsData = require("levelsData");
+    var Storage = require("Storage");
+
     var modalSelector = "#endOfLevel";
     var scoreListSelector = "#scoreList";
     var scoreListBodySelector = "#scoreList_tbody";
@@ -77,9 +80,9 @@ define([
 
     function show( _scoreList, max, lastLevel ) {
         if ( !isOpen ) {
-          if ( typeof lastLevel !== "undefined" ) {
-            isLastLevel = lastLevel;
-          }
+            if ( typeof lastLevel !== "undefined" ) {
+              isLastLevel = lastLevel;
+            }
             $( modalSelector ).show();
 
             var actualScore = 0;
