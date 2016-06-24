@@ -61,7 +61,8 @@ define([
             Stage.changeScreen( 6 );
             Player.playInLoop( Player.audios.musics.menu );
           } else {
-            if ( true ) {
+            var gamePercentage = Storage.getScoreSum() / levelsData.getMaxGameScore();
+            if ( gamePercentage >= 0.75 ) {
               // Ganhou jogo
               Stage.changeScreen( 8 );
             } else {
