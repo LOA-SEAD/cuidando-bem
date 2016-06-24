@@ -24,7 +24,7 @@ This file is part of Cuidando Bem.
 define([
         "text!../html/interactiveObject/interactiveObjects.html",
         "text!../html/interactiveObject/interactiveObjectTemplate.html",
-        "./isMobile"
+        "IsMobile"
     ],
     function( html, interactiveObjectTemplate, isMobile ) {
 // Attributes
@@ -103,19 +103,7 @@ define([
             }
         });
         if ( _interactiveObject.isEnabled() ) {
-            if ( isMobile.isMobile() ) {
-              element.click({ iofunc: _interactiveObject.getFunction() }, function() {
-                if ( $( this ).is(":focus") ) {
-                  event.data.iofunc();
-                } else {
-                  $( this ).tooltip("open");
-                }
-              });
-            } else {
-              element.click( _interactiveObject.getFunction() );
-            }
-            element.addClass("enabled");
-            element.tooltip("option", "disabled", false );
+            addClickToElement( element, _interactiveObject );
         } else {
             element.addClass("disabled");
             element.tooltip("option", "disabled", true );
@@ -158,10 +146,7 @@ define([
     function enableInteractiveObject( _interactiveObject ) {
         var selector = "#" + _interactiveObject.getId();
         var element = $( selector );
-        element.removeClass("disabled");
-        element.addClass("enabled");
-        element.click( _interactiveObject.getFunction() );
-        element.tooltip("option", "disabled", false );
+        addClickToElement( element, _interactiveObject );
     }
 
     /**
@@ -179,6 +164,23 @@ define([
         element.unbind("click");
         element.tooltip("option", "disabled", true );
 
+    }
+
+    function addClickToElement( element, _interactiveObject ) {
+      // if ( !isMobile.isMobile() ) {
+      //   element.click({ iofunc: _interactiveObject.getFunction() }, function( event ) {
+      //     if ( $( this ).is(":focus") ) {
+      //       event.data.iofunc();
+      //     } else {
+      //       $( this ).tooltip("open");
+      //       $( this ).focus();
+      //     }
+      //   });
+      // } else {
+      element.click( _interactiveObject.getFunction() );
+      element.removeClass("disabled");
+      element.addClass("enabled");
+      element.tooltip("option", "disabled", false );
     }
 
     /**

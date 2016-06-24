@@ -35,6 +35,7 @@ require.config({
         Stage: "engine/core/stage",
         Player: "engine/core/player",
         ImageLoader: "engine/core/imageLoader",
+        IsMobile: "engine/core/isMobile",
 
         commandBar: "engine/modules/commandBar/commandBarController",
         Action: "engine/modules/commandBar/action",

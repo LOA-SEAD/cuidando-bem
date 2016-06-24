@@ -67,7 +67,7 @@ require([ "requireConfig" ], function() {
         require([ "jqueryui", "jquerymask" ], function() {
 
             // Load Stage module, stage configuration, game main Module, game configuration and all dialogs that will be used in game
-            require([ "Stage", "stageConfig" ], function( Stage ) {
+            require([ "Stage", "stageConfig", "IsMobile" ], function( Stage ) {
 
                 require([ "gameConfig", "CuidandoBem", "DialogsData" ], function( config ) {
                     config.load(function() {
@@ -100,4 +100,3 @@ require([ "requireConfig" ], function() {
         });
     });
 });
-
