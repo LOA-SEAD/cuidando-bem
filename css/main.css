@@ -936,6 +936,8 @@ This file is part of Cuidando Bem.
   margin-bottom: 10%;
 }
 #slotsContainer .slot {
+  overflow: hidden;
+  text-overflow: ellipsis;
   box-sizing: border-box;
   width: 70%;
   padding: 2%;
