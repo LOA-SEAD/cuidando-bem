@@ -23,9 +23,10 @@ This file is part of Cuidando Bem.
  */
 define([
         "text!../html/interactiveObject/interactiveObjects.html",
-        "text!../html/interactiveObject/interactiveObjectTemplate.html"
+        "text!../html/interactiveObject/interactiveObjectTemplate.html",
+        "./isMobile"
     ],
-    function( html, interactiveObjectTemplate ) {
+    function( html, interactiveObjectTemplate, isMobile ) {
 // Attributes
     var divSelector = "#interactiveObjects";
     var interactiveObjectSelector = ".interactiveObject";
@@ -84,7 +85,6 @@ define([
     function addInteractiveObject( _interactiveObject ) {
         var element = $( $( interactiveObjectTemplate )[ 0 ] );
 
-
         element.attr("title", _interactiveObject.getName() );
         element.attr("id", _interactiveObject.getId() );
         element.addClass( _interactiveObject.getCssClass() );
@@ -103,8 +103,18 @@ define([
             }
         });
         if ( _interactiveObject.isEnabled() ) {
+            if ( isMobile.isMobile() ) {
+              element.click({ iofunc: _interactiveObject.getFunction() }, function() {
+                if ( $( this ).is(":focus") ) {
+                  event.data.iofunc();
+                } else {
+                  $( this ).tooltip("open");
+                }
+              });
+            } else {
+              element.click( _interactiveObject.getFunction() );
+            }
             element.addClass("enabled");
-            element.click( _interactiveObject.getFunction() );
             element.tooltip("option", "disabled", false );
         } else {
             element.addClass("disabled");

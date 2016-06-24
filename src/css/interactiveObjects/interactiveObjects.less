@@ -23,7 +23,8 @@ This file is part of Cuidando Bem.
     cursor: pointer;
 }
 
-.interactiveObject:hover:not(.no-glow):not(.disabled) {
+.interactiveObject:hover:not(.no-glow):not(.disabled),
+.interactiveObject:focus:not(.no-glow):not(.disabled) {
     @scale: 1.05;
     transform: scale( @scale, @scale );
     filter: drop-shadow(0 0 8px @io-glow-color);
