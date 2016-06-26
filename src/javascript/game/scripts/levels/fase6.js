@@ -580,6 +580,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
         leito.registerActions([
+            
+                 new Action("btn-verificar_teste_glicemia", "Verificar resultado")
+
+                .setCssClass("action-realizar_teste_glicemia")
+                .onClick(function() {
+
+                     Player.play( Player.audios.sfx.bip );
+                     core.openModalScene("modalGlicosimetro");
+
+
+                })
+                .setVisibility( false ),
+
 
             new Action("btn-realizar_teste_glicemia", "Realizar teste de glicemia capilar")
                 // CONSERTAR
@@ -606,7 +619,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             core.registerScoreItem( Scores.fazerTesteGlicemia );
                         }
                         // Abre a cena do glicosimetro
-                        core.openModalScene("modalGlicosimetro");
+                        core.openModalScene("modalGlicosimetroComFita");
                     }
                 })
                 .setVisibility( false ),
@@ -1281,6 +1294,31 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             //  alert(Prontuario.isDataValid() + " Final da fase");
         ]);
+    
+            glicosimetroComFita = new Scene("modalGlicosimetroComFita", "modalGlicosimetroComFita")
+            .setCssClass("modalScene-glicosimetroComFita")
+            .setTemplate("<span class='glicosimetro-text'>100 mg/dl</span>");
+
+        glicosimetroComFita.registerActions([
+
+            new Action("btn-realizar_teste_glicemia", "Terminar teste de glicemia capilar")
+                .setCssClass("action-realizar_teste_glicemia")
+                .onClick(function() {
+
+                    core.closeModalScene("modalGlicosimetroComFita");
+
+
+                    core.setActionVisible("btn-realizar_teste_glicemia", false);
+                    core.setActionVisible("btn-verificar_teste_glicemia", true);
+
+
+
+                })
+                .setVisibility( true ),
+
+
+
+        ]);
 
 
         glicosimetro = new Scene("modalGlicosimetro", "modalGlicosimetro")
@@ -1314,6 +1352,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerModalScene( gaveta );
         level.registerModalScene( prontuario );
         level.registerModalScene( glicosimetro );
+        level.registerModalScene( glicosimetroComFita );
 
         // level init script
         level.setSetupScript(function() {
