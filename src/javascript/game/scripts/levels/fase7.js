@@ -385,7 +385,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                 }),
             
-             new InteractiveObject("io-falarPaciente", "Conversar com o paciente")
+             new InteractiveObject("io-falarPaciente", "Falar com o paciente")
                 .setCssClass("intObj-ir_leito_fase3")
                 .onClick(function() {
                 

@@ -238,6 +238,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var alaFeminina = new Scene("alaMasculina", "Ala Masculina")
             .setCssClass("scene-bedroom-level7")
             .onLoad(function() {
+                
+                if(core.flag("pegou_tudo_posto") == true){
+                    
+                  
+                   core.setInteractiveObjectVisible("io-conversar_paciente2", true );
+                   core.setInteractiveObjectVisible("io-falarPaciente", false );
+                    
+                }
 
 
 
@@ -397,18 +405,34 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
 
                 }),
+            
+              
+            
+            
+               new InteractiveObject("io-falarPaciente", "Falar com a paciente")
+                .setCssClass("intObj-irLeitoEsquerda")
+                .onClick(function() {
+                    
+                    
+                    if ( core.flag("conversarPaciente") == false ) {
+                        core.flag("conversarPaciente",  true );
+                        core.registerScoreItem( Scores.falarComPaciente );
+                    } 
+                    
+                    core.openDialog( 0 );
+           
+            
+                })
+                .setVisibility( true ),
 
 
             new InteractiveObject("io-conversar_paciente2", "Ir ao leito")
                 .setCssClass("intObj-irLeitoEsquerda")
                 .onClick(function() {
-                    // Primeiro momento onde você apenas irá conversar com o paciente
-                    if ( core.flag("conversarPaciente") == false ) {
-                        core.flag("conversarPaciente",  true );
-                        core.registerScoreItem( Scores.falarComPaciente );
-                        core.openDialog( 0 );
-                    // Não ocorre nada, pois o jogador precisa ir na farmácia e no posto de enfermagem primeiro
-                    } else if ( core.flag("pegou_tudo_posto") == false ) {
+                    
+           
+                
+                    if ( core.flag("pegou_tudo_posto") == false ) {
                     // Ida para o leito sem lavar as mãos, o que impede o jogador Ir ao leito
                     } else if ( core.flag("lavarMaos") == false ) {
                         core.openDialog( 7 );
@@ -420,7 +444,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.changeScene( 3 );
                     }
                 })
-                .setVisibility( true )
+                .setVisibility( false )
 
 
         ]);
@@ -445,10 +469,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         var farmacia = lib.scenes.farmacia.getClone()
             .onLoad(function() {
-                if ( core.flag("score_ler_prontuario") == true ) {
+                
+                         
+                if ( core.flag("score_ler_prontuario") == true) {
                     if ( core.flag("ir_ala_feminina_primeira_vez") == true ) {
-                        console.log("Load scene: " + farmacia.getName() );
-                        console.log("Abrindo dialogo com farmaceutico");
                         core.openDialog( 0 );
                     } else {
                         console.log("Hora Errada!");

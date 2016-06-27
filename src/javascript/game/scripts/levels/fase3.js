@@ -255,6 +255,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // core.openDialog( 0 );
                 } else {*/
                     core.setInteractiveObjectVisible("io-ir_leito", true );
+                    core.setInteractiveObjectVisible("io-falarPaciente", false );
+                    
                     if ( core.flag("tem_fala") == false ) {
                         core.openCommandBar();
                     }
@@ -289,23 +291,31 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
         salaDeLeitos.registerInteractiveObjects([
+            
+            new InteractiveObject("io-falarPaciente", "Falar com o paciente")
+                .setCssClass("intObj-ir_leito-fase2")
+                .onClick(function() {
+
+                        core.openDialog(0);
+                    
+                    
+                })
+                .setVisibility( true ),
+            
 
             new InteractiveObject("io-ir_leito", "Ir ao leito")
                 .setCssClass("intObj-ir_leito-fase2")
                 .onClick(function() {
-
-                    if ( core.flag("segunda_ida_leito_paciente") == false ) {
-                        core.openDialog( 0 );
-                    } else {
+ 
                         if ( core.flag("lavar_maos2") == false ) {
                             // Mentor corrige
                             core.openDialog( 3 );
                         } else {
                             core.changeScene( 3 );
                         }
-                    }
+                    
                 })
-                .setVisibility( true ),
+                .setVisibility( false ),
 
             new InteractiveObject("io-ir_corredor", "Ir ao Corredor")
                 .setCssClass("intObj-bedroomToHallway")
