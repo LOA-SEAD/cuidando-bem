@@ -33,6 +33,7 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
         var dialogTextSelector = ".dialog_mainText";
         var dialogOptionsSelector = ".dialog_options";
         var dialogButtonSelector = ".dialog_right";
+        var dialogRereadSelector = ".dialog_reread";
 
         var isDialogOpen = false;
 
@@ -75,8 +76,14 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
 
             // @dev {
             $( document ).keydown(function( e ) {
-                if ( e.which == 32 ) {
-                    $(".dialog_right").click();
+                switch( e.which ){
+                    case 37: $(".dialog_reread").click(); break;
+                    case 39: $(".dialog_right").click(); break;
+                    case 49: $(".dialog_button[value='1']").click(); break;
+                    case 50: $(".dialog_button[value='2']").click(); break;
+                    case 51: $(".dialog_button[value='3']").click(); break;
+                    case 52: $(".dialog_button[value='4']").click(); break;
+                    case 53: $(".dialog_button[value='5']").click(); break;
                 }
             });
             // }
@@ -98,6 +105,7 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             $( '.dialog_mainText', '.dialog_button' ).each(function(){
                $(this).attr('tabindex', '0');
             })
+
         }
 
         /**
@@ -113,13 +121,18 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             $( dialogCharImg ).removeClass();
             $( dialogCharImg ).addClass( _dialog.getSpeakerCssClass() );
             $( dialogCharImg ).show();
-            $( '<span>' + _dialog.getSpeakerName() + ': </span>' ).appendTo( "#accessible_log" );
-
-            // set the text for dialog text and provide accessibilty
             $( dialogTextSelector ).text( _dialog.getText() );
-            if( _dialog.getText() != "" ){
-                $( '<span>' + _dialog.getText() + '</span><br>' ).appendTo( "#accessible_log" );
-            }
+            
+            $(".dialog_reread").click( function(){
+                $( '<span>' + _dialog.getSpeakerName() + ': </span>' ).appendTo( "#accessible_log" );
+
+                // set the text for dialog text and provide accessibilty
+                if( _dialog.getText() != "" ){
+                    $( '<span>' + _dialog.getText() + '</span><br>' ).appendTo( "#accessible_log" );
+                }
+            });
+
+            $(".dialog_reread").click();
 
             // set the text for answer options (accessibility is provided in the method addAllDialogButtons)
             changeDialogOptionsTo( _dialog.getOptions(), _dialog.getRandomize() );
@@ -261,7 +274,7 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             element.click( _option.actionFunction );
 
             $(".text", element ).text( _option.text );
-            $(".dialog_button").attr('value', _number );
+            element.attr("value", _number );
 
             $( dialogOptionsSelector ).append( element );
 
