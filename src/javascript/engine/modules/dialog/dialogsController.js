@@ -77,8 +77,8 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             // @dev {
             $( document ).keydown(function( e ) {
                 switch( e.which ){
-                    case 37: $(".dialog_reread").click(); break;
-                    case 39: $(".dialog_right").click(); break;
+                    case 38: $(".dialog_reread").click(); break;
+                    case 40: $(".dialog_right").click(); break;
                     case 49: $(".dialog_button[value='1']").click(); break;
                     case 50: $(".dialog_button[value='2']").click(); break;
                     case 51: $(".dialog_button[value='3']").click(); break;
@@ -97,14 +97,6 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             });
 
             isDialogOpen = true;
-
-            // accessibility: disable navigation for interactive objects
-            $( '#interactiveObjects .interactiveObject' ).each(function(){
-               $(this).attr('tabindex', '-1');
-            })
-            $( '.dialog_mainText', '.dialog_button' ).each(function(){
-               $(this).attr('tabindex', '0');
-            })
 
         }
 
@@ -232,13 +224,37 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             $( dialogModalSelector ).hide("fade", 200 );
             isDialogOpen = false;
 
-            // accessibility: enable navigation for interactive objects
-            $( '#interactiveObjects .interactiveObject' ).each(function(){
-               $(this).attr('tabindex', '0');
-            })
-            $( '.dialog_mainText', '.dialog_button' ).each(function(){
-               $(this).attr('tabindex', '-1');
-            })
+            var i = -1;
+            $( document ).keydown(function( e ) {
+
+                var n = $( "#interactiveObjects .interactiveObject" );
+
+                if( n.length != 0 ){
+                    if( e.which == 40 ){
+                        if( i == n.length - 1 ){
+                            i = 0;
+                        }
+                        else{
+                            i++;
+                        }
+                        n[i].focus();
+                    }
+                    else if( e.which == 38 ){
+                        if( i > 0 ){
+                            i--;
+                        }
+                        else{
+                            i = n.length - 1;
+                        }
+                        n[i].focus();
+                    }
+                    else if( e.which == 13 ){
+                        if( i != -1 ){
+                            n[i].click();
+                        }
+                    }
+                }
+            });
 
         }
 
