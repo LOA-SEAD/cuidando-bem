@@ -156,6 +156,42 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
         $( '<span>Data: <time datetime="' + data.replace(/\//g, '-') + '">' + data + '</time></span><br>' ).appendTo( "#accessible_log" );
         $( '<span>Leito: ' + leito + '</span><br>' ).appendTo( "#accessible_log" );
         $( '<span>Nome: ' + name + '</span><br>' ).appendTo( "#accessible_log" );
+
+        var i = -1;
+        $( document ).keydown(function( e ) {
+
+            var n = $.merge( $( "#pulseira_modal input" ), $( "#commandBar .action_button") );
+
+            if( n.length != 0 ){
+                if( e.which == 40 ){
+                    if( i == n.length - 1 ){
+                        i = 0;
+                    }
+                    else{
+                        i++;
+                    }
+                    n[i].focus();
+                }
+                else if( e.which == 38 ){
+                    if( i > 0 ){
+                        i--;
+                    }
+                    else{
+                        i = n.length - 1;
+                    }
+                    n[i].focus();
+                }
+                else if( e.which == 13){
+                    if( i != -1 && n[i].attr("class") == "action_button" ){
+                        n[i].click();
+                    }
+                    else{
+
+                    }
+                }
+            }
+        });
+
     }
 
     /**
