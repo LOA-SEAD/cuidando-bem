@@ -624,6 +624,53 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         }
 
         $(".content").tabs( "option", "active", iTab );
+
+        if( true ){
+            var i = 0;
+            $( document ).keydown(function( e ) {
+
+                if( $( ".action_button:visible" ).length ){
+                    var n = $.merge(
+                                $( "#prontuario li.ui-state-default:visible a" ),
+                                $( ".action_button:visible" )
+                            );
+                }
+                else{
+                    var n = $( "#prontuario li.ui-state-default:visible a" );
+                }
+
+                if( n.length != 0 ){
+                    if( e.which == 40 ){ // seta para baixo
+                        if( i >= n.length - 1 ){
+                            i = 0;
+                        }
+                        else{
+                            i++;
+                        }
+                        $(n[i]).focus();
+                        $( '<span>' + i + '</span><br>' ).appendTo( "#testWelly" );
+                    }
+                    else if( e.which == 38 ){ // seta para cima
+                        if( i > 0 ){
+                            i--;
+                        }
+                        else{
+                            i = n.length - 1;
+                        }
+                        $(n[i]).focus();
+                        $( '<span>' + i + '</span><br>' ).appendTo( "#testWelly" );
+                    }
+                    else if( e.which == 13){ // enter
+                        $( '<span>' + i + '</span><br>' ).appendTo( "#testWelly" );
+                        if( i != -1 ){
+                            $(n[i]).click();
+                            showing = false;
+                        }
+                    }
+                }
+            });
+        }
+
     }
 
     function updateData() {
