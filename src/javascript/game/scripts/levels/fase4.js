@@ -795,7 +795,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                 console.log("Entrando no centro cirurgico segunda vez");
                // core.openDialog( 0 );
-                  core.closeCommandBar();
+                
+                if(core.flag("conversar_paciente_cc") == false)
+                    core.closeCommandBar();
+                
                   core.setInteractiveObjectVisible("io-conversarPaciente", false );
                 
             })
@@ -845,7 +848,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                     else {
                         core.registerScoreItem( Scores.colocarPlacaNeutra );
-                        core.changeSceneCssClassTo("scene-surgeryCenter-reginaComPlaca");
+                        core.changeSceneCssClassTo("scene-surgeryCenter-reginaComPlaca");    
                         core.setActionVisible("btn-colocar_placa_neutra", false);       
                     }
                     
@@ -1107,6 +1110,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("Abrir diálogo com a paciente");
                     core.openDialog( 2 );
+                    core.flag("conversar_paciente_cc", true);
                 })
 
 
@@ -1292,6 +1296,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "fim_fase",  false  ) );
         level.registerFlag( new Flag( "ir_leito_paciente",  false  ) );
         level.registerFlag( new Flag( "ler_prontuario",  false  ) );
+        level.registerFlag( new Flag( "conversar_paciente_cc",  false  ) );
 
 
         level.setInitialScene( 0 );
