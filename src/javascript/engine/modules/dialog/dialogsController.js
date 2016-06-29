@@ -74,20 +74,6 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             // $(dialogModalSelector).css("display", "table");
             // $(dialogModalSelector).hide()
 
-            // @dev {
-            $( document ).keydown(function( e ) {
-                switch( e.which ){
-                    case 38: $(".dialog_reread").click(); break;
-                    case 40: $(".dialog_right").click(); break;
-                    case 49: $(".dialog_button[value='1']").click(); break;
-                    case 50: $(".dialog_button[value='2']").click(); break;
-                    case 51: $(".dialog_button[value='3']").click(); break;
-                    case 52: $(".dialog_button[value='4']").click(); break;
-                    case 53: $(".dialog_button[value='5']").click(); break;
-                }
-            });
-            // }
-
             $( dialogMaskSelector ).show();
             $( dialogModalSelector ).show("fade", {
                 duration: 200,
@@ -97,6 +83,22 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             });
 
             isDialogOpen = true;
+
+            if(isDialogOpen){
+                // @dev {
+                $( document ).keydown(function( e ) {
+                    switch( e.which ){
+                        case 38: $(".dialog_reread").click(); break;
+                        case 40: $(".dialog_right").click(); break;
+                        case 49: $(".dialog_button[value='1']").click(); break;
+                        case 50: $(".dialog_button[value='2']").click(); break;
+                        case 51: $(".dialog_button[value='3']").click(); break;
+                        case 52: $(".dialog_button[value='4']").click(); break;
+                        case 53: $(".dialog_button[value='5']").click(); break;
+                    }
+                });
+                // }
+            }
 
         }
 
@@ -224,37 +226,47 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             $( dialogModalSelector ).hide("fade", 200 );
             isDialogOpen = false;
 
-            var i = -1;
-            $( document ).keydown(function( e ) {
+            if(!isDialogOpen){
+                var i = 0;
+                $( document ).keydown(function( e ){
 
-                var n = $( "#interactiveObjects .interactiveObject" );
+                    if( $( ".action_button:visible" ).length ){
+                        var n = $.merge(
+                                    $( ".interactiveObject:visible" ),
+                                    $( ".action_button:visible" )
+                                );
+                    }
+                    else{
+                        var n = $( ".interactiveObject:visible" );
+                    }
 
-                if( n.length != 0 ){
-                    if( e.which == 40 ){
-                        if( i == n.length - 1 ){
-                            i = 0;
+                    if( n.length != 0 ){
+                        if( e.which == 40 ){ // seta para baixo
+                            if( i >= n.length - 1 ){
+                                i = 0;
+                            }
+                            else{
+                                i++;
+                            }
+                            $(n[i]).focus();
                         }
-                        else{
-                            i++;
+                        else if( e.which == 38 ){ // seta para cima
+                            if( i > 0 ){
+                                i--;
+                            }
+                            else{
+                                i = n.length - 1;
+                            }
+                            $(n[i]).focus();
                         }
-                        n[i].focus();
+                        else if( e.which == 13 ){ // enter
+                            if( i != -1 ){
+                                $(n[i]).click();
+                            }
+                        }
                     }
-                    else if( e.which == 38 ){
-                        if( i > 0 ){
-                            i--;
-                        }
-                        else{
-                            i = n.length - 1;
-                        }
-                        n[i].focus();
-                    }
-                    else if( e.which == 13 ){
-                        if( i != -1 ){
-                            n[i].click();
-                        }
-                    }
-                }
-            });
+                });
+            }
 
         }
 
