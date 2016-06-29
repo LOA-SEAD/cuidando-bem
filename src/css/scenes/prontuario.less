@@ -15,8 +15,10 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 #prontuario {
+    @borderProntuario: 0.1rem solid black;
+
     font-family: @font-printed;
-    font-size: 2em;
+    font-size: 2rem;
     display: none;
     z-index: 1;
     box-sizing: border-box;
@@ -38,6 +40,7 @@ This file is part of Cuidando Bem.
     input{
         width: 100%;
         border: none;
+        border-bottom: @borderProntuario;
         background-color: transparent;
     }
 
@@ -75,13 +78,13 @@ This file is part of Cuidando Bem.
         height: 5%;
         max-height: 5%;
         text-align: center;
-        border-bottom: 1px solid black;
+        border-bottom: @borderProntuario;
     }
 
     .row{
         padding: 10px 0px;
         text-align: center;
-        border-bottom: 1px black solid;
+        border-bottom: @borderProntuario;
     }
 
     .outerBlock{
@@ -89,32 +92,31 @@ This file is part of Cuidando Bem.
     }
 
     .block{
-        border: 1px black solid;
+        border: @borderProntuario;
     }
 
     .container{
-        height: 40px;
+        min-height: 4rem;
         font-weight: bold;
-        border-bottom: 1px black solid;
+        border-bottom: @borderProntuario;
     }
 
     .doubleContainer{
         height: 60px;
         font-weight: bold;
-        border-bottom: 1px black solid;
+        border-bottom: @borderProntuario;
     }
 
     .tripleContainer{
         height: 90px;
         font-weight: bold;
-        border-bottom: 1px black solid;
+        border-bottom: @borderProntuario;
     }
 
     .oneLeft{
         float: left;
         width: 50%;
-        height: 100%;
-        border-right: 1px black solid;
+        border-right: @borderProntuario;
     }
 
     .dataInternacao, .medidas_antropometricas, .filiacaoContainer{
@@ -124,37 +126,39 @@ This file is part of Cuidando Bem.
     .doubleLeft{
         float: left;
         width: 50%;
-        height: 100%;
-        border-right: 1px black solid;
+        border-right: @borderProntuario;
     }
 
     .tripleLeft{
         float: left;
         width: 50%;
-        height: 100%;
-        border-right: 1px black solid;
+        border-right: @borderProntuario;
     }
 
     .oneRight{
-        height: 100%;
     }
 
     .doubleRight{
-        height: 50%;
     }
 
     .tripleRight{
-        height: 33.2%;
     }
 
-    .third{
-        width: 33%;
-        height: 100%;
-        float: left;
+    .data_nascimento{
+      border-right: @borderProntuario;
+      width: 50%;
+      display: inline-block;
+      height: 4rem;
     }
-
-    .third:not(:last-child){
-        border-right: 1px black solid;
+    .idade{
+      border-right: @borderProntuario;
+      width: 30%;
+      display: inline-block;
+      height: 4rem;
+    }
+    .sexo{
+      display: inline-block;
+      height: 4rem;
     }
 
     table.col6 {
@@ -162,14 +166,14 @@ This file is part of Cuidando Bem.
 
         thead {
             text-align: center;
-            border-bottom: 1px solid black;
+            border-bottom: @borderProntuario;
 
             th {
                 padding: 5px;
                 width: 16%;
             }
             th:not(:last-child) {
-                border-right: 1px solid black;
+                border-right: @borderProntuario;
             }
         }
         tbody {
@@ -178,10 +182,10 @@ This file is part of Cuidando Bem.
                 height: 30px;
             }
             td:not(:last-child) {
-                border-right: 1px solid black;
+                border-right: @borderProntuario;
             }
             tr:not(:last-child) {
-                border-bottom: 1px solid black;
+                border-bottom: @borderProntuario;
             }
         }
     }
@@ -191,14 +195,14 @@ This file is part of Cuidando Bem.
 
         thead {
             text-align: center;
-            border-bottom: 1px solid black;
+            border-bottom: @borderProntuario;
 
             th {
                 padding: 5px;
                 width: 25%;
             }
             th:not(:last-child) {
-                border-right: 1px solid black;
+                border-right: @borderProntuario;
             }
         }
         tbody {
@@ -207,10 +211,10 @@ This file is part of Cuidando Bem.
                 height: 30px;
             }
             td:not(:last-child) {
-                border-right: 1px solid black;
+                border-right: @borderProntuario;
             }
             tr:not(:last-child) {
-                border-bottom: 1px solid black;
+                border-bottom: @borderProntuario;
             }
         }
     }
@@ -220,7 +224,7 @@ This file is part of Cuidando Bem.
 
         thead {
             text-align: center;
-            border-bottom: 1px solid black;
+            border-bottom: @borderProntuario;
 
             th{
                 padding: 5px;
@@ -230,7 +234,7 @@ This file is part of Cuidando Bem.
                 width: 25%;
             }
             th:not(:last-child) {
-                border-right: 1px solid black;
+                border-right: @borderProntuario;
             }
         }
         tbody {
@@ -239,10 +243,10 @@ This file is part of Cuidando Bem.
                 height: 30px;
             }
             td:not(:last-child) {
-                border-right: 1px solid black;
+                border-right: @borderProntuario;
             }
             tr:not(:last-child) {
-                border-bottom: 1px solid black;
+                border-bottom: @borderProntuario;
             }
         }
     }
