@@ -98,7 +98,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                 // Pulseira.open();
                 // core.openModalScene("modalOximetro");
-                // Prontuario.open();
+                Prontuario.open();
                 // freqRespiratoria.open();
 
                 // core.showEndOfLevel();
@@ -106,8 +106,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 // EquipoGotejamento.open();
 
                 // Soro
-                Ficha.open( "soro", 5 );
-                core.openCommandBar();
+                // Ficha.open( "soro", 5 );
+                // core.openCommandBar();
                 // Ficha.open( "soro", 6 );
                 // Ficha.open( "soro", 9 );
 
