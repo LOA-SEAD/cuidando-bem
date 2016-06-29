@@ -157,40 +157,57 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
         $( '<span>Leito: ' + leito + '</span><br>' ).appendTo( "#accessible_log" );
         $( '<span>Nome: ' + name + '</span><br>' ).appendTo( "#accessible_log" );
 
-        var i = -1;
-        $( document ).keydown(function( e ) {
+        if(showing){
+            var i = 0;
+            $( document ).keydown(function( e ) {
 
-            var n = $.merge( $( "#pulseira_modal input" ), $( "#commandBar .action_button") );
+                if( $( ".action_button:visible" ).length ){
+                    var n = $.merge(
+                                $( "#pulseira_modal input" ),
+                                $( ".action_button:visible" )
+                            );
+                }
+                else{
+                    var n = $( "#pulseira_modal input" );
+                }
 
-            if( n.length != 0 ){
-                if( e.which == 40 ){
-                    if( i == n.length - 1 ){
-                        i = 0;
+                if( n.length != 0 ){
+                    if( e.which == 40 ){ // seta para baixo
+                        if( i >= n.length - 1 ){
+                            i = 0;
+                        }
+                        else{
+                            i++;
+                        }
+                        $(n[i]).focus();
                     }
-                    else{
-                        i++;
+                    else if( e.which == 38 ){ // seta para cima
+                        if( i > 0 ){
+                            i--;
+                        }
+                        else{
+                            i = n.length - 1;
+                        }
+                        $(n[i]).focus();
                     }
-                    n[i].focus();
+                    else if( e.which == 13 ){ // enter
+                        if( i != -1 && $(n[i]).attr("class") == "action_button" ){
+                            $(n[i]).click();
+                            showing = false;
+                        }
+                        else{
+                            if( i >= n.length - 1 ){
+                                i = 0;
+                            }
+                            else{
+                                i++;
+                            }
+                            $(n[i]).focus();
+                        }
+                    }
                 }
-                else if( e.which == 38 ){
-                    if( i > 0 ){
-                        i--;
-                    }
-                    else{
-                        i = n.length - 1;
-                    }
-                    n[i].focus();
-                }
-                else if( e.which == 13){
-                    if( i != -1 && n[i].attr("class") == "action_button" ){
-                        n[i].click();
-                    }
-                    else{
-
-                    }
-                }
-            }
-        });
+            });
+        }
 
     }
 
