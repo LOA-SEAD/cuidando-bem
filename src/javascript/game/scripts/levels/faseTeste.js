@@ -98,7 +98,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                 // Pulseira.open();
                 // core.openModalScene("modalOximetro");
-                Prontuario.open();
+                Prontuario.open("sinaisVitais");
                 // freqRespiratoria.open();
 
                 // core.showEndOfLevel();

@@ -9,7 +9,6 @@
             <li><a href="#bloco3">Prescrição Médica</a></li>
             <li><a href="#bloco4">Prescrição Enfermagem</a></li>
             <li><a href="#bloco5">Sinais Vitais</a></li>
-            <li><a href="#bloco6">Anotações</a></li>
             <li></li>
         </ul>
 
@@ -21,7 +20,7 @@
                     <span id="pront_nome"></span>
                 </div>
 
-                <div class="container">
+                <div class="container info">
                     <div class="data_nascimento">
                         Data de Nascimento:
                         <span id="pront_data_nascimento"></span>
@@ -47,17 +46,9 @@
                 </div>
 
                 <div class="filiacaoContainer doubleContainer">
-                    <div class="filiacao doubleLeft">
-                        Filiação:
-                    </div>
-                    <div class="nome_pai doubleRight">
-                        Nome do Pai:
-                        <span id="pront_nome_pai"></span>
-                    </div>
-                    <div class="nome_mae doubleRight">
-                        Nome da Mãe:
-                        <span id="pront_nome_mae"></span>
-                    </div>
+                    <p>Filiação:</p>
+                    <p>Nome do Pai:<span id="pront_nome_pai"></span></p>
+                    <p>Nome da Mãe:<span id="pront_nome_mae"></span></p>
                 </div>
             </div>
         </div>
@@ -77,39 +68,25 @@
                 </div>
 
                 <div class="antecedentes doubleContainer">
-                    <div class="oneLeft" >
-                        Antecedentes hospitalares:
-                    </div>
-                    <div class="oneRight">
-                        <span id="pront_antecedentes"></span>
-                    </div>
+                    <p>Antecedentes hospitalares:</p>
+                    <span id="pront_antecedentes"></span>
                 </div>
 
                 <div class="hipotese_diagnostica doubleContainer">
-                    <div class="oneLeft">
-                        Hipótese diagnóstica:
-                    </div>
-                    <div class="oneRight">
-                        <span id="pront_hipotese_diagnostica"></span>
-                    </div>
+                    <p>Hipótese diagnóstica:<p>
+                    <span id="pront_hipotese_diagnostica"></span>
                 </div>
 
                 <div class="observacoes doubleContainer">
-                    <div class="oneLeft">
-                        Observações:
-                    </div>
-                    <div class="oneRight">
-                        <span id="pront_observacoes"></span>
-                    </div>
+                    <p>Observações:</p>
+                    <span id="pront_observacoes"></span>
                 </div>
 
                 <div class="alergia_medicamentosa doubleContainer">
-                    <div class="oneLeft">
-                        Alergia medicamentosa:
-                    </div>
+                    <p>Alergia medicamentosa:</p>
                     <div class="doubleRight">
                         <div id="pront_alergia_divSim" class="inline">(&nbsp;<span id="pront_alergia_spanSim">&nbsp;</span>&nbsp;)Sim.</div>
-                        Qual(s) ?<input id="pront_alergia_qual">
+                        Qual(s)? <input id="pront_alergia_qual">
                     </div>
                     <div class="doubleRight">
                         <div id="pront_alergia_divNao" class="inline">(&nbsp;<span id="pront_alergia_spanNao">&nbsp;</span>&nbsp;)Não.</div>
@@ -117,9 +94,8 @@
                 </div>
 
                 <div class="medidas_antropometricas tripleContainer">
-                    <div class="tripleLeft">
-                        Medidas antropométricas:
-                    </div>
+                    <p>Medidas antropométricas:</p>
+
                     <div class="tripleRight">
                         Peso: <span id="pront_peso"></span> kg
                     </div>
@@ -140,7 +116,7 @@
                     <span class="anotacao_enfermagem">Prescrição Médica</span>
                 </div>
 
-                <table class="col6">
+                <table class="prescMedica col6">
                     <thead>
                         <tr>
                             <th>Data</th>
@@ -325,7 +301,7 @@
                 <div class="row">
                     Sinais Vitais (SSVV)
                 </div>
-                <table class="col6">
+                <table class="col6 ssvv">
                     <thead>
                         <tr>
                             <th>Data</th>
@@ -339,50 +315,22 @@
                     <tbody id="ssvv_tbody">
                         <tr class="ssvv_row">
                             <td><span class="data" type="text"></span></td>
-                            <td><input class="pa" type="text"> mmhg</td>
-                            <td><input class="fc" type="text"> bpm</td>
-                            <td><input class="fr" type="text"> rpm</td>
-                            <td><input class="sat" type="text"> %</td>
-                            <td><input class="temp" type="text"> ºC</td>
+                            <td><input class="pa" type="text" maxlength="7"> mmhg</td>
+                            <td><input class="fc" type="text" maxlength="3"> bpm</td>
+                            <td><input class="fr" type="text" maxlength="3"> rpm</td>
+                            <td><input class="sat" type="text" maxlength="3"> %</td>
+                            <td><input class="temp" type="text" maxlength="4"> ºC</td>
                         </tr>
                         <tr class="ssvv_row">
                             <td><span class="data" type="text"></span></td>
-                            <td><input class="pa" type="text"> mmhg</td>
-                            <td><input class="fc" type="text"> bpm</td>
-                            <td><input class="fr" type="text"> rpm</td>
-                            <td><input class="sat" type="text"> %</td>
-                            <td><input class="temp" type="text"> ºC</td>
+                            <td><input class="pa" type="text" maxlength="7"> mmhg</td>
+                            <td><input class="fc" type="text" maxlength="3"> bpm</td>
+                            <td><input class="fr" type="text" maxlength="3"> rpm</td>
+                            <td><input class="sat" type="text" maxlength="3"> %</td>
+                            <td><input class="temp" type="text" maxlength="4"> ºC</td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
-
-        <!-- Anotação Enfermagem -->
-        <div id="bloco6" class="outerBlock">
-            <div class="block">
-                <div class="row">
-                    <span class="anotacao_enfermagem">Anotação de Enfermagem</span>
-                </div>
-                <table id="anotacaoEnfermagem_table" class="col2">
-                    <thead>
-                        <tr>
-                            <th>Data/Horário</th>
-                            <th>Relatório</th>
-                        </tr>
-                    </thead>
-                    <tbody id="anotacaoEnfermagem_tbody">
-                        <tr>
-                            <td><input class="data" type="text" disabled/>
-
-                            </td>
-                            <td><div class="anotacao" type="text"/>
-
-                            </div></td>
-                        </tr>
-                    </tbody>
-                </table>
-
             </div>
         </div>
     </div>

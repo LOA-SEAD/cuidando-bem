@@ -37,6 +37,10 @@ This file is part of Cuidando Bem.
 
     text-align: left;
 
+    p {
+      margin: 0;
+    }
+
     input{
         width: 100%;
         border: none;
@@ -50,8 +54,12 @@ This file is part of Cuidando Bem.
         color: #008080;
     }
 
-    .ui-tabs .ui-tabs-nav li:not(:last-child) {
-        margin-right: 14px;
+    .ui-tabs .ui-tabs-nav li{
+      margin: 0;
+    }
+
+    .ui-tabs .ui-tabs-nav li:not(:last-child):not(:nth-child(5)) {
+        margin-right: 5.08rem;
     }
 
     input[disabled]{
@@ -82,7 +90,7 @@ This file is part of Cuidando Bem.
     }
 
     .row{
-        padding: 10px 0px;
+        //padding: 10px 0px;
         text-align: center;
         border-bottom: @borderProntuario;
     }
@@ -96,13 +104,17 @@ This file is part of Cuidando Bem.
     }
 
     .container{
-        min-height: 4rem;
+        min-height: 8rem;
         font-weight: bold;
         border-bottom: @borderProntuario;
     }
 
+    .container.info{
+      min-height: 4rem;
+    }
+
     .doubleContainer{
-        height: 60px;
+        min-height: 8rem;
         font-weight: bold;
         border-bottom: @borderProntuario;
     }
@@ -135,13 +147,10 @@ This file is part of Cuidando Bem.
         border-right: @borderProntuario;
     }
 
-    .oneRight{
-    }
-
-    .doubleRight{
-    }
-
-    .tripleRight{
+    .medidas_antropometricas > div{
+        display: inline-block;
+        width: auto;
+        padding: 1% 2%;
     }
 
     .data_nascimento{
@@ -169,7 +178,7 @@ This file is part of Cuidando Bem.
             border-bottom: @borderProntuario;
 
             th {
-                padding: 5px;
+                //padding: 5px;
                 width: 16%;
             }
             th:not(:last-child) {
@@ -190,6 +199,62 @@ This file is part of Cuidando Bem.
         }
     }
 
+    table.prescMedica {
+      font-size: 1.5rem;
+      td {
+        padding: 0.5rem;
+      }
+      th:nth-child(1), td:nth-child(1) {
+        width: 5%;
+        text-align: center;
+      }
+      th:nth-child(2), td:nth-child(2) {
+        width: 35%;
+      }
+      th:nth-child(3), td:nth-child(3) {
+        width: 15%;
+      }
+      th:nth-child(4), td:nth-child(4) {
+        width: 30%;
+      }
+      th:nth-child(5), td:nth-child(5) {
+        width: 10%;
+        text-align: center;
+      }
+      th:nth-child(6), td:nth-child(6) {
+        width: 5%;
+      }
+    }
+
+    table.ssvv {
+      font-size: 1.5rem;
+
+      td {
+        padding: 0.5rem;
+        text-align: center;
+      }
+      th:nth-child(1), td:nth-child(1) {
+        width: 10%;
+        text-align: center;
+      }
+      th:nth-child(2), td:nth-child(2) {
+        width: 30%;
+      }
+      th:nth-child(3), td:nth-child(3) {
+        width: 15%;
+      }
+      th:nth-child(4), td:nth-child(4) {
+        width: 15%;
+      }
+      th:nth-child(5), td:nth-child(5) {
+        width: 15%;
+        text-align: center;
+      }
+      th:nth-child(6), td:nth-child(6) {
+        width: 15%;
+      }
+    }
+
     table.col4 {
         width: 100%;
 
@@ -198,7 +263,7 @@ This file is part of Cuidando Bem.
             border-bottom: @borderProntuario;
 
             th {
-                padding: 5px;
+                //padding: 5px;
                 width: 25%;
             }
             th:not(:last-child) {
@@ -227,7 +292,7 @@ This file is part of Cuidando Bem.
             border-bottom: @borderProntuario;
 
             th{
-                padding: 5px;
+                //padding: 5px;
             }
 
             th:first-child {
@@ -311,7 +376,7 @@ This file is part of Cuidando Bem.
             display: none;
         }
         td {
-            padding: 10px;
+            //padding: 10px;
         }
         .vazio {
         }
@@ -359,7 +424,7 @@ This file is part of Cuidando Bem.
 }
 .ui-tabs .ui-tabs-nav {
     margin: 0;
-    padding: .2em .2em 0;
+    padding: 0 .2em;
 }
 .ui-tabs .ui-tabs-nav li {
     list-style: none;
