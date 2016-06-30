@@ -322,15 +322,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 console.log("Load scene: " + alaMasculina.getName() );
 
                 core.setInteractiveObjectVisible("io-conversar_com_paciente", false );
+                core.setActionVisible("btn-ler_prontuario", false );
 
                 if ( core.flag("pegou_tudo_postoEnfermagem") == true ) {
                     core.setInteractiveObjectVisible("io-conversar_com_paciente", true );
-                } else if ( core.flag("ler_prontuario") == true ) {
-
-                } else {
-                    core.flag("conversar_paciente",  true );
-                    core.openDialog( 0 );
-                }
+                    core.setActionVisible("btn-lavarMaos", true);
+                } 
+              
             });
 
         alaMasculina.registerDialogs([
@@ -386,22 +384,57 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.changeScene( 1 );
 
                 }),
+            
+             new InteractiveObject("io-falarPaciente", "Falar com o paciente")
+                .setCssClass("intObj-ir_leito_fase3")
+                .onClick(function() {
+                
+                    core.openDialog(0);
+                    core.flag("conversar_paciente",  true );
+                     core.setActionVisible("btn-ler_prontuario", true );
+
+                })
+            .setVisibility(true),
 
             new InteractiveObject("io-conversar_com_paciente", "Ir ao leito")
                 .setCssClass("intObj-ir_leito_fase3")
                 .onClick(function() {
-
-                    if ( core.flag("ir_leito_paciente") == false ) {
+                    
+                    if(core.flag("score_lavarMaos3") == false){
+                        core.openDialog(4);
+                    } else{
+                        
+                         if ( core.flag("ir_leito_paciente") == false ) {
                         core.flag("ir_leito_paciente",  true );
                         console.log("Abrir diálogo com paciente 6");
                         core.registerScoreItem( Scores.irAoLeitoCorreto );
                         core.changeScene( 3 );
                     }
+                        
+                    }
+
+                   
                 })
                 .setVisibility( true )
         ]);
 
         alaMasculina.registerActions([
+            
+              new Action("btn-lavarMaos", "Lavar as mãos")
+            .setCssClass("action-lavarMaos")
+            .onClick(function() {
+                // Som
+                
+                Player.play( Player.audios.sfx.lavarMaos );
+                
+                if ( core.flag("score_lavarMaos3") == false ) {
+                    core.registerScoreItem( Scores.lavarMaos3 );
+                      core.flag("score_lavarMaos3",  true );
+                }
+
+              
+            })
+            .setVisibility( false ),
 
             new Action("btn-ler_prontuario", "Ler prontuario")
                 .setCssClass("action-ler_prontuario")
@@ -804,6 +837,21 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
     })
       .setVisibility( true ),
+        
+        
+        
+           new Action("btn-verificar_sonda", "Verificar Local da Sonda")
+      .setCssClass("action-verificar-sonda")
+      .onClick(function() {
+
+        if ( core.flag("score_verificar_sonda") == false ) {
+            core.registerScoreItem( Scores.verificarSonda );
+        }
+
+        core.flag("score_verificar_sonda",  true );
+
+    })
+      .setVisibility( true ),
 
 
 
@@ -821,20 +869,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setVisibility( true ),
 
 
-      new Action("btn-verificar_sonda", "Verificar Local da Sonda")
-      .setCssClass("action-verificar-sonda")
-      .onClick(function() {
+   
 
-        if ( core.flag("score_verificar_sonda") == false ) {
-            core.registerScoreItem( Scores.verificarSonda );
-        }
-
-        core.flag("score_verificar_sonda",  true );
-
-    })
-      .setVisibility( true ),
-
-      new Action("btn-administrar_dieta", "Administrar Dieta")
+     /* new Action("btn-administrar_dieta", "Administrar Dieta")
       .setCssClass("action-frasco_dieta")
       .onClick(function() {
 
@@ -845,7 +882,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         core.flag("score_administrar_dieta",  true );
 
     })
-      .setVisibility( true ),
+      .setVisibility( true ),*/
 
       new Action("btn-colocar_gotejamento", "Colocar Gotejamento")
       .setCssClass("action-colocarSoroDieta")
@@ -1238,6 +1275,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "score_anotar_prontuario",  false  ) );
         level.registerFlag( new Flag( "score_gotejar_soro",  false  ) );
         level.registerFlag( new Flag( "conversar_recepcionista",  false  ) );
+        level.registerFlag( new Flag( "score_lavarMaos3",  false  ) );
 
         level.setInitialScene( 0 );
 

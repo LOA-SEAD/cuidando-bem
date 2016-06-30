@@ -197,6 +197,7 @@ define(function() {
             conferirDieta: new Score("Conferir medicamento/dieta", 150 ),
             lavarMaos1: new Score("Lavar as mãos no posto de enfermagem", 200 ),
             lavarMaos2: new Score("Lavar as mãos antes de anotar no prontuário", 200 ),
+            lavarMaos3: new Score("Lavar as mãos antes deir ao leito", 200 ),
             pegarCopoDescartavel: new Score("Pegar copo descartável", 50 ),
             pegarAguaPotavel: new Score("Pegar agua potável", 50 ),
             pegarSeringa: new Score("Pegar seringa", 50 ),

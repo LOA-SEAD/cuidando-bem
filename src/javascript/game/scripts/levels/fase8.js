@@ -135,18 +135,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         function corredorIrPostoEnfermagem() {
-            console.log("Action: corredorIrPostoEnfermagem");
-            if ( core.flag("ir_postoEnfermagem_horaErrada") == false ) {
-                core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
-                core.flag("ir_postoEnfermagem_horaErrada",  true );
-            }
-            // Já falou com a paciente, porém não foi até a farmacia ainda
-            if ( ( core.flag("conferir_medicamento_correto") == false ) &&
-               ( core.flag("score_ler_prontuario") == true ) ) {
-                    core.openDialog( 0 );
-            } else {
+          
                 core.changeScene( 5 );
-            }
+            
         }
 
         function corredorIrAlaFeminina() {
@@ -238,6 +229,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var alaFeminina = new Scene("alaMasculina", "Ala Masculina")
             .setCssClass("scene-bedroom-level7")
             .onLoad(function() {
+                
+                if(core.flag("pegou_tudo_posto") == true){
+                    
+                  
+                   core.setInteractiveObjectVisible("io-conversar_paciente2", true );
+                   core.setInteractiveObjectVisible("io-falarPaciente", false );
+                    
+                }
 
 
 
@@ -397,18 +396,34 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
 
                 }),
+            
+              
+            
+            
+               new InteractiveObject("io-falarPaciente", "Falar com a paciente")
+                .setCssClass("intObj-irLeitoEsquerda")
+                .onClick(function() {
+                    
+                    
+                    if ( core.flag("conversarPaciente") == false ) {
+                        core.flag("conversarPaciente",  true );
+                        core.registerScoreItem( Scores.falarComPaciente );
+                    } 
+                    
+                    core.openDialog( 0 );
+           
+            
+                })
+                .setVisibility( true ),
 
 
             new InteractiveObject("io-conversar_paciente2", "Ir ao leito")
                 .setCssClass("intObj-irLeitoEsquerda")
                 .onClick(function() {
-                    // Primeiro momento onde você apenas irá conversar com o paciente
-                    if ( core.flag("conversarPaciente") == false ) {
-                        core.flag("conversarPaciente",  true );
-                        core.registerScoreItem( Scores.falarComPaciente );
-                        core.openDialog( 0 );
-                    // Não ocorre nada, pois o jogador precisa ir na farmácia e no posto de enfermagem primeiro
-                    } else if ( core.flag("pegou_tudo_posto") == false ) {
+                    
+           
+                
+                    if ( core.flag("pegou_tudo_posto") == false ) {
                     // Ida para o leito sem lavar as mãos, o que impede o jogador Ir ao leito
                     } else if ( core.flag("lavarMaos") == false ) {
                         core.openDialog( 7 );
@@ -420,7 +435,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.changeScene( 3 );
                     }
                 })
-                .setVisibility( true )
+                .setVisibility( false )
 
 
         ]);
@@ -445,38 +460,27 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         var farmacia = lib.scenes.farmacia.getClone()
             .onLoad(function() {
-                if ( core.flag("score_ler_prontuario") == true ) {
-                    if ( core.flag("ir_ala_feminina_primeira_vez") == true ) {
-                        console.log("Load scene: " + farmacia.getName() );
-                        console.log("Abrindo dialogo com farmaceutico");
-                        core.openDialog( 0 );
-                    } else {
-                        console.log("Hora Errada!");
+                
+                if(core.flag("score_ler_prontuario") == true && core.flag("falou_farmaceutico") == false){
+                    core.openDialog(0);
+                }
+                else {
+                    
                         if ( core.flag("ir_farmacia_horaErrada") == false ) {
                             core.registerScoreItem( Scores.irFarmaciaHoraErrada );
+                            core.flag("ir_farmacia_horaErrada",  true );
                         }
-                        core.flag("ir_farmacia_horaErrada",  true );
-                        core.openDialog( 9 );
-                        core.changeScene( 1 );
-                    }
+                        core.setActionVisible("btn-clorpropamidaMedicamento", false );  
                 }
-                core.setActionVisible("btn-clorpropamidaMedicamento", false );
+ 
             });
 
 
         farmacia.registerInteractiveObjects([
-       /*
-            new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-left")
-                .onClick( farmaciaIrCorredor )
-                .setVisibility( true ),
-
-            new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-right")
-                .onClick( farmaciaIrCorredor )
-                .setVisibility( true ),*/
+ 
 
             // Clorpromazina
+            
             new InteractiveObject("io-clorpromazina_medicamento", "Pegar Medicamento")
                 .setCssClass("intObj-clorpromazina_medicamento")
                 .onClick(function() {
@@ -516,6 +520,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Dialogs.farmacia[ 0 ] )
                 .registerOption("", function() {
                     core.openDialog( 1 );
+                    core.flag("falou_farmaceutico", true);
                 }),
 
             // 1
@@ -823,17 +828,32 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         var postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
-                if ( core.flag("ir_ala_feminina_primeira_vez") == true ) {
-                    console.log("Load scene: " + postoDeEnfermagem.getName() );
-                } else {
-                    console.log("Hora Errada!");
-                    if ( core.flag("ir_postoEnfermagem_horaErrada") == false ) {
+                
+                
+                if(core.flag("ir_ala_feminina_primeira_vez") == false || core.flag("conferir_medicamento_correto") == false){
+                    
+                      if ( core.flag("ir_postoEnfermagem_horaErrada") == false ) {
                         core.registerScoreItem( Scores.irFarmaciaHoraErrada );
+                        core.flag("ir_postoEnfermagem_horaErrada",  true );
                     }
-                    core.flag("ir_postoEnfermagem_horaErrada",  true );
-                    core.openDialog( 2 );
-                    core.changeScene( 1 );
+                    
+                   core.setInteractiveObjectVisible("io-pegar_bandeja",false);
+                   core.setInteractiveObjectVisible("io-abrirGaveta",false);
+    
                 }
+                else {
+                    core.setInteractiveObjectVisible("io-pegar_bandeja",true);
+                   core.setInteractiveObjectVisible("io-abrirGaveta",true);
+                    
+                    if(core.flag("pegou_bandeja") == true){
+                          core.setInteractiveObjectVisible("io-pegar_bandeja",false);
+                    }
+                    
+                }
+                
+     
+                
+                
             });
 
         postoDeEnfermagem.registerDialogs([
@@ -907,24 +927,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-ir_corredor", "Ir ao corredor")
                 .setCssClass("action-ir_corredor")
                 .onClick(function() {
-                    if ( core.flag("score_pegar_copo_descartavel") == false || core.flag("score_pegar_agua_potavel") == false ) {
-                        if ( core.flag("score_pegar_copo_descartavel") == false ) {
-                            if ( core.flag("score_nao_pegar_copo") == false ) {
-                                core.registerScoreItem( Scores.naoPegarCopo );
-                                core.flag("score_nao_pegar_copo",  true );
-                            }
-                        }
-                        if ( core.flag("score_pegar_agua_potavel") == false ) {
-                            if ( core.flag("score_nao_pegar_agua") == false ) {
-                                core.registerScoreItem( Scores.naoPegarAgua );
-                                core.flag("score_nao_pegar_agua",  true );
-                            }
-                        }
-                    } else {
-                        // Para liberar o segundo diálogo com a paciente
-                        core.flag("pegou_tudo_posto",  true );
-                        core.changeScene( 1 );
+                    
+                    
+                    if(core.flag("score_pegar_copo_descartavel") == true && core.flag("score_pegar_agua_potavel") == true){
+                           core.flag("pegou_tudo_posto",  true );
                     }
+                    
+                    core.changeScene( 1 );
+                    
+               
+                    
                 })
 
         ]);
@@ -1207,6 +1219,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "score_anotar_prontuario",  false  ) );
         level.registerFlag( new Flag( "score_nao_pegar_copo",  false  ) );
         level.registerFlag( new Flag( "score_nao_pegar_agua",  false  ) );
+        level.registerFlag( new Flag( "falou_farmaceutico",  false  ) );
 
         level.setInitialScene( 0 );
 

@@ -244,6 +244,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
         ]);
 
+    
 
         alaMasculina = new Scene("alaMasculina", "scene-alaMasculina")
 
@@ -358,6 +359,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
         alaMasculina.registerInteractiveObjects([
+            
+            
             new InteractiveObject("io-ir_leito", "Ir ao leito")
                 .setCssClass("intObj-ir_leito-fase4")
                 .onClick(function() {
@@ -370,6 +373,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     } else {
                         core.changeScene( 3 );
                     }
+                })
+                .setVisibility( false ),
+            
+            new InteractiveObject("io-falar_com_paciente", "Falar com o paciente")
+                .setCssClass("intObj-ir_leito-fase4")
+                .onClick(function() {
+                    
+                    core.openDialog(1);
+                    
                 })
                 .setVisibility( false ),
 
@@ -402,7 +414,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: ler prontuario");
                     if ( core.flag("score_viu_prontuario") == false ) {
                         core.registerScoreItem( Scores.checarProntuario );
-                        core.flag("score_viu_prontuario",  true );
+                        core.flag("score_viu_prontuario",  true );   
                     }
                     Prontuario.open();
                     core.openModalScene("Prontuario");
@@ -1348,6 +1360,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.openCommandBar();
                 core.setActionVisible("btn-fechar_prontuario", true );
                 core.setActionVisible("btn-pegar_prescricao_medica", true );
+
+            
+                  
             });
 
         prontuario.registerActions([
@@ -1356,9 +1371,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("Action: Fechar prontuario");
                     
-                     if(core.flag("score_viu_prontuario") == true && core.flag("score_gotejar_soro_equipo") == false){
-                       core.openDialog( 1 );
+                    // ???????????????????????????????????????????????????????????????????
+                      if(core.flag("score_viu_prontuario") == true && core.flag("score_gotejar_soro_equipo") == false){
+                         core.setInteractiveObjectVisible("io-falar_com_paciente", true);
                     }
+                    
                     
 
                     if ( core.flag("score_gotejar_soro_equipo") == true ) {

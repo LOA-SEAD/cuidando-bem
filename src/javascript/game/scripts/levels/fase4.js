@@ -647,17 +647,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         leito.registerActions([
 
-            new Action("btn-ir_sala_leitos", "Ir para sala de leitos")
-                .setCssClass("action-ir_sala_de_leitos")
+            new Action("btn-ir_centro_cirurgico", "Ir para sala de cirurgia")
+                .setCssClass("action-irCentroCirurgico")
                 .onClick(function() {
-                    if ( core.flag("conversarPaciente") == false ) {
-                        core.openDialog( 6 );
-                    } else {
-                        console.log("Ganhou 150 pontos");
+                  
                         core.registerScoreItem( Scores.encaminharPacienteCentroCirurgico );
-                        core.changeScene( 3 );
-                    }
-                }),
+                        core.changeScene( 7 );
+                    
+                })
+            .setVisibility(false),
 
             new Action("btn-ler_prontuario", "Ler prontuario")
                 .setCssClass("action-ler_prontuario")
@@ -686,6 +684,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
 
                     core.openDialog( 0 );
+                    core.setActionVisible("btn-ir_centro_cirurgico", true);
 
                 }),
 
@@ -795,7 +794,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setCssClass("scene-centroCirurgicoRegina")
             .onLoad(function() {
                 console.log("Entrando no centro cirurgico segunda vez");
-                core.openDialog( 0 );
+               // core.openDialog( 0 );
+                
+                if(core.flag("conversar_paciente_cc") == false)
+                    core.closeCommandBar();
+                
+                  core.setInteractiveObjectVisible("io-conversarPaciente", false );
+                
             })
             .onUnload(function() {
                 console.log("Saindo do centro cirurgico");
@@ -843,7 +848,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                     else {
                         core.registerScoreItem( Scores.colocarPlacaNeutra );
-                        core.changeSceneCssClassTo("scene-surgeryCenter-reginaComPlaca");
+                        core.changeSceneCssClassTo("scene-surgeryCenter-reginaComPlaca");    
                         core.setActionVisible("btn-colocar_placa_neutra", false);       
                     }
                     
@@ -898,6 +903,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText("")
                 .registerOption( Dialogs.centroCirurgico.fala2[ 1 ], function() {
                     core.closeDialog();
+                    core.closeCommandBar();
                 })
                 .registerOption( Dialogs.centroCirurgico.fala2[ 2 ], function() {
                     core.openDialog( 15 );
@@ -1018,6 +1024,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText("")
                 .registerOption( Dialogs.centroCirurgico.fala2[ 16 ], function() {
                     core.closeDialog();
+                    core.openCommandBar();
                 })
                 .registerOption( Dialogs.centroCirurgico.fala2[ 17 ], function() {
                     core.openDialog( 17 );
@@ -1090,8 +1097,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-conversar_circulante", "Conversar com Circulante")
                 .setCssClass("intObj-talkToCirculante")
                 .onClick(function() {
+                    
                     console.log("Abrir diálogo com a circulante");
                     core.openDialog( 0 );
+                 
+                   core.setInteractiveObjectVisible("io-conversarPaciente", true );
                 })
                 .setVisibility( true ),
 
@@ -1100,6 +1110,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("Abrir diálogo com a paciente");
                     core.openDialog( 2 );
+                    core.flag("conversar_paciente_cc", true);
                 })
 
 
@@ -1285,6 +1296,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "fim_fase",  false  ) );
         level.registerFlag( new Flag( "ir_leito_paciente",  false  ) );
         level.registerFlag( new Flag( "ler_prontuario",  false  ) );
+        level.registerFlag( new Flag( "conversar_paciente_cc",  false  ) );
 
 
         level.setInitialScene( 0 );
