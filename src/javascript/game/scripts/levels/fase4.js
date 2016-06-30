@@ -651,8 +651,22 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-irCentroCirurgico")
                 .onClick(function() {
                   
+                    if(core.flag("verificar_pulseira") == true){
+                    
                         core.registerScoreItem( Scores.encaminharPacienteCentroCirurgico );
                         core.changeScene( 7 );
+                        
+                    }
+                    else{
+                        
+                        if(core.flag("score_pulseira") == false) {
+                            core.flag("score_pulseira", true);
+                            core.registerScoreItem( Scores.naoVerificarPulseira );
+                        }
+                        
+                        core.openDialog( 7 );
+                        
+                    }
                     
                 })
             .setVisibility(false),
@@ -660,6 +674,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-ler_prontuario", "Ler prontuario")
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
+                    
+                    
+                  if(core.flag("verificar_pulseira") == true){    
+                    
                     console.log("Action: ler prontuario");
                     Prontuario.open();
                     core.openModalScene("Prontuario");
@@ -667,8 +685,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("ler_prontuario") == false ) {
                         core.flag("ler_prontuario",  true );
                         core.registerScoreItem( Scores.pegarProntuario );
-                        console.log("Ganhou 150 pontos");
-
+                        }
+                  }
+                    else {
+                        
+                         if(core.flag("score_pulseira") == false) {
+                            core.flag("score_pulseira", true);
+                            core.registerScoreItem( Scores.naoVerificarPulseira );
+                        }
+                        
+                        core.openDialog( 7 );
                     }
                 })
                 .setVisibility( true )
@@ -685,27 +711,23 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                     core.openDialog( 0 );
                     core.setActionVisible("btn-ir_centro_cirurgico", true);
-
+                    core.setActionVisible("btn-ler_prontuario", true);
+                     core.enableInteractiveObject("io-pulseira_paciente", true );
                 }),
 
         new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
                 .setCssClass("intObj-paciente_04-checar_pulseira")
                 .onClick(function() {
 
-                   /* if ( core.flag("score_falar_paciente") == false ) {
-                        core.closeCommandBar();
-                        core.openDialog( 15 );
-                    } else {
-                        // Desabilita o primeiro diálogo com o paciente
-                        core.flag("conversar_paciente2",  false );
-                        core.flag("selecionar_bandeja",  true );
-                        console.log("IO: pulseira_paciente");*/
+                        core.flag("verificar_pulseira", true);
+                    
                         core.openModalScene("pulseira");
                         Pulseira.open();
                         core.openCommandBar();
                //     }
                 })
                 .setVisibility( true )
+                .setEnable ( false ),
 
 
         ]);
@@ -769,7 +791,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Alertas.esqueceu.informarPaciente )
                 .registerOption("", function() {
                     core.closeDialog();
-                })
+                }),
+            
+            // 7 
+              new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.verPulseira )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
+            
+            
+            
 
 
         ]);
@@ -1184,10 +1216,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("Ação: Fechar modal pulseira");
                     core.closeModalScene("Pulseira");
-                  /*  if ( core.flag("score_verificar_pulseira") == false ) {
-                        core.flag("score_verificar_pulseira",  true );
-                        core.registerScoreItem( Scores.verificarPulseira );
-                    }*/
+            
+                    
                     Pulseira.close();
                 })
                 .setVisibility( true )
@@ -1297,6 +1327,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "ir_leito_paciente",  false  ) );
         level.registerFlag( new Flag( "ler_prontuario",  false  ) );
         level.registerFlag( new Flag( "conversar_paciente_cc",  false  ) );
+        level.registerFlag( new Flag( "score_pulseira",  false  ) );
+        level.registerFlag( new Flag( "verificar_pulseira",  false  ) );
 
 
         level.setInitialScene( 0 );

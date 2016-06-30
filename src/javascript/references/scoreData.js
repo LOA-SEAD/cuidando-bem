@@ -95,7 +95,8 @@ define(function() {
             pegarProntuario: new Score("Ver e pegar prontuário", 150 ),
             encaminharPacienteCentroCirurgico: new Score("Encaminhar Paciente ao Centro Cirurgico", 150 ),
             anotarNoProntuario: new Score("Anotar no prontuário", 250 ),
-            colocarPlacaNeutra: new Score("Colocar placa neutra antes da cirurgia no paciente", 250 )
+            colocarPlacaNeutra: new Score("Colocar placa neutra antes da cirurgia no paciente", 250 ),
+            naoVerificarPulseira: new Score("Não verificar a pulseira no momento correto", -50 )
         },
 
         fase5: {
@@ -131,7 +132,7 @@ define(function() {
             lavarMaosAntesLeito: new Score("Lavar as mãos antes de ir ao leito do paciente", 200 ),
             naoLavarMaosAntesLeito: new Score("Não lavar as mãos antes de ir ao leito do paciente", -200 ),
             checarPulseira: new Score("Verificar pulseira", 50 ),
-            naoChecarPulseira: new Score("Não verificar pulseira", -50 ),
+            naoVerificarPulseira: new Score("Não verificar a pulseira no momento correto", -50 ),
             administrarMedicacao: new Score("Administrar medicamento", 250 ),
             naoAdministrarMedicacao: new Score("Não administrar medicamento", -250 ),
             gotejarSoroEquipo: new Score("Realizar gotejamento de soro no equipamento", 350 ),
@@ -166,7 +167,7 @@ define(function() {
             falarComPaciente: new Score("Conversar com paciente", 150 ),
             naoFalarComPaciente: new Score("Não conversar com paciente no momento correto", -150 ),
             verificarPulseira: new Score("Verificar a pulseira", 100 ),
-            naoVerificarPulseira: new Score("Não verificar a pulseira no momento correto", -100 ),
+            naoVerificarPulseira: new Score("Não verificar a pulseira no momento correto", -50 ),
             fazerTesteGlicemia: new Score("Fazer teste de glicemia capilar", 100 ),
             naoFazerTesteGlicemia: new Score("Não fazer teste de glicemia capilar no momento correto", -100 ),
             jogarAgulhaLixoCerto: new Score("Jogar agulha no descarpax", 50 ),
@@ -205,6 +206,7 @@ define(function() {
             pegarEquipoErrado: new Score("Pegar equipamento errado", -150 ),
             irAoLeitoCorreto: new Score("Ir ao leito do paciente", 50 ),
             verificarPulseira: new Score("Verificar pulseira do paciente", 150 ),
+            naoVerificarPulseira: new Score("Não verificar a pulseira no momento correto", -50 ),
             falarComPaciente: new Score("Falar com o paciente", 50 ),
             pegarSuporteSoro: new Score("Pegar Suporte de Soro", 50 ),
             elevarCama: new Score("Elevar Cabeceira da Cama", 150 ),
