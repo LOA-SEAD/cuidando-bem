@@ -1206,6 +1206,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                     EquipoGotejamento.close();
                     core.closeModalScene("equipoSoro");
+                    core.setActionVisible("btn-colocar_gotejamento", false);    
 
                 }
 

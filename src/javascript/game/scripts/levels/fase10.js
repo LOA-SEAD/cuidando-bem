@@ -1159,8 +1159,8 @@ core.changeScene(1);
 
             core.setActionVisible("btn-pegar_suporte_soro", true );
             core.setActionVisible("btn-administrar_medicamente", true );
-            core.setActionVisible("btn-lavarMaos", true );
-            core.setActionVisible("btn-anotar_prontuario", true );
+      //      core.setActionVisible("btn-lavarMaos", true );
+       //     core.setActionVisible("btn-anotar_prontuario", true );
 
 
         })
@@ -1445,6 +1445,9 @@ core.changeScene(1);
 
                     EquipoGotejamento.close();
                     core.closeModalScene("equipoSoro");
+                    core.setActionVisible("btn-lavarMaos", true );
+                    core.setActionVisible("btn-anotar_prontuario", true );
+                    core.setActionVisible("btn-realizar_gotejamento", false );
 
                 }
 
