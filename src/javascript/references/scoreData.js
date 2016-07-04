@@ -238,7 +238,7 @@ define(function() {
            calcularInfusaoDieta: new Score("Cálculo da infusão da dieta", 150 ),
            explicarAcaoMedicamento: new Score("Explicar a ação do medicamento para o paciente", 150 ),
            verificarPulseira: new Score("Verificar a pulseira da paciente", 150 ),
-           naoVerificarPulseira: new Score("Não verificar a pulseira da paciente", -150 ),
+           naoVerificarPulseira: new Score("Não verificar a pulseira no momento correto", -50 ),
            oferecerCopo: new Score("Oferecer água para o paciente tomar o medicamento", 150 ),
            lavarMaos2: new Score("Lavar as mãos antes de fazer anotações no prontuário", 200 ),
            naoLavarMaos2: new Score("Não lavar as mãos antes de fazer anotações no prontuário", -200 ),
@@ -267,7 +267,7 @@ define(function() {
             lavarMaosAntesLeito: new Score("Lavar as mãos antes de ir para o leito do paciente", 200 ),
             naoLavarMaosAntesLeito: new Score("Não lavar as mãos antes de ir para o leito do paciente", -200 ),
             verificarPulseira: new Score("Verificar a pulseira", 150 ),
-            naoVerificarPulseira: new Score("Não verificar a pulseira no momento correto", -150 ),
+            naoVerificarPulseira: new Score("Não verificar a pulseira no momento correto", -50 ),
             oferecerCopo: new Score("Oferecer copo com água para o paciente", 150 ),
             naoOferecerCopo: new Score("Não oferecer copo com água para o paciente", -150 ),
             administrarMedicamento: new Score("Administrar o medicamento", 350 ),
@@ -312,7 +312,8 @@ define(function() {
             naoGotejarSoroEquipo: new Score("Errar 3 ou mais vezes o cálculo do gotejamento", -350 ),
             lavarMaos3: new Score("Lavar as mãos antes de anotar no prontuário", 200 ),
             anotarNoProntuario: new Score("Anotar no prontuário", 350 ),
-            verPulseira: new Score("Ver pulseria do paciente", 150 )
+            verPulseira: new Score("Ver pulseria do paciente", 150 ),
+            naoVerificarPulseira: new Score("Não verificar a pulseira no momento correto", -50 ),
         }
     };
 

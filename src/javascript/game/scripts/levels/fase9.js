@@ -380,6 +380,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 // VAI MUDAR
                 .setCssClass("intObj-paciente_09-checar_pulseira")
                 .onClick(function() {
+                    
+                    core.flag("verificar_pulseira", true);
+                    
                     console.log("IO: pulseira_paciente");
                     if ( core.flag("score_verificar_pulseira") == false ) {
                         core.flag("score_verificar_pulseira",  true );
@@ -388,7 +391,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openModalScene("pulseira");
                     Pulseira.open();
                 })
-                .setVisibility( true ),
+                .setVisibility( true )
+                .setEnable (false),
 
 
               new InteractiveObject("io-conversar_paciente09", "Falar com o paciente")
@@ -398,7 +402,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
                     core.openDialog( 0 );
-                    core.openCommandBar();
+                    core.enableInteractiveObject("io-pulseira_paciente", true );
+                    
        
 
                 })
@@ -411,6 +416,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Dialogs.leitoPaciente[ 0 ] )
                 .registerOption("", function() {
                     core.openDialog( 1 );
+                    core.openCommandBar();
                 }),
             new Dialog( lib.characters.pacientes.yuri )
                 .setText( Dialogs.leitoPaciente[ 1 ] )
@@ -427,7 +433,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Dialogs.leitoPaciente[ 3 ] )
                 .registerOption("", function() {
                     core.closeDialog();
-                })
+                }),
+            // 4
+                new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.verPulseira )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
+            
         ]);
 
         leito.registerActions([
@@ -437,17 +450,35 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-oferecer_copo", "Oferecer copo com água para o paciente")
                 .setCssClass("action-copo_descartavel")
                 .onClick(function() {
+                    
+                if(core.flag("verificar_pulseira") == true) {           
+                    
                     console.log("Action: Oferecer copo com água para o paciente");
                     if ( core.flag("score_ofereceu_copo") == false ) {
                         core.registerScoreItem( Scores.oferecerCopo );
                         core.flag("score_ofereceu_copo",  true );
                     }
+                    core.setActionVisible("btn-oferecer_copo", false);
+                }
+                else {
+                    
+                    
+                        if(core.flag("score_pulseira") == false) {
+                            core.flag("score_pulseira", true);
+                            core.registerScoreItem( Scores.naoVerificarPulseira );
+                        }
+                        
+                        core.openDialog( 4 );
+                }
                 })
                 .setVisibility( true ),
 
             new Action("btn-administrar_medicamento", "Administrar o medicamento")
                 .setCssClass("action-midazolam_medicamento")
                 .onClick(function() {
+                    
+                if(core.flag("verificar_pulseira") == true) {    
+                    
                     console.log("Action: Administrar o medicamento");
                     if ( core.flag("score_ofereceu_copo") == false ) {
                         if ( core.flag("score_nao_ofereceu_copo") == false ) {
@@ -459,12 +490,26 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.administrarMedicamento );
                         core.flag("score_administrou_medicamento",  true );
                     }
+                }
+                else{
+                    
+                    if(core.flag("score_pulseira") == false) {
+                            core.flag("score_pulseira", true);
+                            core.registerScoreItem( Scores.naoVerificarPulseira );
+                        }
+                        
+                        core.openDialog( 4 );
+                    
+                }
                 })
                 .setVisibility( false ),
 
             new Action("btn-anotarProntuario", "Anotar prontuario")
                 .setCssClass("action-anotar_prontuario")
                 .onClick(function() {
+                    
+                if(core.flag("verificar_pulseira") == true) {     
+                    
                     console.log("Action: Anotar prontuario");
                     if ( core.flag("score_administrou_medicamento") == false ) {
                         if ( core.flag("score_nao_administrou_medicamento") == false ) {
@@ -478,6 +523,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                     Prontuario.open();
                     core.openModalScene("Prontuario");
+                }
+                else {
+                    
+                          if(core.flag("score_pulseira") == false) {
+                            core.flag("score_pulseira", true);
+                            core.registerScoreItem( Scores.naoVerificarPulseira );
+                        }
+                        
+                        core.openDialog( 4 );
+                }
                 })
                 .setVisibility( true ),
 
@@ -1301,6 +1356,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "pegou_agua",  false  ) );
         level.registerFlag( new Flag( "conversar_recepcionista",  false  ) );
         level.registerFlag( new Flag( "conversar_circulante",  false  ) );
+        level.registerFlag( new Flag( "score_pulseira",  false  ) );
+        level.registerFlag( new Flag( "verificar_pulseira",  false  ) );
 
 
 
