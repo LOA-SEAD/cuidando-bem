@@ -296,9 +296,8 @@ define([
          * @memberOf module:CuidandoBem
          */
         function showEndOfLevel() {
-            var isLast = game.getCurrentLevelId() == 10;
-
-            endOfLevel.show( scoreList, Level.getMaxPoints(), isLast );
+            // debugger;
+            endOfLevel.show( scoreList, Level.getMaxPoints() );
         }
 
         /**
