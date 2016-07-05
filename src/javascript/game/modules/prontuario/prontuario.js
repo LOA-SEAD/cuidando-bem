@@ -595,7 +595,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
             $( $( ssvvPressaoArterialSelector, ssvvTbodySelector )[ row ] ).mask("000x000");
             $( $( ssvvFrequenciaCardiacaSelector, ssvvTbodySelector )[ row ] ).mask("000");
             $( $( ssvvFrequenciaRespiratoriaSelector, ssvvTbodySelector )[ row ] ).mask("000");
-            $( $( ssvvSaturacaoSelector, ssvvTbodySelector )[ row ] ).mask("00");
+            $( $( ssvvSaturacaoSelector, ssvvTbodySelector )[ row ] ).mask("000");
             $( $( ssvvTemperaturaSelector, ssvvTbodySelector )[ row ] ).mask("00.0");
         }
         updateData();
