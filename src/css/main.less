@@ -47,11 +47,8 @@ This file is part of Cuidando Bem.
 @button-green-shadow: #669644;
 @button-green-highlight: #9CCD7A;
 
+@io-glow-color: #1987B2;
 
-@io-glow-color: #91FF00;
-@pause-glow-color: #AAAAAA;
-
-//TODO Arrumar
 @font-digital: "Digital7", monospace;
 @font-printed: monospace;
 @font-cursive: 'Pacifico', cursive;
@@ -77,6 +74,9 @@ This file is part of Cuidando Bem.
 @import "screens/screen-credits.less";
 @import "screens/screen-config.less";
 @import "screens/screen-conteudo.less";
+@import "screens/screen-vitoria.less";
+@import "screens/screen-derrota.less";
+@import "screens/screen-preloader.less";
 @import "screens/stage.less";
 
 @import "interactiveObjects/interactiveObjects.less";
@@ -84,6 +84,7 @@ This file is part of Cuidando Bem.
 @import "scenes/scenesBackgroundImages.less";
 @import "scenes/modalScenes.less";
 @import "scenes/prontuario.less";
+@import "scenes/ficha.less";
 @import "scenes/pulseira.less";
 @import "scenes/freqRespiratoria.less";
 @import "scenes/equipoGotejamento.less";
@@ -102,6 +103,11 @@ html {
 
 body {
 	font-family: @font-cursive;
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
 }
 
 *:focus {

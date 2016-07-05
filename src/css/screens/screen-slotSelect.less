@@ -64,6 +64,8 @@ This file is part of Cuidando Bem.
         margin-bottom: 10%;
     }
     .slot{
+        overflow: hidden;
+        text-overflow: ellipsis;
         box-sizing: border-box;
         width: 70%;
         //height: 7%;
@@ -71,12 +73,13 @@ This file is part of Cuidando Bem.
         margin-left: 15%;
         background-color: cadetblue;
         border-radius: 5% ~"/" 35%;
-
+        border: none;
         font-size: 4em;
         cursor: pointer;
     }
 
-    .slot:hover:not(.selected) {
+    .slot:hover:not(.selected),
+    .slot:focus:not(.selected){
         background-color: #80B1B3;
     }
 
@@ -84,7 +87,8 @@ This file is part of Cuidando Bem.
         background-color: indianred;
     }
 
-    .slot.selected:hover{
+    .slot.selected:hover,
+    .slot.selected:focus{
         background-color: #D98282;
     }
 

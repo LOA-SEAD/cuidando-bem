@@ -16,7 +16,7 @@ This file is part of Cuidando Bem.
  * @author Otho - Marcelo Lopes Lotufo
  */
 define({
-    tutorial: {
+    fase1: {
         recepcao: [
             // 0 Recepcionista
             "Bom dia! Ainda não conheço você. Como posso ajudar?",
@@ -112,7 +112,7 @@ define({
         }
     },
 
-    fase1: {
+    fase2: {
         recepcao: [
             // 0 Recepcionista
             "Oi! Parece que deu tudo certo com seu primeiro paciente. Parabéns!" +
@@ -190,7 +190,7 @@ define({
         ]
     },
 
-    fase2: {
+    fase3: {
         recepcao: [
             // 0 Recepcionista
             "Bom dia! Hoje o mentor não poderá te apresentar seu novo paciente, mas estará aqui no hospital" +
@@ -249,7 +249,7 @@ define({
         ]
     },
 
-    fase3: {
+    fase4: {
         recepcao: [
             // 0 Recepcionista
             "Bom dia! O mentor lhe espera no corredor."
@@ -407,7 +407,7 @@ define({
         ]
     },
 
-    fase4: {
+    fase5: {
 
         recepcao: [
             // 0 Jogador
@@ -497,7 +497,7 @@ define({
         ]
     },
 
-    fase5: {
+    fase6: {
         recepcao: [
             // 0 Recepcionista
             "Boa tarde! Temos uma paciente à sua espera."
@@ -542,7 +542,7 @@ define({
         ]
     },
 
-    fase6: {
+    fase7: {
         recepcao: [
             // 0 Recepcionista
             "Bom dia! O mentor te espera no corredor para a apresentação do seu próximo caso.",
@@ -623,7 +623,7 @@ define({
         ]
     },
 
-    fase7: {
+    fase8: {
         recepcao: [
             // 0 Jogador
             "Bom dia, Clarice.",
@@ -701,32 +701,16 @@ define({
         ]
     },
 
-    faseFinal: {
-        recepcao: [
-            // 0 Recepcionista
-            "Boa noite! Hoje será seu último teste antes de oficialmente fazer parte da" +
-            " equipe do Cuidando Bem. Seu mentor não poderá lhe apresentar os dois" +
-            " pacientes que estão à sua espera. Vamos as informações?",
-            // 1 Jogador
-            "Boa noite, Clarice! Pode começar.",
-            // 2 Recepcionista
-            "Ambos pacientes estão na enfermaria masculina. Um é o Yuri, está aguardando a realização de uma" +
-            " cirurgia agendada para esta noite; o outro é o Francisco, tem reposição hidroeletrolítica" +
-            " prescrita. Sua contratação dependerá de sua escolha de prioridade e qualidade de atendimento." +
-            " Boa sorte!"
-        ]
-    },
+    fase9: {
 
-    fase8: {
-        
          recepcao: [
-            
-            // 0 
+
+            // 0
               "Bom dia. Um novo paciente o aguarda na enfermaria masculina."
-            
+
         ],
-        
-        
+
+
         alaMasculina: [
             // 0 Jogador
             "Boa noite! Sou responsável por levá-lo até o centro cirúrgico. Como é o seu nome?",
@@ -743,8 +727,8 @@ define({
             // 5 Paciente
             "Nervoso não, um pouco ansioso, eu diria. E talvez com um pouco de medo, nunca fiz uma cirurgia.",
             // 6 Jogador
-            "Fique calmo, Yuri, vai dar tudo certo!",
-           
+            "Fique calmo, Yuri, vai dar tudo certo!"
+
         ],
         farmacia: [
             // 0 Farmaceutico
@@ -811,15 +795,15 @@ define({
         ]
     },
 
-    fase9: {
-        
+    fase10: {
+
         recepcao: [
-            
-            // 0 
+
+            // 0
               "Bom dia. Uma paciente te espera na enfermaria masculina."
-            
+
         ],
-        
+
         alaMasculina: [
             // 0 Jogador op 1
             "Bom dia! Sou profissional de enfermagem deste hospital e cuidarei do Sr. hoje." +
@@ -940,10 +924,10 @@ define({
                 "Você está se esquecendo de algo!"
             ],
             luvas: [
-                "Você precisa de proteção para as mãos"
+                "Você precisa de proteção para as mãos!"
             ],
             algodão: [
-                "O algodão seco precisa ser utilizado"
+                "O algodão seco precisa ser utilizado."
             ],
             conversarPaciente: [
                 "A comunicação com o paciente é essencial na assistência de enfermagem!"
@@ -1024,7 +1008,7 @@ define({
                 "Pegue o folheto dos 9 certos!"
             ],
             objetosGaveta: [
-                "Você já pegou todos os equipamentos necessários?"  
+                "Você já pegou todos os equipamentos necessários?"
             ],
             verificarTudoPostoEnfermagem: [
                 "Certifique-se de realizar todos os procedimentos antes de sair!"
@@ -1041,7 +1025,10 @@ define({
             ],
             agulha: [
                 "Faça o descarte da agulha em local adequado para evitar acidentes de trabalho."
-            ]
+            ],
+            objetos: [
+                "Primeiro realize o descarte dos materiais nos lixos adequados."
+            ],
         },
         luvasErradas: [
             "Esta realmente é a luva utilizada para curativos?"

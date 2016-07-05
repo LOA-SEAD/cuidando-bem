@@ -126,6 +126,9 @@ define([ "Stage" ], function( Stage ) {
                             name = defaultNameInputValue + " " + (selectedId + 1);
                         }
 
+                        // Trim string to 25 characters max
+                        name = name.substring( 0, 25 );
+
                         Storage.setupSlot( selectedId, name );
 
                         Storage.loadSlot( selectedId );

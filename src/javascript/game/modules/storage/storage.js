@@ -207,10 +207,11 @@ define([ "SimpleStorage" ], function( Storage ) {
         Storage.set( KEY_SAVES_CONTAINER, saves );
     }
 
-    function addScore( levelId, score ) {
-        if ( levelId < MINLEVEL || levelId > MAXLEVEL ) {
+    function addScore( _levelId, score ) {
+        if ( _levelId < MINLEVEL || _levelId > MAXLEVEL ) {
             throw new Error("LevelId Failed");
         }
+        var levelId = _levelId - 1;
 
         var level = saves[ loadedId ].levels[ levelId ];
 
@@ -225,10 +226,11 @@ define([ "SimpleStorage" ], function( Storage ) {
         saves[ loadedId ].levels[ levelId ] = level;
     }
 
-    function resetScore( levelId ) {
-        if ( levelId < MINLEVEL || levelId > MAXLEVEL ) {
+    function resetScore( _levelId ) {
+        if ( _levelId < MINLEVEL || _levelId > MAXLEVEL ) {
             throw new Error("LevelId Failed");
         }
+        var levelId = _levelId - 1;
 
         saves[ loadedId ].levels[ levelId ] = undefined;
     }
@@ -308,6 +310,20 @@ define([ "SimpleStorage" ], function( Storage ) {
         saveSlots();
     }
 
+    function getScoreSum() {
+        var sav = saves[ loadedId ];
+        var sum = 0;
+        for ( i = 0; i < sav.levels.length - 1; i++ ) {
+            if ( typeof sav.levels[ i ] !== "undefined") {
+                for ( j = 0; j < sav.levels[ i ].length - 1; j++ ) {
+                  sum += sav.levels[ i ][ j ].score;
+                }
+            }
+        }
+
+        return sum;
+    }
+
     // @dev {
 
     Storage.flush();
@@ -332,6 +348,7 @@ define([ "SimpleStorage" ], function( Storage ) {
 
         addScore: addScore,
         resetScore: resetScore,
+        getScoreSum: getScoreSum,
 
         setSfxVolume: setSfxVolume,
         getSfxVolume: getSfxVolume,

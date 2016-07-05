@@ -1,0 +1,248 @@
+/*
+This file is part of Cuidando Bem.
+
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
+#ficha_medicacao {
+    display: none;
+
+    position: absolute;
+    font-family: @font-printed;
+    font-size: 1.5rem;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    text-align: left;
+
+    p {
+        margin: 0;
+        padding: 2% 0%;
+    }
+
+    input {
+        width: 100%;
+        border: none;
+        border-bottom: 0.1rem solid black;
+        background-color: transparent;
+        text-align: center;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .in_data {
+        width: 20%;
+    }
+
+    .in_enfermaria {
+        width: 40%;
+    }
+
+    .in_leito {
+        width: 40%;
+    }
+
+    .in_paciente {
+        width: 55%;
+    }
+
+    .in_ini {
+        width: 17%;
+    }
+
+    .in_ter {
+        width: 17%;
+    }
+
+    .in_volume1 {
+        width: 30%;
+    }
+
+    .in_duracao {
+      width: 40%;
+    }
+
+    .in_volume2 {
+        width: 100%;
+    }
+
+    .in_horario {
+        width: 20%;
+    }
+
+    .in_funcionario {
+        width: 70%;
+    }
+
+    .in_gtsAprox {
+        width: 8%;
+    }
+
+    .in_tempo {
+        width: 40%;
+    }
+    .container {
+
+        overflow: hidden;
+        background-color: white;
+        position: absolute;
+        width: 44%;
+        height: 85%;
+
+        top: 2%;
+        left: 30%;
+        padding: 2%;
+        box-sizing: border-box;
+    }
+
+    .conteudo {
+        border: 0.1em black solid;
+        box-sizing: border-box;
+        height: 100%;
+        padding: 2%;
+    }
+
+    .medicao_complementos {
+        font-weight: bold;
+    }
+    .med_com_conteudo {
+        display: block;
+    }
+
+    .cabecalho {
+        height: 40%;
+    }
+
+    .corpo {
+        height: 50%
+    }
+
+    .rodape {
+        height: 10%;
+    }
+
+    .titulo > span {
+        display: none;
+    }
+
+    .hospital {
+        font-weight: bold;
+        font-size: 2rem;
+        text-align: center;
+    }
+    .titulo {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .data {
+        text-align: right;
+    }
+
+    .enfermaria {
+        float: left;
+        text-align: left;
+        display: inline-block;
+        width: 50%;
+    }
+    .leito {
+        float: right;
+        text-align: right;
+        display: inline-block;
+        width: 50%;
+    }
+    .paciente {
+        clear: both;
+        text-align: left;
+    }
+    .ini_ter{
+        display: inline-block;
+        float: left;
+        width: 60%
+    }
+    .volume{
+        display: inline-block;
+        float: right;
+        text-align: right;
+        width: 37%;
+    }
+
+    .gotejamento {
+        text-align: center;
+    }
+
+    table.fraction {
+        font-size: 1.5rem;
+        width: 100%;
+
+        td.infoFicha {
+            width: 60%;
+        }
+        tr {
+        td:nth-child(1) {
+          width: 10%;
+        }
+
+        td:nth-child(2) {
+          width: 1%;
+        }
+
+        td:nth-child(3) {
+          width: 10%;
+        }
+
+        td:nth-child(4) {
+          width: 1%;
+        }
+
+        td:nth-child(5) {
+          width: 8%;
+        }
+
+        td:nth-child(6) {
+          width: 1%;
+        }
+
+        td:nth-child(7) {
+          width: 8%;
+          input {
+            width: 100%;
+          }
+        }
+}
+
+
+    }
+
+    .info_gotejamento > p {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+td.upper_line {
+  border-top:solid 1px black;
+}
+
+table.fraction {
+  text-align: center;
+  vertical-align: middle;
+  margin-top:0.5em;
+  margin-bottom:0.5em;
+  line-height: 2em;
+}

@@ -18,10 +18,10 @@ This file is part of Cuidando Bem.
 define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
 
-        var Dialogs = require("DialogsData").fase1;
+        var Dialogs = require("DialogsData").fase2;
         var Alertas = require("DialogsData").alertas;
         var Player = require("Player");
-        Scores = Scores.level1;
+        Scores = Scores.fase2;
 
         var level = new Level("Level 2");
         level.setMaxPoints( Scores._sum );
@@ -60,7 +60,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         recepcao = lib.scenes.recepcao.getClone()
             .onLoad(function() {
                 console.log("Load scene: " + recepcao.getName() );
-                core.openDialog( 0 );
+
+                if(core.flag("conversar_recepcionista") == false) {
+                    core.flag("conversar_recepcionista", true);
+                    core.openDialog( 0 );
+
+                }
+
             });
 
         recepcao.registerDialogs([
@@ -99,6 +105,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // Corredor
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
+
+                 core.openCommandBar();
+                core.setActionVisible("btn-ir_recepcao", true);
+
                 console.log("Entrando no corredor");
                 Player.stopAll();
                 // Som
@@ -118,6 +128,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInRange( Player.audios.musics.inGame );
             });
+
+     corredor.registerActions([
+
+             new Action("btn-ir_recepcao", "Voltar para a recepção")
+                .setCssClass("action-voltarRecepcao")
+                .onClick(function() {
+
+                    core.changeScene( 0 );
+
+                })
+                .setVisibility( true ),
+
+        ]);
 
         corredor.registerDialogs([
             // Primeira passada pelo corredor
@@ -605,7 +628,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     // Som
                     Player.play( Player.audios.sfx.roupaRocando );
+
                     core.changeSceneCssClassTo("scene-bedChar02-turned");
+
                     core.setActionVisible("btn-mudar_posicao", false );
                     core.setInteractiveObjectVisible("io-pulseira_paciente", false );
                     core.setInteractiveObjectVisible("io-pulseira_paciente2", true );

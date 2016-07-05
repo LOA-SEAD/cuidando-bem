@@ -23,9 +23,10 @@ This file is part of Cuidando Bem.
  */
 define([
         "text!../html/interactiveObject/interactiveObjects.html",
-        "text!../html/interactiveObject/interactiveObjectTemplate.html"
+        "text!../html/interactiveObject/interactiveObjectTemplate.html",
+        "IsMobile"
     ],
-    function( html, interactiveObjectTemplate ) {
+    function( html, interactiveObjectTemplate, isMobile ) {
 // Attributes
     var divSelector = "#interactiveObjects";
     var interactiveObjectSelector = ".interactiveObject";
@@ -84,10 +85,14 @@ define([
     function addInteractiveObject( _interactiveObject ) {
         var element = $( $( interactiveObjectTemplate )[ 0 ] );
 
-
         element.attr("title", _interactiveObject.getName() );
+        element.attr("aria-label", _interactiveObject.getName() );
         element.attr("id", _interactiveObject.getId() );
         element.addClass( _interactiveObject.getCssClass() );
+
+        element.focus( function(){
+            $( '<span>' + _interactiveObject.getName() + '</span><br>' ).appendTo( "#accessible_log" );
+        });
 
         element.tooltip({
             // disabled: true,
@@ -103,9 +108,7 @@ define([
             }
         });
         if ( _interactiveObject.isEnabled() ) {
-            element.addClass("enabled");
-            element.click( _interactiveObject.getFunction() );
-            element.tooltip("option", "disabled", false );
+            addClickToElement( element, _interactiveObject );
         } else {
             element.addClass("disabled");
             element.tooltip("option", "disabled", true );
@@ -148,10 +151,7 @@ define([
     function enableInteractiveObject( _interactiveObject ) {
         var selector = "#" + _interactiveObject.getId();
         var element = $( selector );
-        element.removeClass("disabled");
-        element.addClass("enabled");
-        element.click( _interactiveObject.getFunction() );
-        element.tooltip("option", "disabled", false );
+        addClickToElement( element, _interactiveObject );
     }
 
     /**
@@ -169,6 +169,23 @@ define([
         element.unbind("click");
         element.tooltip("option", "disabled", true );
 
+    }
+
+    function addClickToElement( element, _interactiveObject ) {
+      // if ( !isMobile.isMobile() ) {
+      //   element.click({ iofunc: _interactiveObject.getFunction() }, function( event ) {
+      //     if ( $( this ).is(":focus") ) {
+      //       event.data.iofunc();
+      //     } else {
+      //       $( this ).tooltip("open");
+      //       $( this ).focus();
+      //     }
+      //   });
+      // } else {
+      element.click( _interactiveObject.getFunction() );
+      element.removeClass("disabled");
+      element.addClass("enabled");
+      element.tooltip("option", "disabled", false );
     }
 
     /**

@@ -1,0 +1,10 @@
+{
+  "name": "Cuidando Bem",
+  "start_url": "index.html",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "icons": [],
+  "related_applications": [{
+    "platform": "web"
+  }]
+}

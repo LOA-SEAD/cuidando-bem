@@ -19,8 +19,8 @@ This file is part of Cuidando Bem.
  New levels can easily be made by adding new game levels.
 
  */
-define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "EquipoGotejamento" ],
-    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, EquipoGotejamento ) {
+define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "EquipoGotejamento", "Ficha" ],
+    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, EquipoGotejamento, Ficha ) {
 
 
         var Dialogs = require("DialogsData").fase1;
@@ -82,6 +82,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             );
 
             Prontuario.setAnotacaoEnfermagemRowData("15/03", "");
+
+            Ficha.setEnfermeiraRegexp( /Masculina/i );
+            Ficha.setPacienteRegexp( /Pedro Alc(í|i)des Mendon(ç|c)a/i );
+            Ficha.setLeitoRegexp( /0?1/ );
+            Ficha.setVolumeRegexp( /104/ );
+            Ficha.setDuracao( 1 );
+            Ficha.setGotasRegexp( /34,66/ );
+            Ficha.setGotasAproxRegexp( /35/ );
         });
 
 
@@ -90,12 +98,22 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                 // Pulseira.open();
                 // core.openModalScene("modalOximetro");
-                // Prontuario.open();
+                Prontuario.open("sinaisVitais");
                 // freqRespiratoria.open();
 
                 // core.showEndOfLevel();
-                //EquipoGotejamento.setMode( "dieta" );
-                EquipoGotejamento.open();
+                // EquipoGotejamento.setMode( "dieta" );
+                // EquipoGotejamento.open();
+
+                // Soro
+                // Ficha.open( "soro", 5 );
+                // core.openCommandBar();
+                // Ficha.open( "soro", 6 );
+                // Ficha.open( "soro", 9 );
+
+                // Oral
+                // Ficha.open( "oral", 7 );
+                // Ficha.open( "oral", 8 );
             });
 
 
@@ -104,7 +122,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-ir_corredor")
                 .onClick(function() {
                     console.log("Action: ir_corredor");
-                    core.changeScene( 1 );
+                    alert( Ficha.isDataValid() );
                 })
                 .setVisibility( true )
         ]);

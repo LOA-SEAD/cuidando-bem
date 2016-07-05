@@ -33,6 +33,7 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
         var dialogTextSelector = ".dialog_mainText";
         var dialogOptionsSelector = ".dialog_options";
         var dialogButtonSelector = ".dialog_right";
+        var dialogRereadSelector = ".dialog_reread";
 
         var isDialogOpen = false;
 
@@ -73,14 +74,6 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             // $(dialogModalSelector).css("display", "table");
             // $(dialogModalSelector).hide()
 
-            // @dev {
-            $( document ).keydown(function( e ) {
-                if ( e.which == 32 ) {
-                    $(".dialog_right").click();
-                }
-            });
-            // }
-
             $( dialogMaskSelector ).show();
             $( dialogModalSelector ).show("fade", {
                 duration: 200,
@@ -90,6 +83,23 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             });
 
             isDialogOpen = true;
+
+            if(isDialogOpen){
+                // @dev {
+                $( document ).keydown(function( e ) {
+                    switch( e.which ){
+                        case 38: $(".dialog_reread").click(); break;
+                        case 40: $(".dialog_right").click(); break;
+                        case 49: $(".dialog_button[value='1']").click(); break;
+                        case 50: $(".dialog_button[value='2']").click(); break;
+                        case 51: $(".dialog_button[value='3']").click(); break;
+                        case 52: $(".dialog_button[value='4']").click(); break;
+                        case 53: $(".dialog_button[value='5']").click(); break;
+                    }
+                });
+                // }
+            }
+
         }
 
         /**
@@ -100,12 +110,25 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
          */
         function changeDialogTo( _dialog ) {
 
-            // set the text for charName, dialog text and answer options
+            // set the text for charName and provide accessibility
             $( dialogCharNameSelector ).text( _dialog.getSpeakerName() );
             $( dialogCharImg ).removeClass();
             $( dialogCharImg ).addClass( _dialog.getSpeakerCssClass() );
             $( dialogCharImg ).show();
             $( dialogTextSelector ).text( _dialog.getText() );
+            
+            $(".dialog_reread").click( function(){
+                $( '<span>' + _dialog.getSpeakerName() + ': </span>' ).appendTo( "#accessible_log" );
+
+                // set the text for dialog text and provide accessibilty
+                if( _dialog.getText() != "" ){
+                    $( '<span>' + _dialog.getText() + '</span><br>' ).appendTo( "#accessible_log" );
+                }
+            });
+
+            $(".dialog_reread").click();
+
+            // set the text for answer options (accessibility is provided in the method addAllDialogButtons)
             changeDialogOptionsTo( _dialog.getOptions(), _dialog.getRandomize() );
 
             // type of animation to be executed
@@ -121,6 +144,7 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
                 $( dialogCharImg ).show(  );
                 $( dialogTextSelector ).show();
                 $( dialogOptionsSelector ).show(  );
+
             }
             // if already opened, keep the charName and animate the rest
             else {
@@ -201,6 +225,49 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             $( dialogMaskSelector ).hide();
             $( dialogModalSelector ).hide("fade", 200 );
             isDialogOpen = false;
+
+            if(!isDialogOpen){
+                var i = 0;
+                $( document ).keydown(function( e ){
+
+                    if( $( ".action_button:visible" ).length ){
+                        var n = $.merge(
+                                    $( ".interactiveObject:visible" ),
+                                    $( ".action_button:visible" )
+                                );
+                    }
+                    else{
+                        var n = $( ".interactiveObject:visible" );
+                    }
+
+                    if( n.length != 0 ){
+                        if( e.which == 40 ){ // seta para baixo
+                            if( i >= n.length - 1 ){
+                                i = 0;
+                            }
+                            else{
+                                i++;
+                            }
+                            $(n[i]).focus();
+                        }
+                        else if( e.which == 38 ){ // seta para cima
+                            if( i > 0 ){
+                                i--;
+                            }
+                            else{
+                                i = n.length - 1;
+                            }
+                            $(n[i]).focus();
+                        }
+                        else if( e.which == 13 ){ // enter
+                            if( i != -1 ){
+                                $(n[i]).click();
+                            }
+                        }
+                    }
+                });
+            }
+
         }
 
         /**
@@ -227,16 +294,18 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
          * @param {} _option
          * @memberOf module:DialogModal
          */
-        function addDialogButton( _option ) {
+        function addDialogButton( _option, _number ) {
             console.log( _option );
 
             var element = $( dialogButtonTemplate );
 
             element.click( _option.actionFunction );
-            $(".text", element ).text( _option.text );
 
+            $(".text", element ).text( _option.text );
+            element.attr("value", _number );
 
             $( dialogOptionsSelector ).append( element );
+
         }
 
         // Fisher–Yates Shuffle
@@ -265,14 +334,24 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
          * @memberOf module:DialogModal
          */
         function addAllDialogButtons( _options, randomize ) {
-            var i;
+            var i, op;
 
             if ( randomize ) {
                 _options = shuffle( _options );
             }
 
             for ( i = 0; i < _options.length; i++ ) {
-                addDialogButton( _options[ i ] );
+                // accessibility
+                addDialogButton( _options[ i ], i + 1 );
+
+                if(_options.length == 1){
+                    op = "única";
+                }
+                else{
+                    op = i + 1;
+                }                
+
+                $( '<span>Opção ' + op + ': ' + _options[ i ].text + '</span><br>' ).appendTo( "#accessible_log" );
             }
         }
 

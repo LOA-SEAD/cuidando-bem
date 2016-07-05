@@ -34,7 +34,7 @@ define(function() {
             avancarMensagens: [
                 "avancandoMensagens.mp3"
             ],
-            //Para os outros objetos usa-se este bip
+            // Para os outros objetos usa-se este bip
             bip: [
                 "beep.mp3"
             ],
@@ -117,7 +117,8 @@ define(function() {
             inGame: [
                 "cuidandoBemDosPacientes1.mp3",
                 "cuidandoBemDosPacientes2.mp3",
-                "cuidandoBemDosPacientes3.mp3"
+                "cuidandoBemDosPacientes3.mp3",
+                "cuidandoBemDosPacientes4.mp3"
             ]
         },
         loops: {

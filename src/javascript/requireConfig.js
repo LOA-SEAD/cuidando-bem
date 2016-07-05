@@ -35,6 +35,7 @@ require.config({
         Stage: "engine/core/stage",
         Player: "engine/core/player",
         ImageLoader: "engine/core/imageLoader",
+        IsMobile: "engine/core/isMobile",
 
         commandBar: "engine/modules/commandBar/commandBarController",
         Action: "engine/modules/commandBar/action",
@@ -61,6 +62,7 @@ require.config({
         Level: "game/modules/level",
         Character: "game/modules/character",
         Pulseira: "game/modules/pulseira/pulseiraModal",
+        Ficha: "game/modules/ficha/ficha",
         Prontuario: "game/modules/prontuario/prontuario",
         levelsData: "game/modules/levelsData",
         FreqRespiratoria: "game/modules/freqRespiratoria/freqRespiratoria",

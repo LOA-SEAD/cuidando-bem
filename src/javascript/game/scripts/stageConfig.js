@@ -42,6 +42,10 @@ define([ "Stage" ], function( Stage ) {
     Stage.registerScreen("levelSelect", "levelSelect.html", "screenLevelSelectController");
 // 7 - conteudo
     Stage.registerScreen("conteudo", "conteudo.html", "screenConteudoController");
+// 8 - Ganhou jogo
+    Stage.registerScreen("vitoria", "vitoria.html", "screenVitoriaController");
+// 9 - Perdeu jogo
+    Stage.registerScreen("derrota", "derrota.html", "screenDerrotaController");
 
     console.groupEnd();
 });

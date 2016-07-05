@@ -35,7 +35,8 @@ define([
         "Prontuario",
         "Pulseira",
         "FreqRespiratoria",
-        "EquipoGotejamento"
+        "EquipoGotejamento",
+        "Ficha"
     ],
     function(
         Stage,
@@ -49,7 +50,9 @@ define([
         prontuario,
         Pulseira,
         freqRespiratoria,
-        EquipoGotejamento ) {
+        EquipoGotejamento,
+        Ficha
+    ) {
 
 // Attributes
         var Storage = require("Storage");
@@ -86,6 +89,7 @@ define([
             Pulseira.init( gameStageSelector );
             freqRespiratoria.init( gameStageSelector );
             EquipoGotejamento.init( gameStageSelector );
+            Ficha.init( gameStageSelector );
 
             Dialog.init( gameStageSelector );
 
@@ -93,8 +97,6 @@ define([
 
             changeLevel( game.getCurrentLevel() );
             startLevel();
-
-            CommandBar.hide();
         }
 
         /**
@@ -174,6 +176,9 @@ define([
 
             SceneController.setScene( Scene );
             CommandBar.changeToActionsButtons( Actions );
+            CommandBar.hide();
+            EquipoGotejamento.close();
+            Ficha.close();
             InteractiveObject.changeToInteractiveObjects( InteractiveObjects );
 
             Scene.load();
@@ -399,7 +404,7 @@ define([
 
         function flag( _flagId, _value ) {
 
-            if ( _value ) {
+            if ( typeof _value !== "undefined" ) {
                 Level.getFlag( _flagId ).setValue( _value );
             } else {
                 return Level.getFlag( _flagId ).getValue();
@@ -428,7 +433,7 @@ define([
          */
         function setActionEnable( _actionId, _value ) {
             var action = Scene.getAction( _actionId );
-            if ( _value ) {
+            if ( typeof _value !== "undefined" ) {
                 enableActionButton( action );
             } else {
                 disableActionButton( action );

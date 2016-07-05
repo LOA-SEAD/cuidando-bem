@@ -38,6 +38,8 @@ define([], function() {
      */
     var currentLevel = 0;
 
+    var maxGameScore = 0;
+
 // Methods
     /**
      * This function stores a level data in the levels object
@@ -54,6 +56,8 @@ define([], function() {
         }
 
         levels[ _id ] = _level;
+
+        maxGameScore += _level.getMaxPoints();
 
         // Log
         console.log("\nAdding new Level:", _level.getName() );
@@ -75,6 +79,10 @@ define([], function() {
         return currentLevel;
     }
 
+    function getMaxGameScore() {
+        return maxGameScore;
+    }
+
 // Setters
     /**
      * @method setCurrentLevel
@@ -93,6 +101,8 @@ define([], function() {
 
         getCurrentLevel: getCurrentLevel,
         getCurrentLevelId: getCurrentLevelId,
+
+        getMaxGameScore: getMaxGameScore,
 
         setCurrentLevel: setCurrentLevel
     };

@@ -21,38 +21,60 @@ This file is part of Cuidando Bem.
 
   input{
     border: none;
+    border-bottom: 0.2rem solid black;
     background-color: transparent;
     font-size: 2.4em;
+    height: 4%;
   }
 
-  //region name
+  #name_span{
+    position: absolute;
+    top: 44%;
+    left: 18.3%;
+    font-size: 2rem;
+    font-family: @font-printed;
+  }
+
+  #data_span{
+    position: absolute;
+    top: 48.7%;
+    left: 26%;
+    font-size: 2rem;
+    font-family: @font-printed;
+  }
+
+  #leito_span{
+    position: absolute;
+    top: 48.7%;
+    left: 17.5%;
+    font-size: 2rem;
+    font-family: @font-printed;
+  }
+
+  .transparent{
+    display: none;
+  }
+
   #name_input{
     position: absolute;
-    width: 23%;
-    left: 23%;
+    width: 23.5%;
+    left: 22.5%;
     top: 43%;
-    //background-color: red;
   }
-  //endregion
 
-  //region data
   #data_input{
     position: absolute;
-    width: 8.5%;
-    left: 37.5%;
+    width: 8%;
+    left: 38%;
     top: 47.5%;
-    //background-color: red;
+    text-align: center;
   }
-  //endregion
 
-  //region leito
   #leito_input{
     position: absolute;
-    width: 10%;
-    left: 22%;
+    width: 3%;
+    left: 22.5%;
     top: 47.5%;
-    //background-color: red;
+    text-align: center;
   }
-  //endregion
-
 }
