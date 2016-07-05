@@ -924,10 +924,10 @@ define({
                 "Você está se esquecendo de algo!"
             ],
             luvas: [
-                "Você precisa de proteção para as mãos"
+                "Você precisa de proteção para as mãos!"
             ],
             algodão: [
-                "O algodão seco precisa ser utilizado"
+                "O algodão seco precisa ser utilizado."
             ],
             conversarPaciente: [
                 "A comunicação com o paciente é essencial na assistência de enfermagem!"

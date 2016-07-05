@@ -683,6 +683,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.openCommandBar();
                 console.log("Leito: Onload");
                 core.setInteractiveObjectVisible("io-pulseira_paciente", true );
+            
+                
                 // core.setActionVisible("btn-falarPaciente", true );
             })
             .onUnload(function() {
@@ -699,14 +701,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.closeCommandBar();
                         core.openDialog( 15 );
                     } else {
-                        core.flag("selecionar_bandeja",  true );
+                        core.flag("verificar_pulseira",  true );
                         console.log("IO: pulseira_paciente");
                         core.openModalScene("pulseira");
                         Pulseira.open();
                         core.openCommandBar();
                     }
                 })
-                .setVisibility( true ),
+                .setVisibility( true )
+                .setEnable (false ),
+            
+            
 
             new InteractiveObject("io-conversar_paciente03", "Falar com o paciente")
                 .setCssClass("intObj-conversar_paciente")
@@ -721,6 +726,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         }
                         core.closeCommandBar();
                         core.openDialog( 0 );
+                        core.enableInteractiveObject("io-pulseira_paciente", true );
                     } else {
                         // Já realizou os procedimentos
                         console.log("Action: Explicar o resultado");
@@ -747,6 +753,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         ]);
 
+    
 
         leito.registerDialogs([
             new Dialog( lib.characters.jogador )
@@ -851,7 +858,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Alertas.esqueceu.falarPaciente )
                 .registerOption("", function() {
                     core.closeDialog();
-                })
+                }),
+          
         ]);
 
         leito.registerActions([
@@ -863,21 +871,26 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: Colocar Luvas");
                     // Som
                     Player.play( Player.audios.sfx.colocarLuvas );
-                    /*if ( core.flag("score_selecionou_bandeja") == false ) {
-                        if ( core.flag("score_nao_selecionou_bandeja") == false ) {
-                            core.registerScoreItem( Scores.naoSelecionarBandeja );
-                            core.flag("score_nao_selecionou_bandeja",  true );
-                        }
-                        // Não será utilizada uma fala caso não selecione a bandeja
-                        // core.closeCommandBar();
-                        // core.openDialog(15);
-                    } else {*/
+                
+                    if(core.flag("verificar_pulseira") == true){
+                    
                         if ( core.flag("score_vestiu_luvas") == false ) {
                             core.flag("score_vestiu_luvas",  true );
                             core.registerScoreItem( Scores.porLuvas );
                             core.setActionVisible("btn-por_luvas", false);
                         }
-                    // }
+                        
+                    }
+                    else {
+                        
+                        if(core.flag("score_pulseira") == false){
+                            core.flag("score_pulseira", true);
+                            core.registerScoreItem( Scores.naoVerificarPulseira);
+                        }
+                        
+                        core.openDialog( 10 );
+                    }
+                    
                 })
                 .setVisibility( false ),
 
@@ -886,8 +899,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-utilizar_algodao", "Utilizar Algodão")
                 .setCssClass("action-algodao_seco")
                 .onClick(function() {
+                    
                     console.log("Action: Utilizar Algodão");
                     // Verifica qual é a vez que está utilizando o algodão
+                    
+                if(core.flag("verificar_pulseira") == true){
                     if ( core.flag("utilizar_algodao2") == true ) {
                         if ( core.flag("score_realizou_teste_glicemia") == false ) {
                             if ( core.flag("score_nao_realizou_teste_glicemia") == false ) {
@@ -919,6 +935,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             core.flag("utilizar_algodao2",  true );
                         }
                     }
+                  }
+                    else {
+                        
+                          if(core.flag("score_pulseira") == false){
+                            core.flag("score_pulseira", true);
+                            core.registerScoreItem( Scores.naoVerificarPulseira);
+                        }
+                        
+                        core.openDialog(10);
+                    }
                 })
                 .setVisibility( false ),
 
@@ -943,6 +969,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("Action: Realizar teste de glicemia capilar");
                     // Bip
+                    
+                  if(core.flag("verificar_pulseira") == true){
                     Player.play( Player.audios.sfx.bip );
                     if ( core.flag("score_utilizou_algodao1") == false ) {
                         if ( core.flag("score_nao_utilizou_algodao1") == false ) {
@@ -960,6 +988,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         }
                         // Abre a cena do glicosimetro
                         core.openModalScene("modalGlicosimetroComFita");
+                    }
+                  }
+                    else {
+                        
+                          if(core.flag("score_pulseira") == false){
+                            core.flag("score_pulseira", true);
+                            core.registerScoreItem( Scores.naoVerificarPulseira);
+                        }
+                        
+                        core.openDialog( 10 );
                     }
                 })
                 .setVisibility( false ),
@@ -1406,6 +1444,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "score_jogou_algodao_errado",  false  ) );
         level.registerFlag( new Flag( "pegou_agulhas",  false  ) );
         level.registerFlag( new Flag( "fez_teste_glicemia",  false  ) );
+        level.registerFlag( new Flag( "verificar_pulseira",  false  ) );
+        level.registerFlag( new Flag( "score_pulseira",  false  ) );
 
         level.setInitialScene( 0 );
 

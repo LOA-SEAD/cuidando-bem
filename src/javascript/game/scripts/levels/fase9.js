@@ -380,6 +380,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 // VAI MUDAR
                 .setCssClass("intObj-paciente_09-checar_pulseira")
                 .onClick(function() {
+                    
+                    core.flag("verificar_pulseira", true);
+                    
                     console.log("IO: pulseira_paciente");
                     if ( core.flag("score_verificar_pulseira") == false ) {
                         core.flag("score_verificar_pulseira",  true );
@@ -388,7 +391,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openModalScene("pulseira");
                     Pulseira.open();
                 })
-                .setVisibility( true ),
+                .setVisibility( true )
+                .setEnable (false),
 
 
               new InteractiveObject("io-conversar_paciente09", "Falar com o paciente")
@@ -398,7 +402,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
                     core.openDialog( 0 );
-                    core.openCommandBar();
+                    core.enableInteractiveObject("io-pulseira_paciente", true );
+                    
        
 
                 })
@@ -411,6 +416,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Dialogs.leitoPaciente[ 0 ] )
                 .registerOption("", function() {
                     core.openDialog( 1 );
+                    core.openCommandBar();
                 }),
             new Dialog( lib.characters.pacientes.yuri )
                 .setText( Dialogs.leitoPaciente[ 1 ] )
@@ -427,7 +433,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Dialogs.leitoPaciente[ 3 ] )
                 .registerOption("", function() {
                     core.closeDialog();
-                })
+                }),
+            // 4
+                new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.verPulseira )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
+            
         ]);
 
         leito.registerActions([
@@ -437,17 +450,35 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-oferecer_copo", "Oferecer copo com água para o paciente")
                 .setCssClass("action-copo_descartavel")
                 .onClick(function() {
+                    
+                if(core.flag("verificar_pulseira") == true) {           
+                    
                     console.log("Action: Oferecer copo com água para o paciente");
                     if ( core.flag("score_ofereceu_copo") == false ) {
                         core.registerScoreItem( Scores.oferecerCopo );
                         core.flag("score_ofereceu_copo",  true );
                     }
+                    core.setActionVisible("btn-oferecer_copo", false);
+                }
+                else {
+                    
+                    
+                        if(core.flag("score_pulseira") == false) {
+                            core.flag("score_pulseira", true);
+                            core.registerScoreItem( Scores.naoVerificarPulseira );
+                        }
+                        
+                        core.openDialog( 4 );
+                }
                 })
                 .setVisibility( true ),
 
             new Action("btn-administrar_medicamento", "Administrar o medicamento")
                 .setCssClass("action-midazolam_medicamento")
                 .onClick(function() {
+                    
+                if(core.flag("verificar_pulseira") == true) {    
+                    
                     console.log("Action: Administrar o medicamento");
                     if ( core.flag("score_ofereceu_copo") == false ) {
                         if ( core.flag("score_nao_ofereceu_copo") == false ) {
@@ -459,12 +490,26 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.registerScoreItem( Scores.administrarMedicamento );
                         core.flag("score_administrou_medicamento",  true );
                     }
+                }
+                else{
+                    
+                    if(core.flag("score_pulseira") == false) {
+                            core.flag("score_pulseira", true);
+                            core.registerScoreItem( Scores.naoVerificarPulseira );
+                        }
+                        
+                        core.openDialog( 4 );
+                    
+                }
                 })
                 .setVisibility( false ),
 
             new Action("btn-anotarProntuario", "Anotar prontuario")
                 .setCssClass("action-anotar_prontuario")
                 .onClick(function() {
+                    
+                if(core.flag("verificar_pulseira") == true) {     
+                    
                     console.log("Action: Anotar prontuario");
                     if ( core.flag("score_administrou_medicamento") == false ) {
                         if ( core.flag("score_nao_administrou_medicamento") == false ) {
@@ -478,45 +523,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                     Prontuario.open();
                     core.openModalScene("Prontuario");
+                }
+                else {
+                    
+                          if(core.flag("score_pulseira") == false) {
+                            core.flag("score_pulseira", true);
+                            core.registerScoreItem( Scores.naoVerificarPulseira );
+                        }
+                        
+                        core.openDialog( 4 );
+                }
                 })
                 .setVisibility( true ),
 
-        /*    new Action("btn-levar_yuri_cc", "Levar paciente ao Centro Cirurgico")
-                .setCssClass("action-paciente9")
-                .onClick(function() {
-                    console.log("Action: Levar paciente ao Centro Cirurgico");
-                    // Som
-                    Player.play( Player.audios.sfx.mesaComRodinha );
-                    // Como o paciente vai se tornar indisponivel, tudo o que poderia ser feito com ele será descontado
-                    if ( core.flag("score_verificar_pulseira") == false ) {
-                        if ( core.flag("score_nao_verificar_pulseira") == false ) {
-                            core.registerScoreItem( Scores.naoVerificarPulseira );
-                            core.flag("score_nao_verificar_pulseira",  true );
-                        }
-                    }
-                    // Repete pois precisa descontar os pontos no medicamento também
-                    if ( core.flag("score_ofereceu_copo") == false ) {
-                        if ( core.flag("score_nao_ofereceu_copo") == false ) {
-                            core.registerScoreItem( Scores.naoOferecerCopo );
-                            core.flag("score_nao_ofereceu_copo",  true );
-                        }
-                    }
-                    if ( core.flag("score_administrou_medicamento") == false ) {
-                        if ( core.flag("score_nao_administrou_medicamento") == false ) {
-                            core.registerScoreItem( Scores.naoAdministrarMedicamento );
-                            core.flag("score_nao_administrou_medicamento",  true );
-                        }
-                    }
-                    if ( core.flag("levou_yuri_centro_cirurgico") == false ) {
-                        core.flag("levou_yuri_centro_cirurgico",  true );
-                    }
-                    // core.setActionVisible("btn-falarPaciente", false );
-                    core.setActionVisible("btn-oferecer_copo", false );
-                    core.setActionVisible("btn-administrar_medicamento", false );
-                    core.setActionVisible("btn-levar_yuri_cc", false );
-                    core.setInteractiveObjectVisible("io-conversar_paciente09", false );
-                })
-                .setVisibility( true ),*/
 
             new Action("btn-irCentroCirurgico", "Ir para sala de cirurgia")
                 .setCssClass("action-irCentroCirurgico")
@@ -559,7 +578,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             
                 if ( core.flag("ja_falou_farmaceutico") == true ) {
                     core.setInteractiveObjectVisible("io-midazolam_medicamento", !(core.flag("score_pegou_medicamento")) );
-                    core.setActionVisible("btn-conferir_midazolam", true );
+               //     core.setActionVisible("btn-conferir_midazolam", true );
                     core.openCommandBar();
                     
                     if(core.flag("score_conferiu_medicacao") == true){
@@ -810,6 +829,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                 console.log("Load scene: Centro cirurgico Yuri");
             
+           
             
             if(core.flag("conversar_circulante") == false){
                 core.closeCommandBar();
@@ -828,10 +848,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
              new InteractiveObject("io-conversar_circulante", "Conversar com Circulante")
                 .setCssClass("intObj-talkToCirculante")
                 .onClick(function() {
-
+                        
+                   
                     core.openDialog( 0 );
-                    core.openCommandBar();
                     core.setInteractiveObjectVisible("io-carrinho_anestesico", true);
+                    core.setInteractiveObjectVisible("io-conversar_paciente_cc", true);
                     core.flag("conversar_circulante", true);
                     
                 })
@@ -852,7 +873,21 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
 
                 })
-                .setVisibility( false )
+                .setVisibility( false ),
+            
+            
+            
+            
+               new InteractiveObject("io-conversar_paciente_cc", "Falar com o paciente")
+                .setCssClass("intObj-talkToPacienteRegina")
+                .onClick(function() {
+                
+                    
+                    core.openDialog( 3 );
+             
+
+                })
+                .setVisibility( false ),
 
 
 
@@ -884,86 +919,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                 })
                 .setVisibility( true ),
-/*
-            new Action("btn-falar_circulante", "Falar com circulante de sala")
-                // Será outro
-                .setCssClass("action-leito-char-02")
-                .onClick(function() {
-                    console.log("Action: Falar com circulante de sala");
-                    if ( core.flag("score_lavar_maos_tecnica_cirurgica") == false ) {
-                        if ( core.flag("score_nao_lavar_maos_tecnica_cirurgica") == false ) {
-                            core.registerScoreItem( Scores.naoLavarMaosTecnicaCirurgica );
-                            core.flag("score_nao_lavar_maos_tecnica_cirurgica",  true );
-                        }
-                    }
-                    // Caso falar com o paciente dê pontos:
-                    /*if(core.flag("score_falar_circulante") == false) {
-                     core.registerScoreItem(Scores.conferirMedicacao);
-                     core.flag("score_falar_circulante", true);
-                     }
-                    core.openDialog( 0 );
-                    core.closeCommandBar();
-                })
-                .setVisibility( true ),  */
-
-  /*          new Action("btn-testar_equipamentos", "Testar Equipamentos")
-                // Será outro
-                .setCssClass("action-testar_equipamentos")
-                .onClick(function() {
-                    console.log("Action: Testar Equipamentos");
-                    // Bip
-                    Player.play( Player.audios.sfx.bip );
-                    // Caso falar com o paciente dê pontos:
-                    /*if(core.flag("score_ofereceu_copo") == false) {
-                     if(core.flag("score_nao_ofereceu_copo") == false) {
-                     core.registerScoreItem(Scores.naoOferecerCopo);
-                     core.flag("score_nao_ofereceu_copo", true);
-                     }
-                     }
-                    if ( core.flag("score_testou_equipamentos") == false ) {
-                        core.registerScoreItem( Scores.testarEquipamentos );
-                        core.flag("score_testou_equipamentos",  true );
-                    }
-                })
-                .setVisibility( true ),
-*/
-          /*  new Action("btn-fazer_lista", "Fazer lista de verificação")
-                // Será outro
-                .setCssClass("action-fazer_lista")
-                .onClick(function() {
-                    console.log("Action: Fazer lista de verificação");
-                    if ( core.flag("score_testou_equipamentos") == false ) {
-                        if ( core.flag("score_nao_testou_equipamentos") == false ) {
-                            core.registerScoreItem( Scores.naoTestarEquipamentos );
-                            core.flag("score_nao_testou_equipamentos",  true );
-                        }
-                    }
-                    if ( core.flag("score_fez_lista_verificacao") == false ) {
-                        core.registerScoreItem( Scores.fazerListaVerificacao );
-                        core.flag("score_fez_lista_verificacao",  true );
-                    }
-                })
-                .setVisibility( true ),*/
-/*
-            new Action("btn-mudar_posicao_paciente", "Mudar posição do paciente")
-                // Será outro
-                .setCssClass("action-mudar_posicao_paciente")
-                .onClick(function() {
-                    console.log("Action: Mudar posição do paciente");
-                    // Som
-                    Player.play( Player.audios.sfx.roupaRocando );
-                    if ( core.flag("score_fez_lista_verificacao") == false ) {
-                        if ( core.flag("score_nao_fez_lista_verificacao") == false ) {
-                            core.registerScoreItem( Scores.naoFazerListaVerificacao );
-                            core.flag("score_nao_fez_lista_verificacao",  true );
-                        }
-                    }
-                    if ( core.flag("score_mudou_posicao_paciente") == false ) {
-                        core.registerScoreItem( Scores.mudarPosicaoPaciente );
-                        core.flag("score_mudou_posicao_paciente",  true );
-                    }
-                })
-                .setVisibility( true ),*/
 
             new Action("btn-colocar_placa", "Colocar placa neutra")
                 .setCssClass("action-placa_neutra")
@@ -1039,7 +994,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Dialog( lib.characters.circulante )
                 .setText( Dialogs.centroCirurgico[ 3 ] )
                 .registerOption("", function() {
-                    core.openDialog( 3 );
+                    core.closeDialog(  );
+                    core.closeCommandBar();
                 }),
             // 3
             new Dialog( lib.characters.jogador )
@@ -1173,6 +1129,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.openDialog(3);
                         core.flag("levou_yuri_centro_cirurgico",true);
                         core.setActionVisible("btn-irCentroCirurgico", true);
+                        core.setActionVisible("btn-anotarProntuario", false);
+                        core.setActionVisible("btn-administrar_medicamento", false);
+                        core.setActionVisible("btn-oferecer_copo", false);
                     }
 
                     // Já estava no momento de realizar os procedimentos, portanto pode terminar a fase
@@ -1397,6 +1356,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "pegou_agua",  false  ) );
         level.registerFlag( new Flag( "conversar_recepcionista",  false  ) );
         level.registerFlag( new Flag( "conversar_circulante",  false  ) );
+        level.registerFlag( new Flag( "score_pulseira",  false  ) );
+        level.registerFlag( new Flag( "verificar_pulseira",  false  ) );
 
 
 
