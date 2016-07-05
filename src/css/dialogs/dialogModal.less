@@ -53,8 +53,7 @@ This file is part of Cuidando Bem.
   border-bottom: solid 1px rgba(0, 0, 0, 0.1);
   padding-left: 2%;
   text-decoration: none;
-
-
+  margin: 0;
   font-size: 4em;
 }
 
@@ -74,7 +73,8 @@ This file is part of Cuidando Bem.
   width: 5%;
   height: 20%;
   bottom: 5%;
-
+  border: none;
+  background-color: transparent;
 }
 .on {
   background: @arrow_dialog_button no-repeat center;
@@ -83,7 +83,7 @@ This file is part of Cuidando Bem.
   background-image: @arrow_dialog_button-hover;
 }
 .off {
-  background-image: none;
+  display: none;
 }
 
 .dialog_mainText {
@@ -103,12 +103,16 @@ This file is part of Cuidando Bem.
   padding: 0 10px;
   cursor: pointer;
   font-family: 'Lato', sans-serif;
+  background: none;
+  padding: 0;
+  border: none;
+  text-decoration: none;
+  color: #000;
 }
 
 .text {
   display: list-item;
-  list-style: circle;
-  list-style-position: inside;
+  list-style: none;
 }
 .text:hover {
   color: #276a23;

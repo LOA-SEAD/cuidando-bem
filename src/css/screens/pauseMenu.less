@@ -2,7 +2,7 @@
 #pauseButton {
     background-repeat: no-repeat;
     background-size: contain;
-
+    background-color: transparent;
     background-image: @pauseCog;
     position: absolute;
     top: 2%;
@@ -12,9 +12,11 @@
     height: 3.25%;
     z-index: 1;
     cursor: pointer;
+    border: none;
 }
 
-#pauseButton:hover {
+#pauseButton:hover,
+#pauseButton:focus {
     @scale: 1.1;
     transform: scale( @scale, @scale );
     //filter: drop-shadow(0 0 2px @pause-glow-color);
