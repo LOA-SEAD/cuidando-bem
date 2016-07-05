@@ -39,8 +39,6 @@ define([
 
     var isOpen = false;
 
-    var isLastLevel = false;
-
     var Player = require("Player");
 // Methods
     // Init
@@ -53,19 +51,9 @@ define([
         $( selector ).append( html );
 
         $(".goToMenu").click(function() {
-          if ( !isLastLevel ) {
             isOpen = false;
             Stage.changeScreen( 6 );
             Player.playInLoop( Player.audios.musics.menu );
-          } else {
-            if ( true ) {
-              // Ganhou jogo
-              Stage.changeScreen( 8 );
-            } else {
-              // Perdeu jogo
-              Stage.changeScreen( 9 );
-            }
-          }
         });
 
         $(".playAgain").click(function() {
@@ -75,11 +63,8 @@ define([
         });
     }
 
-    function show( _scoreList, max, lastLevel ) {
+    function show( _scoreList, max ) {
         if ( !isOpen ) {
-          if ( typeof lastLevel !== "undefined" ) {
-            isLastLevel = lastLevel;
-          }
             $( modalSelector ).show();
 
             var actualScore = 0;

@@ -40,7 +40,7 @@ define([ "Stage" ], function( Stage ) {
         });
 
         $(".backButton").click(function() {
-            Stage.changeScreen( 0 );
+            Stage.changeScreen( 6 );
         });
     }
 
