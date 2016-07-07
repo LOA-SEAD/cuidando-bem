@@ -83,7 +83,7 @@ define([
             addActionButton( action );
         }
         console.groupEnd();
-    }
+  }
 
     /**
      * Change the current actions buttons for a new array of actions

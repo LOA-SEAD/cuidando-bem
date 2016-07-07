@@ -176,10 +176,16 @@ define([
 
             SceneController.setScene( Scene );
             CommandBar.changeToActionsButtons( Actions );
-            CommandBar.hide();
+            InteractiveObject.changeToInteractiveObjects( InteractiveObjects );
+
+            endOfLevel.close();
+            prontuario.close();
+            Pulseira.close();
+            freqRespiratoria.close();
             EquipoGotejamento.close();
             Ficha.close();
-            InteractiveObject.changeToInteractiveObjects( InteractiveObjects );
+            Dialog.close();
+            CommandBar.hide();
 
             Scene.load();
             console.groupEnd();
