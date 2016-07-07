@@ -42,13 +42,13 @@ module.exports = function( grunt ) {
 
         grunt.log.write("Building " + pkg.name + ":" + target );
 
-        if ( target == "rel" && ver !== "no") {
-            grunt.task.run([
-                "version::" + ver
-            ]);
-
-            pkg = grunt.file.readJSON("package.json");
-        }
+        // if ( target == "rel" && ver !== "no") {
+        //     grunt.task.run([
+        //         "version::" + ver
+        //     ]);
+        //
+        //     pkg = grunt.file.readJSON("package.json");
+        // }
 
         // Build for development
         grunt.task.run([
