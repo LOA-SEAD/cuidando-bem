@@ -648,7 +648,6 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
                             i++;
                         }
                         $(n[i]).focus();
-                        $( '<span>' + i + '</span><br>' ).appendTo( "#testWelly" );
                     }
                     else if( e.which == 38 ){ // seta para cima
                         if( i > 0 ){
@@ -658,10 +657,8 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
                             i = n.length - 1;
                         }
                         $(n[i]).focus();
-                        $( '<span>' + i + '</span><br>' ).appendTo( "#testWelly" );
                     }
                     else if( e.which == 13){ // enter
-                        $( '<span>' + i + '</span><br>' ).appendTo( "#testWelly" );
                         if( i != -1 ){
                             $(n[i]).click();
                             showing = false;

@@ -148,20 +148,33 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
         $( divSelector ).show();
         $( dataInputSelector ).mask("00/00/0000");
 
-        // accessibility: narration of "pulseira"
         var data = $( dataInputSelector ).val().toLowerCase();
         var leito = $( leitoInputSelector ).val().toLowerCase();
         var name = $( nameInputSelector ).val().toLowerCase();
 
-        $( '<span>Data: <time datetime="' + data.replace(/\//g, '-') + '">' + data + '</time></span><br>' ).appendTo( "#accessible_log" );
-        $( '<span>Leito: ' + leito + '</span><br>' ).appendTo( "#accessible_log" );
-        $( '<span>Nome: ' + name + '</span><br>' ).appendTo( "#accessible_log" );
+        $( dataInputSelector ).focus( function(){
+            $( '<span>Data: <time datetime="' + data.replace(/\//g, '-') + '">' + data + '</time></span><br>' ).appendTo( "#accessible_log" );
+        });
+
+        $( leitoInputSelector ).focus( function(){
+            $( '<span>Leito: ' + leito + '</span><br>' ).appendTo( "#accessible_log" );
+        });
+
+        $( nameInputSelector ).focus( function(){
+            $( '<span>Nome: ' + name + '</span><br>' ).appendTo( "#accessible_log" );
+        });
+
+        $( "#pulseira_modal input:first" ).focus();
 
         if(showing){
-            var i = 0;
+            var i = 0,
+            arrow_down = 40,
+            arrow_up = 38,
+            enter = 13;
+
             $( document ).keydown(function( e ) {
 
-                if( $( ".action_button:visible" ).length ){
+                if( $( ".action_button" ).is(":visible") ){
                     var n = $.merge(
                                 $( "#pulseira_modal input" ),
                                 $( ".action_button:visible" )
@@ -172,7 +185,7 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
                 }
 
                 if( n.length != 0 ){
-                    if( e.which == 40 ){ // seta para baixo
+                    if( e.which == arrow_down ){ // seta para baixo
                         if( i >= n.length - 1 ){
                             i = 0;
                         }
@@ -181,7 +194,7 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
                         }
                         $(n[i]).focus();
                     }
-                    else if( e.which == 38 ){ // seta para cima
+                    else if( e.which == arrow_up ){ // seta para cima
                         if( i > 0 ){
                             i--;
                         }
@@ -190,19 +203,10 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
                         }
                         $(n[i]).focus();
                     }
-                    else if( e.which == 13 ){ // enter
+                    else if( e.which == enter ){ // enter
                         if( i != -1 && $(n[i]).attr("class") == "action_button" ){
                             $(n[i]).click();
                             showing = false;
-                        }
-                        else{
-                            if( i >= n.length - 1 ){
-                                i = 0;
-                            }
-                            else{
-                                i++;
-                            }
-                            $(n[i]).focus();
                         }
                     }
                 }

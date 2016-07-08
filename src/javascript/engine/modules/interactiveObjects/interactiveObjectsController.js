@@ -91,7 +91,7 @@ define([
         element.addClass( _interactiveObject.getCssClass() );
 
         element.focus( function(){
-            $( '<span>' + _interactiveObject.getName() + '</span><br>' ).appendTo( "#accessible_log" );
+            $( '<span>' + _interactiveObject.getName() + '</span><br>' ).appendTo( "#accessible_log" )
         });
 
         element.tooltip({

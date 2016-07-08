@@ -34,6 +34,61 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             visibility = true;
         }
 
+        function navigationObjInteractives(){
+            
+            var i = -1,
+            arrow_down = 40,
+            arrow_up = 38,
+            enter = 13;
+
+            $( document ).keydown(function( e ){
+                if( !$("#dialogBar").is(":visible") ){
+
+                    if( $("#commandBar").is(":visible") ){
+                        var n = $.merge(
+                                    $( "#interactiveObjects div[class!='disabled']:visible" ),
+                                    $( "#commandBar button[class!='disabled']:visible" )
+                                );
+                    }
+                    else{
+                        var n = $( "#interactiveObjects div[class!='disabled']:visible" );
+                    }
+
+                    if( n.length != 0 ){
+
+                        if( e.which == arrow_down ){ // seta para baixo
+                            if( i >= n.length - 1 ){
+                                i = 0;
+                            }
+                            else{
+                                i++;
+                            }
+                            $(n[i]).focus();
+                            $( '<span>' + i + '</span><br>' ).appendTo( "#accessible_log" );
+                        }
+                        else if( e.which == arrow_up ){ // seta para cima
+                            if( i > 0 ){
+                                i--;
+                            }
+                            else{
+                                i = n.length - 1;
+                            }
+                            $(n[i]).focus();
+                            $( '<span>' + i + '</span><br>' ).appendTo( "#accessible_log" );
+                        }
+                        else if( e.which == enter ){ // enter
+                            if( i != -1 ){
+                                $(n[i]).click();
+                            }
+                        }
+                    }
+                }
+            });
+
+            return;
+            //$( document ).unbind("keydown");
+        }
+
         function recepcaoIrCorredor() {
             console.log("Funcao: recepcao_ir_corredor");
             // wont check for flags
@@ -94,6 +149,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeDialog( 3 );
                     core.setInteractiveObjectVisible("io-ir_corredor_esquerda", true );
                     core.setInteractiveObjectVisible("io-ir_corredor_direita", true );
+                    
+                    navigationObjInteractives();
                 })
         ]);
 
@@ -153,12 +210,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.setInteractiveObjectVisible("io-ir_sala_leitos", false );
                         // core.setActionVisible("btn-conversar_mentor", false);
                         core.setInteractiveObjectVisible("io-conversar_mentor", false );
+                        
+                        navigationObjInteractives();
                         break;
                     case 2:
                         // core.setActionVisible("btn-ir_posto_enfermagem", false);
                         core.setInteractiveObjectVisible("io-ir_posto_enfermagem", false );
                         // core.setActionVisible("btn-ir_sala_leitos", true);
                         core.setInteractiveObjectVisible("io-ir_sala_leitos", true );
+                        
+                        navigationObjInteractives();
                         break;
                 }
             })
@@ -242,6 +303,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeDialog( 4 );
                     core.setInteractiveObjectVisible("io-ir_sala_leitos", true );
                     core.setInteractiveObjectVisible("io-conversar_mentor", true );
+                    
+                    navigationObjInteractives();
                 })
         ]);
 
@@ -430,6 +493,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.closeDialog( 10 );
                     core.openCommandBar();
+                    
+                    navigationObjInteractives();
                 }),
 
 
@@ -483,6 +548,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Já que a pulseira está correta, desabilita o acesso ao paciente
                     core.setInteractiveObjectVisible("io-conversar_paciente", false );
                     core.openCommandBar();
+                    
+                    navigationObjInteractives();
                 }),
             // Dialog 17 - Mentor
             new Dialog( lib.characters.mentor )
@@ -490,6 +557,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.closeDialog();
                     core.openCommandBar();
+                    
+                    navigationObjInteractives();
                 }),
             // Dialog 18 - Jogador
             new Dialog( lib.characters.jogador )
@@ -503,6 +572,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.closeDialog();
                     core.openCommandBar();
+                    
+                    navigationObjInteractives();
                 }),
             // Dialog 20 - Final de fase, informações no prontuário incorretas.
             new Dialog( lib.characters.mentor )
@@ -527,6 +598,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeDialog();
                     // Prontuario.open();
                     core.openCommandBar();
+
+                    navigationObjInteractives();
                 })
         ]);
 
@@ -792,6 +865,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Alertas.esqueceu.pegarBandeja )
                 .registerOption("", function() {
                     core.closeDialog();
+                    navigationObjInteractives();
                 })
         ]);
 

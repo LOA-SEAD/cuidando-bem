@@ -69,6 +69,7 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
          * @memberOf module:DialogModal
          */
         function openDialog( _dialog ) {
+
             dialog = _dialog;
 
             // $(dialogModalSelector).css("display", "table");
@@ -81,20 +82,44 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
                     changeDialogTo( _dialog );
                 }
             });
-
             isDialogOpen = true;
+            var enter = 13,
+                arrow_down = 40,
+                arrow_up = 38,
+                one = 49,
+                two = 50,
+                three = 51;
 
-
+            // @dev {
             $( document ).keydown(function( e ) {
-                switch ( e.which ){
-                    case 38: $(".dialog_reread").click(); break;
-                    case 40: $(".dialog_right").click(); break;
-                    case 49: $(".dialog_button[value='1']").click(); break;
-                    case 50: $(".dialog_button[value='2']").click(); break;
-                    case 51: $(".dialog_button[value='3']").click(); break;
-                    case 52: $(".dialog_button[value='4']").click(); break;
-                    case 53: $(".dialog_button[value='5']").click(); break;
+                if( $("#dialogBar").is(":visible") ){
+                    if( e.which == arrow_up || e.which == enter ){
+                        if( $(".dialog_reread").is(":visible") ){
+                            $(".dialog_reread").click();
+                        }
+                    }
+                    else if( e.which == arrow_down ){
+                        if( $(".dialog_right").is(":visible") ){
+                            $(".dialog_right").click();
+                        }
+                    }
+                    else if( e.which == one ){
+                        if( $(".dialog_button[value='1']").is(":visible") ){
+                            $(".dialog_button[value='1']").click();
+                        }
+                    }
+                    else if( e.which == two ){
+                        if( $(".dialog_button[value='2']").is(":visible") ){
+                            $(".dialog_button[value='2']").click();
+                        }
+                    }
+                    else if( e.which == three ){
+                        if( $(".dialog_button[value='3']").is(":visible") ){
+                            $(".dialog_button[value='3']").click();
+                        }
+                    }
                 }
+                return;
             });
         }
 
@@ -113,16 +138,36 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             $( dialogCharImg ).show();
             $( dialogTextSelector ).text( _dialog.getText() );
 
-            $(".dialog_reread").click( function(){
-                $( '<span>' + _dialog.getSpeakerName() + ': </span>' ).appendTo( "#accessible_log" );
+            $( '<span>' + _dialog.getSpeakerName() + ': </span>' ).appendTo( "#accessible_log" );
 
-                // set the text for dialog text and provide accessibilty
-                if( _dialog.getText() != "" ){
-                    $( '<span>' + _dialog.getText() + '</span><br>' ).appendTo( "#accessible_log" );
+            if( _dialog.getText() != "" ){
+                $( '<span>' + _dialog.getText() + '</span><br>' ).appendTo( "#accessible_log" );
+            }
+
+            $(".dialog_reread").off();
+
+            $(".dialog_reread").click(function(){
+                $( '<span>' + $(".dialog_charName").text() + ': </span>' ).appendTo( "#accessible_log" );
+                if( $(".dialog_mainText").text() != "" ){
+                    $( '<span>' + $(".dialog_mainText").text() + '</span><br>' ).appendTo( "#accessible_log" );
+                }
+                else if( $(".dialog_options").text() != "" ){
+                    var options = $(".dialog_options .text").map(function(){
+                        return $.trim($(this).text());
+                        }).get();
+
+                    for ( i = 0; i < options.length; i++ ) {
+                        if(options.length == 1){
+                            op = "única";
+                        }
+                        else{
+                            op = i + 1;
+                        }
+
+                        $( '<span>Opção ' + op + ': ' + options[ i ] + '</span><br>' ).appendTo( "#accessible_log" );
+                    }
                 }
             });
-
-            $(".dialog_reread").click();
 
             // set the text for answer options (accessibility is provided in the method addAllDialogButtons)
             changeDialogOptionsTo( _dialog.getOptions(), _dialog.getRandomize() );
@@ -212,8 +257,6 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
          */
         function close() {
 
-            $( document ).unbind("keydown");
-
             $( dialogCharNameSelector ).hide();
             $( dialogCharImg ).hide();
             $( dialogTextSelector ).hide();
@@ -222,48 +265,7 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             $( dialogModalSelector ).hide("fade", 200 );
             isDialogOpen = false;
 
-            if(!isDialogOpen){
-                var i = 0;
-                $( document ).keydown(function( e ){
-
-                    if( $( ".action_button:visible" ).length ){
-                        var n = $.merge(
-                                    $( ".interactiveObject:visible" ),
-                                    $( ".action_button:visible" )
-                                );
-                    }
-                    else{
-                        var n = $( ".interactiveObject:visible" );
-                    }
-
-                    if( n.length != 0 ){
-                        if( e.which == 40 ){ // seta para baixo
-                            if( i >= n.length - 1 ){
-                                i = 0;
-                            }
-                            else{
-                                i++;
-                            }
-                            $(n[i]).focus();
-                        }
-                        else if( e.which == 38 ){ // seta para cima
-                            if( i > 0 ){
-                                i--;
-                            }
-                            else{
-                                i = n.length - 1;
-                            }
-                            $(n[i]).focus();
-                        }
-                        else if( e.which == 13 ){ // enter
-                            if( i != -1 ){
-                                $(n[i]).click();
-                            }
-                        }
-                    }
-                });
-            }
-
+            $( document ).unbind("keydown");
         }
 
         /**
@@ -298,7 +300,7 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             element.click( _option.actionFunction );
 
             $(".text", element ).text( _option.text );
-            element.attr("value", _number );
+            $( element ).attr("value", _number );
 
             $( dialogOptionsSelector ).append( element );
 
