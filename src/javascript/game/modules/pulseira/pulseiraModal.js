@@ -167,12 +167,14 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
         $( "#pulseira_modal input:first" ).focus();
 
         if(showing){
+
             var i = 0,
             arrow_down = 40,
             arrow_up = 38,
-            enter = 13;
+            enter = 13,
+            pause = 80;
 
-            $( document ).keydown(function( e ) {
+            $( document ).keydown( function( e ){
 
                 if( $( ".action_button" ).is(":visible") ){
                     var n = $.merge(
@@ -193,6 +195,7 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
                             i++;
                         }
                         $(n[i]).focus();
+                        return false;
                     }
                     else if( e.which == arrow_up ){ // seta para cima
                         if( i > 0 ){
@@ -202,17 +205,27 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
                             i = n.length - 1;
                         }
                         $(n[i]).focus();
+                        return false;
                     }
                     else if( e.which == enter ){ // enter
                         if( i != -1 && $(n[i]).attr("class") == "action_button" ){
                             $(n[i]).click();
                             showing = false;
                         }
+                        else{
+                            // TODO
+                        }
+                        return false;
+                    }
+                    else if( e.which == pause ){
+                        if( $( "#pauseButton" ).is(":visible") ){
+                            $( "#pauseButton" ).click();
+                        }
+                        return false;
                     }
                 }
             });
         }
-
     }
 
     /**

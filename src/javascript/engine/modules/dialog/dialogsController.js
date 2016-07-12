@@ -83,43 +83,63 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
                 }
             });
             isDialogOpen = true;
+
             var enter = 13,
                 arrow_down = 40,
                 arrow_up = 38,
                 one = 49,
                 two = 50,
-                three = 51;
+                three = 51,
+                pause = 80;
 
             // @dev {
             $( document ).keydown(function( e ) {
-                if( $("#dialogBar").is(":visible") ){
-                    if( e.which == arrow_up || e.which == enter ){
-                        if( $(".dialog_reread").is(":visible") ){
-                            $(".dialog_reread").click();
+                if( $( "#dialogBar" ).is( ":visible" ) ){
+                    if( e.which == arrow_up ){
+                        if( $( ".dialog_reread" ).is( ":visible" ) ){
+                            $( ".dialog_reread" ).click();
                         }
+                        return false;
                     }
                     else if( e.which == arrow_down ){
-                        if( $(".dialog_right").is(":visible") ){
-                            $(".dialog_right").click();
+                        if( $( ".dialog_right" ).is( ":visible" ) ){
+                            $( ".dialog_right" ).click();
                         }
+                        return false;
                     }
                     else if( e.which == one ){
-                        if( $(".dialog_button[value='1']").is(":visible") ){
-                            $(".dialog_button[value='1']").click();
+                        if( $( ".dialog_button[value='1']" ).is( ":visible" ) ){
+                            $( ".dialog_button[value='1']" ).click();
                         }
+                        return false;
                     }
                     else if( e.which == two ){
-                        if( $(".dialog_button[value='2']").is(":visible") ){
-                            $(".dialog_button[value='2']").click();
+                        if( $( ".dialog_button[value='2']" ).is( ":visible" ) ){
+                            $( ".dialog_button[value='2']" ).click();
                         }
+                        return false;
                     }
                     else if( e.which == three ){
-                        if( $(".dialog_button[value='3']").is(":visible") ){
-                            $(".dialog_button[value='3']").click();
+                        if( $( ".dialog_button[value='3']" ).is( ":visible" ) ){
+                            $( ".dialog_button[value='3']" ).click();
                         }
+                        return false;
+                    }
+                    else if( e.which == pause ){
+                        if( $( "#pauseButton" ).is( ":visible" ) ){
+                            $( "#pauseButton" ).click();
+                        }
+                        return false;
                     }
                 }
-                return;
+                else{
+                    if( e.which == pause ){
+                        if( $( "#pauseButton" ).is( ":visible" ) ){
+                            $( "#pauseButton" ).click();
+                        }
+                        return false;
+                    }
+                }
             });
         }
 

@@ -34,27 +34,42 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             visibility = true;
         }
 
-        function navigationObjInteractives(){
-            
-            var i = -1,
-            arrow_down = 40,
-            arrow_up = 38,
-            enter = 13;
+        temp = 0;
 
-            $( document ).keydown(function( e ){
+        function navigationObjInteractives(){
+
+            $( document ).off();
+
+            temp++;
+            $( '<span>Início da chamada ' + temp + '</span><br>' ).appendTo( "#accessible_log" );
+
+            var i = -1,
+                arrow_down = 40,
+                arrow_up = 38,
+                enter = 13,
+                pause = 80;
+
+            $( document ).keydown( function( e ){
                 if( !$("#dialogBar").is(":visible") ){
 
-                    if( $("#commandBar").is(":visible") ){
-                        var n = $.merge(
+                    var n = null;
+
+                    if( !$("#pauseMenu").is(":visible") ){
+                        if( $("#commandBar").is(":visible") ){
+                            n = $.merge(
                                     $( "#interactiveObjects div[class!='disabled']:visible" ),
-                                    $( "#commandBar button[class!='disabled']:visible" )
+                                    $( "#commandBar .action_button[class!='disabled']:visible" )
                                 );
+                        }
+                        else{
+                            n = $( "#interactiveObjects div[class!='disabled']:visible" );
+                        }
                     }
                     else{
-                        var n = $( "#interactiveObjects div[class!='disabled']:visible" );
+                        n = $( "#pauseMenu button[class!='disabled']:visible" );
                     }
 
-                    if( n.length != 0 ){
+                    if( n != null ){
 
                         if( e.which == arrow_down ){ // seta para baixo
                             if( i >= n.length - 1 ){
@@ -64,7 +79,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                                 i++;
                             }
                             $(n[i]).focus();
-                            $( '<span>' + i + '</span><br>' ).appendTo( "#accessible_log" );
+                            return false;
                         }
                         else if( e.which == arrow_up ){ // seta para cima
                             if( i > 0 ){
@@ -74,19 +89,49 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                                 i = n.length - 1;
                             }
                             $(n[i]).focus();
-                            $( '<span>' + i + '</span><br>' ).appendTo( "#accessible_log" );
+                            return false;
                         }
                         else if( e.which == enter ){ // enter
                             if( i != -1 ){
-                                $(n[i]).click();
+                               $(n[i]).click();
+                               return false;
                             }
                         }
+                        else if ( e.which == pause && $( "#pauseButton" ).is(":visible") ){
+                            $( "#pauseButton" ).click();
+                            return false;
+                        }
                     }
-                }
-            });
+                    /*else if( $( "#pauseMenu" ).is(":visible") ){
 
-            return;
-            //$( document ).unbind("keydown");
+                        var s = $( "#pauseMenu button" );
+
+                        if( e.which == pause && $( "#pauseButton" ).is(":visible") ){
+                            $( "#pauseButton" ).click();
+                        }
+                        else if( e.which == arrow_down ){
+                            if( i >= n.length - 1 ){
+                                i = 0;
+                            }
+                            else{
+                                i++;
+                            }
+                            $(s[i]).focus();
+                        }
+                        else if( e.which == arrow_up ){
+                            if( i > 0 ){
+                                i--;
+                            }
+                            else{
+                                i = n.length - 1;
+                            }
+                            $(s[i]).focus();
+                        }
+                    }*/
+                }
+                //return;
+            });
+            $( '<span>Fim da chamada ' + temp + '</span><br>' ).appendTo( "#accessible_log" );
         }
 
         function recepcaoIrCorredor() {
@@ -495,6 +540,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openCommandBar();
                     
                     navigationObjInteractives();
+
                 }),
 
 
@@ -557,8 +603,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.closeDialog();
                     core.openCommandBar();
-                    
-                    navigationObjInteractives();
                 }),
             // Dialog 18 - Jogador
             new Dialog( lib.characters.jogador )
@@ -572,8 +616,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.closeDialog();
                     core.openCommandBar();
-                    
-                    navigationObjInteractives();
                 }),
             // Dialog 20 - Final de fase, informações no prontuário incorretas.
             new Dialog( lib.characters.mentor )
@@ -598,8 +640,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeDialog();
                     // Prontuario.open();
                     core.openCommandBar();
-
-                    navigationObjInteractives();
                 })
         ]);
 
