@@ -1,3 +1,16 @@
+/*
+This file is part of Cuidando Bem.
+    Cuidando Bem is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Cuidando Bem is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 html {
     font-family: sans-serif; 
@@ -191,19 +204,19 @@ This file is part of Cuidando Bem.
     You should have received a copy of the GNU General Public License
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
-/*
-This file is part of Cuidando Bem.
-    Cuidando Bem is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-    Cuidando Bem is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-    You should have received a copy of the GNU General Public License
-    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
-*/
+html {
+  font-size: 1vmin;
+}
+body {
+  font-family: 'Pacifico', cursive;
+}
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+}
+*:focus {
+  outline: none;
+}
 /*
 This file is part of Cuidando Bem.
     Cuidando Bem is free software: you can redistribute it and/or modify
@@ -380,36 +393,36 @@ This file is part of Cuidando Bem.
   border-right: none;
 }
 .menuButtonBlue {
-  background-color: #3498db;
-  border-bottom: 5px solid #2980b9;
+  background-color: #3498DB;
+  border-bottom: 5px solid #2980B9;
 }
 .menuButtonBlue:hover,
 .menuButtonBlue:focus {
-  background-color: #5faee3;
+  background-color: #5FAEE3;
 }
 .menuButtonRed {
-  background-color: #e74c3c;
-  border-bottom: 5px solid #bd3e31;
+  background-color: #E74C3C;
+  border-bottom: 5px solid #BD3E31;
 }
 .menuButtonRed:hover,
 .menuButtonRed:focus {
-  background-color: #ec7669;
+  background-color: #EC7669;
 }
 .menuButtonGreen {
-  background-color: #82bf56;
+  background-color: #82BF56;
   border-bottom: 5px solid #669644;
 }
 .menuButtonGreen:hover,
 .menuButtonGreen:focus {
-  background-color: #9ccd7a;
+  background-color: #9CCD7A;
 }
 .menuButtonYellow {
-  background-color: #e4bc47;
-  border-bottom: 5px solid #a38426;
+  background-color: #E4BC47;
+  border-bottom: 5px solid #A38426;
 }
 .menuButtonYellow:hover,
 .menuButtonYellow:focus {
-  background-color: #eacd75;
+  background-color: #EACD75;
 }
 .menuButton.disabled {
   background-color: #8E8F8E !important;
@@ -561,15 +574,15 @@ This file is part of Cuidando Bem.
 }
 .dialogVoltarBtt {
   margin-right: 5%;
-  background-color: #e4bc47;
+  background-color: #E4BC47;
   font-size: 2em;
 }
 .dialogConfirmarBtt {
-  background-color: #3498db;
+  background-color: #3498DB;
   font-size: 2em;
 }
 .dialogApagarBtt {
-  background-color: #e74c3c;
+  background-color: #E74C3C;
   font-size: 2em;
 }
 .dialogVoltarBtt,
@@ -713,20 +726,20 @@ This file is part of Cuidando Bem.
   box-sizing: border-box;
 }
 #pauseMenu #front .quit {
-  background-color: #e74c3c;
-  border-bottom: 5px solid #bd3e31;
+  background-color: #E74C3C;
+  border-bottom: 5px solid #BD3E31;
 }
 #pauseMenu #front .replay {
-  background-color: #82bf56;
+  background-color: #82BF56;
   border-bottom: 5px solid #669644;
 }
 #pauseMenu #front .config {
-  background-color: #3498db;
-  border-bottom: 5px solid #2980b9;
+  background-color: #3498DB;
+  border-bottom: 5px solid #2980B9;
 }
 #pauseMenu #front .back {
-  background-color: #e4bc47;
-  border-bottom: 5px solid #a38426;
+  background-color: #E4BC47;
+  border-bottom: 5px solid #A38426;
 }
 #pauseMenu #front .button {
   cursor: pointer;
@@ -1318,8 +1331,8 @@ div[role="log"]:not(#accessible_log) {
   padding: 0;
   -webkit-transform: scale(1.05, 1.05);
           transform: scale(1.05, 1.05);
-  -webkit-filter: drop-shadow(0 0 8px #1987b2);
-          filter: drop-shadow(0 0 8px #1987b2);
+  -webkit-filter: drop-shadow(0 0 8px #1987B2);
+          filter: drop-shadow(0 0 8px #1987B2);
 }
 .interactiveObject.disabled {
   cursor: default;
@@ -1350,7 +1363,7 @@ div[role="log"]:not(#accessible_log) {
 }
 .intObj-lobbyToHallway-right:hover,
 .intObj-lobbyToHallway-right:focus {
-  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwLjciLz48c3RvcCBvZmZzZXQ9IjI1JSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwLjIiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMCIvPjwvbGluZWFyR3JhZGllbnQ+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkaWVudCkiIC8+PC9zdmc+');
+  background-image: url('data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20%3F%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%201%201%22%20preserveAspectRatio%3D%22none%22%3E%3ClinearGradient%20id%3D%22gradient%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%220.7%22%2F%3E%3Cstop%20offset%3D%2225%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%220.2%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23000000%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22url(%23gradient)%22%20%2F%3E%3C%2Fsvg%3E');
 }
 .intObj-lobbyToHallway-left {
   left: 0;
@@ -1360,7 +1373,7 @@ div[role="log"]:not(#accessible_log) {
 }
 .intObj-lobbyToHallway-left:hover,
 .intObj-lobbyToHallway-left:focus {
-  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwIi8+PHN0b3Agb2Zmc2V0PSI3NSUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMC4yIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZmZmZmZmIiBzdG9wLW9wYWNpdHk9IjAuNyIvPjwvbGluZWFyR3JhZGllbnQ+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkaWVudCkiIC8+PC9zdmc+');
+  background-image: url('data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20%3F%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%201%201%22%20preserveAspectRatio%3D%22none%22%3E%3ClinearGradient%20id%3D%22gradient%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23000000%22%20stop-opacity%3D%220%22%2F%3E%3Cstop%20offset%3D%2275%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%220.2%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%220.7%22%2F%3E%3C%2FlinearGradient%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22url(%23gradient)%22%20%2F%3E%3C%2Fsvg%3E');
 }
 .intObj-talkToMentor {
   background-image: url(../images/interactiveObjects/char-mentor.png);
@@ -2237,7 +2250,7 @@ This file is part of Cuidando Bem.
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #808080;
+  background-color: gray;
 }
 .scene-maleRoom {
   background-image: url(../images/scenes/alaMasculina.jpg);
@@ -2679,7 +2692,7 @@ This file is part of Cuidando Bem.
 #prontuario input {
   width: 100%;
   border: none;
-  border-bottom: 0.1rem solid #000000;
+  border-bottom: 0.1rem solid black;
   background-color: transparent;
 }
 #prontuario .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
@@ -2690,7 +2703,7 @@ This file is part of Cuidando Bem.
 #prontuario .ui-tabs .ui-tabs-nav li {
   margin: 0;
 }
-#prontuario .ui-tabs .ui-tabs-nav li:not(:last-child):not( :nth-child(5)) {
+#prontuario .ui-tabs .ui-tabs-nav li:not(:last-child):not(:nth-child(5)) {
   margin-right: 5.08rem;
 }
 #prontuario input[disabled] {
@@ -2716,19 +2729,19 @@ This file is part of Cuidando Bem.
   height: 5%;
   max-height: 5%;
   text-align: center;
-  border-bottom: 0.1rem solid #000000;
+  border-bottom: 0.1rem solid black;
 }
 #prontuario .row {
   text-align: center;
-  border-bottom: 0.1rem solid #000000;
+  border-bottom: 0.1rem solid black;
 }
 #prontuario .block {
-  border: 0.1rem solid #000000;
+  border: 0.1rem solid black;
 }
 #prontuario .container {
   min-height: 8rem;
   font-weight: bold;
-  border-bottom: 0.1rem solid #000000;
+  border-bottom: 0.1rem solid black;
 }
 #prontuario .container.info {
   min-height: 4rem;
@@ -2736,16 +2749,16 @@ This file is part of Cuidando Bem.
 #prontuario .doubleContainer {
   min-height: 8rem;
   font-weight: bold;
-  border-bottom: 0.1rem solid #000000;
+  border-bottom: 0.1rem solid black;
 }
 #prontuario .tripleContainer {
   font-weight: bold;
-  border-bottom: 0.1rem solid #000000;
+  border-bottom: 0.1rem solid black;
 }
 #prontuario .oneLeft {
   float: left;
   width: 50%;
-  border-right: 0.1rem solid #000000;
+  border-right: 0.1rem solid black;
 }
 #prontuario .dataInternacao,
 #prontuario .medidas_antropometricas,
@@ -2755,12 +2768,12 @@ This file is part of Cuidando Bem.
 #prontuario .doubleLeft {
   float: left;
   width: 50%;
-  border-right: 0.1rem solid #000000;
+  border-right: 0.1rem solid black;
 }
 #prontuario .tripleLeft {
   float: left;
   width: 50%;
-  border-right: 0.1rem solid #000000;
+  border-right: 0.1rem solid black;
 }
 #prontuario .medidas_antropometricas > div {
   display: inline-block;
@@ -2768,13 +2781,13 @@ This file is part of Cuidando Bem.
   padding: 1% 2%;
 }
 #prontuario .data_nascimento {
-  border-right: 0.1rem solid #000000;
+  border-right: 0.1rem solid black;
   width: 50%;
   display: inline-block;
   height: 4rem;
 }
 #prontuario .idade {
-  border-right: 0.1rem solid #000000;
+  border-right: 0.1rem solid black;
   width: 30%;
   display: inline-block;
   height: 4rem;
@@ -2788,19 +2801,19 @@ This file is part of Cuidando Bem.
 }
 #prontuario table.col6 thead {
   text-align: center;
-  border-bottom: 0.1rem solid #000000;
+  border-bottom: 0.1rem solid black;
 }
 #prontuario table.col6 thead th {
   width: 16%;
 }
 #prontuario table.col6 thead th:not(:last-child) {
-  border-right: 0.1rem solid #000000;
+  border-right: 0.1rem solid black;
 }
 #prontuario table.col6 tbody td:not(:last-child) {
-  border-right: 0.1rem solid #000000;
+  border-right: 0.1rem solid black;
 }
 #prontuario table.col6 tbody tr:not(:last-child) {
-  border-bottom: 0.1rem solid #000000;
+  border-bottom: 0.1rem solid black;
 }
 #prontuario table.prescMedica {
   font-size: 1.5rem;
@@ -2875,38 +2888,38 @@ This file is part of Cuidando Bem.
 }
 #prontuario table.col4 thead {
   text-align: center;
-  border-bottom: 0.1rem solid #000000;
+  border-bottom: 0.1rem solid black;
 }
 #prontuario table.col4 thead th {
   width: 25%;
 }
 #prontuario table.col4 thead th:not(:last-child) {
-  border-right: 0.1rem solid #000000;
+  border-right: 0.1rem solid black;
 }
 #prontuario table.col4 tbody td:not(:last-child) {
-  border-right: 0.1rem solid #000000;
+  border-right: 0.1rem solid black;
 }
 #prontuario table.col4 tbody tr:not(:last-child) {
-  border-bottom: 0.1rem solid #000000;
+  border-bottom: 0.1rem solid black;
 }
 #prontuario table.col2 {
   width: 100%;
 }
 #prontuario table.col2 thead {
   text-align: center;
-  border-bottom: 0.1rem solid #000000;
+  border-bottom: 0.1rem solid black;
 }
 #prontuario table.col2 thead th:first-child {
   width: 25%;
 }
 #prontuario table.col2 thead th:not(:last-child) {
-  border-right: 0.1rem solid #000000;
+  border-right: 0.1rem solid black;
 }
 #prontuario table.col2 tbody td:not(:last-child) {
-  border-right: 0.1rem solid #000000;
+  border-right: 0.1rem solid black;
 }
 #prontuario table.col2 tbody tr:not(:last-child) {
-  border-bottom: 0.1rem solid #000000;
+  border-bottom: 0.1rem solid black;
 }
 #prontuario .alergia_medicamentosa #pront_alergia_qual {
   width: 30%;
@@ -3489,7 +3502,7 @@ This file is part of Cuidando Bem.
 }
 .text:active {
   color: black;
-  text-shadow: -1px -1px #666666, 1px 1px #ffffff;
+  text-shadow: -1px -1px #666, 1px 1px #FFF;
 }
 .dialog_reread {
   display: none;
@@ -3629,7 +3642,7 @@ This file is part of Cuidando Bem.
   top: -20px;
   width: 25px;
   height: 25px;
-  box-shadow: 6px 5px 9px -9px #000000;
+  box-shadow: 6px 5px 9px -9px black;
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
@@ -4023,7 +4036,7 @@ This file is part of Cuidando Bem.
   right: 0;
   bottom: -30%;
   border-top-left-radius: 25px;
-  background: linear-gradient(112deg, transparent 10%, #67d6c5 10%);
+  background: linear-gradient(112deg, transparent 10%, #67D6C5 10%);
 }
 .endOfLevel-title {
   height: 7%;
@@ -4131,19 +4144,6 @@ This file is part of Cuidando Bem.
   width: 18%;
   margin: 0 5%;
   display: inline-block;
-}
-html {
-  font-size: 1vmin;
-}
-body {
-  font-family: 'Pacifico', cursive;
-}
-* {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-tap-highlight-color: transparent;
-}
-*:focus {
-  outline: none;
 }
 html {
   font-size: 1vmin;

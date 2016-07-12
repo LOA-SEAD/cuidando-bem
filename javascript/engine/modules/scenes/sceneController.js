@@ -15,4 +15,4 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define(["text!../html/scenes/scene.html"],function(e){function t(t){$(t).append(e)}function n(e){r(e)}function r(e){$("#backgroundScene").attr("class",e.getCssClass())}return{init:t,changeScene:n,setScene:r}});
+define(["text!../html/scenes/scene.html"],function(n){function e(e){$(e).append(n)}function t(n){c(n)}function c(n){$("#backgroundScene").attr("class",n.getCssClass())}return{init:e,changeScene:t,setScene:c}});

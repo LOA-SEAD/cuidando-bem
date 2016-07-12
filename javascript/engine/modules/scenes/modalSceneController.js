@@ -15,4 +15,4 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define(["text!../html/scenes/modalScene.html"],function(e){function i(t){$(t).append(e)}function s(e){r==""?$(t).addClass(e.getCssClass()):($(t).removeClass(r),$(t).addClass(e.getCssClass())),$(t).empty(),$(t).append(e.getTemplate()),r=e.getCssClass(),n=!0,$(t).show()}function o(){n=!1,$(t).hide()}function u(){return n}var t="#modalScene",n=!1,r="";return{init:i,close:o,open:s,isShowing:u}});
+define(["text!../html/scenes/modalScene.html"],function(e){function s(s){$(s).append(e)}function n(e){""==i?$(l).addClass(e.getCssClass()):($(l).removeClass(i),$(l).addClass(e.getCssClass())),$(l).empty(),$(l).append(e.getTemplate()),i=e.getCssClass(),o=!0,$(l).show()}function t(){o=!1,$(l).hide()}function a(){return o}var l="#modalScene",o=!1,i="";return{init:s,close:t,open:n,isShowing:a}});

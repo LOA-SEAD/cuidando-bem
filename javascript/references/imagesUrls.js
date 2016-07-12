@@ -15,4 +15,4 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define([],function(){var e="./images/",t={others:["./images/scenes/salaDeLeitos.jpg"]};return{paths:t,baseDir:e}});
+define([],function(){var e="./images/",s={others:["./images/scenes/salaDeLeitos.jpg"]};return{paths:s,baseDir:e}});

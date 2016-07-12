@@ -15,4 +15,4 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define([],function(){function e(t,n){function o(){return new e(r,s)}function u(){return r}function a(){return i}function f(e){r=e}function l(e){i=e}var r=t,i=n,s=n;return{getClone:o,getName:u,getValue:a,setName:f,setValue:l}}return e});
+define([],function(){function n(e,t){function u(){return new n(c,g)}function r(){return c}function f(){return a}function i(n){c=n}function o(n){a=n}var c=e,a=t,g=t;return{getClone:u,getName:r,getValue:f,setName:i,setValue:o}}return n});
