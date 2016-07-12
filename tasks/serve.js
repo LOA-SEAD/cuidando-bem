@@ -22,7 +22,7 @@ module.exports = function( grunt ) {
                 "connect:dev",
                 "watch"
             ]);
-        } else if ( target == "prod" ) {
+        } else if ( target == "prod" || target == "rel" ) {
             // Build and serve production
             grunt.task.run([
                 // 'build',

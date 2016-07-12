@@ -18,7 +18,7 @@ module.exports = {
         // Replace @dev tags
         replacements: [
             {
-                from: / *(\/\/)? *console\..*?\);?\n?/g,
+                from: / *(\/\/)? *console\.(.*?\))*;?\n?/g,
                 to: ""
             },
             {
