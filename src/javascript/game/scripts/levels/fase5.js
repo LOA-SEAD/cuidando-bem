@@ -169,7 +169,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         function corredorIrFarmacia() {
             console.log("Vá para a farmácia");
-            if ( core.flag("score_pegou_prescricao_medica") == true ) {
+            if ( core.flag("score_pegou_prescricao_medica") == true && core.flag("falarComPaciente") == true ) {
                 core.changeScene( 4 );
             } else {
                 core.openDialog( 0 );
@@ -260,6 +260,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 } else {
                     core.setActionVisible("btn-lavarMaos", true );
                     core.setInteractiveObjectVisible("io-ir_leito", true );
+                    core.setInteractiveObjectVisible("io-falar_com_paciente", false );
                     core.openCommandBar();
                 }
             })
@@ -381,6 +382,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
 
                     core.openDialog(1);
+                    core.flag("falarComPaciente", true);
 
                 })
                 .setVisibility( false ),
@@ -692,6 +694,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         function farmaciaIrCorredor() {
             console.log("Funcao: farmacia_ir_corredor");
             console.log("Ir ao corredor");
+                  
             // Só perde pontos caso já esteja liberado para pegar o medicamento
             if ( core.flag("score_conferiu_medicacao") == false ) {
                 if ( core.flag("score_nao_conferiu_medicacao") == false ) {
@@ -702,14 +705,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             } else {
                 core.changeScene( 1 );
             }
+            
+            
         }
 
         farmacia = new Scene("farmacia", "scene-pharmacy")
             .setCssClass("scene-pharmacy")
             .onLoad(function() {
                 console.log("Load scene: Farmácia");
+        
+            
                 // Depois que falou com o farmacêutico, é ativado os botões
-                if ( core.flag("ja_falou_farmaceutico") == true ) {
+                if ( core.flag("ja_falou_farmaceutico") == true )  {
                     core.setInteractiveObjectVisible("io-keflin_medicamento", !(core.flag("score_pegou_medicamento")) );
                     core.setActionVisible("btn-keflinMedicamento", true );
                     core.openCommandBar();
@@ -1591,6 +1598,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag("conversar_recepcionista", false ) );
         level.registerFlag( new Flag("checar_pulseira", false ) );
         level.registerFlag( new Flag("mostraPaciente", false ) );
+        level.registerFlag( new Flag("falarComPaciente", false ) );
 
 
         level.setInitialScene( 0 );
