@@ -59,6 +59,8 @@
   "homepage": "https://github.com/LOA-SEAD/cuidando-bem",
   "dependencies": {},
   "scripts": {
+    "start": "grunt build serve",
+    "build": "grunt prompt:build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": ""
