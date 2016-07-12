@@ -14,5 +14,35 @@ This file is part of Cuidando Bem.
     You should have received a copy of the GNU General Public License
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
+/* by Wellyson */
 
-define(["levelsData","Scene","Action","Level","Dialog","InteractiveObject","Flag","CuidandoBem","Commons","Pulseira","Prontuario","FreqRespiratoria","ScoresData"],function(e,t,n,r,i,s,o,u,a,f,l,c,h){var p=require("DialogsData").fase3,d=new r("Level 9");console.groupCollapsed(d.getName());var v=a.scenes.recepcao.getClone().onLoad(function(){u.showEndOfLevel()});v.registerDialogs([]),d.registerScene(v),d.setSetupScript(function(){}),d.setInitialScene(0),e.registerLevel(d,12),console.groupEnd()});
+define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
+    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
+
+        var Dialogs = require("DialogsData").fase3;
+
+        var level = new Level("Level 9");
+ );
+
+        var recepcao = lib.scenes.recepcao.getClone()
+            .onLoad(function() {
+                core.showEndOfLevel();
+            });
+
+        recepcao.registerDialogs([
+
+        ]);
+
+        level.registerScene( recepcao );
+
+        level.setSetupScript(function() {
+            // Script that runs once when the level is loaded or reloaded
+        });
+
+        level.setInitialScene( 0 );
+
+        game.registerLevel( level, 12 );
+
+
+
+    });

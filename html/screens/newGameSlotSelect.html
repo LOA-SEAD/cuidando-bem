@@ -2,25 +2,26 @@
     <div class="slotSelect-backImage"></div>
     <div class="slotSelect-prontuario">
         <div id="saveSlotMain">
-            <div id="slotsContainer">
-                <div id="slot1" class="slot"></div>
-                <div id="slot2" class="slot"></div>
-                <div id="slot3" class="slot"></div>
+            <div id="slotsContainer" role="menu">
+                <button role="menuitem" id="slot1" class="slot" tabindex="0"></button>
+                <button role="menuitem" id="slot2" class="slot" tabindex="0"></button>
+                <button role="menuitem" id="slot3" class="slot" tabindex="0"></button>
             </div>
         </div>
         <div class="slotSelect-logo"></div>
     </div>
-    <div class="menuButton menuButtonYellow menuButtonAnimate backButton">Voltar</div>
-    <div id="menuContainer">
+    <button role="menuitem" class="menuButton menuButtonYellow menuButtonAnimate backButton looseButton" tabindex="0">Voltar</button>
+    <div id="menuContainer" role="menu">
         <div class="menuSeparator"></div>
-        <div id="deleteSlot" class="menuButton menuButtonRed menuButtonAnimate">Apagar</div>
-        <div id="loadSlot" class="menuButton menuButtonBlue menuButtonAnimate">Carregar</div>
+        <button role="menuitem" id="deleteSlot" class="menuButton menuButtonRed menuButtonAnimate" tabindex="0">Apagar</button>
+        <button role="menuitem" id="loadSlot" class="menuButton menuButtonBlue menuButtonAnimate" tabindex="0">Carregar</button>
     </div>
 </div>
-<div id="dialog-confirmDelete" title="Apagar jogo">
+<div id="dialog-confirmDelete" role="alert" title="Apagar jogo">
     <p>Tem certeza que deseja apagar esse jogo?</p>
 </div>
 <div id="dialog-typeName" title="Digite seu nome">
     <p>Por favor, digite seu nome no campo abaixo:</p>
-    <input id="nameInput" type="text" value="" maxlength="25">
+    <label for="name">Nome:</label>
+    <input id="nameInput" type="text" value="" maxlength="25" name="name">
 </div>

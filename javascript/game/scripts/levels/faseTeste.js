@@ -14,5 +14,135 @@ This file is part of Cuidando Bem.
     You should have received a copy of the GNU General Public License
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
+/*
+ This module has every wrold variable from each game level so it can be easily loaded inside the game.
+ New levels can easily be made by adding new game levels.
 
-define(["levelsData","Scene","Action","Level","Dialog","InteractiveObject","Flag","CuidandoBem","Commons","Pulseira","Prontuario","FreqRespiratoria","EquipoGotejamento","Ficha"],function(e,t,n,r,i,s,o,u,a,f,l,c,h,p){var d=require("DialogsData").fase1,v=require("DialogsData").alertas,m=new r("Level TESTE");console.groupCollapsed(m.getName());var g=!0,y=!1;m.setSetupScript(function(){f.setNameRegExp(/João Manoel Ribeiro/),f.setLeitoRegExp(/0*2/),f.setDataRegExp(/07\/06\/1956/),f.disable(),f.setName("Testando setName de pulseira"),l.setNome("João Manoel Ribeiro"),l.setSexo("M"),l.setEstadoCivil("Casado"),l.setDataNascimento("07/06/1956"),l.setIdade("58 anos"),l.setProfissao("Comerciante"),l.setPai("Joaquim Casagrande"),l.setMae("Lúcia Moraes Casagrande"),l.setAlergiaMedicamentosa(!0,"Dipirona"),l.setDisableAlergiaMedicamentosa(!0),l.setDataInternacao("13/05/2015"),l.setLeito("02 - Leito Masculino"),l.setAntecedentes("Ocorrência de internação em 2004, devido a suspeita de infarto agudo do miocárdio (IAM)"),l.setHipotese("Crise hipertensiva"),l.setObservacoes(""),l.setPeso("87"),l.setAltura("1,62"),l.setCircunferenciaAbdominal("115"),l.setPrescMedicaRowData(0,"15/03","Captopril","Oral","comp 75 mg","2x dia",""),l.setPrescMedicaRowData(1,"15/03","Ácido acetilsalicílico (AAS)","Oral","comp 100 mg","1x dia",""),l.setSsvvRowData(0,"15/03","","","","","",!1),l.setSsvvRowData(1,"","","","","","",!0),l.setPrescEnfermagemState("decubito"),l.setSsvvRowRegExp(0,new RegExp(""),new RegExp(""),new RegExp(""),new RegExp(""),new RegExp(""),new RegExp("")),l.setAnotacaoEnfermagemRowData("15/03",""),p.setEnfermeiraRegexp(/Masculina/i),p.setPacienteRegexp(/Pedro Alc(í|i)des Mendon(ç|c)a/i),p.setLeitoRegexp(/0?1/),p.setVolumeRegexp(/104/),p.setDuracao(1),p.setGotasRegexp(/34,66/),p.setGotasAproxRegexp(/35/)});var b=(new t("recepcao","scene-recepcao")).setCssClass("scene-lobby").onLoad(function(){p.open("soro",5),u.openCommandBar()});b.registerActions([(new n("btn-ir_corredor","Ir ao corredor")).setCssClass("action-ir_corredor").onClick(function(){console.log("Action: ir_corredor"),alert(p.isDataValid())}).setVisibility(!0)]);var w=a.scenes.corredor,E=(new t("modalOximetro","Oxímetro")).setCssClass("modalScene-oximetro").setTemplate("<span class='oximetro-text'>valor unidade</span>");m.registerScene(b),m.registerModalScene(E),m.setInitialScene(0),e.registerLevel(m,13),console.groupEnd()});
+ */
+define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "EquipoGotejamento", "Ficha" ],
+    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, EquipoGotejamento, Ficha ) {
+
+
+        var Dialogs = require("DialogsData").fase1;
+        var Alerts = require("DialogsData").alertas;
+
+
+        var level = new Level("Level TESTE");
+ );
+
+        var flagsOn = true;
+        var visibility = false;
+
+
+        level.setSetupScript(function() {
+
+            Pulseira.setNameRegExp( /João Manoel Ribeiro/ );
+            Pulseira.setLeitoRegExp( /0*2/ );
+            Pulseira.setDataRegExp( /07\/06\/1956/ );
+            Pulseira.disable();
+            Pulseira.setName("Testando setName de pulseira");
+
+            Prontuario.setNome("João Manoel Ribeiro");
+            Prontuario.setSexo("M");
+            Prontuario.setEstadoCivil("Casado");
+            Prontuario.setDataNascimento("07/06/1956");
+            Prontuario.setIdade("58 anos");
+            Prontuario.setProfissao("Comerciante");
+            Prontuario.setPai("Joaquim Casagrande");
+            Prontuario.setMae("Lúcia Moraes Casagrande");
+
+            Prontuario.setAlergiaMedicamentosa( true, "Dipirona");
+            Prontuario.setDisableAlergiaMedicamentosa( true );
+            Prontuario.setDataInternacao("13/05/2015");
+            Prontuario.setLeito("02 - Leito Masculino");
+            Prontuario.setAntecedentes("Ocorrência de internação em 2004, devido a suspeita de infarto agudo do miocárdio (IAM)");
+            Prontuario.setHipotese("Crise hipertensiva");
+            Prontuario.setObservacoes("");
+
+            Prontuario.setPeso("87");
+            Prontuario.setAltura("1,62");
+            Prontuario.setCircunferenciaAbdominal("115");
+
+            Prontuario.setPrescMedicaRowData( 0, "15/03", "Captopril", "Oral", "comp 75 mg", "2x dia", "");
+            Prontuario.setPrescMedicaRowData( 1, "15/03", "Ácido acetilsalicílico (AAS)", "Oral", "comp 100 mg", "1x dia", "");
+
+
+            Prontuario.setSsvvRowData( 0, "15/03", "", "", "", "", "", false );
+            Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
+
+            Prontuario.setPrescEnfermagemState("decubito");
+
+            Prontuario.setSsvvRowRegExp( 0,
+                new RegExp(""),
+                new RegExp(""),
+                new RegExp(""),
+                new RegExp(""),
+                new RegExp(""),
+                new RegExp("")
+            );
+
+            Prontuario.setAnotacaoEnfermagemRowData("15/03", "");
+
+            Ficha.setEnfermeiraRegexp( /Masculina/i );
+            Ficha.setPacienteRegexp( /Pedro Alc(í|i)des Mendon(ç|c)a/i );
+            Ficha.setLeitoRegexp( /0?1/ );
+            Ficha.setVolumeRegexp( /104/ );
+            Ficha.setDuracao( 1 );
+            Ficha.setGotasRegexp( /34,66/ );
+            Ficha.setGotasAproxRegexp( /35/ );
+        });
+
+
+        var recepcao = new Scene("recepcao", "scene-recepcao")
+            .setCssClass("scene-lobby")
+            .onLoad(function() {
+                // Pulseira.open();
+                // core.openModalScene("modalOximetro");
+                Prontuario.open("sinaisVitais");
+                // freqRespiratoria.open();
+
+                // core.showEndOfLevel();
+                // EquipoGotejamento.setMode( "dieta" );
+                // EquipoGotejamento.open();
+
+                // Soro
+                // Ficha.open( "soro", 5 );
+                // core.openCommandBar();
+                // Ficha.open( "soro", 6 );
+                // Ficha.open( "soro", 9 );
+
+                // Oral
+                // Ficha.open( "oral", 7 );
+                // Ficha.open( "oral", 8 );
+            });
+
+
+        recepcao.registerActions([
+            new Action("btn-ir_corredor", "Ir ao corredor")
+                .setCssClass("action-ir_corredor")
+                .onClick(function() {
+
+                    alert( Ficha.isDataValid() );
+                })
+                .setVisibility( true )
+        ]);
+
+        var corredor = lib.scenes.corredor;
+
+        var oximetro = new Scene("modalOximetro", "Oxímetro")
+            .setCssClass("modalScene-oximetro")
+            .setTemplate("<span class='oximetro-text'>valor unidade</span>");
+
+
+        level.registerScene( recepcao );
+
+        level.registerModalScene( oximetro );
+
+
+        level.setInitialScene( 0 );
+
+
+        game.registerLevel( level, 13 );
+
+
+    });

@@ -15,4 +15,1743 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define(["levelsData","Scene","Action","Level","Dialog","InteractiveObject","Flag","CuidandoBem","Commons","Pulseira","Prontuario","FreqRespiratoria","ScoresData","EquipoGotejamento","Ficha"],function(e,t,n,r,i,s,o,u,a,f,l,c,h,p,d){function B(){u.changeScene(6),u.flag("score_irCentroCirurgico_horaErrada")==0&&(u.flag("score_irCentroCirurgico_horaErrada",!0),u.registerScoreItem(h.irCentroCirurgico_horaErrada),console.log("PERDEU 25 PONTOS"))}function j(){u.changeScene(7),u.flag("score_iralaFeminina_horaErrada")==0&&(u.flag("score_iralaFeminina_horaErrada",!0),u.registerScoreItem(h.irAlaFeminina_horaErrada))}function F(){console.log("Ir ao corredor"),u.changeScene(1)}function I(){u.openDialog(0)}function q(){u.changeScene(4)}function R(){u.changeScene(5)}function U(){u.flag("pegou_tudo_postoEnfermagem")==1&&u.flag("trocou_de_leito")==0?u.changeScene(9):(u.flag("trocou_de_leito")==1||u.flag("conversar_paciente")==0||u.flag("conferirMedicamento")==1)&&u.changeScene(2)}function z(){f.setNameRegExp(/Pedro Alcides Mendonça/),f.setLeitoRegExp(/0*1/),f.setDataRegExp(/03\/06\/1962/),f.setName("Pedro Alcides Mendonça"),f.setLeito("01"),f.setData("03/06/1962"),f.disable()}var v=require("DialogsData").fase10,m=require("DialogsData").alertas,h=require("ScoresData").fase10,g=require("Player"),y=new r("Level 10");y.setMaxPoints(h._sum),console.groupCollapsed(y.getName());var b,w,E,S,x,T,N,C,k,L,A,O,M,_,D,P,H,T=a.scenes.centroCirurgico.getClone().onLoad(function(){u.openCommandBar(),console.log("Load scene: "+T.getName())});T.registerActions([(new n("btn-ir_corredor","Ir ao corredor")).setCssClass("action-ir_corredor").onClick(function(){u.changeScene(1)}).setVisibility(!0)]);var x=(new t("alaFeminina","Ala Feminina")).setCssClass("scene-bedroom-level7").onLoad(function(){});x.registerInteractiveObjects([(new s("io-ir_corredor","Ir ao corredor")).setCssClass("intObj-irAlaMasculina_corredor").onClick(function(){console.log("voltando para corredor"),u.changeScene(1)})]);var b=a.scenes.recepcao.getClone().onLoad(function(){console.log("Load scene: "+b.getName()),u.flag("conversar_recepcionista")==0&&(u.flag("conversar_recepcionista",!0),u.openDialog(0))});b.registerDialogs([(new i(a.characters.recepcionista)).setText(v.recepcao[0]).registerOption("",function(){u.closeDialog()})]),b.registerInteractiveObjects([(new s("intObj-conversar_recepcionista","Conversar com a Recepcionista")).setCssClass("intObj-talkToReceptionist").setVisibility(!0).onClick(I),(new s("io-ir_corredor_esquerda","Ir ao corredor")).setCssClass("intObj-lobbyToHallway-left no-glow").onClick(F).setVisibility(!0),(new s("io-ir_corredor_direita","Ir ao corredor")).setCssClass("intObj-lobbyToHallway-right no-glow").onClick(F).setVisibility(!0)]),w=a.scenes.corredor.getClone().onLoad(function(){u.openCommandBar(),u.setActionVisible("btn-ir_recepcao",!0),console.log("Entrando no corredor"),g.stopAll(),g.play(g.audios.sfx.abrirPorta),g.playInLoop(g.audios.loops.recepcao)}).onUnload(function(){console.log("Saindo do corredor"),g.stopAll(),g.play(g.audios.sfx.abrirPorta),g.playInRange(g.audios.musics.inGame)}),w.registerActions([(new n("btn-ir_recepcao","Voltar para a recepção")).setCssClass("action-voltarRecepcao").onClick(function(){u.changeScene(0)}).setVisibility(!0)]),w.registerDialogs([]),w.registerInteractiveObjects([(new s("io-ir_centro_cirurgico","Ir ao Centro Cirurgico")).setCssClass("intObj-goToCentroCirurgico").onClick(B).setVisibility(!0),(new s("io-ir_farmacia","Ir à Farmacia")).setCssClass("intObj-goToFarmacia").onClick(q).setVisibility(!0),(new s("io-ir_posto_enfermagem","Ir ao Posto de Enfermagem")).setCssClass("intObj-goToPostoEnfermagem").onClick(R).setVisibility(!0),(new s("io-ir_ala_feminina","Ir à Enfermaria Feminina")).setCssClass("intObj-goToAlaFeminina").onClick(j).setVisibility(!0),(new s("io-ir_ala_masculina","Ir à Enfermaria Masculina")).setCssClass("intObj-goToAlaMasculina").onClick(U).setVisibility(!0)]);var S=a.scenes.alaMasculina.getClone().setCssClass("scene-bedroom-level9").onLoad(function(){u.setInteractiveObjectVisible("io-ir_ao_leito",!0),u.setActionVisible("btn-lavarMaos",!0)});S.registerInteractiveObjects([(new s("io-ir_ao_leito","Ir ao leito")).setCssClass("intObj-irLeitoEsquerda").onClick(function(){u.flag("lavar_maos")==1?u.changeScene(3):u.openDialog(0)}).setVisibility(!1)]),S.registerActions([(new n("btn-lavarMaos","Lavar as mãos")).setCssClass("action-lavarMaos").onClick(function(){g.play(g.audios.sfx.lavarMaos),u.flag("lavar_maos")==0&&(u.flag("lavar_maos",!0),u.registerScoreItem(h.lavarMaos))}).setVisibility(!1)]),S.registerDialogs([(new i(a.characters.mentor)).setText(m.lavarMaos.tipo1).registerOption("",function(){u.closeDialog()})]);var E=a.scenes.alaMasculina.getClone().setCssClass("scene-bedroom-level9-trocado").onLoad(function(){u.flag("conversar_paciente")==0?(u.openDialog(0),u.flag("conversar_paciente",!0)):u.flag("trocou_de_leito")==1&&(u.setInteractiveObjectVisible("io-ir_ao_leito1",!0),u.setActionVisible("btn-ler_prontuario",!1))});E.registerDialogs([(new i(a.characters.jogador)).setText("").registerOption(v.alaMasculina[0],function(){u.openDialog(1)}).registerOption(v.alaMasculina[1],function(){u.openDialog(4)}).setRandomize(!0),(new i(a.characters.pacientes.francisco)).setText(v.alaMasculina[2]).registerOption("",function(){u.openDialog(2)}),(new i(a.characters.jogador)).setText(v.alaMasculina[3]).registerOption("",function(){u.openDialog(3)}),(new i(a.characters.pacientes.francisco)).setText(v.alaMasculina[4]).registerOption("",function(){u.closeDialog()}),(new i(a.characters.mentor)).setText(v.alaMasculina[5]).registerOption("",function(){u.openDialog(0)}),(new i(a.characters.mentor)).setText(v.alaMasculina[6]).registerOption("",function(){u.closeDialog()}),(new i(a.characters.mentor)).setText(m.lavarMaos.tipo1).registerOption("",function(){u.closeDialog()})]),E.registerInteractiveObjects([(new s("io-ir_corredor","Ir ao corredor")).setCssClass("intObj-irAlaMasculina_corredor").onClick(function(){console.log("voltando para corredor"),u.flag("pegar_prescricao_medica")==0?u.openDialog(5):u.changeScene(1)}),(new s("io-ir_ao_leito1","Ir ao leito")).setCssClass("intObj-irLeitoEsquerda").onClick(function(){u.changeScene(8)}).setVisibility(!1)]),E.registerActions([(new n("btn-ler_prontuario","Ler prontuario")).setCssClass("action-ler_prontuario").onClick(function(){u.flag("ler_prontuario")==0&&(u.flag("ler_prontuario",!0),u.registerScoreItem(h.lerProntuario)),u.flag("pegar_prescricao_medica")==0&&(u.flag("pegar_prescricao_medica",!0),u.registerScoreItem(h.pegarPrescricaoMedica)),l.open("prescMedica"),u.openModalScene("Prontuario")}).setVisibility(!0)]);var A=a.scenes.farmacia.getClone().onLoad(function(){u.flag("pegar_prescricao_medica")==0?(u.openDialog(4),u.setInteractiveObjectVisible("io-pegarFrascoDieta",!1),u.setInteractiveObjectVisible("io-cloretoSodio_20_10ml",!1),u.flag("score_ir_farmacia_horaErrada")==0&&(u.flag("score_ir_farmacia_horaErrada",!0),u.registerScoreItem(h.irFarmaciaHoraErrada))):u.flag("pegou_tudo_postoEnfermagem")==1||u.flag("trocou_de_leito")==1||u.flag("conferirMedicamento")==1?(u.setInteractiveObjectVisible("io-pegarFrascoDieta",!1),u.setInteractiveObjectVisible("io-cloretoSodio_20_10ml",!1)):u.openDialog(0),console.log("Load scene: "+A.getName())});A.registerDialogs([(new i(a.characters.paulo)).setText(v.farmacia[0]).registerOption("",function(){u.openDialog(1)}),(new i(a.characters.jogador)).setText(v.farmacia[1]).registerOption("",function(){u.openDialog(2)}),(new i(a.characters.paulo)).setText(v.farmacia[2]).registerOption("",function(){u.closeDialog(),u.setInteractiveObjectVisible("io-pegarFrascoDieta",!0),u.setInteractiveObjectVisible("io-cloretoSodio_20_10ml",!0)}),(new i(a.characters.mentor)).setText(v.farmacia[3]).registerOption("",function(){u.closeDialog()}),(new i(a.characters.mentor)).setText(m.perdido.farmacia).registerOption("",function(){u.closeDialog()}),(new i(a.characters.mentor)).setText(m.esqueceu.verificarMedicamento3).registerOption("",function(){u.closeDialog()}),(new i(a.characters.mentor)).setText(v.farmacia[4]).registerOption("",function(){u.closeDialog()})]),A.registerInteractiveObjects([(new s("io-pegarFrascoDieta","Pegar Frasco de SG 5%")).setCssClass("intObj-soro_glicofisiologico_1000_ml").onClick(function(){g.play(g.audios.sfx.pegarObjeto),u.flag("pegarFrascoSG",!0),u.registerScoreItem(h.pegarFrascoSG),u.setInteractiveObjectVisible("io-pegarFrascoDieta",!1),u.setActionVisible("btn-conferirSoro",!0)}).setVisibility(!1),(new s("io-cloretoSodio_20_10ml","Pegar NaCL 20%")).setCssClass("intObj-cloreto_de_sodio_10__10_ml_").onClick(function(){g.play(g.audios.sfx.pegarObjeto),u.flag("pegarNACL")==0&&(u.flag("pegarNACL",!0),u.registerScoreItem(h.pegarNACL),u.setInteractiveObjectVisible("io-cloretoSodio_20_10ml",!1),u.setActionVisible("btn-conferirCloreto",!0))}).setVisibility(!1)]),A.registerActions([(new n("btn-ir_corredor","Ir ao corredor")).setCssClass("action-ir_corredor").onClick(function(){u.flag("pegar_prescricao_medica")==0?u.changeScene(1):(u.flag("pegarNACL")==0||u.flag("pegarFrascoSG")==0)&&u.openDialog(6),u.flag("pegarNACL")==1&&u.flag("pegarFrascoSG")==1&&(u.flag("conferirNACL")==1||u.flag("conferirFrascoSG")==1?(u.registerScoreItem(h.conferirDieta),u.flag("conferirMedicamento",!0),u.changeScene(1)):(u.flag("conferirMedicamento",!0),u.changeScene(1)))}).setVisibility(!0),(new n("btn-conferirSoro","Conferir Soro Glicofisiológico")).setCssClass("action-soro_glicofisiologico_1000ml").onClick(function(){u.openModalScene("conferirSoroGlicofisiologico1000"),u.openModalScene("conferirSoroGlicofisiologico1000")}).setVisibility(!1),(new n("btn-conferirCloreto","Conferir Cloreto de Sodio")).setCssClass("action-cloreto_sodio_20_10ml").onClick(function(){u.openModalScene("conferirCloretoSodio")}).setVisibility(!1)]);var L=a.scenes.postoDeEnfermagem.getClone().onLoad(function(){u.setInteractiveObjectVisible("io-pegar_bandeja",!1),u.setInteractiveObjectVisible("io-abrir_gaveta",!1);if(u.flag("conferirMedicamento")==1){u.setInteractiveObjectVisible("io-pegar_bandeja",!0),u.setInteractiveObjectVisible("io-abrir_gaveta",!0);if(u.flag("pegou_tudo_postoEnfermagem")==1||u.flag("pegar_bandeja")==1)u.setInteractiveObjectVisible("io-pegar_bandeja",!1),u.setInteractiveObjectVisible("io-abrir_gaveta",!0)}else u.openDialog(2),u.flag("score_irPosto_horaErrada")==0&&(u.flag("score_irPosto_horaErrada",!0),u.registerScoreItem(h.irPosto_horaErrada))});L.registerDialogs([(new i(a.characters.mentor)).setText(m.esqueceu.pegarBandeja).registerOption("",function(){u.closeDialog()}),(new i(a.characters.mentor)).setText(v.postoDeEnfermagem[0]).registerOption("",function(){u.closeDialog()}),(new i(a.characters.mentor)).setText(m.esqueceu.pegarMedicamento).registerOption("",function(){u.closeDialog()})]),L.registerInteractiveObjects([(new s("io-abrir_gaveta","Abrir gaveta")).setCssClass("intObj-openDrawer").onClick(function(){g.play(g.audios.sfx.abrirGaveta),u.flag("pegar_bandeja")==0?u.openDialog(0):(console.log("Action: abrir_gaveta"),u.openModalScene("gaveta"),u.openCommandBar())}).setVisibility(!0),(new s("io-pegar_bandeja","Pegar Bandeja")).setCssClass("intObj-bandeja").onClick(function(){console.log("Action: Pegar bandeja"),g.play(g.audios.sfx.pegarObjeto),u.flag("pegar_bandeja",!0),u.setInteractiveObjectVisible("io-pegar_bandeja",!1)}).setVisibility(!0)]),L.registerActions([(new n("btn-ir_corredor","Ir ao corredor")).setCssClass("action-ir_corredor").onClick(function(){u.changeScene(1)}).setVisibility(!0),(new n("btn-lavarMaos","Lavar as mãos")).setCssClass("action-lavarMaos").onClick(function(){g.play(g.audios.sfx.lavarMaos),u.flag("score_lavarMaos1")==0&&(u.flag("score_lavarMaos1",!0),u.registerScoreItem(h.lavarMaos1))}).setVisibility(!0)]),C=a.scenes.leitos.raul_leito01.getClone().onLoad(function(){}).onUnload(function(){}),C.registerActions([(new n("btn-ir_ala_masculina","Voltar a Ala Masculina")).setCssClass("action-ir_sala_de_leitos").onClick(function(){u.flag("trocou_de_leito")==1?u.changeScene(2):u.openDialog(7)}).setVisibility(!1)]),C.registerInteractiveObjects([(new s("io-falar_paciente","Falar com o paciente")).setCssClass("intObj-conversar_paciente").onClick(function(){u.flag("trocou_de_leito")==0&&(u.openDialog(0),u.flag("trocou_de_leito",!0),u.setActionVisible("btn-ir_ala_masculina",!0))}).setVisibility(!0),(new s("io-pulseira_paciente","Checar pulseira do paciente")).setCssClass("intObj-paciente_03-checar_pulseira").onClick(function(){u.openModalScene("Pulseira"),f.open(),u.openCommandBar()}).setVisibility(!0)]),C.registerDialogs([(new i(a.characters.jogador)).setText(v.leitoPaciente[0]).registerOption("",function(){u.openDialog(1)}),(new i(a.characters.pacientes.francisco)).setText(v.leitoPaciente[1]).registerOption("",function(){u.openDialog(2)}),(new i(a.characters.jogador)).setText(v.leitoPaciente[2]).registerOption("",function(){u.openDialog(3)}),(new i(a.characters.pacientes.francisco)).setText(v.leitoPaciente[3]).registerOption("",function(){u.openDialog(4)}),(new i(a.characters.jogador)).setText("").registerOption(v.leitoPaciente[4],function(){u.closeDialog()}).registerOption(v.leitoPaciente[5],function(){u.openDialog(5)}).setRandomize(!0),(new i(a.characters.mentor)).setText(v.leitoPaciente[6]).registerOption("",function(){u.openDialog(4)}),(new i(a.characters.mentor)).setText(v.leitoPaciente[7]).registerOption("",function(){u.closeDialog()}),(new i(a.characters.mentor)).setText(m.esqueceu.falarPaciente).registerOption("",function(){u.closeDialog()}),(new i(a.characters.mentor)).setText(m.esqueceu.erroGotejamento).registerOption("",function(){u.closeDialog()})]),k=a.scenes.leitos.francisco.getClone().onLoad(function(){}).onUnload(function(){}),k.registerDialogs([(new i(a.characters.jogador)).setText(v.leitoPaciente1[0]).registerOption("",function(){u.openDialog(1)}),(new i(a.characters.pacientes.francisco)).setText(v.leitoPaciente1[1]).registerOption("",function(){u.openDialog(2)}),(new i(a.characters.jogador)).setText(v.leitoPaciente1[2]).registerOption("",function(){u.openDialog(3)}),(new i(a.characters.pacientes.francisco)).setText(v.leitoPaciente1[3]).registerOption("",function(){u.openDialog(4)}),(new i(a.characters.jogador)).setText(v.leitoPaciente1[4]).registerOption("",function(){u.closeDialog()}),(new i(a.characters.mentor)).setText(m.lavarMaos.tipo3).registerOption("",function(){u.closeDialog()}),(new i(a.characters.mentor)).setText(m.esqueceu.erroGotejamento).registerOption("",function(){u.closeDialog()})]),k.registerInteractiveObjects([(new s("io-falar_paciente","Falar com o paciente")).setCssClass("intObj-conversar_paciente").onClick(function(){u.openDialog(0),u.flag("falar_paciente_correto")==0&&(u.flag("falar_paciente_correto",!0),u.registerScoreItem(h.conversarPacienteLeito)),u.setActionVisible("btn-pegar_suporte_soro",!0),u.setActionVisible("btn-colocarSoro",!0),u.setActionVisible("btn-administrar_medicamente",!0),u.setActionVisible("btn-realizar_gotejamento",!0),u.setActionVisible("btn-lavarMaos",!0),u.setActionVisible("btn-anotar_prontuario",!0)}).setVisibility(!0),(new s("io-pulseira_paciente","Checar pulseira do paciente")).setCssClass("intObj-paciente_05-checar_pulseira").onClick(function(){z(),u.flag("score_verPulseira")==0&&(u.flag("score_verPulseira",!0),u.registerScoreItem(h.verPulseira)),u.openModalScene("Pulseira"),f.open(),u.openCommandBar()}).setVisibility(!0)]),k.registerActions([(new n("btn-pegar_suporte_soro","Pegar Suporte de Soro")).setCssClass("action-pegarSuporte").onClick(function(){u.flag("pegar_suporte_soro")==0&&(u.flag("pegar_suporte_soro",!0),u.registerScoreItem(h.pegarSuporteSoro),u.changeSceneCssClassTo("scene-bedChar10B"),u.setActionVisible("btn-pegar_suporte_soro",!1))}).setVisibility(!1),(new n("btn-colocarSoro","Colocar Soro")).setCssClass("action-soro_fisiologico_1000ml").onClick(function(){u.changeSceneCssClassTo("scene-bedChar10C"),u.setActionVisible("btn-colocarSoro",!1)}).setVisibility(!1),(new n("btn-administrar_medicamente","Administrar Medicamento")).setCssClass("action-admnistrar_medicacao").onClick(function(){u.flag("administrar_medicamento")==0&&(u.flag("administrar_medicamento",!0),u.registerScoreItem(h.administrarMedicamento))}).setVisibility(!1),(new n("btn-realizar_gotejamento","Realizar Gotejamento de Soro")).setCssClass("action-colocarSoro").onClick(function(){u.flag("realizar_gotejamento")==0&&(u.flag("realizar_gotejamento",!0),u.registerScoreItem(h.realizarGotejamento)),p.open(),u.openModalScene("equipoSoro")}).setVisibility(!1),(new n("btn-lavarMaos","Lavar as mãos")).setCssClass("action-lavarMaos").onClick(function(){g.play(g.audios.sfx.lavarMaos),u.flag("lavar_maos3")==0&&(u.flag("lavar_maos3",!0),u.registerScoreItem(h.lavarMaos3))}).setVisibility(!1),(new n("btn-anotar_prontuario","Anotar prontuario")).setCssClass("action-anotar_prontuario").onClick(function(){console.log("Action: Anotar prontuario"),u.flag("lavar_maos3")==0?u.openDialog(5):(l.open(),u.openModalScene("Prontuario"),u.flag("score_anotar_prontuario")==0&&(u.registerScoreItem(h.anotarNoProntuario),u.flag("score_anotar_prontuario",!0)))}).setVisibility(!1)]),M=new t("Pulseira","Pulseira"),M.registerInteractiveObjects([]),M.registerActions([(new n("btn-largar_pulseira","Fechar pulseira")).setCssClass("action-pulseira_paciente").onClick(function(){console.log("Ação: Fechar modal pulseira"),u.closeModalScene("Pulseira"),f.close()}).setVisibility(!0)]),_=new t("Prontuario","Prontuario"),_.registerActions([(new n("btn-fechar_prontuario","Fechar prontuário")).setCssClass("action-ler_prontuario").onClick(function(){u.flag("score_anotar_prontuario")==1?(l.close(),u.closeModalScene("Prontuario"),u.setActionVisible("btn-pegar_suporte_soro",!1),u.setActionVisible("btn-administrar_medicamente",!1),u.setActionVisible("btn-realizar_gotejamento",!1),u.setActionVisible("btn-lavarMaos",!1),u.setActionVisible("btn-anotar_prontuario",!1),u.closeCommandBar(),u.showEndOfLevel(),g.stopAll(),g.play(g.audios.sfx.missaoCumprida)):l.close(),console.log("Action: Fechar prontuario"),u.closeModalScene("Prontuario")}).setVisibility(!0)]),equipoSoro=new t("equipoSoro","EquipamentoSoro");var W=0;equipoSoro.registerActions([(new n("btn-fecharEquipoSoro","Fechar Equipamento de Soro")).setCssClass("action-colocarSoro").onClick(function(){p.isValueRight()?(u.flag("score_gotejar_soro")==0&&(u.registerScoreItem(h.gotejarSoroEquipo),u.flag("score_gotejar_soro",!0)),p.close(),u.closeModalScene("equipoSoro")):(u.closeCommandBar(),u.openDialog(6),W+=1,W==3&&(u.registerScoreItem(h.naoGotejarSoroEquipo),W=-100))}).setVisibility(!0)]),O=(new t("gaveta","Gaveta")).setCssClass("modalScene-drawer"),O.registerActions([(new n("btn-fechar_gaveta","Fechar gaveta")).setCssClass("action-fecharGaveta").onClick(function(){console.log("Action: fechar_gaveta"),g.play(g.audios.sfx.fecharGaveta),u.closeModalScene("Gaveta"),u.flag("pegar_seringa")==1&&u.flag("pegar_agulha")==1&&u.flag("pegar_ampola")==1&&u.flag("pegar_equipoSoro")==1&&(u.setActionVisible("btn-lavarMaos",!1),u.flag("pegou_tudo_postoEnfermagem",!0))}).setVisibility(!0)]),O.registerInteractiveObjects([(new s("io-seringa","Seringa")).setCssClass("intObj-seringa_de_10_ml").onClick(function(){console.log("IntObj: io-seringa"),g.play(g.audios.sfx.pegarObjeto),u.registerScoreItem(h.pegarSeringa),u.flag("pegar_seringa",!0),u.setInteractiveObjectVisible("io-seringa",!1)}).setVisibility(!0),(new s("io-agulha","Agulha 40X12")).setCssClass("intObj-agulha_40x12").onClick(function(){console.log("intObj-agulha_40x12"),g.play(g.audios.sfx.pegarObjeto),u.registerScoreItem(h.pegarAgulha),u.flag("pegar_agulha",!0),u.setInteractiveObjectVisible("io-agulha",!1)}).setVisibility(!0),(new s("io-ampola","Ampola de Glicose 50%")).setCssClass("intObj-ampola_glicose_50").onClick(function(){console.log("intObj-glicose"),g.play(g.audios.sfx.pegarObjeto),u.registerScoreItem(h.pegarGlicose),u.flag("pegar_ampola",!0),u.setInteractiveObjectVisible("io-ampola",!1)}).setVisibility(!0),(new s("io-equipoSoro","Equipamento de Soro Macrogotas")).setCssClass("intObj-equipo_de_soro").onClick(function(){console.log("intObj-equipoSoro"),g.play(g.audios.sfx.pegarObjeto),u.registerScoreItem(h.pegarSoro),u.flag("pegar_equipoSoro",!0),u.setInteractiveObjectVisible("io-equipoSoro",!1)}).setVisibility(!0)]),P=(new t("conferirSoroGlicofisiologico1000","Conferir Soro Glicofisiologico")).setCssClass("modalScene-soroGlicofisiologico1000"),P.registerActions([(new n("btn-fechar_zoom","Finalizar conferição")).setCssClass("action-soro_glicofisiologico_1000ml").onClick(function(){console.log("Action: Finalizar conferição"),u.flag("conferirFrascoSG",!0),u.closeModalScene("conferirSoroGlicofisiologico1000")})]),H=(new t("conferirCloretoSodio","Conferir Cloreto de Sodio")).setCssClass("modalScene-cloretoSodio20"),H.registerActions([(new n("btn-fechar_zoom","Finalizar conferição")).setCssClass("action-cloreto_sodio_20_10ml").onClick(function(){console.log("Action: Finalizar conferição"),u.flag("conferirNACL",!0),u.closeModalScene("conferirCloretoSodio")})]),y.registerModalScene(_),y.registerModalScene(O),y.registerModalScene(M),y.registerModalScene(equipoSoro),y.registerModalScene(P),y.registerModalScene(H),y.registerScene(b),y.registerScene(w),y.registerScene(E),y.registerScene(C),y.registerScene(A),y.registerScene(L),y.registerScene(T),y.registerScene(x),y.registerScene(k),y.registerScene(S),y.setSetupScript(function(){l.setNome("Pedro Alcides Mendonça"),l.setSexo("M"),l.setEstadoCivil("Solteiro"),l.setDataNascimento("03/06/1962"),l.setIdade("52 anos"),l.setProfissao("Professor"),l.setPai("Aldair Mendonça"),l.setMae("Ana Laura Alcídes Mendonça"),l.setAlergiaMedicamentosa(!1,""),l.setDisableAlergiaMedicamentosa(!0),l.setDataInternacao("27/12/2015"),l.setLeito("01 - Enfermaria Masculina"),l.setAntecedentes("Ocorrência de internação por Infecção no trato respiratório por Streptococcus sp.  e desconforto respiratório no mês de outubro"),l.setHipotese("Desidratação de grau moderado"),l.setObservacoes("Grande perda de eletrólitos"),l.setPeso("62"),l.setAltura("1,77"),l.setCircunferenciaAbdominal("91"),l.setPrescMedicaRowData(0,"","Soro Glicosado 5%","Endovenosa","800ml","",!1,!0),l.setPrescMedicaRowData(1,"","NaCL 20%","Endovenosa","20ml","",!1,!0),l.setPrescMedicaRowData(2,"","Glicose 50%","Endovenosa","30ml","","(X) Administrado a infusão de  solução de  reposição  hidroeletrolítica  conforme  prescrição  médica, sem  intercorrências.",!1),l.setPrescMedicaRowData(3,"","","","","",!1,!0),l.clearPrescEnfermagemState(),l.setPrescEnfermagemState("desiquilibrio_eletrolitico_fase9"),l.setSsvvRowData(0,"","130X70","82","19","96","35.9",!0),l.setSsvvRowData(1,"","","","","","",!0),f.setNameRegExp(/Raul Gonzales Rodrigues/),f.setLeitoRegExp(/0*3/),f.setDataRegExp(/24\/07\/1937/),f.setName("Raul Gonzales Rodrigues"),f.setLeito("03"),f.setData("24/07/1937"),f.disable(),p.setRightValue(12),d.setEnfermeiraRegexp(/Masculina/i),d.setPacienteRegexp(/Pedro Alc(í|i)des Mendon(ç|c)a/i),d.setLeitoRegexp(/0?1/),d.setVolumeRegexp(/850/),d.setDuracao(24),d.setGotasRegexp(/11,80/),d.setGotasAproxRegexp(/12/)}),y.registerFlag(new o("score_iralaFeminina_horaErrada",!1)),y.registerFlag(new o("score_irCentroCirurgico_horaErrada",!1)),y.registerFlag(new o("conversar_paciente",!1)),y.registerFlag(new o("score_ir_farmacia_horaErrada",!1)),y.registerFlag(new o("score_irPosto_horaErrada",!1)),y.registerFlag(new o("pegar_prescricao_medica",!1)),y.registerFlag(new o("ler_prontuario",!1)),y.registerFlag(new o("pegarFrascoSG",!1)),y.registerFlag(new o("pegarNACL",!1)),y.registerFlag(new o("conferirMedicamento",!1)),y.registerFlag(new o("pegar_bandeja",!1)),y.registerFlag(new o("pegar_seringa",!1)),y.registerFlag(new o("pegar_agulha",!1)),y.registerFlag(new o("pegar_ampola",!1)),y.registerFlag(new o("pegar_equipoSoro",!1)),y.registerFlag(new o("pegou_tudo_postoEnfermagem",!1)),y.registerFlag(new o("lavar_maos",!1)),y.registerFlag(new o("trocou_de_leito",!1)),y.registerFlag(new o("falar_paciente_correto",!1)),y.registerFlag(new o("lavar_maos2",!1)),y.registerFlag(new o("realizar_gotejamento",!1)),y.registerFlag(new o("pegar_suporte_soro",!1)),y.registerFlag(new o("administrar_medicamento",!1)),y.registerFlag(new o("lavar_maos3",!1)),y.registerFlag(new o("score_anotar_prontuario",!1)),y.registerFlag(new o("irCentroCirurgicoHoraErrada",!1)),y.registerFlag(new o("score_lavarMaos1",!1)),y.registerFlag(new o("conferirFrascoSG",!1)),y.registerFlag(new o("conferirNACL",!1)),y.registerFlag(new o("score_verPulseira",!1)),y.registerFlag(new o("score_gotejar_soro",!1)),y.registerFlag(new o("conversar_recepcionista",!1)),y.setInitialScene(0),e.registerLevel(y,10),console.groupEnd()});
+define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData", "EquipoGotejamento", "Ficha" ],
+    function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores, EquipoGotejamento, Ficha ) {
+
+        var Dialogs = require("DialogsData").fase10;
+        var Alertas = require("DialogsData").alertas;
+        var Scores = require("ScoresData").fase10;
+        var Player = require("Player");
+
+        var level = new Level("Level 10");
+        level.setMaxPoints( Scores._sum );
+ );
+
+        var recepcao,
+            corredor,
+            alaMasculina,
+            alaMasculina2,
+            alaFeminina,
+            centroCirurgico,
+            salaDeLeitos,
+            leito,
+            leito2,
+            postoDeEnfermagem,
+            farmacia,
+            gaveta,
+            pulseira,
+            prontuario,
+            zoom,
+            soroGlicofisiologico,
+            cloretoSodio;
+
+
+        var centroCirurgico = lib.scenes.centroCirurgico.getClone()
+            .onLoad(function() {
+                core.openCommandBar();
+ );
+            });
+
+
+       centroCirurgico.registerActions([
+
+            new Action("btn-ir_corredor", "Ir ao corredor")
+            .setCssClass("action-ir_corredor")
+            .onClick(function() {
+
+                    core.changeScene( 1 );
+
+            })
+            .setVisibility( true )
+
+        ]);
+
+
+        function corredorIrCentroCirurgico() {
+
+            core.changeScene( 6 );
+            if ( core.flag("score_irCentroCirurgico_horaErrada") == false ) {
+
+                core.flag("score_irCentroCirurgico_horaErrada", true );
+                core.registerScoreItem( Scores.irCentroCirurgico_horaErrada );
+
+
+            }
+
+
+        }
+
+
+
+
+
+        var alaFeminina = new Scene("alaFeminina", "Ala Feminina")
+            .setCssClass("scene-bedroom-level7")
+            .onLoad(function() {
+
+            });
+
+
+       alaFeminina.registerInteractiveObjects([
+
+
+            new InteractiveObject("io-ir_corredor", "Ir ao corredor")
+            .setCssClass("intObj-irAlaMasculina_corredor")
+            .onClick(function() {
+
+
+                    core.changeScene( 1 );
+
+
+            })
+
+
+
+
+
+    ]);
+
+
+        function corredorIrAlaFeminina() {
+            core.changeScene( 7 );
+
+
+            if ( core.flag("score_iralaFeminina_horaErrada") == false ) {
+
+                core.flag("score_iralaFeminina_horaErrada", true );
+                 core.registerScoreItem( Scores.irAlaFeminina_horaErrada );
+
+
+            }
+
+        }
+
+
+        var recepcao = lib.scenes.recepcao.getClone()
+            .onLoad(function() {
+ );
+
+
+               if(core.flag("conversar_recepcionista") == false) {
+                    core.flag("conversar_recepcionista", true);
+                    core.openDialog( 0 );
+
+                }
+
+
+            });
+
+        recepcao.registerDialogs([
+
+             // 0
+
+               new Dialog( lib.characters.recepcionista )
+            .setText( Dialogs.recepcao[ 0 ] )
+            .registerOption("", function() {
+                core.closeDialog(  );
+            }),
+
+        ]);
+
+
+
+
+
+        recepcao.registerInteractiveObjects([
+
+            new InteractiveObject("intObj-conversar_recepcionista", "Conversar com a Recepcionista")
+            .setCssClass("intObj-talkToReceptionist")
+            .setVisibility( true )
+            .onClick( conversarRecepcionista ),
+
+
+            new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
+            .setCssClass("intObj-lobbyToHallway-left no-glow")
+            .onClick( recepcaoIrCorredor )
+            .setVisibility( true ),
+
+
+            new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
+            .setCssClass("intObj-lobbyToHallway-right no-glow")
+            .onClick( recepcaoIrCorredor )
+            .setVisibility( true )
+        ]);
+
+
+        function recepcaoIrCorredor() {
+
+            core.changeScene( 1 );
+        }
+
+
+        function conversarRecepcionista() {
+
+                core.openDialog( 0 );
+
+        }
+
+
+        corredor = lib.scenes.corredor.getClone()
+            .onLoad(function() {
+
+                 core.openCommandBar();
+                core.setActionVisible("btn-ir_recepcao", true);
+
+
+                Player.stopAll();
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
+                Player.playInLoop( Player.audios.loops.recepcao );
+            })
+            .onUnload(function() {
+
+                Player.stopAll();
+                // Som
+                Player.play( Player.audios.sfx.abrirPorta );
+                Player.playInRange( Player.audios.musics.inGame );
+            });
+
+     corredor.registerActions([
+
+             new Action("btn-ir_recepcao", "Voltar para a recepção")
+                .setCssClass("action-voltarRecepcao")
+                .onClick(function() {
+
+                    core.changeScene( 0 );
+
+                })
+                .setVisibility( true ),
+
+        ]);
+
+
+        corredor.registerDialogs([
+
+
+
+        ]);
+
+
+        corredor.registerInteractiveObjects([
+
+            new InteractiveObject("io-ir_centro_cirurgico", "Ir ao Centro Cirurgico")
+            .setCssClass("intObj-goToCentroCirurgico")
+            .onClick( corredorIrCentroCirurgico )
+            .setVisibility( true ),
+
+
+            new InteractiveObject("io-ir_farmacia", "Ir à Farmacia")
+            .setCssClass("intObj-goToFarmacia")
+            .onClick( corredorIrFarmacia )
+            .setVisibility( true ),
+
+
+            new InteractiveObject("io-ir_posto_enfermagem", "Ir ao Posto de Enfermagem")
+            .setCssClass("intObj-goToPostoEnfermagem")
+            .onClick( corredorIrPostoEnfermagem )
+            .setVisibility( true ),
+
+
+            new InteractiveObject("io-ir_ala_feminina", "Ir à Enfermaria Feminina")
+            .setCssClass("intObj-goToAlaFeminina")
+            .onClick( corredorIrAlaFeminina )
+            .setVisibility( true ),
+
+
+            new InteractiveObject("io-ir_ala_masculina", "Ir à Enfermaria Masculina")
+            .setCssClass("intObj-goToAlaMasculina")
+            .onClick( corredorIrAlaMasculina )
+            .setVisibility( true )
+
+
+        ]);
+
+        function corredorIrFarmacia() {
+                core.changeScene( 4 );
+
+        }
+
+        function corredorIrPostoEnfermagem() {
+
+
+
+            core.changeScene( 5 );
+
+
+
+        }
+
+
+        function corredorIrAlaMasculina() {
+
+            if ( core.flag("pegou_tudo_postoEnfermagem") == true && core.flag("trocou_de_leito") == false ) {
+
+                    core.changeScene( 9 );
+            } else if ( core.flag("trocou_de_leito") == true || core.flag("conversar_paciente") == false || core.flag("conferirMedicamento") == true ) {
+
+                core.changeScene( 2 );
+
+            }
+        }
+
+
+       var alaMasculina2 = lib.scenes.alaMasculina.getClone()
+            .setCssClass("scene-bedroom-level9")
+            .onLoad(function() {
+
+
+                    core.setInteractiveObjectVisible("io-ir_ao_leito", true );
+                    core.setActionVisible("btn-lavarMaos", true );
+            });
+
+
+            alaMasculina2.registerInteractiveObjects([
+
+
+            new InteractiveObject("io-ir_ao_leito", "Ir ao leito")
+            .setCssClass("intObj-irLeitoEsquerda")
+            .onClick(function() {
+
+                    if ( core.flag( "lavar_maos" ) == true ) {
+                        core.changeScene( 3 );
+                    } else {
+                        core.openDialog( 0 );
+                    }
+
+
+
+            })
+            .setVisibility( false )
+
+
+
+            ]);
+
+
+            alaMasculina2.registerActions([
+
+                new Action("btn-lavarMaos", "Lavar as mãos")
+            .setCssClass("action-lavarMaos")
+            .onClick(function() {
+                // Som
+                Player.play( Player.audios.sfx.lavarMaos );
+
+                if ( core.flag("lavar_maos") == false ) {
+                    core.flag("lavar_maos", true );
+                    core.registerScoreItem( Scores.lavarMaos );
+                }
+
+            })
+            .setVisibility( false )
+
+            ]);
+
+            alaMasculina2.registerDialogs([
+
+
+            // 0
+                 new Dialog( lib.characters.mentor )
+            .setText( Alertas.lavarMaos.tipo1 )
+            .registerOption("", function() {
+                core.closeDialog();
+            })
+
+            ]);
+
+
+
+        var alaMasculina = lib.scenes.alaMasculina.getClone()
+            .setCssClass("scene-bedroom-level9-trocado")
+            .onLoad(function() {
+
+                 if ( core.flag( "trocou_de_leito" ) == true )
+
+            {
+
+                    core.setInteractiveObjectVisible("io-ir_ao_leito1", true );
+                    core.setInteractiveObjectVisible("io-falarPaciente", false );
+
+                    core.setActionVisible("btn-ler_prontuario", false );
+
+                }
+
+            });
+
+    //    core.setInteractiveObjectVisible("io-ir_ao_leito", true );
+        //            core.setActionVisible("btn-lavarMaos", false );
+
+
+
+        alaMasculina.registerDialogs([
+
+            // 0 jogador
+            new Dialog( lib.characters.jogador )
+            .setText("")
+            .registerOption( Dialogs.alaMasculina[ 0 ], function() {
+                core.openDialog( 1 );
+            })
+            .registerOption( Dialogs.alaMasculina[ 1 ], function() {
+                core.openDialog( 4 );
+            })
+            .setRandomize( true ),
+
+            // 1 - paciente
+
+            new Dialog( lib.characters.pacientes.francisco )
+            .setText( Dialogs.alaMasculina[ 2 ] )
+            .registerOption("", function() {
+                core.openDialog( 2 );
+            }),
+
+            // 2 jogador
+
+            new Dialog( lib.characters.jogador )
+            .setText( Dialogs.alaMasculina[ 3 ] )
+            .registerOption("", function() {
+                core.openDialog( 3 );
+            }),
+
+            // 3 - jogador
+
+            new Dialog( lib.characters.pacientes.francisco )
+            .setText( Dialogs.alaMasculina[ 4 ] )
+            .registerOption("", function() {
+                core.closeDialog();
+            }),
+
+            // 4 - mentor corrige
+
+            new Dialog( lib.characters.mentor )
+            .setText( Dialogs.alaMasculina[ 5 ] )
+            .registerOption("", function() {
+                core.openDialog( 0 );
+            }),
+
+
+            // 5 - MENTOR ALERTA
+
+            new Dialog( lib.characters.mentor )
+            .setText( Dialogs.alaMasculina[ 6 ] )
+            .registerOption("", function() {
+                core.closeDialog();
+            }),
+            // 6 - MENTOR ALERTA LAVAR MAOS
+
+            new Dialog( lib.characters.mentor )
+            .setText( Alertas.lavarMaos.tipo1 )
+            .registerOption("", function() {
+                core.closeDialog();
+            })
+        ]);
+
+
+        alaMasculina.registerInteractiveObjects([
+
+
+            new InteractiveObject("io-ir_corredor", "Ir ao corredor")
+            .setCssClass("intObj-irAlaMasculina_corredor")
+            .onClick(function() {
+
+
+                if ( core.flag("pegar_prescricao_medica") == false ) {
+                    core.openDialog( 5 );
+                } else {
+                    core.changeScene( 1 );
+                }
+
+            }),
+
+
+
+            new InteractiveObject("io-ir_ao_leito1", "Ir ao leito")
+            .setCssClass("intObj-irLeitoEsquerda")
+            .onClick(function() {
+
+                core.changeScene( 8 );
+
+            })
+            .setVisibility( false ),
+            
+              new InteractiveObject("io-falarPaciente", "Falar com o paciente")
+            .setCssClass("intObj-irLeitoEsquerda")
+            .onClick(function() {
+
+                 if ( core.flag("conversar_paciente") == false ) {
+                    core.openDialog( 0 );
+                    core.flag("conversar_paciente", true );
+                }
+                
+                core.setActionVisible("btn-ler_prontuario", true);
+                
+                
+
+            })
+            .setVisibility( true ),
+            
+            
+            
+
+
+
+
+
+        ]);
+
+        alaMasculina.registerActions([
+
+
+            new Action("btn-ler_prontuario", "Ler prontuario")
+            .setCssClass("action-ler_prontuario")
+            .onClick(function() {
+
+                if ( core.flag("ler_prontuario") == false ) {
+                    core.flag("ler_prontuario", true );
+                    core.registerScoreItem( Scores.lerProntuario );
+
+                }
+
+                 if ( core.flag("pegar_prescricao_medica") == false ) {
+
+                    core.flag("pegar_prescricao_medica", true );
+                    core.registerScoreItem( Scores.pegarPrescricaoMedica );
+
+                }
+
+
+
+
+                Prontuario.open('prescMedica');
+                core.openModalScene("Prontuario");
+
+
+
+            })
+            .setVisibility( false )
+
+
+
+
+
+        ]);
+
+
+        var farmacia = lib.scenes.farmacia.getClone()
+            .onLoad(function() {
+
+
+                if ( core.flag("pegar_prescricao_medica") == false  ) {
+                     core.openDialog( 4 );
+                     core.setInteractiveObjectVisible("io-pegarFrascoDieta", false );
+                     core.setInteractiveObjectVisible("io-cloretoSodio_20_10ml", false );
+                     // core.setActionVisible("btn-conferirMedicamento", false );
+
+
+
+             if ( core.flag("score_ir_farmacia_horaErrada") == false ) {
+
+                    core.flag("score_ir_farmacia_horaErrada", true );
+                    core.registerScoreItem( Scores.irFarmaciaHoraErrada );
+
+                }
+
+
+
+
+                 } else if ( core.flag("pegou_tudo_postoEnfermagem") == true || core.flag("trocou_de_leito") == true || core.flag("conferirMedicamento") == true ) {
+
+                     core.setInteractiveObjectVisible("io-pegarFrascoDieta", false );
+                     core.setInteractiveObjectVisible("io-cloretoSodio_20_10ml", false );
+                     //core.setActionVisible("btn-conferirMedicamento", false );
+
+                } else {
+
+                     core.openDialog( 0 );
+                    // core.setInteractiveObjectVisible("io-pegarFrascoDieta", true );
+                    // core.setInteractiveObjectVisible("io-cloretoSodio_20_10ml", true );
+                    // core.setActionVisible("btn-conferirMedicamento", true );
+                }
+
+ );
+
+
+            });
+
+        farmacia.registerDialogs([
+
+            // 0
+
+            new Dialog( lib.characters.paulo )
+            .setText( Dialogs.farmacia[ 0 ] )
+            .registerOption("", function() {
+                core.openDialog( 1 );
+            }),
+
+            // 1
+            new Dialog( lib.characters.jogador )
+            .setText( Dialogs.farmacia[ 1 ] )
+            .registerOption("", function() {
+                core.openDialog( 2 );
+            }),
+
+            // 2
+
+            new Dialog( lib.characters.paulo )
+            .setText( Dialogs.farmacia[ 2 ] )
+            .registerOption("", function() {
+                core.closeDialog();
+                core.setInteractiveObjectVisible("io-pegarFrascoDieta", true );
+                core.setInteractiveObjectVisible("io-cloretoSodio_20_10ml", true );
+            }),
+
+            // 3 MENTOR CORRIGE
+
+            new Dialog( lib.characters.mentor )
+            .setText( Dialogs.farmacia[ 3 ] )
+            .registerOption("", function() {
+                core.closeDialog();
+            }),
+
+            // 4 - esqueceu paciente
+
+            new Dialog( lib.characters.mentor )
+            .setText( Alertas.perdido.farmacia )
+            .registerOption("", function() {
+                core.closeDialog();
+            }),
+
+
+            // 5 - esqueceu verificar medicamente
+
+
+            new Dialog( lib.characters.mentor )
+            .setText( Alertas.esqueceu.verificarMedicamento3 )
+            .registerOption("", function() {
+                core.closeDialog();
+            }),
+
+            // 6
+
+              new Dialog( lib.characters.mentor )
+            .setText( Dialogs.farmacia[ 4 ] )
+            .registerOption("", function() {
+                core.closeDialog();
+            })
+        ]);
+
+
+        farmacia.registerInteractiveObjects([
+
+
+         new InteractiveObject("io-pegarFrascoDieta", "Pegar Frasco de SG 5%")
+            .setCssClass("intObj-soro_glicofisiologico_1000_ml")
+            .onClick(function() {
+
+                 Player.play( Player.audios.sfx.pegarObjeto );
+
+
+                    core.flag("pegarFrascoSG", true );
+                    core.registerScoreItem( Scores.pegarFrascoSG );
+                    core.setInteractiveObjectVisible("io-pegarFrascoDieta", false );
+                    core.setActionVisible("btn-conferirSoro", true );
+
+            })
+            .setVisibility( false ),
+
+
+
+             new InteractiveObject("io-cloretoSodio_20_10ml", "Pegar NaCL 20%")
+            .setCssClass("intObj-cloreto_de_sodio_10__10_ml_")
+            .onClick(function() {
+
+                 Player.play( Player.audios.sfx.pegarObjeto );
+
+                if ( core.flag("pegarNACL") == false ) {
+
+                    core.flag("pegarNACL", true );
+                    core.registerScoreItem( Scores.pegarNACL );
+                    core.setInteractiveObjectVisible("io-cloretoSodio_20_10ml", false );
+                    core.setActionVisible("btn-conferirCloreto", true );
+                }
+
+            })
+            .setVisibility( false )
+
+
+        ]);
+
+        farmacia.registerActions([
+
+            new Action("btn-ir_corredor", "Ir ao corredor")
+            .setCssClass("action-ir_corredor")
+            .onClick(function() {
+
+                        if ( core.flag("pegar_prescricao_medica") == false ) {
+
+
+                            core.changeScene( 1 );
+
+                      } else if ( core.flag("pegarNACL") == false || core.flag("pegarFrascoSG") == false ) {
+
+                            core.openDialog( 6 );
+                        }
+
+
+
+                    if(core.flag("pegarNACL") == true && core.flag("pegarFrascoSG") == true){
+
+                        if(core.flag("conferirNACL") == true || core.flag("conferirFrascoSG") == true){
+                               core.registerScoreItem( Scores.conferirDieta );
+                               core.flag("conferirMedicamento", true );
+                               core.changeScene( 1 );
+                        }
+                        else {
+                             core.flag("conferirMedicamento", true );
+                            core.changeScene( 1 );
+                        }
+
+                    }
+
+
+
+
+
+            })
+            .setVisibility( true ),
+
+
+            new Action("btn-conferirSoro", "Conferir Soro Glicofisiológico")
+            .setCssClass("action-soro_glicofisiologico_1000ml")
+            .onClick(function() {
+                core.openModalScene("conferirSoroGlicofisiologico1000");
+
+
+
+                // if ( (core.flag("pegarFrascoSG") == false) || (core.flag("pegarNACL") == false) ) {
+
+                //     core.openDialog( 3 );
+                // } else if ( (core.flag("pegarFrascoSG") == true) && (core.flag("pegarNACL") == true) ) {
+
+                //            if ( core.flag("conferirMedicamento") == false ) {
+
+                //             core.flag("conferirMedicamento", true );
+                //             core.registerScoreItem( Scores.conferirDieta );
+
+                //            }
+                core.openModalScene("conferirSoroGlicofisiologico1000");
+            })
+            .setVisibility( false ),
+
+            new Action("btn-conferirCloreto", "Conferir Cloreto de Sodio")
+                .setCssClass("action-cloreto_sodio_20_10ml")
+                .onClick(function() {
+                    core.openModalScene("conferirCloretoSodio");
+                })
+                .setVisibility( false )
+
+        ]);
+
+
+        var postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
+            .onLoad(function() {
+
+                  core.setInteractiveObjectVisible("io-pegar_bandeja", false );
+                  core.setInteractiveObjectVisible("io-abrir_gaveta", false );
+
+
+                if( core.flag("conferirMedicamento") == true){
+
+                  core.setInteractiveObjectVisible("io-pegar_bandeja", true );
+                  core.setInteractiveObjectVisible("io-abrir_gaveta", true );
+
+                    if(core.flag("pegou_tudo_postoEnfermagem") == true || core.flag("pegar_bandeja") == true){
+                         core.setInteractiveObjectVisible("io-pegar_bandeja", false );
+                        core.setInteractiveObjectVisible("io-abrir_gaveta", true );
+
+                    }
+
+                }
+                else {
+                      core.openDialog( 2 );
+
+                    if ( core.flag("score_irPosto_horaErrada") == false ) {
+
+                core.flag("score_irPosto_horaErrada", true );
+                 core.registerScoreItem( Scores.irPosto_horaErrada );
+            }
+
+                }
+
+
+
+
+            });
+
+        postoDeEnfermagem.registerDialogs([
+
+            // 0
+
+            new Dialog( lib.characters.mentor )
+            .setText( Alertas.esqueceu.pegarBandeja )
+            .registerOption("", function() {
+                core.closeDialog();
+            }),
+
+            // 1
+            new Dialog( lib.characters.mentor )
+            .setText( Dialogs.postoDeEnfermagem[ 0 ] )
+            .registerOption("", function() {
+                core.closeDialog();
+            }),
+
+            // 2
+            new Dialog( lib.characters.mentor )
+            .setText( Alertas.esqueceu.pegarMedicamento )
+            .registerOption("", function() {
+                core.closeDialog();
+            })
+
+
+        ]);
+
+        postoDeEnfermagem.registerInteractiveObjects([
+
+            new InteractiveObject("io-abrir_gaveta", "Abrir gaveta")
+            .setCssClass("intObj-openDrawer")
+            .onClick(function() {
+                // Som
+                Player.play( Player.audios.sfx.abrirGaveta );
+                if ( core.flag("pegar_bandeja") == false ) {
+                    core.openDialog( 0 );
+                } else {
+
+                    core.openModalScene("gaveta");
+                    core.openCommandBar();
+                }
+            })
+            .setVisibility( true ),
+
+            new InteractiveObject("io-pegar_bandeja", "Pegar Bandeja")
+            .setCssClass("intObj-bandeja")
+            .onClick(function() {
+
+                // Som
+                Player.play( Player.audios.sfx.pegarObjeto );
+                core.flag("pegar_bandeja", true );
+                core.setInteractiveObjectVisible("io-pegar_bandeja", false );
+            })
+            .setVisibility( true )
+
+        ]);
+
+        postoDeEnfermagem.registerActions([
+
+            new Action("btn-ir_corredor", "Ir ao corredor")
+            .setCssClass("action-ir_corredor")
+            .onClick(function() {
+
+
+          /*      if ( core.flag("pegar_prescricao_medica") == false || core.flag("") ) {
+                    core.changeScene( 1 );
+                }
+
+
+                if(core.flag("pegou_tudo_postoEnfermagem") == true) {
+                	core.changeScene(1);
+		}*/
+core.changeScene(1);
+
+            })
+            .setVisibility( true ),
+
+            new Action("btn-lavarMaos", "Lavar as mãos")
+            .setCssClass("action-lavarMaos")
+            .onClick(function() {
+                // Som
+                Player.play( Player.audios.sfx.lavarMaos );
+
+                if ( core.flag("score_lavarMaos1") == false ) {
+                    core.flag("score_lavarMaos1", true );
+                    core.registerScoreItem( Scores.lavarMaos1 );
+                }
+
+
+            })
+            .setVisibility( true )
+
+        ]);
+
+
+        leito = lib.scenes.leitos.raul_leito01.getClone()
+            .onLoad(function() {
+
+
+            })
+            .onUnload(function() {
+
+
+            });
+
+
+        leito.registerActions([
+
+            new Action("btn-ir_ala_masculina", "Voltar a Ala Masculina")
+            .setCssClass("action-ir_sala_de_leitos")
+            .onClick(function() {
+
+
+                if ( core.flag("trocou_de_leito") == true )
+                    core.changeScene( 2 );
+                else
+                    core.openDialog( 7 );
+
+
+            })
+            .setVisibility( false )
+
+
+        ]);
+
+
+        leito.registerInteractiveObjects([
+
+
+            new InteractiveObject("io-falar_paciente", "Falar com o paciente")
+            .setCssClass("intObj-conversar_paciente")
+            .onClick(function() {
+
+                if ( core.flag( "trocou_de_leito" ) == false ) {
+                    core.openDialog( 0 );
+                    core.flag( "trocou_de_leito",  true  );
+                    core.setActionVisible("btn-ir_ala_masculina", true );
+                    core.enableInteractiveObject("io-pulseira_paciente", true );
+                    
+
+                }
+
+
+            })
+            .setVisibility( true ),
+
+
+            new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
+            .setCssClass("intObj-paciente_03-checar_pulseira")
+            .onClick(function() {
+
+                core.openModalScene("Pulseira");
+                Pulseira.open();
+                core.openCommandBar();
+
+
+            })
+            .setVisibility( true )
+            .setEnable ( false ),
+
+        ]);
+
+
+        leito.registerDialogs([
+
+
+            // 0
+            new Dialog( lib.characters.jogador )
+            .setText( Dialogs.leitoPaciente[ 0 ] )
+            .registerOption("", function() {
+                core.openDialog( 1 );
+            }),
+
+            // 1
+            new Dialog( lib.characters.pacientes.francisco )
+            .setText( Dialogs.leitoPaciente[ 1 ] )
+            .registerOption("", function() {
+                core.openDialog( 2 );
+            }),
+
+
+            // 2
+            new Dialog( lib.characters.jogador )
+            .setText( Dialogs.leitoPaciente[ 2 ] )
+            .registerOption("", function() {
+                core.openDialog( 3 );
+            }),
+
+
+            // 3
+            new Dialog( lib.characters.pacientes.francisco )
+            .setText( Dialogs.leitoPaciente[ 3 ] )
+            .registerOption("", function() {
+                core.openDialog( 4 );
+            }),
+
+
+            // 4
+            new Dialog( lib.characters.jogador )
+            .setText("")
+            .registerOption( Dialogs.leitoPaciente[ 4 ], function() {
+                core.closeDialog();
+            })
+            .registerOption( Dialogs.leitoPaciente[ 5 ], function() {
+                core.openDialog( 5 );
+            })
+            .setRandomize( true ),
+
+
+            // 5
+
+            new Dialog( lib.characters.mentor )
+            .setText( Dialogs.leitoPaciente[ 6 ] )
+            .registerOption("", function() {
+                core.openDialog( 4 );
+            }),
+
+
+            // 6
+
+            new Dialog( lib.characters.mentor )
+            .setText( Dialogs.leitoPaciente[ 7 ] )
+            .registerOption("", function() {
+                core.closeDialog();
+            }),
+
+            // 7 - falar com o paciente
+
+            new Dialog( lib.characters.mentor )
+            .setText( Alertas.esqueceu.falarPaciente )
+            .registerOption("", function() {
+                core.closeDialog();
+            }),
+
+            // 8
+             new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.erroGotejamento )
+                .registerOption("", function() {
+                    core.closeDialog(  );
+                }),
+
+
+
+
+
+
+
+        ]);
+
+
+     function setPulseiraData() {
+
+
+
+            Pulseira.setNameRegExp( /Pedro Alcides Mendonça/ );
+            Pulseira.setLeitoRegExp( /0*1/ );
+            Pulseira.setDataRegExp( /03\/06\/1962/ );
+
+            Pulseira.setName("Pedro Alcides Mendonça");
+            Pulseira.setLeito("01");
+            Pulseira.setData("03/06/1962");
+            Pulseira.disable();
+
+
+
+
+        }
+
+
+
+        leito2 = lib.scenes.leitos.francisco.getClone()
+            .onLoad(function() {
+
+            })
+            .onUnload(function() {
+
+
+            });
+
+
+
+        leito2.registerDialogs([
+
+
+
+            // 0
+
+            new Dialog( lib.characters.jogador )
+            .setText( Dialogs.leitoPaciente1[ 0 ] )
+            .registerOption("", function() {
+                core.openDialog( 1 );
+            }),
+
+            // 1
+
+            new Dialog( lib.characters.pacientes.francisco )
+            .setText( Dialogs.leitoPaciente1[ 1 ] )
+            .registerOption("", function() {
+                core.openDialog( 2 );
+            }),
+
+            // 2
+
+            new Dialog( lib.characters.jogador )
+            .setText( Dialogs.leitoPaciente1[ 2 ] )
+            .registerOption("", function() {
+                core.openDialog( 3 );
+            }),
+
+            // 3
+
+            new Dialog( lib.characters.pacientes.francisco )
+            .setText( Dialogs.leitoPaciente1[ 3 ] )
+            .registerOption("", function() {
+                core.openDialog( 4 );
+            }),
+
+            // 4
+
+            new Dialog( lib.characters.jogador )
+            .setText( Dialogs.leitoPaciente1[ 4 ] )
+            .registerOption("", function() {
+                core.closeDialog();
+            }),
+
+            // 5
+
+            new Dialog( lib.characters.mentor )
+            .setText( Alertas.lavarMaos.tipo3 )
+            .registerOption("", function() {
+                core.closeDialog();
+            }),
+
+            // 6
+
+              new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.erroGotejamento )
+                .registerOption("", function() {
+                    core.closeDialog(  );
+                }),
+            // 7
+            
+               new Dialog( lib.characters.mentor )
+                .setText( Alertas.esqueceu.verPulseira )
+                .registerOption("", function() {
+                    core.closeDialog();
+                }),
+
+
+
+
+
+        ]);
+
+
+       leito2.registerInteractiveObjects([
+
+         new InteractiveObject("io-falar_paciente", "Falar com o paciente")
+        .setCssClass("intObj-conversar_paciente")
+        .onClick(function() {
+
+                     core.enableInteractiveObject("io-pulseira_paciente", true );
+                     core.openDialog( 0 );
+
+            if ( core.flag("falar_paciente_correto") == false ) {
+
+                core.flag("falar_paciente_correto", true );
+                core.registerScoreItem( Scores.conversarPacienteLeito );
+
+            }
+
+            core.setActionVisible("btn-pegar_suporte_soro", true );
+            core.setActionVisible("btn-administrar_medicamente", true );
+      //      core.setActionVisible("btn-lavarMaos", true );
+       //     core.setActionVisible("btn-anotar_prontuario", true );
+
+
+        })
+        .setVisibility( true ),
+
+
+         new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
+                .setCssClass("intObj-paciente_05-checar_pulseira")
+                .onClick(function() {
+
+                    setPulseiraData();
+                    core.flag("verificar_pulseira", true);
+
+                    if(core.flag("score_verPulseira") == false) {
+
+                             core.flag(("score_verPulseira"), true);
+                             core.registerScoreItem( Scores.verPulseira );
+
+                         }
+
+
+                        core.openModalScene("Pulseira");
+                        Pulseira.open();
+                        core.openCommandBar();
+
+
+                })
+                .setVisibility( true )
+                .setEnable( false ),
+
+     ]);
+
+
+
+
+    leito2.registerActions([
+
+
+             new Action("btn-pegar_suporte_soro", "Pegar Suporte de Soro")
+            .setCssClass("action-pegarSuporte")
+            .onClick(function() {
+                
+                
+          if(core.flag("verificar_pulseira") == true) {    
+
+                if ( core.flag( "pegar_suporte_soro" ) == false ) {
+                    core.flag( "pegar_suporte_soro",  true  );
+                    core.registerScoreItem( Scores.pegarSuporteSoro );
+
+                core.changeSceneCssClassTo("scene-bedChar10B");
+                core.setActionVisible("btn-pegar_suporte_soro", false);
+                 core.setActionVisible("btn-colocarSoro", true );
+
+
+                }
+          }
+           else {
+               
+               
+                        if(core.flag("score_pulseira") == false) {
+                            core.flag("score_pulseira", true);
+                            core.registerScoreItem( Scores.naoVerificarPulseira );
+                        }
+                        
+                        core.openDialog( 7 );
+           }
+
+            })
+            .setVisibility( false ),
+
+
+
+           new Action("btn-colocarSoro", "Colocar Soro")
+            .setCssClass("action-soro_fisiologico_1000ml")
+            .onClick(function() {
+                
+         
+
+
+                core.changeSceneCssClassTo("scene-bedChar10C");
+                core.setActionVisible("btn-colocarSoro", false);
+                core.setActionVisible("btn-realizar_gotejamento", true );
+                 
+             
+         
+
+
+
+            })
+            .setVisibility( false ),
+
+
+            new Action("btn-administrar_medicamente", "Administrar Medicamento")
+            .setCssClass("action-admnistrar_medicacao")
+            .onClick(function() {
+                
+             if(core.flag("verificar_pulseira") == true) {       
+
+                if ( core.flag( "administrar_medicamento" ) == false ) {
+                    core.flag( "administrar_medicamento",  true  );
+                    core.registerScoreItem( Scores.administrarMedicamento );
+                }
+                 
+             }
+            else {
+                
+                 if(core.flag("score_pulseira") == false) {
+                            core.flag("score_pulseira", true);
+                            core.registerScoreItem( Scores.naoVerificarPulseira );
+                        }
+                        
+                        core.openDialog( 7 );
+                
+            }
+
+            })
+            .setVisibility( false ),
+
+
+            new Action("btn-realizar_gotejamento", "Realizar Gotejamento de Soro")
+            .setCssClass("action-colocarSoro")
+            .onClick(function() {
+
+                if ( core.flag( "realizar_gotejamento" ) == false ) {
+                    core.flag( "realizar_gotejamento",  true  );
+                    core.registerScoreItem( Scores.realizarGotejamento );
+                }
+
+                    EquipoGotejamento.open();
+                    core.openModalScene("equipoSoro");
+                 //   core.openModalScene("EquipamentoSoro");
+
+
+
+
+            })
+            .setVisibility( false ),
+
+
+            new Action("btn-lavarMaos", "Lavar as mãos")
+            .setCssClass("action-lavarMaos")
+            .onClick(function() {
+                
+             if(core.flag("verificar_pulseira") == true) {       
+                
+                // Som
+                Player.play( Player.audios.sfx.lavarMaos );
+
+                if ( core.flag( "lavar_maos3" ) == false ) {
+                    core.flag( "lavar_maos3",  true  );
+                    core.registerScoreItem( Scores.lavarMaos3 );
+                }
+             }
+            else {
+                
+                          if(core.flag("score_pulseira") == false) {
+                            core.flag("score_pulseira", true);
+                            core.registerScoreItem( Scores.naoVerificarPulseira );
+                        }
+                        
+                        core.openDialog( 7 );
+                
+            }
+
+            })
+            .setVisibility( false ),
+
+
+            new Action("btn-anotar_prontuario", "Anotar prontuario")
+            .setCssClass("action-anotar_prontuario")
+            .onClick(function() {
+                
+                
+          if(core.flag("verificar_pulseira") == true) {       
+              
+
+                if ( core.flag( "lavar_maos3" ) == false ) {
+                    core.openDialog( 5 );
+                } else {
+
+                    Prontuario.open();
+                    core.openModalScene("Prontuario");
+
+                    if ( core.flag( "score_anotar_prontuario" ) == false ) {
+                        core.registerScoreItem( Scores.anotarNoProntuario );
+                        core.flag( "score_anotar_prontuario",  true  );
+                    }
+
+                }
+          }
+            else {
+                
+                  if(core.flag("score_pulseira") == false) {
+                            core.flag("score_pulseira", true);
+                            core.registerScoreItem( Scores.naoVerificarPulseira );
+                        }
+                        
+                        core.openDialog( 7 );
+                
+                
+            }
+            })
+            .setVisibility( false )
+        ]);
+
+
+
+        pulseira = new Scene("Pulseira", "Pulseira");
+
+
+        pulseira.registerInteractiveObjects([
+
+        ]);
+
+
+        pulseira.registerActions([
+
+            new Action("btn-largar_pulseira", "Fechar pulseira")
+            .setCssClass("action-pulseira_paciente")
+            .onClick(function() {
+
+
+                core.closeModalScene("Pulseira");
+
+                Pulseira.close();
+
+            })
+            .setVisibility( true )
+
+        ]);
+
+
+        prontuario = new Scene("Prontuario", "Prontuario");
+
+        prontuario.registerActions([
+
+            new Action("btn-fechar_prontuario", "Fechar prontuário")
+            .setCssClass("action-ler_prontuario")
+            .onClick(function() {
+
+                if ( core.flag( "score_anotar_prontuario" ) == true ) {
+                    Prontuario.close();
+                    core.closeModalScene("Prontuario");
+                    core.setActionVisible("btn-pegar_suporte_soro", false );
+                    core.setActionVisible("btn-administrar_medicamente", false );
+                    core.setActionVisible("btn-realizar_gotejamento", false );
+                    core.setActionVisible("btn-lavarMaos", false );
+                    core.setActionVisible("btn-anotar_prontuario", false );
+                    core.closeCommandBar();
+                    core.showEndOfLevel();
+                    Player.stopAll();
+                    Player.play( Player.audios.sfx.missaoCumprida );
+                } else {
+                    Prontuario.close();
+                }
+
+
+
+                core.closeModalScene("Prontuario");
+            })
+            .setVisibility( true )
+        ]);
+
+
+
+        equipoSoro = new Scene("equipoSoro", "EquipamentoSoro")
+
+        var erro = 0;
+
+        equipoSoro.registerActions([
+
+            new Action("btn-fecharEquipoSoro", "Fechar Equipamento de Soro")
+            .setCssClass("action-colocarSoro")
+            .onClick(function() {
+
+                if(EquipoGotejamento.isValueRight()){
+
+                    if(core.flag("score_gotejar_soro") == false){
+                         core.registerScoreItem( Scores.gotejarSoroEquipo );
+                         core.flag("score_gotejar_soro", true);
+                    }
+
+                    EquipoGotejamento.close();
+                    core.closeModalScene("equipoSoro");
+                    core.setActionVisible("btn-lavarMaos", true );
+                    core.setActionVisible("btn-anotar_prontuario", true );
+                    core.setActionVisible("btn-realizar_gotejamento", false );
+
+                }
+
+                else {
+                    core.closeCommandBar();
+                    core.openDialog( 6 );
+                    erro = erro + 1;
+
+                    if(erro == 3){
+                        core.registerScoreItem( Scores.naoGotejarSoroEquipo );
+                        erro = -100;
+                    }
+                }
+
+
+
+
+
+
+            })
+            .setVisibility( true )
+
+
+
+        ]);
+
+
+        gaveta = new Scene("gaveta", "Gaveta")
+            .setCssClass("modalScene-drawer");
+
+        gaveta.registerActions([
+            new Action("btn-fechar_gaveta", "Fechar gaveta")
+            .setCssClass("action-fecharGaveta")
+            .onClick(function() {
+
+
+                // Som
+                Player.play( Player.audios.sfx.fecharGaveta );
+                core.closeModalScene("Gaveta");
+
+                if ( (core.flag("pegar_seringa") == true) &&
+                    (core.flag("pegar_agulha") == true) &&
+                    (core.flag("pegar_ampola") == true) &&
+                    (core.flag("pegar_equipoSoro") == true) ) {
+
+
+                    core.setActionVisible("btn-lavarMaos", false );
+                    core.flag("pegou_tudo_postoEnfermagem", true );
+
+                }
+            })
+            .setVisibility( true )
+
+        ]);
+
+        gaveta.registerInteractiveObjects([
+
+            new InteractiveObject("io-seringa", "Seringa")
+            .setCssClass("intObj-seringa_de_10_ml")
+            .onClick(function() {
+
+
+                // Som
+                Player.play( Player.audios.sfx.pegarObjeto );
+
+                core.registerScoreItem( Scores.pegarSeringa );
+
+
+                core.flag("pegar_seringa", true );
+
+                core.setInteractiveObjectVisible("io-seringa", false );
+
+
+
+            })
+            .setVisibility( true ),
+
+            new InteractiveObject("io-agulha", "Agulha 40X12")
+            .setCssClass("intObj-agulha_40x12")
+            .onClick(function() {
+
+
+                // Som
+                Player.play( Player.audios.sfx.pegarObjeto );
+
+                core.registerScoreItem( Scores.pegarAgulha );
+
+
+
+                core.flag("pegar_agulha", true );
+
+                core.setInteractiveObjectVisible("io-agulha", false );
+
+
+            })
+            .setVisibility( true ),
+
+            new InteractiveObject("io-ampola", "Ampola de Glicose 50%")
+            .setCssClass("intObj-ampola_glicose_50")
+            .onClick(function() {
+
+
+                // Som
+                Player.play( Player.audios.sfx.pegarObjeto );
+
+                 core.registerScoreItem( Scores.pegarGlicose );
+
+
+
+
+                core.flag("pegar_ampola", true );
+
+                core.setInteractiveObjectVisible("io-ampola", false );
+
+
+            })
+            .setVisibility( true ),
+
+
+            new InteractiveObject("io-equipoSoro", "Equipamento de Soro Macrogotas")
+            .setCssClass("intObj-equipo_de_soro")
+            .onClick(function() {
+
+
+                // Som
+                Player.play( Player.audios.sfx.pegarObjeto );
+
+                core.registerScoreItem( Scores.pegarSoro );
+
+
+                core.flag("pegar_equipoSoro", true );
+
+                core.setInteractiveObjectVisible("io-equipoSoro", false );
+
+
+            })
+            .setVisibility( true )
+
+
+        ]);
+
+       soroGlicofisiologico = new Scene("conferirSoroGlicofisiologico1000", "Conferir Soro Glicofisiologico")
+            .setCssClass("modalScene-soroGlicofisiologico1000");
+
+        soroGlicofisiologico.registerActions([
+            new Action("btn-fechar_zoom", "Finalizar conferição")
+                .setCssClass("action-soro_glicofisiologico_1000ml")
+                .onClick(function() {
+
+                    core.flag("conferirFrascoSG", true );
+                    core.closeModalScene("conferirSoroGlicofisiologico1000");
+                })
+        ]);
+        cloretoSodio = new Scene("conferirCloretoSodio", "Conferir Cloreto de Sodio")
+            .setCssClass("modalScene-cloretoSodio20");
+
+        cloretoSodio.registerActions([
+             new Action("btn-fechar_zoom", "Finalizar conferição")
+               .setCssClass("action-cloreto_sodio_20_10ml")
+                .onClick(function() {
+
+                    core.flag("conferirNACL", true );
+                    core.closeModalScene("conferirCloretoSodio");
+                })
+        ]);
+
+
+            level.registerModalScene( prontuario );
+            level.registerModalScene( gaveta );
+            level.registerModalScene( pulseira );
+            level.registerModalScene( equipoSoro );
+            level.registerModalScene( soroGlicofisiologico );
+            level.registerModalScene( cloretoSodio );
+
+
+        // 00
+        level.registerScene( recepcao );
+        // 01
+        level.registerScene( corredor );
+        // 02
+        level.registerScene( alaMasculina );
+        // 03
+        level.registerScene( leito );
+        // 04
+        level.registerScene( farmacia );
+        // 05
+        level.registerScene( postoDeEnfermagem );
+        // 06
+        level.registerScene( centroCirurgico );
+        // 07
+        level.registerScene( alaFeminina );
+        // 08
+        level.registerScene( leito2 );
+        // 09
+        level.registerScene( alaMasculina2 );
+
+
+        level.setSetupScript(function() {
+            // Script that runs once when the level is loaded or reloaded
+
+            Prontuario.setNome("Pedro Alcides Mendonça");
+            Prontuario.setSexo("M");
+            Prontuario.setEstadoCivil("Solteiro");
+            Prontuario.setDataNascimento("03/06/1962");
+            Prontuario.setIdade("52 anos");
+            Prontuario.setProfissao("Professor");
+            Prontuario.setPai("Aldair Mendonça");
+            Prontuario.setMae("Ana Laura Alcídes Mendonça");
+            Prontuario.setAlergiaMedicamentosa( false, "");
+            Prontuario.setDisableAlergiaMedicamentosa( true );
+            Prontuario.setDataInternacao("27/12/2015");
+            Prontuario.setLeito("01 - Enfermaria Masculina");
+            Prontuario.setAntecedentes("Ocorrência de internação por Infecção no trato respiratório por Streptococcus sp.  e desconforto respiratório no mês de outubro");
+            Prontuario.setHipotese("Desidratação de grau moderado");
+            Prontuario.setObservacoes("Grande perda de eletrólitos");
+            Prontuario.setPeso("62");
+            Prontuario.setAltura("1,77");
+            Prontuario.setCircunferenciaAbdominal("91");
+
+            Prontuario.setPrescMedicaRowData( 0, "", "Soro Glicosado 5%", "Endovenosa", "800ml", "", false, true );
+            Prontuario.setPrescMedicaRowData( 1, "", "NaCL 20%", "Endovenosa", "20ml", "", false, true );
+            Prontuario.setPrescMedicaRowData( 2, "", "Glicose 50%", "Endovenosa", "30ml", "", "(X) Administrado a infusão de  solução de  reposição  hidroeletrolítica  conforme  prescrição  médica, sem  intercorrências.", false );
+            // Necessário para evitar que valores antigos apareçam no prontuário
+            Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
+
+            Prontuario.clearPrescEnfermagemState();
+            Prontuario.setPrescEnfermagemState("desiquilibrio_eletrolitico_fase9");
+
+            Prontuario.setSsvvRowData( 0, "", "130X70", "82", "19", "96", "35.9", true );
+            Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
+
+
+            //    Prontuario.setAnotacaoEnfermagemRowData( "15/03", "" );
+
+
+
+            // 'pulseira' content
+
+        //    Prontuario.setAnotacaoEnfermagemRowData( "15/03", "" );
+
+
+
+         // 'pulseira' content
+
+            Pulseira.setNameRegExp( /Raul Gonzales Rodrigues/ );
+            Pulseira.setLeitoRegExp( /0*3/ );
+            Pulseira.setDataRegExp( /24\/07\/1937/ );
+
+            Pulseira.setName("Raul Gonzales Rodrigues");
+            Pulseira.setLeito("03");
+            Pulseira.setData("24/07/1937");
+            Pulseira.disable();
+
+
+            EquipoGotejamento.setRightValue(12);
+
+            Ficha.setEnfermeiraRegexp( /Masculina/i );
+            Ficha.setPacienteRegexp( /Pedro Alc(í|i)des Mendon(ç|c)a/i );
+            Ficha.setLeitoRegexp( /0?1/ );
+            Ficha.setVolumeRegexp( /850/ );
+            Ficha.setDuracao( 24 );
+            Ficha.setGotasRegexp( /11,80/ );
+            Ficha.setGotasAproxRegexp( /12/ );
+        });
+
+        level.registerFlag( new Flag( "score_iralaFeminina_horaErrada",  false  ) );
+        level.registerFlag( new Flag( "score_irCentroCirurgico_horaErrada",  false  ) );
+        level.registerFlag( new Flag( "conversar_paciente",  false  ) );
+        level.registerFlag( new Flag( "score_ir_farmacia_horaErrada",  false  ) );
+        level.registerFlag( new Flag( "score_irPosto_horaErrada",  false  ) );
+        level.registerFlag( new Flag( "pegar_prescricao_medica",  false  ) );
+        level.registerFlag( new Flag( "ler_prontuario",  false  ) );
+        level.registerFlag( new Flag( "pegarFrascoSG",  false  ) );
+        level.registerFlag( new Flag( "pegarNACL",  false  ) );
+        level.registerFlag( new Flag( "conferirMedicamento",  false  ) );
+        level.registerFlag( new Flag( "pegar_bandeja",  false  ) );
+        level.registerFlag( new Flag( "pegar_seringa",  false  ) );
+        level.registerFlag( new Flag( "pegar_agulha",  false  ) );
+        level.registerFlag( new Flag( "pegar_ampola",  false  ) );
+        level.registerFlag( new Flag( "pegar_equipoSoro",  false  ) );
+        level.registerFlag( new Flag( "pegou_tudo_postoEnfermagem",  false  ) );
+        level.registerFlag( new Flag( "lavar_maos",  false  ) );
+        level.registerFlag( new Flag( "trocou_de_leito",  false  ) );
+        level.registerFlag( new Flag( "falar_paciente_correto",  false  ) );
+        level.registerFlag( new Flag( "lavar_maos2",  false  ) );
+        level.registerFlag( new Flag( "realizar_gotejamento",  false  ) );
+        level.registerFlag( new Flag( "pegar_suporte_soro",  false  ) );
+        level.registerFlag( new Flag( "administrar_medicamento",  false  ) );
+        level.registerFlag( new Flag( "lavar_maos3",  false  ) );
+        level.registerFlag( new Flag( "score_anotar_prontuario",  false  ) );
+        level.registerFlag( new Flag( "irCentroCirurgicoHoraErrada", false ) );
+        level.registerFlag( new Flag( "score_lavarMaos1", false ) );
+        level.registerFlag( new Flag( "conferirFrascoSG", false ) );
+        level.registerFlag( new Flag( "conferirNACL", false ) );
+        level.registerFlag( new Flag( "score_verPulseira", false ) );
+        level.registerFlag( new Flag( "score_gotejar_soro", false ) );
+        level.registerFlag( new Flag( "conversar_recepcionista", false ) );
+        level.registerFlag( new Flag( "verificar_pulseira", false ) );
+        level.registerFlag( new Flag( "score_pulseira", false ) );
+
+
+        level.setInitialScene( 0 );
+
+        game.registerLevel( level, 10 );
+
+
+    });

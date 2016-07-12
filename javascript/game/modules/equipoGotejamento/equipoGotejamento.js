@@ -14,5 +14,352 @@ This file is part of Cuidando Bem.
     You should have received a copy of the GNU General Public License
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
+define(function( require ) {
 
-define(["require","text!../html/equipoGotejamento/equipoGotejamento.html"],function(e){function v(){this.x,this.y,this.frameTime,this.accumulator=0,this.frameTotal,this.frameCounter=0,this.cyclesPerMinute,this.img=[],this.hasToDraw=!1,this.width,this.height,this.srWidth,this.srHeight,this.update=function(){this.accumulator+=u.time;while(this.accumulator>=this.frameTime)this.frameCounter++,this.frameCounter=this.frameCounter%this.frameTotal,this.hasToDraw=!0,this.accumulator-=this.frameTime},this.draw=function(e){if(this.hasToDraw){var t=e.getContext("2d"),n=this.frameCounter*this.width,r=this.img[this.frameCounter];t.drawImage(r,0,0,this.srWidth,this.srHeight,this.x,this.y,this.width,this.height)}}}function E(e){$(e).append(t);var n=$(r)[0];n.setAttribute("width",800),n.setAttribute("height",600),$(".less").click(function(){console.log("less"),A()}),$(".plus").click(function(){console.log("plus"),L()}),$(".sliderFront").slider({orientation:"vertical",min:f,max:l,value:60,slide:function(e,t){O(t.value)}}),D(h),console.info("FreqRespiratoria added to stage")}function S(){$(n).show(),p.frameCounter=0,u.accumulator=0,u.last=(new Date).getTime(),o=s.playing,C(),k()}function x(){$(n).hide(),o=s.stopped}function T(){p.update(),a.accumulator+=u.time;while(a.accumulator>=a.time)a.angle+=Math.PI*2/1e3/60,a.accumulator-=a.time}function N(e){ctx=e.getContext("2d"),ctx.clearRect(0,0,800,600),p.draw(e),ctx.drawImage(a.img,0,0,350,600,a.x-99,a.y-165,200,330),ctx.beginPath(),ctx.moveTo(a.x,a.y-a.radius),ctx.lineTo(a.x,a.y-a.radius+a.line),ctx.moveTo(a.x,a.y+a.radius),ctx.lineTo(a.x,a.y+a.radius-a.line),ctx.moveTo(a.x-a.radius,a.y),ctx.lineTo(a.x-a.radius+a.line,a.y),ctx.moveTo(a.x+a.radius,a.y),ctx.lineTo(a.x+a.radius-a.line,a.y),ctx.lineWidth=2,ctx.strokeStyle="rgba(0,0,0,130)",ctx.stroke(),ctx.beginPath(),px=Math.cos(a.angle)*a.radius+a.x,py=Math.sin(a.angle)*a.radius+a.y,ctx.moveTo(a.x,a.y),ctx.lineTo(px,py),ctx.lineWidth=5,ctx.strokeStyle="rgba(0,0,0,255)",ctx.stroke()}function C(){a.angle=-Math.PI/2,a.accumulator=0}function k(){u.now=(new Date).getTime(),u.passed=u.now-u.last,u.last=u.now,u.accumulator+=u.passed;while(u.accumulator>=u.time)T(),u.accumulator-=u.time;N($(r)[0]),o==s.playing&&window.requestAnimationFrame(k)}function L(){p.cyclesPerMinute+1<=l&&(C(),p.cyclesPerMinute+=1,p.frameTime=6e4/p.cyclesPerMinute/p.frameTotal,p.frameCounter=0,$(".sliderFront").slider("value",p.cyclesPerMinute))}function A(){p.cyclesPerMinute-1>=f&&(C(),p.cyclesPerMinute-=1,p.frameTime=6e4/p.cyclesPerMinute/p.frameTotal,p.frameCounter=0,$(".sliderFront").slider("value",p.cyclesPerMinute))}function O(e){C(),p.cyclesPerMinute=e,p.frameTime=6e4/p.cyclesPerMinute/p.frameTotal,p.frameCounter=0}function M(e){c=e}function _(){return p.cyclesPerMinute>=c-d&&p.cyclesPerMinute<=c+d}function D(e){e=="soro"?($(".slider").removeClass("dieta"),$(".slider").addClass("soro"),p=m):($(".slider").removeClass("soro"),$(".slider").addClass("dieta"),p=b)}var t=e("text!../html/equipoGotejamento/equipoGotejamento.html"),n="#equipo",r="#equipoGotejamento",s={playing:0,stopped:1},o=s.stopped,u={last:undefined,passed:undefined,now:undefined,accumulator:0,time:undefined,rate:60},a={x:375,y:300,radius:60,angle:0,line:20,img:undefined,accumulator:0,time:1},f=0,l=120,c=60,h="soro",p,d=1;u.time=1e3/u.rate;var m=new v;m.x=120,m.y=0,m.width=140,m.height=610,m.srWidth=314,m.srHeight=1426,m.frameTotal=20,m.cyclesPerMinute=60,m.frameTime=6e4/m.cyclesPerMinute/m.frameTotal;var g=0;for(i=0;i<m.frameTotal;i++){m.img.push(new Image),m.img[i].onload=function(){console.log("Image "+i+" loaded"),g++};var y=m.img[i];i<10&&(i="0"+i),y.src="./images/modalScenes/soro/gotas_0"+i+".png"}var b=new v;b.x=120,b.y=0,b.width=140,b.height=610,b.srWidth=314,b.srHeight=1426,b.frameTotal=20,b.cyclesPerMinute=60,b.frameTime=6e4/b.cyclesPerMinute/b.frameTotal;var w=0;for(i=0;i<b.frameTotal;i++){b.img.push(new Image),b.img[i].onload=function(){console.log("Image "+i+" loaded"),w++};var y=b.img[i];i<10&&(i="0"+i),y.src="./images/modalScenes/dieta/gotaDieta_0"+i+".png"}return a.img=new Image,a.img.src="./images/modalScenes/relogioDigital.png",a.img.onLoad=function(){console.log("Clock ('watch') image loaded")},{init:E,setCyclesPerMinute:O,setMode:D,isValueRight:_,setRightValue:M,open:S,close:x}});
+    var html = require("text!../html/equipoGotejamento/equipoGotejamento.html");
+
+    var equipoSelector = "#equipo";
+    var canvasSelector = "#equipoGotejamento";
+
+    var STATES = {
+        playing: 0,
+        stopped: 1
+    };
+
+    var state = STATES.stopped;
+
+    var tick = {
+        last: undefined,
+        passed: undefined,
+        now: undefined,
+        accumulator: 0,
+
+        time: undefined,
+
+        rate: 60
+    };
+
+    var clock = {
+        x: 375,
+        y: 300,
+        radius: 60,
+        angle: 0,
+        line: 20,
+        img: undefined,
+
+        accumulator: 0,
+        time: 1
+    };
+
+    var minRate = 0;
+    var maxRate = 120;
+    var rightRate = 60;
+    var mode = "soro";
+    var currentAnimation;
+
+    var margem = 1;
+
+    tick.time = 1000 / tick.rate;
+
+    function Animation() {
+        this.x;
+        this.y;
+
+        this.frameTime;
+        this.accumulator = 0;
+        this.frameTotal;
+        this.frameCounter = 0;
+        this.cyclesPerMinute;
+
+        this.img = [];
+        this.hasToDraw = false;
+
+        this.width;
+        this.height;
+
+        this.srWidth;
+        this.srHeight;
+
+
+        this.update = function() {
+
+            this.accumulator += tick.time;
+
+            while ( this.accumulator >= this.frameTime ) {
+
+                this.frameCounter++;
+                this.frameCounter = this.frameCounter % this.frameTotal;
+                this.hasToDraw = true;
+
+                this.accumulator -= this.frameTime;
+            }
+        };
+
+        this.draw = function( canvas ) {
+            if ( this.hasToDraw ) {
+                var ctx = canvas.getContext("2d");
+
+                var fx = this.frameCounter * this.width;
+
+                var img = this.img[ this.frameCounter ];
+
+                ctx.drawImage( img, 0, 0, this.srWidth, this.srHeight, this.x, this.y, this.width, this.height );
+            }
+        };
+    }
+
+    var soroAnimation = new Animation();
+    soroAnimation.x = 120;
+    soroAnimation.y = 0;
+    soroAnimation.width = 140;
+    soroAnimation.height = 610;
+    soroAnimation.srWidth = 314;
+    soroAnimation.srHeight = 1426;
+    soroAnimation.frameTotal = 20;
+    soroAnimation.cyclesPerMinute = 60;
+    soroAnimation.frameTime = 1000 * 60 / soroAnimation.cyclesPerMinute / soroAnimation.frameTotal;
+
+    var soroImgsLoaded = 0;
+    for ( i = 0; i < soroAnimation.frameTotal; i++ ) {
+        soroAnimation.img.push( new Image() );
+
+        soroAnimation.img[ i ].onload = function() {
+
+            soroImgsLoaded++;
+        };
+
+        var img = soroAnimation.img[ i ];
+
+        if ( i < 10 ) {
+            i = "0" + i;
+        }
+
+        img.src = "./images/modalScenes/soro/gotas_0" + i + ".png";
+    }
+
+    var dietaAnimation = new Animation();
+    dietaAnimation.x = 120;
+    dietaAnimation.y = 0;
+    dietaAnimation.width = 140;
+    dietaAnimation.height = 610;
+    dietaAnimation.srWidth = 314;
+    dietaAnimation.srHeight = 1426;
+    dietaAnimation.frameTotal = 20;
+    dietaAnimation.cyclesPerMinute = 60;
+    dietaAnimation.frameTime = 1000 * 60 / dietaAnimation.cyclesPerMinute / dietaAnimation.frameTotal;
+
+    var dietaImgsLoaded = 0;
+    for ( i = 0; i < dietaAnimation.frameTotal; i++ ) {
+        dietaAnimation.img.push( new Image() );
+
+        dietaAnimation.img[ i ].onload = function() {
+
+            dietaImgsLoaded++;
+        };
+
+        var img = dietaAnimation.img[ i ];
+
+        if ( i < 10 ) {
+            i = "0" + i;
+        }
+
+        img.src = "./images/modalScenes/dieta/gotaDieta_0" + i + ".png";
+    }
+
+    clock.img = new Image();
+
+    clock.img.src = "./images/modalScenes/relogioDigital.png";
+
+    clock.img.onLoad = function() {
+ image loaded");
+    };
+
+    function init( selector ) {
+        $( selector ).append( html );
+
+        var canvas = $( canvasSelector )[ 0 ];
+        canvas.setAttribute("width", 800 );
+        canvas.setAttribute("height", 600 );
+
+        $( ".less" ).click(function() {
+
+            slower();
+        });
+
+        $( ".plus" ).click(function() {
+
+            faster();
+        });
+
+        $( ".sliderFront" ).slider({
+            orientation: "vertical",
+            min: minRate,
+            max: maxRate,
+            value: 60,
+            slide: function( event, ui ) {
+                setCyclesPerMinute( ui.value );
+            }
+        });
+
+        setMode( mode );
+
+
+    }
+
+    function open() {
+        $( equipoSelector ).show();
+
+        currentAnimation.frameCounter = 0;
+
+        tick.accumulator = 0;
+        tick.last = new Date().getTime();
+        state = STATES.playing;
+
+        resetClock();
+
+        animationLoop();
+    }
+
+    function close() {
+        $( equipoSelector ).hide();
+
+        state = STATES.stopped;
+    }
+
+
+    function update() {
+        currentAnimation.update();
+
+        clock.accumulator += tick.time;
+        while ( clock.accumulator >= clock.time ) {
+            clock.angle += Math.PI * 2 / 1000 / 60;
+
+            clock.accumulator -= clock.time;
+        }
+    }
+
+    function draw( canvas ) {
+        ctx = canvas.getContext("2d");
+        ctx.clearRect( 0, 0, 800, 600 );
+
+        currentAnimation.draw( canvas );
+
+        ctx.drawImage( clock.img, 0, 0, 350, 600, clock.x - 99, clock.y - 165, 200, 330 );
+
+        ctx.beginPath();
+        ctx.moveTo( clock.x, clock.y - clock.radius );
+        ctx.lineTo( clock.x, clock.y - clock.radius + clock.line );
+
+        ctx.moveTo( clock.x, clock.y + clock.radius );
+        ctx.lineTo( clock.x, clock.y + clock.radius - clock.line );
+
+        ctx.moveTo( clock.x - clock.radius, clock.y );
+        ctx.lineTo( clock.x - clock.radius + clock.line, clock.y );
+
+        ctx.moveTo( clock.x + clock.radius, clock.y );
+        ctx.lineTo( clock.x + clock.radius - clock.line, clock.y );
+
+        // ctx.arc(clock.x, clock.y, clock.radius, 0, Math.PI*2);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "rgba(0,0,0,130)";
+        ctx.stroke();
+
+        ctx.beginPath();
+        px = Math.cos( clock.angle ) * clock.radius + clock.x;
+        py = Math.sin( clock.angle ) * clock.radius + clock.y;
+
+        ctx.moveTo( clock.x, clock.y );
+        ctx.lineTo( px, py );
+
+        ctx.lineWidth = 5;
+        ctx.strokeStyle = "rgba(0,0,0,255)";
+        ctx.stroke();
+    }
+
+    function resetClock() {
+      clock.angle = -Math.PI / 2;
+      clock.accumulator = 0;
+    }
+
+    function animationLoop() {
+        tick.now = new Date().getTime();
+        tick.passed = tick.now - tick.last;
+        tick.last = tick.now;
+
+        tick.accumulator += tick.passed;
+
+        while ( tick.accumulator >= tick.time ) {
+            update();
+
+            tick.accumulator -= tick.time;
+        }
+
+        draw( $( canvasSelector )[ 0 ] );
+
+        if ( state == STATES.playing ) {
+            window.requestAnimationFrame( animationLoop );
+        }
+    }
+
+    function faster() {
+        if ( currentAnimation.cyclesPerMinute + 1 <= maxRate ) {
+            resetClock();
+            currentAnimation.cyclesPerMinute += 1;
+            currentAnimation.frameTime = 1000 * 60 / currentAnimation.cyclesPerMinute / currentAnimation.frameTotal;
+            currentAnimation.frameCounter = 0;
+            $( ".sliderFront" ).slider("value", currentAnimation.cyclesPerMinute );
+        }
+    }
+
+    function slower() {
+        if ( currentAnimation.cyclesPerMinute - 1 >= minRate ) {
+            resetClock();
+            currentAnimation.cyclesPerMinute -= 1;
+            currentAnimation.frameTime = 1000 * 60 / currentAnimation.cyclesPerMinute / currentAnimation.frameTotal;
+            currentAnimation.frameCounter = 0;
+            $( ".sliderFront" ).slider("value", currentAnimation.cyclesPerMinute );
+        }
+    }
+
+    function setCyclesPerMinute( _cpm ) {
+        resetClock();
+
+        currentAnimation.cyclesPerMinute = _cpm;
+        currentAnimation.frameTime = 1000 * 60 / currentAnimation.cyclesPerMinute / currentAnimation.frameTotal;
+        currentAnimation.frameCounter = 0;
+
+    }
+
+    function setRightValue( value ) {
+        rightRate = value;
+    }
+
+    function isValueRight() {
+        return currentAnimation.cyclesPerMinute >= rightRate - margem && currentAnimation.cyclesPerMinute <= rightRate + margem;
+    }
+
+    function setMode( mode ) {
+        if ( mode == "soro" ) {
+            $( ".slider" ).removeClass( "dieta" );
+            $( ".slider" ).addClass( "soro" );
+            currentAnimation = soroAnimation;
+        } else {
+            $( ".slider" ).removeClass( "soro" );
+            $( ".slider" ).addClass( "dieta" );
+            currentAnimation = dietaAnimation;
+        }
+    }
+
+    return {
+        init: init,
+        setCyclesPerMinute: setCyclesPerMinute,
+
+        setMode: setMode,
+
+        isValueRight: isValueRight,
+        setRightValue: setRightValue,
+
+        open: open,
+        close: close
+    };
+});

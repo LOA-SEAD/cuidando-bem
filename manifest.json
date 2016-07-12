@@ -1,18 +1,9 @@
 {
   "name": "Cuidando Bem",
   "start_url": "index.html",
-  "display": "standalone",
+  "display": "fullscreen",
   "orientation": "landscape",
-
-  "background_color": "black",
-
-  "dir": "ltr",
-  "lang": "pt",
-  "icons": [{
-    "src": "/images/misc/favicon.ico",
-    "sizes": "64x64"
-  }],
-  "prefer_related_applications": false,
+  "icons": [],
   "related_applications": [{
     "platform": "web"
   }]

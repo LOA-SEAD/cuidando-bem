@@ -15,4 +15,4 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define([],function(){function i(i){n=i,r=0;var o;for(o=0;o<t.length;o++)console.log("	Requiring Level module: ",t[o]),require([e+t[o]],function(){s()})}function s(){r++,r>=t.length&&n()}console.info("GameConfig - module loaded");var e="./game/scripts/levels/",t=["faseTeste","testeEndOfLevel","fase1","fase2","fase3","fase4","fase5","fase6","fase7","fase8","fase9","fase10"],n,r;return{load:i}});
+define([],function(){function i(i){n=i,r=0;var o;for(o=0;o<t.length;o++)require([e+t[o]],function(){s()})}function s(){r++,r>=t.length&&n()}var e="./game/scripts/levels/",t=["faseTeste","testeEndOfLevel","fase1","fase2","fase3","fase4","fase5","fase6","fase7","fase8","fase9","fase10"],n,r;return{load:i}});
