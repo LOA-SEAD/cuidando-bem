@@ -24,7 +24,9 @@ This file is part of Cuidando Bem.
  */
 define([ "Stage" ], function( Stage ) {
 
-    var Player = require("Player");
+    // var Player = require("Player");
+    var totalFilesToLoad = 0;
+    var totalFilesLoaded = 0;
 
     /**
      * This method is called when the screen loadGame is loaded
@@ -35,13 +37,7 @@ define([ "Stage" ], function( Stage ) {
      * @memberOf module:Screen_loadGame_Controller
      */
     function load() {
-        $(".menuButton").click(function() {
-            Player.play( Player.audios.sfx.selecionarMenu );
-        });
 
-        $(".backButton").click(function() {
-            Stage.changeScreen( 0 );
-        });
     }
 
     /**
@@ -56,9 +52,29 @@ define([ "Stage" ], function( Stage ) {
 
     }
 
+    function setTotalFiles( total ) {
+      totalFilesToLoad = total;
+    }
+    function fileLoaded() {
+      totalFilesLoaded++;
+      console.log( totalFilesLoaded + "/" + totalFilesToLoad );
+
+      var percent = Math.floor( (totalFilesLoaded / totalFilesToLoad) * 100 );
+
+      $(".preloaderPercent").text( percent + "%" );
+      $(".preloaderFill").css("width", percent + "%");
+
+      if ( percent >= 100 ) {
+        Stage.changeScreen( 0 );
+      }
+    }
+
     return {
         load: load,
-        unload: unload
+        unload: unload,
+
+        setTotalFiles: setTotalFiles,
+        fileLoaded: fileLoaded
     };
 
 });

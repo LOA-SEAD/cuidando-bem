@@ -43,6 +43,7 @@ define(function() {
     var loopSoundBuffer = undefined;
     var pastLoopSound = undefined;
     var loopInterval;
+    var totalAudios = 0;
 
     var rangeList;
     var rangeSoundId;
@@ -53,16 +54,22 @@ define(function() {
     var pastRangeSound = undefined;
     var rangeInterval;
 
+    var soundLoadedCallback;
+
     var audios = {};
 
     var BUFFER_BEFORE_LOOP = 25;
 
-    function load( baseDir, pathsObj ) {
+    function load( baseDir, pathsObj, _soundLoadedCallback ) {
         console.groupCollapsed("Loading Sounds: ");
         deepCopy( baseDir, pathsObj, audios );
         if ( isMuted ) {
             setSoundToMuted();
         }
+
+        soundLoadedCallback = _soundLoadedCallback;
+
+        return totalAudios;
         console.groupEnd();
     }
 
@@ -94,7 +101,9 @@ define(function() {
                 sound.loop = false;
                 sound.volume = (to._volume || 1) * masterVolume;
                 sound.vol = sound.volume;
+                sound.addEventListener( "loadeddata", function() {soundLoadedCallback();}, true );
                 sound.load();
+                totalAudios++;
             }
         }
     }

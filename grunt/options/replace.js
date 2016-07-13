@@ -47,7 +47,7 @@ module.exports = {
 
         replacements: [
             {
-                from: "Stage.setStartingScreenId( 0 );",
+                from: "Stage.setStartingScreenId( 2 );",
                 to: "Stage.setStartingScreenId( <%= devCfg.initScreen %> );"
             }
         ]

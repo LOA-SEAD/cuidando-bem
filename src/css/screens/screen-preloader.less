@@ -19,3 +19,46 @@ This file is part of Cuidando Bem.
     background-color: #fbfefd;
     &:extend(.menuBackImage);
 }
+
+#preloader {
+	.barra{
+		position: absolute;
+
+		top: 65%;
+		left: 30%;
+		width: 40%;
+		height: 5%;
+
+		border: 0.5rem solid black;
+		border-radius: 10% ~"/" 100%;
+    overflow: hidden;
+	}
+	.fundo{
+		width: 100%;
+		height: 100%;
+		background-color: #c1c1c1;
+
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	.preloaderFill{
+		width: 0%;
+		height: 100%;
+		background-color: #e84d49;
+
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	.preloaderPercent {
+		position: absolute;
+		font-family: @font-printed;
+		font-size: 4rem;
+
+		width: 20%;
+		left: 40%;
+		text-align: center;
+	}
+}

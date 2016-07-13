@@ -24,76 +24,71 @@ This file is part of Cuidando Bem.
 require([ "requireConfig" ], function() {
     console.group("Cuidando Bem Log:");
 
-    // Load imageLoader and ImagesUrls
-    require([ "ImageLoader", "ImagesUrls" ], function( imageLoader, images ) {
-
-        // Asyncronosly load all the images in Image_urls
-        imageLoader.load( images.baseDir, images.paths, function() {
-            console.log("All images have been loaded");
-        });
-    });
-
-    // Load Storage module
-    require([ "Storage" ], function( storage ) {
-
-        // Load Sound Player and SoundsUrls
-        require([ "Player", "SoundsUrls" ], function( player, sounds ) {
-
-            // Set SoundPlayer master volume
-            player.setMasterVolumeTo( sounds.masterVolume );
-            // Load all sound files ind SoundsUrls
-            player.load( sounds.baseDir, sounds.paths );
-
-            if ( storage.isSfxMuted() ) {
-                player.setVolumeToCategory( player.audios.sfx, 0 );
-            } else {
-                player.setVolumeToCategory( player.audios.sfx, storage.getSfxVolume() );
-            }
-
-            if ( storage.isMusicMuted() ) {
-                player.setVolumeToCategory( player.audios.musics, 0 );
-            } else {
-                player.setVolumeToCategory( player.audios.musics, storage.getMusicVolume() );
-            }
-        });
-    });
-
-
     // Load jquery
-    require([ "jquery" ], function( $ ) {
+    require([ "jquery", "Player", "Storage" ], function( $, player, storage ) {
         window.$ = $;
 
         // Load jqueryui
         require([ "jqueryui", "jquerymask" ], function() {
-
             // Load Stage module, stage configuration, game main Module, game configuration and all dialogs that will be used in game
             require([ "Stage", "stageConfig", "IsMobile" ], function( Stage ) {
+                $("document").ready(function() {
+                    // As soon as the html has been loaded, set the container for the Stage module and start it
 
-                require([ "gameConfig", "CuidandoBem", "DialogsData" ], function( config ) {
-                    config.load(function() {
-                        $("document").ready(function() {
-                            // As soon as the html has been loaded, set the container for the Stage module and start it
-                            // The game will only be initiated when a level is selected
+                    Stage.setContainer("#stage");
+                    Stage.start();
 
-                            Stage.setContainer("#stage");
-                            Stage.start();
+                    var width = $("#stage").width(),
+                        fontSize =  width / 150 ;
 
+                    fontSize = +fontSize.toFixed( 2 );
 
-                            var width = $("#stage").width(),
-                                fontSize =  width / 150 ;
+                    $("html").css("font-size", fontSize + "px");
+                    $( window ).resize(function() {
+                        var width = $("#stage").width(),
+                            fontSize =  width / 150 ;
 
-                            fontSize = +fontSize.toFixed( 2 );
+                        fontSize = +fontSize.toFixed( 2 );
 
-                            $("html").css("font-size", fontSize + "px");
-                            $( window ).resize(function() {
-                                var width = $("#stage").width(),
-                                    fontSize =  width / 150 ;
+                        $("html").css("font-size", fontSize + "px");
+                    });
+                });
+                // Load imageLoader and ImagesUrls
+                require([ "ImageLoader", "ImagesUrls", "SoundsUrls", "./menu/screenPreloaderController" ], function( imageLoader, images, sounds, preloader ) {
+                    // Set SoundPlayer master volume
+                    player.setMasterVolumeTo( sounds.masterVolume );
+                    // Load all sound files ind SoundsUrls
+                    var totalFilesToLoad = 0;
 
-                                fontSize = +fontSize.toFixed( 2 );
+                    totalFilesToLoad += player.load( sounds.baseDir, sounds.paths,
+                    function() {
+                      preloader.fileLoaded();
+                    });
 
-                                $("html").css("font-size", fontSize + "px");
-                            });
-                        });
+                    // Asyncronosly load all the images in Image_urls
+                    totalFilesToLoad += imageLoader.load( images.baseDir, images.paths, function() {
+                        console.log("All images have been loaded");
+                    },
+                    function() {
+                      preloader.fileLoaded();
+                    });
+
+                    preloader.setTotalFiles( totalFilesToLoad );
+
+                    // Load Storage module
+                    if ( storage.isSfxMuted() ) {
+                        player.setVolumeToCategory( player.audios.sfx, 0 );
+                    } else {
+                        player.setVolumeToCategory( player.audios.sfx, storage.getSfxVolume() );
+                    }
+
+                    if ( storage.isMusicMuted() ) {
+                        player.setVolumeToCategory( player.audios.musics, 0 );
+                    } else {
+                        player.setVolumeToCategory( player.audios.musics, storage.getMusicVolume() );
+                    }
+                    require([ "gameConfig", "CuidandoBem", "DialogsData" ], function( config ) {
+                        config.load(function() {});
                     });
                 });
             });
