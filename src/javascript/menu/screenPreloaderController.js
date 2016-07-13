@@ -28,6 +28,8 @@ define([ "Stage" ], function( Stage ) {
     var totalFilesToLoad = 0;
     var totalFilesLoaded = 0;
 
+    var preloading = true;
+
     /**
      * This method is called when the screen loadGame is loaded
      *
@@ -56,16 +58,19 @@ define([ "Stage" ], function( Stage ) {
       totalFilesToLoad = total;
     }
     function fileLoaded() {
-      totalFilesLoaded++;
-      console.log( totalFilesLoaded + "/" + totalFilesToLoad );
+      if ( preloading ) {
+        totalFilesLoaded++;
+        console.log( totalFilesLoaded + "/" + totalFilesToLoad );
 
-      var percent = Math.floor( (totalFilesLoaded / totalFilesToLoad) * 100 );
+        var percent = Math.floor( (totalFilesLoaded / totalFilesToLoad) * 100 );
 
-      $(".preloaderPercent").text( percent + "%" );
-      $(".preloaderFill").css("width", percent + "%");
+        $(".preloaderPercent").text( percent + "%" );
+        $(".preloaderFill").css("width", percent + "%");
 
-      if ( percent >= 100 ) {
-        Stage.changeScreen( 0 );
+        if ( percent >= 100 ) {
+          Stage.changeScreen( 0 );
+          preloading = false;
+        }
       }
     }
 
