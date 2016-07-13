@@ -56,7 +56,7 @@ module.exports = {
 
     livereload: {
         options: {
-            livereload: true
+          livereload: true
         },
         files: [
             "<%= pkg.development %>" + "/**/*"
