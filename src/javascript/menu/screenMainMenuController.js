@@ -35,16 +35,9 @@ define([ "Stage" ], function( Stage ) {
      * @memberOf module:Screen_mainMenu_Controller
      */
     function load() {
-        // Player.setLoop(Player.audios.fundo, true);
-        // Player.play(Player.audios.fundo);
-
-        // Player.playInLoop(Player.audios.loops.recepcao);
         Player.playInLoop( Player.audios.musics.menu );
-        // Player.playInLoop(Player.audios.loops.background);
-        // Player.playInRange(Player.audios.sfx.objeto);
 
         console.log("Configuring main menu listeners");
-        // var menuButtons = $('.menuButton');
 
         $(".menuButton").click(function() {
             Player.play( Player.audios.sfx.selecionarMenu );
