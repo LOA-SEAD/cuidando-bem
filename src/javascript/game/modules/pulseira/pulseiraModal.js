@@ -136,6 +136,63 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
         $( selector ).append( html );
     }
 
+    // Accessibility
+    /**
+     * Description
+     * @method startAccessibleModalNavigation_pulseira
+     * @memberOf module:Pulseira_Controller
+     */
+    /*function startAccessibleModalNavigation_pulseira(){
+
+        $( document ).ready( function(){
+            $( window ).on( "keydown", function( e ){
+
+                // sweepScreen
+                if( $( ".action_button" ).is(":visible") ){
+                    navigationList = $.merge(
+                                $( "#pulseira_modal input" ),
+                                $( ".action_button:visible" )
+                            );
+                }
+                else{
+                    navigationList = $( "#pulseira_modal input" );
+                }
+
+                if( e.which == KEYCODE_ARROW_DOWN ){
+                    if( i >= navigationList.length - 1 ){
+                        i = 0;
+                    }
+                    else{
+                        i++;
+                    }
+                    $( navigationList[i] ).focus();
+                    return false;
+                }
+
+                else if( e.which == KEYCODE_ARROW_UP ){
+                    if( i > 0 ){
+                        i--;
+                    }
+                    else{
+                        i = navigationList.length - 1;
+                    }
+                    $( navigationList[i] ).focus();
+                    return false;
+                }
+
+                else if( e.which == KEYCODE_ENTER ){
+                    $( navigationList[i] ).click();
+                    return false;
+                }
+
+                else if( e.which == KEYCODE_P && $( "#pauseButton" ).is(":visible") ){
+                    $( "#pauseButton" ).click();
+                    return false;
+                }
+            });
+        });
+    }*/
+
     /**
      * Description
      * @method open
@@ -165,67 +222,6 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
         });
 
         $( "#pulseira_modal input:first" ).focus();
-
-        if(showing){
-
-            var i = 0,
-            arrow_down = 40,
-            arrow_up = 38,
-            enter = 13,
-            pause = 80;
-
-            $( document ).keydown( function( e ){
-
-                if( $( ".action_button" ).is(":visible") ){
-                    var n = $.merge(
-                                $( "#pulseira_modal input" ),
-                                $( ".action_button:visible" )
-                            );
-                }
-                else{
-                    var n = $( "#pulseira_modal input" );
-                }
-
-                if( n.length != 0 ){
-                    if( e.which == arrow_down ){ // seta para baixo
-                        if( i >= n.length - 1 ){
-                            i = 0;
-                        }
-                        else{
-                            i++;
-                        }
-                        $(n[i]).focus();
-                        return false;
-                    }
-                    else if( e.which == arrow_up ){ // seta para cima
-                        if( i > 0 ){
-                            i--;
-                        }
-                        else{
-                            i = n.length - 1;
-                        }
-                        $(n[i]).focus();
-                        return false;
-                    }
-                    else if( e.which == enter ){ // enter
-                        if( i != -1 && $(n[i]).attr("class") == "action_button" ){
-                            $(n[i]).click();
-                            showing = false;
-                        }
-                        else{
-                            // TODO
-                        }
-                        return false;
-                    }
-                    else if( e.which == pause ){
-                        if( $( "#pauseButton" ).is(":visible") ){
-                            $( "#pauseButton" ).click();
-                        }
-                        return false;
-                    }
-                }
-            });
-        }
     }
 
     /**
