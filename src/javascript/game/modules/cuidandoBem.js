@@ -72,6 +72,7 @@ define([
 
         // Accessibility
         var navigationList = null;
+        // TODO: avoid duplication
         const KEYCODE_ARROW_LEFT = 37;
         const KEYCODE_ARROW_UP = 38;
         const KEYCODE_ARROW_RIGHT = 39;
@@ -121,9 +122,9 @@ define([
             if( !$( "#pauseMenu" ).is( ":visible" ) ){
                 if( $( "#commandBar" ).is( ":visible" ) ){
                     navigationList = $.merge(
-                            $( "#interactiveObjects div[class!='disabled']:visible" ),
-                            $( "#commandBar .action_button[class!='disabled']:visible" )
-                        );
+                                        $( "#interactiveObjects div[class!='disabled']:visible" ),
+                                        $( "#commandBar .action_button[class!='disabled']:visible" )
+                                     );
                     return "interactiveObjectsAndActions";
                 }
                 else{
@@ -154,7 +155,7 @@ define([
                 else{
                     i++;
                 }
-                $( navigationList[i] ).focus();
+                $( navigationList[i] ).trigger("screenReader");
                 return false;
             }
 
@@ -165,7 +166,7 @@ define([
                 else{
                     i = navigationList.length - 1;
                 }
-                $( navigationList[i] ).focus();
+                $( navigationList[i] ).trigger("screenReader");
                 return false;
             }
 
@@ -188,47 +189,45 @@ define([
          * @memberOf module:CuidandoBem
          */
 
-        var i = -1;
-        var j = -1;
+        var i = 0;
+        var j = 0;
 
         function startAccessibleInGameNavigation() {
 
             $( window ).off( "keydown" );
 
-            $( document ).ready( function(){
-                $( window ).on( "keydown", function( e ){
+            $( window ).on( "keydown", function( e ){
 
-                    if( $( "#dialogBar" ).is( ":visible" ) && !$( "#pauseMenu" ).is( ":visible" ) ){
+                if( $( "#dialogBar" ).is( ":visible" ) && !$( "#pauseMenu" ).is( ":visible" ) ){
 
-                        if( e.which == KEYCODE_ARROW_UP && $( ".dialog_reread" ).is( ":visible" ) ){
-                            $( ".dialog_reread" ).click();
-                            return false;
-                        }
-                        else if( e.which == KEYCODE_ARROW_DOWN && $( ".dialog_right" ).is( ":visible" ) ){
-                            $( ".dialog_right" ).click();
-                            return false;
-                        }
-                        else if( e.which == KEYCODE_ONE && $( ".dialog_button[value='1']" ).is( ":visible" ) ){
-                            $( ".dialog_button[value='1']" ).click();
-                            return false;
-                        }
-                        else if( e.which == KEYCODE_TWO && $( ".dialog_button[value='2']" ).is( ":visible" ) ){
-                            $( ".dialog_button[value='2']" ).click();
-                            return false;
-                        }
-                        else if( e.which == KEYCODE_THREE && $( ".dialog_button[value='3']" ).is( ":visible" ) ){
-                            $( ".dialog_button[value='3']" ).click();
-                            return false;
-                        }
-                        else if( $( "#pauseButton" ).is( ":visible" ) && e.which == KEYCODE_P ){
-                            $( "#pauseButton" ).click();
-                            return false;
-                        }
-                    
-                    } else {
-                        return circularNavigation( e.which );
+                    if( e.which == KEYCODE_ARROW_UP && $( ".dialog_reread" ).is( ":visible" ) ){
+                        $( ".dialog_reread" ).click();
+                        return false;
                     }
-                });
+                    else if( e.which == KEYCODE_ARROW_DOWN && $( ".dialog_right" ).is( ":visible" ) ){
+                        $( ".dialog_right" ).click();
+                        return false;
+                    }
+                    else if( e.which == KEYCODE_ONE && $( ".dialog_button[value='1']" ).is( ":visible" ) ){
+                        $( ".dialog_button[value='1']" ).click();
+                        return false;
+                    }
+                    else if( e.which == KEYCODE_TWO && $( ".dialog_button[value='2']" ).is( ":visible" ) ){
+                        $( ".dialog_button[value='2']" ).click();
+                        return false;
+                    }
+                    else if( e.which == KEYCODE_THREE && $( ".dialog_button[value='3']" ).is( ":visible" ) ){
+                        $( ".dialog_button[value='3']" ).click();
+                        return false;
+                    }
+                    else if( $( "#pauseButton" ).is( ":visible" ) && e.which == KEYCODE_P ){
+                        $( "#pauseButton" ).click();
+                        return false;
+                    }
+                
+                } else {
+                    return circularNavigation( e.which );
+                }
             });
         }
 

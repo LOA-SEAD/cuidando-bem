@@ -159,7 +159,13 @@ define([
         element.attr("title", _action.getName() );
         element.attr("id", _action.getId() );
         element.addClass( _action.getCssClass() );
-        element.focus( function(){ $( '<span>' + _action.getName() + '</span><br>' ).appendTo( "#accessible_log" ); });
+
+        element.on( "screenReader", function(){
+            $( ".jqhover" ).removeClass( "jqhover" );
+            $( this ).addClass("jqhover");
+            $( "#accessible_log" ).empty();
+            $( '<span>' + _action.getName() + '</span><br>' ).appendTo( "#accessible_log" );
+        });
 
         element.tooltip({
             tooltipClass: "actionButton-ui-tooltip",

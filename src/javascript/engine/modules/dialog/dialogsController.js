@@ -100,6 +100,8 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             $( dialogCharImg ).show();
             $( dialogTextSelector ).text( _dialog.getText() );
 
+            $( "#accessible_log" ).empty();
+
             $( '<span>' + _dialog.getSpeakerName() + ': </span>' ).appendTo( "#accessible_log" );
 
             if( _dialog.getText() != "" ){
@@ -109,15 +111,40 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             // set the text for answer options (accessibility is provided in the method addAllDialogButtons)
             changeDialogOptionsTo( _dialog.getOptions(), _dialog.getRandomize() );
 
+            $( '<span>Pressione a seta para cima para reler.</span><br>' ).appendTo( "#accessible_log" );
+
+            if( $( ".dialog_mainText" ).text() != "" ){
+                $( '<span>Pressione a seta para baixo para avançar.</span><br>' ).appendTo( "#accessible_log" );
+            }
+            else if( $(".dialog_options").text() != "" ){
+
+                var options = $( ".dialog_options .text" ).map( function(){
+                            return $.trim($(this).text());
+                        }).get();
+
+                if( options.length == 1 ){
+                    $( '<span>Pressione o número 1 para selecionar a opção única.</span><br>' ).appendTo( "#accessible_log" );
+                }
+                else{
+                    $( '<span>Pressione os números 1, 2 ou 3 para selecionar as opções 1, 2 ou 3, respectivamente.</span><br>' ).appendTo( "#accessible_log" );
+                }
+            }
+
             $( ".dialog_reread" ).off();
 
             $( ".dialog_reread" ).click( function(){
+
+                $( "#accessible_log" ).empty();
+
                 $( '<span>' + $( ".dialog_charName" ).text() + ': </span>' ).appendTo( "#accessible_log" );
 
                 if( $( ".dialog_mainText" ).text() != "" ){
                     $( '<span>' + $( ".dialog_mainText" ).text() + '</span><br>' ).appendTo( "#accessible_log" );
+                    $( '<span>Pressione a seta para cima para reler.</span><br>' ).appendTo( "#accessible_log" );
+                    $( '<span>Pressione a seta para baixo para avançar.</span><br>' ).appendTo( "#accessible_log" );
                 }
                 else if( $(".dialog_options").text() != "" ){
+
                     var options = $( ".dialog_options .text" ).map( function(){
                             return $.trim($(this).text());
                         }).get();
@@ -131,6 +158,15 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
                         }
 
                         $( '<span>Opção ' + op + ': ' + options[ i ] + '</span><br>' ).appendTo( "#accessible_log" );
+                    }
+
+                    $( '<span>Pressione a seta para cima para reler.</span><br>' ).appendTo( "#accessible_log" );
+
+                    if( op == "única" ){
+                        $( '<span>Pressione o número 1 para selecionar a opção única.</span><br>' ).appendTo( "#accessible_log" );
+                    }
+                    else{
+                        $( '<span>Pressione os números 1, 2 ou 3 para selecionar as opções 1, 2 ou 3, respectivamente.</span><br>' ).appendTo( "#accessible_log" );
                     }
                 }
             });
