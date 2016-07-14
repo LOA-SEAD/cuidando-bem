@@ -155,8 +155,7 @@ define(function( require ) {
 
     function respira(){
 
-        var fr = breathing.cyclesPerMinute;
-        var frameTime = ( 1000 * 60 / fr ) / 2;
+        const HALF_TIME = ( 1000 * 60 / breathing.cyclesPerMinute ) / 2;
 
         Player.play( Player.audios.sfx.inspirando );
         var inspirou = true;
@@ -183,10 +182,14 @@ define(function( require ) {
                     inspirou = false;
                 }
 
-            }, frameTime );
+            }, HALF_TIME );
     }
 
     function open() {
+
+        const DELAY = 8; // delay in seconds
+
+        Player.stopAll();
         $( canvasSelector ).show();
 
         clock.angle = -Math.PI / 2;
@@ -195,16 +198,27 @@ define(function( require ) {
         breathing.frameCounter = 0;
 
         tick.accumulator = 0;
-        tick.last = new Date().getTime();
-        state = STATES.playing;
 
-        animationLoop();
-                    
-        Player.stopAll();
-        Player.playInLoop( Player.audios.sfx.ticTac );
+        $( "#accessible_log" ).empty();
+        $( '<span>A respiração começará em ' + DELAY + ' segundos. Conte quantas vezes o paciente respira em 1 minuto. A cada minuto um bip é emitido.</span><br>' ).appendTo( "#accessible_log" );
+                
+        setTimeout( function(){
 
-        bip = setInterval( function(){ Player.play( Player.audios.sfx.bip ); }, 60000 );
-        respira();
+            if( $( canvasSelector ).is( ":visible" ) ){
+
+                state = STATES.playing;
+
+                tick.last = new Date().getTime();
+
+                animationLoop();
+                            
+                Player.playInLoop( Player.audios.sfx.ticTac );
+
+                bip = setInterval( function(){ Player.play( Player.audios.sfx.bip ); }, 60000 );
+                respira();
+            }
+
+        }, DELAY * 1000 );
     }
 
     function close() {
