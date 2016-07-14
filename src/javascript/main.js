@@ -74,6 +74,11 @@ require([ "requireConfig" ], function() {
                     });
 
                     preloader.setTotalFiles( totalFilesToLoad );
+                    preloader.setCallBack(function() {
+                      require([ "gameConfig", "CuidandoBem", "DialogsData" ], function( config ) {
+                          config.load(function() {});
+                      });
+                    });
 
                     // Load Storage module
                     if ( storage.isSfxMuted() ) {
@@ -87,9 +92,6 @@ require([ "requireConfig" ], function() {
                     } else {
                         player.setVolumeToCategory( player.audios.musics, storage.getMusicVolume() );
                     }
-                    require([ "gameConfig", "CuidandoBem", "DialogsData" ], function( config ) {
-                        config.load(function() {});
-                    });
                 });
             });
         });

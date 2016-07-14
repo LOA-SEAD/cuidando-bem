@@ -29,7 +29,7 @@ define([ "Stage" ], function( Stage ) {
     var totalFilesLoaded = 0;
 
     var preloading = true;
-
+    var loadEndCallback;
     /**
      * This method is called when the screen loadGame is loaded
      *
@@ -68,10 +68,15 @@ define([ "Stage" ], function( Stage ) {
         $(".preloaderFill").css("width", percent + "%");
 
         if ( percent >= 100 ) {
+          loadEndCallback();
           Stage.changeScreen( 0 );
           preloading = false;
         }
       // }
+    }
+
+    function setCallBack ( _callback ) {
+      loadEndCallback = _callback;
     }
 
     return {
@@ -79,7 +84,9 @@ define([ "Stage" ], function( Stage ) {
         unload: unload,
 
         setTotalFiles: setTotalFiles,
-        fileLoaded: fileLoaded
+        fileLoaded: fileLoaded,
+
+        setCallBack: setCallBack
     };
 
 });
