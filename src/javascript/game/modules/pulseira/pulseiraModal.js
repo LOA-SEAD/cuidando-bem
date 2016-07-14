@@ -128,8 +128,10 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
     // Accessibility
     // TODO: avoid duplication
     var navigationList = null;
-    const KEYCODE_ARROW_DOWN = 40;
+    const KEYCODE_ARROW_LEFT = 37;
     const KEYCODE_ARROW_UP = 38;
+    const KEYCODE_ARROW_RIGHT = 39;
+    const KEYCODE_ARROW_DOWN = 40;
     const KEYCODE_ENTER = 13;
     const KEYCODE_P = 80;
     const KEYCODE_ONE = 49;
@@ -177,6 +179,7 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
     /**
      * Description
      * @method pulseiraNavigation
+     * @param {} _keycode
      * @memberOf module:Pulseira_Controller
      */
     function pulseiraNavigation( _keycode ) {
@@ -223,6 +226,10 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
      * @method startAccessiblePulseiraNavigation
      * @memberOf module:Pulseira_Controller
      */
+
+    var i = -1;
+    var j = -1;
+
     function startAccessiblePulseiraNavigation() {
 
         $( window ).off( "keydown" );
