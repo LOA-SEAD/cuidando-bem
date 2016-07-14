@@ -72,8 +72,10 @@ define([
 
         // Accessibility
         var navigationList = null;
-        const KEYCODE_ARROW_DOWN = 40;
+        const KEYCODE_ARROW_LEFT = 37;
         const KEYCODE_ARROW_UP = 38;
+        const KEYCODE_ARROW_RIGHT = 39;
+        const KEYCODE_ARROW_DOWN = 40;
         const KEYCODE_ENTER = 13;
         const KEYCODE_P = 80;
         const KEYCODE_ONE = 49;
@@ -185,7 +187,13 @@ define([
          * @method startAccessibleInGameNavigation
          * @memberOf module:CuidandoBem
          */
+
+        var i = -1;
+        var j = -1;
+
         function startAccessibleInGameNavigation() {
+
+            $( window ).off( "keydown" );
 
             $( document ).ready( function(){
                 $( window ).on( "keydown", function( e ){
@@ -358,7 +366,8 @@ define([
          * @param {} _modalSceneId
          * @memberOf module:CuidandoBem
          */
-        function openModalScene( _modalSceneId ) {            
+        function openModalScene( _modalSceneId ) {
+
             var modalScene = Level.getModalScene( _modalSceneId );
             Scene = modalScene;
 
@@ -373,11 +382,13 @@ define([
          * @memberOf module:CuidandoBem
          */
         function closeModalScene() {
+            
             ModalScene.close();
 
             CommandBar.changeToActionsButtons( Actions );
             InteractiveObject.changeToInteractiveObjects( InteractiveObjects );
             Scene = Level.getCurrentScene();
+            startAccessibleInGameNavigation();
         }
 
 
