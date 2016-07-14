@@ -15,4 +15,4 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define([],function(){function n(t,e){var o,r=[];if("object"==typeof e)if(e instanceof Array)r=r.concat(e);else for(o in e)r=r.concat(n(t,e[o]));else r.push(t+e);return r}function t(){arguments[0];a++,a==c&&(r=!1,o())}function e(e,f,i){if(r)throw new Error("Can't load two path objects at the same time");var s;r=!0,a=0,o=i;var u=n(e,f);c=u.length;for(s in u){var l=u[s],h=new Image;h.onload=t,h.src=l}}var o,r=!1,a=0,c=0;return{load:e}});
+define([],function(){function n(t,e){var r,o=[];if("object"==typeof e)if(e instanceof Array)o=o.concat(e);else for(r in e)o=o.concat(n(t,e[r]));else o.push(t+e);return o}function t(){arguments[0];c++,o(),c==f&&(a=!1,r())}function e(e,i,u,s){if(a)throw new Error("Can't load two path objects at the same time");var l;a=!0,c=0,r=u,o=s;var h=n(e,i);f=h.length;for(l in h){var v=h[l],d=new Image;d.onload=t,d.src=v}return f}var r,o,a=!1,c=0,f=0;return{load:e}});

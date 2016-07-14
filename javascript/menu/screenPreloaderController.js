@@ -15,4 +15,4 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define(["Stage"],function(n){function e(){$(".menuButton").click(function(){u.play(u.audios.sfx.selecionarMenu)}),$(".backButton").click(function(){n.changeScreen(0)})}function c(){}var u=require("Player");return{load:e,unload:c}});
+define(["Stage"],function(e){function n(){}function t(){}function o(e){i=e}function a(){l++;var e=Math.floor(l/i*100);$(".preloaderPercent").text(e+"%"),$(".preloaderFill").css("width",e+"%"),e>=100&&(r=!1)}var i=0,l=0,r=!0;return{load:n,unload:t,setTotalFiles:o,fileLoaded:a}});
