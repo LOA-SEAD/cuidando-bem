@@ -48,7 +48,7 @@ module.exports = function(grunt) {
               config: "serve",
               type: "confirm",
               message: "Should start dev server?",
-              default: true,
+              default: false,
               when: function( answers ) {
                 return answers.target === "dev" || answers.target === "prod";
               }
@@ -79,16 +79,16 @@ module.exports = function(grunt) {
                 return answers.target === "rel";
               }
             }, {
-              config: "gh-pages",
+              config: "ghpages",
               type: "confirm",
               message: "Should use git to upload to test server?",
-              default: true,
+              default: false,
               when: function( answers ) {
                 return answers.target === "rel";
               }
             }
           ],
-          then: function(answers) {
+          then: function( answers ) {
             if ( answers.ver ) {
               grunt.task.run([
                 "version::" + answers.ver
@@ -105,6 +105,11 @@ module.exports = function(grunt) {
               ]);
             }
 
+            if ( answers.ghpages ) {
+              grunt.task.run([
+                "gh-pages"
+              ]);
+            }
             if ( answers.distributions ) {
               console.log( answers.distributions );
             }
