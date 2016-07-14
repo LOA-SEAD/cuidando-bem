@@ -33,107 +33,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         if ( !flagsOn ) {
             visibility = true;
         }
-
-        temp = 0;
-
-        function navigationObjInteractives(){
-
-            $( document ).off();
-
-            temp++;
-            $( '<span>Início da chamada ' + temp + '</span><br>' ).appendTo( "#accessible_log" );
-
-            var i = -1,
-                arrow_down = 40,
-                arrow_up = 38,
-                enter = 13,
-                pause = 80;
-
-            $( document ).keydown( function( e ){
-                if( !$("#dialogBar").is(":visible") ){
-
-                    var n = null;
-
-                    if( !$("#pauseMenu").is(":visible") ){
-                        if( $("#commandBar").is(":visible") ){
-                            n = $.merge(
-                                    $( "#interactiveObjects div[class!='disabled']:visible" ),
-                                    $( "#commandBar .action_button[class!='disabled']:visible" )
-                                );
-                        }
-                        else{
-                            n = $( "#interactiveObjects div[class!='disabled']:visible" );
-                        }
-                    }
-                    else{
-                        n = $( "#pauseMenu button[class!='disabled']:visible" );
-                    }
-
-                    if( n != null ){
-
-                        if( e.which == arrow_down ){ // seta para baixo
-                            if( i >= n.length - 1 ){
-                                i = 0;
-                            }
-                            else{
-                                i++;
-                            }
-                            $(n[i]).focus();
-                            return false;
-                        }
-                        else if( e.which == arrow_up ){ // seta para cima
-                            if( i > 0 ){
-                                i--;
-                            }
-                            else{
-                                i = n.length - 1;
-                            }
-                            $(n[i]).focus();
-                            return false;
-                        }
-                        else if( e.which == enter ){ // enter
-                            if( i != -1 ){
-                               $(n[i]).click();
-                               return false;
-                            }
-                        }
-                        else if ( e.which == pause && $( "#pauseButton" ).is(":visible") ){
-                            $( "#pauseButton" ).click();
-                            return false;
-                        }
-                    }
-                    /*else if( $( "#pauseMenu" ).is(":visible") ){
-
-                        var s = $( "#pauseMenu button" );
-
-                        if( e.which == pause && $( "#pauseButton" ).is(":visible") ){
-                            $( "#pauseButton" ).click();
-                        }
-                        else if( e.which == arrow_down ){
-                            if( i >= n.length - 1 ){
-                                i = 0;
-                            }
-                            else{
-                                i++;
-                            }
-                            $(s[i]).focus();
-                        }
-                        else if( e.which == arrow_up ){
-                            if( i > 0 ){
-                                i--;
-                            }
-                            else{
-                                i = n.length - 1;
-                            }
-                            $(s[i]).focus();
-                        }
-                    }*/
-                }
-                //return;
-            });
-            $( '<span>Fim da chamada ' + temp + '</span><br>' ).appendTo( "#accessible_log" );
-        }
-
+        
         function recepcaoIrCorredor() {
             console.log("Funcao: recepcao_ir_corredor");
             // wont check for flags
@@ -194,8 +94,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeDialog( 3 );
                     core.setInteractiveObjectVisible("io-ir_corredor_esquerda", true );
                     core.setInteractiveObjectVisible("io-ir_corredor_direita", true );
-                    
-                    navigationObjInteractives();
                 })
         ]);
 
@@ -255,16 +153,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.setInteractiveObjectVisible("io-ir_sala_leitos", false );
                         // core.setActionVisible("btn-conversar_mentor", false);
                         core.setInteractiveObjectVisible("io-conversar_mentor", false );
-                        
-                        navigationObjInteractives();
                         break;
                     case 2:
                         // core.setActionVisible("btn-ir_posto_enfermagem", false);
                         core.setInteractiveObjectVisible("io-ir_posto_enfermagem", false );
                         // core.setActionVisible("btn-ir_sala_leitos", true);
-                        core.setInteractiveObjectVisible("io-ir_sala_leitos", true );
-                        
-                        navigationObjInteractives();
+                        core.setInteractiveObjectVisible("io-ir_sala_leitos", true );                        
                         break;
                 }
             })
@@ -348,8 +242,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeDialog( 4 );
                     core.setInteractiveObjectVisible("io-ir_sala_leitos", true );
                     core.setInteractiveObjectVisible("io-conversar_mentor", true );
-                    
-                    navigationObjInteractives();
                 })
         ]);
 
@@ -538,9 +430,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.closeDialog( 10 );
                     core.openCommandBar();
-                    
-                    navigationObjInteractives();
-
                 }),
 
 
@@ -593,9 +482,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeDialog( 16 );
                     // Já que a pulseira está correta, desabilita o acesso ao paciente
                     core.setInteractiveObjectVisible("io-conversar_paciente", false );
-                    core.openCommandBar();
-                    
-                    navigationObjInteractives();
+                    core.openCommandBar();                    
                 }),
             // Dialog 17 - Mentor
             new Dialog( lib.characters.mentor )
@@ -655,12 +542,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("pulseira") == false ) {
                         // core.setInteractiveObjectVisible("io-pulseira_paciente", true );
                     }
-
                     if(core.flag("score_checar_pulseira") == false){
                         core.flag("score_checar_pulseira", true);
                         core.registerScoreItem( Scores.identificarPaciente );
                     }
-
                 })
                 .setVisibility( visibility ),
 
@@ -668,15 +553,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
              new InteractiveObject("io-conversar_paciente", "Falar com o paciente")
                 .setCssClass("intObj-conversar_paciente")
                 .onClick(function() {
-
-
                     core.openDialog( 18 );
                     core.closeCommandBar();
-
                 })
                 .setVisibility( true )
-
-
         ]);
 
         leito.registerActions([
@@ -698,7 +578,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }*/
                 })
                 .setVisibility( visibility ),
-
 
             new Action("btn-lavarMaos", "Lavar as mãos")
                 .setCssClass("action-lavarMaos")
@@ -780,8 +659,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-medir_freq_respiratoria")
                 .onClick(function() {
                     console.log("Action: medir_freq_respiratoria");
-                    // Tic-Tac relógio
-                    Player.play( Player.audios.sfx.ticTac );
+
                     if ( core.flag("lavar-maos") >= 1 ) {
 
                         // core.setActionVisible("btn-frequencia_respiratoria", false);
@@ -905,7 +783,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Alertas.esqueceu.pegarBandeja )
                 .registerOption("", function() {
                     core.closeDialog();
-                    navigationObjInteractives();
+                    
                 })
         ]);
 
@@ -1146,6 +1024,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     FreqRespiratoria.close();
                     core.closeModalScene("freqRespiratoria");
                     Player.stop();
+                    Player.playInRange( Player.audios.musics.inGame );
                 })
                 .setVisibility( true )
         ]);
