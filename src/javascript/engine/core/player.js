@@ -311,6 +311,17 @@ define(function() {
     function setVolumeToCategory( category, volume ) {
         category._volume = volume;
 
+        if( category._name == "musics" ) {
+          if( loopSoundBuffer !== undefined ) {
+            loopSoundBuffer.vol = volume;
+            loopSoundBuffer.volume = volume * masterVolume;
+          }
+          if( rangeSoundBuffer !== undefined ) {
+            rangeSoundBuffer.vol = volume;
+            rangeSoundBuffer.volume = volume * masterVolume;
+          }
+        }
+
         for ( sound in category ) {
             setVolumeOfTo( category[ sound ], volume * masterVolume );
         }
