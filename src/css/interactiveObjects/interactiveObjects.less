@@ -28,7 +28,8 @@ div[role="log"]:not(#accessible_log){
 }
 
 .interactiveObject:hover:not(.no-glow):not(.disabled),
-.interactiveObject:focus:not(.no-glow):not(.disabled) {
+.interactiveObject:focus:not(.no-glow):not(.disabled),
+.interactiveObject.jqhover:not(.no-glow):not(.disabled) {
     cursor: pointer;
     background-color: transparent;
     border: none;
@@ -73,7 +74,8 @@ div[role="log"]:not(#accessible_log){
 
 
 .intObj-lobbyToHallway-right:hover,
-.intObj-lobbyToHallway-right:focus {
+.intObj-lobbyToHallway-right:focus,
+.intObj-lobbyToHallway-right.jqhover {
     background-image: svg-gradient(to right, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.2) 25%, transparent);
 }
 
@@ -85,7 +87,8 @@ div[role="log"]:not(#accessible_log){
 }
 
 .intObj-lobbyToHallway-left:hover,
-.intObj-lobbyToHallway-left:focus {
+.intObj-lobbyToHallway-left:focus,
+.intObj-lobbyToHallway-left.jqhover {
     background-image: svg-gradient(to right, transparent, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0.7));
 }
 
