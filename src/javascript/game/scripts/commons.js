@@ -119,7 +119,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                 circulante: new Character("Circulante", "char-circulante"),
                 // TODO: mudar 'paulo:' para 'farmaceutico:'
-                paulo: new Character("Paulo", "char-paulo"),
+                paulo: new Character("Paulo", "char-farmaceutico"),
 
                 pacientes: {
                     joao: new Character("Sr. João", "char-paciente_01"),

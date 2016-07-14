@@ -93,7 +93,7 @@ define([], function() {
                 }
             }
         } else {
-            arr.push( baseDir + obj );
+            arr.push( obj );
         }
 
         return arr;
@@ -149,6 +149,9 @@ define([], function() {
             imageLoadCallBack = _imageLoadCallBack;
 
             var paths = getAsArray( baseDir, pathObject );
+            paths.forEach(function( e, i, arr ) {
+              arr[ i ] = baseDir + e;
+            });
             imagesToLoad = paths.length;
 
             console.info("Images to load: ", imagesToLoad );
