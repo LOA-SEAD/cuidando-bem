@@ -20,6 +20,10 @@ define(function( require ) {
 
     var canvasSelector = "#freqRespiratoria";
 
+    var Player = require("Player");
+    var respiracao;
+    var bip;
+
     var STATES = {
         playing: 0,
         stopped: 1
@@ -149,6 +153,39 @@ define(function( require ) {
         console.info("FreqRespiratoria added to stage");
     }
 
+    function respira(){
+
+        var fr = breathing.cyclesPerMinute;
+        var frameTime = ( 1000 * 60 / fr ) / 2;
+
+        Player.play( Player.audios.sfx.inspirando );
+        var inspirou = true;
+        var expirou = false;
+
+        var count = 0;
+        respiracao = setInterval( function(){
+
+                if( count == 0 ){
+                    count = 1;
+                } else if( count == 1){
+                    count = 0;
+                }
+
+                if(count == 0 && !inspirou){
+                    Player.play( Player.audios.sfx.inspirando );
+                    inspirou = true;
+                    expirou = false;
+                }
+                
+                if(count == 1 && !expirou){
+                    Player.play( Player.audios.sfx.expirando );
+                    expirou = true;
+                    inspirou = false;
+                }
+
+            }, frameTime );
+    }
+
     function open() {
         $( canvasSelector ).show();
 
@@ -162,12 +199,20 @@ define(function( require ) {
         state = STATES.playing;
 
         animationLoop();
+                    
+        Player.stopAll();
+        Player.playInLoop( Player.audios.sfx.ticTac );
+
+        bip = setInterval( function(){ Player.play( Player.audios.sfx.bip ); }, 60000 );
+        respira();
     }
 
     function close() {
         $( canvasSelector ).hide();
-
         state = STATES.stopped;
+        Player.stopAll();
+        clearInterval(bip);
+        clearInterval(respiracao);
     }
 
 
