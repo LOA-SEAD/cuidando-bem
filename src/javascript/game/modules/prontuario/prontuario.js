@@ -24,8 +24,8 @@ This file is part of Cuidando Bem.
 define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
 
     // Accessibility
-    // TODO: avoid duplication
     var navigationList = null;
+    // TODO: avoid duplication
     const KEYCODE_ARROW_LEFT = 37;
     const KEYCODE_ARROW_UP = 38;
     const KEYCODE_ARROW_RIGHT = 39;
@@ -608,9 +608,9 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         if( !$( "#pauseMenu" ).is( ":visible" ) ){
             if( $( "#commandBar" ).is( ":visible" ) ){
                 navigationList = $.merge(
-                        $( "#prontuario .outerBlock:visible input:enabled" ),
-                        $( "#commandBar .action_button[class!='disabled']:visible" )
-                    );
+                                     $( "#prontuario .outerBlock:visible input:enabled" ),
+                                     $( "#commandBar .action_button[class!='disabled']:visible" )
+                                 );
                 return "inputsAndActions";
             }
             else{
@@ -664,8 +664,8 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
             else{
                 j++;
             }
-            $( tabsList[j] ).focus();
-            i = -1;
+            $( tabsList[j] ).click();
+            i = 0;
             return false;
         }
 
@@ -676,8 +676,8 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
             else{
                 j = tabsList.length - 1;
             }
-            $( tabsList[j] ).focus();
-            i = -1;
+            $( tabsList[j] ).click();
+            i = 0;
             return false;
         }
 
@@ -700,47 +700,45 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
      * @memberOf module:Prontuario_Controller
      */
     
-    var i = -1;
-    var j = -1;
+    var i = 0;
+    var j = 0;
     
     function startAccessibleProntuarioNavigation() {
 
         $( window ).off( "keydown" );
 
-        $( document ).ready( function(){
-            $( window ).on( "keydown", function( e ){
+        $( window ).on( "keydown", function( e ){
 
-                if( $( "#dialogBar" ).is( ":visible" ) && !$( "#pauseMenu" ).is( ":visible" ) ){
+            if( $( "#dialogBar" ).is( ":visible" ) && !$( "#pauseMenu" ).is( ":visible" ) ){
 
-                    if( e.which == KEYCODE_ARROW_UP && $( ".dialog_reread" ).is( ":visible" ) ){
-                        $( ".dialog_reread" ).click();
-                        return false;
-                    }
-                    else if( e.which == KEYCODE_ARROW_DOWN && $( ".dialog_right" ).is( ":visible" ) ){
-                        $( ".dialog_right" ).click();
-                        return false;
-                    }
-                    else if( e.which == KEYCODE_ONE && $( ".dialog_button[value='1']" ).is( ":visible" ) ){
-                        $( ".dialog_button[value='1']" ).click();
-                        return false;
-                    }
-                    else if( e.which == KEYCODE_TWO && $( ".dialog_button[value='2']" ).is( ":visible" ) ){
-                        $( ".dialog_button[value='2']" ).click();
-                        return false;
-                    }
-                    else if( e.which == KEYCODE_THREE && $( ".dialog_button[value='3']" ).is( ":visible" ) ){
-                        $( ".dialog_button[value='3']" ).click();
-                        return false;
-                    }
-                    else if( $( "#pauseButton" ).is( ":visible" ) && e.which == KEYCODE_P ){
-                        $( "#pauseButton" ).click();
-                        return false;
-                    }
-                
-                } else {
-                    return prontuarioNavigation( e.which );
+                if( e.which == KEYCODE_ARROW_UP && $( ".dialog_reread" ).is( ":visible" ) ){
+                    $( ".dialog_reread" ).click();
+                    return false;
                 }
-            });
+                else if( e.which == KEYCODE_ARROW_DOWN && $( ".dialog_right" ).is( ":visible" ) ){
+                    $( ".dialog_right" ).click();
+                    return false;
+                }
+                else if( e.which == KEYCODE_ONE && $( ".dialog_button[value='1']" ).is( ":visible" ) ){
+                    $( ".dialog_button[value='1']" ).click();
+                    return false;
+                }
+                else if( e.which == KEYCODE_TWO && $( ".dialog_button[value='2']" ).is( ":visible" ) ){
+                    $( ".dialog_button[value='2']" ).click();
+                    return false;
+                }
+                else if( e.which == KEYCODE_THREE && $( ".dialog_button[value='3']" ).is( ":visible" ) ){
+                    $( ".dialog_button[value='3']" ).click();
+                    return false;
+                }
+                else if( $( "#pauseButton" ).is( ":visible" ) && e.which == KEYCODE_P ){
+                    $( "#pauseButton" ).click();
+                    return false;
+                }
+            
+            } else {
+                return prontuarioNavigation( e.which );
+            }
         });
     }
 
