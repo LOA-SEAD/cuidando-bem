@@ -83,64 +83,6 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
                 }
             });
             isDialogOpen = true;
-
-            var enter = 13,
-                arrow_down = 40,
-                arrow_up = 38,
-                one = 49,
-                two = 50,
-                three = 51,
-                pause = 80;
-
-            // @dev {
-            $( document ).keydown(function( e ) {
-                if( $( "#dialogBar" ).is( ":visible" ) ){
-                    if( e.which == arrow_up ){
-                        if( $( ".dialog_reread" ).is( ":visible" ) ){
-                            $( ".dialog_reread" ).click();
-                        }
-                        return false;
-                    }
-                    else if( e.which == arrow_down ){
-                        if( $( ".dialog_right" ).is( ":visible" ) ){
-                            $( ".dialog_right" ).click();
-                        }
-                        return false;
-                    }
-                    else if( e.which == one ){
-                        if( $( ".dialog_button[value='1']" ).is( ":visible" ) ){
-                            $( ".dialog_button[value='1']" ).click();
-                        }
-                        return false;
-                    }
-                    else if( e.which == two ){
-                        if( $( ".dialog_button[value='2']" ).is( ":visible" ) ){
-                            $( ".dialog_button[value='2']" ).click();
-                        }
-                        return false;
-                    }
-                    else if( e.which == three ){
-                        if( $( ".dialog_button[value='3']" ).is( ":visible" ) ){
-                            $( ".dialog_button[value='3']" ).click();
-                        }
-                        return false;
-                    }
-                    else if( e.which == pause ){
-                        if( $( "#pauseButton" ).is( ":visible" ) ){
-                            $( "#pauseButton" ).click();
-                        }
-                        return false;
-                    }
-                }
-                else{
-                    if( e.which == pause ){
-                        if( $( "#pauseButton" ).is( ":visible" ) ){
-                            $( "#pauseButton" ).click();
-                        }
-                        return false;
-                    }
-                }
-            });
         }
 
         /**
@@ -164,19 +106,23 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
                 $( '<span>' + _dialog.getText() + '</span><br>' ).appendTo( "#accessible_log" );
             }
 
-            $(".dialog_reread").off();
+            // set the text for answer options (accessibility is provided in the method addAllDialogButtons)
+            changeDialogOptionsTo( _dialog.getOptions(), _dialog.getRandomize() );
 
-            $(".dialog_reread").click(function(){
-                $( '<span>' + $(".dialog_charName").text() + ': </span>' ).appendTo( "#accessible_log" );
-                if( $(".dialog_mainText").text() != "" ){
-                    $( '<span>' + $(".dialog_mainText").text() + '</span><br>' ).appendTo( "#accessible_log" );
+            $( ".dialog_reread" ).off();
+
+            $( ".dialog_reread" ).click( function(){
+                $( '<span>' + $( ".dialog_charName" ).text() + ': </span>' ).appendTo( "#accessible_log" );
+
+                if( $( ".dialog_mainText" ).text() != "" ){
+                    $( '<span>' + $( ".dialog_mainText" ).text() + '</span><br>' ).appendTo( "#accessible_log" );
                 }
                 else if( $(".dialog_options").text() != "" ){
-                    var options = $(".dialog_options .text").map(function(){
-                        return $.trim($(this).text());
+                    var options = $( ".dialog_options .text" ).map( function(){
+                            return $.trim($(this).text());
                         }).get();
 
-                    for ( i = 0; i < options.length; i++ ) {
+                    for ( var i = 0; i < options.length; i++ ) {
                         if(options.length == 1){
                             op = "única";
                         }
@@ -188,9 +134,6 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
                     }
                 }
             });
-
-            // set the text for answer options (accessibility is provided in the method addAllDialogButtons)
-            changeDialogOptionsTo( _dialog.getOptions(), _dialog.getRandomize() );
 
             // type of animation to be executed
             var charNameAnimation = "blind";
