@@ -23,6 +23,18 @@ This file is part of Cuidando Bem.
  */
 define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
 
+    // Accessibility
+    // TODO: avoid duplication
+    var navigationList = null;
+    const KEYCODE_ARROW_LEFT = 37;
+    const KEYCODE_ARROW_UP = 38;
+    const KEYCODE_ARROW_RIGHT = 39;
+    const KEYCODE_ARROW_DOWN = 40;
+    const KEYCODE_ENTER = 13;
+    const KEYCODE_P = 80;
+    const KEYCODE_ONE = 49;
+    const KEYCODE_TWO = 50;
+    const KEYCODE_THREE = 51;
 
     var prontuarioSelector = "#prontuario";
 
@@ -586,6 +598,152 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         $(".content").tabs();
     }
 
+    /**
+     * Description
+     * @method prontuarioSweepScreen
+     * @memberOf module:Prontuario_Controller
+     */
+    function prontuarioSweepScreen() {
+
+        if( !$( "#pauseMenu" ).is( ":visible" ) ){
+            if( $( "#commandBar" ).is( ":visible" ) ){
+                navigationList = $.merge(
+                        $( "#prontuario .outerBlock:visible input:enabled" ),
+                        $( "#commandBar .action_button[class!='disabled']:visible" )
+                    );
+                return "inputsAndActions";
+            }
+            else{
+                navigationList = $( "#prontuario .outerBlock:visible input:enabled" );
+                return "inputsOnly";
+            }
+        }
+        else{
+            navigationList = $( "#pauseMenu .button" );
+            return "pause";
+        }
+    }
+
+    /**
+     * Description
+     * @method prontuarioNavigation
+     * @param {} _keycode
+     * @memberOf module:Prontuario_Controller
+     */
+    function prontuarioNavigation( _keycode ) {
+
+        op = prontuarioSweepScreen();
+        var tabsList = $( "#prontuario li.ui-state-default:visible a" );
+
+        if( _keycode == KEYCODE_ARROW_DOWN ){
+            if( i >= navigationList.length - 1 ){
+                i = 0;
+            }
+            else{
+                i++;
+            }
+            $( navigationList[i] ).focus();
+            return false;
+        }
+
+        else if( _keycode == KEYCODE_ARROW_UP ){
+            if( i > 0 ){
+                i--;
+            }
+            else{
+                i = navigationList.length - 1;
+            }
+            $( navigationList[i] ).focus();
+            return false;
+        }
+
+        else if( _keycode == KEYCODE_ARROW_RIGHT ){
+            if( j >= tabsList.length - 1 ){
+                j = 0;
+            }
+            else{
+                j++;
+            }
+            $( tabsList[j] ).focus();
+            i = -1;
+            return false;
+        }
+
+        else if( _keycode == KEYCODE_ARROW_LEFT ){
+            if( j > 0 ){
+                j--;
+            }
+            else{
+                j = tabsList.length - 1;
+            }
+            $( tabsList[j] ).focus();
+            i = -1;
+            return false;
+        }
+
+        else if( _keycode == KEYCODE_ENTER ){
+            if( i != -1 ){
+               $( navigationList[i] ).click();
+               return false;
+            }
+        }
+
+        else if ( $( "#pauseButton" ).is( ":visible" ) && _keycode == KEYCODE_P ){
+            $( "#pauseButton" ).click();
+            return false;
+        }
+    }
+
+    /**
+     * Description
+     * @method startAccessibleProntuarioNavigation
+     * @memberOf module:Prontuario_Controller
+     */
+    
+    var i = -1;
+    var j = -1;
+    
+    function startAccessibleProntuarioNavigation() {
+
+        $( window ).off( "keydown" );
+
+        $( document ).ready( function(){
+            $( window ).on( "keydown", function( e ){
+
+                if( $( "#dialogBar" ).is( ":visible" ) && !$( "#pauseMenu" ).is( ":visible" ) ){
+
+                    if( e.which == KEYCODE_ARROW_UP && $( ".dialog_reread" ).is( ":visible" ) ){
+                        $( ".dialog_reread" ).click();
+                        return false;
+                    }
+                    else if( e.which == KEYCODE_ARROW_DOWN && $( ".dialog_right" ).is( ":visible" ) ){
+                        $( ".dialog_right" ).click();
+                        return false;
+                    }
+                    else if( e.which == KEYCODE_ONE && $( ".dialog_button[value='1']" ).is( ":visible" ) ){
+                        $( ".dialog_button[value='1']" ).click();
+                        return false;
+                    }
+                    else if( e.which == KEYCODE_TWO && $( ".dialog_button[value='2']" ).is( ":visible" ) ){
+                        $( ".dialog_button[value='2']" ).click();
+                        return false;
+                    }
+                    else if( e.which == KEYCODE_THREE && $( ".dialog_button[value='3']" ).is( ":visible" ) ){
+                        $( ".dialog_button[value='3']" ).click();
+                        return false;
+                    }
+                    else if( $( "#pauseButton" ).is( ":visible" ) && e.which == KEYCODE_P ){
+                        $( "#pauseButton" ).click();
+                        return false;
+                    }
+                
+                } else {
+                    return prontuarioNavigation( e.which );
+                }
+            });
+        });
+    }
+
     function open( _tab ) {
         $( prontuarioSelector ).show();
 
@@ -625,49 +783,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
 
         $(".content").tabs( "option", "active", iTab );
 
-        if( true ){
-            var i = 0;
-            $( document ).keydown(function( e ) {
-
-                if( $( ".action_button:visible" ).length ){
-                    var n = $.merge(
-                                $( "#prontuario li.ui-state-default:visible a" ),
-                                $( ".action_button:visible" )
-                            );
-                }
-                else{
-                    var n = $( "#prontuario li.ui-state-default:visible a" );
-                }
-
-                if( n.length != 0 ){
-                    if( e.which == 40 ){ // seta para baixo
-                        if( i >= n.length - 1 ){
-                            i = 0;
-                        }
-                        else{
-                            i++;
-                        }
-                        $(n[i]).focus();
-                    }
-                    else if( e.which == 38 ){ // seta para cima
-                        if( i > 0 ){
-                            i--;
-                        }
-                        else{
-                            i = n.length - 1;
-                        }
-                        $(n[i]).focus();
-                    }
-                    else if( e.which == 13){ // enter
-                        if( i != -1 ){
-                            $(n[i]).click();
-                            showing = false;
-                        }
-                    }
-                }
-            });
-        }
-
+        startAccessibleProntuarioNavigation();
     }
 
     function updateData() {
