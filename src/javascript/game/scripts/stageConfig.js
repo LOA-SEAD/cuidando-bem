@@ -24,14 +24,14 @@ define([ "Stage" ], function( Stage ) {
 
     Stage.setHtmlPath("../html/screens/");
     Stage.setControllersPath("./menu/");
-    Stage.setStartingScreenId( 0 );
+    Stage.setStartingScreenId( 2 );
 
 // 0 - mainMenu
     Stage.registerScreen("mainMenu", "mainMenu.html", "screenMainMenuController");
 // 1 - game
     Stage.registerScreen("game", "gameContainer.html", "screenGameController");
-// 2 - loadGame
-    Stage.registerScreen("loadGame", "loadGame.html", "screenLoadGameController");
+// 2 - Load Screen
+    Stage.registerScreen("preloader", "preloader.html", "screenPreloaderController");
 // 3 - credits
     Stage.registerScreen("credits", "credits.html", "screenCreditsController");
 // 4 - configuration

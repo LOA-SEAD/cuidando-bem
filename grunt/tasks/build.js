@@ -37,18 +37,8 @@ module.exports = function( grunt ) {
         var target = grunt.option("target") || "dev";
         // Get ver option or set it to "minor"
         var ver = grunt.option("ver") || "minor";
-        // Get electron option
-        var electron = grunt.option("electron");
 
         grunt.log.write("Building " + pkg.name + ":" + target );
-
-        // if ( target == "rel" && ver !== "no") {
-        //     grunt.task.run([
-        //         "version::" + ver
-        //     ]);
-        //
-        //     pkg = grunt.file.readJSON("package.json");
-        // }
 
         // Build for development
         grunt.task.run([
@@ -78,21 +68,6 @@ module.exports = function( grunt ) {
                 "replace:prod",
                 "requirejs:prod"
             ]);
-        }
-
-        /*
-            Compress the code into a zip and publish the game to all desktop plataforms
-            using electron
-        */
-        if ( target == "rel" ) {
-            grunt.task.run([
-                "compress:rel"
-            ]);
-            if ( electron ) {
-                grunt.task.run([
-                    "electron"
-                ]);
-            }
         }
     });
 };

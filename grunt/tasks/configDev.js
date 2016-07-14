@@ -6,7 +6,7 @@ module.exports = function( grunt ) {
 
         if ( !grunt.file.exists( "dev.env.json" ) ) {
             var defaultDev = {
-                initScreen: 0,
+                initScreen: 2,
                 initLevel: 2
             };
             grunt.file.write( "dev.env.json", JSON.stringify( defaultDev, undefined, 4 ) );

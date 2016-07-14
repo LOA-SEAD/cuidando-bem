@@ -43,6 +43,7 @@ define(function() {
     var loopSoundBuffer = undefined;
     var pastLoopSound = undefined;
     var loopInterval;
+    var totalAudios = 0;
 
     var rangeList;
     var rangeSoundId;
@@ -53,16 +54,22 @@ define(function() {
     var pastRangeSound = undefined;
     var rangeInterval;
 
+    var soundLoadedCallback;
+
     var audios = {};
 
     var BUFFER_BEFORE_LOOP = 25;
 
-    function load( baseDir, pathsObj ) {
+    function load( baseDir, pathsObj, _soundLoadedCallback ) {
         console.groupCollapsed("Loading Sounds: ");
         deepCopy( baseDir, pathsObj, audios );
         if ( isMuted ) {
             setSoundToMuted();
         }
+
+        soundLoadedCallback = _soundLoadedCallback;
+
+        return totalAudios;
         console.groupEnd();
     }
 
@@ -94,9 +101,16 @@ define(function() {
                 sound.loop = false;
                 sound.volume = (to._volume || 1) * masterVolume;
                 sound.vol = sound.volume;
+                sound.addEventListener( "canplaythrough", loadedEvent, true );
                 sound.load();
+                totalAudios++;
             }
         }
+    }
+
+    function loadedEvent(e) {
+        soundLoadedCallback();
+        e.target.removeEventListener( "canplaythrough", loadedEvent, true );
     }
 
     function getAsArray( obj ) {
@@ -296,6 +310,17 @@ define(function() {
 
     function setVolumeToCategory( category, volume ) {
         category._volume = volume;
+
+        if( category._name == "musics" ) {
+          if( loopSoundBuffer !== undefined ) {
+            loopSoundBuffer.vol = volume;
+            loopSoundBuffer.volume = volume * masterVolume;
+          }
+          if( rangeSoundBuffer !== undefined ) {
+            rangeSoundBuffer.vol = volume;
+            rangeSoundBuffer.volume = volume * masterVolume;
+          }
+        }
 
         for ( sound in category ) {
             setVolumeOfTo( category[ sound ], volume * masterVolume );
