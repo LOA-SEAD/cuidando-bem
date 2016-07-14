@@ -125,6 +125,17 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
 
     var disabled = false;
 
+    // Accessibility
+    // TODO: avoid duplication
+    var navigationList = null;
+    const KEYCODE_ARROW_DOWN = 40;
+    const KEYCODE_ARROW_UP = 38;
+    const KEYCODE_ENTER = 13;
+    const KEYCODE_P = 80;
+    const KEYCODE_ONE = 49;
+    const KEYCODE_TWO = 50;
+    const KEYCODE_THREE = 51;
+
 // Methods
     // Init
     /**
@@ -139,59 +150,119 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
     // Accessibility
     /**
      * Description
-     * @method startAccessibleModalNavigation_pulseira
+     * @method pulseiraSweepScreen
      * @memberOf module:Pulseira_Controller
      */
-    /*function startAccessibleModalNavigation_pulseira(){
+    function pulseiraSweepScreen() {
+
+        if( !$( "#pauseMenu" ).is( ":visible" ) ){
+            if( $( "#commandBar" ).is( ":visible" ) ){
+                navigationList = $.merge(
+                        $( "#pulseira_modal input" ),
+                        $( "#commandBar .action_button[class!='disabled']:visible" )
+                    );
+                return "inputsAndActions";
+            }
+            else{
+                navigationList = $( "#pulseira_modal input" );
+                return "inputsOnly";
+            }
+        }
+        else{
+            navigationList = $( "#pauseMenu .button" );
+            return "pause";
+        }
+    }
+
+    /**
+     * Description
+     * @method pulseiraNavigation
+     * @memberOf module:Pulseira_Controller
+     */
+    function pulseiraNavigation( _keycode ) {
+
+        op = pulseiraSweepScreen();
+
+        if( _keycode == KEYCODE_ARROW_DOWN ){
+            if( i >= navigationList.length - 1 ){
+                i = 0;
+            }
+            else{
+                i++;
+            }
+            $( navigationList[i] ).focus();
+            return false;
+        }
+
+        else if( _keycode == KEYCODE_ARROW_UP ){
+            if( i > 0 ){
+                i--;
+            }
+            else{
+                i = navigationList.length - 1;
+            }
+            $( navigationList[i] ).focus();
+            return false;
+        }
+
+        else if( _keycode == KEYCODE_ENTER ){
+            if( i != -1 ){
+               $( navigationList[i] ).click();
+               return false;
+            }
+        }
+
+        else if ( $( "#pauseButton" ).is( ":visible" ) && _keycode == KEYCODE_P ){
+            $( "#pauseButton" ).click();
+            return false;
+        }
+    }
+
+    /**
+     * Description
+     * @method startAccessiblePulseiraNavigation
+     * @memberOf module:Pulseira_Controller
+     */
+    function startAccessiblePulseiraNavigation() {
+
+        $( window ).off( "keydown" );
 
         $( document ).ready( function(){
             $( window ).on( "keydown", function( e ){
 
-                // sweepScreen
-                if( $( ".action_button" ).is(":visible") ){
-                    navigationList = $.merge(
-                                $( "#pulseira_modal input" ),
-                                $( ".action_button:visible" )
-                            );
-                }
-                else{
-                    navigationList = $( "#pulseira_modal input" );
-                }
+                if( $( "#dialogBar" ).is( ":visible" ) && !$( "#pauseMenu" ).is( ":visible" ) ){
 
-                if( e.which == KEYCODE_ARROW_DOWN ){
-                    if( i >= navigationList.length - 1 ){
-                        i = 0;
+                    if( e.which == KEYCODE_ARROW_UP && $( ".dialog_reread" ).is( ":visible" ) ){
+                        $( ".dialog_reread" ).click();
+                        return false;
                     }
-                    else{
-                        i++;
+                    else if( e.which == KEYCODE_ARROW_DOWN && $( ".dialog_right" ).is( ":visible" ) ){
+                        $( ".dialog_right" ).click();
+                        return false;
                     }
-                    $( navigationList[i] ).focus();
-                    return false;
-                }
-
-                else if( e.which == KEYCODE_ARROW_UP ){
-                    if( i > 0 ){
-                        i--;
+                    else if( e.which == KEYCODE_ONE && $( ".dialog_button[value='1']" ).is( ":visible" ) ){
+                        $( ".dialog_button[value='1']" ).click();
+                        return false;
                     }
-                    else{
-                        i = navigationList.length - 1;
+                    else if( e.which == KEYCODE_TWO && $( ".dialog_button[value='2']" ).is( ":visible" ) ){
+                        $( ".dialog_button[value='2']" ).click();
+                        return false;
                     }
-                    $( navigationList[i] ).focus();
-                    return false;
-                }
-
-                else if( e.which == KEYCODE_ENTER ){
-                    $( navigationList[i] ).click();
-                    return false;
-                }
-
-                else if( e.which == KEYCODE_P && $( "#pauseButton" ).is(":visible") ){
-                    $( "#pauseButton" ).click();
-                    return false;
+                    else if( e.which == KEYCODE_THREE && $( ".dialog_button[value='3']" ).is( ":visible" ) ){
+                        $( ".dialog_button[value='3']" ).click();
+                        return false;
+                    }
+                    else if( $( "#pauseButton" ).is( ":visible" ) && e.which == KEYCODE_P ){
+                        $( "#pauseButton" ).click();
+                        return false;
+                    }
+                
+                } else {
+                    return pulseiraNavigation( e.which );
                 }
             });
         });
-    }*/
+    }
 
     /**
      * Description
@@ -222,6 +293,8 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
         });
 
         $( "#pulseira_modal input:first" ).focus();
+
+        startAccessiblePulseiraNavigation();
     }
 
     /**
