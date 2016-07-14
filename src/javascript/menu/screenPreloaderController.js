@@ -58,7 +58,7 @@ define([ "Stage" ], function( Stage ) {
       totalFilesToLoad = total;
     }
     function fileLoaded() {
-      if ( preloading ) {
+      // if ( preloading ) {
         totalFilesLoaded++;
         console.log( totalFilesLoaded + "/" + totalFilesToLoad );
 
@@ -71,7 +71,7 @@ define([ "Stage" ], function( Stage ) {
           Stage.changeScreen( 0 );
           preloading = false;
         }
-      }
+      // }
     }
 
     return {

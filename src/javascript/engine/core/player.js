@@ -101,11 +101,16 @@ define(function() {
                 sound.loop = false;
                 sound.volume = (to._volume || 1) * masterVolume;
                 sound.vol = sound.volume;
-                sound.addEventListener( "loadeddata", function() {soundLoadedCallback();}, true );
+                sound.addEventListener( "canplaythrough", loadedEvent, true );
                 sound.load();
                 totalAudios++;
             }
         }
+    }
+
+    function loadedEvent(e) {
+        soundLoadedCallback();
+        e.target.removeEventListener( "canplaythrough", loadedEvent, true );
     }
 
     function getAsArray( obj ) {
