@@ -22,7 +22,7 @@ This file is part of Cuidando Bem.
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define([ "Stage", "Storage" ], function( Stage, Storage ) {
+define([ "Stage", "Storage", "AccessibleNavigationMenus" ], function( Stage, Storage, Accessibility ) {
 
     var Player = require("Player");
 
@@ -48,6 +48,7 @@ define([ "Stage", "Storage" ], function( Stage, Storage ) {
      * @memberOf module:Screen_configuration_Controller
      */
     function load( cb ) {
+
         sfxMuted = Storage.isSfxMuted();
         sfxVolume = Storage.getSfxVolume();
         musicMuted = Storage.isMusicMuted();
@@ -127,6 +128,8 @@ define([ "Stage", "Storage" ], function( Stage, Storage ) {
 
             musicMuted = !musicMuted;
         });
+
+        Accessibility.startAccessibleNavigationMenus();
     }
 
     /**

@@ -22,7 +22,7 @@ This file is part of Cuidando Bem.
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define([ "Stage" ], function( Stage ) {
+define([ "Stage", "AccessibleNavigationMenus" ], function( Stage, Accessibility ) {
 
     var Player = require("Player");
 
@@ -35,6 +35,7 @@ define([ "Stage" ], function( Stage ) {
      * @memberOf module:Screen_mainMenu_Controller
      */
     function load() {
+        
         // Player.setLoop(Player.audios.fundo, true);
         // Player.play(Player.audios.fundo);
 
@@ -77,6 +78,8 @@ define([ "Stage" ], function( Stage ) {
             Player.play( Player.audios.sfx.selecionarMenu );
             Stage.changeScreen( 3 );
         });
+
+        Accessibility.startAccessibleNavigationMenus();
     }
 
     /**
