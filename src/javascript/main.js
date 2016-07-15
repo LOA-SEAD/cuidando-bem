@@ -77,7 +77,7 @@ require([ "requireConfig" ], function() {
                     preloader.setCallBack(function() {
                       require([ "gameConfig", "CuidandoBem", "DialogsData" ], function( config ) {
                           config.load(function() {
-                            Stage.changeScreen( 1 );
+                            Stage.changeScreen( 0 );
                           });
                       });
                     });
