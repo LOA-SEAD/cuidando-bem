@@ -69,7 +69,6 @@ define([ "Stage" ], function( Stage ) {
 
         if ( percent >= 100 ) {
           loadEndCallback();
-          Stage.changeScreen( 0 );
           preloading = false;
         }
       // }

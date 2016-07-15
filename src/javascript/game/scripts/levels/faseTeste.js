@@ -70,7 +70,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setSsvvRowData( 0, "15/03", "", "", "", "", "", false );
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
 
-            Prontuario.setPrescEnfermagemState("decubito");
+            Prontuario.setPrescEnfermagemState("");
 
             Prontuario.setSsvvRowRegExp( 0,
                 new RegExp(""),
@@ -98,7 +98,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                 // Pulseira.open();
                 // core.openModalScene("modalOximetro");
-                Prontuario.open("sinaisVitais");
+                Prontuario.open();
                 // freqRespiratoria.open();
 
                 // core.showEndOfLevel();

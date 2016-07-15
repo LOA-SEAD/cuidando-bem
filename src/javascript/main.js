@@ -76,7 +76,9 @@ require([ "requireConfig" ], function() {
                     preloader.setTotalFiles( totalFilesToLoad );
                     preloader.setCallBack(function() {
                       require([ "gameConfig", "CuidandoBem", "DialogsData" ], function( config ) {
-                          config.load(function() {});
+                          config.load(function() {
+                            Stage.changeScreen( 1 );
+                          });
                       });
                     });
 
