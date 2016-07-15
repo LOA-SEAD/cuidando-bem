@@ -3592,6 +3592,7 @@ This file is part of Cuidando Bem.
 .character,
 .char-receptionist,
 .char-mentor,
+.char-farmaceutico,
 .char-circulante,
 .char-paciente_01,
 .char-paciente_02,
@@ -3617,6 +3618,9 @@ This file is part of Cuidando Bem.
 }
 .char-mentor {
   background-image: url(../images/characters/mentor.png);
+}
+.char-farmaceutico {
+  background-image: url(../images/characters/farmaceutico.png);
 }
 .char-circulante {
   background-image: url(../images/characters/circulanteDeLeito.png);
