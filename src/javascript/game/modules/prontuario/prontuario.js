@@ -165,6 +165,12 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         "desiquilibrio_eletrolitico_fase9": false
     };
 
+    var decubito = [
+      false,
+      false,
+      false
+    ];
+
     // Enfermagem: virarDecubito
     var prescEnfermagemTbody = "#prescEnfermagem_tbody";
     var prescEnfermagemVirouDecubito = false;
@@ -527,6 +533,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
 
     function setPrescEnfermagemState( _prescEnfermagemState ) {
         // prescEnfermagemState = _prescEnfermagemState;
+        var container;
 
         // Torna todas as classes presentes no prescEnfermagemStates false, menos as que foram passadas como parametro
         $.each( prescEnfermagemStates, function( index, value ) {
@@ -540,11 +547,23 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         // Passa para o prontuario o parametro dado
         $.each( prescEnfermagemStates, function( index, value ) {
             if ( value ) {
-                prescEnfermagemState = index;
+                //prescEnfermagemState = index;
+                $("." + index, prescEnfermagemTbody ).show();
             }
         });
 
-        $("." + prescEnfermagemState, prescEnfermagemTbody ).show();
+        container = $(".decubito", prescEnfermagemTbody );
+        if ( prescEnfermagemStates.decubito ) {
+            $( ".opcao", container ).click(function() {
+              var i = $( ".opcao", container ).index( this );
+              decubito = [ false, false, false ];
+              decubito[ i ] = true;
+              $( ".check", container ).text("( )");
+              $( $( ".check", container )[ i ] ).text("(X)");
+            });
+        } else {
+            $( ".opcao", container ).unbind("click");
+        }
     }
 
 
@@ -842,6 +861,11 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         }
 
         // TODO prescrição da Enfermagem
+        if ( prescEnfermagemStates.decubito ) {
+            if( !decubito[1] ) {
+                return false;
+            }
+        }
 
         for ( row = 0; row < ssvvData.length; row++ ) {
             // if row is not enabled, dont check if vars are valid
@@ -928,7 +952,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         setCircunferenciaAbdominal: setCircunferenciaAbdominal,
 
         clearPrescEnfermagemState: clearPrescEnfermagemState,
-        getPrescEnfermagemState: getPrescEnfermagemState,
+        //getPrescEnfermagemState: getPrescEnfermagemState,
         setPrescEnfermagemState: setPrescEnfermagemState,
 
         addToRelatorio: addToRelatorio,
