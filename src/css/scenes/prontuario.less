@@ -381,8 +381,10 @@ This file is part of Cuidando Bem.
 
     #prescMedica_tbody{
         .relatorio{
-            cursor: pointer;
             text-align: center;
+        }
+        .relatorio:not(.disabled) {
+            cursor: pointer;
         }
     }
 

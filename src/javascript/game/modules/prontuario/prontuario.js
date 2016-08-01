@@ -151,6 +151,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
     var prescEnfermagemStates = {
         "vazio": false,
         "decubito": false,
+        "decubito_visual": false,
         "verificar_glicemia": false,
         "levantar_grade": false,
         "encaminhar_paciente_cc": false,
@@ -503,6 +504,10 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
             $( $( prescMedicaRelatorioSelector, prescMedicaTbodySelector )[ _row ] ).text("( )");
         }
 
+        if ( _disabled ) {
+            $( $( prescMedicaRelatorioSelector, prescMedicaTbodySelector )[ _row ] ).addClass( "disabled" );
+        }
+
         // $("tr", prescEnfermagemTbody ).hide();
         // $("." + prescEnfermagemState, prescEnfermagemTbody ).show();
     }
@@ -571,7 +576,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         $( prescMedicaRelatorioSelector, prescMedicaTbodySelector ).click(function() {
             // console.log(this);
             var row = $( prescMedicaRelatorioSelector, prescMedicaTbodySelector ).index( this );
-            if ( !prescMedicaData[ row ].relatorio.disabled ) {
+            if ( !prescMedicaData[ row ].disabled ) {
                 prescMedicaData[ row ].relatorio = !prescMedicaData[ row ].relatorio;
 
                 if ( prescMedicaData[ row ].relatorio ) {

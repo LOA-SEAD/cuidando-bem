@@ -1,6 +1,6 @@
 // prompt
 "use strict";
-module.exports = function(grunt) {
+module.exports = function( grunt ) {
 
   return {
     options: {},
@@ -94,7 +94,7 @@ module.exports = function(grunt) {
                 "version::" + answers.ver
               ]);
             }
-
+            grunt.option( "target", "rel" );
             grunt.task.run([
               "build"
             ]);
@@ -110,6 +110,7 @@ module.exports = function(grunt) {
                 "gh-pages"
               ]);
             }
+            console.log( answers.distributions );
             if ( answers.distributions ) {
               console.log( answers.distributions );
             }
