@@ -531,28 +531,25 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         $("tr", prescEnfermagemTbody ).hide();
     }
 
-    function setPrescEnfermagemState( _prescEnfermagemState ) {
+    function setPrescEnfermagemState( _prescEnfermagemStates ) {
+        clearPrescEnfermagemState();
         // prescEnfermagemState = _prescEnfermagemState;
         var container;
 
         // Torna todas as classes presentes no prescEnfermagemStates false, menos as que foram passadas como parametro
         $.each( prescEnfermagemStates, function( index, value ) {
-            if ( index == _prescEnfermagemState ) {
-                prescEnfermagemStates[ index ] = true;
-            } else {
-                prescEnfermagemStates[ index ] = false;
-            }
+          prescEnfermagemStates[ index ] = false;
         });
 
-        // Passa para o prontuario o parametro dado
-        $.each( prescEnfermagemStates, function( index, value ) {
-            if ( value ) {
-                //prescEnfermagemState = index;
-                $("." + index, prescEnfermagemTbody ).show();
-            }
+        _prescEnfermagemStates.forEach(function( el ) {
+            prescEnfermagemState = el;
+            prescEnfermagemStates[ _prescEnfermagemState ] = true;
+            $("." + _prescEnfermagemState, prescEnfermagemTbody ).show();
         });
 
+        // decubito
         container = $(".decubito", prescEnfermagemTbody );
+        $( ".opcao", container ).unbind("click");
         if ( prescEnfermagemStates.decubito ) {
             $( ".opcao", container ).click(function() {
               var i = $( ".opcao", container ).index( this );
@@ -561,8 +558,6 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
               $( ".check", container ).text("( )");
               $( $( ".check", container )[ i ] ).text("(X)");
             });
-        } else {
-            $( ".opcao", container ).unbind("click");
         }
     }
 

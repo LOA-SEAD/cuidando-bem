@@ -694,7 +694,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         function farmaciaIrCorredor() {
             console.log("Funcao: farmacia_ir_corredor");
             console.log("Ir ao corredor");
-                  
+
             // Só perde pontos caso já esteja liberado para pegar o medicamento
             if ( core.flag("score_conferiu_medicacao") == false ) {
                 if ( core.flag("score_nao_conferiu_medicacao") == false ) {
@@ -705,16 +705,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             } else {
                 core.changeScene( 1 );
             }
-            
-            
+
+
         }
 
         farmacia = new Scene("farmacia", "scene-pharmacy")
             .setCssClass("scene-pharmacy")
             .onLoad(function() {
                 console.log("Load scene: Farmácia");
-        
-            
+
+
                 // Depois que falou com o farmacêutico, é ativado os botões
                 if ( core.flag("ja_falou_farmaceutico") == true )  {
                     core.setInteractiveObjectVisible("io-keflin_medicamento", !(core.flag("score_pegou_medicamento")) );
@@ -1518,9 +1518,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setPrescMedicaRowData( 1, "", "", "", "", "", false, true );
             Prontuario.setPrescMedicaRowData( 2, "", "", "", "", "", false, true );
             Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
-
-            Prontuario.clearPrescEnfermagemState( );
-            Prontuario.setPrescEnfermagemState("risco_infeccao");
+            
+            Prontuario.setPrescEnfermagemState(["risco_infeccao"]);
 
             Prontuario.setSsvvRowData( 0, "", "110x70", "55", "16", "96", "37.3", true );
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );

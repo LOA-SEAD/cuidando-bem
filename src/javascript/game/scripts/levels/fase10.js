@@ -471,7 +471,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             })
             .setVisibility( false ),
-            
+
               new InteractiveObject("io-falarPaciente", "Falar com o paciente")
             .setCssClass("intObj-irLeitoEsquerda")
             .onClick(function() {
@@ -480,16 +480,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openDialog( 0 );
                     core.flag("conversar_paciente", true );
                 }
-                
+
                 core.setActionVisible("btn-ler_prontuario", true);
-                
-                
+
+
 
             })
             .setVisibility( true ),
-            
-            
-            
+
+
+
 
 
 
@@ -924,7 +924,7 @@ core.changeScene(1);
                     core.flag( "trocou_de_leito",  true  );
                     core.setActionVisible("btn-ir_ala_masculina", true );
                     core.enableInteractiveObject("io-pulseira_paciente", true );
-                    
+
 
                 }
 
@@ -1127,7 +1127,7 @@ core.changeScene(1);
                     core.closeDialog(  );
                 }),
             // 7
-            
+
                new Dialog( lib.characters.mentor )
                 .setText( Alertas.esqueceu.verPulseira )
                 .registerOption("", function() {
@@ -1202,9 +1202,9 @@ core.changeScene(1);
              new Action("btn-pegar_suporte_soro", "Pegar Suporte de Soro")
             .setCssClass("action-pegarSuporte")
             .onClick(function() {
-                
-                
-          if(core.flag("verificar_pulseira") == true) {    
+
+
+          if(core.flag("verificar_pulseira") == true) {
 
                 if ( core.flag( "pegar_suporte_soro" ) == false ) {
                     core.flag( "pegar_suporte_soro",  true  );
@@ -1218,13 +1218,13 @@ core.changeScene(1);
                 }
           }
            else {
-               
-               
+
+
                         if(core.flag("score_pulseira") == false) {
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira );
                         }
-                        
+
                         core.openDialog( 7 );
            }
 
@@ -1236,16 +1236,16 @@ core.changeScene(1);
            new Action("btn-colocarSoro", "Colocar Soro")
             .setCssClass("action-soro_fisiologico_1000ml")
             .onClick(function() {
-                
-         
+
+
 
 
                 core.changeSceneCssClassTo("scene-bedChar10C");
                 core.setActionVisible("btn-colocarSoro", false);
                 core.setActionVisible("btn-realizar_gotejamento", true );
-                 
-             
-         
+
+
+
 
 
 
@@ -1256,24 +1256,24 @@ core.changeScene(1);
             new Action("btn-administrar_medicamente", "Administrar Medicamento")
             .setCssClass("action-admnistrar_medicacao")
             .onClick(function() {
-                
-             if(core.flag("verificar_pulseira") == true) {       
+
+             if(core.flag("verificar_pulseira") == true) {
 
                 if ( core.flag( "administrar_medicamento" ) == false ) {
                     core.flag( "administrar_medicamento",  true  );
                     core.registerScoreItem( Scores.administrarMedicamento );
                 }
-                 
+
              }
             else {
-                
+
                  if(core.flag("score_pulseira") == false) {
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira );
                         }
-                        
+
                         core.openDialog( 7 );
-                
+
             }
 
             })
@@ -1303,9 +1303,9 @@ core.changeScene(1);
             new Action("btn-lavarMaos", "Lavar as mãos")
             .setCssClass("action-lavarMaos")
             .onClick(function() {
-                
-             if(core.flag("verificar_pulseira") == true) {       
-                
+
+             if(core.flag("verificar_pulseira") == true) {
+
                 // Som
                 Player.play( Player.audios.sfx.lavarMaos );
 
@@ -1315,14 +1315,14 @@ core.changeScene(1);
                 }
              }
             else {
-                
+
                           if(core.flag("score_pulseira") == false) {
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira );
                         }
-                        
+
                         core.openDialog( 7 );
-                
+
             }
 
             })
@@ -1332,10 +1332,10 @@ core.changeScene(1);
             new Action("btn-anotar_prontuario", "Anotar prontuario")
             .setCssClass("action-anotar_prontuario")
             .onClick(function() {
-                
-                
-          if(core.flag("verificar_pulseira") == true) {       
-              
+
+
+          if(core.flag("verificar_pulseira") == true) {
+
                 console.log("Action: Anotar prontuario");
                 if ( core.flag( "lavar_maos3" ) == false ) {
                     core.openDialog( 5 );
@@ -1352,15 +1352,15 @@ core.changeScene(1);
                 }
           }
             else {
-                
+
                   if(core.flag("score_pulseira") == false) {
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira );
                         }
-                        
+
                         core.openDialog( 7 );
-                
-                
+
+
             }
             })
             .setVisibility( false )
@@ -1673,24 +1673,10 @@ core.changeScene(1);
             // Necessário para evitar que valores antigos apareçam no prontuário
             Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
 
-            Prontuario.clearPrescEnfermagemState();
-            Prontuario.setPrescEnfermagemState("desiquilibrio_eletrolitico_fase9");
+            Prontuario.setPrescEnfermagemState(["desiquilibrio_eletrolitico_fase9"]);
 
             Prontuario.setSsvvRowData( 0, "", "130X70", "82", "19", "96", "35.9", true );
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
-
-
-            //    Prontuario.setAnotacaoEnfermagemRowData( "15/03", "" );
-
-
-
-            // 'pulseira' content
-
-        //    Prontuario.setAnotacaoEnfermagemRowData( "15/03", "" );
-
-
-
-         // 'pulseira' content
 
             Pulseira.setNameRegExp( /Raul Gonzales Rodrigues/ );
             Pulseira.setLeitoRegExp( /0*3/ );

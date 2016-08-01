@@ -338,20 +338,20 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                 })
                 .setVisibility( false ),
-            
-            
+
+
             new InteractiveObject("io-falarPaciente", "Falar com a paciente")
                 .setCssClass("intObj-ir_leito-tutorial")
                 .onClick(function() {
-                    
+
                     core.openDialog( 0 );
                     core.setActionVisible("btn-ler_prontuario", true);
-                    
+
                 })
                 .setVisibility( true ),
-            
-            
-            
+
+
+
         ]);
 
         alaFeminina.registerDialogs([
@@ -437,9 +437,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
                 .setCssClass("intObj-paciente_06-checar_pulseira")
                 .onClick(function() {
-                    
+
                     core.flag("verificar_pulseira", true);
-                    
+
                     console.log("IO: pulseira_paciente");
                     core.openModalScene("pulseira");
                     if ( core.flag("score_verificar_pulseira") == false ) {
@@ -454,8 +454,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
             new InteractiveObject("io-conversar_paciente06", "Falar com a paciente")
-              
-            
+
+
                 .setCssClass("intObj-conversar_paciente")
                 .onClick(function() {
 
@@ -600,7 +600,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
         leito.registerActions([
-            
+
                  new Action("btn-verificar_teste_glicemia", "Verificar resultado")
 
                 .setCssClass("action-realizar_teste_glicemia")
@@ -619,8 +619,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-realizar_teste_glicemia")
                 .onClick(function() {
                     console.log("Action: Fazer teste de glicemia capilar");
-                    
-                if(core.flag("verificar_pulseira") == true){    
+
+                if(core.flag("verificar_pulseira") == true){
                     // Bip
                     Player.play( Player.audios.sfx.bip );
                     // Desabilita acesso a pulseira
@@ -645,14 +645,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                 }
                     else {
-                        
+
                         if(core.flag("score_pulseira") == false) {
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira );
                         }
-                        
+
                         core.openDialog( 7 );
-                        
+
                     }
                 })
                 .setVisibility( false ),
@@ -661,10 +661,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-agulha_40x12")
                 .onClick(function() {
 
-                    
-                    
-                  if(core.flag("verificar_pulseira") == true){ 
-                      
+
+
+                  if(core.flag("verificar_pulseira") == true){
+
                     // Som
                     Player.play( Player.audios.sfx.jogandoLixo );
 
@@ -682,18 +682,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.setActionVisible("btn-lixoComum", true );
                     core.setActionVisible("btn-lixoInfectante", true  );
                     core.setActionVisible("btn-perfuroCortante", true  );
-                      
+
                   }
                     else {
-                        
-                          
+
+
                         if(core.flag("score_pulseira") == false) {
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira );
                         }
-                        
+
                         core.openDialog( 7 );
-                        
+
                     }
 
 
@@ -704,8 +704,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-algodao_seco")
                 .onClick(function() {
 
-                 if(core.flag("verificar_pulseira") == true){ 
-                    
+                 if(core.flag("verificar_pulseira") == true){
+
                      // Som
                     Player.play( Player.audios.sfx.jogandoLixo );
 
@@ -723,18 +723,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.setActionVisible("btn-lixoComum", true );
                     core.setActionVisible("btn-lixoInfectante", true  );
                     core.setActionVisible("btn-perfuroCortante", true  );
-                     
+
                  }
-                    
+
                     else {
-                        
+
                                 if(core.flag("score_pulseira") == false) {
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira );
                         }
-                        
+
                         core.openDialog( 7 );
-                        
+
                     }
 
                 })
@@ -744,10 +744,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 // CONSERTAR
                 .setCssClass("action-fazer_curativo")
                 .onClick(function() {
-                    
-                    
-                    
-                if(core.flag("verificar_pulseira") == true){     
+
+
+
+                if(core.flag("verificar_pulseira") == true){
 
                     if ( core.flag("score_selecionou_materiais_curativo") == false ) {
                         core.flag("score_selecionou_materiais_curativo",  true );
@@ -755,14 +755,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                 }
                 else {
-                    
+
                       if(core.flag("score_pulseira") == false) {
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira );
                         }
-                        
+
                         core.openDialog( 7 );
-                    
+
                 }
                 })
                 .setVisibility( false ),
@@ -770,10 +770,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-lavarMaos", "Lavar as mãos")
                 .setCssClass("action-lavarMaos")
                 .onClick(function() {
-                    
-                    
-              if(core.flag("verificar_pulseira") == true){ 
-                  
+
+
+              if(core.flag("verificar_pulseira") == true){
+
                     console.log("Action: Lavar as mãos");
                     // Som
                     Player.play( Player.audios.sfx.lavarMaos );
@@ -793,24 +793,24 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
               }
                 else {
-                    
+
                         if(core.flag("score_pulseira") == false) {
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira );
                         }
-                        
+
                         core.openDialog( 7 );
-                    
-                }    
+
+                }
                 })
                 .setVisibility( false ),
 
             new Action("btn-calcar_luvas_procedimento", "Calçar luvas de procedimento")
                 .setCssClass("action-luvas_de_procedimento")
                 .onClick(function() {
-                    
-                if(core.flag("verificar_pulseira") == true){ 
-                    
+
+                if(core.flag("verificar_pulseira") == true){
+
                     console.log("Action: Calçar luvas de procedimento");
                     // Som
                     Player.play( Player.audios.sfx.colocarLuvas );
@@ -820,28 +820,28 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.flag("score_luvas_de_procedimento",  true );
                     }
                     core.closeCommandBar();
-                    core.openDialog( 13 ); 
-                
+                    core.openDialog( 13 );
+
             }
                 else{
-                    
+
                                             if(core.flag("score_pulseira") == false) {
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira );
                         }
-                        
+
                         core.openDialog( 7 );
-                    
-                } 
+
+                }
                 })
                 .setVisibility( false ),
 
             new Action("btn-calcar_luvas_estereis", "Calçar luvas estéreis")
                 .setCssClass("action-luvas_estereis")
                 .onClick(function() {
-                    
-              if(core.flag("verificar_pulseira") == true){ 
-                        
+
+              if(core.flag("verificar_pulseira") == true){
+
                     console.log("Action: Calçar luvas estéreis");
                     // Som
                     Player.play( Player.audios.sfx.colocarLuvas );
@@ -883,14 +883,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
               }
                 else {
-                    
+
                                            if(core.flag("score_pulseira") == false) {
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira );
                         }
-                        
+
                         core.openDialog( 7 );
-                }    
+                }
                 })
                 .setVisibility( false ),
 
@@ -1413,7 +1413,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             //  alert(Prontuario.isDataValid() + " Final da fase");
         ]);
-    
+
             glicosimetroComFita = new Scene("modalGlicosimetroComFita", "modalGlicosimetroComFita")
             .setCssClass("modalScene-glicosimetroComFita")
             .setTemplate("<span class='glicosimetro-text'>100 mg/dl</span>");
@@ -1513,7 +1513,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setPrescMedicaRowData( 3, "", "Glibenclamida", "Oral", "4 mg (2x ao dia)", "07:30h - 17:30h", true, true );
 
             Prontuario.clearPrescEnfermagemState( );
-            Prontuario.setPrescEnfermagemState("decubito");
+            Prontuario.setPrescEnfermagemState(["decubito"]);
             // Caso não for possível digitar o valor da glicemia terá que fazer um desse para cada fase que usa
             Prontuario.setPrescEnfermagemState("verificar_glicemia");
             Prontuario.setPrescEnfermagemState("levantar_grade");
