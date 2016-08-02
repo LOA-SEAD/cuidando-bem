@@ -153,6 +153,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         "decubito": false,
         "decubito_visual": false,
         "verificar_glicemia": false,
+        "verificar_glicemia2": false,
         "levantar_grade": false,
         "encaminhar_paciente_cc": false,
         "check_list_cirurgia": false,
@@ -168,11 +169,13 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
     var decubito = [ false, false, false ];
 
     var verificarGlicemia = false;
+    var verificarGlicemia2 = false;
     var levantarGrade = false;
     var encaminharPacienteCc = false;
     var checkListCirurgia = false;
     var placaNeutra = [ false, false, false ];
     var riscoInfeccao = false;
+    var trocaCurativo = false;
 
     // Enfermagem: virarDecubito
     var prescEnfermagemTbody = "#prescEnfermagem_tbody";
@@ -579,6 +582,21 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
             });
         }
 
+        // verificar glicemia2
+        container = $(".verificar_glicemia2", prescEnfermagemTbody );
+        $( ".opcao", container ).unbind("click");
+        if( prescEnfermagemStates.verificar_glicemia2 ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                verificarGlicemia2 = !verificarGlicemia2;
+                if( verificarGlicemia2 ) {
+                  $( ".check", container ).text("(X)");
+                } else {
+                  $( ".check", container ).text("( )");
+                }
+            });
+        }
+
         // levantar grade
         container = $(".levantar_grade", prescEnfermagemTbody );
         $( ".opcao", container ).unbind("click");
@@ -644,6 +662,21 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
                 container = e.data.container;
                 riscoInfeccao = !riscoInfeccao;
                 if( riscoInfeccao ) {
+                  $( ".check", container ).text("(X)");
+                } else {
+                  $( ".check", container ).text("( )");
+                }
+            });
+        }
+
+        // riscoInfeccao
+        container = $(".troca_curativo", prescEnfermagemTbody );
+        $( ".opcao", container ).unbind("click");
+        if( prescEnfermagemStates.troca_curativo ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                trocaCurativo = !trocaCurativo;
+                if( trocaCurativo ) {
                   $( ".check", container ).text("(X)");
                 } else {
                   $( ".check", container ).text("( )");
@@ -959,6 +992,12 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
             }
         }
 
+        if ( prescEnfermagemStates.verificar_glicemia2 ) {
+            if ( !verificarGlicemia2 ) {
+                return false;
+            }
+        }
+
         if ( prescEnfermagemStates.levantar_grade ) {
             if ( !levantarGrade ) {
                 return false;
@@ -985,6 +1024,12 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
 
         if ( prescEnfermagemStates.risco_infeccao ) {
             if ( !riscoInfeccao ) {
+                return false;
+            }
+        }
+
+        if ( prescEnfermagemStates.troca_curativo ) {
+            if ( !trocaCurativo ) {
                 return false;
             }
         }
