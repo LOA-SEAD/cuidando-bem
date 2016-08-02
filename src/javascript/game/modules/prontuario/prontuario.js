@@ -172,6 +172,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
     var encaminharPacienteCc = false;
     var checkListCirurgia = false;
     var placaNeutra = [ false, false, false ];
+    var riscoInfeccao = false;
 
     // Enfermagem: virarDecubito
     var prescEnfermagemTbody = "#prescEnfermagem_tbody";
@@ -634,6 +635,21 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
                 $( $( ".check", container )[ i ] ).text("(X)");
             });
         }
+
+        // riscoInfeccao
+        container = $(".risco_infeccao", prescEnfermagemTbody );
+        $( ".opcao", container ).unbind("click");
+        if( prescEnfermagemStates.risco_infeccao ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                riscoInfeccao = !riscoInfeccao;
+                if( riscoInfeccao ) {
+                  $( ".check", container ).text("(X)");
+                } else {
+                  $( ".check", container ).text("( )");
+                }
+            });
+        }
     }
 
 
@@ -963,6 +979,12 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
 
         if ( prescEnfermagemStates.placa_neutra ) {
             if ( !placaNeutra[1] ) {
+                return false;
+            }
+        }
+
+        if ( prescEnfermagemStates.risco_infeccao ) {
+            if ( !riscoInfeccao ) {
                 return false;
             }
         }

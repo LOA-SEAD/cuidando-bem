@@ -674,11 +674,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: anotar no prontuario");
                     Prontuario.open();
                     core.openModalScene("Prontuario");
-                    // Marcar pontos
-                    if ( core.flag("score_anotou_prontuario") == false ) {
-                        core.registerScoreItem( Scores.anotarNoProntuario );
-                        core.flag("score_anotou_prontuario",  true );
-                    }
+
                     if ( core.flag("score_lavar_maos_antes_prontuario") == false ) {
                         if ( core.flag("score_nao_lavar_maos_antes_prontuario") == false ) {
                             core.registerScoreItem( Scores.naoLavarMaosAntesProntuario );
@@ -1390,6 +1386,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                       core.setInteractiveObjectVisible("io-falar_com_paciente", true);
                       core.flag("mostraPaciente", true);
                     }
+
+                    if ( core.flag("score_anotou_prontuario") == false ) {
+                        if ( Prontuario.isDataValid() ) {
+                            core.registerScoreItem( Scores.anotarNoProntuario );
+                            core.flag("score_anotou_prontuario",  true );
+                        }
+                    }
                     Prontuario.close();
 
                 })
@@ -1513,12 +1516,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAltura("1,77");
             Prontuario.setCircunferenciaAbdominal("91");
 
-            Prontuario.setPrescMedicaRowData( 0, "", "Cefalotina sódica (Keflin®)", "Endovenosa", "800 mg diluído em 100 ml de SF (soro fisiológico) 0,9% em 01 hora", "6/6h", false, true );
+            Prontuario.setPrescMedicaRowData( 0, "", "Cefalotina sódica (Keflin®)", "Endovenosa", "800 mg diluído em 100 ml de SF (soro fisiológico) 0,9% em 01 hora", "6/6h", false, false );
             // Necessário para evitar que valores antigos apareçam no prontuário
             Prontuario.setPrescMedicaRowData( 1, "", "", "", "", "", false, true );
             Prontuario.setPrescMedicaRowData( 2, "", "", "", "", "", false, true );
             Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
-            
+
             Prontuario.setPrescEnfermagemState(["risco_infeccao"]);
 
             Prontuario.setSsvvRowData( 0, "", "110x70", "55", "16", "96", "37.3", true );
