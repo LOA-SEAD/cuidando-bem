@@ -165,14 +165,13 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         "desiquilibrio_eletrolitico_fase9": false
     };
 
-    var decubito = [
-      false,
-      false,
-      false
-    ];
+    var decubito = [ false, false, false ];
 
     var verificarGlicemia = false;
     var levantarGrade = false;
+    var encaminharPacienteCc = false;
+    var checkListCirurgia = false;
+    var placaNeutra = [ false, false, false ];
 
     // Enfermagem: virarDecubito
     var prescEnfermagemTbody = "#prescEnfermagem_tbody";
@@ -593,6 +592,48 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
                 }
             });
         }
+
+        // encaminhar_paciente_cc
+        container = $(".encaminhar_paciente_cc", prescEnfermagemTbody );
+        $( ".opcao", container ).unbind("click");
+        if( prescEnfermagemStates.encaminhar_paciente_cc ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                encaminharPacienteCc = !encaminharPacienteCc;
+                if( encaminharPacienteCc   ) {
+                  $( ".check", container ).text("(X)");
+                } else {
+                  $( ".check", container ).text("( )");
+                }
+            });
+        }
+        // check_list_cirurgia
+        container = $(".check_list_cirurgia", prescEnfermagemTbody );
+        $( ".opcao", container ).unbind("click");
+        if( prescEnfermagemStates.check_list_cirurgia ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                checkListCirurgia = !checkListCirurgia;
+                if( checkListCirurgia ) {
+                  $( ".check", container ).text("(X)");
+                } else {
+                  $( ".check", container ).text("( )");
+                }
+            });
+        }
+        // placa_neutra
+        container = $(".placa_neutra", prescEnfermagemTbody );
+        $( ".opcao", container ).unbind("click");
+        if( prescEnfermagemStates.placa_neutra ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                var i = $( ".opcao", container ).index( this );
+                placaNeutra = [ false, false, false ];
+                placaNeutra[ i ] = true;
+                $( ".check", container ).text("( )");
+                $( $( ".check", container )[ i ] ).text("(X)");
+            });
+        }
     }
 
 
@@ -904,6 +945,24 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
 
         if ( prescEnfermagemStates.levantar_grade ) {
             if ( !levantarGrade ) {
+                return false;
+            }
+        }
+
+        if ( prescEnfermagemStates.encaminhar_paciente_cc ) {
+            if ( !encaminharPacienteCc ) {
+                return false;
+            }
+        }
+
+        if ( prescEnfermagemStates.check_list_cirurgia ) {
+            if ( !checkListCirurgia ) {
+                return false;
+            }
+        }
+
+        if ( prescEnfermagemStates.placa_neutra ) {
+            if ( !placaNeutra[1] ) {
                 return false;
             }
         }

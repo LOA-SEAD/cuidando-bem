@@ -895,10 +895,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("lavar_maos3") == false ) {
                         core.openDialog( 19 );
                     } else {
-                        if ( core.flag("score_anotar_prontuario") == false ) {
-                            core.registerScoreItem( Scores.anotarNoProntuario );
-                            core.flag("score_anotar_prontuario",  true );
-                        }
                         if ( core.flag("colocar_placa_neutra") == false ) {
                             core.openDialog( 20 );
                         } else {
@@ -1171,7 +1167,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var oximetro = new Scene("modalOximetro", "Oxímetro")
             .setCssClass("modalScene-oximetro")
             .setTemplate(
-                "<span class='oximetro-st-text'>97% Sat.O2</span>" + "<span class='oximetro-fc-text'>69 bpm</span>"
+                "<span class='oximetro-st-text'>96% Sat.O2</span>" + "<span class='oximetro-fc-text'>47 bpm</span>"
             );
 
         oximetro.registerActions([
@@ -1194,6 +1190,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: Fechar prontuario");
                     Prontuario.close();
                     core.closeModalScene("Prontuario");
+
+                    if ( core.flag("score_anotar_prontuario") == false ) {
+                        core.registerScoreItem( Scores.anotarNoProntuario );
+                        core.flag("score_anotar_prontuario",  true );
+                    }
 
                     if ( core.flag("verificar_oximetro_local_cirurgia") == true &&
                         core.flag("colocar_placa_neutra") == true ) {
@@ -1271,8 +1272,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAltura("1,50");
             Prontuario.setCircunferenciaAbdominal("132");
 
-            Prontuario.setPrescMedicaRowData( 0, "", "Midazolam", "Oral", "15 mg", "06h", true, true );
-            Prontuario.setPrescMedicaRowData( 1, "", "Cefalotina", "Endovenosa", "6 g (6 x ao dia)", "Cefalotina Endovenosa 6 g (6 x ao dia) 06h-12h-18h-24h", true, false );
+            Prontuario.setPrescMedicaRowData( 0, "", "Midazolam", "Oral", "15 mg", "06h", false, false );
+            Prontuario.setPrescMedicaRowData( 1, "", "Cefalotina", "Endovenosa", "6 g (6 x ao dia)", "Cefalotina Endovenosa 6 g (6 x ao dia) 06h-12h-18h-24h", true, true );
             // Necessário para evitar que valores antigos apareçam no prontuário
             Prontuario.setPrescMedicaRowData( 2, "", "", "", "", "", false, true );
             Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
@@ -1280,7 +1281,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // Caso não for possível escolher o local onde está a placa neutra terá que fazer um desse para cada fase que usa
             Prontuario.setPrescEnfermagemState([ "encaminhar_paciente_cc", "check_list_cirurgia", "placa_neutra" ]);
 
-            Prontuario.setSsvvRowData( 0, "", "120x70", "47", "16", "96", "35,7", true );
+            Prontuario.setSsvvRowData( 0, "", "120x70", "47", "16", "96", "35.7", true );
             // Disable 2 row
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
 
