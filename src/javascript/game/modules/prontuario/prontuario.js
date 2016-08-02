@@ -176,6 +176,8 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
     var placaNeutra = [ false, false, false ];
     var riscoInfeccao = false;
     var trocaCurativo = false;
+    var nutricaoDesequilibrada = false;
+    var manutencaoSondaNasogastrica = false;    
 
     // Enfermagem: virarDecubito
     var prescEnfermagemTbody = "#prescEnfermagem_tbody";
@@ -683,6 +685,35 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
                 }
             });
         }
+
+        // nutricaoDesequilibrada
+        container = $(".nutricao_desequilibrada", prescEnfermagemTbody );
+        $( ".opcao", container ).unbind("click");
+        if( prescEnfermagemStates.nutricao_desequilibrada ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                nutricaoDesequilibrada = !nutricaoDesequilibrada;
+                if( nutricaoDesequilibrada ) {
+                  $( ".check", container ).text("(X)");
+                } else {
+                  $( ".check", container ).text("( )");
+                }
+            });
+        }
+        // manutencaoSondaNasogastrica
+        container = $(".manutencao_sonda_nasogastrica", prescEnfermagemTbody );
+        $( ".opcao", container ).unbind("click");
+        if( prescEnfermagemStates.manutencao_sonda_nasogastrica ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                manutencaoSondaNasogastrica = !manutencaoSondaNasogastrica;
+                if( manutencaoSondaNasogastrica ) {
+                  $( ".check", container ).text("(X)");
+                } else {
+                  $( ".check", container ).text("( )");
+                }
+            });
+        }
     }
 
 
@@ -1030,6 +1061,16 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
 
         if ( prescEnfermagemStates.troca_curativo ) {
             if ( !trocaCurativo ) {
+                return false;
+            }
+        }
+        if ( prescEnfermagemStates.nutricao_desequilibrada ) {
+            if ( !nutricaoDesequilibrada ) {
+                return false;
+            }
+        }
+        if ( prescEnfermagemStates.manutencao_sonda_nasogastrica ) {
+            if ( !manutencaoSondaNasogastrica ) {
                 return false;
             }
         }

@@ -1286,7 +1286,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setPrescMedicaRowData( 2, "", "", "", "", "", false, true );
             Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
 
-            Prontuario.clearPrescEnfermagemState( );
             Prontuario.setPrescEnfermagemState(["nutricao_desequilibrada", "manutencao_sonda_nasogastrica", "desiquilibrio_eletrolitico"]);
 
             Prontuario.setSsvvRowData( 0, "", "100X10", "65", "16", "93", "36.5", true );
