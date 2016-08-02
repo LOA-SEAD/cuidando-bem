@@ -154,6 +154,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         "decubito_visual": false,
         "verificar_glicemia": false,
         "verificar_glicemia2": false,
+        "verificar_glicemia3": false,
         "levantar_grade": false,
         "encaminhar_paciente_cc": false,
         "check_list_cirurgia": false,
@@ -177,7 +178,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
     var riscoInfeccao = false;
     var trocaCurativo = false;
     var nutricaoDesequilibrada = false;
-    var manutencaoSondaNasogastrica = false;    
+    var manutencaoSondaNasogastrica = false;
 
     // Enfermagem: virarDecubito
     var prescEnfermagemTbody = "#prescEnfermagem_tbody";

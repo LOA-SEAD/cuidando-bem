@@ -1219,7 +1219,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
 
             // Caso não for possível digitar o valor da glicemia terá que fazer um desse para cada fase que usa
-            Prontuario.setPrescEnfermagemState(["verificar_glicemia"]);
+            Prontuario.setPrescEnfermagemState(["verificar_glicemia3"]);
 
             Prontuario.setSsvvRowData( 0, "", "120X70", "60", "18", "96", "35", true );
             Prontuario.setSsvvRowData( 1, "", "130X70", "68", "20", "96", "36.4", true );
