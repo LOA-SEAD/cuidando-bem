@@ -159,6 +159,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         "encaminhar_paciente_cc": false,
         "check_list_cirurgia": false,
         "placa_neutra": false,
+        "placa_neutra2": false,
         "risco_infeccao": false,
         "troca_curativo": false,
         "nutricao_desequilibrada": false,
@@ -175,6 +176,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
     var encaminharPacienteCc = false;
     var checkListCirurgia = false;
     var placaNeutra = [ false, false, false ];
+    var placaNeutra2 = [ false, false, false ];
     var riscoInfeccao = false;
     var trocaCurativo = false;
     var nutricaoDesequilibrada = false;
@@ -657,6 +659,20 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
             });
         }
 
+        // placa_neutra2
+        container = $(".placa_neutra2", prescEnfermagemTbody );
+        $( ".opcao", container ).unbind("click");
+        if( prescEnfermagemStates.placa_neutra2 ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                var i = $( ".opcao", container ).index( this );
+                placaNeutra2 = [ false, false, false ];
+                placaNeutra2[ i ] = true;
+                $( ".check", container ).text("( )");
+                $( $( ".check", container )[ i ] ).text("(X)");
+            });
+        }
+
         // riscoInfeccao
         container = $(".risco_infeccao", prescEnfermagemTbody );
         $( ".opcao", container ).unbind("click");
@@ -1050,6 +1066,12 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
 
         if ( prescEnfermagemStates.placa_neutra ) {
             if ( !placaNeutra[1] ) {
+                return false;
+            }
+        }
+
+        if ( prescEnfermagemStates.placa_neutra2 ) {
+            if ( !placaNeutra2[0] ) {
                 return false;
             }
         }
