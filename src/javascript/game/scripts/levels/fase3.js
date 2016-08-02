@@ -1369,8 +1369,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // Necessário para evitar que valores antigos apareçam no prontuário
             Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
 
-            Prontuario.clearPrescEnfermagemState( );
-            Prontuario.setPrescEnfermagemState("decubito");
             // Caso não for possível digitar o valor da glicemia terá que fazer um desse para cada fase que usa
             Prontuario.setPrescEnfermagemState(["verificar_glicemia", "levantar_grade"]);
 
