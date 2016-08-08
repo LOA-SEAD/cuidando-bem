@@ -43,7 +43,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.changeScene( 1 );
                 console.log("Ir ao corredor");
             } else {
-                if ( core.flag("conversar_recepcionista") == true ) {
+                if ( core.flag("conversar_recepcionista")) {
                     core.closeDialog( 0 );
                     core.closeDialog( 1 );
                     core.changeScene( 1 );
@@ -63,7 +63,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                 console.log("Load scene: " + recepcao.getName() );
 
-                if(core.flag("conversar_recepcionista") == false) {
+                if( !core.flag("conversar_recepcionista")) {
                     core.flag("conversar_recepcionista", true);
                     core.openDialog( 0 );
 
@@ -120,7 +120,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             if ( !flagsOn ) {
                 console.log("Action: corredorIrSalaLeitos");
             } else {
-                if ( core.flag("conversar_mentor") == true ) {
+                if ( core.flag("conversar_mentor")) {
                     console.log("Action: corredorIrSalaLeitos");
                     core.changeScene( 2 );
                 } else {
@@ -186,12 +186,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
              new Action("btn-ir_recepcao", "Voltar para a recepção")
                 .setCssClass("action-voltarRecepcao")
                 .onClick(function() {
-
                     core.changeScene( 0 );
-
                 })
                 .setVisibility( true ),
-
         ]);
 
 
@@ -539,11 +536,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openModalScene("pulseira");
                     Pulseira.open();
                     core.openCommandBar();
-                    if ( core.flag("pulseira") == false ) {
+                    if ( !core.flag("pulseira")) {
                         // core.setInteractiveObjectVisible("io-pulseira_paciente", true );
                     }
 
-                    if(core.flag("score_checar_pulseira") == false){
+                    if ( !core.flag("score_checar_pulseira")){
                         core.flag("score_checar_pulseira", true);
                         core.registerScoreItem( Scores.identificarPaciente );
                     }
@@ -555,11 +552,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
              new InteractiveObject("io-conversar_paciente", "Falar com o paciente")
                 .setCssClass("intObj-conversar_paciente")
                 .onClick(function() {
-
-
                     core.openDialog( 18 );
                     core.closeCommandBar();
-
                 })
                 .setVisibility( true )
 
@@ -572,17 +566,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-ir_sala_de_leitos")
                 .onClick(function() {
                     core.changeScene( 2 );
-                    /*if ( Pulseira.isAllDataValid() ) {
-                        console.log("Action: action-ir_sala_de_leitos");
-                        core.registerScoreItem( Scores.identificarPaciente );
-                        core.changeScene( 2 );
-                        Pulseira.disable();
-                        core.openDialog( 11 );
-                    } else {
-                        core.closeCommandBar();
-                        core.openDialog( 17 );
-                        console.log("Alguns dados da pulseira estão incorretos");
-                    }*/
                 })
                 .setVisibility( visibility ),
 
@@ -630,7 +613,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.openModalScene("modalMedidor_pressao");
                         core.flag("medidor-pressao",  true );
 
-                        if ( core.flag("mediuPressao") == false ) {
+                        if ( !core.flag("mediuPressao")) {
                             core.flag("mediuPressao",  true );
                             core.registerScoreItem( Scores.verPressao );
                         }
@@ -653,7 +636,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.openModalScene("modalOximetro");
                         core.flag("oximetro",  true );
 
-                        if ( core.flag("mediuBatimentosESaturacao") == false ) {
+                        if ( !core.flag("mediuBatimentosESaturacao")) {
                             core.flag("mediuBatimentosESaturacao",  true );
                             core.registerScoreItem( Scores.verSaturacao );
                         }
@@ -674,7 +657,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         // core.setActionVisible("btn-frequencia_respiratoria", false);
                         core.flag("relogio",  true );
 
-                        if ( core.flag("mediuFreqRespiratoria") == false ) {
+                        if ( !core.flag("mediuFreqRespiratoria")) {
                             core.flag("mediuFreqRespiratoria",  true );
                             core.registerScoreItem( Scores.verFrequenciaRespiratoria );
                         }
@@ -699,7 +682,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.openModalScene("modalTermometro");
                         core.flag("termometro",  true );
 
-                        if ( core.flag("mediuTemperatura") == false ) {
+                        if ( !core.flag("mediuTemperatura")) {
                             core.flag("mediuTemperatura",  true );
                             core.registerScoreItem( Scores.verTemperatura );
                         }
@@ -713,9 +696,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
                     console.log("Action: ler prontuario");
-                    if ( core.flag("lavar-maosDepois") == true ) {
+                    if ( core.flag("lavar-maosDepois")) {
                         if ( checouTodosAparelhos() ) {
-                            if ( core.flag("lavar-maosDepoisScore") == true ) {
+                            if ( !core.flag("lavar-maosDepoisScore") ) {
                                 core.registerScoreItem( Scores.lavarMaosDepois );
                             }
                         }
@@ -744,7 +727,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-abrirGaveta", "Abrir gaveta")
                 .setCssClass("intObj-openDrawer")
                 .onClick(function() {
-                    if ( core.flag("pegou_bandeja") != true ) {
+                    if ( !core.flag("pegou_bandeja")) {
                         core.openDialog( 0 );
                     } else {
                         console.log("Action: abrirGaveta");
@@ -755,16 +738,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                         core.setActionVisible("btn-fecharGaveta", true );
 
-                        if ( core.flag("termometro") != true ) {
+                        if ( !core.flag("termometro")) {
                             core.setInteractiveObjectVisible("io-termometro", true );
                         }
-                        if ( core.flag("medidor-pressao") != true ) {
+                        if ( !core.flag("medidor-pressao")) {
                             core.setInteractiveObjectVisible("io-medidorPressao", true );
                         }
-                        if ( core.flag("oximetro") != true ) {
+                        if ( !core.flag("oximetro")) {
                             core.setInteractiveObjectVisible("io-oximetro", true );
                         }
-                        if ( core.flag("relogio") != true ) {
+                        if ( !core.flag("relogio")) {
                             core.setInteractiveObjectVisible("io-relogio", true );
                         }
                     }
@@ -831,10 +814,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     // Som
                     Player.play( Player.audios.sfx.fecharGaveta );
                     core.closeModalScene("Gaveta");
-                    if ( core.flag("termometro") == true &&
-                        core.flag("oximetro") == true &&
-                        core.flag("medidor-pressao") == true &&
-                        core.flag("relogio") == true ) {
+                    if ( core.flag("termometro") &&
+                        core.flag("oximetro") &&
+                        core.flag("medidor-pressao") &&
+                        core.flag("relogio") ) {
 
                         console.log("Btn ir corredor");
                         core.setActionVisible("btn-ir_corredor", true );
@@ -917,7 +900,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-abrir_dialogo")
                 .onClick(function() {
                     console.log("Action: Finalizar fase");
-                    if ( core.flag("lavar-maosDepois") == true ) {
+                    if ( core.flag("lavar-maosDepois")) {
                         if ( checouTodosAparelhos() ) {
                             if ( Prontuario.isDataValid() ) {
                                 core.registerScoreItem( Scores.anotarNoProntuario );
@@ -969,7 +952,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         // Para conversar com o paciente e registrar a pontuação apenas uma vez
                         if ( core.flag("conversouPacienteSegundaVez") == false ) {
                             core.flag("conversouPacienteSegundaVez",  true );
-                            core.registerScoreItem( Scores.identificarPaciente );
+                            //core.registerScoreItem( Scores.identificarPaciente );
                             core.openDialog( 11 );
                         }
                     } else {
