@@ -650,34 +650,34 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-ir_centro_cirurgico", "Ir para sala de cirurgia")
                 .setCssClass("action-irCentroCirurgico")
                 .onClick(function() {
-                  
+
                     if(core.flag("verificar_pulseira") == true){
-                    
+
                         core.registerScoreItem( Scores.encaminharPacienteCentroCirurgico );
                         core.changeScene( 7 );
-                        
+
                     }
                     else{
-                        
+
                         if(core.flag("score_pulseira") == false) {
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira );
                         }
-                        
+
                         core.openDialog( 7 );
-                        
+
                     }
-                    
+
                 })
             .setVisibility(false),
 
             new Action("btn-ler_prontuario", "Ler prontuario")
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
-                    
-                    
-                  if(core.flag("verificar_pulseira") == true){    
-                    
+
+
+                  if(core.flag("verificar_pulseira") == true){
+
                     console.log("Action: ler prontuario");
                     Prontuario.open();
                     core.openModalScene("Prontuario");
@@ -688,12 +688,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         }
                   }
                     else {
-                        
+
                          if(core.flag("score_pulseira") == false) {
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira );
                         }
-                        
+
                         core.openDialog( 7 );
                     }
                 })
@@ -720,7 +720,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
 
                         core.flag("verificar_pulseira", true);
-                    
+
                         core.openModalScene("pulseira");
                         Pulseira.open();
                         core.openCommandBar();
@@ -792,16 +792,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.closeDialog();
                 }),
-            
-            // 7 
+
+            // 7
               new Dialog( lib.characters.mentor )
                 .setText( Alertas.esqueceu.verPulseira )
                 .registerOption("", function() {
                     core.closeDialog();
                 }),
-            
-            
-            
+
+
+
 
 
         ]);
@@ -827,12 +827,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                 console.log("Entrando no centro cirurgico segunda vez");
                // core.openDialog( 0 );
-                
+
                 if(core.flag("conversar_paciente_cc") == false)
                     core.closeCommandBar();
-                
+
                   core.setInteractiveObjectVisible("io-conversarPaciente", false );
-                
+
             })
             .onUnload(function() {
                 console.log("Saindo do centro cirurgico");
@@ -870,20 +870,20 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-colocar_placa_neutra", "Colocar Placa Neutra")
                 .setCssClass("action-placa_neutra")
                 .onClick(function() {
-                    
+
                     console.log("Action: Colocando placa neutra");
-                    
+
                     core.flag("colocar_placa_neutra",  true );
-                    
+
                     if ( core.flag("verificar_oximetro_local_cirurgia") == false ) {
-                        core.openDialog( 21 ); 
+                        core.openDialog( 21 );
                     }
                     else {
                         core.registerScoreItem( Scores.colocarPlacaNeutra );
-                        core.changeSceneCssClassTo("scene-surgeryCenter-reginaComPlaca");    
-                        core.setActionVisible("btn-colocar_placa_neutra", false);       
+                        core.changeSceneCssClassTo("scene-surgeryCenter-reginaComPlaca");
+                        core.setActionVisible("btn-colocar_placa_neutra", false);
                     }
-                    
+
                 })
                 .setVisibility( true ),
 
@@ -895,10 +895,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("lavar_maos3") == false ) {
                         core.openDialog( 19 );
                     } else {
-                        if ( core.flag("score_anotar_prontuario") == false ) {
-                            core.registerScoreItem( Scores.anotarNoProntuario );
-                            core.flag("score_anotar_prontuario",  true );
-                        }
                         if ( core.flag("colocar_placa_neutra") == false ) {
                             core.openDialog( 20 );
                         } else {
@@ -1129,10 +1125,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-conversar_circulante", "Conversar com Circulante")
                 .setCssClass("intObj-talkToCirculante")
                 .onClick(function() {
-                    
+
                     console.log("Abrir diálogo com a circulante");
                     core.openDialog( 0 );
-                 
+
                    core.setInteractiveObjectVisible("io-conversarPaciente", true );
                 })
                 .setVisibility( true ),
@@ -1171,7 +1167,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var oximetro = new Scene("modalOximetro", "Oxímetro")
             .setCssClass("modalScene-oximetro")
             .setTemplate(
-                "<span class='oximetro-st-text'>97% Sat.O2</span>" + "<span class='oximetro-fc-text'>69 bpm</span>"
+                "<span class='oximetro-st-text'>96% Sat.O2</span>" + "<span class='oximetro-fc-text'>47 bpm</span>"
             );
 
         oximetro.registerActions([
@@ -1195,6 +1191,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Prontuario.close();
                     core.closeModalScene("Prontuario");
 
+                    if ( core.flag("score_anotar_prontuario") == false ) {
+                        core.registerScoreItem( Scores.anotarNoProntuario );
+                        core.flag("score_anotar_prontuario",  true );
+                    }
+
                     if ( core.flag("verificar_oximetro_local_cirurgia") == true &&
                         core.flag("colocar_placa_neutra") == true ) {
                         core.flag("fim_fase",  true );
@@ -1216,8 +1217,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("Ação: Fechar modal pulseira");
                     core.closeModalScene("Pulseira");
-            
-                    
+
+
                     Pulseira.close();
                 })
                 .setVisibility( true )
@@ -1271,19 +1272,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAltura("1,50");
             Prontuario.setCircunferenciaAbdominal("132");
 
-            Prontuario.setPrescMedicaRowData( 0, "", "Midazolam", "Oral", "15 mg", "06h", true, true );
-            Prontuario.setPrescMedicaRowData( 1, "", "Cefalotina", "Endovenosa", "6 g (6 x ao dia)", "Cefalotina Endovenosa 6 g (6 x ao dia) 06h-12h-18h-24h", true, false );
+            Prontuario.setPrescMedicaRowData( 0, "", "Midazolam", "Oral", "15 mg", "06h", false, false );
+            Prontuario.setPrescMedicaRowData( 1, "", "Cefalotina", "Endovenosa", "6 g (6 x ao dia)", "Cefalotina Endovenosa 6 g (6 x ao dia) 06h-12h-18h-24h", true, true );
             // Necessário para evitar que valores antigos apareçam no prontuário
             Prontuario.setPrescMedicaRowData( 2, "", "", "", "", "", false, true );
             Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
 
-            Prontuario.clearPrescEnfermagemState( );
-            Prontuario.setPrescEnfermagemState("encaminhar_paciente_cc");
-            Prontuario.setPrescEnfermagemState("check_list_cirurgia");
             // Caso não for possível escolher o local onde está a placa neutra terá que fazer um desse para cada fase que usa
-            Prontuario.setPrescEnfermagemState("placa_neutra");
+            Prontuario.setPrescEnfermagemState([ "encaminhar_paciente_cc", "check_list_cirurgia", "placa_neutra" ]);
 
-            Prontuario.setSsvvRowData( 0, "", "120x70", "47", "16", "96", "35,7", true );
+            Prontuario.setSsvvRowData( 0, "", "120x70", "47", "16", "96", "35.7", true );
             // Disable 2 row
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
 

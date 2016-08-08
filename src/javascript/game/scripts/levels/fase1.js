@@ -1086,7 +1086,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAnotacaoEnfermagemRowData("", "");
 
             Prontuario.clearPrescEnfermagemState( );
-            Prontuario.setPrescEnfermagemState("vazio");
+            Prontuario.setPrescEnfermagemState([ "decubito_visual" ]);
         });
 
         level.registerScene( recepcao );

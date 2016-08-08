@@ -828,12 +828,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeModalScene("Prontuario");
                     // Retirar esse if após consertar o problema no prontuário
                     if ( core.flag( "colocou_coxim" ) == true ) {
-                        core.registerScoreItem( Scores.anotarNoProntuario );
-                        core.unlockLevel( 3 );
-                        core.closeCommandBar();
-                        core.showEndOfLevel();
-                        Player.stopAll();
-                        Player.play( Player.audios.sfx.missaoCumprida );
+                        if ( Prontuario.isDataValid() ) {
+                          core.registerScoreItem( Scores.anotarNoProntuario );
+                          core.unlockLevel( 3 );
+                          core.closeCommandBar();
+                          core.showEndOfLevel();
+                          Player.stopAll();
+                          Player.play( Player.audios.sfx.missaoCumprida );
+                        }
                     }
                 })
         ]);
@@ -880,7 +882,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setObservacoes("Possui incontinência urinária, acamado.");
 
             Prontuario.clearPrescEnfermagemState( );
-            Prontuario.setPrescEnfermagemState("decubito");
+            Prontuario.setPrescEnfermagemState([ "decubito" ]);
 
             Prontuario.setPeso("72");
             Prontuario.setAltura("1,68");

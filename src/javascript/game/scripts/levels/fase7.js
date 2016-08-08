@@ -327,8 +327,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 if ( core.flag("pegou_tudo_postoEnfermagem") == true ) {
                     core.setInteractiveObjectVisible("io-conversar_com_paciente", true );
                     core.setActionVisible("btn-lavarMaos", true);
-                } 
-              
+                }
+
             });
 
         alaMasculina.registerDialogs([
@@ -384,11 +384,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.changeScene( 1 );
 
                 }),
-            
+
              new InteractiveObject("io-falarPaciente", "Falar com o paciente")
                 .setCssClass("intObj-ir_leito_fase3")
                 .onClick(function() {
-                
+
                     core.openDialog(0);
                     core.flag("conversar_paciente",  true );
                      core.setActionVisible("btn-ler_prontuario", true );
@@ -399,40 +399,40 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-conversar_com_paciente", "Ir ao leito")
                 .setCssClass("intObj-ir_leito_fase3")
                 .onClick(function() {
-                    
+
                     if(core.flag("score_lavarMaos3") == false){
                         core.openDialog(4);
                     } else{
-                        
+
                          if ( core.flag("ir_leito_paciente") == false ) {
                         core.flag("ir_leito_paciente",  true );
                         console.log("Abrir diálogo com paciente 6");
                         core.registerScoreItem( Scores.irAoLeitoCorreto );
                         core.changeScene( 3 );
                     }
-                        
+
                     }
 
-                   
+
                 })
                 .setVisibility( true )
         ]);
 
         alaMasculina.registerActions([
-            
+
               new Action("btn-lavarMaos", "Lavar as mãos")
             .setCssClass("action-lavarMaos")
             .onClick(function() {
                 // Som
-                
+
                 Player.play( Player.audios.sfx.lavarMaos );
-                
+
                 if ( core.flag("score_lavarMaos3") == false ) {
                     core.registerScoreItem( Scores.lavarMaos3 );
                       core.flag("score_lavarMaos3",  true );
                 }
 
-              
+
             })
             .setVisibility( false ),
 
@@ -719,7 +719,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     .onLoad(function() {
 
     core.closeCommandBar();
-         
+
 
 });
 
@@ -773,7 +773,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.closeDialog(  );
                 }),
-        // 7 
+        // 7
           new Dialog(lib.characters.mentor)
                 .setText(Alertas.esqueceu.verPulseira)
                 .registerOption("", function () {
@@ -787,9 +787,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         new InteractiveObject("io-pulseira_paciente", "Checar pulseira do paciente")
         .setCssClass("intObj-paciente_07-checar_pulseira")
         .onClick(function() {
-            
+
             core.flag("verificar_pulseira", true);
-            
+
             console.log("IO: pulseira_paciente");
             core.openModalScene("Pulseira");
             Pulseira.open();
@@ -802,10 +802,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-conversar_paciente07", "Falar com o paciente")
                 .setCssClass("intObj-conversar_paciente")
                 .onClick(function() {
-                    
+
                      core.openDialog( 0 );
                      core.enableInteractiveObject("io-pulseira_paciente", true );
-                   
+
 
      if ( core.flag("score_falarComPaciente") == false ) {
         core.flag("score_falarComPaciente",  true );
@@ -824,8 +824,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       new Action("btn-pegar_suporte_soro", "Pegar Suporte de Soro")
       .setCssClass("action-pegarSuporte")
       .onClick(function() {
-          
-    if(core.flag("verificar_pulseira") == true) {   
+
+    if(core.flag("verificar_pulseira") == true) {
 
         if ( core.flag("score_pegar_suporte_soro") == false ) {
             core.registerScoreItem( Scores.pegarSuporteSoro );
@@ -835,18 +835,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         core.flag("score_pegar_suporte_soro",  true );
         core.setActionVisible("btn-pegar_suporte_soro", false);
         core.setActionVisible("btn-elevar_cama", true);
-        
+
     }
     else{
-        
+
             if(core.flag("score_pulseira") == false) {
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira );
                         }
-                        
+
                         core.openDialog( 7 );
     }
-       
+
 
     })
       .setVisibility( true ),
@@ -862,36 +862,36 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         core.flag("score_elevar_cama",  true );
         core.setActionVisible("btn-elevar_cama", false);
-          
+
         core.setActionVisible("btn-colocarSoro", true);
 
     })
       .setVisibility( false ),
-        
-        
-        
+
+
+
            new Action("btn-verificar_sonda", "Verificar Local da Sonda")
       .setCssClass("action-verificar-sonda")
       .onClick(function() {
-          
-     if(core.flag("verificar_pulseira") == true) {   
+
+     if(core.flag("verificar_pulseira") == true) {
 
         if ( core.flag("score_verificar_sonda") == false ) {
             core.registerScoreItem( Scores.verificarSonda );
         }
 
         core.flag("score_verificar_sonda",  true );
-         
+
      }
      else{
-         
+
             if(core.flag("score_pulseira") == false) {
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira );
                         }
-                        
+
                         core.openDialog( 7 );
-         
+
      }
 
     })
@@ -914,7 +914,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setVisibility( false ),
 
 
-   
+
 
      /* new Action("btn-administrar_dieta", "Administrar Dieta")
       .setCssClass("action-frasco_dieta")
@@ -948,9 +948,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       new Action("btn-lavarMaos", "Lavar as mãos")
       .setCssClass("action-lavarMaos")
       .onClick(function() {
-          
-         if(core.flag("verificar_pulseira") == true) {     
-          
+
+         if(core.flag("verificar_pulseira") == true) {
+
         // Som
         Player.play( Player.audios.sfx.lavarMaos );
         if ( core.flag("score_lavarMaos2") == false ) {
@@ -958,17 +958,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         }
 
         core.flag("score_lavarMaos2",  true );
-             
+
          }
         else{
-            
+
                         if(core.flag("score_pulseira") == false) {
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira );
                         }
-                        
+
                         core.openDialog( 7 );
-            
+
         }
 
     })
@@ -977,10 +977,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         new Action("btn-anotar_prontuario", "Anotar prontuario")
             .setCssClass("action-anotar_prontuario")
             .onClick(function() {
-                
-                
-              if(core.flag("verificar_pulseira") == true) {      
-                
+
+
+              if(core.flag("verificar_pulseira") == true) {
+
                 console.log("Action: Anotar prontuario");
                 if ( core.flag("score_lavarMaos2") == false ) {
                     // core.openDialog(19);
@@ -996,12 +996,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }
               }
             else {
-                
+
                     if(core.flag("score_pulseira") == false) {
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira );
                         }
-                        
+
                         core.openDialog( 7 );
             }
             })
@@ -1206,7 +1206,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                     EquipoGotejamento.close();
                     core.closeModalScene("equipoSoro");
-                    core.setActionVisible("btn-colocar_gotejamento", false);    
+                    core.setActionVisible("btn-colocar_gotejamento", false);
 
                 }
 
@@ -1286,10 +1286,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setPrescMedicaRowData( 2, "", "", "", "", "", false, true );
             Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
 
-            Prontuario.clearPrescEnfermagemState( );
-            Prontuario.setPrescEnfermagemState("nutricao_desequilibrada");
-            Prontuario.setPrescEnfermagemState("manutencao_sonda_nasogastrica");
-            Prontuario.setPrescEnfermagemState("desiquilibrio_eletrolitico");
+            Prontuario.setPrescEnfermagemState(["nutricao_desequilibrada", "manutencao_sonda_nasogastrica", "desiquilibrio_eletrolitico"]);
 
             Prontuario.setSsvvRowData( 0, "", "100X10", "65", "16", "93", "36.5", true );
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );

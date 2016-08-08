@@ -256,7 +256,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 } else {*/
                     core.setInteractiveObjectVisible("io-ir_leito", true );
                     core.setInteractiveObjectVisible("io-falarPaciente", false );
-                    
+
                     if ( core.flag("tem_fala") == false ) {
                         core.openCommandBar();
                     }
@@ -291,29 +291,29 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             });
 
         salaDeLeitos.registerInteractiveObjects([
-            
+
             new InteractiveObject("io-falarPaciente", "Falar com o paciente")
                 .setCssClass("intObj-ir_leito-fase2")
                 .onClick(function() {
 
                         core.openDialog(0);
-                    
-                    
+
+
                 })
                 .setVisibility( true ),
-            
+
 
             new InteractiveObject("io-ir_leito", "Ir ao leito")
                 .setCssClass("intObj-ir_leito-fase2")
                 .onClick(function() {
- 
+
                         if ( core.flag("lavar_maos2") == false ) {
                             // Mentor corrige
                             core.openDialog( 3 );
                         } else {
                             core.changeScene( 3 );
                         }
-                    
+
                 })
                 .setVisibility( false ),
 
@@ -683,8 +683,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.openCommandBar();
                 console.log("Leito: Onload");
                 core.setInteractiveObjectVisible("io-pulseira_paciente", true );
-            
-                
+
+
                 // core.setActionVisible("btn-falarPaciente", true );
             })
             .onUnload(function() {
@@ -710,8 +710,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
                 .setEnable (false ),
-            
-            
+
+
 
             new InteractiveObject("io-conversar_paciente03", "Falar com o paciente")
                 .setCssClass("intObj-conversar_paciente")
@@ -753,7 +753,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         ]);
 
-    
+
 
         leito.registerDialogs([
             new Dialog( lib.characters.jogador )
@@ -859,7 +859,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .registerOption("", function() {
                     core.closeDialog();
                 }),
-          
+
         ]);
 
         leito.registerActions([
@@ -871,26 +871,26 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     console.log("Action: Colocar Luvas");
                     // Som
                     Player.play( Player.audios.sfx.colocarLuvas );
-                
+
                     if(core.flag("verificar_pulseira") == true){
-                    
+
                         if ( core.flag("score_vestiu_luvas") == false ) {
                             core.flag("score_vestiu_luvas",  true );
                             core.registerScoreItem( Scores.porLuvas );
                             core.setActionVisible("btn-por_luvas", false);
                         }
-                        
+
                     }
                     else {
-                        
+
                         if(core.flag("score_pulseira") == false){
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira);
                         }
-                        
+
                         core.openDialog( 10 );
                     }
-                    
+
                 })
                 .setVisibility( false ),
 
@@ -899,10 +899,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-utilizar_algodao", "Utilizar Algodão")
                 .setCssClass("action-algodao_seco")
                 .onClick(function() {
-                    
+
                     console.log("Action: Utilizar Algodão");
                     // Verifica qual é a vez que está utilizando o algodão
-                    
+
                 if(core.flag("verificar_pulseira") == true){
                     if ( core.flag("utilizar_algodao2") == true ) {
                         if ( core.flag("score_realizou_teste_glicemia") == false ) {
@@ -937,12 +937,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                   }
                     else {
-                        
+
                           if(core.flag("score_pulseira") == false){
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira);
                         }
-                        
+
                         core.openDialog(10);
                     }
                 })
@@ -969,7 +969,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("Action: Realizar teste de glicemia capilar");
                     // Bip
-                    
+
                   if(core.flag("verificar_pulseira") == true){
                     Player.play( Player.audios.sfx.bip );
                     if ( core.flag("score_utilizou_algodao1") == false ) {
@@ -991,12 +991,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
                   }
                     else {
-                        
+
                           if(core.flag("score_pulseira") == false){
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira);
                         }
-                        
+
                         core.openDialog( 10 );
                     }
                 })
@@ -1369,11 +1369,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // Necessário para evitar que valores antigos apareçam no prontuário
             Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
 
-            Prontuario.clearPrescEnfermagemState( );
-            Prontuario.setPrescEnfermagemState("decubito");
             // Caso não for possível digitar o valor da glicemia terá que fazer um desse para cada fase que usa
-            Prontuario.setPrescEnfermagemState("verificar_glicemia");
-            Prontuario.setPrescEnfermagemState("levantar_grade");
+            Prontuario.setPrescEnfermagemState(["verificar_glicemia", "levantar_grade"]);
 
             Prontuario.setSsvvRowData( 0, "", "130x70", "58", "28", "95", "36,2", true );
             // Disable 2 row

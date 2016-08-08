@@ -135,9 +135,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         function corredorIrPostoEnfermagem() {
-          
+
                 core.changeScene( 5 );
-            
+
         }
 
         function corredorIrAlaFeminina() {
@@ -229,15 +229,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         var alaFeminina = new Scene("alaMasculina", "Ala Masculina")
             .setCssClass("scene-bedroom-level7")
             .onLoad(function() {
-                
+
                 core.setActionVisible("btn-ler_prontuario", false);
-                
+
                 if(core.flag("pegou_tudo_posto") == true){
-                    
-                  
+
+
                    core.setInteractiveObjectVisible("io-conversar_paciente2", true );
                    core.setInteractiveObjectVisible("io-falarPaciente", false );
-                    
+
                 }
 
 
@@ -398,25 +398,25 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     }
 
                 }),
-            
-              
-            
-            
+
+
+
+
                new InteractiveObject("io-falarPaciente", "Falar com a paciente")
                 .setCssClass("intObj-irLeitoEsquerda")
                 .onClick(function() {
-                    
-                    
+
+
                     if ( core.flag("conversarPaciente") == false ) {
                         core.flag("conversarPaciente",  true );
                         core.registerScoreItem( Scores.falarComPaciente );
-                    } 
-                    
+                    }
+
                     core.openDialog( 0 );
                     core.setActionVisible("btn-ler_prontuario", true);
-                   
-           
-            
+
+
+
                 })
                 .setVisibility( true ),
 
@@ -424,9 +424,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-conversar_paciente2", "Ir ao leito")
                 .setCssClass("intObj-irLeitoEsquerda")
                 .onClick(function() {
-                    
-           
-                
+
+
+
                     if ( core.flag("pegou_tudo_posto") == false ) {
                     // Ida para o leito sem lavar as mãos, o que impede o jogador Ir ao leito
                     } else if ( core.flag("lavarMaos") == false ) {
@@ -464,27 +464,27 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         var farmacia = lib.scenes.farmacia.getClone()
             .onLoad(function() {
-                
+
                 if(core.flag("score_ler_prontuario") == true && core.flag("falou_farmaceutico") == false){
                     core.openDialog(0);
                 }
                 else {
-                    
+
                         if ( core.flag("ir_farmacia_horaErrada") == false ) {
                             core.registerScoreItem( Scores.irFarmaciaHoraErrada );
                             core.flag("ir_farmacia_horaErrada",  true );
                         }
-                        core.setActionVisible("btn-clorpropamidaMedicamento", false );  
+                        core.setActionVisible("btn-clorpropamidaMedicamento", false );
                 }
- 
+
             });
 
 
         farmacia.registerInteractiveObjects([
- 
+
 
             // Clorpromazina
-            
+
             new InteractiveObject("io-clorpromazina_medicamento", "Pegar Medicamento")
                 .setCssClass("intObj-clorpromazina_medicamento")
                 .onClick(function() {
@@ -654,10 +654,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         var leito = lib.scenes.leitos.ana.getClone()
             .onLoad(function() {
-                
+
                 core.setActionVisible("btn-oferecer_copo", false);
-                
-               
+
+
             });
 
         leito.registerDialogs([
@@ -744,9 +744,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-oferecer_copo", "Oferecer copo com água para a paciente")
                 .setCssClass("action-copo_descartavel")
                 .onClick(function() {
-                    
-                if(core.flag("verificar_pulseira") == true) {       
-                    
+
+                if(core.flag("verificar_pulseira") == true) {
+
                     console.log("Action: Oferecer copo com água para a paciente");
                     if ( core.flag("score_verificar_pulseira") == false ) {
                         if ( core.flag("score_nao_verificou_pulseira") == false ) {
@@ -763,21 +763,21 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                             core.setActionVisible("btn-oferecer_copo",false);
                         }
                     }
-                    
+
                 }
                 else {
-                    
-                    
+
+
                         if(core.flag("score_pulseira") == false) {
                             core.flag("score_pulseira", true);
                             core.registerScoreItem( Scores.naoVerificarPulseira );
                         }
-                        
+
                         core.openDialog( 8 );
-                    
+
                 }
-                    
-                    
+
+
                 })
                 .setVisibility( true ),
 
@@ -833,9 +833,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-paciente_08-checar_pulseira")
                 .onClick(function() {
                     console.log("IO: pulseira_paciente");
-                    
+
                     core.flag("verificar_pulseira", true);
-                    
+
                     core.openModalScene("pulseira");
                     if ( core.flag("score_verificar_pulseira") == false ) {
                         core.registerScoreItem( Scores.verificarPulseira );
@@ -846,25 +846,25 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( true )
                 .setEnable( false ),
-            
-            
-             
-            
-            
+
+
+
+
+
              new InteractiveObject("io-falarPaciente", "Falar com a paciente")
                 .setCssClass("intObj-conversar_paciente")
                 .onClick(function() {
-            
+
                         if ( core.flag("score_explicar_acao_medicamento") == false ) {
                     core.registerScoreItem( Scores.explicarAcaoMedicamento );
                     core.flag("score_explicar_acao_medicamento",  true );
                 }
-                    
+
                 core.openDialog( 0 );
                 core.enableInteractiveObject("io-pulseira_paciente", true );
                 core.setActionVisible("btn-oferecer_copo", true);
-            
-            
+
+
                 })
                 .setVisibility( true ),
 
@@ -874,32 +874,32 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         var postoDeEnfermagem = lib.scenes.postoDeEnfermagem.getClone()
             .onLoad(function() {
-                
-                
+
+
                 if(core.flag("ir_ala_feminina_primeira_vez") == false || core.flag("conferir_medicamento_correto") == false){
-                    
+
                       if ( core.flag("ir_postoEnfermagem_horaErrada") == false ) {
                         core.registerScoreItem( Scores.irFarmaciaHoraErrada );
                         core.flag("ir_postoEnfermagem_horaErrada",  true );
                     }
-                    
+
                    core.setInteractiveObjectVisible("io-pegar_bandeja",false);
                    core.setInteractiveObjectVisible("io-abrirGaveta",false);
-    
+
                 }
                 else {
                     core.setInteractiveObjectVisible("io-pegar_bandeja",true);
                    core.setInteractiveObjectVisible("io-abrirGaveta",true);
-                    
+
                     if(core.flag("pegou_bandeja") == true){
                           core.setInteractiveObjectVisible("io-pegar_bandeja",false);
                     }
-                    
+
                 }
-                
-     
-                
-                
+
+
+
+
             });
 
         postoDeEnfermagem.registerDialogs([
@@ -973,16 +973,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-ir_corredor", "Ir ao corredor")
                 .setCssClass("action-ir_corredor")
                 .onClick(function() {
-                    
-                    
+
+
                     if(core.flag("score_pegar_copo_descartavel") == true && core.flag("score_pegar_agua_potavel") == true){
                            core.flag("pegou_tudo_posto",  true );
                     }
-                    
+
                     core.changeScene( 1 );
-                    
-               
-                    
+
+
+
                 })
 
         ]);
@@ -1218,9 +1218,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setPrescMedicaRowData( 2, "", "", "", "", "", false, true );
             Prontuario.setPrescMedicaRowData( 3, "", "", "", "", "", false, true );
 
-            Prontuario.clearPrescEnfermagemState( );
             // Caso não for possível digitar o valor da glicemia terá que fazer um desse para cada fase que usa
-            Prontuario.setPrescEnfermagemState("verificar_glicemia");
+            Prontuario.setPrescEnfermagemState(["verificar_glicemia3"]);
 
             Prontuario.setSsvvRowData( 0, "", "120X70", "60", "18", "96", "35", true );
             Prontuario.setSsvvRowData( 1, "", "130X70", "68", "20", "96", "36.4", true );
