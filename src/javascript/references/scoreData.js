@@ -34,16 +34,14 @@ define(function() {
         },
 
         fase2: {
-            irPostoEnfermagemHoraErrada: new Score("Ir ao posto de enfermagem em hora indevida", -50 ),
             lavarMaosAntes: new Score("Lavar as mãos antes de examinar paciente", 200 ),
             falarComPaciente: new Score("Falar com Paciente", 50 ),
             verificarPulseira: new Score("Verificar Pulseira", 100 ),
             examinarPaciente: new Score("Examinar Paciente", 150 ),
-            lavarMaosDepois: new Score("Lavar as mãos após procedimento", 200 ),
-            falarComMentorApos: new Score("Falar com mentor após examinar paciente", 50 ),
             pegarCoxim: new Score("Pegar Coxim", 50 ),
-            lavarMaosProntuario: new Score("Lavar mãos antes de pegar prontuario", 200 ),
-            naoLavarMaosProntuario: new Score("Não lavar as mãos antes de pegar prontuario", -100 ),
+            mudarPosicaoCoxim: new Score("Mudar posição coxim", 150),
+            lavarMaosDepois: new Score("Lavar as mãos após procedimento", 200 ),
+            lerProntuario: new Score("Ler prontuário", 100),
             anotarNoProntuario: new Score("Anotar no prontuário", 50 )
         },
 

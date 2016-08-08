@@ -43,7 +43,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         function recepcaoIrCorredor() {
             console.log("Funcao: recepcao_ir_corredor");
-            if ( core.flag("conversar_recepcionista") == true ) {
+            if ( core.flag("conversar_recepcionista") ) {
                 core.closeDialog();
                 core.changeScene( 1 );
                 console.log("Ir ao corredor");
@@ -61,7 +61,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                 console.log("Load scene: " + recepcao.getName() );
 
-                if(core.flag("conversar_recepcionista") == false) {
+                if( !core.flag("conversar_recepcionista")) {
                     core.flag("conversar_recepcionista", true);
                     core.openDialog( 0 );
 
@@ -106,7 +106,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
 
-                 core.openCommandBar();
+                core.openCommandBar();
                 core.setActionVisible("btn-ir_recepcao", true);
 
                 console.log("Entrando no corredor");
@@ -114,10 +114,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 // Som
                 Player.play( Player.audios.sfx.abrirPorta );
                 Player.playInLoop( Player.audios.loops.recepcao );
-                if ( core.flag("conversar_mentor") == false ) {
+                if ( !core.flag("conversar_mentor") ) {
                     core.flag("conversar_mentor",  true );
                     core.openDialog( 0 );
-                } else if ( core.flag("examinar_paciente") == true && core.flag("conversar_mentor2") == false ) {
+                } else if ( core.flag("examinar_paciente") && !core.flag("conversar_mentor2") ) {
                     core.openDialog( 2 );
                 }
             })
@@ -203,8 +203,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.openCommandBar();
                     core.flag("conversar_mentor2",  true );
 
-                    if ( core.flag("score_falar_com_mentor") == false ) {
-                        core.registerScoreItem( Scores.falarComMentorApos );
+                    if ( !core.flag("score_falar_com_mentor")) {
+                        // core.registerScoreItem( Scores.falarComMentorApos );
                         core.flag("score_falar_com_mentor",  true );
                     }
                 })
@@ -243,11 +243,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         function corredorIrPostoEnfermagem() {
             console.log("Action: corredorIrPostoEnfermagem");
-            if ( core.flag("examinar_paciente") == false ) {
+            if ( !core.flag("examinar_paciente") ) {
                 // aviso de caminho errado
                 core.openDialog( 10 );
-                if ( core.flag("score_ir_posto_hora_errada") == false ) {
-                    core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
+                if ( !core.flag("score_ir_posto_hora_errada") ) {
+                    //core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
                     core.flag("score_ir_posto_hora_errada",  true );
                 }
             } else {
@@ -257,11 +257,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         }
 
         function corredorIrSalaLeitos() {
-            if ( core.flag("conversar_mentor") == true ) {
-                if ( core.flag("examinar_paciente") == false ) {
+            if ( core.flag("conversar_mentor") ) {
+                if ( !core.flag("examinar_paciente") ) {
                     core.changeScene( 2 );
                 } else {
-                    if ( core.flag("coxim") == true ) {
+                    if ( core.flag("coxim") ) {
                         core.changeScene( 2 );
                     } else {
                         core.openDialog( 11 );
@@ -289,10 +289,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     core.closeCommandBar();
                     console.log("Abrir diálogo com o mentor");
-                    if ( core.flag("examinar_paciente") == false ) {
+                    if ( !core.flag("examinar_paciente") ) {
                         core.flag("conversar_mentor",  true );
                         core.openDialog( 0 );
-                    } else if ( core.flag("examinar_paciente") == true ) {
+                    } else if ( core.flag("examinar_paciente") ) {
                         core.openDialog( 2 );
                     }
                 })
@@ -304,7 +304,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setCssClass("scene-bedroom-level1a")
             .onLoad(function() {
                 console.log("Entrando na sala de leitos");
-                if ( core.flag("colocou_coxim") == true ) {
+                if ( core.flag("colocou_coxim") ) {
                     core.setActionVisible("btn-ler_prontuario", true );
                     core.changeSceneCssClassTo("scene-bedroom-level1b");
                     // ARRUMAR PARA PODER IR SEMPRE AO LEITO
@@ -321,7 +321,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-ir_leito", "Ir ao leito")
                 .setCssClass("intObj-ir_leito-fase1")
                 .onClick(function() {
-                    if ( core.flag("lavarMaos") == false ) {
+                    if ( !core.flag("lavarMaos") ) {
                         // Mentor corrige
                         core.openDialog( 0 );
                     } else {
@@ -334,10 +334,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-ir_corredor", "Ir ao Corredor")
                 .setCssClass("intObj-bedroomToHallway")
                 .onClick(function() {
-                    if ( core.flag("foi_ao_leito") == false ) {
+                    if ( !core.flag("foi_ao_leito") ) {
                         core.changeScene( 1 );
                     } else {
-                        if ( core.flag("lavar_maos2") == true ) {
+                        if ( core.flag("lavar_maos2") ) {
                             core.changeScene( 1 );
                         } else {
                             core.openDialog( 1 );
@@ -353,30 +353,30 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     // Som
                     Player.play( Player.audios.sfx.lavarMaos );
-                    if ( core.flag("lavarMaos") == false ) {
+                    if ( !core.flag("lavarMaos") ) {
                         console.log("Action: lavarMaos");
                         core.flag("lavarMaos",  true );
 
-                        if ( core.flag("score_lavar_maos_antes_exame") == false ) {
+                        if ( !core.flag("score_lavar_maos_antes_exame") ) {
                             core.registerScoreItem( Scores.lavarMaosAntes );
                             core.flag("score_lavar_maos_antes_exame",  true );
                         }
                         // core.setInteractiveObjectVisible("io-ir_leito", true);
-                    } else if ( core.flag("lavar_maos2") == false && core.flag("examinar_paciente") == true ) {
+                    } else if ( !core.flag("lavar_maos2") && core.flag("examinar_paciente") ) {
                         console.log("Action: lavar_maos2");
                         core.flag("lavar_maos2",  true );
 
-                        if ( core.flag("score_lavar_maos_depois_exame") == false ) {
+                        if ( !core.flag("score_lavar_maos_depois_exame") ) {
                             core.registerScoreItem( Scores.lavarMaosDepois );
                             core.flag("score_lavar_maos_depois_exame",  true );
                         }
                         // core.setActionVisible("ir_corredor", true);
-                    } else if ( core.flag("lavar_maos3") == false && core.flag("colocou_coxim") == true ) {
+                    } else if ( !core.flag("lavar_maos3") && core.flag("colocou_coxim") ) {
                         console.log("Action: lavar_maos3");
                         core.flag("lavar_maos3",  true );
 
-                        if ( core.flag("score_lavar_maos_prontuario") == false ) {
-                            core.registerScoreItem( Scores.lavarMaosProntuario );
+                        if ( !core.flag("score_lavar_maos_prontuario") ) {
+                            // core.registerScoreItem( Scores.lavarMaosProntuario );
                             core.flag("score_lavar_maos_prontuario",  true );
                         }
                     }
@@ -385,9 +385,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new Action("btn-ler_prontuario", "Ler prontuario")
                 .setCssClass("action-ler_prontuario")
                 .onClick(function() {
-                    if ( core.flag("lavar_maos3") == false ) {
+                    if ( !core.flag("lavar_maos3") ) {
                         core.openDialog( 2 );
                     } else {
+                        if ( !core.flag( "score_ler_prontuario") ) {
+                            core.flag( "score_ler_prontuario", true);
+                            core.registerScoreItem( Scores.lerProntuario );
+                        }
                         console.log("Action: ler prontuario");
                         Prontuario.open();
                         core.openModalScene("Prontuario");
@@ -421,18 +425,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .onLoad(function() {
                 core.openCommandBar();
                 console.log("Leito: Onload");
-                if ( core.flag("examinar_paciente") == false ) {
+                if ( !core.flag("examinar_paciente") ) {
                     core.setInteractiveObjectVisible("io-pulseira_paciente", true );
                 }
-                if ( core.flag("conversar_mentor2") == true ) {
+                if ( core.flag("conversar_mentor2") ) {
                     core.setActionVisible("btn-examinar_paciente", false );
 
-                    if ( core.flag("coxim") == true ) {
+                    if ( core.flag("coxim") ) {
                              core.setInteractiveObjectVisible("io-conversar_paciente02", false );
-                        if ( core.flag("mudar_posicao_paciente") == false ) {
+                        if ( !core.flag("mudar_posicao_paciente") ) {
                             core.setActionVisible("btn-mudar_posicao", true );
                         } else {
-                            if ( core.flag("colocou_coxim") == false ) {
+                            if ( !core.flag("colocou_coxim") ) {
                                 core.setActionVisible("btn-mudar_posicao", false );
                                 core.setInteractiveObjectVisible("io-pulseira_paciente", false );
                                 core.setActionVisible("btn-posicionar_coxim_e_travesseiro", true );
@@ -475,7 +479,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("intObj-conversar_paciente")
                 .onClick(function() {
 
-                      if ( core.flag("score_falar_paciente") == false ) {
+                      if ( !core.flag("score_falar_paciente") ) {
                         core.registerScoreItem( Scores.falarComPaciente );
                         core.flag("score_falar_paciente",  true );
                     }
@@ -636,6 +640,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.setInteractiveObjectVisible("io-pulseira_paciente2", true );
                     core.setActionVisible("btn-posicionar_coxim_e_travesseiro", true );
                     core.flag("mudar_posicao_paciente",  true );
+
+                    if( !core.flag("score_mudar_posicao") ) {
+                        core.flag("score_mudar_posicao", true);
+                        core.registerScoreItem( Scores.mudarPosicaoCoxim);
+                    }
                 })
                 .setVisibility( false ),
             new Action("btn-posicionar_coxim_e_travesseiro", "Posicionar coxim e travesseiro")
@@ -663,7 +672,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-ir_corredor")
                 .onClick(function() {
                     console.log("Action: ir_corredor");
-                    if ( core.flag("coxim") == true ) {
+                    if ( core.flag("coxim") ) {
                         core.changeScene( 1 );
                     } else {
                         core.openDialog( 0 );
@@ -676,7 +685,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             new InteractiveObject("io-abrirGaveta", "Abrir gaveta")
                 .setCssClass("intObj-openDrawer")
                 .onClick(function() {
-                    if ( core.flag( "pegou_bandeja" ) != true ) {
+                    if ( !core.flag( "pegou_bandeja" ) ) {
                         core.openDialog( 1 );
                     } else {
                         console.log("Action: abrirGaveta");
@@ -685,7 +694,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                         core.openModalScene("gaveta");
                         core.openCommandBar();
 
-                        core.setInteractiveObjectVisible("io-coxim", !(core.flag("coxim")) );
+                        core.setInteractiveObjectVisible("io-coxim", !core.flag("coxim") );
                     }
                 })
                 .setVisibility( true ),
@@ -732,7 +741,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeModalScene("zoomChar2");
                     core.setActionVisible("btn-ir_sala_leitos", true );
 
-                    if ( core.flag("score_examinar_paciente") == false ) {
+                    if ( !core.flag("score_examinar_paciente") ) {
                         core.registerScoreItem( Scores.examinarPaciente );
                         core.flag("score_examinar_paciente",  true );
                     }
@@ -749,11 +758,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .onClick(function() {
                     console.log("Ação: Fechar modal pulseira");
                     core.closeModalScene("Pulseira");
-                    if ( core.flag("confirmou_pulseira") == false && core.flag("conversarPaciente") == true ) {
+                    if ( !core.flag("confirmou_pulseira") && core.flag("conversarPaciente") ) {
                         core.flag("confirmou_pulseira",  true );
                         core.setActionVisible("btn-examinar_paciente", true );
 
-                        if ( core.flag("score_verificar_pulseira") == false ) {
+                        if ( !core.flag("score_verificar_pulseira") ) {
                             core.registerScoreItem( Scores.verificarPulseira );
                             core.flag("score_verificar_pulseira",  true );
                         }
@@ -807,9 +816,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Player.play( Player.audios.sfx.pegarObjeto );
                     core.setInteractiveObjectVisible("io-coxim", false );
 
-
-
-                    if ( core.flag("score_pegar_coxim") == false ) {
+                    if ( !core.flag("score_pegar_coxim") ) {
                         core.registerScoreItem( Scores.pegarCoxim );
                         core.flag("score_pegar_coxim",  true );
                     }
@@ -827,14 +834,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     Prontuario.close();
                     core.closeModalScene("Prontuario");
                     // Retirar esse if após consertar o problema no prontuário
-                    if ( core.flag( "colocou_coxim" ) == true ) {
+                    if ( core.flag( "colocou_coxim" ) ) {
                         if ( Prontuario.isDataValid() ) {
-                          core.registerScoreItem( Scores.anotarNoProntuario );
-                          core.unlockLevel( 3 );
-                          core.closeCommandBar();
-                          core.showEndOfLevel();
-                          Player.stopAll();
-                          Player.play( Player.audios.sfx.missaoCumprida );
+                            core.registerScoreItem( Scores.anotarNoProntuario );
+                            core.unlockLevel( 3 );
+                            core.closeCommandBar();
+                            core.showEndOfLevel();
+                            Player.stopAll();
+                            Player.play( Player.audios.sfx.missaoCumprida );
                         }
                     }
                 })
@@ -917,6 +924,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "lavar_maos3",  false  ) );
         level.registerFlag( new Flag( "coxim",  false  ) );
         level.registerFlag( new Flag( "colocou_coxim",  false  ) );
+        level.registerFlag( new Flag( "pegou_bandeja",  false  ) );
         level.registerFlag( new Flag( "score_lavar_maos_antes_exame",  false  ) );
         level.registerFlag( new Flag( "score_lavar_maos_depois_exame",  false  ) );
         level.registerFlag( new Flag( "score_lavar_maos_prontuario",  false  ) );
@@ -924,11 +932,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.registerFlag( new Flag( "score_falar_paciente",  false  ) );
         level.registerFlag( new Flag( "score_verificar_pulseira",  false  ) );
         level.registerFlag( new Flag( "score_examinar_paciente",  false  ) );
-        level.registerFlag( new Flag( "score_falar_com_mentor",  false  ) );
         level.registerFlag( new Flag( "score_pegar_coxim",  false  ) );
         level.registerFlag( new Flag( "score_anotar_prontuario",  false  ) );
+        level.registerFlag( new Flag( "score_ler_prontuario", false) );
+        level.registerFlag( new Flag( "score_mudar_posicao", false) );
+
+        // Velho e inutilizado
+        level.registerFlag( new Flag( "score_falar_com_mentor",  false  ) );
         level.registerFlag( new Flag( "score_nao_lavar_maos_prontuario",  false  ) );
-        level.registerFlag( new Flag( "pegou_bandeja",  false  ) );
 
 
         level.setInitialScene( 0 );
