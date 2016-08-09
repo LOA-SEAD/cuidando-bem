@@ -1329,7 +1329,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // level init script
         level.setSetupScript(function() {
 
-            Pulseira.setNameRegExp( /Raul Gonzales Rodrigues/ );
+            Pulseira.setNameRegExp( /^Raul Gonzales Rodrigues$/i );
             Pulseira.setLeitoRegExp( /0*3/ );
             Pulseira.setDataRegExp( /24\/07\/1937/ );
 

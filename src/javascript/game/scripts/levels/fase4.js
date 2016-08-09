@@ -1288,7 +1288,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAnotacaoEnfermagemRowData("", "");
 
 
-            Pulseira.setNameRegExp( /Regina Oliveira/ );
+            Pulseira.setNameRegExp( /^Regina Oliveira$/i );
             Pulseira.setLeitoRegExp( /0*3/ );
             Pulseira.setDataRegExp( /19\/04\/1952/ );
 

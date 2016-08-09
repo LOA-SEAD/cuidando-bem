@@ -862,7 +862,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // level init script
         level.setSetupScript(function() {
 
-            Pulseira.setNameRegExp( /Carlos Esme Gouv(e|ê)a/ );
+            Pulseira.setNameRegExp( /^Carlos Esme Gouv(e|ê)a$/i );
             Pulseira.setLeitoRegExp( /0*3/ );
             Pulseira.setDataRegExp( /01\/12\/1945/ );
 

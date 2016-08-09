@@ -59,7 +59,6 @@ define(function() {
             lavarMaosAntesLeito: new Score("Lavar mãos antes de ir ao leito do paciente", 200 ),
             falarComPaciente: new Score("Conversar com paciente", 50 ),
             verificarPulseira: new Score("Verificar Pulseira", 100 ),
-            //selecionarBandeja: new Score("Selecionar Bandeja", 50 ),
             porLuvas: new Score("Calçar luvas", 50 ),
             usarAlgodao: new Score("Usar Algodão", 50 ),
             realizarTesteGlicemia: new Score("Realizar teste de glicemia", 100 ),

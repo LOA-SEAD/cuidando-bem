@@ -1294,7 +1294,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
             // 'pulseira' content
-            Pulseira.setNameRegExp( /Josivaldo Silva/ );
+            Pulseira.setNameRegExp( /^Josivaldo Silva$/i );
             Pulseira.setLeitoRegExp( /0*3/ );
             Pulseira.setDataRegExp( /02\/02\/1961/ );
 
@@ -1305,8 +1305,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             EquipoGotejamento.setRightValue( 67 );
 
-            Ficha.setEnfermeiraRegexp( /Masculina/i );
-            Ficha.setPacienteRegexp( /Josivaldo Silva/i );
+            Ficha.setEnfermeiraRegexp( /^Masculina$/i );
+            Ficha.setPacienteRegexp( /^Josivaldo Silva$/i );
             Ficha.setLeitoRegexp( /0?3/ );
             Ficha.setVolumeRegexp( /200/ );
             Ficha.setDuracao( 1 );

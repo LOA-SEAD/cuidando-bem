@@ -1476,7 +1476,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // level init script
         level.setSetupScript(function() {
 
-            Pulseira.setNameRegExp( /Esther Fidelis/ );
+            Pulseira.setNameRegExp( /^Esther Fidelis$/ );
             Pulseira.setLeitoRegExp( /0*2/ );
             Pulseira.setDataRegExp( /05\/12\/1955/ );
 

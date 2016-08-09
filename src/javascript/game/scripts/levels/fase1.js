@@ -1023,7 +1023,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             FreqRespiratoria.setFr( 17 );
 
-            Pulseira.setNameRegExp( /joão manoel ribeiro/ );
+            Pulseira.setNameRegExp( /^jo(ã|a)o manoel ribeiro$/i );
             Pulseira.setLeitoRegExp( /0*2/ );
             Pulseira.setDataRegExp( /07\/06\/1956/ );
 

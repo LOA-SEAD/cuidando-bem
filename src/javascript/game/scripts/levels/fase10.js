@@ -1040,7 +1040,7 @@ core.changeScene(1);
 
 
 
-            Pulseira.setNameRegExp( /Pedro Alcides Mendonça/ );
+            Pulseira.setNameRegExp( /^Pedro Alc(í|i)des Mendon(ç|c)a$/i );
             Pulseira.setLeitoRegExp( /0*1/ );
             Pulseira.setDataRegExp( /03\/06\/1962/ );
 
@@ -1678,7 +1678,7 @@ core.changeScene(1);
             Prontuario.setSsvvRowData( 0, "", "130X70", "82", "19", "96", "35.9", true );
             Prontuario.setSsvvRowData( 1, "", "", "", "", "", "", true );
 
-            Pulseira.setNameRegExp( /Raul Gonzales Rodrigues/ );
+            Pulseira.setNameRegExp( /^Raul Gonzales Rodrigues$/i );
             Pulseira.setLeitoRegExp( /0*3/ );
             Pulseira.setDataRegExp( /24\/07\/1937/ );
 
@@ -1690,8 +1690,8 @@ core.changeScene(1);
 
             EquipoGotejamento.setRightValue(12);
 
-            Ficha.setEnfermeiraRegexp( /Masculina/i );
-            Ficha.setPacienteRegexp( /Pedro Alc(í|i)des Mendon(ç|c)a/i );
+            Ficha.setEnfermeiraRegexp( /^Masculina$/i );
+            Ficha.setPacienteRegexp( /^Pedro Alc(í|i)des Mendon(ç|c)a$/i );
             Ficha.setLeitoRegexp( /0?1/ );
             Ficha.setVolumeRegexp( /850/ );
             Ficha.setDuracao( 24 );
