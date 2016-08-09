@@ -537,13 +537,9 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         prescMedicaRelatorioRegExp[ _row ] = _relatorio;
     }
 
-    function clearPrescEnfermagemState() {
+    function setPrescEnfermagemState( _prescEnfermagemStates ) {
         // Limpa tudo o que estiver no prontuario por meio de esconder tudo o que estiver em tags tr
         $("tr", prescEnfermagemTbody ).hide();
-    }
-
-    function setPrescEnfermagemState( _prescEnfermagemStates ) {
-        clearPrescEnfermagemState();
         // prescEnfermagemState = _prescEnfermagemState;
         var container;
 
@@ -558,8 +554,19 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
             $("." + prescEnfermagemState, prescEnfermagemTbody ).show();
         });
 
+        /*
+          Essa parte do código cria a funcionalidade dos estados da prescrição de Enfermagem
+          e também reseta os estados ao seu valor inicial
+         */
+
         // decubito
         container = $(".decubito", prescEnfermagemTbody );
+
+        // Reset
+        decubito = [ false, false, false ];
+        $( ".check", container ).text("( )");
+
+        // Adiciona funcionalidade
         $( ".opcao", container ).unbind("click");
         if ( prescEnfermagemStates.decubito ) {
             $( ".opcao", container ).click({container: container}, function( e ) {
@@ -574,6 +581,12 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
 
         // verificar glicemia
         container = $(".verificar_glicemia", prescEnfermagemTbody );
+
+        // Reset
+        verificarGlicemia = false;
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
         $( ".opcao", container ).unbind("click");
         if( prescEnfermagemStates.verificar_glicemia ) {
             $( ".opcao", container ).click({container: container}, function( e ) {
@@ -589,6 +602,12 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
 
         // verificar glicemia2
         container = $(".verificar_glicemia2", prescEnfermagemTbody );
+
+        // Reset
+        verificarGlicemia2 = false;
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
         $( ".opcao", container ).unbind("click");
         if( prescEnfermagemStates.verificar_glicemia2 ) {
             $( ".opcao", container ).click({container: container}, function( e ) {
@@ -604,6 +623,12 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
 
         // levantar grade
         container = $(".levantar_grade", prescEnfermagemTbody );
+
+        // Reset
+        levantarGrade = false;
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
         $( ".opcao", container ).unbind("click");
         if( prescEnfermagemStates.levantar_grade ) {
             $( ".opcao", container ).click({container: container}, function( e ) {
@@ -619,6 +644,12 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
 
         // encaminhar_paciente_cc
         container = $(".encaminhar_paciente_cc", prescEnfermagemTbody );
+
+        // Reset
+        encaminharPacienteCc = false;
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
         $( ".opcao", container ).unbind("click");
         if( prescEnfermagemStates.encaminhar_paciente_cc ) {
             $( ".opcao", container ).click({container: container}, function( e ) {
@@ -633,6 +664,12 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         }
         // check_list_cirurgia
         container = $(".check_list_cirurgia", prescEnfermagemTbody );
+
+        // Reset
+        checkListCirurgia = false;
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
         $( ".opcao", container ).unbind("click");
         if( prescEnfermagemStates.check_list_cirurgia ) {
             $( ".opcao", container ).click({container: container}, function( e ) {
@@ -647,6 +684,12 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         }
         // placa_neutra
         container = $(".placa_neutra", prescEnfermagemTbody );
+
+        // Reset
+        placaNeutra = [ false, false, false ];
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
         $( ".opcao", container ).unbind("click");
         if( prescEnfermagemStates.placa_neutra ) {
             $( ".opcao", container ).click({container: container}, function( e ) {
@@ -661,6 +704,12 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
 
         // placa_neutra2
         container = $(".placa_neutra2", prescEnfermagemTbody );
+
+        // Reset
+        placaNeutra2 = [ false, false, false ];
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
         $( ".opcao", container ).unbind("click");
         if( prescEnfermagemStates.placa_neutra2 ) {
             $( ".opcao", container ).click({container: container}, function( e ) {
@@ -675,6 +724,12 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
 
         // riscoInfeccao
         container = $(".risco_infeccao", prescEnfermagemTbody );
+
+        // Reset
+        riscoInfeccao = false;
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
         $( ".opcao", container ).unbind("click");
         if( prescEnfermagemStates.risco_infeccao ) {
             $( ".opcao", container ).click({container: container}, function( e ) {
@@ -690,6 +745,12 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
 
         // riscoInfeccao
         container = $(".troca_curativo", prescEnfermagemTbody );
+
+        // Reset
+        trocaCurativo = false;
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
         $( ".opcao", container ).unbind("click");
         if( prescEnfermagemStates.troca_curativo ) {
             $( ".opcao", container ).click({container: container}, function( e ) {
@@ -705,6 +766,12 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
 
         // nutricaoDesequilibrada
         container = $(".nutricao_desequilibrada", prescEnfermagemTbody );
+
+        // Reset
+        nutricaoDesequilibrada = false;
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
         $( ".opcao", container ).unbind("click");
         if( prescEnfermagemStates.nutricao_desequilibrada ) {
             $( ".opcao", container ).click({container: container}, function( e ) {
@@ -719,6 +786,12 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         }
         // manutencaoSondaNasogastrica
         container = $(".manutencao_sonda_nasogastrica", prescEnfermagemTbody );
+
+        // Reset
+        manutencaoSondaNasogastrica = false;
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
         $( ".opcao", container ).unbind("click");
         if( prescEnfermagemStates.manutencao_sonda_nasogastrica ) {
             $( ".opcao", container ).click({container: container}, function( e ) {
@@ -1144,7 +1217,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         open: open,
         close: close,
         isDataValid: isDataValid,
-        updateDate: updateData,
+        updateData: updateData,
 
         getNome: getNome,
         getDataNascimento: getDataNascimento,
@@ -1182,8 +1255,6 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         setAltura: setAltura,
         setCircunferenciaAbdominal: setCircunferenciaAbdominal,
 
-        clearPrescEnfermagemState: clearPrescEnfermagemState,
-        //getPrescEnfermagemState: getPrescEnfermagemState,
         setPrescEnfermagemState: setPrescEnfermagemState,
 
         addToRelatorio: addToRelatorio,
