@@ -335,7 +335,7 @@ This file is part of Cuidando Bem.
 }
 #menuContainer {
   position: absolute;
-  right: 5%;
+  right: 3%;
   width: 25%;
   top: 40%;
   height: 50%;
@@ -358,8 +358,8 @@ This file is part of Cuidando Bem.
 }
 .menuButton.backButton.looseButton {
   position: absolute;
-  bottom: 8%;
-  right: 6%;
+  bottom: 3%;
+  right: 3%;
   margin: 0;
   padding: 0 2%;
   width: 20%;
@@ -1104,6 +1104,44 @@ This file is part of Cuidando Bem.
   position: absolute;
   background-image: url(../images/screens/credits.jpg);
 }
+#credits-title {
+  text-align: center;
+  font-family: Whipsmart;
+  font-weight: bold;
+  position: absolute;
+  top: 0%;
+  width: 100%;
+  font-size: 7rem;
+  color: #000000;
+  border-bottom: 0.5rem solid black;
+}
+#credits-names {
+  text-align: center;
+  position: absolute;
+  top: 17.2%;
+  left: 2%;
+  width: 98%;
+  height: 82.8%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+#credits-names div:not(:last-child) {
+  margin-bottom: 7%;
+}
+#credits-names .credits-block-title {
+  font-family: Whipsmart;
+  font-weight: bold;
+  font-size: 6rem;
+  margin-bottom: 1%;
+  text-decoration: underline;
+}
+#credits-names .name {
+  font-family: Whipsmart;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 5rem;
+  color: #141414;
+}
 /*
 This file is part of Cuidando Bem.
     Cuidando Bem is free software: you can redistribute it and/or modify
@@ -1226,6 +1264,76 @@ This file is part of Cuidando Bem.
 }
 #screenConteudo-backImage {
   background-image: url(../images/screens/conteudo.jpg);
+}
+#conteudo-title {
+  text-align: center;
+  font-family: Whipsmart;
+  font-weight: bold;
+  position: absolute;
+  top: 0%;
+  width: 100%;
+  font-size: 7rem;
+  color: #000000;
+  border-bottom: 0.5rem solid black;
+}
+#conteudo-content {
+  text-align: center;
+  position: absolute;
+  top: 17.2%;
+  left: 2%;
+  width: 98%;
+  height: 82.8%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+#conteudo-content div {
+  width: 50%;
+  position: relative;
+  left: 25%;
+}
+#conteudo-content div:not(:last-child) {
+  margin-bottom: 7%;
+}
+#conteudo-content .conteudo-block-title,
+#conteudo-content .conteudo-block-title > span {
+  font-family: Whipsmart;
+  font-weight: bold;
+  font-size: 5rem;
+  display: block;
+}
+#conteudo-content .conteudo-block-title {
+  margin-bottom: 1%;
+}
+#conteudo-content .conteudo-block-title a,
+#conteudo-content .conteudo-block-title a:visited {
+  color: black;
+}
+#conteudo-content .conteudo-block-title a:hover {
+  color: blue;
+}
+#conteudo-content .conteudo-block-title a:active {
+  color: purple;
+}
+#conteudo-content .extralink:visited {
+  color: black;
+}
+#conteudo-content .extralink:hover {
+  color: blue;
+}
+#conteudo-content .extralink:active {
+  color: purple;
+}
+#conteudo-content .extralink {
+  display: block;
+  color: black;
+  font-size: 2.3rem;
+}
+#conteudo-content .text {
+  font-family: Whipsmart;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 3.5rem;
+  color: #141414;
 }
 /*
 This file is part of Cuidando Bem.
@@ -3008,8 +3116,10 @@ This file is part of Cuidando Bem.
   display: none;
 }
 #prontuario #prescMedica_tbody .relatorio {
-  cursor: pointer;
   text-align: center;
+}
+#prontuario #prescMedica_tbody .relatorio:not(.disabled) {
+  cursor: pointer;
 }
 #prontuario #anotacaoEnfermagem_table {
   height: 65%;
