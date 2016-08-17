@@ -19,3 +19,73 @@ This file is part of Cuidando Bem.
     background-image: @screen-vitoria;
     &:extend(.menuBackImage);
 }
+
+#screen-vitoria.palco {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+
+  .cena {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    .background {
+      opacity: 1.0;
+      width: 100%;
+      height: 100%;
+
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      //background-color: gray;
+    }
+    overflow: hidden;
+  }
+
+  .recepcao {
+    .background {
+      background-image: @scene-lobby;
+    }
+    .secretaria {
+      position: absolute;;
+      background-image: @intObj-talkToReceptionist;
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 18%;
+      height: 33%;
+      top: 25%;
+      left: 45%;
+    }
+    .balao {
+      display: none;
+      border-radius: 50%;
+      width: 25%;
+      height: 20%;
+      position: absolute;
+      top: 13%;
+      left: 57%;
+      background-color: white;
+      border: 0.2rem black solid;
+      font-size: 2.5rem;
+      span{
+        padding: 20% 5%;
+        position: relative;
+        top: 25%;
+      }
+    }
+  }
+
+  .escritorio {
+    .background {
+      // background-image: @scene-lobby;
+    }
+  }
+
+  .contrato {
+    .background {
+      // background-image: @scene-lobby;
+    }
+  }
+}

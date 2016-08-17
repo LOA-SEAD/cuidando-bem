@@ -42,6 +42,31 @@ define([ "Stage" ], function( Stage ) {
         $(".backButton").click(function() {
             Stage.changeScreen( 6 );
         });
+
+        animation();
+    }
+
+    function wait( time, callback ) {
+      setTimeout( callback, time );
+    }
+
+    function animation() {
+      var container = "#screen-vitoria";
+      var recepcao = $(".cena.recepcao", container);
+      var escritorio = $(".cena.escritorio", container);
+      var contrato = $(".cena.contrato", container);
+      wait( 1000, function() {
+        $(".balao", recepcao).show();
+
+        wait( 2000, function() {
+          recepcao.animate({
+            opacity: 0.0
+          }, 1000, "swing", function () {
+            alert("complete");
+          });
+        })
+      })
+
     }
 
     /**
