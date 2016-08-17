@@ -72,14 +72,14 @@ define({
                 // 9 Mentor
                 "Você precisa das informações sobre o paciente.",
                 // 10 Jogador op 3
-                "HAHAHA fique sussa, seu João, o Sr. vai pra casa em breve. Mas primeiro preciso" +
+                "HAHAHA fique sussa, Sr. João, o Sr. vai pra casa em breve. Mas primeiro preciso" +
                 " dos seus dados.",
                 // 11 Mentor
                 "Sua resposta está vaga e informal. Você pode melhorar!",
                 // 12 Paciente
                 "Meu nome é João Manoel Ribeiro, nasci no dia 07/06/1956.",
                 // 13 Jogador
-                " Está certo, seu João. Já tenho todas as informações de que preciso.",
+                " Está certo, Sr. João. Já tenho todas as informações de que preciso.",
                 // 14 Mentor
                 "Sua primeira missão é admitir o Sr. João nesta enfermaria, identificando-o" +
                 " com uma pulseira e verificando seus sinais vitais. Vamos lá?"
@@ -632,7 +632,7 @@ define({
         ],
         enfermariaFeminina: [
             // 0 Jogador op 1
-            "Bom dia! Faço parte da equipe de enfermagem do hospital e cuidarei de você hoje. Como você se chama?",
+            "Bom dia! Faço parte da equipe de enfermagem do hospital e cuidarei de você hoje. Como se chama?",
             // 1 Jogador op 2
             "Bom dia! Como se chama?",
             // 2 Paciente
@@ -987,7 +987,7 @@ define({
                 "Sempre confirme se o medicamento fornecido é o mesmo prescrito."
             ],
             pegarMedicamento: [
-                "Você já pegou a medicação solicitado pela paciente?"
+                "Você já pegou a medicação solicitada para a paciente?"
             ],
             pegarBandeja: [
                 "Primeiro pegue a bandeja para colocar os equipamentos."
