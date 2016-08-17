@@ -77,9 +77,40 @@ This file is part of Cuidando Bem.
     }
   }
 
+  .corredor {
+    opacity: 0.0;
+    transform-origin: bottom;
+    .background {
+      background-color: darkgrey;
+    }
+    .porta {
+      background-color: brown;
+      width: 20%;
+      height: 60%;
+      position: absolute;
+      //z-index: 1;
+      bottom: 0;
+      left: 40%;
+    }
+
+    .porta-fundo {
+      background-color: black;
+      width: 20%;
+      height: 60%;
+      position: absolute;
+      //z-index: 1;
+      bottom: 0;
+      left: 40%;
+    }
+
+
+  }
+
   .escritorio {
+    opacity: 0.0;
     .background {
       // background-image: @scene-lobby;
+      background-color: darkgreen;
     }
   }
 

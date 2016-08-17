@@ -53,6 +53,7 @@ define([ "Stage" ], function( Stage ) {
     function animation() {
       var container = "#screen-vitoria";
       var recepcao = $(".cena.recepcao", container);
+      var corredor = $(".cena.corredor", container);
       var escritorio = $(".cena.escritorio", container);
       var contrato = $(".cena.contrato", container);
       wait( 1000, function() {
@@ -62,7 +63,38 @@ define([ "Stage" ], function( Stage ) {
           recepcao.animate({
             opacity: 0.0
           }, 1000, "swing", function () {
-            alert("complete");
+            // Aparecer porta do escritório
+            corredor.animate({
+              opacity: 1.0
+            }, 1000, "swing", function () {
+              // Abrir porta
+              var porta = $(".porta", corredor);
+              wait( 200, function() {
+                porta.css("width", "15%");
+                // Passar pela porta
+                corredor.animate({
+                  opacity: 0.0,
+                }, {
+                  step: function( now, fx ) {
+                    var value = 1.0 + (0.5 - (now / 2));
+                    corredor.css("transform", "scale(" + value + "," + value + ")");
+                  },
+                  duration: 2000
+                });
+                wait( 1000, function() {
+                  escritorio.animate( {
+                    opacity: 1.0
+                  }, 2000, "swing", function() {
+
+                  })
+                })
+              });
+            })
+            // Convidar para sentar
+            // Mexer mão mentor e folha
+            // Voltar mão
+            // Balão de fala
+            // Botão de créditos aparece
           });
         })
       })
