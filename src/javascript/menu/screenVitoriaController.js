@@ -70,8 +70,8 @@ define([ "Stage" ], function( Stage ) {
               // Abrir porta
               var porta = $(".porta", corredor);
               wait( 200, function() {
-                porta.css("width", "15%");
-                // Passar pela porta
+                porta.css("transform", "rotateY(45deg)");
+                // Passar pela porta                
                 corredor.animate({
                   opacity: 0.0,
                 }, {

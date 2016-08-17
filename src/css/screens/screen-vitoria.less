@@ -81,26 +81,32 @@ This file is part of Cuidando Bem.
     opacity: 0.0;
     transform-origin: bottom;
     .background {
+      background-image: @animation-corredor-background;
       background-color: darkgrey;
     }
     .porta {
-      background-color: brown;
-      width: 20%;
-      height: 60%;
+      background-image: @animation-corredor-porta;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      //background-color: brown;
+      width: 28%;
+      height: 80.3%;
       position: absolute;
       //z-index: 1;
-      bottom: 0;
-      left: 40%;
+      bottom: 2.8%;
+      left: 36%;
+      transform-origin: left;
     }
 
     .porta-fundo {
       background-color: black;
-      width: 20%;
-      height: 60%;
+      width: 28%;
+      height: 80.3%;
       position: absolute;
       //z-index: 1;
-      bottom: 0;
-      left: 40%;
+      bottom: 2.8%;
+      left: 36%;
     }
 
 
@@ -109,8 +115,8 @@ This file is part of Cuidando Bem.
   .escritorio {
     opacity: 0.0;
     .background {
-      // background-image: @scene-lobby;
-      background-color: darkgreen;
+      background-image: @animation-escritorio-background;
+      // background-color: darkgreen;
     }
   }
 
