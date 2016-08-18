@@ -91,15 +91,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setVisibility( true )
                 .onClick( conversarRecepcionista ),
 
-
-            new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-left no-glow")
-                .onClick( recepcaoIrCorredor )
-                .setVisibility( true ),
-
-
             new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
-                .setCssClass("intObj-lobbyToHallway-right no-glow")
+                .setCssClass("intObj-porta")
                 .onClick( recepcaoIrCorredor )
                 .setVisibility( true )
         ]);

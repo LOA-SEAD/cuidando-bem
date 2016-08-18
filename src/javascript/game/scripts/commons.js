@@ -25,6 +25,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, Character ) {
         console.groupCollapsed("Commons:");
 
+
+
+
         var lib = {
 
             scenes: {
@@ -146,6 +149,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }
             }
         };
+
+        var balcao = new InteractiveObject("intObj-balcao", "Conversar com a Recepcionista")
+            .setCssClass("intObj-balcao")
+            .setVisibility( true )
+            .setEnable(false);
+
+        lib.scenes.recepcao.registerInteractiveObject( balcao );
         console.groupEnd();
 
         return lib;

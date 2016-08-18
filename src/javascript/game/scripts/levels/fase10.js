@@ -164,32 +164,20 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             .setVisibility( true )
             .onClick( conversarRecepcionista ),
 
-
-            new InteractiveObject("io-ir_corredor_esquerda", "Ir ao corredor")
-            .setCssClass("intObj-lobbyToHallway-left no-glow")
-            .onClick( recepcaoIrCorredor )
-            .setVisibility( true ),
-
-
             new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
-            .setCssClass("intObj-lobbyToHallway-right no-glow")
-            .onClick( recepcaoIrCorredor )
-            .setVisibility( true )
+                .setCssClass("intObj-porta")
+                .onClick( recepcaoIrCorredor )
+                .setVisibility( true )
         ]);
-
 
         function recepcaoIrCorredor() {
             console.log("Ir ao corredor");
             core.changeScene( 1 );
         }
 
-
         function conversarRecepcionista() {
-
                 core.openDialog( 0 );
-
         }
-
 
         corredor = lib.scenes.corredor.getClone()
             .onLoad(function() {
