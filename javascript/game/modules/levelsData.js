@@ -15,4 +15,4 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define([],function(){function e(e,n){null!=i[n],i[n]=e,c+=e.getMaxPoints()}function n(){return i[o]}function t(){return o}function r(){return c}function u(e){o=e}var i={},o=0,c=0;return{registerLevel:e,getCurrentLevel:n,getCurrentLevelId:t,getMaxGameScore:r,setCurrentLevel:u}});
+define([],function(){function e(e,n){null!=o[n],o[n]=e,f+=e.getMaxPoints()}function n(){return o[c]}function t(){return c}function r(){return f}function u(e){return o[e].getMaxPoints()}function i(e){c=e}var o={},c=0,f=0;return{registerLevel:e,getCurrentLevel:n,getCurrentLevelId:t,getMaxGameScore:r,getLevelMaxScore:u,setCurrentLevel:i}});
