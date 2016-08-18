@@ -51,11 +51,16 @@ define([ "Stage" ], function( Stage ) {
     }
 
     function animation() {
+      // Parar todos os sons
+      Player.stopAll();
+      // Tocar música da animação
+
+      //
       var container = "#screen-vitoria";
       var recepcao = $(".cena.recepcao", container);
       var corredor = $(".cena.corredor", container);
       var escritorio = $(".cena.escritorio", container);
-      var contrato = $(".cena.contrato", container);
+      var mesa = $(".cena.mesa", container);
       wait( 1000, function() {
         $(".balao", recepcao).show();
 
@@ -67,33 +72,55 @@ define([ "Stage" ], function( Stage ) {
             corredor.animate({
               opacity: 1.0
             }, 1000, "swing", function () {
-              // Abrir porta
               var porta = $(".porta", corredor);
               wait( 200, function() {
+                // Abrir porta
                 porta.css("transform", "rotateY(45deg)");
-                // Passar pela porta
-                corredor.animate({
-                  opacity: 0.0,
-                }, {
-                  step: function( now, fx ) {
-                    var value = 1.0 + (0.5 - (now / 2));
-                    corredor.css("transform", "scale(" + value + "," + value + ")");
-                  },
-                  duration: 2000
+                wait( 300, function() {
+                  // Passar pela porta
+                  corredor.animate({
+                    opacity: 0.0,
+                  }, {
+                    step: function( now, fx ) {
+                      var value = 1.0 + (0.5 - (now / 2));
+                      corredor.css("transform", "scale(" + value + "," + value + ")");
+                    },
+                    duration: 2000
+                  });
+                  wait( 1000, function() {
+                    escritorio.animate( {
+                      opacity: 1.0
+                    }, 2000, "swing", function() {
+                      wait( 500, function() {
+                        $(".mentor1", escritorio).hide();
+                        $(".mentor2", escritorio).show();
+                        $(".braco", escritorio).show();
+                        $(".antebraco", escritorio).show();
+                        $(".balao", escritorio).show();
+                        wait( 1000, function() {
+                          $(mesa).animate({
+                            opacity: 1.0
+                          }, 1000, "swing");
+                          wait( 200, function() {
+                            $(".mao", mesa).animate({
+                              top: "-17%"
+                            }, 2200, function() {
+                              $(".balao", mesa).show();
+                              $(".mao", mesa).animate({
+                                top: "-58%"
+                              }, 1500, function() {
+
+                              })
+                            })
+                            $(".contrato", mesa).animate({
+                              top: "14%"
+                            }, 2200)
+                          });
+                        });
+                      });
+                    });
+                  });
                 });
-                wait( 1000, function() {
-                  escritorio.animate( {
-                    opacity: 1.0
-                  }, 2000, "swing", function() {
-                    wait( 500, function() {
-                      $(".mentor1", escritorio).hide();
-                      $(".mentor2", escritorio).show();
-                      $(".braco", escritorio).show();
-                      $(".antebraco", escritorio).show();
-                      $(".balao", escritorio).show();
-                    })
-                  })
-                })
               });
             })
             // Convidar para sentar

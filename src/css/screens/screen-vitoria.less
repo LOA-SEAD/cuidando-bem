@@ -190,9 +190,57 @@ This file is part of Cuidando Bem.
     }
   }
 
-  .contrato {
+  .mesa {
+    z-index: 1;
+    opacity: 0.0;
+
     .background {
-      background-image: @scene-lobby;
+      background-image: @animation-contrato-background;
+    }
+
+    .mao {
+      background-image: @animation-contrato-mao;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: absolute;
+      top: -58%;
+      //top: -17%;
+      left: 34%;
+      width: 30%;
+      height: 47%;
+      z-index: 1;
+    }
+
+    .contrato {
+      background-image: @animation-contrato-contrato;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: absolute;
+      top: -27%;
+      //top: 14%;
+      left: 27%;
+      width: 50%;
+      height: 77%;
+    }
+
+    .balao {
+      display: none;
+      border-radius: 50%;
+      width: 25%;
+      height: 20%;
+      position: absolute;
+      top: 2%;
+      right: 6%;
+      background-color: white;
+      border: 0.2rem black solid;
+      font-size: 5.5rem;
+      span{
+        padding: 20% 5%;
+        position: relative;
+        top: 23%;
+      }
     }
   }
 }
