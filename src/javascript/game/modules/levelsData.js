@@ -61,6 +61,7 @@ define([], function() {
 
         // Log
         console.log("\nAdding new Level:", _level.getName() );
+
     }
 
 // Getters

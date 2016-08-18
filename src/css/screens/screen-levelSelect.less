@@ -16,7 +16,7 @@ This file is part of Cuidando Bem.
 */
 
 @color-level-disabled: #949494;
-@color-level-enabled: #edeef5;
+@color-level-enabled: #66dcff;
 
 @color-level-completed: #E39341;
 @color-level-completed-darker: #D57A20;
@@ -84,7 +84,7 @@ p.title {
         @size: 74%;
         width: @size;
         height: @size;
-        margin: (100% - @size)/2;
+        margin: (100% - @size)/2 + 2%;
     }
 }
 
@@ -110,6 +110,7 @@ p.title {
     padding: 0;
     .back {
         @size: 70%;
+        border: 0.4rem solid rgba(0, 0, 0, 0.2);
         background-color: @color-level-enabled;
         width: @size;
         height: @size;
@@ -126,7 +127,7 @@ p.title {
         @size: 50%;
         width: @size;
         height: @size;
-        margin: (100% - @size)/2;
+        margin: (100% - @size)/2 + 2%;
         display: block;
         position: absolute;
         top: 0;
@@ -252,5 +253,3 @@ p.title {
         background-image: @animation-mesa-contrato;
     }
 }
-
-//#66dcff
