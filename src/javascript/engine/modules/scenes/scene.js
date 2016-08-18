@@ -295,7 +295,7 @@ define(function() {
          *
          * @memberOf Scene#
          */
-        function registerInteractiveObject( _interactiveObject ) {
+        function registerInteractiveObject( _interactiveObject ) {          
             interactiveObjectsAux[ _interactiveObject.getId() ] = interactiveObjects.length;
             interactiveObjects.push( _interactiveObject );
 

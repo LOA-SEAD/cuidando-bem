@@ -36,6 +36,7 @@ div[role="log"]:not(#accessible_log){
 
     @scale: 1.05;
     transform: scale( @scale, @scale );
+    transform-origin: center;
     filter: drop-shadow(0 0 8px @io-glow-color);
 }
 
@@ -50,8 +51,8 @@ div[role="log"]:not(#accessible_log){
     background-repeat: no-repeat;
     width: 18%;
     height: 33%;
-    top: 25%;
-    left: 45%;
+    top: 33%;
+    left: 39%;
 }
 
 .intObj-9Certos {
@@ -1018,4 +1019,26 @@ div[role="log"]:not(#accessible_log){
     width: 9%;
     height: 10%;
 
+}
+
+.intObj-balcao {
+    background-image: @intObj-balcao;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 50%;
+    left: 19%;
+    width: 60%;
+    height: 47%;
+    z-index: 1;
+}
+
+.intObj-porta {
+    background-image: @intObj-porta;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 0%;
+    right: 0;
+    width: 6.2%;
+    height: 97%;
+    z-index: 1;
 }
