@@ -14,6 +14,15 @@ This file is part of Cuidando Bem.
     You should have received a copy of the GNU General Public License
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+@color-level-disabled: #949494;
+@color-level-enabled: #edeef5;
+
+@color-level-completed: #E39341;
+@color-level-completed-darker: #D57A20;
+
+@color-level-failed: #ce5b5b;
+
 .levelSelect-backImage {
     position: absolute;
     background-image: @screen-levelSelect;
@@ -65,11 +74,11 @@ p.title {
 .level.selected {
     .back {
         @size: 100%;
-        background-color: #E39341;
+        // background-color: @color-level-completed;
+        // border: 2px solid @color-level-completed-darker;
         width: @size;
         height: @size;
         margin: (100% - @size)/2;
-        border: 2px solid #D57A20;
     }
     .image {
         @size: 74%;
@@ -82,7 +91,7 @@ p.title {
 .level.selected:hover,
 .level.selected:focus{
     .back {
-        background-color: #ffa44a;
+        // background-color: #ffa44a;
     }
 }
 
@@ -101,7 +110,7 @@ p.title {
     padding: 0;
     .back {
         @size: 70%;
-        background-color: #E39341;
+        background-color: @color-level-enabled;
         width: @size;
         height: @size;
         margin: (100% - @size)/2;
@@ -130,9 +139,22 @@ p.title {
     }
 }
 
+.level.completed {
+  > .back {
+      background-color: @color-level-completed;
+  }
+}
+
+
+.level.failed {
+  > .back {
+      background-color: @color-level-failed;
+  }
+}
+
 .level.disabled {
     > .back {
-        background-color: #ce5b5b;
+        background-color: @color-level-disabled;
     }
     > .image:not(.next) {
         background-image: @locker;
@@ -227,6 +249,8 @@ p.title {
     @dg: @deg * 10 - @degConst;
     transform: rotate(@dg) translate(@rad) rotate(-@dg);
     > .image {
-        background-image: @animation-mesa-contrato;      
+        background-image: @animation-mesa-contrato;
     }
 }
+
+//#66dcff

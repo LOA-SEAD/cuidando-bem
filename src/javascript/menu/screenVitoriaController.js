@@ -25,6 +25,7 @@ This file is part of Cuidando Bem.
 define([ "Stage" ], function( Stage ) {
 
     var Player = require("Player");
+    var Storage = require("Storage");
 
     /**
      * This method is called when the screen loadGame is loaded
@@ -145,6 +146,7 @@ define([ "Stage" ], function( Stage ) {
                                 $(mesa).animate({
                                   opacity: 0.0
                                 }, 2000, "swing", function() {
+                                  Storage.seeCredits();
                                   Stage.changeScreen( 3 );
                                 });
                               })
