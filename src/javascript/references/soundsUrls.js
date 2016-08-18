@@ -23,6 +23,12 @@ define(function() {
     var baseDir = "./sounds/";
     var paths = {
         sfx: {
+            deslizarPapel: [
+                "papel_deslizando.mp3"
+            ],
+            batendoNaPorta: [
+                "batendo_abrindo_porta.mp3"
+            ],
             abrirGaveta: [
                 "gavetaAbrindo1.mp3",
                 "gavetaAbrindo2.mp3"

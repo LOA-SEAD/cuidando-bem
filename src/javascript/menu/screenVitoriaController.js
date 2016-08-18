@@ -100,10 +100,10 @@ define([ "Stage" ], function( Stage ) {
               opacity: 1.0
             }, 1000, "swing", function () {
               var porta = $(".porta", corredor);
-              wait( 200, function() {
+              Player.play(Player.audios.sfx.batendoNaPorta);
+              wait( 500, function() {
                 // Abrir porta
                 porta.css("transform", "rotateY(45deg)");
-                Player.play(Player.audios.sfx.abrirPorta);
                 wait( 300, function() {
                   // Passar pela porta
                   corredor.animate({
@@ -130,6 +130,7 @@ define([ "Stage" ], function( Stage ) {
                             opacity: 1.0
                           }, 1000, "swing");
                           wait( 200, function() {
+                            Player.play(Player.audios.sfx.deslizarPapel);
                             $(".contrato", mesa).animate({
                               top: "14%"
                             }, 2200);
@@ -143,13 +144,15 @@ define([ "Stage" ], function( Stage ) {
                               }, 1800);
                               wait( 1500, function() {
                                 $(".balao", mesa).hide();
-                                $(mesa).animate({
-                                  opacity: 0.0
-                                }, 2000, "swing", function() {
-                                  Storage.seeCredits();
-                                  Stage.changeScreen( 3 );
+                                wait( 3000, function() {
+                                  $(mesa).animate({
+                                    opacity: 0.0
+                                  }, 2000, "swing", function() {
+                                    Storage.seeCredits();
+                                    Stage.changeScreen( 3 );
+                                  });
                                 });
-                              })
+                              });
                             });
                           });
                         });
@@ -158,12 +161,7 @@ define([ "Stage" ], function( Stage ) {
                   });
                 });
               });
-            })
-            // Convidar para sentar
-            // Mexer mão mentor e folha
-            // Voltar mão
-            // Balão de fala
-            // Botão de créditos aparece
+            });
           });
         })
       })

@@ -127,7 +127,7 @@ define([ "Stage", "levelsData" ], function( Stage, game ) {
                       if ( completeness >= 0.75 ) {
                         Stage.changeScreen( 8 );
                       } else {
-                        Stage.changeScreen( 9 );
+                        Stage.changeScreen( 8 );
                       }
                     }
                 } else {
