@@ -61,6 +61,7 @@ define([], function() {
 
         // Log
         console.log("\nAdding new Level:", _level.getName() );
+
     }
 
 // Getters
@@ -83,6 +84,10 @@ define([], function() {
         return maxGameScore;
     }
 
+    function getLevelMaxScore( levelId) {
+      return levels[ levelId ].getMaxPoints();
+    }
+
 // Setters
     /**
      * @method setCurrentLevel
@@ -103,6 +108,7 @@ define([], function() {
         getCurrentLevelId: getCurrentLevelId,
 
         getMaxGameScore: getMaxGameScore,
+        getLevelMaxScore: getLevelMaxScore,
 
         setCurrentLevel: setCurrentLevel
     };

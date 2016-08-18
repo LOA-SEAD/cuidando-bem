@@ -14,6 +14,15 @@ This file is part of Cuidando Bem.
     You should have received a copy of the GNU General Public License
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+@color-level-disabled: #949494;
+@color-level-enabled: #66dcff;
+
+@color-level-completed: #E39341;
+@color-level-completed-darker: #D57A20;
+
+@color-level-failed: #ce5b5b;
+
 .levelSelect-backImage {
     position: absolute;
     background-image: @screen-levelSelect;
@@ -38,10 +47,19 @@ p.title {
     color: black;
     margin: 0;
     position: relative;
-    top: -8%;
+    top: -15%;
     z-index: 5;
     width: 30%;
     left: 35%;
+}
+
+.endGameButton {
+    position: absolute;
+    bottom: 8%;
+    left: 6%;
+    margin: 0;
+    padding: 0 2%;
+    width: 25%;
 }
 
 .level:hover:not(.disabled),
@@ -56,24 +74,24 @@ p.title {
 .level.selected {
     .back {
         @size: 100%;
-        background-color: #E39341;
+        // background-color: @color-level-completed;
+        // border: 2px solid @color-level-completed-darker;
         width: @size;
         height: @size;
         margin: (100% - @size)/2;
-        border: 2px solid #D57A20;
     }
     .image {
         @size: 74%;
         width: @size;
         height: @size;
-        margin: (100% - @size)/2;
+        margin: (100% - @size)/2 + 2%;
     }
 }
 
 .level.selected:hover,
 .level.selected:focus{
     .back {
-        background-color: #ffa44a;
+        // background-color: #ffa44a;
     }
 }
 
@@ -92,7 +110,8 @@ p.title {
     padding: 0;
     .back {
         @size: 70%;
-        background-color: #E39341;
+        border: 0.4rem solid rgba(0, 0, 0, 0.2);
+        background-color: @color-level-enabled;
         width: @size;
         height: @size;
         margin: (100% - @size)/2;
@@ -105,10 +124,10 @@ p.title {
         transition-property: width, height, margin;
     }
     .image {
-        @size: 55%;
+        @size: 50%;
         width: @size;
         height: @size;
-        margin: (100% - @size)/2;
+        margin: (100% - @size)/2 + 2%;
         display: block;
         position: absolute;
         top: 0;
@@ -121,9 +140,22 @@ p.title {
     }
 }
 
+.level.completed {
+  > .back {
+      background-color: @color-level-completed;
+  }
+}
+
+
+.level.failed {
+  > .back {
+      background-color: @color-level-failed;
+  }
+}
+
 .level.disabled {
     > .back {
-        background-color: #ce5b5b;
+        background-color: @color-level-disabled;
     }
     > .image:not(.next) {
         background-image: @locker;
@@ -131,10 +163,11 @@ p.title {
 }
 
 @rad: 140%;
-@els: 10;
+@els: 11;
 @deg: 360deg / @els;
+@degConst: @deg * 2.5 + 8deg;
 .l0 {
-    @dg: @deg * 0 - @deg * 2.5;
+    @dg: @deg * 0 - @degConst;
     transform: rotate(@dg) translate(@rad) rotate(-@dg);
     > .image {
         background-image: @bg-bracelet;
@@ -142,7 +175,7 @@ p.title {
 }
 
 .l1 {
-    @dg: @deg * 1 - @deg * 2.5;
+    @dg: @deg * 1 - @degConst;
     transform: rotate(@dg) translate(@rad) rotate(-@dg);
     > .image {
         background-image: @intObj-cushion;
@@ -150,7 +183,7 @@ p.title {
 }
 
 .l2 {
-    @dg: @deg * 2 - @deg * 2.5;
+    @dg: @deg * 2 - @degConst;
     transform: rotate(@dg) translate(@rad) rotate(-@dg);
     > .image {
         background-image: @intObj-aparelhoGlicemia;
@@ -158,7 +191,7 @@ p.title {
 }
 
 .l3 {
-    @dg: @deg * 3 - @deg * 2.5;
+    @dg: @deg * 3 - @degConst;
     transform: rotate(@dg) translate(@rad) rotate(-@dg);
     > .image {
         background-image: @intObj-placa_neutra;
@@ -166,7 +199,7 @@ p.title {
 }
 
 .l4 {
-    @dg: @deg * 4 - @deg * 2.5;
+    @dg: @deg * 4 - @degConst;
     transform: rotate(@dg) translate(@rad) rotate(-@dg);
     > .image {
         background-image: @intObj-seringa_20_ml;
@@ -174,7 +207,7 @@ p.title {
 }
 
 .l5 {
-    @dg: @deg * 5 - @deg * 2.5;
+    @dg: @deg * 5 - @degConst;
     transform: rotate(@dg) translate(@rad) rotate(-@dg);
     > .image {
         background-image: @intObj-gaze_esteril;
@@ -182,7 +215,7 @@ p.title {
 }
 
 .l6 {
-    @dg: @deg * 6 - @deg * 2.5;
+    @dg: @deg * 6 - @degConst;
     transform: rotate(@dg) translate(@rad) rotate(-@dg);
     > .image {
         background-image: @intObj-equipo_de_infusao_de_dieta;
@@ -190,7 +223,7 @@ p.title {
 }
 
 .l7 {
-    @dg: @deg * 7 - @deg * 2.5;
+    @dg: @deg * 7 - @degConst;
     transform: rotate(@dg) translate(@rad) rotate(-@dg);
     > .image {
         background-image: @intObj-clorpromazina_medicamento;
@@ -198,7 +231,7 @@ p.title {
 }
 
 .l8 {
-    @dg: @deg * 8 - @deg * 2.5;
+    @dg: @deg * 8 - @degConst;
     transform: rotate(@dg) translate(@rad) rotate(-@dg);
     > .image {
         background-image: @intObj-carrinho_anestesico;
@@ -206,9 +239,17 @@ p.title {
 }
 
 .l9 {
-    @dg: @deg * 9 - @deg * 2.5;
+    @dg: @deg * 9 - @degConst;
     transform: rotate(@dg) translate(@rad) rotate(-@dg);
     > .image {
         background-image: @intObj-soro_glicofisiologico_1000_ml;
+    }
+}
+
+.l10 {
+    @dg: @deg * 10 - @degConst;
+    transform: rotate(@dg) translate(@rad) rotate(-@dg);
+    > .image {
+        background-image: @animation-mesa-contrato;
     }
 }

@@ -15,7 +15,71 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 .preloader-backImage {
-		position: absolute;
-    background-color: #fbfefd;
-    &:extend(.menuBackImage);
+  position: absolute;
+  background-color: #fbfefd;
+  &:extend(.menuBackImage);
+}
+#preloader {
+  .titulo {
+    background-image: @loadScreenText;
+    position: absolute;
+    top: 15%;
+    left: 35%;
+    width: 30%;
+    height: 20%;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+
+  .barra {
+    position: absolute;
+    top: 70%;
+    left: 30%;
+    width: 40%;
+    height: 5%;
+    border: 0.5rem solid black;
+    border-radius: 10% ~"/" 100%;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .fundo {
+    width: 100%;
+    height: 100%;
+    background-color: #c1c1c1;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .preloaderFill {
+    width: 0;
+    height: 100%;
+    background-color: #e84d49;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .preloaderPercent {
+    position: absolute;
+    font-family: @font-printed;
+    font-size: 4rem;
+    width: 20%;
+    left: 40%;
+    text-align: center;
+  }
+  .logo {
+    background-image: @loadScreenLogo;
+    position: absolute;
+    top: 45%;
+    left: 46%;
+    width: 7%;
+    height: 12%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    animation:spin 1s ease-out 1s infinite;
+    @keyframes spin {
+      100% { transform:rotate(360deg); }
+    }
+  }
+
 }

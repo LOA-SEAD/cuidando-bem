@@ -151,11 +151,15 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
     var prescEnfermagemStates = {
         "vazio": false,
         "decubito": false,
+        "decubito_visual": false,
         "verificar_glicemia": false,
+        "verificar_glicemia2": false,
+        "verificar_glicemia3": false,
         "levantar_grade": false,
         "encaminhar_paciente_cc": false,
         "check_list_cirurgia": false,
         "placa_neutra": false,
+        "placa_neutra2": false,
         "risco_infeccao": false,
         "troca_curativo": false,
         "nutricao_desequilibrada": false,
@@ -163,6 +167,20 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         "desiquilibrio_eletrolitico": false,
         "desiquilibrio_eletrolitico_fase9": false
     };
+
+    var decubito = [ false, false, false ];
+
+    var verificarGlicemia = false;
+    var verificarGlicemia2 = false;
+    var levantarGrade = false;
+    var encaminharPacienteCc = false;
+    var checkListCirurgia = false;
+    var placaNeutra = [ false, false, false ];
+    var placaNeutra2 = [ false, false, false ];
+    var riscoInfeccao = false;
+    var trocaCurativo = false;
+    var nutricaoDesequilibrada = false;
+    var manutencaoSondaNasogastrica = false;
 
     // Enfermagem: virarDecubito
     var prescEnfermagemTbody = "#prescEnfermagem_tbody";
@@ -503,6 +521,10 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
             $( $( prescMedicaRelatorioSelector, prescMedicaTbodySelector )[ _row ] ).text("( )");
         }
 
+        if ( _disabled ) {
+            $( $( prescMedicaRelatorioSelector, prescMedicaTbodySelector )[ _row ] ).addClass( "disabled" );
+        }
+
         // $("tr", prescEnfermagemTbody ).hide();
         // $("." + prescEnfermagemState, prescEnfermagemTbody ).show();
     }
@@ -515,31 +537,273 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         prescMedicaRelatorioRegExp[ _row ] = _relatorio;
     }
 
-    function clearPrescEnfermagemState() {
+    function setPrescEnfermagemState( _prescEnfermagemStates ) {
         // Limpa tudo o que estiver no prontuario por meio de esconder tudo o que estiver em tags tr
         $("tr", prescEnfermagemTbody ).hide();
-    }
-
-    function setPrescEnfermagemState( _prescEnfermagemState ) {
         // prescEnfermagemState = _prescEnfermagemState;
+        var container;
 
         // Torna todas as classes presentes no prescEnfermagemStates false, menos as que foram passadas como parametro
         $.each( prescEnfermagemStates, function( index, value ) {
-            if ( index == _prescEnfermagemState ) {
-                prescEnfermagemStates[ index ] = true;
-            } else {
-                prescEnfermagemStates[ index ] = false;
-            }
+          prescEnfermagemStates[ index ] = false;
         });
 
-        // Passa para o prontuario o parametro dado
-        $.each( prescEnfermagemStates, function( index, value ) {
-            if ( value ) {
-                prescEnfermagemState = index;
-            }
+        _prescEnfermagemStates.forEach(function( el ) {
+            prescEnfermagemState = el;
+            prescEnfermagemStates[ prescEnfermagemState ] = true;
+            $("." + prescEnfermagemState, prescEnfermagemTbody ).show();
         });
 
-        $("." + prescEnfermagemState, prescEnfermagemTbody ).show();
+        /*
+          Essa parte do código cria a funcionalidade dos estados da prescrição de Enfermagem
+          e também reseta os estados ao seu valor inicial
+         */
+
+        // decubito
+        container = $(".decubito", prescEnfermagemTbody );
+
+        // Reset
+        decubito = [ false, false, false ];
+        $( ".check", container ).text("( )");
+
+        // Adiciona funcionalidade
+        $( ".opcao", container ).unbind("click");
+        if ( prescEnfermagemStates.decubito ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                var i = $( ".opcao", container ).index( this );
+                decubito = [ false, false, false ];
+                decubito[ i ] = true;
+                $( ".check", container ).text("( )");
+                $( $( ".check", container )[ i ] ).text("(X)");
+            });
+        }
+
+        // verificar glicemia
+        container = $(".verificar_glicemia", prescEnfermagemTbody );
+
+        // Reset
+        verificarGlicemia = false;
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
+        $( ".opcao", container ).unbind("click");
+        if( prescEnfermagemStates.verificar_glicemia ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                verificarGlicemia = !verificarGlicemia;
+                if( verificarGlicemia ) {
+                  $( ".check", container ).text("(X)");
+                } else {
+                  $( ".check", container ).text("( )");
+                }
+            });
+        }
+
+        // verificar glicemia2
+        container = $(".verificar_glicemia2", prescEnfermagemTbody );
+
+        // Reset
+        verificarGlicemia2 = false;
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
+        $( ".opcao", container ).unbind("click");
+        if( prescEnfermagemStates.verificar_glicemia2 ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                verificarGlicemia2 = !verificarGlicemia2;
+                if( verificarGlicemia2 ) {
+                  $( ".check", container ).text("(X)");
+                } else {
+                  $( ".check", container ).text("( )");
+                }
+            });
+        }
+
+        // levantar grade
+        container = $(".levantar_grade", prescEnfermagemTbody );
+
+        // Reset
+        levantarGrade = false;
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
+        $( ".opcao", container ).unbind("click");
+        if( prescEnfermagemStates.levantar_grade ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                levantarGrade = !levantarGrade;
+                if( levantarGrade ) {
+                  $( ".check", container ).text("(X)");
+                } else {
+                  $( ".check", container ).text("( )");
+                }
+            });
+        }
+
+        // encaminhar_paciente_cc
+        container = $(".encaminhar_paciente_cc", prescEnfermagemTbody );
+
+        // Reset
+        encaminharPacienteCc = false;
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
+        $( ".opcao", container ).unbind("click");
+        if( prescEnfermagemStates.encaminhar_paciente_cc ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                encaminharPacienteCc = !encaminharPacienteCc;
+                if( encaminharPacienteCc   ) {
+                  $( ".check", container ).text("(X)");
+                } else {
+                  $( ".check", container ).text("( )");
+                }
+            });
+        }
+        // check_list_cirurgia
+        container = $(".check_list_cirurgia", prescEnfermagemTbody );
+
+        // Reset
+        checkListCirurgia = false;
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
+        $( ".opcao", container ).unbind("click");
+        if( prescEnfermagemStates.check_list_cirurgia ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                checkListCirurgia = !checkListCirurgia;
+                if( checkListCirurgia ) {
+                  $( ".check", container ).text("(X)");
+                } else {
+                  $( ".check", container ).text("( )");
+                }
+            });
+        }
+        // placa_neutra
+        container = $(".placa_neutra", prescEnfermagemTbody );
+
+        // Reset
+        placaNeutra = [ false, false, false ];
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
+        $( ".opcao", container ).unbind("click");
+        if( prescEnfermagemStates.placa_neutra ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                var i = $( ".opcao", container ).index( this );
+                placaNeutra = [ false, false, false ];
+                placaNeutra[ i ] = true;
+                $( ".check", container ).text("( )");
+                $( $( ".check", container )[ i ] ).text("(X)");
+            });
+        }
+
+        // placa_neutra2
+        container = $(".placa_neutra2", prescEnfermagemTbody );
+
+        // Reset
+        placaNeutra2 = [ false, false, false ];
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
+        $( ".opcao", container ).unbind("click");
+        if( prescEnfermagemStates.placa_neutra2 ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                var i = $( ".opcao", container ).index( this );
+                placaNeutra2 = [ false, false, false ];
+                placaNeutra2[ i ] = true;
+                $( ".check", container ).text("( )");
+                $( $( ".check", container )[ i ] ).text("(X)");
+            });
+        }
+
+        // riscoInfeccao
+        container = $(".risco_infeccao", prescEnfermagemTbody );
+
+        // Reset
+        riscoInfeccao = false;
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
+        $( ".opcao", container ).unbind("click");
+        if( prescEnfermagemStates.risco_infeccao ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                riscoInfeccao = !riscoInfeccao;
+                if( riscoInfeccao ) {
+                  $( ".check", container ).text("(X)");
+                } else {
+                  $( ".check", container ).text("( )");
+                }
+            });
+        }
+
+        // riscoInfeccao
+        container = $(".troca_curativo", prescEnfermagemTbody );
+
+        // Reset
+        trocaCurativo = false;
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
+        $( ".opcao", container ).unbind("click");
+        if( prescEnfermagemStates.troca_curativo ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                trocaCurativo = !trocaCurativo;
+                if( trocaCurativo ) {
+                  $( ".check", container ).text("(X)");
+                } else {
+                  $( ".check", container ).text("( )");
+                }
+            });
+        }
+
+        // nutricaoDesequilibrada
+        container = $(".nutricao_desequilibrada", prescEnfermagemTbody );
+
+        // Reset
+        nutricaoDesequilibrada = false;
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
+        $( ".opcao", container ).unbind("click");
+        if( prescEnfermagemStates.nutricao_desequilibrada ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                nutricaoDesequilibrada = !nutricaoDesequilibrada;
+                if( nutricaoDesequilibrada ) {
+                  $( ".check", container ).text("(X)");
+                } else {
+                  $( ".check", container ).text("( )");
+                }
+            });
+        }
+        // manutencaoSondaNasogastrica
+        container = $(".manutencao_sonda_nasogastrica", prescEnfermagemTbody );
+
+        // Reset
+        manutencaoSondaNasogastrica = false;
+        $( ".check", container ).text("( )");
+
+        // Adiciona Funcionalidade
+        $( ".opcao", container ).unbind("click");
+        if( prescEnfermagemStates.manutencao_sonda_nasogastrica ) {
+            $( ".opcao", container ).click({container: container}, function( e ) {
+                container = e.data.container;
+                manutencaoSondaNasogastrica = !manutencaoSondaNasogastrica;
+                if( manutencaoSondaNasogastrica ) {
+                  $( ".check", container ).text("(X)");
+                } else {
+                  $( ".check", container ).text("( )");
+                }
+            });
+        }
     }
 
 
@@ -571,7 +835,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         $( prescMedicaRelatorioSelector, prescMedicaTbodySelector ).click(function() {
             // console.log(this);
             var row = $( prescMedicaRelatorioSelector, prescMedicaTbodySelector ).index( this );
-            if ( !prescMedicaData[ row ].relatorio.disabled ) {
+            if ( !prescMedicaData[ row ].disabled ) {
                 prescMedicaData[ row ].relatorio = !prescMedicaData[ row ].relatorio;
 
                 if ( prescMedicaData[ row ].relatorio ) {
@@ -837,6 +1101,75 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         }
 
         // TODO prescrição da Enfermagem
+        if ( prescEnfermagemStates.decubito ) {
+            if ( !decubito[1] ) {
+                return false;
+            }
+        }
+
+        if ( prescEnfermagemStates.verificar_glicemia ) {
+            if ( !verificarGlicemia ) {
+                return false;
+            }
+        }
+
+        if ( prescEnfermagemStates.verificar_glicemia2 ) {
+            if ( !verificarGlicemia2 ) {
+                return false;
+            }
+        }
+
+        if ( prescEnfermagemStates.levantar_grade ) {
+            if ( !levantarGrade ) {
+                return false;
+            }
+        }
+
+        if ( prescEnfermagemStates.encaminhar_paciente_cc ) {
+            if ( !encaminharPacienteCc ) {
+                return false;
+            }
+        }
+
+        if ( prescEnfermagemStates.check_list_cirurgia ) {
+            if ( !checkListCirurgia ) {
+                return false;
+            }
+        }
+
+        if ( prescEnfermagemStates.placa_neutra ) {
+            if ( !placaNeutra[1] ) {
+                return false;
+            }
+        }
+
+        if ( prescEnfermagemStates.placa_neutra2 ) {
+            if ( !placaNeutra2[0] ) {
+                return false;
+            }
+        }
+
+        if ( prescEnfermagemStates.risco_infeccao ) {
+            if ( !riscoInfeccao ) {
+                return false;
+            }
+        }
+
+        if ( prescEnfermagemStates.troca_curativo ) {
+            if ( !trocaCurativo ) {
+                return false;
+            }
+        }
+        if ( prescEnfermagemStates.nutricao_desequilibrada ) {
+            if ( !nutricaoDesequilibrada ) {
+                return false;
+            }
+        }
+        if ( prescEnfermagemStates.manutencao_sonda_nasogastrica ) {
+            if ( !manutencaoSondaNasogastrica ) {
+                return false;
+            }
+        }
 
         for ( row = 0; row < ssvvData.length; row++ ) {
             // if row is not enabled, dont check if vars are valid
@@ -884,7 +1217,7 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         open: open,
         close: close,
         isDataValid: isDataValid,
-        updateDate: updateData,
+        updateData: updateData,
 
         getNome: getNome,
         getDataNascimento: getDataNascimento,
@@ -922,8 +1255,6 @@ define([ "text!../html/prontuario/prontuario.html" ], function( html ) {
         setAltura: setAltura,
         setCircunferenciaAbdominal: setCircunferenciaAbdominal,
 
-        clearPrescEnfermagemState: clearPrescEnfermagemState,
-        getPrescEnfermagemState: getPrescEnfermagemState,
         setPrescEnfermagemState: setPrescEnfermagemState,
 
         addToRelatorio: addToRelatorio,

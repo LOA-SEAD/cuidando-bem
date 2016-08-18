@@ -25,6 +25,7 @@ This file is part of Cuidando Bem.
 define([ "Stage" ], function( Stage ) {
 
     var Player = require("Player");
+    var Storage = require("Storage");
 
     /**
      * This method is called when the screen loadGame is loaded
@@ -42,6 +43,131 @@ define([ "Stage" ], function( Stage ) {
         $(".backButton").click(function() {
             Stage.changeScreen( 6 );
         });
+
+        animation();
+    }
+
+    function resetAnimation() {
+      var container = "#screen-vitoria";
+      var recepcao = $(".cena.recepcao", container);
+      var corredor = $(".cena.corredor", container);
+      var escritorio = $(".cena.escritorio", container);
+      var mesa = $(".cena.mesa", container);
+
+      recepcao.css("opacity", 1.0);
+      $(".balao", recepcao).hide();
+      corredor.css("opacity", 0);
+      $(".porta", corredor).css("transform", "rotateY(0deg)");
+      corredor.css("transform", "scale(1.0, 1.0)");
+      escritorio.css("opacity", 0);
+      $(".mentor1", escritorio).show();
+      $(".mentor2", escritorio).hide();
+      $(".braco", escritorio).hide();
+      $(".antebraco", escritorio).hide();
+      $(".balao", escritorio).hide();
+      mesa.css("opacity", 0);
+      $(".balao", mesa).hide();
+      $(".mao", mesa).css("top", "-58%");
+      $(".contrato", mesa).css("top", "-27%");
+
+    }
+
+    function wait( time, callback ) {
+      setTimeout( callback, time );
+    }
+
+    function animation() {
+      resetAnimation();
+      // Parar todos os sons
+      Player.stopAll();
+      // Tocar música da animação
+
+      //
+      var container = "#screen-vitoria";
+      var recepcao = $(".cena.recepcao", container);
+      var corredor = $(".cena.corredor", container);
+      var escritorio = $(".cena.escritorio", container);
+      var mesa = $(".cena.mesa", container);
+      wait( 1000, function() {
+        $(".balao", recepcao).show();
+
+        wait( 2000, function() {
+          recepcao.animate({
+            opacity: 0.0
+          }, 1000, "swing", function () {
+            // Aparecer porta do escritório
+            corredor.animate({
+              opacity: 1.0
+            }, 1000, "swing", function () {
+              var porta = $(".porta", corredor);
+              wait( 200, function() {
+                // Abrir porta
+                porta.css("transform", "rotateY(45deg)");
+                Player.play(Player.audios.sfx.abrirPorta);
+                wait( 300, function() {
+                  // Passar pela porta
+                  corredor.animate({
+                    opacity: 0.0,
+                  }, {
+                    step: function( now, fx ) {
+                      var value = 1.0 + (0.5 - (now / 2));
+                      corredor.css("transform", "scale(" + value + "," + value + ")");
+                    },
+                    duration: 2700
+                  });
+                  wait( 1300, function() {
+                    escritorio.animate( {
+                      opacity: 1.0
+                    }, 2000, "swing", function() {
+                      wait( 500, function() {
+                        $(".mentor1", escritorio).hide();
+                        $(".mentor2", escritorio).show();
+                        $(".braco", escritorio).show();
+                        $(".antebraco", escritorio).show();
+                        $(".balao", escritorio).show();
+                        wait( 1500, function() {
+                          $(mesa).animate({
+                            opacity: 1.0
+                          }, 1000, "swing");
+                          wait( 200, function() {
+                            $(".contrato", mesa).animate({
+                              top: "14%"
+                            }, 2200);
+                            $(".mao", mesa).animate({
+                              top: "-17%"
+                            }, 2200, function() {
+                              escritorio.css("opacity", 0);
+                              $(".balao", mesa).show();
+                              $(".mao", mesa).animate({
+                                top: "-58%"
+                              }, 1800);
+                              wait( 1500, function() {
+                                $(".balao", mesa).hide();
+                                $(mesa).animate({
+                                  opacity: 0.0
+                                }, 2000, "swing", function() {
+                                  Storage.seeCredits();
+                                  Stage.changeScreen( 3 );
+                                });
+                              })
+                            });
+                          });
+                        });
+                      });
+                    });
+                  });
+                });
+              });
+            })
+            // Convidar para sentar
+            // Mexer mão mentor e folha
+            // Voltar mão
+            // Balão de fala
+            // Botão de créditos aparece
+          });
+        })
+      })
+
     }
 
     /**

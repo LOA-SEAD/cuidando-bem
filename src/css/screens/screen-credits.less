@@ -19,3 +19,46 @@ This file is part of Cuidando Bem.
     background-image: @screen-credits;
     &:extend(.menuBackImage);
 }
+
+#credits-title {
+  text-align: center;
+  font-family: Whipsmart;
+  font-weight: bold;
+  position: absolute;
+  top: 0%;
+  width: 100%;
+  font-size: 7rem;
+  color: #000000;
+
+  border-bottom: 0.5rem solid black;
+}
+
+#credits-names {
+  text-align: center;
+  position: absolute;
+  top: 17.2%;
+  left: 2%;
+  width: 98%;
+  height: 82.8%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  div:not(:last-child) {
+    margin-bottom: 7%;
+  }
+  .credits-block-title {
+    font-family: Whipsmart;
+    font-weight: bold;
+    font-size: 6rem;
+    margin-bottom: 1%;
+    text-decoration: underline;
+  }
+  .name {
+    font-family: Whipsmart;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 5rem;
+    color: rgba(20, 20, 20, 1);
+  }
+
+}

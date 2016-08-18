@@ -2,7 +2,9 @@
 "use strict";
 module.exports = {
     options: {
-
+      hostname: "localhost",
+      port: 8080,
+      open: true
     },
 
     dev: {

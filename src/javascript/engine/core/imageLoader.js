@@ -68,6 +68,7 @@ define([], function() {
      * @memberOf module:Image Loader
      */
     var callback;
+    var imageLoadCallBack;
 
     /**
      * Receives a base path and an object filled with strings
@@ -92,7 +93,7 @@ define([], function() {
                 }
             }
         } else {
-            arr.push( baseDir + obj );
+            arr.push( obj );
         }
 
         return arr;
@@ -111,6 +112,7 @@ define([], function() {
         var evt = arguments[ 0 ];
 
         loaded++;
+        imageLoadCallBack();
         // console.log(arguments.length, arguments[0]);
         console.log("Loaded Image: " + evt.target.src );
 
@@ -133,7 +135,7 @@ define([], function() {
      *
      * @memberOf module:Image Loader
      */
-    function load( baseDir, pathObject, _callback ) {
+    function load( baseDir, pathObject, _callback, _imageLoadCallBack ) {
         if ( loading ) {
             throw new Error("Can't load two path objects at the same time");
         } else {
@@ -144,8 +146,12 @@ define([], function() {
 
 
             callback = _callback;
+            imageLoadCallBack = _imageLoadCallBack;
 
             var paths = getAsArray( baseDir, pathObject );
+            paths.forEach(function( e, i, arr ) {
+              arr[ i ] = baseDir + e;
+            });
             imagesToLoad = paths.length;
 
             console.info("Images to load: ", imagesToLoad );
@@ -156,10 +162,11 @@ define([], function() {
                 var path = paths[ id ];
                 var image = new Image();
 
-
                 image.onload = onLoad;
                 image.src = path;
             }
+
+            return imagesToLoad;
         }
     }
 

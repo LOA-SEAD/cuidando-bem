@@ -46,6 +46,7 @@ require.config({
         endOfLevel: "engine/modules/endOfLevel/endOfLevelController",
 
         interactiveObjects: "engine/modules/interactiveObjects/interactiveObjectsController",
+        modalInteractiveObjects: "engine/modules/interactiveObjects/modalInteractiveObjectsController",
         InteractiveObject: "engine/modules/interactiveObjects/interactiveObject",
 
         modalScene: "engine/modules/scenes/modalSceneController",

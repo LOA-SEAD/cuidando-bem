@@ -33,6 +33,7 @@ define([ "SimpleStorage" ], function( Storage ) {
         this.empty = true;
 
         this.lastLevel = 0;
+        this.credits = false;
 
         this.levels = [
             undefined,
@@ -324,6 +325,30 @@ define([ "SimpleStorage" ], function( Storage ) {
         return sum;
     }
 
+    function getLevelScoreSum( levelId ) {
+      var sav = saves[ loadedId ];
+      var level = sav.levels[levelId];
+      var sum = 0;
+
+      if ( typeof level !== "undefined") {
+          for ( j = 0; j < level.length - 1; j++ ) {
+            sum += level[ j ].score;
+          }
+      }
+
+      return sum;
+    }
+
+    function hasSeenCredits() {
+      var sav = saves[ loadedId ];
+      return sav.credits;
+    }
+
+    function seeCredits() {
+      var sav = saves[ loadedId ];
+      sav.credits = true;
+    }
+
     // @dev {
 
     Storage.flush();
@@ -349,6 +374,7 @@ define([ "SimpleStorage" ], function( Storage ) {
         addScore: addScore,
         resetScore: resetScore,
         getScoreSum: getScoreSum,
+        getLevelScoreSum: getLevelScoreSum,
 
         setSfxVolume: setSfxVolume,
         getSfxVolume: getSfxVolume,
@@ -358,6 +384,8 @@ define([ "SimpleStorage" ], function( Storage ) {
         toggleMusicMute: toggleMusicMute,
         isSfxMuted: isSfxMuted,
         isMusicMuted: isMusicMuted,
+        hasSeenCredits: hasSeenCredits,
+        seeCredits: seeCredits,
 
         getLoadedSlot: getLoadedSlot,
         setSelectedId: setSelectedId,

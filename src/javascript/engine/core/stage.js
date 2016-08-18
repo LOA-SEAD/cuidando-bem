@@ -182,9 +182,7 @@ define(function() {
      */
     function changeScreen( nextScreenId ) {
         var nextScreen = screens[ nextScreenId ];
-
-        // console.log('text!'+htmlPath+nextScreen.getHtmlPage());
-
+        
         var template = "text!" + htmlPath + nextScreen.getHtmlPage(),
             controller = controllerPath + nextScreen.getControllerName();
 

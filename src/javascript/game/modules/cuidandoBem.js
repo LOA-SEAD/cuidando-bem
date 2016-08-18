@@ -29,6 +29,7 @@ define([
         "commandBar",
         "dialogModal",
         "interactiveObjects",
+        "modalInteractiveObjects",
         "modalScene",
         "scene",
         "endOfLevel",
@@ -44,6 +45,7 @@ define([
         CommandBar,
         Dialog,
         InteractiveObject,
+        ModalInteractiveObject,
         ModalScene,
         SceneController,
         endOfLevel,
@@ -81,9 +83,10 @@ define([
 
             SceneController.init( gameStageSelector );
 
-            ModalScene.init( gameStageSelector );
-
             InteractiveObject.init( gameStageSelector );
+            ModalScene.init( gameStageSelector );
+            ModalInteractiveObject.init( gameStageSelector );
+
             endOfLevel.init( gameStageSelector );
             prontuario.init( gameStageSelector );
             Pulseira.init( gameStageSelector );
@@ -176,10 +179,16 @@ define([
 
             SceneController.setScene( Scene );
             CommandBar.changeToActionsButtons( Actions );
-            CommandBar.hide();
+            InteractiveObject.changeToInteractiveObjects( InteractiveObjects );
+
+            endOfLevel.close();
+            prontuario.close();
+            Pulseira.close();
+            freqRespiratoria.close();
             EquipoGotejamento.close();
             Ficha.close();
-            InteractiveObject.changeToInteractiveObjects( InteractiveObjects );
+            Dialog.close();
+            CommandBar.hide();
 
             Scene.load();
             console.groupEnd();
@@ -231,8 +240,10 @@ define([
             Scene = modalScene;
 
             ModalScene.open( modalScene );
+            ModalInteractiveObject.open();
             CommandBar.changeToActionsButtons( modalScene.getActions() );
-            InteractiveObject.changeToInteractiveObjects( modalScene.getInteractiveObjects() );
+            InteractiveObject.disableAllInteractiveObjects( InteractiveObjects );
+            ModalInteractiveObject.changeToInteractiveObjects( modalScene.getInteractiveObjects() );
         }
 
         /**
@@ -242,9 +253,11 @@ define([
          */
         function closeModalScene() {
             ModalScene.close();
+            ModalInteractiveObject.close();
 
             CommandBar.changeToActionsButtons( Actions );
-            InteractiveObject.changeToInteractiveObjects( InteractiveObjects );
+            ModalInteractiveObject.removeAllInteractiveObjects();
+            InteractiveObject.updateAllInteractiveObjects( InteractiveObjects );
             Scene = Level.getCurrentScene();
         }
 

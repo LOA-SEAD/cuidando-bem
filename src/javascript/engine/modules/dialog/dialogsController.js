@@ -84,22 +84,18 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
 
             isDialogOpen = true;
 
-            if(isDialogOpen){
-                // @dev {
-                $( document ).keydown(function( e ) {
-                    switch( e.which ){
-                        case 38: $(".dialog_reread").click(); break;
-                        case 40: $(".dialog_right").click(); break;
-                        case 49: $(".dialog_button[value='1']").click(); break;
-                        case 50: $(".dialog_button[value='2']").click(); break;
-                        case 51: $(".dialog_button[value='3']").click(); break;
-                        case 52: $(".dialog_button[value='4']").click(); break;
-                        case 53: $(".dialog_button[value='5']").click(); break;
-                    }
-                });
-                // }
-            }
 
+            $( document ).keydown(function( e ) {
+                switch ( e.which ){
+                    case 38: $(".dialog_reread").click(); break;
+                    case 40: $(".dialog_right").click(); break;
+                    case 49: $(".dialog_button[value='1']").click(); break;
+                    case 50: $(".dialog_button[value='2']").click(); break;
+                    case 51: $(".dialog_button[value='3']").click(); break;
+                    case 52: $(".dialog_button[value='4']").click(); break;
+                    case 53: $(".dialog_button[value='5']").click(); break;
+                }
+            });
         }
 
         /**
@@ -116,7 +112,7 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
             $( dialogCharImg ).addClass( _dialog.getSpeakerCssClass() );
             $( dialogCharImg ).show();
             $( dialogTextSelector ).text( _dialog.getText() );
-            
+
             $(".dialog_reread").click( function(){
                 $( '<span>' + _dialog.getSpeakerName() + ': </span>' ).appendTo( "#accessible_log" );
 
@@ -349,7 +345,7 @@ define([ "text!../html/dialog/dialog.html", "text!../html/dialog/dialogButtonTem
                 }
                 else{
                     op = i + 1;
-                }                
+                }
 
                 $( '<span>Opção ' + op + ': ' + _options[ i ].text + '</span><br>' ).appendTo( "#accessible_log" );
             }

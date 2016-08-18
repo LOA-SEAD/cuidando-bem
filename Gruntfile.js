@@ -8,43 +8,35 @@ This gruntfile minifies html, css and js of CuidandoBem, a html5 game
 "use strict";
 module.exports = function( grunt ) {
 
+    var path = require( "path" );
+
     // Time how long tasks take to be completed
     require( "time-grunt" )( grunt );
 
-    var config = {
-        pkg: grunt.file.readJSON( "package.json" ),
-        env: process.env
-    };
-
     // Automatically load required grunt tasks
     // load all grunt tasks matching the ['grunt-*', '@*/grunt-*'] patterns
-    require( "load-grunt-tasks" )( grunt );
-    grunt.loadTasks( "tasks" );
+    // require( "load-grunt-tasks" )( grunt );
+
+    require( "load-grunt-config" )( grunt, {
+        // path to task.js files, defaults to grunt dir
+        configPath: path.join( process.cwd(), "grunt/options" ),
+
+        // auto grunt.initConfig
+        init: true,
+
+        // data passed into config.  Can use with <%= test %>
+        data: {
+          pkg: grunt.file.readJSON( "package.json" ),
+          env: process.env,
+          devCfg: grunt.file.readJSON( "dev.env.json" )
+        }
+
+        // loadGruntTasks: false
+    });
+
+    grunt.loadTasks( "./grunt/tasks/" );
 
     grunt.task.run([
         "configDev"
     ]);
-
-    config.devCfg = grunt.file.readJSON( "dev.env.json" );
-
-    // Function to load config separately
-    function loadConfig( path ) {
-        var glob = require( "glob" );
-        var object = {};
-        var key;
-
-        glob.sync( "*", { cwd: path }).forEach(function( option ) {
-            key = option.replace( /\.js$/, "" );
-            object[ key ] = require( path + option );
-        });
-
-        return object;
-    }
-
-    // Magical line that actually load tasks configs from path below
-    grunt.util._.extend( config, loadConfig( "./tasks/options/" ) );
-
-    // Inits configuration
-    grunt.initConfig( config );
-
 };
