@@ -71,7 +71,7 @@ define([ "Stage" ], function( Stage ) {
               var porta = $(".porta", corredor);
               wait( 200, function() {
                 porta.css("transform", "rotateY(45deg)");
-                // Passar pela porta                
+                // Passar pela porta
                 corredor.animate({
                   opacity: 0.0,
                 }, {
@@ -85,7 +85,13 @@ define([ "Stage" ], function( Stage ) {
                   escritorio.animate( {
                     opacity: 1.0
                   }, 2000, "swing", function() {
-
+                    wait( 500, function() {
+                      $(".mentor1", escritorio).hide();
+                      $(".mentor2", escritorio).show();
+                      $(".braco", escritorio).show();
+                      $(".antebraco", escritorio).show();
+                      $(".balao", escritorio).show();
+                    })
                   })
                 })
               });
