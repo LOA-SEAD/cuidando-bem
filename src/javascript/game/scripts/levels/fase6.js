@@ -1490,7 +1490,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setEstadoCivil("Casada");
             Prontuario.setDataNascimento("05/12/1955");
             Prontuario.setIdade("60 anos");
-            Prontuario.setProfissao("Relações Internacionais (Doutorado Completo)");
+            Prontuario.setProfissao("Diplomata");
 
             Prontuario.setPai("Apolo Zovadelli Fidelis");
             Prontuario.setMae("Laura Rodrigues Fidelis");
