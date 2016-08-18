@@ -43,7 +43,8 @@ define([ "Stage", "levelsData" ], function( Stage, game ) {
         "7 - Infusão de dieta segura",
         "8 - Segurança na admnistração de medicação",
         "9 - Segurança em procedimentos cirúrgicos",
-        "10 - Admnistração segura de medicação"
+        "10 - Admnistração segura de medicação",
+        "Contratação"
     ];
 
     /**
@@ -64,15 +65,15 @@ define([ "Stage", "levelsData" ], function( Stage, game ) {
 
         var i;
         for ( i in save.levels ) {
-            if ( +i + 1 > save.lastLevel + 1 ) {
+            if ( +i + 1 > save.lastLevel + 2 ) {
                 $( $(".level")[ i ] ).addClass("disabled");
             }
         }
 
         if ( save.lastLevel >= 10 ) {
-          $(".endGameButton").show();
+          $( $(".level")[ 10 ] ).removeClass("disabled");
         }else {
-          $(".endGameButton").hide();
+          $( $(".level")[ 10 ] ).addClass("disabled");
         }
 
         // adding the name of each level by attributes aria-label
@@ -86,7 +87,7 @@ define([ "Stage", "levelsData" ], function( Stage, game ) {
             Player.play( Player.audios.sfx.selecionarMenu );
         });
 
-        $(".endGameButton").click(function() {
+        $( $(".level")[ 10 ] ).click(function() {
             var scoreSum = Storage.getScoreSum();
             var scoreMax = game.getMaxGameScore();
 
