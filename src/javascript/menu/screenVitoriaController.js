@@ -46,11 +46,37 @@ define([ "Stage" ], function( Stage ) {
         animation();
     }
 
+    function resetAnimation() {
+      var container = "#screen-vitoria";
+      var recepcao = $(".cena.recepcao", container);
+      var corredor = $(".cena.corredor", container);
+      var escritorio = $(".cena.escritorio", container);
+      var mesa = $(".cena.mesa", container);
+
+      recepcao.css("opacity", 1.0);
+      $(".balao", recepcao).hide();
+      corredor.css("opacity", 0);
+      $(".porta", corredor).css("transform", "rotateY(0deg)");
+      corredor.css("transform", "scale(1.0, 1.0)");
+      escritorio.css("opacity", 0);
+      $(".mentor1", escritorio).show();
+      $(".mentor2", escritorio).hide();
+      $(".braco", escritorio).hide();
+      $(".antebraco", escritorio).hide();
+      $(".balao", escritorio).hide();
+      mesa.css("opacity", 0);
+      $(".balao", mesa).hide();
+      $(".mao", mesa).css("top", "-58%");
+      $(".contrato", mesa).css("top", "-27%");
+
+    }
+
     function wait( time, callback ) {
       setTimeout( callback, time );
     }
 
     function animation() {
+      resetAnimation();
       // Parar todos os sons
       Player.stopAll();
       // Tocar música da animação
@@ -76,6 +102,7 @@ define([ "Stage" ], function( Stage ) {
               wait( 200, function() {
                 // Abrir porta
                 porta.css("transform", "rotateY(45deg)");
+                Player.play(Player.audios.sfx.abrirPorta);
                 wait( 300, function() {
                   // Passar pela porta
                   corredor.animate({
@@ -85,9 +112,9 @@ define([ "Stage" ], function( Stage ) {
                       var value = 1.0 + (0.5 - (now / 2));
                       corredor.css("transform", "scale(" + value + "," + value + ")");
                     },
-                    duration: 2000
+                    duration: 2700
                   });
-                  wait( 1000, function() {
+                  wait( 1300, function() {
                     escritorio.animate( {
                       opacity: 1.0
                     }, 2000, "swing", function() {
@@ -97,24 +124,31 @@ define([ "Stage" ], function( Stage ) {
                         $(".braco", escritorio).show();
                         $(".antebraco", escritorio).show();
                         $(".balao", escritorio).show();
-                        wait( 1000, function() {
+                        wait( 1500, function() {
                           $(mesa).animate({
                             opacity: 1.0
                           }, 1000, "swing");
                           wait( 200, function() {
+                            $(".contrato", mesa).animate({
+                              top: "14%"
+                            }, 2200);
                             $(".mao", mesa).animate({
                               top: "-17%"
                             }, 2200, function() {
+                              escritorio.css("opacity", 0);
                               $(".balao", mesa).show();
                               $(".mao", mesa).animate({
                                 top: "-58%"
-                              }, 1500, function() {
-
+                              }, 1800);
+                              wait( 1500, function() {
+                                $(".balao", mesa).hide();
+                                $(mesa).animate({
+                                  opacity: 0.0
+                                }, 2000, "swing", function() {
+                                  Stage.changeScreen( 3 );
+                                });
                               })
-                            })
-                            $(".contrato", mesa).animate({
-                              top: "14%"
-                            }, 2200)
+                            });
                           });
                         });
                       });
