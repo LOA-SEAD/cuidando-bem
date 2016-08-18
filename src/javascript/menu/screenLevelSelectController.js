@@ -43,7 +43,8 @@ define([ "Stage", "levelsData" ], function( Stage, game ) {
         "7 - Infusão de dieta segura",
         "8 - Segurança na admnistração de medicação",
         "9 - Segurança em procedimentos cirúrgicos",
-        "10 - Admnistração segura de medicação"
+        "10 - Admnistração segura de medicação",
+        "Contratação"
     ];
 
     /**
@@ -63,16 +64,34 @@ define([ "Stage", "levelsData" ], function( Stage, game ) {
 
 
         var i;
-        for ( i in save.levels ) {
-            if ( +i + 1 > save.lastLevel + 1 ) {
-                $( $(".level")[ i ] ).addClass("disabled");
-            }
+        for ( i = 0; i < save.lastLevel; i++ ) {
+          // reset button classes
+          var button = $( $(".level")[ i ] );
+          button.removeClass("completed");
+          button.removeClass("failed");
+          // Level completeness %
+          var levelCompleteness = Storage.getLevelScoreSum( i ) / game.getLevelMaxScore( i + 1 );
+          if( levelCompleteness >= 0.75 ) {
+            // se level >= 75%
+            button.addClass("completed");
+          } else {
+            // se level < 75%
+            button.addClass("failed");
+          }
+        }
+        for ( i = save.lastLevel + 1; i < save.levels.length; i++ ) {
+          $( $(".level")[ i ] ).addClass("disabled");
         }
 
+        // $(".image", $(".level")[ save.lastLevel + 1 ] ).addClass("next");
+
         if ( save.lastLevel >= 10 ) {
-          $(".endGameButton").show();
+          $( $(".level")[ 10 ] ).removeClass("disabled");
+          if ( Storage.hasSeenCredits() ) {
+            $( $(".level")[ 10 ] ).addClass("completed");
+          }
         }else {
-          $(".endGameButton").hide();
+          $( $(".level")[ 10 ] ).addClass("disabled");
         }
 
         // adding the name of each level by attributes aria-label
@@ -80,22 +99,8 @@ define([ "Stage", "levelsData" ], function( Stage, game ) {
             $(".l" + j ).attr("aria-label", "Fase " + levelNames[ j ] );
         }
 
-        $(".image", $(".level")[ save.lastLevel + 1 ] ).addClass("next");
-
         $(".menuButton").click(function() {
             Player.play( Player.audios.sfx.selecionarMenu );
-        });
-
-        $(".endGameButton").click(function() {
-            var scoreSum = Storage.getScoreSum();
-            var scoreMax = game.getMaxGameScore();
-
-            var completeness = scoreSum / scoreMax;
-            if ( completeness >= 0.75 ) {
-              Stage.changeScreen( 8 );
-            } else {
-              Stage.changeScreen( 9 );
-            }
         });
 
         $(".backButton").click(function() {
@@ -111,8 +116,20 @@ define([ "Stage", "levelsData" ], function( Stage, game ) {
                 $("p.title").text( text );
 
                 if ( $( this ).hasClass("selected") ) {
-                    game.setCurrentLevel( levelId );
-                    Stage.changeScreen( 1 );
+                    if( index != 10) {
+                      game.setCurrentLevel( levelId );
+                      Stage.changeScreen( 1 );
+                    } else {
+                      var scoreSum = Storage.getScoreSum();
+                      var scoreMax = game.getMaxGameScore();
+
+                      var completeness = scoreSum / scoreMax;
+                      if ( completeness >= 0.75 ) {
+                        Stage.changeScreen( 8 );
+                      } else {
+                        Stage.changeScreen( 9 );
+                      }
+                    }
                 } else {
                     $(".level").removeClass("selected");
                     $( this ).addClass("selected");
@@ -128,7 +145,7 @@ define([ "Stage", "levelsData" ], function( Stage, game ) {
                 // Som para quando o mouse é passado por cima
                 Player.play( Player.audios.sfx.passarMouse );
 
-                if ( levelId <= save.lastLevel + 1 ) {
+                if ( levelId <= save.lastLevel ) {
                     $("p.title").text( levelNames[ index ] );
                 }
             },
@@ -136,7 +153,7 @@ define([ "Stage", "levelsData" ], function( Stage, game ) {
                 var index = $(".level").index( this );
                 var levelId = index;
 
-                if ( levelId <= save.lastLevel + 1 ) {
+                if ( levelId <= save.lastLevel ) {
                     $("p.title").text( text );
                 }
             }

@@ -1183,7 +1183,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.setSetupScript(function() {
 
             // Dados da pulseira
-            Pulseira.setNameRegExp( /Ana Beatriz Galv(a|ã)o/ );
+            Pulseira.setNameRegExp( /^Ana Beatriz Galv(a|ã)o$/i );
             Pulseira.setLeitoRegExp( /0*1/ );
             Pulseira.setDataRegExp( /19\/07\/1979/ );
 
@@ -1225,8 +1225,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setSsvvRowData( 1, "", "130X70", "68", "20", "96", "36.4", true );
             Prontuario.setAnotacaoEnfermagemRowData("", "");
 
-            Ficha.setEnfermeiraRegexp( /Feminina/i );
-            Ficha.setPacienteRegexp( /Ana Beatriz Galv(ã|a)o/i );
+            Ficha.setEnfermeiraRegexp( /^Feminina$/i );
+            Ficha.setPacienteRegexp( /^Ana Beatriz Galv(ã|a)o$/i );
             Ficha.setLeitoRegexp( /0?1/ );
         });
 

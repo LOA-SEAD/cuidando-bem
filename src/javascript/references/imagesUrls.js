@@ -294,7 +294,14 @@ define(function() {
           "scenes/leitoChar07Grade.jpg",
           "scenes/leitoChar08Grade.jpg",
           "scenes/leitoChar09Grade.jpg",
-          "scenes/leitoChar10Grade.jpg"
+          "scenes/leitoChar10Grade.jpg",
+          "animation/02_fundo.png",
+          "animation/02_porta.png",
+          "animation/03_fundo.png",
+          "animation/03_mentor_A00.png",
+          "animation/03_mentor_B00.png",
+          "animation/03_mentor_B01.png",
+          "animation/03_mentor_B02.png"
         ]
     };
 

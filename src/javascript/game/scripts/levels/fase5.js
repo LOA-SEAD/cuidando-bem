@@ -1529,7 +1529,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Prontuario.setAnotacaoEnfermagemRowData("", "");
 
             // 'pulseira' content
-            Pulseira.setNameRegExp( /Pedro Alcides Mendonça/ );
+            Pulseira.setNameRegExp( /^Pedro Alc(í|i)des Mendon(ç|c)a$/i );
             Pulseira.setLeitoRegExp( /0*1/ );
             Pulseira.setDataRegExp( /03\/06\/1962/ );
 
@@ -1540,8 +1540,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             EquipoGotejamento.setRightValue(35);
 
-            Ficha.setEnfermeiraRegexp( /Masculina/i );
-            Ficha.setPacienteRegexp( /Pedro Alc(í|i)des Mendon(ç|c)a/i );
+            Ficha.setEnfermeiraRegexp( /^Masculina$/i );
+            Ficha.setPacienteRegexp( /^Pedro Alc(í|i)des Mendon(ç|c)a$/i );
             Ficha.setLeitoRegexp( /0?1/ );
             Ficha.setVolumeRegexp( /104/ );
             Ficha.setDuracao( 1 );

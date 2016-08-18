@@ -1248,7 +1248,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         level.setSetupScript(function() {
 
             // Script that runs once when the level is loaded or reloaded
-            Pulseira.setNameRegExp( /Yuri de Souza Almeida/ );
+            Pulseira.setNameRegExp( /^Yuri de Souza Almeida$/i );
             Pulseira.setLeitoRegExp( /0*1/ );
             Pulseira.setDataRegExp( /16\/03\/1993/ );
 
@@ -1294,8 +1294,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             Prontuario.setAnotacaoEnfermagemRowData("", "");
 
-            Ficha.setEnfermeiraRegexp( /Masculina/i );
-            Ficha.setPacienteRegexp( /Yuri de Souza Almeida/i );
+            Ficha.setEnfermeiraRegexp( /^Masculina$/i );
+            Ficha.setPacienteRegexp( /^Yuri de Souza Almeida$/i );
             Ficha.setLeitoRegexp( /0?1/ );
         });
 
