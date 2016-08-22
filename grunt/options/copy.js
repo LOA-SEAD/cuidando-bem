@@ -53,7 +53,8 @@ module.exports = {
                     "html/**",
                     "javascript/**",
                     "sounds/**",
-                    "./*"
+                    "./*",
+                    "./images/**/*.ico"
                 ]
             }
         ]
