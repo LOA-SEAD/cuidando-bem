@@ -6,7 +6,6 @@ module.exports = {
 	    options: {
 	        config: ".jscsrc",
 	        reporter: "inline.js",
-	        verbose: false,
 	        fix: true,
 	        reporterOutput: "jscs.log"
 	    }
