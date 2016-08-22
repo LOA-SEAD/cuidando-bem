@@ -113,7 +113,7 @@ define([
       startLevel();
     }
 
-    //Accessibility
+    // Accessibility
     /**
      * Description
      * @method sweepScreen

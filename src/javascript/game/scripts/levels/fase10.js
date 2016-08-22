@@ -73,7 +73,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       if ( core.flag("score_irCentroCirurgico_horaErrada") == false ) {
 
         core.flag("score_irCentroCirurgico_horaErrada", true );
-        core.registerScoreItem( Scores.irCentroCirurgico_horaErrada );
+        core.registerScoreItem( Scores.irCentroCirurgicoHoraErrada );
         console.log("PERDEU 25 PONTOS");
 
       }
@@ -113,7 +113,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       if ( core.flag("score_iralaFeminina_horaErrada") == false ) {
 
         core.flag("score_iralaFeminina_horaErrada", true );
-        core.registerScoreItem( Scores.irAlaFeminina_horaErrada );
+        core.registerScoreItem( Scores.irAlaFemininaHoraErrada );
 
 
       }
@@ -511,7 +511,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
           core.setInteractiveObjectVisible("io-pegarFrascoDieta", false );
           core.setInteractiveObjectVisible("io-cloretoSodio_20_10ml", false );
-          //core.setActionVisible("btn-conferirMedicamento", false );
+          // core.setActionVisible("btn-conferirMedicamento", false );
 
         } else {
 
@@ -718,7 +718,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           if ( core.flag("score_irPosto_horaErrada") == false ) {
 
             core.flag("score_irPosto_horaErrada", true );
-            core.registerScoreItem( Scores.irPosto_horaErrada );
+            core.registerScoreItem( Scores.irPostoHoraErrada );
           }
 
         }
@@ -821,7 +821,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     ]);
 
 
-    leito = lib.scenes.leitos.raul_leito01.getClone()
+    leito = lib.scenes.leitos.raulLeito01.getClone()
       .onLoad(function() {
 
 
@@ -839,12 +839,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
 
-          if ( core.flag("trocou_de_leito") == true )
+          if ( core.flag("trocou_de_leito") == true ) {
             core.changeScene( 2 );
-          else
+          } else {
             core.openDialog( 7 );
-
-
+          }
         })
         .setVisibility( false )
 

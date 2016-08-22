@@ -200,7 +200,7 @@ define(function() {
     loopId = nextId( loopId, loopList.length );
 
     if ( pastLoopSound !== undefined ) {
-      //pastLoopSound.pause();
+      // pastLoopSound.pause();
       clearTimeout( loopInterval );
     }
 

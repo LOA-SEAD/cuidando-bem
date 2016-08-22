@@ -811,8 +811,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         console.log("Entrando no centro cirurgico segunda vez");
         // core.openDialog( 0 );
 
-        if ( core.flag("conversar_paciente_cc") == false )
+        if ( core.flag("conversar_paciente_cc") == false ) {
           core.closeCommandBar();
+        }
 
         core.setInteractiveObjectVisible("io-conversarPaciente", false );
 

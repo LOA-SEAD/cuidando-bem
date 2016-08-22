@@ -958,7 +958,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // Para conversar com o paciente e registrar a pontuação apenas uma vez
             if ( core.flag("conversouPacienteSegundaVez") == false ) {
               core.flag("conversouPacienteSegundaVez", true );
-              //core.registerScoreItem( Scores.identificarPaciente );
+              // core.registerScoreItem( Scores.identificarPaciente );
               core.openDialog( 11 );
             }
           } else {

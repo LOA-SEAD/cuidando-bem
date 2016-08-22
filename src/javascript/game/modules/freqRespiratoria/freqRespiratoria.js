@@ -186,8 +186,8 @@ define(function( require ) {
   }
 
   function open() {
-
-    const DELAY = 8; // delay in seconds
+    // delay in seconds
+    const DELAY = 8;
 
     Player.stopAll();
     $( canvasSelector ).show();

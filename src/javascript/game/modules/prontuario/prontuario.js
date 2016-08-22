@@ -1,3 +1,4 @@
+// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 /*
  This file is part of Cuidando Bem.
 

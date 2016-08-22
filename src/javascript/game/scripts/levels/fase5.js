@@ -293,7 +293,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             core.flag("score_pegou_prescricao_medica", true );
           }
 
-          Prontuario.open("prescMedica");      // abre prontuario na aba correta
+          // abre prontuario na aba correta
+          Prontuario.open("prescMedica");
           core.openModalScene("Prontuario");
         })
         .setVisibility( true )
@@ -922,7 +923,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           // Som
           Player.play( Player.audios.sfx.pegarObjeto );
 
-          Prontuario.open("prescMedica");      // abre prontuario na aba correta
+          // abre prontuario na aba correta
+          Prontuario.open("prescMedica");
           core.openModalScene("Prontuario");
 
         })

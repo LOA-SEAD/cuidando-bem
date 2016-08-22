@@ -511,7 +511,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.closeDialog();
         }),
 
-      //7
+      // 7
       new Dialog( lib.characters.mentor )
         .setText( Dialogs.farmacia[ 5 ] )
         .registerOption("", function() {

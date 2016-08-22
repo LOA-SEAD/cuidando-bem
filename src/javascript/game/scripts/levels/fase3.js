@@ -103,7 +103,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       if ( core.flag("checar_prontuario") == false ) {
         core.openDialog( 2 );
         if ( core.flag("score_ir_posto_hora_errada") == false ) {
-          //core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
+          // core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
           core.flag("score_ir_posto_hora_errada", true );
         }
       } else {
@@ -114,7 +114,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     function corredorIrAlaFeminina() {
       core.openDialog( 3 );
       if ( core.flag("score_ir_ala_feminina_hora_errada") == false ) {
-        //core.registerScoreItem( Scores.irAlaFemininaHoraErrada );
+        // core.registerScoreItem( Scores.irAlaFemininaHoraErrada );
         core.flag("score_ir_ala_feminina_hora_errada", true );
       }
     }
@@ -122,7 +122,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     function corredorIrFarmacia() {
       core.openDialog( 4 );
       if ( core.flag("score_ir_farmacia_hora_errada") == false ) {
-        //core.registerScoreItem( Scores.irFarmaciaHoraErrada );
+        // core.registerScoreItem( Scores.irFarmaciaHoraErrada );
         core.flag("score_ir_farmacia_hora_errada", true );
       }
     }
@@ -719,7 +719,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             console.log("Action: Explicar o resultado");
             if ( !core.flag("score_utilizou_algodao2") ) {
               if ( !core.flag("score_nao_utilizou_algodao2") ) {
-                //core.registerScoreItem( Scores.naoUsarAlgodao2 );
+                // core.registerScoreItem( Scores.naoUsarAlgodao2 );
                 core.flag("score_nao_utilizou_algodao2", true );
               }
               core.closeCommandBar();
@@ -870,7 +870,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             if ( !core.flag("score_pulseira") ) {
               core.flag("score_pulseira", true );
-              //core.registerScoreItem( Scores.naoVerificarPulseira);
+              // core.registerScoreItem( Scores.naoVerificarPulseira);
             }
 
             core.openDialog( 10 );
@@ -891,7 +891,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             if ( core.flag("utilizar_algodao2") ) {
               if ( !core.flag("score_realizou_teste_glicemia") ) {
                 if ( !core.flag("score_nao_realizou_teste_glicemia") ) {
-                  //core.registerScoreItem( Scores.naoRealizarTesteGlicemia );
+                  // core.registerScoreItem( Scores.naoRealizarTesteGlicemia );
                   core.flag("score_nao_realizou_teste_glicemia", true );
                 }
                 core.closeCommandBar();
@@ -905,7 +905,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             } else {
               if ( !core.flag("score_vestiu_luvas") ) {
                 if ( !core.flag("score_nao_vestiu_luvas") ) {
-                  //core.registerScoreItem( Scores.naoPorLuvas );
+                  // core.registerScoreItem( Scores.naoPorLuvas );
                   core.flag("score_nao_vestiu_luvas", true );
                 }
                 core.closeCommandBar();
@@ -923,7 +923,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             if ( !core.flag("score_pulseira") ) {
               core.flag("score_pulseira", true );
-              //core.registerScoreItem( Scores.naoVerificarPulseira);
+              // core.registerScoreItem( Scores.naoVerificarPulseira);
             }
 
             core.openDialog( 10 );
@@ -956,7 +956,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Player.play( Player.audios.sfx.bip );
             if ( !core.flag("score_utilizou_algodao1") ) {
               if ( !core.flag("score_nao_utilizou_algodao1") ) {
-                //core.registerScoreItem( Scores.naoUsarAlgodao );
+                // core.registerScoreItem( Scores.naoUsarAlgodao );
                 core.flag("score_nao_utilizou_algodao1", true );
               }
               //   core.closeCommandBar();
@@ -975,7 +975,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             if ( !core.flag("score_pulseira") ) {
               core.flag("score_pulseira", true );
-              //core.registerScoreItem( Scores.naoVerificarPulseira);
+              // core.registerScoreItem( Scores.naoVerificarPulseira);
             }
 
             core.openDialog( 10 );
@@ -992,7 +992,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // Uma flag apenas para evitar o erro de abrir a commandBar durante o alerta do mentor
             core.flag("tem_fala", true );
             if ( !core.flag("score_nao_explicou_resultado") ) {
-              //core.registerScoreItem( Scores.naoExplicarResultado );
+              // core.registerScoreItem( Scores.naoExplicarResultado );
               core.flag("score_nao_explicou_resultado", true );
             }
             core.closeCommandBar();

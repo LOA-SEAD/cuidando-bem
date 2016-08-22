@@ -240,7 +240,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // aviso de caminho errado
         core.openDialog( 10 );
         if ( !core.flag("score_ir_posto_hora_errada") ) {
-          //core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
+          // core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
           core.flag("score_ir_posto_hora_errada", true );
         }
       } else {

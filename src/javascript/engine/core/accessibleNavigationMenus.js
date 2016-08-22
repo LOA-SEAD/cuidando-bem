@@ -101,7 +101,9 @@ define(function() {
         }
         $( navigationList[ i ] ).focus();
         return false;
-      } else if ( keycode == KEYCODE_ARROW_UP ) {
+      }
+
+      if ( keycode == KEYCODE_ARROW_UP ) {
         if ( i > 0 ) {
           i--;
         } else {
@@ -109,7 +111,9 @@ define(function() {
         }
         $( navigationList[ i ] ).focus();
         return false;
-      } else if ( keycode == KEYCODE_ENTER ) {
+      }
+
+      if ( keycode == KEYCODE_ENTER ) {
         if ( i != -1 ) {
           $( navigationList[ i ] ).click();
           return false;
@@ -126,7 +130,7 @@ define(function() {
 
   function startAccessibleNavigationMenus() {
 
-    //$( window ).off( "keydown" );
+    // $( window ).off( "keydown" );
 
     $( window ).on("keydown", function( e ) {
       return menuNavigation( e.which );
