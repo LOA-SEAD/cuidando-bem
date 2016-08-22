@@ -15,450 +15,459 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 #prontuario {
-    @borderProntuario: 0.1rem solid black;
+  @borderProntuario: 0.1rem solid black;
 
-    font-family: @font-printed;
-    font-size: 2rem;
-    display: none;
-    z-index: 1;
-    box-sizing: border-box;
+  font-family: @font-printed;
+  font-size: 2rem;
+  display: none;
+  z-index: 1;
+  box-sizing: border-box;
 
-    width: 72%;
-    height: 83%;
-    position: absolute;
-    //background-color: white;
-    background-image: @bg-prontuario;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+  width: 72%;
+  height: 83%;
+  position: absolute;
+  //background-color: white;
+  background-image: @bg-prontuario;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 
+  left: 13%;
+  top: 2%;
+
+  text-align: left;
+
+  p {
+    margin: 0;
+  }
+
+  input {
+    width: 100%;
+    border: none;
+    border-bottom: @borderProntuario;
+    background-color: transparent;
+  }
+
+  .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+    font-size: 1.7rem;
+    padding: 0;
+    color: #008080;
+  }
+
+  .ui-tabs .ui-tabs-nav li {
+    margin: 0;
+  }
+
+  .ui-tabs .ui-tabs-nav li:not(:last-child):not(:nth-child(5)) {
+    margin-right: 5.08rem;
+  }
+
+  input[disabled] {
+    border: none;
+    background-color: transparent;
+  }
+
+  #pront_alergia_divSim, #pront_alergia_divNao {
+    cursor: pointer;
+  }
+
+  .notbold, span {
+    font-weight: 100;
+  }
+  .content {
+    overflow-y: hidden;
+    width: 80%;
     left: 13%;
-    top: 2%;
+    top: 10%;
+    box-sizing: border-box;
+  }
 
-    text-align: left;
+  .title {
+    height: 5%;
+    max-height: 5%;
+    text-align: center;
+    border-bottom: @borderProntuario;
+  }
 
-    p {
-      margin: 0;
-    }
+  .row {
+    text-align: center;
+    border-bottom: @borderProntuario;
+  }
 
-    input{
-        width: 100%;
-        border: none;
-        border-bottom: @borderProntuario;
-        background-color: transparent;
-    }
+  .outerBlock {
+  }
 
-    .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
-        font-size: 1.7rem;
-        padding: 0;
-        color: #008080;
-    }
+  .block {
+    border: @borderProntuario;
+  }
 
-    .ui-tabs .ui-tabs-nav li{
-      margin: 0;
-    }
+  .container {
+    min-height: 8rem;
+    font-weight: bold;
+    border-bottom: @borderProntuario;
+  }
 
-    .ui-tabs .ui-tabs-nav li:not(:last-child):not(:nth-child(5)) {
-        margin-right: 5.08rem;
-    }
+  .container.info {
+    min-height: 4rem;
+  }
 
-    input[disabled]{
-        border: none;
-        background-color: transparent;
-    }
+  .doubleContainer {
+    min-height: 8rem;
+    font-weight: bold;
+    border-bottom: @borderProntuario;
+  }
 
-    #pront_alergia_divSim, #pront_alergia_divNao{
-        cursor: pointer;
-    }
+  .tripleContainer {
+    font-weight: bold;
+    border-bottom: @borderProntuario;
+  }
 
-    .notbold, span{
-        font-weight: 100;
-    }
-    .content{
-        overflow-y: hidden;
-        width: 80%;
-        left: 13%;
-        top: 10%;
-        box-sizing: border-box;
-    }
+  .oneLeft {
+    float: left;
+    width: 50%;
+    border-right: @borderProntuario;
+  }
 
-    .title{
-        height: 5%;
-        max-height: 5%;
-        text-align: center;
-        border-bottom: @borderProntuario;
-    }
+  .dataInternacao, .medidas_antropometricas, .filiacaoContainer {
+    border: none;
+  }
 
-    .row{
-        text-align: center;
-        border-bottom: @borderProntuario;
-    }
+  .doubleLeft {
+    float: left;
+    width: 50%;
+    border-right: @borderProntuario;
+  }
 
-    .outerBlock{
-    }
+  .tripleLeft {
+    float: left;
+    width: 50%;
+    border-right: @borderProntuario;
+  }
 
-    .block{
-        border: @borderProntuario;
-    }
+  .medidas_antropometricas > div {
+    display: inline-block;
+    width: auto;
+    padding: 1% 2%;
+  }
 
-    .container{
-        min-height: 8rem;
-        font-weight: bold;
-        border-bottom: @borderProntuario;
-    }
+  .data_nascimento {
+    border-right: @borderProntuario;
+    width: 50%;
+    display: inline-block;
+    height: 4rem;
+  }
+  .idade {
+    border-right: @borderProntuario;
+    width: 30%;
+    display: inline-block;
+    height: 4rem;
+  }
+  .sexo {
+    display: inline-block;
+    height: 4rem;
+  }
 
-    .container.info{
-      min-height: 4rem;
-    }
+  table.col6 {
+    width: 100%;
 
-    .doubleContainer{
-        min-height: 8rem;
-        font-weight: bold;
-        border-bottom: @borderProntuario;
-    }
+    thead {
+      text-align: center;
+      border-bottom: @borderProntuario;
 
-    .tripleContainer{
-        font-weight: bold;
-        border-bottom: @borderProntuario;
-    }
-
-    .oneLeft{
-        float: left;
-        width: 50%;
+      th {
+        width: 16%;
+      }
+      th:not(:last-child) {
         border-right: @borderProntuario;
+      }
     }
+    tbody {
 
-    .dataInternacao, .medidas_antropometricas, .filiacaoContainer{
-        border: none;
-    }
-
-    .doubleLeft{
-        float: left;
-        width: 50%;
+      tr {
+      }
+      td:not(:last-child) {
         border-right: @borderProntuario;
+      }
+      tr:not(:last-child) {
+        border-bottom: @borderProntuario;
+      }
     }
+  }
 
-    .tripleLeft{
-        float: left;
-        width: 50%;
-        border-right: @borderProntuario;
+  table.prescMedica {
+    font-size: 1.5rem;
+    td {
+      padding: 0.5rem;
     }
-
-    .medidas_antropometricas > div{
-        display: inline-block;
-        width: auto;
-        padding: 1% 2%;
+    th:nth-child(1), td:nth-child(1) {
+      width: 5%;
+      text-align: center;
     }
-
-    .data_nascimento{
-      border-right: @borderProntuario;
-      width: 50%;
-      display: inline-block;
-      height: 4rem;
+    th:nth-child(2), td:nth-child(2) {
+      width: 35%;
     }
-    .idade{
-      border-right: @borderProntuario;
+    th:nth-child(3), td:nth-child(3) {
+      width: 15%;
+    }
+    th:nth-child(4), td:nth-child(4) {
       width: 30%;
-      display: inline-block;
-      height: 4rem;
     }
-    .sexo{
-      display: inline-block;
-      height: 4rem;
+    th:nth-child(5), td:nth-child(5) {
+      width: 10%;
+      text-align: center;
     }
-
-    table.col6 {
-        width: 100%;
-
-        thead {
-            text-align: center;
-            border-bottom: @borderProntuario;
-
-            th {
-                width: 16%;
-            }
-            th:not(:last-child) {
-                border-right: @borderProntuario;
-            }
-        }
-        tbody {
-
-            tr {
-            }
-            td:not(:last-child) {
-                border-right: @borderProntuario;
-            }
-            tr:not(:last-child) {
-                border-bottom: @borderProntuario;
-            }
-        }
+    th:nth-child(6), td:nth-child(6) {
+      width: 5%;
     }
+  }
 
-    table.prescMedica {
-      font-size: 1.5rem;
+  table.ssvv {
+    font-size: 1.5rem;
+
+    td {
+      padding: 0.5rem;
+      text-align: center;
+    }
+    th:nth-child(1), td:nth-child(1) {
+      width: 10%;
+      text-align: center;
+    }
+    th:nth-child(2), td:nth-child(2) {
+      width: 30%;
+    }
+    th:nth-child(3), td:nth-child(3) {
+      width: 15%;
+    }
+    th:nth-child(4), td:nth-child(4) {
+      width: 15%;
+    }
+    th:nth-child(5), td:nth-child(5) {
+      width: 15%;
+      text-align: center;
+    }
+    th:nth-child(6), td:nth-child(6) {
+      width: 15%;
+    }
+  }
+
+  table.prescEnfermage {
+    font-size: 2rem;
+  }
+
+  table.col4 {
+    width: 100%;
+
+    thead {
+      text-align: center;
+      border-bottom: @borderProntuario;
+
+      th {
+        width: 25%;
+      }
+      th:not(:last-child) {
+        border-right: @borderProntuario;
+      }
+    }
+    tbody {
+
+      tr {
+      }
+      td:not(:last-child) {
+        border-right: @borderProntuario;
+      }
+      tr:not(:last-child) {
+        border-bottom: @borderProntuario;
+      }
+    }
+  }
+
+  table.col2 {
+    width: 100%;
+
+    thead {
+      text-align: center;
+      border-bottom: @borderProntuario;
+
+      th {
+      }
+
+      th:first-child {
+        width: 25%;
+      }
+      th:not(:last-child) {
+        border-right: @borderProntuario;
+      }
+    }
+    tbody {
+
+      tr {
+      }
+      td:not(:last-child) {
+        border-right: @borderProntuario;
+      }
+      tr:not(:last-child) {
+        border-bottom: @borderProntuario;
+      }
+    }
+  }
+
+  .alergia_medicamentosa {
+    #pront_alergia_qual {
+      width: 30%;
+    }
+    .inline {
+      display: inline;
+    }
+  }
+
+  #ssvv_tbody {
+    input {
+      width: 50%;
+      text-align: right;
+    }
+    .ssvv_row {
+
       td {
-        padding: 0.5rem;
-      }
-      th:nth-child(1), td:nth-child(1) {
-        width: 5%;
-        text-align: center;
-      }
-      th:nth-child(2), td:nth-child(2) {
-        width: 35%;
-      }
-      th:nth-child(3), td:nth-child(3) {
-        width: 15%;
-      }
-      th:nth-child(4), td:nth-child(4) {
-        width: 30%;
-      }
-      th:nth-child(5), td:nth-child(5) {
-        width: 10%;
-        text-align: center;
-      }
-      th:nth-child(6), td:nth-child(6) {
-        width: 5%;
-      }
-    }
 
-    table.ssvv {
-      font-size: 1.5rem;
+        span {
 
-      td {
-        padding: 0.5rem;
-        text-align: center;
-      }
-      th:nth-child(1), td:nth-child(1) {
-        width: 10%;
-        text-align: center;
-      }
-      th:nth-child(2), td:nth-child(2) {
-        width: 30%;
-      }
-      th:nth-child(3), td:nth-child(3) {
-        width: 15%;
-      }
-      th:nth-child(4), td:nth-child(4) {
-        width: 15%;
-      }
-      th:nth-child(5), td:nth-child(5) {
-        width: 15%;
-        text-align: center;
-      }
-      th:nth-child(6), td:nth-child(6) {
-        width: 15%;
-      }
-    }
-
-    table.prescEnfermage {
-      font-size: 2rem;
-    }
-
-    table.col4 {
-        width: 100%;
-
-        thead {
-            text-align: center;
-            border-bottom: @borderProntuario;
-
-            th {
-                width: 25%;
-            }
-            th:not(:last-child) {
-                border-right: @borderProntuario;
-            }
         }
-        tbody {
 
-            tr {
-            }
-            td:not(:last-child) {
-                border-right: @borderProntuario;
-            }
-            tr:not(:last-child) {
-                border-bottom: @borderProntuario;
-            }
-        }
-    }
-
-    table.col2 {
-        width: 100%;
-
-        thead {
-            text-align: center;
-            border-bottom: @borderProntuario;
-
-            th{
-            }
-
-            th:first-child {
-                width: 25%;
-            }
-            th:not(:last-child) {
-                border-right: @borderProntuario;
-            }
-        }
-        tbody {
-
-            tr {
-            }
-            td:not(:last-child) {
-                border-right: @borderProntuario;
-            }
-            tr:not(:last-child) {
-                border-bottom: @borderProntuario;
-            }
-        }
-    }
-
-    .alergia_medicamentosa{
-        #pront_alergia_qual{
-            width: 30%;
-        }
-        .inline{
-            display: inline;
-        }
-    }
-
-    #ssvv_tbody{
         input {
-            width: 50%;
-            text-align: right;
+
         }
-        .ssvv_row{
+      }
 
-            td{
+      .data {
+        text-align: center;
+        display: block;
+      }
 
-                span{
+      .pa {
 
-                }
+      }
 
-                input{
+      .fc {
 
-                }
-            }
+      }
 
-            .data{
-                text-align: center;
-                display: block;
-            }
+      .fr {
 
-            .pa{
+      }
 
-            }
+      .sat {
 
-            .fc{
+      }
 
-            }
+      .temp {
 
-            .fr{
-
-            }
-
-            .sat{
-
-            }
-
-            .temp{
-
-            }
-        }
-
+      }
     }
 
-    #prescEnfermagem_tbody {
-        tr {
-            display: none;
-        }
-        td {
-        }
-        .vazio {
-        }
-        .decubito {
-        }
+  }
 
+  #prescEnfermagem_tbody {
+    tr {
+      display: none;
+    }
+    td {
+    }
+    .vazio {
+    }
+    .decubito {
     }
 
-    #prescMedica_tbody{
-        .relatorio{
-            text-align: center;
-        }
-        .relatorio:not(.disabled) {
-            cursor: pointer;
-        }
+  }
+
+  #prescMedica_tbody {
+    .relatorio {
+      text-align: center;
+    }
+    .relatorio:not(.disabled) {
+      cursor: pointer;
+    }
+  }
+
+  #anotacaoEnfermagem_table {
+    height: 65%;
+  }
+
+  #anotacaoEnfermagem_tbody {
+    .data {
+      text-align: center;
+    }
+    td {
+      vertical-align: top;
     }
 
-    #anotacaoEnfermagem_table{
-        height: 65%;
+    .anotacao {
+      height: 100%;
     }
-
-    #anotacaoEnfermagem_tbody{
-        .data{
-            text-align: center;
-        }
-        td{
-            vertical-align:top;
-        }
-
-        .anotacao{
-            height: 100%;
-        }
-    }
+  }
 
 }
 
 .ui-widget-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
+
 .ui-tabs {
-    position: relative;/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
-    padding: .2em;
+  position: relative; /* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+  padding: .2em;
 }
+
 .ui-tabs .ui-tabs-nav {
-    margin: 0;
-    padding: 0 .2em;
+  margin: 0;
+  padding: 0 .2em;
 }
+
 .ui-tabs .ui-tabs-nav li {
-    list-style: none;
-    float: left;
-    position: relative;
-    top: 0;
-    margin: 0 .2em 0 0;
-    border-bottom-width: 0;
-    padding: 0;
-    white-space: nowrap;
+  list-style: none;
+  float: left;
+  position: relative;
+  top: 0;
+  margin: 0 .2em 0 0;
+  border-bottom-width: 0;
+  padding: 0;
+  white-space: nowrap;
 }
-.ui-tabs .ui-tabs-nav li:last-child{
-    float: none;
-    clear: both;
-    background-color: transparent;
+
+.ui-tabs .ui-tabs-nav li:last-child {
+  float: none;
+  clear: both;
+  background-color: transparent;
 }
+
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
-    float: left;
-    padding: .5em 1em;
-    text-decoration: none;
+  float: left;
+  padding: .5em 1em;
+  text-decoration: none;
 }
+
 .ui-tabs .ui-tabs-nav li.ui-tabs-active {
-    // margin-bottom: -1px;
-    // padding-bottom: 1px;
+  // margin-bottom: -1px;
+  // padding-bottom: 1px;
 }
+
 .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor,
 .ui-tabs .ui-tabs-nav li.ui-state-disabled .ui-tabs-anchor,
 .ui-tabs .ui-tabs-nav li.ui-tabs-loading .ui-tabs-anchor {
-    cursor: text;
+  cursor: text;
 }
+
 .ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
-    cursor: pointer;
+  cursor: pointer;
 }
+
 .ui-tabs .ui-tabs-panel {
-    display: block;
-    border-width: 0;
-    padding: 1em 1.4em;
-    background: none;
+  display: block;
+  border-width: 0;
+  padding: 1em 1.4em;
+  background: none;
 }
 
 /* Corner radius */
@@ -466,23 +475,26 @@ This file is part of Cuidando Bem.
 .ui-corner-top,
 .ui-corner-left,
 .ui-corner-tl {
-    // border-top-left-radius: 4px;
+  // border-top-left-radius: 4px;
 }
+
 .ui-corner-all,
 .ui-corner-top,
 .ui-corner-right,
 .ui-corner-tr {
-    // border-top-right-radius: 4px;
+  // border-top-right-radius: 4px;
 }
+
 .ui-corner-all,
 .ui-corner-bottom,
 .ui-corner-left,
 .ui-corner-bl {
-    // border-bottom-left-radius: 4px;
+  // border-bottom-left-radius: 4px;
 }
+
 .ui-corner-all,
 .ui-corner-bottom,
 .ui-corner-right,
 .ui-corner-br {
-    // border-bottom-right-radius: 4px;
+  // border-bottom-right-radius: 4px;
 }

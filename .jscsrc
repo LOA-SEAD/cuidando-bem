@@ -1,22 +1,40 @@
 {
-    "preset": "jquery",
-    "requireEarlyReturn": true,
-    "requireSpacesInsideParentheses": {
-        "all": true,
-        "ignoreParenthesizedExpression": true,
-        "except": [ "{", "}", "[", "]", "function", "\"" ]
-    },
-    "disallowSpacesInsideParentheses": {
-        "only": [ "{", "}", "[", "]", "function" ]
-    },
-    "disallowSpacesInCallExpression": true,
-    "requirePaddingNewLinesBeforeLineComments": null,
-    "requireSpaceAfterLineComment": {
-        "allExcept": ["#", "="]
-    },
-    "disallowMultipleLineBreaks": null,
-    "requireCapitalizedComments": null,
-    "validateIndentation": null,
-    "validateCommentPosition": { "position": "above" },
-    "maximumLineLength": 1000
+  "preset": "jquery",
+  "requireEarlyReturn": false,
+  "requireSpacesInsideParentheses": {
+    "all": true,
+    "ignoreParenthesizedExpression": true,
+    "except": [
+      "{",
+      "}",
+      "[",
+      "]",
+      "function",
+      "\""
+    ]
+  },
+  "disallowSpacesInsideParentheses": {
+    "only": [
+      "{",
+      "}",
+      "[",
+      "]",
+      "function"
+    ]
+  },
+  "disallowSpacesInCallExpression": true,
+  "requirePaddingNewLinesBeforeLineComments": null,
+  "requireSpaceAfterLineComment": {
+    "allExcept": [
+      "#",
+      "="
+    ]
+  },
+  "disallowMultipleLineBreaks": null,
+  "requireCapitalizedComments": null,
+  "validateIndentation": null,
+  "validateCommentPosition": {
+    "position": "above"
+  },
+  "maximumLineLength": 2000
 }

@@ -15,105 +15,104 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 .config-backImage {
-    position: absolute;
-    background-image:  @screen-config;
-    &:extend(.menuBackImage);
+  position: absolute;
+  background-image: @screen-config;
+  &:extend(.menuBackImage);
 }
 
 .config.menuHorizontal {
-    bottom: 12%;
-    position: absolute;
-    width: 100%;
-    text-align: center;
+  bottom: 12%;
+  position: absolute;
+  width: 100%;
+  text-align: center;
 
-    .menuButton {
-        display: inline;
-        padding: 0 3rem;
-    }
+  .menuButton {
+    display: inline;
+    padding: 0 3rem;
+  }
 }
 
 .configTitle {
-    top: 6%;
-    position: absolute;;
-    width: 100%;
-    text-align: center;
+  top: 6%;
+  position: absolute;;
+  width: 100%;
+  text-align: center;
 
-    .titleText {
-        display: inline;
-        padding: 1rem 8rem;
-        background-color: rgba(204, 214, 229, 0.6);
-        font-family: @font-cursive;
-        font-size: 8rem;
-        border-radius: 2rem;
-    }
+  .titleText {
+    display: inline;
+    padding: 1rem 8rem;
+    background-color: rgba(204, 214, 229, 0.6);
+    font-family: @font-cursive;
+    font-size: 8rem;
+    border-radius: 2rem;
+  }
 }
 
 #configContent {
-    position: absolute;
-    top: 32%;
-    left: 5%;
-    height: 55%;
-    //background-color: yellow;
-    width: 90%;
+  position: absolute;
+  top: 32%;
+  left: 5%;
+  height: 55%;
+  //background-color: yellow;
+  width: 90%;
 
-    .controlRow:not(:first-child) {
-        margin-top: 10%;
+  .controlRow:not(:first-child) {
+    margin-top: 10%;
+  }
+
+  .controlRow {
+
+    > div, .control > div {
+      display: inline-block;
     }
 
-    .controlRow{
-
-        > div, .control > div {
-            display: inline-block;
-        }
-
-        .title {
-            position: absolute;
-            left: 0%;
-            font-family: @font-cursive;
-            font-size: 3rem;
-            padding: 1rem 8rem;
-            background-color: rgba(204, 214, 229, 0.6);
-            border-radius: 1rem;
-        }
-        .control {
-            width: 100%;
-            .slider {
-                background-color: white;
-                width: 50%;
-                height: 1rem;
-                margin-bottom: 0.3rem;
-                span {
-                    background-color: #e8b36d;
-                    border-radius: 3rem;
-                    width: 3rem;
-                    height: 3rem;
-                    top: -1rem;
-                }
-            }
-            .mute.desactive {
-                background: @muteDesactive;
-                background-size: cover;
-            }
-            .mute {
-                background: @muteActive;
-                background-size: cover;
-                //background-color: red;
-                width: 3rem;
-                height: 3rem;
-                position: relative;
-                top: 1rem;
-            }
-            > span {
-                font-family: @font-cursive;
-                font-size: 3rem;
-                padding: 0 2rem;
-            }
-            .plus {
-                position: relative;
-                top: -2px;
-            }
-        }
+    .title {
+      position: absolute;
+      left: 0%;
+      font-family: @font-cursive;
+      font-size: 3rem;
+      padding: 1rem 8rem;
+      background-color: rgba(204, 214, 229, 0.6);
+      border-radius: 1rem;
     }
-
+    .control {
+      width: 100%;
+      .slider {
+        background-color: white;
+        width: 50%;
+        height: 1rem;
+        margin-bottom: 0.3rem;
+        span {
+          background-color: #e8b36d;
+          border-radius: 3rem;
+          width: 3rem;
+          height: 3rem;
+          top: -1rem;
+        }
+      }
+      .mute.desactive {
+        background: @muteDesactive;
+        background-size: cover;
+      }
+      .mute {
+        background: @muteActive;
+        background-size: cover;
+        //background-color: red;
+        width: 3rem;
+        height: 3rem;
+        position: relative;
+        top: 1rem;
+      }
+      > span {
+        font-family: @font-cursive;
+        font-size: 3rem;
+        padding: 0 2rem;
+      }
+      .plus {
+        position: relative;
+        top: -2px;
+      }
+    }
+  }
 
 }

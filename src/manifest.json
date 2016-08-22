@@ -4,7 +4,9 @@
   "display": "fullscreen",
   "orientation": "landscape",
   "icons": [],
-  "related_applications": [{
-    "platform": "web"
-  }]
+  "related_applications": [
+    {
+      "platform": "web"
+    }
+  ]
 }
