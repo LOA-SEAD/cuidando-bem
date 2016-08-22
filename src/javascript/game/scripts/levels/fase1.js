@@ -532,12 +532,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( !core.flag("pulseira")) {
                         // core.setInteractiveObjectVisible("io-pulseira_paciente", true );
                     }
-
+                    
                     if ( !core.flag("score_checar_pulseira")){
                         core.flag("score_checar_pulseira", true);
                         core.registerScoreItem( Scores.identificarPaciente );
                     }
-
                 })
                 .setVisibility( visibility ),
 
@@ -549,8 +548,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.closeCommandBar();
                 })
                 .setVisibility( true )
-
-
         ]);
 
         leito.registerActions([
@@ -561,7 +558,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     core.changeScene( 2 );
                 })
                 .setVisibility( visibility ),
-
 
             new Action("btn-lavarMaos", "Lavar as mãos")
                 .setCssClass("action-lavarMaos")
@@ -604,6 +600,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                         // core.setActionVisible("btn-medir_pulso", false);
                         core.openModalScene("modalMedidor_pressao");
+
+                        // temp
+                        $( "#accessible_log" ).empty();
+                        $( '<span>160x100 mmHg.</span><br>' ).appendTo( "#accessible_log" );
+
                         core.flag("medidor-pressao",  true );
 
                         if ( !core.flag("mediuPressao")) {
@@ -627,6 +628,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     if ( core.flag("lavar-maos") >= 1 ) {
 
                         core.openModalScene("modalOximetro");
+
+                        // temp
+                        $( "#accessible_log" ).empty();
+                        $( '<span>Saturação de oxigênio: 97%.</span><br>' ).appendTo( "#accessible_log" );
+                        $( '<span>69 bpm.</span><br>' ).appendTo( "#accessible_log" );
+
                         core.flag("oximetro",  true );
 
                         if ( !core.flag("mediuBatimentosESaturacao")) {
@@ -643,8 +650,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setCssClass("action-medir_freq_respiratoria")
                 .onClick(function() {
                     console.log("Action: medir_freq_respiratoria");
-                    // Tic-Tac relógio
-                    Player.play( Player.audios.sfx.ticTac );
+
                     if ( core.flag("lavar-maos") >= 1 ) {
 
                         // core.setActionVisible("btn-frequencia_respiratoria", false);
@@ -659,6 +665,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                         FreqRespiratoria.open();
                         core.openModalScene("freqRespiratoria");
+
                     }
                 })
                 .setVisibility( visibility ),
@@ -673,6 +680,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
                         // core.setActionVisible("btn-medir_temperatura", false);
                         core.openModalScene("modalTermometro");
+
+                        // temp
+                        $( "#accessible_log" ).empty();
+                        $( '<span>35,7° Celsius.</span><br>' ).appendTo( "#accessible_log" );
+
                         core.flag("termometro",  true );
 
                         if ( !core.flag("mediuTemperatura")) {
@@ -768,6 +780,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 .setText( Alertas.esqueceu.pegarBandeja )
                 .registerOption("", function() {
                     core.closeDialog();
+
                 })
         ]);
 
@@ -821,7 +834,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         ]);
 
         gaveta.registerInteractiveObjects([
-            new InteractiveObject("io-termometro", "Termômetro")
+            new InteractiveObject("io-termometro", "Pegar termômetro")
                 .setCssClass("intObj-thermometer")
                 .onClick(function() {
                     console.log("Action: pegar_termometro");
@@ -833,7 +846,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( visibility ),
 
-            new InteractiveObject("io-medidorPressao", "Medidor de pressão")
+            new InteractiveObject("io-medidorPressao", "Pegar medidor de pressão")
                 .setCssClass("intObj-bloodPressureMonitor")
                 .onClick(function() {
                     console.log("O medidor de pressão foi ativado");
@@ -845,7 +858,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( visibility ),
 
-            new InteractiveObject("io-oximetro", "Oxímetro")
+            new InteractiveObject("io-oximetro", "Pegar oxímetro")
                 .setCssClass("intObj-oximeter")
                 .onClick(function() {
                     console.log("Action: pegar_oximetro");
@@ -857,7 +870,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 })
                 .setVisibility( visibility ),
 
-            new InteractiveObject("io-relogio", "Relógio")
+            new InteractiveObject("io-relogio", "Pegar relógio")
                 .setCssClass("intObj-watch")
                 .onClick(function() {
                     console.log("Action: pegar_relogio");
@@ -1008,6 +1021,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                     FreqRespiratoria.close();
                     core.closeModalScene("freqRespiratoria");
                     Player.stop();
+                    Player.playInRange( Player.audios.musics.inGame );
+
                 })
                 .setVisibility( true )
         ]);

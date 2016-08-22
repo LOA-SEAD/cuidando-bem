@@ -22,7 +22,7 @@ This file is part of Cuidando Bem.
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define([ "Stage", "levelsData" ], function( Stage, game ) {
+define([ "Stage", "levelsData", "AccessibleNavigationMenus" ], function( Stage, game, Accessibility ) {
 
     var Player = require("Player");
     var Storage = require("Storage");
@@ -56,6 +56,7 @@ define([ "Stage", "levelsData" ], function( Stage, game ) {
      * @memberOf module:Screen_levelSelect_Controller
      */
     function load() {
+        
         text = "Selecione uma fase";
         save = Storage.getLoadedSlot();
 
@@ -159,6 +160,7 @@ define([ "Stage", "levelsData" ], function( Stage, game ) {
             }
         );
 
+        Accessibility.startAccessibleNavigationMenus();
 
     }
 

@@ -22,7 +22,7 @@ This file is part of Cuidando Bem.
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define([ "Stage" ], function( Stage ) {
+define([ "Stage", "AccessibleNavigationMenus" ], function( Stage, Accessibility ) {
 
     // var Player = require("Player");
     var totalFilesToLoad = 0;
@@ -39,7 +39,6 @@ define([ "Stage" ], function( Stage ) {
      * @memberOf module:Screen_loadGame_Controller
      */
     function load() {
-
     }
 
     /**

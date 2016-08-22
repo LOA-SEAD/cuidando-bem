@@ -37,6 +37,9 @@ require.config({
         ImageLoader: "engine/core/imageLoader",
         IsMobile: "engine/core/isMobile",
 
+        // Accessible
+        AccessibleNavigationMenus: "engine/core/accessibleNavigationMenus",
+
         commandBar: "engine/modules/commandBar/commandBarController",
         Action: "engine/modules/commandBar/action",
 

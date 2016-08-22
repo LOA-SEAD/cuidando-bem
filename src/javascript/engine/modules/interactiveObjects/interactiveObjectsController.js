@@ -86,11 +86,14 @@ define([
         var element = $( $( interactiveObjectTemplate )[ 0 ] );
 
         element.attr("title", _interactiveObject.getName() );
-        element.attr("aria-label", _interactiveObject.getName() );
+        //element.attr("aria-label", _interactiveObject.getName() );
         element.attr("id", _interactiveObject.getId() );
         element.addClass( _interactiveObject.getCssClass() );
 
-        element.focus( function(){
+        element.on( "screenReader", function(){
+            $( ".jqhover" ).removeClass( "jqhover" );
+            $( this ).addClass( "jqhover" );
+            $( "#accessible_log" ).empty();
             $( '<span>' + _interactiveObject.getName() + '</span><br>' ).appendTo( "#accessible_log" );
         });
 

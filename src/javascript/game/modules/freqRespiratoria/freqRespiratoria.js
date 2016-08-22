@@ -20,6 +20,10 @@ define(function( require ) {
 
     var canvasSelector = "#freqRespiratoria";
 
+    var Player = require("Player");
+    var respiracao;
+    var bip;
+
     var STATES = {
         playing: 0,
         stopped: 1
@@ -149,7 +153,43 @@ define(function( require ) {
         console.info("FreqRespiratoria added to stage");
     }
 
+    function respira(){
+
+        const HALF_TIME = ( 1000 * 60 / breathing.cyclesPerMinute ) / 2;
+
+        Player.play( Player.audios.sfx.inspirando );
+        var inspirou = true;
+        var expirou = false;
+
+        var count = 0;
+        respiracao = setInterval( function(){
+
+                if( count == 0 ){
+                    count = 1;
+                } else if( count == 1){
+                    count = 0;
+                }
+
+                if(count == 0 && !inspirou){
+                    Player.play( Player.audios.sfx.inspirando );
+                    inspirou = true;
+                    expirou = false;
+                }
+                
+                if(count == 1 && !expirou){
+                    Player.play( Player.audios.sfx.expirando );
+                    expirou = true;
+                    inspirou = false;
+                }
+
+            }, HALF_TIME );
+    }
+
     function open() {
+
+        const DELAY = 8; // delay in seconds
+
+        Player.stopAll();
         $( canvasSelector ).show();
 
         clock.angle = -Math.PI / 2;
@@ -158,16 +198,35 @@ define(function( require ) {
         breathing.frameCounter = 0;
 
         tick.accumulator = 0;
-        tick.last = new Date().getTime();
-        state = STATES.playing;
 
-        animationLoop();
+        $( "#accessible_log" ).empty();
+        $( '<span>A respiração começará em ' + DELAY + ' segundos. Conte quantas vezes o paciente respira em 1 minuto. A cada minuto um bip é emitido.</span><br>' ).appendTo( "#accessible_log" );
+                
+        setTimeout( function(){
+
+            if( $( canvasSelector ).is( ":visible" ) ){
+
+                state = STATES.playing;
+
+                tick.last = new Date().getTime();
+
+                animationLoop();
+                            
+                Player.playInLoop( Player.audios.sfx.ticTac );
+
+                bip = setInterval( function(){ Player.play( Player.audios.sfx.bip ); }, 60000 );
+                respira();
+            }
+
+        }, DELAY * 1000 );
     }
 
     function close() {
         $( canvasSelector ).hide();
-
         state = STATES.stopped;
+        Player.stopAll();
+        clearInterval(bip);
+        clearInterval(respiracao);
     }
 
 

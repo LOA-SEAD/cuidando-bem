@@ -22,7 +22,7 @@ This file is part of Cuidando Bem.
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define([ "Stage", "CuidandoBem", "text!../../html/screens/configuration.html", "./screenConfigurationController" ], function( Stage, Core, configHtml, configCon ) {
+define([ "Stage", "AccessibleNavigationMenus", "CuidandoBem", "text!../../html/screens/configuration.html", "./screenConfigurationController" ], function( Stage, Accessibility, Core, configHtml, configCon ) {
 
     var Player = require("Player");
 
@@ -35,6 +35,7 @@ define([ "Stage", "CuidandoBem", "text!../../html/screens/configuration.html", "
      * @memberOf module:Screen_game_Controller
      */
     function load() {
+        
         $("#configMenu").append( configHtml );
         configCon.load(function() {
             Player.play( Player.audios.sfx.selecionarMenu );
@@ -81,6 +82,8 @@ define([ "Stage", "CuidandoBem", "text!../../html/screens/configuration.html", "
         Core.init();
         Player.stopAll();
         Player.playInRange( Player.audios.musics.inGame );
+
+        Accessibility.startAccessibleNavigationMenus();
     };
 
     /**

@@ -22,7 +22,7 @@ This file is part of Cuidando Bem.
  *
  * @author Otho - Marcelo Lopes Lotufo
  */
-define([ "Stage" ], function( Stage ) {
+define([ "Stage", "AccessibleNavigationMenus" ], function( Stage, Accessibility ) {
 
     var Player = require("Player");
     var Storage = require("Storage");
@@ -49,7 +49,6 @@ define([ "Stage" ], function( Stage ) {
      * @memberOf module:Screen_newGameSlotSelect_Controller
      */
     function load() {
-
 
         $( deleteDialogSelector ).dialog({
             resizable: false,
@@ -203,6 +202,8 @@ define([ "Stage" ], function( Stage ) {
                 loadOrCreateSlot();
             }
         });
+
+        Accessibility.startAccessibleNavigationMenus();
     }
 
     function loadOrCreateSlot () {

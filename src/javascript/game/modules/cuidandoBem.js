@@ -72,6 +72,19 @@ define([
 
         var Player = require("Player");
 
+        // Accessibility
+        var navigationList = null;
+        // TODO: avoid duplication
+        const KEYCODE_ARROW_LEFT = 37;
+        const KEYCODE_ARROW_UP = 38;
+        const KEYCODE_ARROW_RIGHT = 39;
+        const KEYCODE_ARROW_DOWN = 40;
+        const KEYCODE_ENTER = 13;
+        const KEYCODE_P = 80;
+        const KEYCODE_ONE = 49;
+        const KEYCODE_TWO = 50;
+        const KEYCODE_THREE = 51;
+
         function ScoreItem( _title, _score ) {
             this.title = _title;
             this.score = _score;
@@ -100,6 +113,125 @@ define([
 
             changeLevel( game.getCurrentLevel() );
             startLevel();
+        }
+
+        //Accessibility
+        /**
+         * Description
+         * @method sweepScreen
+         * @memberOf module:CuidandoBem
+         */
+        function sweepScreen() {
+            if( !$( "#pauseMenu" ).is( ":visible" ) ){
+                if( $( "#commandBar" ).is( ":visible" ) ){
+                    navigationList = $.merge(
+                                        $( "#interactiveObjects div[class!='disabled']:visible" ),
+                                        $( "#commandBar .action_button[class!='disabled']:visible" )
+                                     );
+                    return "interactiveObjectsAndActions";
+                }
+                else{
+                    navigationList = $( "#interactiveObjects div[class!='disabled']:visible" );
+                    return "interactiveObjectsOnly";
+                }
+            }
+            else{
+                navigationList = $( "#pauseMenu .button" );
+                return "pause";
+            }
+        }
+
+        /**
+         * Description
+         * @method circularNavigation
+         * @param {} _keycode
+         * @memberOf module:CuidandoBem
+         */
+        function circularNavigation( _keycode ) {
+
+            op = sweepScreen();
+
+            if( _keycode == KEYCODE_ARROW_DOWN ){
+                if( i >= navigationList.length - 1 ){
+                    i = 0;
+                }
+                else{
+                    i++;
+                }
+                $( navigationList[i] ).trigger("screenReader");
+                return false;
+            }
+
+            else if( _keycode == KEYCODE_ARROW_UP ){
+                if( i > 0 ){
+                    i--;
+                }
+                else{
+                    i = navigationList.length - 1;
+                }
+                $( navigationList[i] ).trigger("screenReader");
+                return false;
+            }
+
+            else if( _keycode == KEYCODE_ENTER ){
+                if( i != -1 ){
+                   $( navigationList[i] ).click();
+                   return false;
+                }
+            }
+
+            else if ( $( "#pauseButton" ).is( ":visible" ) && _keycode == KEYCODE_P ){
+                $( "#pauseButton" ).click();
+                return false;
+            }
+        }
+
+        /**
+         * Description
+         * @method startAccessibleInGameNavigation
+         * @memberOf module:CuidandoBem
+         */
+
+        var i = 0;
+        var j = 0;
+
+        function startAccessibleInGameNavigation() {
+
+            $( window ).off( "keydown" );
+
+            $( window ).on( "keydown", function( e ){
+
+                if( $( "#dialogBar" ).is( ":visible" ) && !$( "#pauseMenu" ).is( ":visible" ) ){
+
+                    if( e.which == KEYCODE_ARROW_UP && $( ".dialog_reread" ).is( ":visible" ) ){
+                        $( ".dialog_reread" ).click();
+                        return false;
+                    }
+                    else if( e.which == KEYCODE_ARROW_DOWN && $( ".dialog_right" ).is( ":visible" ) ){
+                        $( ".dialog_right" ).click();
+                        return false;
+                    }
+                    else if( e.which == KEYCODE_ONE && $( ".dialog_button[value='1']" ).is( ":visible" ) ){
+                        $( ".dialog_button[value='1']" ).click();
+                        return false;
+                    }
+                    else if( e.which == KEYCODE_TWO && $( ".dialog_button[value='2']" ).is( ":visible" ) ){
+                        $( ".dialog_button[value='2']" ).click();
+                        return false;
+                    }
+                    else if( e.which == KEYCODE_THREE && $( ".dialog_button[value='3']" ).is( ":visible" ) ){
+                        $( ".dialog_button[value='3']" ).click();
+                        return false;
+                    }
+                    else if( $( "#pauseButton" ).is( ":visible" ) && e.which == KEYCODE_P ){
+                        $( "#pauseButton" ).click();
+                        return false;
+                    }
+                
+                } else {
+                    return circularNavigation( e.which );
+                }
+            });
         }
 
         /**
@@ -191,6 +323,7 @@ define([
             CommandBar.hide();
 
             Scene.load();
+            startAccessibleInGameNavigation()
             console.groupEnd();
         }
 
@@ -236,6 +369,7 @@ define([
          * @memberOf module:CuidandoBem
          */
         function openModalScene( _modalSceneId ) {
+
             var modalScene = Level.getModalScene( _modalSceneId );
             Scene = modalScene;
 
@@ -252,6 +386,7 @@ define([
          * @memberOf module:CuidandoBem
          */
         function closeModalScene() {
+            
             ModalScene.close();
             ModalInteractiveObject.close();
 
@@ -259,6 +394,7 @@ define([
             ModalInteractiveObject.removeAllInteractiveObjects();
             InteractiveObject.updateAllInteractiveObjects( InteractiveObjects );
             Scene = Level.getCurrentScene();
+            startAccessibleInGameNavigation();
         }
 
 
