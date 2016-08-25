@@ -105,7 +105,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         core.openCommandBar();
         core.setActionVisible("btn-ir_recepcao", true );
 
-        Player.stopAll();
+        // Player.stopAll();
         // Som
         Player.play( Player.audios.sfx.abrirPorta );
         Player.playInLoop( Player.audios.loops.recepcao );
@@ -126,10 +126,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       })
       .onUnload(function() {
         console.log("Saindo do corredor");
-        Player.stopAll();
+        Player.stopLoop();
         // Som
         Player.play( Player.audios.sfx.abrirPorta );
-        Player.playInRange( Player.audios.musics.inGame );
+        // Player.playInRange( Player.audios.musics.inGame );
       });
 
     corredor.registerActions([
