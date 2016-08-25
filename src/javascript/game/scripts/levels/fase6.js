@@ -94,7 +94,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       if ( core.flag("score_ver_prontuario") == false ) {
         core.openDialog( 2 );
         if ( core.flag("score_ir_posto_hora_errada") == false ) {
-          core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
+          // core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
           core.flag("score_ir_posto_hora_errada", true );
         }
       } else {
@@ -106,7 +106,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       if ( core.flag("conversar_mentor") == false ) {
         core.openDialog( 6 );
         if ( core.flag("score_ir_ala_feminina_hora_errada") == false ) {
-          core.registerScoreItem( Scores.irAlaFemininaHoraErrada );
+          // core.registerScoreItem( Scores.irAlaFemininaHoraErrada );
           core.flag("score_ir_ala_feminina_hora_errada", true );
         }
       } else {
@@ -118,13 +118,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       if ( core.flag("conversar_mentor") == false ) {
         core.openDialog( 6 );
         if ( core.flag("score_ir_alaMasculina_hora_errada") == false ) {
-          core.registerScoreItem( Scores.irAlaMasculinaHoraErrada );
+          // core.registerScoreItem( Scores.irAlaMasculinaHoraErrada );
           core.flag("score_ir_alaMasculina_hora_errada", true );
         }
       } else {
         core.openDialog( 3 );
         if ( core.flag("score_ir_alaMasculina_apos_fala_mentor") == false ) {
-          core.registerScoreItem( Scores.irAlaMasculinaAposFalaMentor );
+          // core.registerScoreItem( Scores.irAlaMasculinaAposFalaMentor );
           core.flag("score_ir_alaMasculina_apos_fala_mentor", true );
         }
       }
@@ -133,7 +133,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     function corredorIrFarmacia() {
       core.openDialog( 4 );
       if ( core.flag("score_ir_farmacia_hora_errada") == false ) {
-        core.registerScoreItem( Scores.irFarmaciaHoraErrada );
+        // core.registerScoreItem( Scores.irFarmaciaHoraErrada );
         core.flag("score_ir_farmacia_hora_errada", true );
       }
     }
@@ -141,7 +141,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     function corredorIrCentroCirurgico() {
       core.openDialog( 5 );
       if ( core.flag("score_ir_centro_cirurgico_hora_errada") == false ) {
-        core.registerScoreItem( Scores.irCentroCirurgicoHoraErrada );
+        // core.registerScoreItem( Scores.irCentroCirurgicoHoraErrada );
         core.flag("score_ir_centro_cirurgico_hora_errada", true );
       }
     }
@@ -306,7 +306,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           }
 
           if ( core.flag("score_nao_viu_prontuario") == false ) {
-            core.registerScoreItem( Scores.naoVerProntuario );
+            // core.registerScoreItem( Scores.naoVerProntuario );
             core.flag("score_nao_viu_prontuario", true );
           }
 
@@ -638,7 +638,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             if ( core.flag("score_pulseira") == false ) {
               core.flag("score_pulseira", true );
-              core.registerScoreItem( Scores.naoVerificarPulseira );
+              // core.registerScoreItem( Scores.naoVerificarPulseira );
             }
 
             core.openDialog( 7 );
@@ -677,7 +677,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             if ( core.flag("score_pulseira") == false ) {
               core.flag("score_pulseira", true );
-              core.registerScoreItem( Scores.naoVerificarPulseira );
+              // core.registerScoreItem( Scores.naoVerificarPulseira );
             }
 
             core.openDialog( 7 );
@@ -716,7 +716,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             if ( core.flag("score_pulseira") == false ) {
               core.flag("score_pulseira", true );
-              core.registerScoreItem( Scores.naoVerificarPulseira );
+              // core.registerScoreItem( Scores.naoVerificarPulseira );
             }
 
             core.openDialog( 7 );
@@ -742,7 +742,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             if ( core.flag("score_pulseira") == false ) {
               core.flag("score_pulseira", true );
-              core.registerScoreItem( Scores.naoVerificarPulseira );
+              // core.registerScoreItem( Scores.naoVerificarPulseira );
             }
 
             core.openDialog( 7 );
@@ -779,7 +779,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             if ( core.flag("score_pulseira") == false ) {
               core.flag("score_pulseira", true );
-              core.registerScoreItem( Scores.naoVerificarPulseira );
+              // core.registerScoreItem( Scores.naoVerificarPulseira );
             }
 
             core.openDialog( 7 );
@@ -799,7 +799,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Player.play( Player.audios.sfx.colocarLuvas );
 
             if ( core.flag("score_luvas_de_procedimento") == false ) {
-              core.registerScoreItem( Scores.calcarLuvaProcedimento );
+              // core.registerScoreItem( Scores.calcarLuvaProcedimento );
               core.flag("score_luvas_de_procedimento", true );
             }
             core.closeCommandBar();
@@ -809,7 +809,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             if ( core.flag("score_pulseira") == false ) {
               core.flag("score_pulseira", true );
-              core.registerScoreItem( Scores.naoVerificarPulseira );
+              // core.registerScoreItem( Scores.naoVerificarPulseira );
             }
 
             core.openDialog( 7 );
@@ -866,7 +866,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             if ( core.flag("score_pulseira") == false ) {
               core.flag("score_pulseira", true );
-              core.registerScoreItem( Scores.naoVerificarPulseira );
+              // core.registerScoreItem( Scores.naoVerificarPulseira );
             }
 
             core.openDialog( 7 );
@@ -885,7 +885,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           console.log("Action: Fazer curativo");
           if ( core.flag("score_luva_esteril") == false ) {
             if ( core.flag("score_nao_luva_esteril") == false ) {
-              core.registerScoreItem( Scores.naoCalcarLuvaEsteril );
+              // core.registerScoreItem( Scores.naoCalcarLuvaEsteril );
               core.flag("score_nao_luva_esteril", true );
             }
             core.closeCommandBar();
@@ -905,7 +905,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           console.log("Action: Identificar curativo");
           if ( core.flag("score_fez_curativo") == false ) {
             if ( core.flag("score_nao_fez_curativo") == false ) {
-              core.registerScoreItem( Scores.naoFazerCurativo );
+              // core.registerScoreItem( Scores.naoFazerCurativo );
               core.flag("score_nao_fez_curativo", true );
             }
             core.closeCommandBar();
@@ -913,7 +913,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           }
           if ( core.flag("score_identificou_curativo") == false ) {
             core.flag("score_identificou_curativo", true );
-            core.registerScoreItem( Scores.identificarCurativo );
+            // core.registerScoreItem( Scores.identificarCurativo );
           }
         })
         .setVisibility( false ),
@@ -925,7 +925,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           console.log("Action: Erguer grade da cama");
           if ( core.flag("score_identificou_curativo") == false ) {
             if ( core.flag("score_nao_identificou_curativo") == false ) {
-              core.registerScoreItem( Scores.naoIdentificarCurativo );
+              // core.registerScoreItem( Scores.naoIdentificarCurativo );
               core.flag("score_nao_identificou_curativo", true );
             }
             core.closeCommandBar();
@@ -947,7 +947,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           console.log("Action: Anotar prontuario");
           if ( core.flag("score_ergueu_grade") == false ) {
             if ( core.flag("score_nao_ergueu_grade") == false ) {
-              core.registerScoreItem( Scores.naoElevarGradeDaCama );
+              // core.registerScoreItem( Scores.naoElevarGradeDaCama );
               core.flag("score_nao_ergueu_grade", true );
             }
             core.closeCommandBar();
@@ -1481,7 +1481,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       Prontuario.setPrescMedicaRowData( 2, "", "Metmorfina", "Oral", "750 mg (2x ao dia)", "06h - 17h", true, true );
       Prontuario.setPrescMedicaRowData( 3, "", "Glibenclamida", "Oral", "4 mg (2x ao dia)", "07:30h - 17:30h", true, true );
 
-      Prontuario.setPrescEnfermagemState([ " decubito_visual", "verificar_glicemia2", "levantar_grade", "troca_curativo" ]);
+      Prontuario.setPrescEnfermagemState([ "decubito_visual", "verificar_glicemia2", "levantar_grade", "troca_curativo" ]);
 
       Prontuario.setSsvvRowData( 0, "", "120x70", "46", "15", "96", "35", true );
       Prontuario.setSsvvRowData( 1, "", "130x80", "52", "18", "94", "36", true );

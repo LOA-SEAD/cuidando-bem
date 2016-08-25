@@ -155,7 +155,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.openDialog( 2 );
         }
         if ( core.flag("score_ir_posto_enfermagem_hora_errada") == false ) {
-          core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
+          // core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
           core.flag("score_ir_posto_enfermagem_hora_errada", true );
         }
       }
@@ -168,7 +168,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       } else {
         core.openDialog( 0 );
         if ( core.flag("score_ir_farmacia_hora_errada") == false ) {
-          core.registerScoreItem( Scores.irFarmaciaHoraErrada );
+          // core.registerScoreItem( Scores.irFarmaciaHoraErrada );
           core.flag("score_ir_farmacia_hora_errada", true );
         }
       }
@@ -177,7 +177,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     function corredorIrAlaFeminina() {
       core.openDialog( 1 );
       if ( core.flag("score_ir_ala_feminina") == false ) {
-        core.registerScoreItem( Scores.irAlaFeminina );
+        // core.registerScoreItem( Scores.irAlaFeminina );
         core.flag("score_ir_ala_feminina", true );
       }
     }
@@ -362,7 +362,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           if ( core.flag("score_lavar_maos_antes_leito") == false ) {
             core.openDialog( 6 );
             if ( core.flag("score_nao_lavar_maos_antes_leito") == false ) {
-              core.registerScoreItem( Scores.naoLavarMaosAntesLeito );
+              // core.registerScoreItem( Scores.naoLavarMaosAntesLeito );
               core.flag("score_nao_lavar_maos_antes_leito", true );
             }
           } else {
@@ -387,12 +387,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           if ( core.flag("score_pegou_prescricao_medica") == false ) {
             // Retira pontos do prontuario e da prescrição caso eles não foram vistos
             if ( core.flag("score_nao_pegou_prescricao_medica") == false ) {
-              core.registerScoreItem( Scores.naoPegarPrescricaoMedica );
+              // core.registerScoreItem( Scores.naoPegarPrescricaoMedica );
               core.flag("score_nao_pegou_prescricao_medica", true );
             }
             if ( core.flag("score_viu_prontuario") == false ) {
               if ( core.flag("score_nao_viu_prontuario") == false ) {
-                core.registerScoreItem( Scores.naoChecarProntuario );
+                // core.registerScoreItem( Scores.naoChecarProntuario );
                 core.flag("score_nao_viu_prontuario", true );
               }
             }
@@ -644,7 +644,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           // Tirar pontos se não realizou gotejamento
           if ( core.flag("score_gotejar_soro_equipo") == false ) {
             if ( core.flag("score_nao_gotejar_soro_equipo") == false ) {
-              core.registerScoreItem( Scores.naoGotejarSoroEquipo );
+              // core.registerScoreItem( Scores.naoGotejarSoroEquipo );
               core.flag("score_nao_gotejar_soro_equipo", true );
             }
           }
@@ -661,7 +661,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
           if ( core.flag("score_lavar_maos_antes_prontuario") == false ) {
             if ( core.flag("score_nao_lavar_maos_antes_prontuario") == false ) {
-              core.registerScoreItem( Scores.naoLavarMaosAntesProntuario );
+              // core.registerScoreItem( Scores.naoLavarMaosAntesProntuario );
               core.flag("score_nao_lavar_maos_antes_prontuario", true );
             }
           }
@@ -678,7 +678,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       // Só perde pontos caso já esteja liberado para pegar o medicamento
       if ( core.flag("score_conferiu_medicacao") == false ) {
         if ( core.flag("score_nao_conferiu_medicacao") == false ) {
-          core.registerScoreItem( Scores.naoConferirMedicamento );
+          // core.registerScoreItem( Scores.naoConferirMedicamento );
           core.flag("score_nao_conferiu_medicacao", true );
         }
         core.openDialog( 4 );
@@ -963,7 +963,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setText( Dialogs.postoDeEnfermagem[ 3 ] )
         .registerOption("", function() {
           if ( core.flag("score_calculou_errado_valor_medicamento") == false ) {
-            core.registerScoreItem( Scores.calcularErradoValorMedicamento );
+            // core.registerScoreItem( Scores.calcularErradoValorMedicamento );
             core.flag("score_calculou_errado_valor_medicamento", true );
           }
           core.openDialog( 0 );
@@ -1031,7 +1031,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Player.play( Player.audios.sfx.abrirGaveta );
             if ( core.flag("score_lavar_maos_posto_enfermagem") == false ) {
               if ( core.flag("score_nao_lavar_maos_posto_enfermagem") == false ) {
-                core.registerScoreItem( Scores.naoLavarMaos );
+                // core.registerScoreItem( Scores.naoLavarMaos );
                 core.flag("score_nao_lavar_maos_posto_enfermagem", true );
               }
             }
@@ -1066,7 +1066,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             }
           }
           if ( core.flag("score_pegou_bandeja") == false ) {
-            core.registerScoreItem( Scores.pegarBandeja );
+            // core.registerScoreItem( Scores.pegarBandeja );
             core.flag("score_pegou_bandeja", true );
           }
           core.setInteractiveObjectVisible("io-pegar_bandeja", false );
@@ -1101,7 +1101,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             erro = erro + 1;
 
             if ( erro == 3 ) {
-              core.registerScoreItem( Scores.naoGotejarSoroEquipo );
+              // core.registerScoreItem( Scores.naoGotejarSoroEquipo );
               erro = -100;
             }
           }

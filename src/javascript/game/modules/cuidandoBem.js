@@ -633,6 +633,9 @@ define([
     }
 
     function registerScoreItem( score ) {
+      if ( !score ) {
+        alert("Falha ao registrar esse score");
+      }
       scoreList.push( score );
       Storage.addScore( game.getCurrentLevelId(), score );
     }

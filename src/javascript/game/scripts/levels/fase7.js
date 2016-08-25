@@ -64,8 +64,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       if ( core.flag("scoreIrCentroCirurgicoHoraErrada") == false ) {
 
         core.flag("scoreIrCentroCirurgicoHoraErrada", true );
-        core.registerScoreItem( Scores.irCentroCirurgicoHoraErrada );
-        console.log("PERDEU 25 PONTOS");
+        // core.registerScoreItem( Scores.irCentroCirurgicoHoraErrada );
       }
     }
 
@@ -82,7 +81,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       if ( core.flag("scoreIrAlaFemininaHoraErrada") == false ) {
 
         core.flag("scoreIrAlaFemininaHoraErrada", true );
-        core.registerScoreItem( Scores.irAlaFemininaHoraErrada );
+        // core.registerScoreItem( Scores.irAlaFemininaHoraErrada );
         console.log("PERDEU 25 PONTOS");
 
       }
@@ -833,7 +832,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             if ( core.flag("score_pulseira") == false ) {
               core.flag("score_pulseira", true );
-              core.registerScoreItem( Scores.naoVerificarPulseira );
+              // core.registerScoreItem( Scores.naoVerificarPulseira );
             }
 
             core.openDialog( 7 );
@@ -877,7 +876,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             if ( core.flag("score_pulseira") == false ) {
               core.flag("score_pulseira", true );
-              core.registerScoreItem( Scores.naoVerificarPulseira );
+              // core.registerScoreItem( Scores.naoVerificarPulseira );
             }
 
             core.openDialog( 7 );
@@ -949,7 +948,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             if ( core.flag("score_pulseira") == false ) {
               core.flag("score_pulseira", true );
-              core.registerScoreItem( Scores.naoVerificarPulseira );
+              // core.registerScoreItem( Scores.naoVerificarPulseira );
             }
 
             core.openDialog( 7 );
@@ -983,7 +982,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             if ( core.flag("score_pulseira") == false ) {
               core.flag("score_pulseira", true );
-              core.registerScoreItem( Scores.naoVerificarPulseira );
+              // core.registerScoreItem( Scores.naoVerificarPulseira );
             }
 
             core.openDialog( 7 );
@@ -1196,7 +1195,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             erro = erro + 1;
 
             if ( erro == 3 ) {
-              core.registerScoreItem( Scores.naoGotejarSoroEquipo );
+              // core.registerScoreItem( Scores.naoGotejarSoroEquipo );
               erro = -100;
             }
           }

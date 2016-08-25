@@ -96,7 +96,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     function corredorIrPostoEnfermagem() {
       if ( core.flag("score_pegou_medicamento") == false ) {
         if ( core.flag("score_ir_posto_hora_errada") == false ) {
-          core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
+          // core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
           core.flag("score_ir_posto_hora_errada", true );
         }
       }
@@ -105,7 +105,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
     function corredorIrAlaFeminina() {
       if ( core.flag("score_ir_ala_feminina_hora_errada") == false ) {
-        core.registerScoreItem( Scores.irAlaFemininaHoraErrada );
+        // core.registerScoreItem( Scores.irAlaFemininaHoraErrada );
         core.flag("score_ir_ala_feminina_hora_errada", true );
       }
       core.changeScene( 7 );
@@ -114,7 +114,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     function corredorIrFarmacia() {
       if ( core.flag("score_viu_prontuario") == false ) {
         if ( core.flag("score_ir_farmacia_hora_errada") == false ) {
-          core.registerScoreItem( Scores.irFarmaciaHoraErrada );
+          // core.registerScoreItem( Scores.irFarmaciaHoraErrada );
           core.flag("score_ir_farmacia_hora_errada", true );
         }
       }
@@ -124,7 +124,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     function corredorIrCentroCirurgico() {
       if ( core.flag("levou_yuri_centro_cirurgico") == false ) {
         if ( core.flag("score_ir_centro_cirurgico_hora_errada") == false ) {
-          core.registerScoreItem( Scores.irCentroCirurgicoHoraErrada );
+          // core.registerScoreItem( Scores.irCentroCirurgicoHoraErrada );
           core.flag("score_ir_centro_cirurgico_hora_errada", true );
         }
         core.changeScene( 6 );
@@ -455,7 +455,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             if ( core.flag("score_pulseira") == false ) {
               core.flag("score_pulseira", true );
-              core.registerScoreItem( Scores.naoVerificarPulseira );
+              // core.registerScoreItem( Scores.naoVerificarPulseira );
             }
 
             core.openDialog( 4 );
@@ -472,7 +472,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             console.log("Action: Administrar o medicamento");
             if ( core.flag("score_ofereceu_copo") == false ) {
               if ( core.flag("score_nao_ofereceu_copo") == false ) {
-                core.registerScoreItem( Scores.naoOferecerCopo );
+                // core.registerScoreItem( Scores.naoOferecerCopo );
                 core.flag("score_nao_ofereceu_copo", true );
               }
             }
@@ -484,7 +484,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             if ( core.flag("score_pulseira") == false ) {
               core.flag("score_pulseira", true );
-              core.registerScoreItem( Scores.naoVerificarPulseira );
+              // core.registerScoreItem( Scores.naoVerificarPulseira );
             }
 
             core.openDialog( 4 );
@@ -502,7 +502,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             console.log("Action: Anotar prontuario");
             if ( core.flag("score_administrou_medicamento") == false ) {
               if ( core.flag("score_nao_administrou_medicamento") == false ) {
-                core.registerScoreItem( Scores.naoAdministrarMedicamento );
+                // core.registerScoreItem( Scores.naoAdministrarMedicamento );
                 core.flag("score_nao_administrou_medicamento", true );
               }
             }
@@ -532,7 +532,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
           if ( core.flag("score_anotar_prontuario") == false ) {
             if ( core.flag("score_nao_anotar_prontuario") == false ) {
-              core.registerScoreItem( Scores.naoAnotarProntuario );
+              // core.registerScoreItem( Scores.naoAnotarProntuario );
               core.flag("score_nao_anotar_prontuario", true );
             }
           }
@@ -550,7 +550,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       if ( (core.flag("ja_falou_farmaceutico") == true) &&
         (core.flag("score_conferiu_medicacao") == false) ) {
         if ( core.flag("score_nao_conferiu_medicacao") == false ) {
-          core.registerScoreItem( Scores.naoConferirMedicacao );
+          // core.registerScoreItem( Scores.naoConferirMedicacao );
           core.flag("score_nao_conferiu_medicacao", true );
         }
       }
@@ -605,7 +605,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           console.log("Action: Conferir Medicamento");
           if ( core.flag("score_pegou_medicamento") == false ) {
             if ( core.flag("score_nao_pegou_medicamento") == false ) {
-              core.registerScoreItem( Scores.naoPegarMedicamento );
+              // core.registerScoreItem( Scores.naoPegarMedicamento );
               core.flag("score_nao_pegou_medicamento", true );
             }
           }
@@ -700,13 +700,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           if ( core.flag("score_pegou_medicamento") == true ) {
             if ( core.flag("score_pegou_agua") == false ) {
               if ( core.flag("score_nao_pegou_agua") == false ) {
-                core.registerScoreItem( Scores.naoPegarAguaPotavel );
+                // core.registerScoreItem( Scores.naoPegarAguaPotavel );
                 core.flag("score_nao_pegou_agua", true );
               }
             }
             if ( core.flag("score_pegou_copo") == false ) {
               if ( core.flag("score_nao_pegou_copo") == false ) {
-                core.registerScoreItem( Scores.naoPegarCopoDescartavel );
+                // core.registerScoreItem( Scores.naoPegarCopoDescartavel );
                 core.flag("score_nao_pegou_copo", true );
               }
             }

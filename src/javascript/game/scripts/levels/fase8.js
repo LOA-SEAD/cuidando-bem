@@ -119,7 +119,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       console.log("Action: corredorIrFarmaciaHoraErrada");
       if ( core.flag("score_ler_prontuario") == false ) {
         if ( core.flag("ir_farmacia_horaErrada") == false ) {
-          core.registerScoreItem( Scores.irFarmaciaHoraErrada );
+          // core.registerScoreItem( Scores.irFarmaciaHoraErrada );
           core.flag("ir_farmacia_horaErrada", true );
         }
       }
@@ -143,7 +143,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     function corredorIrCentroCirurgico() {
       console.log("Action: corredorIrCentroCirurgicoHoraErrada");
       if ( core.flag("ir_centroCirurgico_horaErrada") == false ) {
-        core.registerScoreItem( Scores.irCentroCirurgicoHoraErrada );
+        // core.registerScoreItem( Scores.irCentroCirurgicoHoraErrada );
 
         core.flag("ir_centroCirurgico_horaErrada", true );
       }
@@ -154,7 +154,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     function corredorIrAlaMasculina() {
       console.log("Action: corredorIrAlaMasculinaHoraErrada");
       if ( core.flag("ir_AlaMasculina_horaErrada") == false ) {
-        core.registerScoreItem( Scores.irAlaMasculinaHoraErrada );
+        // core.registerScoreItem( Scores.irAlaMasculinaHoraErrada );
 
         core.flag("ir_AlaMasculina_horaErrada", true );
       }
@@ -332,7 +332,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           if ( core.flag("conversarPaciente") == false ) {
             if ( core.flag("score_nao_conversou_paciente") == false ) {
               core.flag("score_nao_conversou_paciente", true );
-              core.registerScoreItem( Scores.naoFalarComPaciente );
+              // core.registerScoreItem( Scores.naoFalarComPaciente );
             }
           }
           if ( core.flag("score_ler_prontuario") == false ) {
@@ -381,7 +381,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             console.log("voltando para corredor");
             if ( core.flag("score_ler_prontuario") == true ) {
               if ( core.flag("score_nao_leu_prontuario") == false ) {
-                core.registerScoreItem( Scores.naoLeuProntuario );
+                // core.registerScoreItem( Scores.naoLeuProntuario );
                 core.flag("score_nao_leu_prontuario", true );
               }
             }
@@ -457,7 +457,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         } else {
 
           if ( core.flag("ir_farmacia_horaErrada") == false ) {
-            core.registerScoreItem( Scores.irFarmaciaHoraErrada );
+            // core.registerScoreItem( Scores.irFarmaciaHoraErrada );
             core.flag("ir_farmacia_horaErrada", true );
           }
           core.setActionVisible("btn-clorpropamidaMedicamento", false );
@@ -736,7 +736,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             console.log("Action: Oferecer copo com água para a paciente");
             if ( core.flag("score_verificar_pulseira") == false ) {
               if ( core.flag("score_nao_verificou_pulseira") == false ) {
-                core.registerScoreItem( Scores.naoVerificarPulseira );
+                // core.registerScoreItem( Scores.naoVerificarPulseira );
                 core.flag("score_nao_verificou_pulseira", true );
               }
               core.openDialog( 8 );
@@ -755,7 +755,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             if ( core.flag("score_pulseira") == false ) {
               core.flag("score_pulseira", true );
-              core.registerScoreItem( Scores.naoVerificarPulseira );
+              // core.registerScoreItem( Scores.naoVerificarPulseira );
             }
 
             core.openDialog( 8 );
@@ -855,7 +855,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         if ( core.flag("ir_ala_feminina_primeira_vez") == false || core.flag("conferir_medicamento_correto") == false ) {
 
           if ( core.flag("ir_postoEnfermagem_horaErrada") == false ) {
-            core.registerScoreItem( Scores.irFarmaciaHoraErrada );
+            // core.registerScoreItem( Scores.irFarmaciaHoraErrada );
             core.flag("ir_postoEnfermagem_horaErrada", true );
           }
 
