@@ -92,7 +92,7 @@ require([ "requireConfig" ], function() {
           if ( storage.isMusicMuted() ) {
             player.setVolumeToCategory( player.audios.musics, 0 );
           } else {
-            player.setVolumeToCategory( player.audios.musics, storage.getMusicVolume() );
+            player.setVolumeToCategory( player.audios.musics, storage.getMusicVolume() * 0.5 );
           }
         });
       });

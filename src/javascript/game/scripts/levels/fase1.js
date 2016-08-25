@@ -131,7 +131,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // Player.stopAll();
         // Som
         Player.play( Player.audios.sfx.abrirPorta );
-        Player.playInLoop( Player.audios.loops.recepcao );
+        Player.playInLoop( Player.audios.sfx.recepcao );
         switch ( core.flag("passagem_corredor") ) {
           // first time at 'corredor'
           case 0:

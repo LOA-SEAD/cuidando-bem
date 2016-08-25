@@ -156,7 +156,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // Player.stopAll();
         // Som
         Player.play( Player.audios.sfx.abrirPorta );
-        Player.playInLoop( Player.audios.loops.recepcao );
+        Player.playInLoop( Player.audios.sfx.recepcao );
         // Mentor só aparece no começo da fase
         if ( core.flag("entrou_ala_feminina") == true ) {
           core.setInteractiveObjectVisible("io-conversar_mentor", false );

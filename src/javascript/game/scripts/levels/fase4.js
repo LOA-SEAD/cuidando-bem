@@ -108,7 +108,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // Player.stopAll();
         // Som
         Player.play( Player.audios.sfx.abrirPorta );
-        Player.playInLoop( Player.audios.loops.recepcao );
+        Player.playInLoop( Player.audios.sfx.recepcao );
         if ( core.flag("conversar_mentor") == false ) {
           // primeira passada
           core.flag("conversar_mentor", true );

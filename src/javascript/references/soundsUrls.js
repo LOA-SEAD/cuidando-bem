@@ -116,7 +116,8 @@ define(function() {
       toquePele: [
         "toquePele1.mp3",
         "toquePele2.mp3"
-      ]
+      ],
+      recepcao: [ "sonsAmbienteHospitalRecepcao.mp3" ]
     },
     musics: {
       menu: [ "cuidandoBemDoMenu.mp3" ],
@@ -129,11 +130,7 @@ define(function() {
     },
     endgame: {
       victory: [ "cuidandoBemDoContrato.mp3" ]
-    },
-    loops: {
-      recepcao: [ "sonsAmbienteHospitalRecepcao.mp3" ]
     }
-
   };
 
   return {
