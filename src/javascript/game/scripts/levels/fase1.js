@@ -704,6 +704,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           if ( core.flag("lavar-maosDepois") ) {
             if ( checouTodosAparelhos() ) {
               if ( !core.flag("lavar-maosDepoisScore") ) {
+                core.flag("lavar-maosDepoisScore", true );
                 core.registerScoreItem( Scores.lavarMaosDepois );
               }
             }

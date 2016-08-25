@@ -128,7 +128,7 @@ define([ "Stage", "levelsData", "AccessibleNavigationMenus" ], function( Stage, 
             if ( completeness >= 0.75 ) {
               Stage.changeScreen( 8 );
             } else {
-              Stage.changeScreen( 8 );
+              Stage.changeScreen( 9 );
             }
           }
         } else {

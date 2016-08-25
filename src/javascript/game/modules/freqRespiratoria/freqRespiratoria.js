@@ -199,28 +199,30 @@ define(function( require ) {
 
     tick.accumulator = 0;
 
-    $("#accessible_log").empty();
-    $("<span>A respiração começará em " + DELAY + " segundos. Conte quantas vezes o paciente respira em 1 minuto. A cada minuto um bip é emitido.</span><br>").appendTo("#accessible_log");
-
-    setTimeout(function() {
-
-      if ( $( canvasSelector ).is(":visible") ) {
-
-        state = STATES.playing;
-
-        tick.last = new Date().getTime();
-
-        animationLoop();
-
-        Player.playInLoop( Player.audios.sfx.ticTac );
-
-        bip = setInterval(function() {
-          Player.play( Player.audios.sfx.bip );
-        }, 60000 );
-        respira();
-      }
-
-    }, DELAY * 1000 );
+    // AS SOLUÇÕES ACESSÍVEIS NÃO PODEM QUEBRAR O RESTO DO JOGO
+    // NÃO PODE TER ESSE DELAY TODA VEZ QUE ALGUÉM ABRIR ESSA TELA
+    // $("#accessible_log").empty();
+    // $("<span>A respiração começará em " + DELAY + " segundos. Conte quantas vezes o paciente respira em 1 minuto. A cada minuto um bip é emitido.</span><br>").appendTo("#accessible_log");
+    //
+    // setTimeout(function() {
+    //
+    //   if ( $( canvasSelector ).is(":visible") ) {
+    //
+    state = STATES.playing;
+    //
+    tick.last = new Date().getTime();
+    //
+    animationLoop();
+    //
+    //     Player.playInLoop( Player.audios.sfx.ticTac );
+    //
+    //     bip = setInterval(function() {
+    //       Player.play( Player.audios.sfx.bip );
+    //     }, 60000 );
+    //     respira();
+    //   }
+    //
+    // }, DELAY * 1000 );
   }
 
   function close() {

@@ -34,7 +34,7 @@ define(function() {
   const KEYCODE_ARROW_RIGHT = 39;
   const KEYCODE_ARROW_DOWN = 40;
   const KEYCODE_ENTER = 13;
-  const KEYCODE_P = 80;
+  const KEYCODE_ESC = 27;
   const KEYCODE_ONE = 49;
   const KEYCODE_TWO = 50;
   const KEYCODE_THREE = 51;

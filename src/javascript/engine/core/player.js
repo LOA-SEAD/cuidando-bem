@@ -272,9 +272,9 @@ define(function() {
     rangeSoundBuffer.volume = rangeList[ rangeSoundId ].volume;
 
     prepare( rangeSoundBuffer );
-    justPlay( rangeSound );
 
     if ( isRangePlaying ) {
+      justPlay( rangeSound );
       rangeInterval = setTimeout( playNextInRange, (rangeSound.duration * 1000) - BUFFER_BEFORE_LOOP );
     }
   }

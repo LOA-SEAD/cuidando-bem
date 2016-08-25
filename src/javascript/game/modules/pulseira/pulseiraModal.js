@@ -134,7 +134,7 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
   const KEYCODE_ARROW_DOWN = 40;
   const KEYCODE_ARROW_TAB = 9;
   const KEYCODE_ENTER = 13;
-  const KEYCODE_P = 80;
+  const KEYCODE_ESC = 27;
   const KEYCODE_ONE = 49;
   const KEYCODE_TWO = 50;
   const KEYCODE_THREE = 51;
@@ -218,7 +218,7 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
         $( navigationList[ i ] ).click();
       }
       return false;
-    } else if ( $("#pauseButton").is(":visible") && _keycode == KEYCODE_P ) {
+    } else if ( $("#pauseButton").is(":visible") && _keycode == KEYCODE_ESC ) {
       $("#pauseButton").click();
       return false;
     }
@@ -256,7 +256,7 @@ define([ "text!../html/pulseira/pulseira.html" ], function( html ) {
         } else if ( e.which == KEYCODE_THREE && $(".dialog_button[value='3']").is(":visible") ) {
           $(".dialog_button[value='3']").click();
           return false;
-        } else if ( $("#pauseButton").is(":visible") && e.which == KEYCODE_P ) {
+        } else if ( $("#pauseButton").is(":visible") && e.which == KEYCODE_ESC ) {
           $("#pauseButton").click();
           return false;
         }
