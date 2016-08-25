@@ -82,8 +82,8 @@ define([ "Stage", "AccessibleNavigationMenus" ], function( Stage, Accessibility 
     // Parar todos os sons
     Player.stopAll();
     // Tocar música da animação
+    Player.play( Player.audios.endgame.victory );
 
-    //
     var container = "#screen-vitoria";
     var recepcao = $(".cena.recepcao", container );
     var corredor = $(".cena.corredor", container );

@@ -127,6 +127,9 @@ define(function() {
         "cuidandoBemDosPacientes4.mp3"
       ]
     },
+    endgame: {
+      victory: [ "cuidandoBemDoContrato.mp3" ]
+    },
     loops: {
       recepcao: [ "sonsAmbienteHospitalRecepcao.mp3" ]
     }
