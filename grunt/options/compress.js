@@ -8,7 +8,7 @@ module.exports = {
     rel: {
         options: {
             mode: "zip",
-            archive: "<%= pkg.releases %>" + "/" + "<%= pkg.name %>" + "-" + "<%= pkg.version %>" + ".zip"
+            archive: "<%= pkg.releases %>/<%= pkg.name %>-<%= pkg.version %>-web.zip"
         },
         files:[
             {

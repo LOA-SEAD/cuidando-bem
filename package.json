@@ -20,6 +20,7 @@
   "devDependencies": {
     "autoprefixer": "^6.3.6",
     "connect-livereload": "^0.5.4",
+    "crosswalk-app-tools": "git+https://github.com/crosswalk-project/crosswalk-app-tools.git",
     "electron-packager": "^7.3.0",
     "electron-prebuilt": "^1.2.6",
     "glob": "^6.0.1",
@@ -36,6 +37,7 @@
     "grunt-contrib-requirejs": "^1.0.0",
     "grunt-contrib-uglify": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-crosswalk": "0.0.9",
     "grunt-electron": "^4.0.0",
     "grunt-electron-installer": "^2.1.0",
     "grunt-gh-pages": "^1.1.0",

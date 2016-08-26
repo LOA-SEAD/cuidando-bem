@@ -3,10 +3,17 @@
   "start_url": "index.html",
   "display": "fullscreen",
   "orientation": "landscape",
-  "icons": [],
   "related_applications": [
     {
       "platform": "web"
+    }
+  ],
+  "xwalk_app_version": "0.1",
+  "xwalk_package_id": "br.sead.ufscar.loa.cuidandobem",
+  "icons": [
+    {
+      "src": "images/misc/icon_128.png",
+      "sizes": "128x128"
     }
   ]
 }
