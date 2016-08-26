@@ -70,7 +70,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
     var alaFeminina = lib.scenes.alaFeminina.getClone()
-      .setCssClass("scene-bedroom-level5")
+      .setCssClass("scene-bedroom-level6")
       .onLoad(function() {
 
       });
@@ -311,7 +311,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
     var alaMasculina = lib.scenes.alaMasculina.getClone()
-      .setCssClass("scene-bedroom-level6")
+      .setCssClass("scene-bedroom-level7")
       .onLoad(function() {
         console.log("Load scene: " + alaMasculina.getName() );
 

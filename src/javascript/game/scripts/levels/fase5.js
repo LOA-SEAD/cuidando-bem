@@ -241,7 +241,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
     alaMasculina = new Scene("alaMasculina", "scene-alaMasculina")
 
-      .setCssClass("scene-bedroom-level4")
+      .setCssClass("scene-bedroom-level5")
       .onLoad(function() {
         console.log("Load scene: " + alaMasculina.getName() );
         core.setInteractiveObjectVisible("io-ir_corredor", true );

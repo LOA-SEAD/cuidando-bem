@@ -529,7 +529,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
     var alaFeminina = new Scene("alaFeminina", "Ala Feminina")
-      .setCssClass("scene-bedroom-level3")
+      .setCssClass("scene-bedroom-level4")
       .onLoad(function() {
         core.openCommandBar();
         console.log("Load scene: " + alaFeminina.getName() );

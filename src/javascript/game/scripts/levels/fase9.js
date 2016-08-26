@@ -198,7 +198,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
     salaDeLeitos = new Scene("salaDeLeitos", "scene-salaDeLeitos")
-      .setCssClass("scene-bedroom-level8")
+      .setCssClass("scene-bedroom-level9")
       .onLoad(function() {
         console.log("Load scene: Ala Masculina");
         // Depois que já ocorreu o diálogo, o botão do prontuário fica liberado
@@ -219,7 +219,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.setInteractiveObjectVisible("io-ir_leito", false );
           core.setActionVisible("btn-ler_prontuario", false );
           core.setActionVisible("btn-lavarMaos", false );
-          core.changeSceneCssClassTo("scene-bedroom-level8b");
+          core.changeSceneCssClassTo("scene-bedroom-level9b");
         }
       })
       .onUnload(function() {
@@ -794,7 +794,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
     alaFeminina = lib.scenes.alaFeminina.getClone()
-      .setCssClass("scene-bedroom-level7")
+      .setCssClass("scene-bedroom-level8")
       .onLoad(function() {
         console.log("Load scene: Ala feminina");
       })

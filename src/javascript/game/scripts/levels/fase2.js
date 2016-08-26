@@ -294,12 +294,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
     // Sala de leitos
     salaDeLeitos = new Scene("salaDeLeitos", "scene-salaDeLeitos")
-      .setCssClass("scene-bedroom-level1a")
+      .setCssClass("scene-bedroom-level2a")
       .onLoad(function() {
         console.log("Entrando na sala de leitos");
         if ( core.flag("colocou_coxim") ) {
           core.setActionVisible("btn-ler_prontuario", true );
-          core.changeSceneCssClassTo("scene-bedroom-level1b");
+          core.changeSceneCssClassTo("scene-bedroom-level2b");
           // ARRUMAR PARA PODER IR SEMPRE AO LEITO
           core.setInteractiveObjectVisible("io-ir_leito", false );
         }

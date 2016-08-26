@@ -83,7 +83,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
     var alaFeminina = new Scene("alaFeminina", "Ala Feminina")
-      .setCssClass("scene-bedroom-level7")
+      .setCssClass("scene-bedroom-level8")
       .onLoad(function() {
 
       });
@@ -269,7 +269,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
     var alaMasculina2 = lib.scenes.alaMasculina.getClone()
-      .setCssClass("scene-bedroom-level9")
+      .setCssClass("scene-bedroom-level10")
       .onLoad(function() {
 
 
@@ -331,7 +331,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
     var alaMasculina = lib.scenes.alaMasculina.getClone()
-      .setCssClass("scene-bedroom-level9-trocado")
+      .setCssClass("scene-bedroom-level10-trocado")
       .onLoad(function() {
 
         if ( core.flag("trocou_de_leito") == true ) {

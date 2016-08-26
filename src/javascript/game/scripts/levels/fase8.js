@@ -220,7 +220,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
     var alaFeminina = new Scene("alaMasculina", "Ala Masculina")
-      .setCssClass("scene-bedroom-level7")
+      .setCssClass("scene-bedroom-level8")
       .onLoad(function() {
 
         core.setActionVisible("btn-ler_prontuario", false );
@@ -961,7 +961,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
     var alaMasculina = lib.scenes.alaMasculina.getClone()
-      .setCssClass("scene-bedroom-level6")
+      .setCssClass("scene-bedroom-level7")
       .onLoad(function() {
         console.log("Load scene: " + alaMasculina.getName() );
       });

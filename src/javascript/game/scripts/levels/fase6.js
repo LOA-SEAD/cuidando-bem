@@ -273,7 +273,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
     alaFeminina = new Scene("alaMasculina", "Ala Masculina")
-      .setCssClass("scene-bedroom-level5")
+      .setCssClass("scene-bedroom-level6")
       .onLoad(function() {
         console.log("Load scene: Ala feminina");
         // Apenas para desaparecer com o mentor do corredor

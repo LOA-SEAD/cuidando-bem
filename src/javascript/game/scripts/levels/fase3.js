@@ -241,7 +241,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
     salaDeLeitos = new Scene("salaDeLeitos", "scene-salaDeLeitos")
-      .setCssClass("scene-bedroom-level2")
+      .setCssClass("scene-bedroom-level3")
       .onLoad(function() {
 
 
@@ -449,7 +449,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             if ( core.flag("score_elevou_grade_cama") == false ) {
               core.flag("score_elevou_grade_cama", true );
               core.registerScoreItem( Scores.elevarGradeDaCama );
-              core.changeSceneCssClassTo("scene-bedroom-level2b");
+              core.changeSceneCssClassTo("scene-bedroom-level3b");
               core.setActionVisible("btn-elevar_grade_cama", false );
               core.setActionVisible("btn-anotarProntuario", true );
               core.setActionVisible("btn-lavarMaos", true );

@@ -164,9 +164,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           case 0:
             core.flag("passagem_corredor", 1 );
             break;
-          case 1:
-            core.flag("passagem_corredor", 2 );
-            break;
+          // case 1:
+          //   core.flag("passagem_corredor", 2 );
+          //   break;
           case 2:
             core.flag("passagem_corredor", 3 );
             break;
@@ -261,7 +261,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     ]);
 
     var salaDeLeitos = new Scene("salaDeLeitos", "scene-salaDeLeitos")
-      .setCssClass("scene-bedroom-level0")
+      .setCssClass("scene-bedroom-level1")
       .onLoad(function() {
         switch ( core.flag("passagem_sala-de-leitos") ) {
           case 0:
@@ -790,6 +790,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("action-ir_corredor")
         .onClick(function() {
           console.log("Action: ir_corredor");
+          core.flag("passagem_corredor", 2 );
           core.changeScene( 1 );
         })
         .setVisibility( visibility )
