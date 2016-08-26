@@ -259,7 +259,6 @@ define(function() {
       "scenes/centroCirurgicoYuri.jpg",
       "scenes/centroCirurgicoYuriComPlaca.jpg",
       "scenes/fimLevel.jpg",
-      "scenes/encerramentoProvisorio.jpg",
       "scenes/corredor.jpg",
       "scenes/farmacia.jpg",
       "scenes/leitoChar01.jpg",
