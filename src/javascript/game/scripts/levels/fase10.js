@@ -1200,7 +1200,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
           if ( core.flag("realizar_gotejamento") == false ) {
             core.flag("realizar_gotejamento", true );
-            core.registerScoreItem( Scores.realizarGotejamento );
+            core.registerScoreItem( Scores.gotejarSoroEquipo );
           }
 
           EquipoGotejamento.open();
@@ -1318,6 +1318,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             core.setActionVisible("btn-anotar_prontuario", false );
             core.closeCommandBar();
             core.showEndOfLevel();
+            core.unlockLevel( 11 );
             Player.stopAll();
             Player.play( Player.audios.sfx.missaoCumprida );
           } else {

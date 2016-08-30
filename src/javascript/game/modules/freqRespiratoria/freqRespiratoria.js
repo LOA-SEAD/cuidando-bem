@@ -228,7 +228,7 @@ define(function( require ) {
   function close() {
     $( canvasSelector ).hide();
     state = STATES.stopped;
-    Player.stopAll();
+    Player.stop();
     clearInterval( bip );
     clearInterval( respiracao );
   }

@@ -918,11 +918,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("action-colocarSoroDieta")
         .onClick(function() {
 
-          if ( core.flag("score_colocar_gotejamento") == false ) {
-            core.registerScoreItem( Scores.colocarGotejamento );
+          if ( !core.flag("score_colocar_gotejamento") ) {
+            core.registerScoreItem( Scores.gotejarSoroEquipo );
+            core.flag("score_colocar_gotejamento", true );
           }
-
-          core.flag("score_colocar_gotejamento", true );
 
           EquipoGotejamento.open();
           core.openModalScene("equipoSoro");
