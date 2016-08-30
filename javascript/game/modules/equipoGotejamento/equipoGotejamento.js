@@ -1,18 +1,18 @@
 /*
-This file is part of Cuidando Bem.
+ This file is part of Cuidando Bem.
 
-    Cuidando Bem is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+ Cuidando Bem is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
 
-    Cuidando Bem is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+ Cuidando Bem is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ You should have received a copy of the GNU General Public License
+ along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 define(["require","text!../html/equipoGotejamento/equipoGotejamento.html"],function(e){function t(){this.x,this.y,this.frameTime,this.accumulator=0,this.frameTotal,this.frameCounter=0,this.cyclesPerMinute,this.img=[],this.hasToDraw=!1,this.width,this.height,this.srWidth,this.srHeight,this.update=function(){for(this.accumulator+=M.time;this.accumulator>=this.frameTime;)this.frameCounter++,this.frameCounter=this.frameCounter%this.frameTotal,this.hasToDraw=!0,this.accumulator-=this.frameTime},this.draw=function(e){if(this.hasToDraw){var t=e.getContext("2d"),i=(this.frameCounter*this.width,this.img[this.frameCounter]);t.drawImage(i,0,0,this.srWidth,this.srHeight,this.x,this.y,this.width,this.height)}}}function a(e){$(e).append(y);var t=$(p)[0];t.setAttribute("width",800),t.setAttribute("height",600),$(".less").click(function(){m()}),$(".plus").click(function(){l()}),$(".sliderFront").slider({orientation:"vertical",min:C,max:q,value:60,slide:function(e,t){h(t.value)}}),g(I)}function r(){$(T).show(),x.frameCounter=0,M.accumulator=0,M.last=(new Date).getTime(),v=w.playing,c(),u()}function o(){$(T).hide(),v=w.stopped}function s(){for(x.update(),P.accumulator+=M.time;P.accumulator>=P.time;)P.angle+=2*Math.PI/1e3/60,P.accumulator-=P.time}function n(e){ctx=e.getContext("2d"),ctx.clearRect(0,0,800,600),x.draw(e),ctx.drawImage(P.img,0,0,350,600,P.x-99,P.y-165,200,330),ctx.beginPath(),ctx.moveTo(P.x,P.y-P.radius),ctx.lineTo(P.x,P.y-P.radius+P.line),ctx.moveTo(P.x,P.y+P.radius),ctx.lineTo(P.x,P.y+P.radius-P.line),ctx.moveTo(P.x-P.radius,P.y),ctx.lineTo(P.x-P.radius+P.line,P.y),ctx.moveTo(P.x+P.radius,P.y),ctx.lineTo(P.x+P.radius-P.line,P.y),ctx.lineWidth=2,ctx.strokeStyle="rgba(0,0,0,130)",ctx.stroke(),ctx.beginPath(),px=Math.cos(P.angle)*P.radius+P.x,py=Math.sin(P.angle)*P.radius+P.y,ctx.moveTo(P.x,P.y),ctx.lineTo(px,py),ctx.lineWidth=5,ctx.strokeStyle="rgba(0,0,0,255)",ctx.stroke()}function c(){P.angle=-Math.PI/2,P.accumulator=0}function u(){for(M.now=(new Date).getTime(),M.passed=M.now-M.last,M.last=M.now,M.accumulator+=M.passed;M.accumulator>=M.time;)s(),M.accumulator-=M.time;n($(p)[0]),v==w.playing&&window.requestAnimationFrame(u)}function l(){x.cyclesPerMinute+1<=q&&(c(),x.cyclesPerMinute+=1,x.frameTime=6e4/x.cyclesPerMinute/x.frameTotal,x.frameCounter=0,$(".sliderFront").slider("value",x.cyclesPerMinute))}function m(){x.cyclesPerMinute-1>=C&&(c(),x.cyclesPerMinute-=1,x.frameTime=6e4/x.cyclesPerMinute/x.frameTotal,x.frameCounter=0,$(".sliderFront").slider("value",x.cyclesPerMinute))}function h(e){c(),x.cyclesPerMinute=e,x.frameTime=6e4/x.cyclesPerMinute/x.frameTotal,x.frameCounter=0}function d(e){D=e}function f(){return x.cyclesPerMinute>=D-b&&x.cyclesPerMinute<=D+b}function g(e){"soro"==e?($(".slider").removeClass("dieta"),$(".slider").addClass("soro"),x=k):($(".slider").removeClass("soro"),$(".slider").addClass("dieta"),x=G)}var x,y=e("text!../html/equipoGotejamento/equipoGotejamento.html"),T="#equipo",p="#equipoGotejamento",w={playing:0,stopped:1},v=w.stopped,M={last:void 0,passed:void 0,now:void 0,accumulator:0,time:void 0,rate:60},P={x:375,y:300,radius:60,angle:0,line:20,img:void 0,accumulator:0,time:1},C=0,q=120,D=60,I="soro",b=1;M.time=1e3/M.rate;var k=new t;k.x=120,k.y=0,k.width=140,k.height=610,k.srWidth=314,k.srHeight=1426,k.frameTotal=20,k.cyclesPerMinute=60,k.frameTime=6e4/k.cyclesPerMinute/k.frameTotal;var W=0;for(i=0;i<k.frameTotal;i++){k.img.push(new Image),k.img[i].onload=function(){W++};var j=k.img[i];i<10&&(i="0"+i),j.src="./images/modalScenes/soro/gotas_0"+i+".png"}var G=new t;G.x=120,G.y=0,G.width=140,G.height=610,G.srWidth=314,G.srHeight=1426,G.frameTotal=20,G.cyclesPerMinute=60,G.frameTime=6e4/G.cyclesPerMinute/G.frameTotal;var S=0;for(i=0;i<G.frameTotal;i++){G.img.push(new Image),G.img[i].onload=function(){S++};var j=G.img[i];i<10&&(i="0"+i),j.src="./images/modalScenes/dieta/gotaDieta_0"+i+".png"}return P.img=new Image,P.img.src="./images/modalScenes/relogioDigital.png",P.img.onLoad=function(){},{init:a,setCyclesPerMinute:h,setMode:g,isValueRight:f,setRightValue:d,open:r,close:o}});

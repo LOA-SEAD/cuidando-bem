@@ -13,12 +13,12 @@ This file is part of Cuidando Bem.
 */
 
 html {
-    font-family: sans-serif; 
-    -ms-text-size-adjust: 100%; 
-    -webkit-text-size-adjust: 100%; 
+  font-family: sans-serif; 
+  -ms-text-size-adjust: 100%; 
+  -webkit-text-size-adjust: 100%; 
 }
 body {
-    margin: 0;
+  margin: 0;
 }
 article,
 aside,
@@ -32,164 +32,164 @@ main,
 nav,
 section,
 summary {
-    display: block;
+  display: block;
 }
 audio,
 canvas,
 progress,
 video {
-    display: inline-block; 
-    vertical-align: baseline; 
+  display: inline-block; 
+  vertical-align: baseline; 
 }
 audio:not([controls]) {
-    display: none;
-    height: 0;
+  display: none;
+  height: 0;
 }
 [hidden],
 template {
-    display: none;
+  display: none;
 }
 a {
-    background: transparent;
+  background: transparent;
 }
 a:active,
 a:hover {
-    outline: 0;
+  outline: 0;
 }
 abbr[title] {
-    border-bottom: 1px dotted;
+  border-bottom: 1px dotted;
 }
 b,
 strong {
-    font-weight: bold;
+  font-weight: bold;
 }
 dfn {
-    font-style: italic;
+  font-style: italic;
 }
 h1 {
-    font-size: 2em;
-    margin: 0.67em 0;
+  font-size: 2em;
+  margin: 0.67em 0;
 }
 mark {
-    background: #ff0;
-    color: #000;
+  background: #ff0;
+  color: #000;
 }
 small {
-    font-size: 80%;
+  font-size: 80%;
 }
 sub,
 sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
 }
 sup {
-    top: -0.5em;
+  top: -0.5em;
 }
 sub {
-    bottom: -0.25em;
+  bottom: -0.25em;
 }
 img {
-    border: 0;
+  border: 0;
 }
 svg:not(:root) {
-    overflow: hidden;
+  overflow: hidden;
 }
 figure {
-    margin: 1em 40px;
+  margin: 1em 40px;
 }
 hr {
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    height: 0;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
 }
 pre {
-    overflow: auto;
+  overflow: auto;
 }
 code,
 kbd,
 pre,
 samp {
-    font-family: monospace, monospace;
-    font-size: 1em;
+  font-family: monospace, monospace;
+  font-size: 1em;
 }
 button,
 input,
 optgroup,
 select,
 textarea {
-    color: inherit; 
-    font: inherit; 
-    margin: 0; 
+  color: inherit; 
+  font: inherit; 
+  margin: 0; 
 }
 button {
-    overflow: visible;
+  overflow: visible;
 }
 button,
 select {
-    text-transform: none;
+  text-transform: none;
 }
 button,
 html input[type="button"], 
 input[type="reset"],
 input[type="submit"] {
-    -webkit-appearance: button; 
-    cursor: pointer; 
+  -webkit-appearance: button; 
+  cursor: pointer; 
 }
 button[disabled],
 html input[disabled] {
-    cursor: default;
+  cursor: default;
 }
 button::-moz-focus-inner,
 input::-moz-focus-inner {
-    border: 0;
-    padding: 0;
+  border: 0;
+  padding: 0;
 }
 input {
-    line-height: normal;
+  line-height: normal;
 }
 input[type="checkbox"],
 input[type="radio"] {
-    box-sizing: border-box; 
-    padding: 0; 
+  box-sizing: border-box; 
+  padding: 0; 
 }
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-    height: auto;
+  height: auto;
 }
 input[type="search"] {
-    -webkit-appearance: textfield; 
-    -moz-box-sizing: content-box;
-    -webkit-box-sizing: content-box; 
-    box-sizing: content-box;
+  -webkit-appearance: textfield; 
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box; 
+  box-sizing: content-box;
 }
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
-    -webkit-appearance: none;
+  -webkit-appearance: none;
 }
 fieldset {
-    border: 1px solid #c0c0c0;
-    margin: 0 2px;
-    padding: 0.35em 0.625em 0.75em;
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
 }
 legend {
-    border: 0; 
-    padding: 0; 
+  border: 0; 
+  padding: 0; 
 }
 textarea {
-    overflow: auto;
+  overflow: auto;
 }
 optgroup {
-    font-weight: bold;
+  font-weight: bold;
 }
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 td,
 th {
-    padding: 0;
+  padding: 0;
 }
 /*
 This file is part of Cuidando Bem.
@@ -744,6 +744,10 @@ This file is part of Cuidando Bem.
 }
 #pauseMenu #front .button {
   cursor: pointer;
+  opacity: 0.8;
+}
+#pauseMenu #front .button:focus {
+  opacity: 1;
 }
 #pauseMenu #front .button:active {
   border-bottom: 5px solid transparent;
@@ -1061,6 +1065,9 @@ This file is part of Cuidando Bem.
   top: 35% !important;
   left: 35% !important;
 }
+#dialog-typename label {
+  display: none;
+}
 /*
 This file is part of Cuidando Bem.
     Cuidando Bem is free software: you can redistribute it and/or modify
@@ -1150,6 +1157,69 @@ This file is part of Cuidando Bem.
   margin-bottom: 0;
   font-size: 5rem;
   color: #141414;
+}
+.credits-logo {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  z-index: 1;
+}
+#logo-sead {
+  background-image: url(../images/misc/logo-sead.png);
+  top: 22%;
+  left: 3%;
+  width: 13%;
+  height: 13%;
+}
+#logo-proex {
+  background-image: url(../images/misc/logo-proex.png);
+  top: 39%;
+  left: 3%;
+  width: 13%;
+  height: 13%;
+}
+#logo-ufscar {
+  background-image: url(../images/misc/logo-ufscar.png);
+  top: 56%;
+  left: 3%;
+  width: 13%;
+  height: 13%;
+}
+#logo-proext {
+  background-image: url(../images/misc/logo-proext.png);
+  top: 73%;
+  left: 3%;
+  width: 13%;
+  height: 13%;
+}
+#logo-fapesp {
+  background-image: url(../images/misc/logo-fapesp.png);
+  top: 22%;
+  right: 3%;
+  width: 13%;
+  height: 13%;
+}
+#logo-capes {
+  background-image: url(../images/misc/logo-capes.png);
+  top: 39%;
+  right: 3%;
+  width: 13%;
+  height: 13%;
+}
+#logo-governo {
+  background-image: url(../images/misc/logo-governo.png);
+  top: 56%;
+  right: 3%;
+  width: 13%;
+  height: 13%;
+}
+#logo-loa {
+  background-image: url(../images/misc/logo-loa.png);
+  top: 73%;
+  right: 3%;
+  width: 13%;
+  height: 13%;
 }
 /*
 This file is part of Cuidando Bem.
@@ -1392,8 +1462,19 @@ This file is part of Cuidando Bem.
   background-repeat: no-repeat;
   width: 18%;
   height: 33%;
-  top: 25%;
-  left: 45%;
+  top: 33%;
+  left: 39%;
+}
+#screen-vitoria.palco .recepcao .balcao {
+  position: absolute;
+  background-image: url(../images/interactiveObjects/balcao.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 50%;
+  left: 19%;
+  width: 60%;
+  height: 47%;
+  z-index: 1;
 }
 #screen-vitoria.palco .recepcao .balao {
   display: none;
@@ -1401,8 +1482,8 @@ This file is part of Cuidando Bem.
   width: 25%;
   height: 20%;
   position: absolute;
-  top: 13%;
-  left: 57%;
+  top: 20%;
+  left: 50%;
   background-color: white;
   border: 0.2rem black solid;
   font-size: 2.5rem;
@@ -1731,13 +1812,16 @@ div[role="log"]:not(#accessible_log) {
   position: absolute;
 }
 .interactiveObject:hover:not(.no-glow):not(.disabled),
-.interactiveObject:focus:not(.no-glow):not(.disabled) {
+.interactiveObject:focus:not(.no-glow):not(.disabled),
+.interactiveObject.jqhover:not(.no-glow):not(.disabled) {
   cursor: pointer;
   background-color: transparent;
   border: none;
   padding: 0;
   -webkit-transform: scale(1.05, 1.05);
           transform: scale(1.05, 1.05);
+  -webkit-transform-origin: center;
+          transform-origin: center;
   -webkit-filter: drop-shadow(0 0 8px #1987B2);
           filter: drop-shadow(0 0 8px #1987B2);
 }
@@ -1750,8 +1834,8 @@ div[role="log"]:not(#accessible_log) {
   background-repeat: no-repeat;
   width: 18%;
   height: 33%;
-  top: 25%;
-  left: 45%;
+  top: 33%;
+  left: 39%;
 }
 .intObj-9Certos {
   background-image: url(../images/interactiveObjects/9certos.png);
@@ -1761,6 +1845,7 @@ div[role="log"]:not(#accessible_log) {
   height: 8%;
   top: 45%;
   right: 18%;
+  z-index: 1;
 }
 .intObj-lobbyToHallway-right {
   right: 0;
@@ -1769,7 +1854,8 @@ div[role="log"]:not(#accessible_log) {
   width: 8%;
 }
 .intObj-lobbyToHallway-right:hover,
-.intObj-lobbyToHallway-right:focus {
+.intObj-lobbyToHallway-right:focus,
+.intObj-lobbyToHallway-right.jqhover {
   background-image: url('data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20%3F%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%201%201%22%20preserveAspectRatio%3D%22none%22%3E%3ClinearGradient%20id%3D%22gradient%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%220.7%22%2F%3E%3Cstop%20offset%3D%2225%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%220.2%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23000000%22%20stop-opacity%3D%220%22%2F%3E%3C%2FlinearGradient%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22url(%23gradient)%22%20%2F%3E%3C%2Fsvg%3E');
 }
 .intObj-lobbyToHallway-left {
@@ -1779,7 +1865,8 @@ div[role="log"]:not(#accessible_log) {
   width: 8%;
 }
 .intObj-lobbyToHallway-left:hover,
-.intObj-lobbyToHallway-left:focus {
+.intObj-lobbyToHallway-left:focus,
+.intObj-lobbyToHallway-left.jqhover {
   background-image: url('data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20%3F%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%201%201%22%20preserveAspectRatio%3D%22none%22%3E%3ClinearGradient%20id%3D%22gradient%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23000000%22%20stop-opacity%3D%220%22%2F%3E%3Cstop%20offset%3D%2275%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%220.2%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%220.7%22%2F%3E%3C%2FlinearGradient%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22url(%23gradient)%22%20%2F%3E%3C%2Fsvg%3E');
 }
 .intObj-talkToMentor {
@@ -2585,6 +2672,26 @@ div[role="log"]:not(#accessible_log) {
   width: 9%;
   height: 10%;
 }
+.intObj-balcao {
+  background-image: url(../images/interactiveObjects/balcao.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 50%;
+  left: 19%;
+  width: 60%;
+  height: 47%;
+  z-index: 1;
+}
+.intObj-porta {
+  background-image: url(../images/interactiveObjects/porta.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 0%;
+  right: 0;
+  width: 6.2%;
+  height: 97%;
+  z-index: 1;
+}
 /*
 This file is part of Cuidando Bem.
     Cuidando Bem is free software: you can redistribute it and/or modify
@@ -2603,21 +2710,21 @@ This file is part of Cuidando Bem.
 .scene-maleRoom-cushion,
 .scene-femaleRoom,
 .scene-bedroom,
-.scene-bedroom-level0,
 .scene-bedroom-level1,
-.scene-bedroom-level1a,
-.scene-bedroom-level1b,
 .scene-bedroom-level2,
+.scene-bedroom-level2a,
 .scene-bedroom-level2b,
 .scene-bedroom-level3,
+.scene-bedroom-level3b,
 .scene-bedroom-level4,
 .scene-bedroom-level5,
 .scene-bedroom-level6,
 .scene-bedroom-level7,
 .scene-bedroom-level8,
-.scene-bedroom-level8b,
 .scene-bedroom-level9,
-.scene-bedroom-level9-trocado,
+.scene-bedroom-level9b,
+.scene-bedroom-level10,
+.scene-bedroom-level10-trocado,
 .scene-bedChar01,
 .scene-bedChar02,
 .scene-bedChar02-turned,
@@ -2647,7 +2754,6 @@ This file is part of Cuidando Bem.
 .scene-nursingStation,
 .scene-lobby,
 .scene-levelTransition,
-.scene-endAlpha,
 .scene-pharmacy,
 .scene-surgeryCenter,
 .scene-femaleRoom,
@@ -2671,26 +2777,23 @@ This file is part of Cuidando Bem.
 .scene-bedroom {
   background-image: url(../images/scenes/quartos.jpg);
 }
-.scene-bedroom-level0 {
-  background-image: url(../images/scenes/quartos0.jpg);
-}
 .scene-bedroom-level1 {
-  background-image: url(../images/scenes/quartos1a.jpg);
-}
-.scene-bedroom-level1a {
-  background-image: url(../images/scenes/quartos1a.jpg);
-}
-.scene-bedroom-level1b {
-  background-image: url(../images/scenes/quartos1b.jpg);
+  background-image: url(../images/scenes/quartos1.jpg);
 }
 .scene-bedroom-level2 {
-  background-image: url(../images/scenes/quartos2.jpg);
+  background-image: url(../images/scenes/quartos2a.jpg);
+}
+.scene-bedroom-level2a {
+  background-image: url(../images/scenes/quartos2a.jpg);
 }
 .scene-bedroom-level2b {
   background-image: url(../images/scenes/quartos2b.jpg);
 }
 .scene-bedroom-level3 {
-  background-image: url(../images/scenes/quartos3.jpg);
+  background-image: url(../images/scenes/quartos3a.jpg);
+}
+.scene-bedroom-level3b {
+  background-image: url(../images/scenes/quartos3b.jpg);
 }
 .scene-bedroom-level4 {
   background-image: url(../images/scenes/quartos4.jpg);
@@ -2707,14 +2810,17 @@ This file is part of Cuidando Bem.
 .scene-bedroom-level8 {
   background-image: url(../images/scenes/quartos8.jpg);
 }
-.scene-bedroom-level8b {
-  background-image: url(../images/scenes/quartos8b.jpg);
-}
 .scene-bedroom-level9 {
-  background-image: url(../images/scenes/quartos9.jpg);
+  background-image: url(../images/scenes/quartos9a.jpg);
 }
-.scene-bedroom-level9-trocado {
-  background-image: url(../images/scenes/quartos10.jpg);
+.scene-bedroom-level9b {
+  background-image: url(../images/scenes/quartos9b.jpg);
+}
+.scene-bedroom-level10 {
+  background-image: url(../images/scenes/quartos10a.jpg);
+}
+.scene-bedroom-level10-trocado {
+  background-image: url(../images/scenes/quartos10b.jpg);
 }
 .scene-bedChar01 {
   background-image: url(../images/scenes/leitoChar01.jpg);
@@ -2802,9 +2908,6 @@ This file is part of Cuidando Bem.
 }
 .scene-levelTransition {
   background-image: url(../images/scenes/fimLevel.jpg);
-}
-.scene-endAlpha {
-  background-image: url(../images/scenes/encerramentoProvisorio.jpg);
 }
 .scene-none {
   background-color: #d3d3d3;
@@ -3054,6 +3157,7 @@ This file is part of Cuidando Bem.
   height: 100%;
 }
 .modalScene-noveCertosMedicacao {
+  z-index: 1;
   background-color: rgba(0, 0, 0, 0.7);
   background-image: url(../images/modalScenes/9_certos_da_medicacao.png);
   background-position: center;
@@ -3660,7 +3764,10 @@ This file is part of Cuidando Bem.
   font-family: monospace;
 }
 #pulseira_modal .transparent {
-  display: none;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+  display: block;
 }
 #pulseira_modal #name_input {
   position: absolute;
@@ -3873,6 +3980,9 @@ This file is part of Cuidando Bem.
   border: none;
   background-color: transparent;
 }
+.dialog_reread {
+  visibility: hidden;
+}
 .on {
   background: url(../images/misc/arrow-icon_button.png) no-repeat center;
 }
@@ -3912,9 +4022,6 @@ This file is part of Cuidando Bem.
 .text:active {
   color: black;
   text-shadow: -1px -1px #666, 1px 1px #FFF;
-}
-.dialog_reread {
-  display: none;
 }
 /*
 This file is part of Cuidando Bem.
@@ -4063,7 +4170,9 @@ This file is part of Cuidando Bem.
   bottom: -20px;
   top: auto;
 }
-.action_button.enabled:hover {
+.action_button.enabled:hover,
+.action_button.enabled:focus,
+.action_button.enabled.jqhover {
   border-color: #2d7c2f;
   box-shadow: 0 0 10px #000000;
 }
