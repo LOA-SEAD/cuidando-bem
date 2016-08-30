@@ -148,12 +148,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       }
     };
 
-    var balcao = new InteractiveObject("intObj-balcao", "Conversar com a Recepcionista")
+    var balcao = new InteractiveObject("intObj-balcao", "Balcao")
       .setCssClass("intObj-balcao")
       .setVisibility( true )
       .setEnable( false );
 
+    var vaso = new InteractiveObject("intObj-vaso", "Vaso")
+      .setCssClass("intObj-vaso")
+      .setVisibility( true )
+      .setEnable( false );
+
     lib.scenes.recepcao.registerInteractiveObject( balcao );
+    lib.scenes.recepcao.registerInteractiveObject( vaso );
     console.groupEnd();
 
     return lib;
