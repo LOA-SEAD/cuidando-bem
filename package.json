@@ -16,7 +16,7 @@
     "url": "https://github.com/LOA-SEAD/cuidando-bem.git"
   },
   "main": "Gruntfile.js",
-  "version": "1.7.15",
+  "version": "1.7.16",
   "devDependencies": {
     "autoprefixer": "^6.3.6",
     "connect-livereload": "^0.5.4",
