@@ -856,9 +856,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
           console.log("Action: Colocar Luvas");
           // Som
-          Player.play( Player.audios.sfx.colocarLuvas );
-
           if ( core.flag("verificar_pulseira") ) {
+            Player.play( Player.audios.sfx.colocarLuvas );
 
             if ( !core.flag("score_vestiu_luvas") ) {
               core.flag("score_vestiu_luvas", true );
