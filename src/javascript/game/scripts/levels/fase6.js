@@ -619,7 +619,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             if ( core.flag("score_verificar_pulseira") == false ) {
 
               /* if ( core.flag("score_nao_verificar_pulseira") == false ) {
-               core.registerScoreItem( Scores.naoVerificarPulseira );
+               // core.registerScoreItem( Scores.naoVerificarPulseira );
                core.flag("score_nao_verificar_pulseira",  true );
                }*/
 
@@ -764,7 +764,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             /*  if ( core.flag("score_selecionou_materiais_curativo") == false ) {
              if ( core.flag("score_nao_selecionou_materiais_curativo") == false ) {
-             core.registerScoreItem( Scores.naoSelecionarMateriaisCurativo );
+             // core.registerScoreItem( Scores.naoSelecionarMateriaisCurativo );
              core.flag("score_nao_selecionou_materiais_curativo",  true );
              }
              core.closeCommandBar();
@@ -830,7 +830,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             /*
              if ( core.flag("score_lavou_maos_antes_calcar_luva") == false ) {
              if ( core.flag("score_nao_lavou_maos_antes_calcar_luva") == false ) {
-             core.registerScoreItem( Scores.naoLavarMaosAntesLuva );
+             // core.registerScoreItem( Scores.naoLavarMaosAntesLuva );
              core.flag("score_nao_lavou_maos_antes_calcar_luva",  true );
              }
              core.closeCommandBar();

@@ -545,7 +545,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
           if ( core.flag("score_checar_pulseira") == false ) {
             if ( core.flag("score_nao_checar_pulseira") == false ) {
-              core.registerScoreItem( Scores.naoChecarPulseira );
+              // core.registerScoreItem( Scores.naoChecarPulseira );
               core.flag("score_nao_checar_pulseira", true );
             }
           }
@@ -623,7 +623,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           // Tirar pontos se não administrou medicamento
           /* if ( core.flag("score_administrar_medicacao") == false ) {
            if ( core.flag("score_nao_administrar_medicacao") == false ) {
-           core.registerScoreItem( Scores.naoAdministrarMedicacao );
+           // core.registerScoreItem( Scores.naoAdministrarMedicacao );
            core.flag("score_nao_administrar_medicacao",  true );
            }
            }*/
@@ -1061,7 +1061,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           console.log("Action: Pegar bandeja");
           if ( core.flag("score_lavar_maos_posto_enfermagem") == false ) {
             if ( core.flag("score_nao_lavar_maos_posto_enfermagem") == false ) {
-              core.registerScoreItem( Scores.naoLavarMaos );
+              // core.registerScoreItem( Scores.naoLavarMaos );
               core.flag("score_nao_lavar_maos_posto_enfermagem", true );
             }
           }
