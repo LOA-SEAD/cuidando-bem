@@ -1841,10 +1841,10 @@ div[role="log"]:not(#accessible_log) {
   background-image: url(../images/interactiveObjects/9certos.png);
   background-size: contain;
   background-repeat: no-repeat;
-  width: 9%;
+  width: 7%;
   height: 8%;
-  top: 45%;
-  right: 18%;
+  top: 49.7%;
+  right: 23%;
   z-index: 1;
 }
 .intObj-lobbyToHallway-right {
@@ -2094,10 +2094,10 @@ div[role="log"]:not(#accessible_log) {
   background-image: url(../images/interactiveObjects/pulseira07.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 69%;
-  left: 41.8%;
-  width: 3.5%;
-  height: 3.5%;
+  top: 63.2%;
+  left: 47.8%;
+  width: 2%;
+  height: 5.5%;
 }
 .intObj-paciente_08-checar_pulseira {
   background-image: url(../images/interactiveObjects/pulseira08.png);
@@ -2125,21 +2125,6 @@ div[role="log"]:not(#accessible_log) {
   left: 40.5%;
   width: 5%;
   height: 5%;
-}
-.intObj-braceletConfirmation,
-.intObj-braceletConfirmed {
-  background-image: url(../images/interactiveObjects/checkmark-gray.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  top: 37%;
-  right: 23%;
-  width: 9%;
-  height: 20%;
-}
-.intObj-braceletConfirmed {
-  cursor: default;
-  background-image: url(../images/interactiveObjects/checkmark.png);
-  background-size: contain;
 }
 .intObj-openDrawer {
   width: 30%;
@@ -2289,8 +2274,8 @@ div[role="log"]:not(#accessible_log) {
   background-image: url(../images/interactiveObjects/cloreto_de_sodio_10__10_ml_.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 37%;
-  left: 23%;
+  top: 55%;
+  left: 44%;
   width: 9%;
   height: 20%;
 }
@@ -2307,7 +2292,7 @@ div[role="log"]:not(#accessible_log) {
   background-image: url(../images/interactiveObjects/clorpromazina_medicamento.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 58%;
+  top: 65%;
   left: 38%;
   width: 9%;
   height: 20%;
@@ -2316,7 +2301,7 @@ div[role="log"]:not(#accessible_log) {
   background-image: url(../images/interactiveObjects/clorpropamida_medicamento.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 60%;
+  top: 66%;
   left: 38%;
   width: 10%;
   height: 20%;
@@ -2388,8 +2373,8 @@ div[role="log"]:not(#accessible_log) {
   background-image: url(../images/interactiveObjects/frasco_de_dieta.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 37%;
-  left: 23%;
+  top: 56%;
+  left: 40%;
   width: 9%;
   height: 20%;
 }
@@ -2433,7 +2418,7 @@ div[role="log"]:not(#accessible_log) {
   background-image: url(../images/interactiveObjects/keflin_medicamento.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 50%;
+  top: 56%;
   left: 40%;
   width: 9%;
   height: 20%;
@@ -2496,7 +2481,7 @@ div[role="log"]:not(#accessible_log) {
   background-image: url(../images/interactiveObjects/midazolam_medicamento.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 55%;
+  top: 60%;
   left: 38%;
   width: 9%;
   height: 20%;
@@ -2680,6 +2665,16 @@ div[role="log"]:not(#accessible_log) {
   left: 19%;
   width: 60%;
   height: 47%;
+  z-index: 1;
+}
+.intObj-vaso {
+  background-image: url(../images/interactiveObjects/vaso.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 47%;
+  left: 22%;
+  width: 3%;
+  height: 5%;
   z-index: 1;
 }
 .intObj-porta {
@@ -3357,6 +3352,7 @@ This file is part of Cuidando Bem.
 #prontuario table.prescMedica th:nth-child(6),
 #prontuario table.prescMedica td:nth-child(6) {
   width: 5%;
+  cursor: pointer;
 }
 #prontuario table.ssvv {
   font-size: 1.5rem;
@@ -3448,6 +3444,9 @@ This file is part of Cuidando Bem.
 }
 #prontuario #prescEnfermagem_tbody tr {
   display: none;
+}
+#prontuario #prescEnfermagem_tbody td:nth-child(4) .check {
+  cursor: pointer;
 }
 #prontuario #prescMedica_tbody .relatorio {
   text-align: center;
