@@ -140,6 +140,8 @@ define([ "Stage", "levelsData", "AccessibleNavigationMenus" ], function( Stage, 
 
     $(".level").hover(
       function() {
+        $(".level").css("z-index", "1");
+        $( this ).css("z-index", "3");
         var index = $(".level").index( this );
         var levelId = index;
 
