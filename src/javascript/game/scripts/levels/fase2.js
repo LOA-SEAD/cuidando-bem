@@ -615,7 +615,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("action-ir_sala_de_leitos")
         .onClick(function() {
           if ( core.flag("examinar_paciente") ) {
-            //  core.disableInteractiveObject("io-pulseira_paciente");
+            // core.disableInteractiveObject("io-pulseira_paciente");
           }
           core.changeScene( 2 );
         })

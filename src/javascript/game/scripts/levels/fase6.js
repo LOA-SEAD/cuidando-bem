@@ -62,7 +62,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         if ( core.flag("conversar_recepcionista") == false ) {
           core.flag("conversar_recepcionista", true );
           core.openDialog( 0 );
-
         }
 
       });
@@ -282,12 +281,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         }
         /*O fato de já ter verificado o prontuario ou ter tentado sair sem vê-lo é o que
          determina se é a primeira ou segunda vez que o jogador veio até a ala feminina*/
-        if ( (core.flag("score_ver_prontuario") == false) ) {
-          ;
-        } else {
+        if ( core.flag("score_ver_prontuario") ) {
           core.setInteractiveObjectVisible("io-ir_leito", true );
           core.setInteractiveObjectVisible("io-falarPaciente", false );
           core.setActionVisible("btn-lavarMaos", true );
+          core.openCommandBar();
+        }
+
+        if ( core.flag( "conversar_paciente" ) ) {
+          core.setActionVisible("btn-ler_prontuario", true );
           core.openCommandBar();
         }
       })
@@ -338,6 +340,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
           core.openDialog( 0 );
           core.setActionVisible("btn-ler_prontuario", true );
+          core.flag( "conversar_paciente", true );
 
         })
         .setVisibility( true )
@@ -492,12 +495,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.closeDialog();
           // core.setActionVisible("btn-falarPaciente", false );
           core.setActionVisible("btn-realizar_teste_glicemia", true );
-          core.setActionVisible("btn-descartar_agulha", true );
-          core.setActionVisible("btn-jogar_algodao", true );
-          core.setActionVisible("btn-materiaisCurativo", true );
+          // core.setActionVisible("btn-descartar_agulha", true );
+          // core.setActionVisible("btn-jogar_algodao", true );
+          // core.setActionVisible("btn-materiaisCurativo", true );
           core.setActionVisible("btn-lavarMaos", true );
-          core.setActionVisible("btn-calcar_luvas_procedimento", true );
-          core.setActionVisible("btn-calcar_luvas_estereis", true );
+          core.setActionVisible("btn-calcar_luvas_procedimento", false );
+          core.setActionVisible("btn-calcar_luvas_estereis", false );
           core.setActionVisible("btn-fazer_curativo", false );
           core.setActionVisible("btn-identificarCurativo", false );
           core.setActionVisible("btn-erguer_grade", false );
@@ -592,6 +595,43 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
     leito.registerActions([
 
+      new Action("btn-lavarMaos", "Lavar as mãos")
+        .setCssClass("action-lavarMaos")
+        .onClick(function() {
+
+
+          if ( core.flag("verificar_pulseira") == true ) {
+
+            console.log("Action: Lavar as mãos");
+            // Som
+            Player.play( Player.audios.sfx.lavarMaos );
+
+            /*  if ( core.flag("score_selecionou_materiais_curativo") == false ) {
+             if ( core.flag("score_nao_selecionou_materiais_curativo") == false ) {
+             // core.registerScoreItem( Scores.naoSelecionarMateriaisCurativo );
+             core.flag("score_nao_selecionou_materiais_curativo",  true );
+             }
+             core.closeCommandBar();
+             core.openDialog( 11 );
+             }*/
+
+            if ( core.flag("score_lavou_maos_antes_calcar_luva") == false ) {
+              core.flag("score_lavou_maos_antes_calcar_luva", true );
+              core.registerScoreItem( Scores.lavarMaosAntesLuva );
+            }
+          } else {
+
+            if ( core.flag("score_pulseira") == false ) {
+              core.flag("score_pulseira", true );
+              // core.registerScoreItem( Scores.naoVerificarPulseira );
+            }
+
+            core.openDialog( 7 );
+
+          }
+        })
+        .setVisibility( false ),
+
       new Action("btn-verificar_teste_glicemia", "Verificar resultado")
 
         .setCssClass("action-realizar_teste_glicemia")
@@ -612,8 +652,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           console.log("Action: Fazer teste de glicemia capilar");
 
           if ( core.flag("verificar_pulseira") == true ) {
-            // Bip
-            Player.play( Player.audios.sfx.bip );
             // Desabilita acesso a pulseira
             Pulseira.disable();
             if ( core.flag("score_verificar_pulseira") == false ) {
@@ -631,6 +669,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.flag("score_fez_teste_glicemia", true );
                 core.registerScoreItem( Scores.fazerTesteGlicemia );
               }
+              // Bip
+              Player.play( Player.audios.sfx.bip );
               // Abre a cena do glicosimetro
               core.openModalScene("modalGlicosimetroComFita");
             }
@@ -648,7 +688,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setVisibility( false ),
 
       new Action("btn-descartar_agulha", "Descartar agulha")
-        .setCssClass("action-agulha_40x12")
+        .setCssClass("action-agulhas")
         .onClick(function() {
 
 
@@ -662,7 +702,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             core.setActionVisible("btn-realizar_teste_glicemia", false );
             core.setActionVisible("btn-descartar_agulha", false );
             core.setActionVisible("btn-jogar_algodao", false );
-            core.setActionVisible("btn-materiaisCurativo", false );
+            // core.setActionVisible("btn-materiaisCurativo", false );
             core.setActionVisible("btn-lavarMaos", false );
             core.setActionVisible("btn-calcar_luvas_procedimento", false );
             core.setActionVisible("btn-calcar_luvas_estereis", false );
@@ -702,7 +742,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             core.setActionVisible("btn-realizar_teste_glicemia", false );
             core.setActionVisible("btn-descartar_agulha", false );
             core.setActionVisible("btn-jogar_algodao", false );
-            core.setActionVisible("btn-materiaisCurativo", false );
+            // core.setActionVisible("btn-materiaisCurativo", false );
             core.setActionVisible("btn-lavarMaos", false );
             core.setActionVisible("btn-calcar_luvas_procedimento", false );
             core.setActionVisible("btn-calcar_luvas_estereis", false );
@@ -726,67 +766,30 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         })
         .setVisibility( false ),
 
-      new Action("btn-materiaisCurativo", "Selecionar materiais do curativo")
-      // CONSERTAR
-        .setCssClass("action-fazer_curativo")
-        .onClick(function() {
-
-
-          if ( core.flag("verificar_pulseira") == true ) {
-
-            if ( core.flag("score_selecionou_materiais_curativo") == false ) {
-              core.flag("score_selecionou_materiais_curativo", true );
-              core.registerScoreItem( Scores.selecionarMateriaisCurativo );
-            }
-          } else {
-
-            if ( core.flag("score_pulseira") == false ) {
-              core.flag("score_pulseira", true );
-              // core.registerScoreItem( Scores.naoVerificarPulseira );
-            }
-
-            core.openDialog( 7 );
-
-          }
-        })
-        .setVisibility( false ),
-
-      new Action("btn-lavarMaos", "Lavar as mãos")
-        .setCssClass("action-lavarMaos")
-        .onClick(function() {
-
-
-          if ( core.flag("verificar_pulseira") == true ) {
-
-            console.log("Action: Lavar as mãos");
-            // Som
-            Player.play( Player.audios.sfx.lavarMaos );
-
-            /*  if ( core.flag("score_selecionou_materiais_curativo") == false ) {
-             if ( core.flag("score_nao_selecionou_materiais_curativo") == false ) {
-             // core.registerScoreItem( Scores.naoSelecionarMateriaisCurativo );
-             core.flag("score_nao_selecionou_materiais_curativo",  true );
-             }
-             core.closeCommandBar();
-             core.openDialog( 11 );
-             }*/
-
-            if ( core.flag("score_lavou_maos_antes_calcar_luva") == false ) {
-              core.flag("score_lavou_maos_antes_calcar_luva", true );
-              core.registerScoreItem( Scores.lavarMaosAntesLuva );
-            }
-          } else {
-
-            if ( core.flag("score_pulseira") == false ) {
-              core.flag("score_pulseira", true );
-              // core.registerScoreItem( Scores.naoVerificarPulseira );
-            }
-
-            core.openDialog( 7 );
-
-          }
-        })
-        .setVisibility( false ),
+      // new Action("btn-materiaisCurativo", "Selecionar materiais do curativo")
+      // // CONSERTAR
+      //   .setCssClass("action-fazer_curativo")
+      //   .onClick(function() {
+      //
+      //
+      //     if ( core.flag("verificar_pulseira") == true ) {
+      //
+      //       if ( core.flag("score_selecionou_materiais_curativo") == false ) {
+      //         core.flag("score_selecionou_materiais_curativo", true );
+      //         core.registerScoreItem( Scores.selecionarMateriaisCurativo );
+      //       }
+      //     } else {
+      //
+      //       if ( core.flag("score_pulseira") == false ) {
+      //         core.flag("score_pulseira", true );
+      //         // core.registerScoreItem( Scores.naoVerificarPulseira );
+      //       }
+      //
+      //       core.openDialog( 7 );
+      //
+      //     }
+      //   })
+      //   .setVisibility( false ),
 
       new Action("btn-calcar_luvas_procedimento", "Calçar luvas de procedimento")
         .setCssClass("action-luvas_de_procedimento")
@@ -890,51 +893,58 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             }
             core.closeCommandBar();
             core.openDialog( 14 );
-          }
-          if ( core.flag("score_fez_curativo") == false ) {
-            core.flag("score_fez_curativo", true );
-            core.registerScoreItem( Scores.fazerCurativo );
+          } else {
+            if ( core.flag("score_fez_curativo") == false ) {
+              core.flag("score_fez_curativo", true );
+              core.registerScoreItem( Scores.fazerCurativo );
+              core.changeSceneCssClassTo("scene-bedChar06b");
+            }
+            core.setActionVisible("btn-calcar_luvas_procedimento", false );
+            core.setActionVisible("btn-calcar_luvas_estereis", false );
+            core.setActionVisible("btn-fazer_curativo", false );
+            core.setActionVisible("btn-erguer_grade", true );
+            core.setActionVisible("btn-anotarProntuario", true );
           }
         })
         .setVisibility( false ),
 
-      new Action("btn-identificarCurativo", "Identificar curativo")
-      // CONSERTAR
-        .setCssClass("action-identificarCurativo")
-        .onClick(function() {
-          console.log("Action: Identificar curativo");
-          if ( core.flag("score_fez_curativo") == false ) {
-            if ( core.flag("score_nao_fez_curativo") == false ) {
-              // core.registerScoreItem( Scores.naoFazerCurativo );
-              core.flag("score_nao_fez_curativo", true );
-            }
-            core.closeCommandBar();
-            core.openDialog( 15 );
-          }
-          if ( core.flag("score_identificou_curativo") == false ) {
-            core.flag("score_identificou_curativo", true );
-            // core.registerScoreItem( Scores.identificarCurativo );
-          }
-        })
-        .setVisibility( false ),
+      // new Action("btn-identificarCurativo", "Identificar curativo")
+      // // CONSERTAR
+      //   .setCssClass("action-identificarCurativo")
+      //   .onClick(function() {
+      //     console.log("Action: Identificar curativo");
+      //     if ( core.flag("score_fez_curativo") == false ) {
+      //       if ( core.flag("score_nao_fez_curativo") == false ) {
+      //         // core.registerScoreItem( Scores.naoFazerCurativo );
+      //         core.flag("score_nao_fez_curativo", true );
+      //       }
+      //       core.closeCommandBar();
+      //       core.openDialog( 15 );
+      //     }
+      //     if ( core.flag("score_identificou_curativo") == false ) {
+      //       core.flag("score_identificou_curativo", true );
+      //       // core.registerScoreItem( Scores.identificarCurativo );
+      //     }
+      //   })
+      //   .setVisibility( false ),
 
       new Action("btn-erguer_grade", "Elevar grade da cama")
       // CONSERTAR
         .setCssClass("action-elevarGrade")
         .onClick(function() {
           console.log("Action: Erguer grade da cama");
-          if ( core.flag("score_identificou_curativo") == false ) {
-            if ( core.flag("score_nao_identificou_curativo") == false ) {
-              // core.registerScoreItem( Scores.naoIdentificarCurativo );
-              core.flag("score_nao_identificou_curativo", true );
-            }
-            core.closeCommandBar();
-            core.openDialog( 16 );
-          }
+          // if ( core.flag("score_identificou_curativo") == false ) {
+          //   if ( core.flag("score_nao_identificou_curativo") == false ) {
+          //     // core.registerScoreItem( Scores.naoIdentificarCurativo );
+          //     core.flag("score_nao_identificou_curativo", true );
+          //   }
+          //   core.closeCommandBar();
+          //   core.openDialog( 16 );
+          // }
           if ( core.flag("score_ergueu_grade") == false ) {
             core.flag("score_ergueu_grade", true );
             core.registerScoreItem( Scores.elevarGradeDaCama );
-            core.changeSceneCssClassTo("scene-bedChar06Grade");
+            core.changeSceneCssClassTo("scene-bedChar06c");
             core.setActionVisible("btn-erguer_grade", false );
           }
 
@@ -977,14 +987,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.setActionVisible("btn-realizar_teste_glicemia", false );
           core.setActionVisible("btn-materiaisCurativo", true );
           core.setActionVisible("btn-lavarMaos", true );
-          core.setActionVisible("btn-calcar_luvas_procedimento", true );
-          core.setActionVisible("btn-calcar_luvas_estereis", true );
           core.setActionVisible("btn-verificar_teste_glicemia", true );
+          // core.setActionVisible("btn-calcar_luvas_procedimento", true );
+          // core.setActionVisible("btn-calcar_luvas_estereis", true );
 
 
           if ( core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == true ) {
             core.setActionVisible("btn-jogar_algodao", false );
             core.setActionVisible("btn-descartar_agulha", false );
+            core.setActionVisible("btn-calcar_luvas_procedimento", true );
+            core.setActionVisible("btn-calcar_luvas_estereis", true );
+            core.setActionVisible("btn-fazer_curativo", true );
           }
 
           if ( core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == false ) {
@@ -1012,12 +1025,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.setActionVisible("btn-perfuroCortante", false );
 
           core.setActionVisible("btn-realizar_teste_glicemia", false );
-          core.setActionVisible("btn-materiaisCurativo", true );
+          // core.setActionVisible("btn-materiaisCurativo", true );
           core.setActionVisible("btn-lavarMaos", true );
-          core.setActionVisible("btn-calcar_luvas_procedimento", true );
-          core.setActionVisible("btn-calcar_luvas_estereis", true );
           core.setActionVisible("btn-verificar_teste_glicemia", true );
-
 
           if ( core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == true ) {
             core.setActionVisible("btn-jogar_algodao", false );
@@ -1027,6 +1037,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
               core.flag("score_algodao", true );
               core.registerScoreItem( Scores.jogarAlgodaoBandeja );
             }
+            core.setActionVisible("btn-calcar_luvas_procedimento", true );
+            core.setActionVisible("btn-calcar_luvas_estereis", true );
+            core.setActionVisible("btn-fazer_curativo", true );
           }
 
           if ( core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == false ) {
@@ -1059,11 +1072,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.setActionVisible("btn-perfuroCortante", false );
 
           core.setActionVisible("btn-realizar_teste_glicemia", false );
-          core.setActionVisible("btn-materiaisCurativo", true );
+          // core.setActionVisible("btn-materiaisCurativo", true );
           core.setActionVisible("btn-lavarMaos", true );
-          core.setActionVisible("btn-calcar_luvas_procedimento", true );
-          core.setActionVisible("btn-calcar_luvas_estereis", true );
           core.setActionVisible("btn-verificar_teste_glicemia", true );
+          // core.setActionVisible("btn-calcar_luvas_procedimento", true );
+          // core.setActionVisible("btn-calcar_luvas_estereis", true );
 
 
           if ( core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == true ) {
@@ -1074,6 +1087,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
               core.flag("score_agulha", true );
               core.registerScoreItem( Scores.jogarAgulhaLixoCerto );
             }
+            core.setActionVisible("btn-calcar_luvas_procedimento", true );
+            core.setActionVisible("btn-calcar_luvas_estereis", true );
+            core.setActionVisible("btn-fazer_curativo", true );
           }
 
           if ( core.flag("descartar_algodao") == true && core.flag("descartar_agulha") == false ) {
@@ -1397,10 +1413,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
           core.closeModalScene("modalGlicosimetroComFita");
 
-
           core.setActionVisible("btn-realizar_teste_glicemia", false );
           core.setActionVisible("btn-verificar_teste_glicemia", true );
-
+          core.setActionVisible("btn-descartar_agulha", true );
+          core.setActionVisible("btn-jogar_algodao", true );
+          core.disableInteractiveObject("io-conversar_paciente06");
+          // core.setActionVisible("btn-calcar_luvas_procedimento", true );
+          // core.setActionVisible("btn-calcar_luvas_estereis", true );
+          // core.setActionVisible("btn-fazer_curativo", true );
 
         })
         .setVisibility( true )
@@ -1492,6 +1512,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
     level.registerFlag( new Flag("conversar_recepcionista", false ) );
     level.registerFlag( new Flag("conversar_mentor", false ) );
+    level.registerFlag( new Flag("conversar_paciente", false ) );
     level.registerFlag( new Flag("entrou_ala_feminina", false ) );
     level.registerFlag( new Flag("pegou_bandeja", false ) );
     level.registerFlag( new Flag("pegou_todos_instrumentos", false ) );

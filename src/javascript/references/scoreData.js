@@ -163,7 +163,7 @@ define(function() {
       fazerTesteGlicemia: new Score("Fazer teste de glicemia capilar", 100 ),
       jogarAgulhaLixoCerto: new Score("Jogar agulha no descarpax", 50 ),
       jogarAlgodaoBandeja: new Score("Jogar algodão no lixo infectante", 50 ),
-      selecionarMateriaisCurativo: new Score("Selecionar todos os materiais do curativo", 350 ),
+      // selecionarMateriaisCurativo: new Score("Selecionar todos os materiais do curativo", 350 ),
       lavarMaosAntesLeito: new Score("Lavar as mãos antes de ir para o leito do paciente", 200 ),
       calcarLuvaEsteril: new Score("Calçar a luva estéril", 150 ),
       fazerCurativo: new Score("Fazer o curativo na paciente", 150 ),
