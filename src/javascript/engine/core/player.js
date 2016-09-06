@@ -189,11 +189,11 @@ define(function() {
   }
 
   function stopLoop() {
-    if ( isSoundLooping ) {
-      isSoundLooping = false;
+    isSoundLooping = false;
+    if ( loopSound ) {
       loopSound.pause();
-      clearTimeout( loopInterval );
     }
+    clearTimeout( loopInterval );
   }
 
   function playNextInLoop() {
@@ -232,10 +232,11 @@ define(function() {
   }
 
   function stopRange() {
-    if ( isRangePlaying ) {
-      isRangePlaying = false;
+    isRangePlaying = false;
+    if ( rangeSound ) {
       rangeSound.pause();
     }
+    clearTimeout( rangeInterval );
   }
 
   function getNextInRange() {
