@@ -195,7 +195,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
       // 5
-      new Dialog( lib.characters.jogador )
+      new Dialog( lib.characters.mentor )
         .setText( Dialogs.corredor.fala1[ 7 ] )
         .registerOption("", function() {
           core.closeDialog();
