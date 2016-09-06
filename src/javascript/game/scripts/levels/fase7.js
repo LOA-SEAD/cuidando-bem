@@ -789,7 +789,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         })
         .setVisibility( true )
         .setEnable( false ),
+      new InteractiveObject("io-pulseira_paciente2", "Checar pulseira do paciente")
+        .setCssClass("intObj-paciente_07-checar_pulseira2")
+        .onClick(function() {
 
+          core.flag("verificar_pulseira", true );
+
+          console.log("IO: pulseira_paciente");
+          core.openModalScene("Pulseira");
+          Pulseira.open();
+          core.openCommandBar();
+        })
+        .setVisibility( false )
+        .setEnable( true ),
 
       new InteractiveObject("io-conversar_paciente07", "Falar com o paciente")
         .setCssClass("intObj-conversar_paciente")
@@ -849,6 +861,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           if ( core.flag("score_elevar_cama") == false ) {
             core.registerScoreItem( Scores.elevarCama );
             core.changeSceneCssClassTo("scene-bedChar07d");
+            core.setInteractiveObjectVisible("io-pulseira_paciente", false );
+            core.setInteractiveObjectVisible("io-pulseira_paciente2", true );
           }
 
           core.flag("score_elevar_cama", true );
