@@ -401,7 +401,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             if ( core.flag("ir_leito_paciente") == false ) {
               core.flag("ir_leito_paciente", true );
               console.log("Abrir diálogo com paciente 6");
-              core.registerScoreItem( Scores.irAoLeitoCorreto );
+              // core.registerScoreItem( Scores.irAoLeitoCorreto );
               core.changeScene( 3 );
             }
 
@@ -887,7 +887,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setVisibility( true ),
 
 
-      new Action("btn-colocarSoro", "Colocar Soro")
+      new Action("btn-colocarSoro", "Colocar Dieta")
         .setCssClass("action-frasco_dieta")
         .onClick(function() {
 
@@ -1254,7 +1254,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       Prontuario.setAltura("1,60");
       Prontuario.setCircunferenciaAbdominal("70");
 
-      Prontuario.setPrescMedicaRowData( 0, "", "Nutrição Enteral (Hipercalórica  0,99 cal/ml)", "Sonda Nasogástrica", "200 ml/01 hora", "06h/06h", false, true );
+      Prontuario.setPrescMedicaRowData( 0, "", "Nutrição Enteral (Hipercalórica  0,99 cal/ml)", "Sonda Nasogástrica", "200 ml/01 hora", "06h/06h", false, false );
       Prontuario.setPrescMedicaRowData( 1, "", "Morfina (solução oral/gota)", "Oral", "40mg/ml", "12/12h", true, true );
       // Necessário para evitar que valores antigos apareçam no prontuário
       Prontuario.setPrescMedicaRowData( 2, "", "", "", "", "", false, true );

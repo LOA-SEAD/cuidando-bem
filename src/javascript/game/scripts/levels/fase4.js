@@ -640,6 +640,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           if ( core.flag("verificar_pulseira") == true ) {
 
             core.registerScoreItem( Scores.encaminharPacienteCentroCirurgico );
+            // Som
+            Player.play( Player.audios.sfx.mesaComRodinha );
             core.changeScene( 7 );
 
           } else {
@@ -761,8 +763,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       new Dialog( lib.characters.pacientes.regina )
         .setText( Dialogs.leitoPaciente[ 5 ] )
         .registerOption("", function() {
-          // Som
-          Player.play( Player.audios.sfx.mesaComRodinha );
           // Só aqui é habilitado a Regina Ir ao centro cirurgico
           core.flag("conversarPaciente", true );
           // Desabilita conversar novamente com a Regina

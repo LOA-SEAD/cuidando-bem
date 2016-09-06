@@ -656,10 +656,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // core.setActionVisible("btn-frequencia_respiratoria", false);
             core.flag("relogio", true );
 
-            if ( !core.flag("mediuFreqRespiratoria") ) {
-              core.flag("mediuFreqRespiratoria", true );
-              core.registerScoreItem( Scores.verFrequenciaRespiratoria );
-            }
+            core.flag("mediuFreqRespiratoria", true );
+            core.registerScoreItem( Scores.verFrequenciaRespiratoria );
 
             core.flag("lavar-maosDepois", false );
 

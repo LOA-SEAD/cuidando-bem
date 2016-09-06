@@ -79,9 +79,8 @@ define([ "Stage", "AccessibleNavigationMenus", "CuidandoBem", "text!../../html/s
       $("#pauseMenu").hide();
     });
 
-    Core.init();
     Player.stopAll();
-    Player.playInRange( Player.audios.musics.inGame );
+    Core.init();
 
     Accessibility.startAccessibleNavigationMenus();
   };

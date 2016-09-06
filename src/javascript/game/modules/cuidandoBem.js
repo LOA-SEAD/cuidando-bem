@@ -306,6 +306,7 @@ define([
       CommandBar.hide();
 
       Scene.load();
+      Player.playInRange( Player.audios.musics.inGame );
       startAccessibleInGameNavigation();
       console.groupEnd();
     }
@@ -639,8 +640,10 @@ define([
         // }
         return;
       }
-      scoreList.push( score );
-      Storage.addScore( game.getCurrentLevelId(), score );
+      if ( $.inArray( score, scoreList ) < 0 ) {
+        scoreList.push( score );
+        Storage.addScore( game.getCurrentLevelId(), score );
+      }
     }
 
     function goBackToMenu() {
