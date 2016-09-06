@@ -145,7 +145,7 @@ define(function() {
     if ( window.chrome ) {
       sound.load();
     } else {
-      sound.currentTime = 0;
+      // sound.currentTime = 0;
     }
   }
 
