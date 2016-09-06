@@ -11,7 +11,6 @@ This file is part of Cuidando Bem.
     You should have received a copy of the GNU General Public License
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 html {
   font-family: sans-serif; 
   -ms-text-size-adjust: 100%; 
@@ -22,46 +21,55 @@ body {
 }
 article,
 aside,
-details,
+details, 
 figcaption,
 figure,
 footer,
 header,
-hgroup,
-main,
+main, 
+menu,
 nav,
 section,
-summary {
+summary { 
   display: block;
 }
 audio,
 canvas,
 progress,
 video {
-  display: inline-block; 
-  vertical-align: baseline; 
+  display: inline-block;
 }
 audio:not([controls]) {
   display: none;
   height: 0;
 }
-[hidden],
-template {
+progress {
+  vertical-align: baseline;
+}
+template, 
+[hidden] {
   display: none;
 }
 a {
-  background: transparent;
+  background-color: transparent; 
+  -webkit-text-decoration-skip: objects; 
 }
 a:active,
 a:hover {
-  outline: 0;
+  outline-width: 0;
 }
 abbr[title] {
-  border-bottom: 1px dotted;
+  border-bottom: none; 
+  text-decoration: underline; 
+  text-decoration: underline dotted; 
 }
 b,
 strong {
-  font-weight: bold;
+  font-weight: inherit;
+}
+b,
+strong {
+  font-weight: bolder;
 }
 dfn {
   font-style: italic;
@@ -71,7 +79,7 @@ h1 {
   margin: 0.67em 0;
 }
 mark {
-  background: #ff0;
+  background-color: #ff0;
   color: #000;
 }
 small {
@@ -84,89 +92,69 @@ sup {
   position: relative;
   vertical-align: baseline;
 }
-sup {
-  top: -0.5em;
-}
 sub {
   bottom: -0.25em;
 }
+sup {
+  top: -0.5em;
+}
 img {
-  border: 0;
+  border-style: none;
 }
 svg:not(:root) {
   overflow: hidden;
-}
-figure {
-  margin: 1em 40px;
-}
-hr {
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  height: 0;
-}
-pre {
-  overflow: auto;
 }
 code,
 kbd,
 pre,
 samp {
-  font-family: monospace, monospace;
-  font-size: 1em;
+  font-family: monospace, monospace; 
+  font-size: 1em; 
+}
+figure {
+  margin: 1em 40px;
+}
+hr {
+  box-sizing: content-box; 
+  height: 0; 
+  overflow: visible; 
 }
 button,
 input,
-optgroup,
 select,
 textarea {
-  color: inherit; 
   font: inherit; 
   margin: 0; 
 }
-button {
+optgroup {
+  font-weight: bold;
+}
+button,
+input { 
   overflow: visible;
 }
 button,
-select {
+select { 
   text-transform: none;
 }
 button,
-html input[type="button"], 
-input[type="reset"],
-input[type="submit"] {
+html [type="button"], 
+[type="reset"],
+[type="submit"] {
   -webkit-appearance: button; 
-  cursor: pointer; 
-}
-button[disabled],
-html input[disabled] {
-  cursor: default;
 }
 button::-moz-focus-inner,
-input::-moz-focus-inner {
-  border: 0;
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
   padding: 0;
 }
-input {
-  line-height: normal;
-}
-input[type="checkbox"],
-input[type="radio"] {
-  box-sizing: border-box; 
-  padding: 0; 
-}
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  height: auto;
-}
-input[type="search"] {
-  -webkit-appearance: textfield; 
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box; 
-  box-sizing: content-box;
-}
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
 }
 fieldset {
   border: 1px solid #c0c0c0;
@@ -174,22 +162,40 @@ fieldset {
   padding: 0.35em 0.625em 0.75em;
 }
 legend {
-  border: 0; 
+  box-sizing: border-box; 
+  color: inherit; 
+  display: table; 
+  max-width: 100%; 
   padding: 0; 
+  white-space: normal; 
 }
 textarea {
   overflow: auto;
 }
-optgroup {
-  font-weight: bold;
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box; 
+  padding: 0; 
 }
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
 }
-td,
-th {
-  padding: 0;
+[type="search"] {
+  -webkit-appearance: textfield; 
+  outline-offset: -2px; 
+}
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+::-webkit-input-placeholder {
+  color: inherit;
+  opacity: 0.54;
+}
+::-webkit-file-upload-button {
+  -webkit-appearance: button; 
+  font: inherit; 
 }
 /*
 This file is part of Cuidando Bem.
@@ -802,7 +808,7 @@ p.title {
 }
 .level:hover:not(.disabled),
 .level:focus:not(.disabled) {
-  z-index: 3;
+  z-index: 4;
 }
 .level.selected {
   z-index: 2;
@@ -2049,8 +2055,8 @@ div[role="log"]:not(#accessible_log) {
   background-image: url(../images/interactiveObjects/pulseira02_virado.png);
   background-size: contain;
   background-repeat: no-repeat;
-  top: 58.5%;
-  left: 40.5%;
+  top: 64.5%;
+  left: 44.5%;
   width: 5%;
   height: 5%;
 }
@@ -2098,6 +2104,15 @@ div[role="log"]:not(#accessible_log) {
   left: 47.8%;
   width: 2%;
   height: 5.5%;
+}
+.intObj-paciente_07-checar_pulseira2 {
+  background-image: url(../images/interactiveObjects/pulseira04.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 69%;
+  left: 41.8%;
+  width: 3.5%;
+  height: 3.5%;
 }
 .intObj-paciente_08-checar_pulseira {
   background-image: url(../images/interactiveObjects/pulseira08.png);
@@ -2214,7 +2229,7 @@ div[role="log"]:not(#accessible_log) {
   top: 30%;
   left: 53%;
   width: 9%;
-  height: 20%;
+  height: 14%;
 }
 .intObj-ampola_glicose_50 {
   background-image: url(../images/interactiveObjects/glicose30_10ml.png);
@@ -2358,7 +2373,7 @@ div[role="log"]:not(#accessible_log) {
   top: 34%;
   left: 43%;
   width: 9%;
-  height: 20%;
+  height: 10%;
 }
 .intObj-frasco_de_alcool {
   background-image: url(../images/interactiveObjects/frasco_de_alcool.png);
@@ -2403,7 +2418,7 @@ div[role="log"]:not(#accessible_log) {
   top: 45%;
   left: 63%;
   width: 10%;
-  height: 20%;
+  height: 16%;
 }
 .intObj-glicose_30__10_ml {
   background-image: url(../images/interactiveObjects/glicose_30__10_ml.png);
@@ -2609,7 +2624,7 @@ div[role="log"]:not(#accessible_log) {
   background-repeat: no-repeat;
   top: 45%;
   left: 45%;
-  width: 9%;
+  width: 5%;
   height: 20%;
 }
 .intObj-soro_fisiologico_1000_ml {
@@ -2645,7 +2660,7 @@ div[role="log"]:not(#accessible_log) {
   background-repeat: no-repeat;
   top: 44%;
   left: 53%;
-  width: 9%;
+  width: 6%;
   height: 20%;
 }
 .intObj-agulhas {
@@ -2731,7 +2746,8 @@ This file is part of Cuidando Bem.
 .scene-bedChar05b,
 .scene-bedChar05c,
 .scene-bedChar06,
-.scene-bedChar06Grade,
+.scene-bedChar06b,
+.scene-bedChar06c,
 .scene-bedChar07,
 .scene-bedChar07b,
 .scene-bedChar07c,
@@ -2850,8 +2866,11 @@ This file is part of Cuidando Bem.
 .scene-bedChar06 {
   background-image: url(../images/scenes/leitoChar06.jpg);
 }
-.scene-bedChar06Grade {
-  background-image: url(../images/scenes/leitoChar06Grade.jpg);
+.scene-bedChar06b {
+  background-image: url(../images/scenes/leitoChar06b.jpg);
+}
+.scene-bedChar06c {
+  background-image: url(../images/scenes/leitoChar06c.jpg);
 }
 .scene-bedChar07 {
   background-image: url(../images/scenes/leitoChar07.jpg);
@@ -2920,10 +2939,10 @@ This file is part of Cuidando Bem.
   background-image: url(../images/scenes/centroCirurgicoRegina.jpg);
 }
 .scene-bedChar10B {
-  background-image: url(../images/scenes/leitoChar10B.jpg);
+  background-image: url(../images/scenes/leitoChar10b.jpg);
 }
 .scene-bedChar10C {
-  background-image: url(../images/scenes/leitoChar10C.jpg);
+  background-image: url(../images/scenes/leitoChar10c.jpg);
 }
 /*
 This file is part of Cuidando Bem.
@@ -3397,8 +3416,17 @@ This file is part of Cuidando Bem.
   text-align: center;
   border-bottom: 0.1rem solid black;
 }
-#prontuario table.col4 thead th {
+#prontuario table.col4 thead th:nth-child(1) {
+  width: 10%;
+}
+#prontuario table.col4 thead th:nth-child(2) {
   width: 25%;
+}
+#prontuario table.col4 thead th:nth-child(3) {
+  width: 25%;
+}
+#prontuario table.col4 thead th:nth-child(4) {
+  width: 40%;
 }
 #prontuario table.col4 thead th:not(:last-child) {
   border-right: 0.1rem solid black;
@@ -3406,8 +3434,8 @@ This file is part of Cuidando Bem.
 #prontuario table.col4 tbody td:not(:last-child) {
   border-right: 0.1rem solid black;
 }
-#prontuario table.col4 tbody tr:not(:last-child) {
-  border-bottom: 0.1rem solid black;
+#prontuario table.col4 tbody tr {
+  border-top: 0.1rem solid black;
 }
 #prontuario table.col2 {
   width: 100%;
@@ -3773,6 +3801,7 @@ This file is part of Cuidando Bem.
   width: 23.5%;
   left: 22.5%;
   top: 43%;
+  height: 5%;
 }
 #pulseira_modal #data_input {
   position: absolute;
