@@ -22,7 +22,7 @@ module.exports = {
                 to: ""
             },
             {
-                from: /\/\/ *@dev *{(.|\n|\r)*\/\/ *}/g,
+                from: /\/\/ *@dev *{(.|\n|\r)*?\/\/ *}/g,
                 to: ""
             }
         ]
