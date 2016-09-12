@@ -316,7 +316,7 @@ define([ "SimpleStorage" ], function( Storage ) {
     var sum = 0;
     for ( i = 0; i < sav.levels.length - 1; i++ ) {
       if ( typeof sav.levels[ i ] !== "undefined") {
-        for ( j = 0; j < sav.levels[ i ].length - 1; j++ ) {
+        for ( j = 0; j < sav.levels[ i ].length; j++ ) {
           sum += sav.levels[ i ][ j ].score;
         }
       }
@@ -331,7 +331,7 @@ define([ "SimpleStorage" ], function( Storage ) {
     var sum = 0;
 
     if ( typeof level !== "undefined") {
-      for ( j = 0; j < level.length - 1; j++ ) {
+      for ( j = 0; j < level.length; j++ ) {
         sum += level[ j ].score;
       }
     }

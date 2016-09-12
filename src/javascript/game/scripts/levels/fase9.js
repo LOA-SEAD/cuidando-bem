@@ -1254,7 +1254,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       Prontuario.setAltura("1,80");
       Prontuario.setCircunferenciaAbdominal("90");
 
-      Prontuario.setPrescMedicaRowData( 0, "", "Midazolam", "Oral", "15 mg", "01x/dia antes do procedimento cirúrgico", false, true );
+      Prontuario.setPrescMedicaRowData( 0, "", "Midazolam", "Oral", "15 mg", "01x/dia antes do procedimento cirúrgico", false, false );
       // Necessário para evitar que valores antigos apareçam no prontuário
       Prontuario.setPrescMedicaRowData( 1, "", "", "", "", "", false, true );
       Prontuario.setPrescMedicaRowData( 2, "", "", "", "", "", false, true );

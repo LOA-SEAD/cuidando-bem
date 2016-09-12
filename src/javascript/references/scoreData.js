@@ -126,7 +126,7 @@ define(function() {
       confirmarMedicacaoPosto: new Score("Confirmar medicação com mentor", 150 ),
       prepararMedicacao: new Score("Preparar medicação", 150 ),
       // TODO: usar módulo de ficha para verificar cálculo
-      calcularGotejamento: new Score("Calcular gotejamento de soro", 350 ),
+      // calcularGotejamento: new Score("Calcular gotejamento de soro", 350 ),
       identificarMedicacao: new Score("Identificar medicacao", 250 )
 
     },
@@ -208,11 +208,11 @@ define(function() {
       pegarCopoDescartavel: new Score("Pegar copo descartável", 50 ),
       pegarAguaPotavel: new Score("Pegar agua potável", 50 ),
       pegarEquipoCorreto: new Score("Pegar equipamento correto de infusão de dieta", 150 ),
-      calcularInfusaoDieta: new Score("Calcular infusão da dieta corretamente", 150 ),
+      calcularInfusaoDieta: new Score("Calcular infusão da dieta corretamente", 150 )
       // TODO: identificação da dieta
-      identificarDieta: new Score("Identificação da dieta", 150 ),
+      // identificarDieta: new Score("Identificação da dieta", 150 ),
       // TODO: pegar todos os instrumentos
-      pegarTodosInstrumentos: new Score("Pegar todos os instrumentos", 150 )
+      // pegarTodosInstrumentos: new Score("Pegar todos os instrumentos", 150 )
     },
 
     fase8: {
@@ -238,7 +238,7 @@ define(function() {
       explicarAcaoMedicamento: new Score("Explicar a ação do medicamento para o paciente", 150 ),
       oferecerCopo: new Score("Oferecer água para o paciente tomar o medicamento", 150 ),
       // TODO: ver paciente certo... verificar com aline se realmente via precisar disso
-      irPacienteCerto: new Score("Ver paciente certo", 150 ),
+      // irPacienteCerto: new Score("Ver paciente certo", 150 ),
       pegarMedicamento: new Score("Pegar medicamento na farmácia", 50 ),
       conferirMedicamentoErrado: new Score("Verificar o medicamento fornecido pelo farmacêutico", 350 ),
       trocarMedicamento: new Score("Trocar o medicamento equivocado", 150 ),
@@ -284,9 +284,9 @@ define(function() {
       lavarMaosTecnicaCirurgica: new Score("Lavar as mãos antes da técnica cirúrgica", 200 ),
       testarEquipamentos: new Score("Testar equipamentos", 350 ),
       // TODO fazer lista de verificação
-      fazerListaVerificacao: new Score("Fazer lista de verificação", 350 ),
+      // fazerListaVerificacao: new Score("Fazer lista de verificação", 350 ),
       // TODO verificar se esse score é necessário
-      mudarPosicaoPaciente: new Score("Mudar posição do paciente", 350 ),
+      // mudarPosicaoPaciente: new Score("Mudar posição do paciente", 350 ),
       colocarPlacaNeutra: new Score("Colocar a placa neutra", 350 ),
       lavarMaosCentroCirurgico: new Score("Lavar as mãos após realizar os procedimentos", 200 ),
       anotarProntuarioCentroCirurgico: new Score("Anotar no prontuário após realizar os procedimentos", 350 )
@@ -317,12 +317,12 @@ define(function() {
       pegarSeringa: new Score("Pegar Seringa 5ml", 50 ),
       pegarAgulha: new Score("Pegar Agulha 40X12", 50 ),
       pegarGlicose: new Score("Pegar Ampola de Glicose 50%", 50 ),
-      pegarSoro: new Score("Pegar Soro de Macrogotas", 50 ),
+      pegarSoro: new Score("Pegar Soro de Macrogotas", 50 )
       // TODO: todos os scores abaixo
-      identificarMedicacao: new Score("Identificar Medicação", 150 ),
-      calcularGotejamentoDeSoro: new Score("Calcular gotejamento de soro", 350 ),
-      prepararMedicacao: new Score("Preparar medicação", 150 ),
-      confirmarMedicação: new Score("Confirmar medicação", 150 )
+      // identificarMedicacao: new Score("Identificar Medicação", 150 ),
+      // calcularGotejamentoDeSoro: new Score("Calcular gotejamento de soro", 350 ),
+      // prepararMedicacao: new Score("Preparar medicação", 150 ),
+      // confirmarMedicação: new Score("Confirmar medicação", 150 )
 
     }
   };
