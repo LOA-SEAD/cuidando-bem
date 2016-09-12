@@ -19,6 +19,7 @@ This file is part of Cuidando Bem.
   background-color: #fbfefd;
   &:extend(.menuBackImage);
 }
+
 #preloader {
   .titulo {
     background-image: @loadScreenText;
@@ -30,7 +31,6 @@ This file is part of Cuidando Bem.
     background-repeat: no-repeat;
     background-size: contain;
   }
-
 
   .barra {
     position: absolute;
@@ -76,9 +76,11 @@ This file is part of Cuidando Bem.
     height: 12%;
     background-repeat: no-repeat;
     background-size: contain;
-    animation:spin 1s ease-out 1s infinite;
+    animation: spin 1s ease-out 1s infinite;
     @keyframes spin {
-      100% { transform:rotate(360deg); }
+      100% {
+        transform: rotate(360deg);
+      }
     }
   }
 

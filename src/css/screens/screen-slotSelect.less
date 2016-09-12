@@ -15,120 +15,127 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 #slotSelect {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 
-    #menuContainer {
-        top: 10%;
-        width: 20%;
-    }
+  #menuContainer {
+    top: 10%;
+    width: 20%;
+  }
 }
+
 .slotSelect-logo {
-    background: center no-repeat url(../images/misc/logo.png);
-    background-size: contain;
-    width: 38%;
-    height: 9%;
-    position: relative;
-    top: 28%;
-    left: 31%;
+  background: center no-repeat url(../images/misc/logo.png);
+  background-size: contain;
+  width: 38%;
+  height: 9%;
+  position: relative;
+  top: 28%;
+  left: 31%;
 }
 
-.slotSelect-backImage{
-    background-image:  @screen-loadGame;
-    &:extend(.menuBackImage);
+.slotSelect-backImage {
+  background-image: @screen-loadGame;
+  &:extend(.menuBackImage);
 }
 
 .slotSelect-prontuario {
-    background: center no-repeat url(../images/misc/prontuario.png);
-    background-size: contain;
-    width: 59%;
-    height: 142%;
-    position: absolute;
-    top: -5%;
-    left: 11.5%;
+  background: center no-repeat url(../images/misc/prontuario.png);
+  background-size: contain;
+  width: 59%;
+  height: 142%;
+  position: absolute;
+  top: -5%;
+  left: 11.5%;
 }
 
-#saveSlotMain{
-    position: relative;
-    top: 22%;
+#saveSlotMain {
+  position: relative;
+  top: 22%;
 }
 
-#slotsContainer{
-    position: relative;
-    left: 10%;
-    width: 80%;
+#slotsContainer {
+  position: relative;
+  left: 10%;
+  width: 80%;
 
-    .slot:not(:last-child){
-        margin-bottom: 10%;
-    }
-    .slot{
-        overflow: hidden;
-        text-overflow: ellipsis;
-        box-sizing: border-box;
-        width: 70%;
-        //height: 7%;
-        padding: 2%;
-        margin-left: 15%;
-        background-color: cadetblue;
-        border-radius: 5% ~"/" 35%;
-        border: none;
-        font-size: 4em;
-        cursor: pointer;
-    }
+  .slot:not(:last-child) {
+    margin-bottom: 10%;
+  }
+  .slot {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    width: 70%;
+    //height: 7%;
+    padding: 2%;
+    margin-left: 15%;
+    background-color: cadetblue;
+    border-radius: 5% ~"/" 35%;
+    border: none;
+    font-size: 4em;
+    cursor: pointer;
+  }
 
-    .slot:hover:not(.selected),
-    .slot:focus:not(.selected){
-        background-color: #80B1B3;
-    }
+  .slot:hover:not(.selected),
+  .slot:focus:not(.selected) {
+    background-color: #80B1B3;
+  }
 
-    .slot.selected{
-        background-color: indianred;
-    }
+  .slot.selected {
+    background-color: indianred;
+  }
 
-    .slot.selected:hover,
-    .slot.selected:focus{
-        background-color: #D98282;
-    }
+  .slot.selected:hover,
+  .slot.selected:focus {
+    background-color: #D98282;
+  }
 
-    .slot.empty{
-        color: #000;
-    }
+  .slot.empty {
+    color: #000;
+  }
 
-    .slot.filled{
-        color: #FFF;
-    }
+  .slot.filled {
+    color: #FFF;
+  }
 }
 
-#slotsMenu{
+#slotsMenu {
   width: 54%;
   margin-left: 23%;
 
-  .menuButton{
+  .menuButton {
     margin-top: 5px;
     width: 30%;
 
     float: left;
     margin-left: 5%;
   }
-  .menuButton:first-child{
+  .menuButton:first-child {
     margin-left: 0;
   }
 }
 
 .type-name-dialog {
-    width: 30% !important;
-    height: 33% !important;
-    box-sizing: border-box;
-    top: 35% !important;
-    left: 35% !important;
+  width: 30% !important;
+  height: 33% !important;
+  box-sizing: border-box;
+  top: 35% !important;
+  left: 35% !important;
 }
 
 .delete-slot-dialog {
-    width: 30% !important;
-    height: 30% !important;
-    box-sizing: border-box;
-    top: 35% !important;
-    left: 35% !important;
+  width: 30% !important;
+  height: 30% !important;
+  box-sizing: border-box;
+  top: 35% !important;
+  left: 35% !important;
+}
+
+#dialog-typename {
+  label {
+    display: none;
+  }
 }

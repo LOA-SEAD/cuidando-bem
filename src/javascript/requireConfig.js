@@ -1,19 +1,19 @@
 /*
-This file is part of Cuidando Bem.
+ This file is part of Cuidando Bem.
 
-    Cuidando Bem is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+ Cuidando Bem is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
 
-    Cuidando Bem is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+ Cuidando Bem is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ You should have received a copy of the GNU General Public License
+ along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /*
  This file configures all paths to modules used by the project
 
@@ -22,63 +22,66 @@ This file is part of Cuidando Bem.
 
 // Configure all files paths aliases
 require.config({
-    baseUrl: "javascript/",
-    paths: {
-        // Libs
-        jquery: "./libs/jquery",
-        jqueryui: "./libs/jquery-ui",
-        jquerymask: "./libs/jquery.mask",
-        text: "./libs/text",
-        SimpleStorage: "./libs/simpleStorage",
+  baseUrl: "javascript/",
+  paths: {
+    // Libs
+    jquery: "./libs/jquery",
+    jqueryui: "./libs/jquery-ui",
+    jquerymask: "./libs/jquery.mask",
+    text: "./libs/text",
+    SimpleStorage: "./libs/simpleStorage",
 
-        // Engine
-        Stage: "engine/core/stage",
-        Player: "engine/core/player",
-        ImageLoader: "engine/core/imageLoader",
-        IsMobile: "engine/core/isMobile",
+    // Engine
+    Stage: "engine/core/stage",
+    Player: "engine/core/player",
+    ImageLoader: "engine/core/imageLoader",
+    IsMobile: "engine/core/isMobile",
 
-        commandBar: "engine/modules/commandBar/commandBarController",
-        Action: "engine/modules/commandBar/action",
+    // Accessible
+    AccessibleNavigationMenus: "engine/core/accessibleNavigationMenus",
 
-        dialogModal: "engine/modules/dialog/dialogsController",
-        Dialog: "engine/modules/dialog/dialog",
+    commandBar: "engine/modules/commandBar/commandBarController",
+    Action: "engine/modules/commandBar/action",
 
-        endOfLevel: "engine/modules/endOfLevel/endOfLevelController",
+    dialogModal: "engine/modules/dialog/dialogsController",
+    Dialog: "engine/modules/dialog/dialog",
 
-        interactiveObjects: "engine/modules/interactiveObjects/interactiveObjectsController",
-        modalInteractiveObjects: "engine/modules/interactiveObjects/modalInteractiveObjectsController",
-        InteractiveObject: "engine/modules/interactiveObjects/interactiveObject",
+    endOfLevel: "engine/modules/endOfLevel/endOfLevelController",
 
-        modalScene: "engine/modules/scenes/modalSceneController",
+    interactiveObjects: "engine/modules/interactiveObjects/interactiveObjectsController",
+    modalInteractiveObjects: "engine/modules/interactiveObjects/modalInteractiveObjectsController",
+    InteractiveObject: "engine/modules/interactiveObjects/interactiveObject",
 
-        scene: "engine/modules/scenes/sceneController",
-        Scene: "engine/modules/scenes/scene",
+    modalScene: "engine/modules/scenes/modalSceneController",
 
-        // Game
-        CuidandoBem: "game/modules/cuidandoBem",
+    scene: "engine/modules/scenes/sceneController",
+    Scene: "engine/modules/scenes/scene",
 
-        Storage: "game/modules/storage/storage",
+    // Game
+    CuidandoBem: "game/modules/cuidandoBem",
 
-        Flag: "game/modules/flag",
-        Level: "game/modules/level",
-        Character: "game/modules/character",
-        Pulseira: "game/modules/pulseira/pulseiraModal",
-        Ficha: "game/modules/ficha/ficha",
-        Prontuario: "game/modules/prontuario/prontuario",
-        levelsData: "game/modules/levelsData",
-        FreqRespiratoria: "game/modules/freqRespiratoria/freqRespiratoria",
-        EquipoGotejamento: "game/modules/equipoGotejamento/equipoGotejamento",
+    Storage: "game/modules/storage/storage",
 
-        // Configs
-        gameConfig: "game/scripts/gameConfig",
-        stageConfig: "game/scripts/stageConfig",
+    Flag: "game/modules/flag",
+    Level: "game/modules/level",
+    Character: "game/modules/character",
+    Pulseira: "game/modules/pulseira/pulseiraModal",
+    Ficha: "game/modules/ficha/ficha",
+    Prontuario: "game/modules/prontuario/prontuario",
+    levelsData: "game/modules/levelsData",
+    FreqRespiratoria: "game/modules/freqRespiratoria/freqRespiratoria",
+    EquipoGotejamento: "game/modules/equipoGotejamento/equipoGotejamento",
 
-        Commons: "game/scripts/commons",
+    // Configs
+    gameConfig: "game/scripts/gameConfig",
+    stageConfig: "game/scripts/stageConfig",
 
-        // Refs
-        DialogsData: "references/dialogData",
-        ImagesUrls: "references/imagesUrls",
-        ScoresData: "references/scoreData",
-        SoundsUrls: "references/soundsUrls"
-    }
+    Commons: "game/scripts/commons",
+
+    // Refs
+    DialogsData: "references/dialogData",
+    ImagesUrls: "references/imagesUrls",
+    ScoresData: "references/scoreData",
+    SoundsUrls: "references/soundsUrls"
+  }
 });

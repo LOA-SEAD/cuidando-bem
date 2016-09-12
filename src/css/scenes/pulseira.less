@@ -14,12 +14,12 @@ This file is part of Cuidando Bem.
     You should have received a copy of the GNU General Public License
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
-#pulseira_modal{
+#pulseira_modal {
   display: none;
   float: left;
   position: absolute;
 
-  input{
+  input {
     border: none;
     border-bottom: 0.2rem solid black;
     background-color: transparent;
@@ -27,7 +27,7 @@ This file is part of Cuidando Bem.
     height: 4%;
   }
 
-  #name_span{
+  #name_span {
     position: absolute;
     top: 44%;
     left: 18.3%;
@@ -35,7 +35,7 @@ This file is part of Cuidando Bem.
     font-family: @font-printed;
   }
 
-  #data_span{
+  #data_span {
     position: absolute;
     top: 48.7%;
     left: 26%;
@@ -43,7 +43,7 @@ This file is part of Cuidando Bem.
     font-family: @font-printed;
   }
 
-  #leito_span{
+  #leito_span {
     position: absolute;
     top: 48.7%;
     left: 17.5%;
@@ -51,18 +51,22 @@ This file is part of Cuidando Bem.
     font-family: @font-printed;
   }
 
-  .transparent{
-    display: none;
+  .transparent {
+    visibility: hidden;
+    height: 0;
+    width: 0;
+    display: block;
   }
 
-  #name_input{
+  #name_input {
     position: absolute;
     width: 23.5%;
     left: 22.5%;
     top: 43%;
+    height: 5%;
   }
 
-  #data_input{
+  #data_input {
     position: absolute;
     width: 8%;
     left: 38%;
@@ -70,7 +74,7 @@ This file is part of Cuidando Bem.
     text-align: center;
   }
 
-  #leito_input{
+  #leito_input {
     position: absolute;
     width: 3%;
     left: 22.5%;

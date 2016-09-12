@@ -58,21 +58,29 @@ module.exports = function( grunt ) {
               message: "For which plataforms the game should be built?",
               choices: [
                 {
-                  name: "Web Browsers(zip) - Compress"
+                  name: "Web Browsers(zip) - Compress",
+                  value: "web"
                 }, {
-                  name: "Android - Crosswalk"
+                  name: "Android - Crosswalk",
+                  value: "android"
                 }, {
-                  name: "Ios - Crosswalk"
+                  name: "Ios - Crosswalk (only works if you are on a mac)",
+                  value: "ios"
                 }, {
-                  name: "win 32 - Electron"
+                  name: "Win 32 - Electron",
+                  value: "win32"
                 }, {
-                  name: "Win 64 - Electron"
+                  name: "Win 64 - Electron",
+                  value: "win64"
                 }, {
-                  name: "Linux 32 - Electron"
+                  name: "Linux 32 - Electron",
+                  value: "linux32"
                 }, {
-                  name: "Linux 64 - Electron"
+                  name: "Linux 64 - Electron",
+                  value: "linux64"
                 }, {
-                  name: "Mac - Electron"
+                  name: "Mac - Electron (only works if you are on a mac)",
+                  value: "mac"
                 }
               ],
               when: function( answers ) {
@@ -110,12 +118,42 @@ module.exports = function( grunt ) {
                 "gh-pages"
               ]);
             }
-            console.log( answers.distributions );
-            if ( answers.distributions ) {
+
+            if ( answers.distributions.length > 0 ) {
               console.log( answers.distributions );
+              if ( answers.distributions.indexOf("web") > -1 ) {
+                // Build for web
+                grunt.task.run([ "compress" ]);
+              }
+              if ( answers.distributions.indexOf("android") > -1 ) {
+                // Build for android using crosswalk
+              }
+              if ( answers.distributions.indexOf("ios") > -1 ) {
+                // Build for ios using crosswalk
+              }
+              if ( answers.distributions.indexOf("win32") > -1 ) {
+                // Build for win32 using electron
+                grunt.task.run([ "electron:win32" ]);
+              }
+              if ( answers.distributions.indexOf("win64") > -1 ) {
+                // Build for win64 using electron
+                grunt.task.run([ "electron:win64" ]);
+              }
+              if ( answers.distributions.indexOf("linux32") > -1 ) {
+                // Build for linux32 using electron
+                grunt.task.run([ "electron:linux32" ]);
+              }
+              if ( answers.distributions.indexOf("linux64") > -1 ) {
+                // Build for linux64 using electron
+                grunt.task.run([ "electron:linux64" ]);
+              }
+              if ( answers.distributions.indexOf("mac") > -1 ) {
+                // Build for mac using electron
+                grunt.task.run([ "electron:mac" ]);
+              }
             }
           }
       }
     }
-  }
+  };
 };

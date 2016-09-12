@@ -24,142 +24,143 @@ This file is part of Cuidando Bem.
 @color-level-failed: #ce5b5b;
 
 .levelSelect-backImage {
-    position: absolute;
-    background-image: @screen-levelSelect;
-    &:extend(.menuBackImage);
+  position: absolute;
+  background-image: @screen-levelSelect;
+  &:extend(.menuBackImage);
 }
 
 #levelSelectContainer {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
 }
 
 #levelSelector {
-    width: 100%;
-    height: 100%;
-    position: absolute;
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
 
 p.title {
-    font-size: 4.2em;
-    color: black;
-    margin: 0;
-    position: relative;
-    top: -15%;
-    z-index: 5;
-    width: 30%;
-    left: 35%;
+  font-size: 4.2em;
+  color: black;
+  margin: 0;
+  position: relative;
+  top: -15%;
+  z-index: 5;
+  width: 30%;
+  left: 35%;
 }
 
 .endGameButton {
-    position: absolute;
-    bottom: 8%;
-    left: 6%;
-    margin: 0;
-    padding: 0 2%;
-    width: 25%;
+  position: absolute;
+  bottom: 8%;
+  left: 6%;
+  margin: 0;
+  padding: 0 2%;
+  width: 25%;
 }
 
 .level:hover:not(.disabled),
-.level:focus:not(.disabled){
-    z-index: 3;
+.level:focus:not(.disabled) {
+  z-index: 4;
 }
+
 .level.selected {
-    z-index: 2;
+  z-index: 2;
 }
+
 .level:hover:not(.disabled),
 .level:focus:not(.disabled),
 .level.selected {
-    .back {
-        @size: 100%;
-        // background-color: @color-level-completed;
-        // border: 2px solid @color-level-completed-darker;
-        width: @size;
-        height: @size;
-        margin: (100% - @size)/2;
-    }
-    .image {
-        @size: 74%;
-        width: @size;
-        height: @size;
-        margin: (100% - @size)/2 + 2%;
-    }
+  .back {
+    @size: 100%;
+    // background-color: @color-level-completed;
+    // border: 2px solid @color-level-completed-darker;
+    width: @size;
+    height: @size;
+    margin: (100% - @size)/2;
+  }
+  .image {
+    @size: 74%;
+    width: @size;
+    height: @size;
+    margin: (100% - @size)/2 + 2%;
+  }
 }
 
 .level.selected:hover,
-.level.selected:focus{
-    .back {
-        // background-color: #ffa44a;
-    }
+.level.selected:focus {
+  .back {
+    // background-color: #ffa44a;
+  }
 }
 
 .level {
-    width: 15%;
-    height: 25%;
-    cursor: pointer;
+  width: 15%;
+  height: 25%;
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -7.5% -7.5%;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  .back {
+    @size: 70%;
+    border: 0.4rem solid rgba(0, 0, 0, 0.2);
+    background-color: @color-level-enabled;
+    width: @size;
+    height: @size;
+    margin: (100% - @size)/2;
     display: block;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -7.5% -7.5%;
+    top: 0;
+    left: 0;
     border-radius: 50%;
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    .back {
-        @size: 70%;
-        border: 0.4rem solid rgba(0, 0, 0, 0.2);
-        background-color: @color-level-enabled;
-        width: @size;
-        height: @size;
-        margin: (100% - @size)/2;
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        border-radius: 50%;
-        transition-duration: 0.3s;
-        transition-property: width, height, margin;
-    }
-    .image {
-        @size: 50%;
-        width: @size;
-        height: @size;
-        margin: (100% - @size)/2 + 2%;
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
-        transition-duration: 0.3s;
-        transition-property: width, height, margin;
-    }
+    transition-duration: 0.3s;
+    transition-property: width, height, margin;
+  }
+  .image {
+    @size: 50%;
+    width: @size;
+    height: @size;
+    margin: (100% - @size)/2 + 2%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    transition-duration: 0.3s;
+    transition-property: width, height, margin;
+  }
 }
 
 .level.completed {
   > .back {
-      background-color: @color-level-completed;
+    background-color: @color-level-completed;
   }
 }
 
-
 .level.failed {
   > .back {
-      background-color: @color-level-failed;
+    background-color: @color-level-failed;
   }
 }
 
 .level.disabled {
-    > .back {
-        background-color: @color-level-disabled;
-    }
-    > .image:not(.next) {
-        background-image: @locker;
-    }
+  > .back {
+    background-color: @color-level-disabled;
+  }
+  > .image:not(.next) {
+    background-image: @locker;
+  }
 }
 
 @rad: 140%;
@@ -167,89 +168,89 @@ p.title {
 @deg: 360deg / @els;
 @degConst: @deg * 2.5 + 8deg;
 .l0 {
-    @dg: @deg * 0 - @degConst;
-    transform: rotate(@dg) translate(@rad) rotate(-@dg);
-    > .image {
-        background-image: @bg-bracelet;
-    }
+  @dg: @deg * 0 - @degConst;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+  > .image {
+    background-image: @bg-bracelet;
+  }
 }
 
 .l1 {
-    @dg: @deg * 1 - @degConst;
-    transform: rotate(@dg) translate(@rad) rotate(-@dg);
-    > .image {
-        background-image: @intObj-cushion;
-    }
+  @dg: @deg * 1 - @degConst;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+  > .image {
+    background-image: @intObj-cushion;
+  }
 }
 
 .l2 {
-    @dg: @deg * 2 - @degConst;
-    transform: rotate(@dg) translate(@rad) rotate(-@dg);
-    > .image {
-        background-image: @intObj-aparelhoGlicemia;
-    }
+  @dg: @deg * 2 - @degConst;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+  > .image {
+    background-image: @intObj-aparelhoGlicemia;
+  }
 }
 
 .l3 {
-    @dg: @deg * 3 - @degConst;
-    transform: rotate(@dg) translate(@rad) rotate(-@dg);
-    > .image {
-        background-image: @intObj-placa_neutra;
-    }
+  @dg: @deg * 3 - @degConst;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+  > .image {
+    background-image: @intObj-placa_neutra;
+  }
 }
 
 .l4 {
-    @dg: @deg * 4 - @degConst;
-    transform: rotate(@dg) translate(@rad) rotate(-@dg);
-    > .image {
-        background-image: @intObj-seringa_20_ml;
-    }
+  @dg: @deg * 4 - @degConst;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+  > .image {
+    background-image: @intObj-seringa_20_ml;
+  }
 }
 
 .l5 {
-    @dg: @deg * 5 - @degConst;
-    transform: rotate(@dg) translate(@rad) rotate(-@dg);
-    > .image {
-        background-image: @intObj-gaze_esteril;
-    }
+  @dg: @deg * 5 - @degConst;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+  > .image {
+    background-image: @intObj-gaze_esteril;
+  }
 }
 
 .l6 {
-    @dg: @deg * 6 - @degConst;
-    transform: rotate(@dg) translate(@rad) rotate(-@dg);
-    > .image {
-        background-image: @intObj-equipo_de_infusao_de_dieta;
-    }
+  @dg: @deg * 6 - @degConst;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+  > .image {
+    background-image: @intObj-equipo_de_infusao_de_dieta;
+  }
 }
 
 .l7 {
-    @dg: @deg * 7 - @degConst;
-    transform: rotate(@dg) translate(@rad) rotate(-@dg);
-    > .image {
-        background-image: @intObj-clorpromazina_medicamento;
-    }
+  @dg: @deg * 7 - @degConst;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+  > .image {
+    background-image: @intObj-clorpromazina_medicamento;
+  }
 }
 
 .l8 {
-    @dg: @deg * 8 - @degConst;
-    transform: rotate(@dg) translate(@rad) rotate(-@dg);
-    > .image {
-        background-image: @intObj-carrinho_anestesico;
-    }
+  @dg: @deg * 8 - @degConst;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+  > .image {
+    background-image: @intObj-carrinho_anestesico;
+  }
 }
 
 .l9 {
-    @dg: @deg * 9 - @degConst;
-    transform: rotate(@dg) translate(@rad) rotate(-@dg);
-    > .image {
-        background-image: @intObj-soro_glicofisiologico_1000_ml;
-    }
+  @dg: @deg * 9 - @degConst;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+  > .image {
+    background-image: @intObj-soro_glicofisiologico_1000_ml;
+  }
 }
 
 .l10 {
-    @dg: @deg * 10 - @degConst;
-    transform: rotate(@dg) translate(@rad) rotate(-@dg);
-    > .image {
-        background-image: @animation-mesa-contrato;
-    }
+  @dg: @deg * 10 - @degConst;
+  transform: rotate(@dg) translate(@rad) rotate(-@dg);
+  > .image {
+    background-image: @animation-mesa-contrato;
+  }
 }

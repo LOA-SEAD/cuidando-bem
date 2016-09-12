@@ -1,19 +1,19 @@
 /*
-This file is part of Cuidando Bem.
+ This file is part of Cuidando Bem.
 
-    Cuidando Bem is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+ Cuidando Bem is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
 
-    Cuidando Bem is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+ Cuidando Bem is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ You should have received a copy of the GNU General Public License
+ along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /**
  *
  * @name CommandBar
@@ -22,10 +22,10 @@ This file is part of Cuidando Bem.
  * @author Otho - Marcelo Lopes Lotufo
  */
 define([
-        "text!../html/command_bar/commandBar.html",
-        "text!../html/command_bar/actionButtonTemplate.html"
-    ],
-    function( html, actionButtonTemplate ) {
+    "text!../html/command_bar/commandBar.html",
+    "text!../html/command_bar/actionButtonTemplate.html"
+  ],
+  function( html, actionButtonTemplate ) {
 
 // Attributes
     /**
@@ -60,7 +60,7 @@ define([
      * @memberOf module:CommandBar
      */
     function init( selector ) {
-        $( selector ).append( html );
+      $( selector ).append( html );
     }
 
     /**
@@ -74,16 +74,16 @@ define([
      * @memberOf module:CommandBar
      */
     function addAllActionButtons( _actions ) {
-        console.group("Adding action Buttons", true );
-        var i;
+      console.group("Adding action Buttons", true );
+      var i;
 
-        for ( i = 0; i < _actions.length; i++ ) {
-            console.log("Action to be added " + i + ": " + _actions[ i ].getName() );
-            var action = _actions[ i ];
-            addActionButton( action );
-        }
-        console.groupEnd();
-  }
+      for ( i = 0; i < _actions.length; i++ ) {
+        console.log("Action to be added " + i + ": " + _actions[ i ].getName() );
+        var action = _actions[ i ];
+        addActionButton( action );
+      }
+      console.groupEnd();
+    }
 
     /**
      * Change the current actions buttons for a new array of actions
@@ -95,8 +95,8 @@ define([
      * @memberOf module:CommandBar
      */
     function changeToActionsButtons( _actions ) {
-        removeAllActionButtons();
-        addAllActionButtons( _actions );
+      removeAllActionButtons();
+      addAllActionButtons( _actions );
     }
 
     // This function, if called should remove all the listeners and extra interface
@@ -109,12 +109,12 @@ define([
      * @memberOf module:CommandBar
      */
     function close() {
-        var actionButtons = $( actionButtonSelector );
+      var actionButtons = $( actionButtonSelector );
 
-        for ( button in actionButtons ) {
-            var actionButton = $( actionButtons[ button ] );
-            actionButton.removeAllListeners();
-        }
+      for ( button in actionButtons ) {
+        var actionButton = $( actionButtons[ button ] );
+        actionButton.removeAllListeners();
+      }
     }
 
     /**
@@ -126,7 +126,7 @@ define([
      * @memberOf module:CommandBar
      */
     function hide() {
-        $( barSelector ).hide();
+      $( barSelector ).hide();
     }
 
     /**
@@ -138,7 +138,7 @@ define([
      * @memberOf module:CommandBar
      */
     function show() {
-        $( barSelector ).show();
+      $( barSelector ).show();
     }
 
 
@@ -153,43 +153,50 @@ define([
      * @memberOf module:CommandBar
      */
     function addActionButton( _action ) {
-        var element = $( $( actionButtonTemplate )[ 0 ] );
+      var element = $( $( actionButtonTemplate )[ 0 ] );
 
-        element.click( _action.getFunction() );
-        element.attr("title", _action.getName() );
-        element.attr("id", _action.getId() );
-        element.addClass( _action.getCssClass() );
+      element.click( _action.getFunction() );
+      element.attr("title", _action.getName() );
+      element.attr("id", _action.getId() );
+      element.addClass( _action.getCssClass() );
 
-        element.tooltip({
-            tooltipClass: "actionButton-ui-tooltip",
-            show: {
-                duration: 100
-            },
-            position: {
-                my: "center bottom-20",
-                at: "center top",
-                using: function( position, feedback ) {
-                    $( this ).css( position );
-                    $("<div>")
-                        .addClass("arrow")
-                        .addClass( feedback.vertical )
-                        .addClass( feedback.horizontal )
-                        .appendTo( this );
-                }
-            }
-        });
+      element.on("screenReader", function() {
+        $(".jqhover").removeClass("jqhover");
+        $( this ).addClass("jqhover");
+        $("#accessible_log").empty();
+        $("<span>" + _action.getName() + "</span><br>").appendTo("#accessible_log");
+      });
 
-        if ( _action.isEnabled() ) {
-            element.addClass("enabled");
-        } else {
-            element.addClass("disabled");
+      element.tooltip({
+        tooltipClass: "actionButton-ui-tooltip",
+        show: {
+          duration: 100
+        },
+        position: {
+          my: "center bottom-20",
+          at: "center top",
+          using: function( position, feedback ) {
+            $( this ).css( position );
+            $("<div>")
+              .addClass("arrow")
+              .addClass( feedback.vertical )
+              .addClass( feedback.horizontal )
+              .appendTo( this );
+          }
         }
+      });
+
+      if ( _action.isEnabled() ) {
+        element.addClass("enabled");
+      } else {
+        element.addClass("disabled");
+      }
 
 
-        $( barSelector ).append( element );
-        if ( !_action.isVisible() ) {
-            element.hide();
-        }
+      $( barSelector ).append( element );
+      if ( !_action.isVisible() ) {
+        element.hide();
+      }
     }
 
     // Remove all buttons
@@ -202,7 +209,7 @@ define([
      * @memberOf module:CommandBar
      */
     function removeAllActionButtons() {
-        $( barSelector ).empty();
+      $( barSelector ).empty();
     }
 
     // Remove Button
@@ -230,12 +237,12 @@ define([
      * @memberOf module:CommandBar
      */
     function enableActionButton( _action ) {
-        var selector = "#" + _action.getId();
-        var element = $( selector );
-        element.removeClass("disabled");
-        element.addClass("enabled");
-        element.click( _action.getFunction() );
-        element.tooltip("enable");
+      var selector = "#" + _action.getId();
+      var element = $( selector );
+      element.removeClass("disabled");
+      element.addClass("enabled");
+      element.click( _action.getFunction() );
+      element.tooltip("enable");
     }
 
     // Deactivate Button
@@ -249,12 +256,12 @@ define([
      * @memberOf module:CommandBar
      */
     function disableActionButton( _action ) {
-        var selector = "#" + _action.getId();
-        var element = $( selector );
-        element.removeClass("enabled");
-        element.addClass("disabled");
-        element.unbind("click");
-        element.tooltip("disable");
+      var selector = "#" + _action.getId();
+      var element = $( selector );
+      element.removeClass("enabled");
+      element.addClass("disabled");
+      element.unbind("click");
+      element.tooltip("disable");
     }
 
     /**
@@ -267,15 +274,15 @@ define([
      * @memberOf module:CommandBar
      */
     function enableAllActionButtons( _actions ) {
-        console.group("Enabling action Buttons", true );
-        var i;
+      console.group("Enabling action Buttons", true );
+      var i;
 
-        for ( i = 0; i < _actions.length; i++ ) {
-            console.log("Action to be enabled " + i + ": " + _actions[ i ].getName() );
-            var action = _actions[ i ];
-            enableActionButton( action );
-        }
-        console.groupEnd();
+      for ( i = 0; i < _actions.length; i++ ) {
+        console.log("Action to be enabled " + i + ": " + _actions[ i ].getName() );
+        var action = _actions[ i ];
+        enableActionButton( action );
+      }
+      console.groupEnd();
     }
 
     /**
@@ -288,15 +295,15 @@ define([
      * @memberOf module:CommandBar
      */
     function disableAllActionButtons( _actions ) {
-        console.group("Disabling action Buttons", true );
-        var i;
+      console.group("Disabling action Buttons", true );
+      var i;
 
-        for ( i = 0; i < _actions.length; i++ ) {
-            console.log("Action to be disabled " + i + ": " + _actions[ i ].getName() );
-            var action = _actions[ i ];
-            disableActionButton( action );
-        }
-        console.groupEnd();
+      for ( i = 0; i < _actions.length; i++ ) {
+        console.log("Action to be disabled " + i + ": " + _actions[ i ].getName() );
+        var action = _actions[ i ];
+        disableActionButton( action );
+      }
+      console.groupEnd();
     }
 
     /**
@@ -309,19 +316,19 @@ define([
      * @memberOf module:CommandBar
      */
     function updateAllActionButtons( _actions ) {
-        console.group("Updating action Buttons", true );
-        var i;
+      console.group("Updating action Buttons", true );
+      var i;
 
-        for ( i = 0; i < _actions.length; i++ ) {
-            console.log("Action to be updated " + i + ": " + _actions[ i ].getName() );
-            var action = _actions[ i ];
-            if ( action.isEnabled() ) {
-                enableActionButton( action );
-            } else {
-                disableActionButton( action );
-            }
+      for ( i = 0; i < _actions.length; i++ ) {
+        console.log("Action to be updated " + i + ": " + _actions[ i ].getName() );
+        var action = _actions[ i ];
+        if ( action.isEnabled() ) {
+          enableActionButton( action );
+        } else {
+          disableActionButton( action );
         }
-        console.groupEnd();
+      }
+      console.groupEnd();
     }
 
 // Getters
@@ -338,37 +345,37 @@ define([
      * @memberOf module:CommandBar
      */
     function setActionVisible( _action, _value ) {
-        var selector = "#" + _action.getId();
+      var selector = "#" + _action.getId();
 
-        if ( _value ) {
-            $( selector ).show();
-        } else {
-            $( selector ).hide();
-        }
+      if ( _value ) {
+        $( selector ).show();
+      } else {
+        $( selector ).hide();
+      }
     }
 
 // Public Interface
     return {
-        init: init,
-        close: close,
+      init: init,
+      close: close,
 
-        hide: hide,
-        show: show,
+      hide: hide,
+      show: show,
 
-        addActionButton: addActionButton,
-        addAllActionButtons: addAllActionButtons,
-        changeToActionsButtons: changeToActionsButtons,
+      addActionButton: addActionButton,
+      addAllActionButtons: addAllActionButtons,
+      changeToActionsButtons: changeToActionsButtons,
 
-        removeActionButton: removeActionButton,
-        enableActionButton: enableActionButton,
-        disableActionButton: disableActionButton,
+      removeActionButton: removeActionButton,
+      enableActionButton: enableActionButton,
+      disableActionButton: disableActionButton,
 
-        enableAllActionButtons: enableAllActionButtons,
-        disableAllActionButtons: disableAllActionButtons,
+      enableAllActionButtons: enableAllActionButtons,
+      disableAllActionButtons: disableAllActionButtons,
 
-        updateAllActionButtons: updateAllActionButtons,
+      updateAllActionButtons: updateAllActionButtons,
 
-        setActionVisible: setActionVisible
+      setActionVisible: setActionVisible
     };
 
-});
+  });

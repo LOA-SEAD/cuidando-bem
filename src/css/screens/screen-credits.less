@@ -15,9 +15,9 @@ This file is part of Cuidando Bem.
     along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
 */
 .credits-backImage {
-	position: absolute;
-    background-image: @screen-credits;
-    &:extend(.menuBackImage);
+  position: absolute;
+  background-image: @screen-credits;
+  &:extend(.menuBackImage);
 }
 
 #credits-title {
@@ -61,4 +61,80 @@ This file is part of Cuidando Bem.
     color: rgba(20, 20, 20, 1);
   }
 
+}
+
+@logo-margin: 17%;
+@top-off: 5%;
+@border-off: 3%;
+@size: 13%;
+.credits-logo {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  z-index: 1;
+}
+
+#logo-sead{
+  background-image: @logo-sead;
+  top: @logo-margin * 1 + @top-off;
+  left: @border-off;
+  width: @size;
+  height: @size;
+}
+
+#logo-proex{
+  background-image: @logo-proex;
+  top: @logo-margin * 2 + @top-off;
+  left: @border-off;
+  width: @size;
+  height: @size;
+}
+
+#logo-ufscar{
+  background-image: @logo-ufscar;
+  top: @logo-margin * 3 + @top-off;
+  left: @border-off;
+  width: @size;
+  height: @size;
+}
+
+#logo-proext{
+  background-image: @logo-proext;
+  top: @logo-margin * 4 + @top-off;
+  left: @border-off;
+  width: @size;
+  height: @size;
+}
+
+#logo-fapesp{
+  background-image: @logo-fapesp;
+  top: @logo-margin * 1 + @top-off;
+  right: @border-off;
+  width: @size;
+  height: @size;
+}
+
+#logo-capes{
+  background-image: @logo-capes;
+  top: @logo-margin * 2 + @top-off;
+  right: @border-off;
+  width: @size;
+  height: @size;
+}
+
+#logo-governo{
+  background-image: @logo-governo;
+  top: @logo-margin * 3 + @top-off;
+  right: @border-off;
+  width: @size;
+  height: @size;
+}
+
+#logo-loa{
+  background-image: @logo-loa;
+  top: @logo-margin * 4 + @top-off;
+  right: @border-off;
+  width: @size;
+  height: @size;
 }
