@@ -480,6 +480,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("action-lixo_comum")
         .onClick(function() {
 
+          Player.play( Player.audios.sfx.jogandoLixo );
           core.setActionVisible("btn-lixoComum", false );
           core.setActionVisible("btn-lixoInfectante", false );
           core.setActionVisible("btn-perfuroCortante", false );
@@ -513,6 +514,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("action-lixo_infectante")
         .onClick(function() {
 
+          Player.play( Player.audios.sfx.jogandoLixo );
           core.setActionVisible("btn-lixoComum", false );
           core.setActionVisible("btn-lixoInfectante", false );
           core.setActionVisible("btn-perfuroCortante", false );
@@ -556,6 +558,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("action-lixo_perfuro_cortante")
         .onClick(function() {
 
+          Player.play( Player.audios.sfx.jogandoLixo );
           core.setActionVisible("btn-lixoComum", false );
           core.setActionVisible("btn-lixoInfectante", false );
           core.setActionVisible("btn-perfuroCortante", false );

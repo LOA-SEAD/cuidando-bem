@@ -800,7 +800,7 @@ define({
     recepcao: [
 
       // 0
-      "Bom dia. Uma paciente te espera na enfermaria masculina."
+      "Bom dia. Um paciente te espera na enfermaria masculina."
 
     ],
 
