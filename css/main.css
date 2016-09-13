@@ -3238,6 +3238,7 @@ table {
 #prontuario input[disabled] {
   border: none;
   background-color: transparent;
+  color: black;
 }
 #prontuario #pront_alergia_divSim,
 #prontuario #pront_alergia_divNao {
