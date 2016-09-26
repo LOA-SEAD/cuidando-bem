@@ -159,7 +159,7 @@ define({
     perguntarNome: "Me desculpe, mas poderia repetir seu nome completo e sua data de nascimento?",
     enfermaria: [
       // 0 Jogador op 1
-      "Olá! Sou técnico de enfermagem e cuidarei do Sr. hoje. Como o está se sentindo?",
+      "Olá! Sou profissional de enfermagem e cuidarei do Sr. hoje. Como o está se sentindo?",
       // 1 Jogador op 2
       "Bom dia. O Sr. está se sentindo bem hoje?",
       // 2 Mentor

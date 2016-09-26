@@ -318,6 +318,7 @@ define(function() {
       pegarAgulha: new Score("Pegar Agulha 40X12", 50 ),
       pegarGlicose: new Score("Pegar Ampola de Glicose 50%", 50 ),
       pegarSoro: new Score("Pegar Soro de Macrogotas", 50 )
+        
       // TODO: todos os scores abaixo
       // identificarMedicacao: new Score("Identificar Medicação", 150 ),
       // calcularGotejamentoDeSoro: new Score("Calcular gotejamento de soro", 350 ),

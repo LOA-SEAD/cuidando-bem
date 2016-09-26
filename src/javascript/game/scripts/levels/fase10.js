@@ -899,7 +899,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         }),
 
       // 1
-      new Dialog( lib.characters.pacientes.francisco )
+      new Dialog( lib.characters.pacientes.raul )
         .setText( Dialogs.leitoPaciente[ 1 ] )
         .registerOption("", function() {
           core.openDialog( 2 );
@@ -915,7 +915,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
       // 3
-      new Dialog( lib.characters.pacientes.francisco )
+      new Dialog( lib.characters.pacientes.raul )
         .setText( Dialogs.leitoPaciente[ 3 ] )
         .registerOption("", function() {
           core.openDialog( 4 );
