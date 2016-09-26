@@ -709,6 +709,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           if ( core.flag("pegou_tudo_postoEnfermagem") == true || core.flag("pegar_bandeja") == true ) {
             core.setInteractiveObjectVisible("io-pegar_bandeja", false );
             core.setInteractiveObjectVisible("io-abrir_gaveta", true );
+              
+              
 
           }
 
@@ -789,15 +791,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("action-ir_corredor")
         .onClick(function() {
 
+            
 
-          /*      if ( core.flag("pegar_prescricao_medica") == false || core.flag("") ) {
-           core.changeScene( 1 );
-           }
-
-
-           if(core.flag("pegou_tudo_postoEnfermagem") == true) {
-           core.changeScene(1);
-           }*/
+            
+            
           core.changeScene( 1 );
 
         })
@@ -816,7 +813,51 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         })
-        .setVisibility( true )
+        .setVisibility( true ),
+        
+        
+      new Action("btn-confirmarMedicamento", "Confirmar medicação com o mentor")
+        .setCssClass("action-medicamentosFase10")
+        .onClick(function() {
+  
+          if ( core.flag("confirmarMedicacao") == false ) {
+            core.registerScoreItem( Scores.confirmarMedicação );
+            core.flag("confirmarMedicacao", true );
+          }
+            
+          core.openModalScene("conferirMedicamentos");
+       
+
+        })
+        .setVisibility( false ),
+        
+        
+        new Action("btn-prepararMedicacao", "Preparar medicação")
+        .setCssClass("action-preparar_medicacao")
+        .onClick(function() {
+        
+          if ( core.flag("score_preparar_medicacao") == false ) {
+            core.registerScoreItem( Scores.prepararMedicacao );
+            core.flag("score_preparar_medicacao", true );
+          }
+            
+            core.setActionVisible("btn-prepararMedicacao", false);
+            
+            
+
+        })
+        .setVisibility( false ),
+        
+          new Action("btn-identificarMedicacao", "Identificar medicação")
+        .setCssClass("action-fichaMedicacao")
+        .onClick(function() {
+          Ficha.open("soro", 10 );
+          core.openModalScene("identificarMedicacao"); 
+        })
+        .setVisibility( false ),
+
+        
+        
 
     ]);
 
@@ -1396,6 +1437,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             core.setActionVisible("btn-lavarMaos", false );
             core.flag("pegou_tudo_postoEnfermagem", true );
+              
+            core.setActionVisible("btn-confirmarMedicamento", true);
+            core.setActionVisible("btn-identificarMedicacao", true);
 
           }
         })
@@ -1509,6 +1553,41 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.closeModalScene("conferirCloretoSodio");
         })
     ]);
+    
+       medicamentos = new Scene("conferirMedicamentos", "Conferir Medicação")
+      .setCssClass("modalScene-medicamentosFase10");
+
+    medicamentos.registerActions([
+      new Action("btn-fechar_zoom", "Finalizar conferição")
+        .setCssClass("action-medicamentosFase10")
+        .onClick(function() {
+         
+          core.closeModalScene("conferirMedicamentos");
+            
+          core.setActionVisible("btn-prepararMedicacao", true);
+        })
+    ]);
+    
+        fichaMedicacao = new Scene("identificarMedicacao", "Identificar Medicação"); 
+
+    fichaMedicacao.registerActions([
+      new Action("btn-fecharFicha", "Fechar ficha")
+        .setCssClass("action-fichaMedicacao")
+        .onClick(function() {
+
+          core.closeModalScene("identificarMedicacao");
+            
+          Ficha.close();
+          if ( Ficha.isDataValid() ) {
+            if ( core.flag("score_identificar_medicacao") == false ) {
+              core.registerScoreItem( Scores.identificarMedicacao );
+              core.flag("score_identificar_medicacao", true );
+            }
+          }
+        })
+    ]);
+    
+    
 
 
     level.registerModalScene( prontuario );
@@ -1517,6 +1596,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     level.registerModalScene( equipoSoro );
     level.registerModalScene( soroGlicofisiologico );
     level.registerModalScene( cloretoSodio );
+    level.registerModalScene( medicamentos );
+    level.registerModalScene( fichaMedicacao );
 
 
     // 00
@@ -1629,6 +1710,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     level.registerFlag( new Flag("conversar_recepcionista", false ) );
     level.registerFlag( new Flag("verificar_pulseira", false ) );
     level.registerFlag( new Flag("score_pulseira", false ) );
+    level.registerFlag( new Flag("confirmarMedicacao", false ) );
+    level.registerFlag( new Flag("score_preparar_medicacao", false ) );
+    level.registerFlag( new Flag("score_identificar_medicacao", false ) );
 
 
     level.setInitialScene( 0 );

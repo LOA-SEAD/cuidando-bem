@@ -317,13 +317,15 @@ define(function() {
       pegarSeringa: new Score("Pegar Seringa 5ml", 50 ),
       pegarAgulha: new Score("Pegar Agulha 40X12", 50 ),
       pegarGlicose: new Score("Pegar Ampola de Glicose 50%", 50 ),
-      pegarSoro: new Score("Pegar Soro de Macrogotas", 50 )
+      pegarSoro: new Score("Pegar Soro de Macrogotas", 50 ),
+      confirmarMedicação: new Score("Confirmar medicação", 150 ),
+      prepararMedicacao: new Score("Preparar medicação", 150 ),
+      identificarMedicacao: new Score("Identificar Medicação e Calcular Gotejamento de Soro", 350 ),
         
-      // TODO: todos os scores abaixo
-      // identificarMedicacao: new Score("Identificar Medicação", 150 ),
-      // calcularGotejamentoDeSoro: new Score("Calcular gotejamento de soro", 350 ),
-      // prepararMedicacao: new Score("Preparar medicação", 150 ),
-      // confirmarMedicação: new Score("Confirmar medicação", 150 )
+  
+   
+ 
+       
 
     }
   };
