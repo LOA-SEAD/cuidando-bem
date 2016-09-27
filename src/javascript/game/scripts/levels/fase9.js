@@ -679,6 +679,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           if ( core.flag("pegou_bandeja") == true ) {
             core.setInteractiveObjectVisible("io-pegar_bandeja", false );
           }
+            
+
 
           /* core.setInteractiveObjectVisible("io-pegar_agua", !(core.flag("score_pegou_agua")) );
            core.setInteractiveObjectVisible("io-pegar_copo", !(core.flag("score_pegou_copo")) );*/
@@ -727,7 +729,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             core.flag("score_lavar_maos_posto_enfermagem", true );
           }
         })
+        .setVisibility( false ),
+        
+         new Action("btn-identificarMedicacao", "Identificar medicação")
+        .setCssClass("action-fichaMedicacao")
+        .onClick(function() {
+            
+          Ficha.open("oral", 9 );
+          core.openModalScene("identificarMedicacao"); 
+            
+        })
         .setVisibility( false )
+        
     ]);
 
     // Acertar posicoes
@@ -737,7 +750,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("intObj-openDrawer")
         .onClick(function() {
           if ( core.flag("pegou_bandeja") != true ) {
-            core.openDialog( 1 );
+            core.openDialog( 0 );
           } else {
             console.log("Action: abrirGaveta");
             // Som
@@ -1152,9 +1165,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("action-fecharGaveta")
         .onClick(function() {
           console.log("Action: fecharGaveta");
+            
+     
           // Som
           Player.play( Player.audios.sfx.fecharGaveta );
           core.closeModalScene("Gaveta");
+        
+            if(core.flag("pegou_agua") == true && core.flag("pegou_copo") == true)
+             core.setActionVisible("btn-identificarMedicacao", true); 
+               
         })
         .setVisibility( true )
     ]);
@@ -1171,6 +1190,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.setInteractiveObjectVisible("io-copo_descartavel", false );
           core.registerScoreItem( Scores.pegarCopoDescartavel );
           core.flag("pegou_copo", true );
+ 
 
         })
         .setVisibility( true ),
@@ -1192,6 +1212,28 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
     ]);
+    
+       fichaMedicacao = new Scene("identificarMedicacao", "Identificar Medicação"); 
+
+    fichaMedicacao.registerActions([
+      new Action("btn-fecharFicha", "Fechar ficha")
+        .setCssClass("action-fichaMedicacao")
+        .onClick(function() {
+
+          core.closeModalScene("identificarMedicacao");
+            
+          Ficha.close();
+          if ( Ficha.isDataValid() ) {
+             
+            if ( core.flag("score_identificar_medicacao") == false ) {
+              core.registerScoreItem( Scores.identificarMedicacao );
+              core.flag("score_identificar_medicacao", true );
+            }
+          }
+    
+        })
+    ]);
+    
 
 
     // 0
@@ -1218,6 +1260,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     level.registerModalScene( prontuario );
     level.registerModalScene( midazolam );
     level.registerModalScene( gaveta );
+    level.registerModalScene( fichaMedicacao );
 
 
     level.setSetupScript(function() {
@@ -1272,6 +1315,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       Ficha.setEnfermeiraRegexp( /^Masculina$/i );
       Ficha.setPacienteRegexp( /^Yuri de Souza Almeida$/i );
       Ficha.setLeitoRegexp( /0?1/ );
+            
+        
     });
 
 
@@ -1330,6 +1375,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     level.registerFlag( new Flag("conversar_circulante", false ) );
     level.registerFlag( new Flag("score_pulseira", false ) );
     level.registerFlag( new Flag("verificar_pulseira", false ) );
+    level.registerFlag( new Flag("score_identificar_medicacao", false ) );
 
 
     level.setInitialScene( 0 );

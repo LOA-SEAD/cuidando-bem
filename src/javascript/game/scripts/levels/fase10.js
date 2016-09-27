@@ -74,7 +74,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         core.flag("score_irCentroCirurgico_horaErrada", true );
         // core.registerScoreItem( Scores.irCentroCirurgicoHoraErrada );
-        console.log("PERDEU 25 PONTOS");
+
 
       }
 
@@ -253,16 +253,22 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
     }
-
+    
+    
 
     function corredorIrAlaMasculina() {
 
-      if ( core.flag("pegou_tudo_postoEnfermagem") == true && core.flag("trocou_de_leito") == false ) {
+      if ( core.flag("pegou_tudo_postoEnfermagem") == true && core.flag("trocou_de_leito") == false && core.flag("score_identificar_medicacao") == true && core.flag("score_preparar_medicacao") == true  )   {
 
         core.changeScene( 9 );
+          
       } else if ( core.flag("trocou_de_leito") == true || core.flag("conversar_paciente") == false || core.flag("conferirMedicamento") == true ) {
 
         core.changeScene( 2 );
+          
+        if(core.flag("score_identificar_medicacao") == false && core.flag("conversar_paciente") == true)  
+             core.setInteractiveObjectVisible("io-falarPaciente",false);
+        
 
       }
     }
@@ -791,11 +797,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("action-ir_corredor")
         .onClick(function() {
 
+          
             
-
+            
+                
+            core.changeScene( 1 );
             
             
-          core.changeScene( 1 );
+         
 
         })
         .setVisibility( true ),
@@ -851,8 +860,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           new Action("btn-identificarMedicacao", "Identificar medicação")
         .setCssClass("action-fichaMedicacao")
         .onClick(function() {
+            
           Ficha.open("soro", 10 );
           core.openModalScene("identificarMedicacao"); 
+            
         })
         .setVisibility( false ),
 
@@ -1564,6 +1575,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
          
           core.closeModalScene("conferirMedicamentos");
             
+        if(core.flag("score_preparar_medicacao") == false)    
           core.setActionVisible("btn-prepararMedicacao", true);
         })
     ]);
@@ -1579,11 +1591,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             
           Ficha.close();
           if ( Ficha.isDataValid() ) {
+             
             if ( core.flag("score_identificar_medicacao") == false ) {
               core.registerScoreItem( Scores.identificarMedicacao );
               core.flag("score_identificar_medicacao", true );
             }
           }
+         
         })
     ]);
     

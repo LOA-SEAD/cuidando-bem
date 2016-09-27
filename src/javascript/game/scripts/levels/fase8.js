@@ -607,6 +607,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         })
         .setVisibility( true ),
+        
+         new Action("btn-ler_prontuario", "Ler prontuario")
+        .setCssClass("action-ler_prontuario")
+        .onClick(function() {
+     
+          Prontuario.open();
+          core.openModalScene("Prontuario");
+        })
+        .setVisibility( true ),
 
 
       new Action("btn-clorpromazinaMedicamento", "Conferir Medicamento")
@@ -838,7 +847,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
           core.openDialog( 0 );
           core.enableInteractiveObject("io-pulseira_paciente", true );
-          core.setActionVisible("btn-oferecer_copo", true );
+            
+          if(core.flag("score_ofereceu_copo") == false)    
+            core.setActionVisible("btn-oferecer_copo", true );
 
 
         })
@@ -955,7 +966,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.changeScene( 1 );
 
 
-        })
+        }),
+        
+       
 
     ]);
 
