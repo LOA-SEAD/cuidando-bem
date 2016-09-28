@@ -208,7 +208,8 @@ define(function() {
       pegarCopoDescartavel: new Score("Pegar copo descartável", 50 ),
       pegarAguaPotavel: new Score("Pegar agua potável", 50 ),
       pegarEquipoCorreto: new Score("Pegar equipamento correto de infusão de dieta", 150 ),
-      calcularInfusaoDieta: new Score("Calcular infusão da dieta corretamente", 150 )
+      calcularInfusaoDieta: new Score("Calcular infusão da dieta corretamente", 150 ),
+      identificarMedicacao: new Score("Identificar Dieta", 350 )    
       // TODO: identificação da dieta
       // identificarDieta: new Score("Identificação da dieta", 150 ),
       // TODO: pegar todos os instrumentos
@@ -244,7 +245,8 @@ define(function() {
       trocarMedicamento: new Score("Trocar o medicamento equivocado", 150 ),
       conferirMedicamentoCorreto: new Score("Verificar o novo medicamento fornecido pelo farmacêutico", 150 ),
       pegarAguaPotavel: new Score("Pegar água potável no posto de enfermagem", 50 ),
-      pegarCopoDescartavel: new Score("Pegar copo descartável no posto de enfermagem", 50 )
+      pegarCopoDescartavel: new Score("Pegar copo descartável no posto de enfermagem", 50 ),
+      identificarMedicacao: new Score("Identificar Medicação", 350 )
     },
 
     fase9: {

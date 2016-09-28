@@ -702,7 +702,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           Prontuario.open();
           core.openModalScene("Prontuario");
         })
-        .setVisibility( true )
+        .setVisibility( true ),
+        
+            new Action("btn-identificarMedicacao", "Identificar medicação")
+        .setCssClass("action-fichaMedicacao")
+        .onClick(function() {
+            
+          Ficha.open("soro", 7 );
+          core.openModalScene("identificarMedicacao"); 
+            
+        })
+        .setVisibility( false )
 
     ]);
 
@@ -1075,9 +1085,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             (core.flag("pegar_equipoCorreto") == true) ) {
 
             core.openDialog( 0 );
-            /*core.openDialog( 0 );
-             core.flag("pegou_tudo_postoEnfermagem",  true );*/
             core.flag("pegou_tudo_postoEnfermagem", true );
+            core.setActionVisible("btn-identificarMedicacao", true);   
           }
         })
         .setVisibility( true )
@@ -1219,6 +1228,30 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
     ]);
+    
+    
+    
+         fichaMedicacao = new Scene("identificarMedicacao", "Identificar Medicação"); 
+
+    fichaMedicacao.registerActions([
+      new Action("btn-fecharFicha", "Fechar ficha")
+        .setCssClass("action-fichaMedicacao")
+        .onClick(function() {
+
+          core.closeModalScene("identificarMedicacao");
+            
+          Ficha.close();
+          if ( Ficha.isDataValid() ) {
+             
+            if ( core.flag("score_identificar_medicacao") == false ) {
+              core.registerScoreItem( Scores.identificarMedicacao );
+              core.flag("score_identificar_medicacao", true );
+            }
+          }
+     
+    
+        })
+    ]);
 
 
     level.registerModalScene( prontuario );
@@ -1226,6 +1259,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     level.registerModalScene( pulseira );
     level.registerModalScene( frascoDieta );
     level.registerModalScene( equipoSoro );
+    level.registerModalScene( fichaMedicacao );
 
 
     // 0
@@ -1338,6 +1372,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     level.registerFlag( new Flag("score_lavarMaos3", false ) );
     level.registerFlag( new Flag("score_pulseira", false ) );
     level.registerFlag( new Flag("verificar_pulseira", false ) );
+    level.registerFlag( new Flag("score_identificar_medicacao", false ) );
 
     level.setInitialScene( 0 );
 

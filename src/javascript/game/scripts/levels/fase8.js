@@ -968,6 +968,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         }),
         
+        new Action("btn-identificarMedicacao", "Identificar medicação")
+        .setCssClass("action-fichaMedicacao")
+        .onClick(function() {
+            
+          Ficha.open("oral", 8 );
+          core.openModalScene("identificarMedicacao"); 
+            
+        })
+        .setVisibility( false )
+        
        
 
     ]);
@@ -1053,6 +1063,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           // Som
           Player.play( Player.audios.sfx.fecharGaveta );
           core.closeModalScene("Gaveta");
+            
+            
+          if(core.flag("score_pegar_agua_potavel") == true && core.flag("score_pegar_copo_descartavel") == true)
+             core.setActionVisible("btn-identificarMedicacao", true);     
+            
         })
         .setVisibility( true )
     ]);
@@ -1134,6 +1149,28 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.openDialog( 2 );
         })
     ]);
+    
+    
+         fichaMedicacao = new Scene("identificarMedicacao", "Identificar Medicação"); 
+
+    fichaMedicacao.registerActions([
+      new Action("btn-fecharFicha", "Fechar ficha")
+        .setCssClass("action-fichaMedicacao")
+        .onClick(function() {
+
+          core.closeModalScene("identificarMedicacao");
+            
+          Ficha.close();
+          if ( Ficha.isDataValid() ) {
+             
+            if ( core.flag("score_identificar_medicacao") == false ) {
+              core.registerScoreItem( Scores.identificarMedicacao );
+              core.flag("score_identificar_medicacao", true );
+            }
+          }
+    
+        })
+    ]);
 
 
     level.registerModalScene( prontuario );
@@ -1141,6 +1178,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     level.registerModalScene( pulseira );
     level.registerModalScene( clorpropamida );
     level.registerModalScene( clorpromazina );
+    level.registerModalScene( fichaMedicacao );
 
 
     // id 0
@@ -1252,6 +1290,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     level.registerFlag( new Flag("falou_farmaceutico", false ) );
     level.registerFlag( new Flag("score_pulseira", false ) );
     level.registerFlag( new Flag("verificar_pulseira", false ) );
+    level.registerFlag( new Flag("score_identificar_medicacao", false ) );
+
 
     level.setInitialScene( 0 );
 
