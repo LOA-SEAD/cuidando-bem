@@ -132,6 +132,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         // Som
         Player.play( Player.audios.sfx.abrirPorta );
         Player.playInLoop( Player.audios.sfx.recepcao );
+          
         switch ( core.flag("passagem_corredor") ) {
           // first time at 'corredor'
           case 0:
@@ -143,7 +144,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             // core.setActionVisible("btn-ir_posto_enfermagem", true);
             core.setInteractiveObjectVisible("io-ir_posto_enfermagem", true );
             // core.setActionVisible("btn-ir_sala_leitos", false);
-            core.setInteractiveObjectVisible("io-ir_sala_leitos", false );
+          //  core.setInteractiveObjectVisible("io-ir_sala_leitos", false );
             // core.setActionVisible("btn-conversar_mentor", false);
             core.setInteractiveObjectVisible("io-conversar_mentor", false );
             break;

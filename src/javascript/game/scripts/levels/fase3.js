@@ -245,7 +245,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       .onLoad(function() {
 
 
-        if ( core.flag("segunda_ida_leito_paciente") == true ) {
+        if ( core.flag("pegou_tudo_posto_enfermagem") == true ) {
           /*core.setInteractiveObjectVisible("io-ir_leito", false );
            // core.openDialog( 0 );
            } else {*/
@@ -281,7 +281,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       .onUnload(function() {
         console.log("Saindo da sala de leitos");
         // Habilitar o fato de que a proxima ida ao leito do paciente seja no mínimo a segunda
-        core.flag("segunda_ida_leito_paciente", true );
+        //core.flag("segunda_ida_leito_paciente", true );
         // core.closeCommandBar();
       });
 
@@ -302,7 +302,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("intObj-ir_leito-fase2")
         .onClick(function() {
 
-          if ( core.flag("lavar_maos2") == false ) {
+          if ( core.flag("score_lavar_maos_antes_de_ir_no_leito") == false ) {
             // Mentor corrige
             core.openDialog( 3 );
           } else {
@@ -336,7 +336,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           // Som
           Player.play( Player.audios.sfx.lavarMaos );
           // verifica se é a primeira vez que está indo verificar o paciente
-          if ( core.flag("segunda_ida_leito_paciente") == false ) {
+          if ( core.flag("pegou_tudo_posto_enfermagem") == false ) {
             if ( core.flag("lavarMaos") == false ) {
               core.flag("lavarMaos", true );
             }
@@ -1132,7 +1132,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           Player.play( Player.audios.sfx.fecharGaveta );
           core.closeModalScene("Gaveta");
           console.log("Btn ir corredor");
-          core.setActionVisible("btn-ir_corredor", true );
+            
+            if(core.flag("score_pegou_kit_glicemia") && core.flag("pegou_agulhas") && core.flag("score_pegou_algodao") && core.flag("score_pegou_luvas")){
+                
+                      core.setActionVisible("btn-ir_corredor", true );
+                      core.flag("pegou_tudo_posto_enfermagem", true);
+                
+            }    
+              
+            
           core.openCommandBar();
         })
         .setVisibility( true )
@@ -1413,6 +1421,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     level.registerFlag( new Flag("fez_teste_glicemia", false ) );
     level.registerFlag( new Flag("verificar_pulseira", false ) );
     level.registerFlag( new Flag("score_pulseira", false ) );
+    level.registerFlag( new Flag("pegou_tudo_posto_enfermagem", false ) );
 
     level.setInitialScene( 0 );
 
