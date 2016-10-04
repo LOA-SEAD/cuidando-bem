@@ -1015,6 +1015,9 @@ define({
       ],
       erroGotejamento: [
         "O cálculo incorreto do gojetamento pode ter sérias consequências! Tente novamente."
+      ],
+      erroFichaMedicacao: [
+        "Parece que há algum equívoco na preenchimento da ficha de medicação. Verifique-a novamente antes de sair."
       ]
     },
     descarte: {

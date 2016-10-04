@@ -635,7 +635,23 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setText( Dialogs.postoEnfermagem[ 4 ] )
         .registerOption("", function() {
           core.closeDialog();
-        })
+        }),
+        
+        // 4
+          new Dialog( lib.characters.mentor )
+        .setText( Alertas.esqueceu.verificarTudoPostoEnfermagem )
+        .registerOption("", function() {
+          core.closeDialog();
+        }),
+        
+          // 5
+          new Dialog( lib.characters.mentor )
+        .setText( Alertas.esqueceu.erroFichaMedicacao )
+        .registerOption("", function() {
+          core.closeDialog();
+        }),
+        
+        
 
     ]);
 
@@ -675,11 +691,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       new Action("btn-ir_corredor", "Ir ao corredor")
         .setCssClass("action-ir_corredor")
         .onClick(function() {
-          if ( core.flag("pegou_tudo_postoEnfermagem") == false ) {
-            //   core.openDialog(0);
-          } else {
-            core.changeScene( 1 );
-          }
+            
+           if(core.flag("pegou_tudo_postoEnfermagem") == false){
+               core.openDialog(4);
+           }
+            else if(core.flag("score_identificar_medicacao") == false){
+                core.openDialog(5);
+            }
+            else
+                core.changeScene( 1 );
+        
         }),
 
       new Action("btn-lavarMaos", "Lavar as mãos")
@@ -1248,7 +1269,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
               core.flag("score_identificar_medicacao", true );
             }
           }
-     
+            
     
         })
     ]);

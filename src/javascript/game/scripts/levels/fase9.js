@@ -699,6 +699,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
           console.log("Action: ir_corredor");
           // Verifica o que o jogador não pegou caso ele já possa pegar
+            
           if ( core.flag("score_pegou_medicamento") == true ) {
             if ( core.flag("score_pegou_agua") == false ) {
               if ( core.flag("score_nao_pegou_agua") == false ) {
@@ -714,7 +715,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             }
           }
           // Voltar para o corredor
+            
+          if(core.flag("score_identificar_medicacao") == false)
+              core.openDialog(1);
+            else
           core.changeScene( 1 );
+            
         })
         .setVisibility( true ),
 
@@ -775,12 +781,21 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     ]);
 
     postoDeEnfermagem.registerDialogs([
+        
       // Dialog 0 - Não pegou bandeja
       new Dialog( lib.characters.mentor )
         .setText( Alertas.esqueceu.pegarBandeja )
         .registerOption("", function() {
           core.closeDialog();
-        })
+        }),
+        
+        // 1
+             
+      new Dialog( lib.characters.mentor )
+        .setText( Alertas.esqueceu.erroFichaMedicacao )
+        .registerOption("", function() {
+          core.closeDialog();
+        }),
     ]);
 
 

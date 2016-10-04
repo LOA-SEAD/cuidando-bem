@@ -910,7 +910,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setText( Alertas.perdido.farmacia )
         .registerOption("", function() {
           core.closeDialog();
-        })
+        }),
+        
+        // 3
+        
+      new Dialog( lib.characters.mentor )
+        .setText( Alertas.esqueceu.erroFichaMedicacao )
+        .registerOption("", function() {
+          core.closeDialog();
+        }),
+        
 
 
     ]);
@@ -957,13 +966,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       new Action("btn-ir_corredor", "Ir ao corredor")
         .setCssClass("action-ir_corredor")
         .onClick(function() {
-
-
-          if ( core.flag("score_pegar_copo_descartavel") == true && core.flag("score_pegar_agua_potavel") == true ) {
+            
+            if ( core.flag("score_pegar_copo_descartavel") == true && core.flag("score_pegar_agua_potavel") == true ) {
             core.flag("pegou_tudo_posto", true );
           }
 
-          core.changeScene( 1 );
+            if(core.flag("score_identificar_medicacao") == false){
+                core.openDialog(3);
+            }
+            else
+                core.changeScene( 1 );
 
 
         }),

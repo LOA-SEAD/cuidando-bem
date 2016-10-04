@@ -849,7 +849,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             core.changeScene( 1 );
 
 
-          } else {
+          } else if (core.flag("score_identificar_medicacao") == false){
+              core.openDialog(9);
+          }
+            else {
             core.openDialog( 8 );
           }
 
@@ -1011,6 +1014,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       // 8
       new Dialog( lib.characters.mentor )
         .setText( Alertas.esqueceu.verificarTudoPostoEnfermagem )
+        .registerOption("", function() {
+          core.closeDialog();
+        }),
+        
+         // 9
+      new Dialog( lib.characters.mentor )
+        .setText( Alertas.esqueceu.erroFichaMedicacao )
         .registerOption("", function() {
           core.closeDialog();
         })
