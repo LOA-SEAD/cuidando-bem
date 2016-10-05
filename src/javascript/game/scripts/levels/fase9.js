@@ -698,28 +698,23 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("action-ir_corredor")
         .onClick(function() {
           console.log("Action: ir_corredor");
-          // Verifica o que o jogador não pegou caso ele já possa pegar
+        
             
           if ( core.flag("score_pegou_medicamento") == true ) {
-            if ( core.flag("score_pegou_agua") == false ) {
-              if ( core.flag("score_nao_pegou_agua") == false ) {
-                // core.registerScoreItem( Scores.naoPegarAguaPotavel );
-                core.flag("score_nao_pegou_agua", true );
-              }
+          
+                    if(core.flag("pegou_agua") == false && core.flag("pegou_copo") == false){
+                core.openDialog(2);
             }
-            if ( core.flag("score_pegou_copo") == false ) {
-              if ( core.flag("score_nao_pegou_copo") == false ) {
-                // core.registerScoreItem( Scores.naoPegarCopoDescartavel );
-                core.flag("score_nao_pegou_copo", true );
-              }
-            }
-          }
-          // Voltar para o corredor
-            
-          if(core.flag("score_identificar_medicacao") == false)
-              core.openDialog(1);
+              else if (core.flag("score_identificar_medicacao") == false)
+                core.openDialog(1);
             else
-          core.changeScene( 1 );
+                core.changeScene( 1 );
+          }
+            else
+                core.changeScene( 1 );
+            
+            
+        
             
         })
         .setVisibility( true ),
@@ -793,6 +788,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
              
       new Dialog( lib.characters.mentor )
         .setText( Alertas.esqueceu.erroFichaMedicacao )
+        .registerOption("", function() {
+          core.closeDialog();
+        }),
+        
+        // 2
+         new Dialog( lib.characters.mentor )
+        .setText( Alertas.esqueceu.verificarTudoPostoEnfermagem )
         .registerOption("", function() {
           core.closeDialog();
         }),

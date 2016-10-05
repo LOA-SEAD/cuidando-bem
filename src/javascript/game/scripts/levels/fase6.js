@@ -1500,6 +1500,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       Prontuario.setPrescMedicaRowData( 1, "", "Atenolol", "Oral", "100 mg (2x ao dia)", "08h - 18h", true, true );
       Prontuario.setPrescMedicaRowData( 2, "", "Metmorfina", "Oral", "750 mg (2x ao dia)", "06h - 17h", true, true );
       Prontuario.setPrescMedicaRowData( 3, "", "Glibenclamida", "Oral", "4 mg (2x ao dia)", "07:30h - 17:30h", true, true );
+      
+  
+
 
       Prontuario.setPrescEnfermagemState([ "decubito_visual", "verificar_glicemia2", "levantar_grade", "troca_curativo" ]);
 

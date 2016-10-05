@@ -721,7 +721,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           }
 
         } else {
-          core.openDialog( 2 );
+            
+        //  core.openDialog( 2 );
 
           if ( core.flag("score_irPosto_horaErrada") == false ) {
 
@@ -756,7 +757,24 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setText( Alertas.esqueceu.pegarMedicamento )
         .registerOption("", function() {
           core.closeDialog();
-        })
+        }),
+        
+        // 3
+        
+           new Dialog( lib.characters.mentor )
+        .setText( Alertas.esqueceu.erroFichaMedicacao )
+        .registerOption("", function() {
+          core.closeDialog();
+        }),
+        
+        //4
+        
+           new Dialog( lib.characters.mentor )
+        .setText( Alertas.esqueceu.verificarTudoPostoEnfermagem )
+        .registerOption("", function() {
+          core.closeDialog();
+        }),
+
 
 
     ]);
@@ -797,13 +815,25 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("action-ir_corredor")
         .onClick(function() {
 
-          
+            
+        if(core.flag("conferirMedicamento") == false){
+            core.changeScene(1); 
+        }
+            else {
             
             
+            if(core.flag("pegou_tudo_postoEnfermagem") == false){
+                core.openDialog(4);
+            }
+                else if(core.flag("score_identificar_medicacao") == false){
+                core.openDialog(3);
+            }
+               else{ 
+                   core.changeScene( 1 );   
+                   }
                 
-            core.changeScene( 1 );
-            
-            
+                }
+                    
          
 
         })
@@ -851,6 +881,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           }
             
             core.setActionVisible("btn-prepararMedicacao", false);
+            core.setActionVisible("btn-identificarMedicacao", true);
             
             
 
@@ -1450,7 +1481,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             core.flag("pegou_tudo_postoEnfermagem", true );
               
             core.setActionVisible("btn-confirmarMedicamento", true);
-            core.setActionVisible("btn-identificarMedicacao", true);
+ 
 
           }
         })

@@ -65,7 +65,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
         if ( !core.flag("conversar_recepcionista") ) {
           core.flag("conversar_recepcionista", true );
+        
           core.openDialog( 0 );
+          
 
         }
       });
@@ -1027,6 +1029,23 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         })
         .setVisibility( true )
     ]);
+  
+    
+    var tutorial = new Scene("modalTutorial","Tutorial")
+        .setCssClass("modalScene-tutorial");
+    
+    tutorial.registerActions([
+        
+        new Action("btn-largar_oximetro", "Fechar Oxímetro")
+        .setCssClass("action-largar_oximetro")
+        .onClick(function() {
+          core.closeModalScene("modalTutorial");
+        })
+        .setVisibility( true )
+        
+        
+    ]);
+    
 
     level.setSetupScript(function() {
 
@@ -1094,6 +1113,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     level.registerModalScene( termometro );
     level.registerModalScene( medidorPressao );
     level.registerModalScene( oximetro );
+    level.registerModalScene( tutorial );
 
     level.registerFlag( new Flag("conversar_recepcionista", false ) );
     level.registerFlag( new Flag("conversar_mentor", false ) );
