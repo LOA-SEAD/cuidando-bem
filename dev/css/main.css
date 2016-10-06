@@ -3917,20 +3917,6 @@ This file is part of Cuidando Bem.
   border: none;
   background-color: transparent;
 }
-
-#dialog_tutorial {
-    
-  cursor: pointer;
-  position: absolute;
-  text-align: center;
-  right: 5%;
-  width: 25%;
-  height: 20%;
-  bottom: 5%;
-  border: none;
-  background-color: red;
-}
-
 .dialog_reread {
   visibility: hidden;
 }
