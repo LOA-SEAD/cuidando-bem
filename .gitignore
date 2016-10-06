@@ -12,6 +12,8 @@ libs/
 
 #   Production
 dev/
+!dev/html/dialog/dialog.html
+!dev/css/main.css
 dev.env.json
 prod/
 dist/
