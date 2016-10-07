@@ -36,6 +36,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
     function recepcaoIrCorredor() {
       console.log("Funcao: recepcao_ir_corredor");
+         core.setInteractiveObjectVisible("intObj-info", false);    
       // wont check for flags
       if ( !flagsOn ) {
         core.closeDialog( 0 );
@@ -46,7 +47,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         if ( core.flag("conversar_recepcionista") ) {
           core.closeDialog( 0 );
           core.closeDialog( 1 );
-          core.changeScene( 1 );
+          core.changeScene( 1 );      
           console.log("Ir ao corredor");
         } else {
           console.log("Necessita ação: conversar com a recepcionista");
@@ -108,7 +109,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       new InteractiveObject("io-ir_corredor_direita", "Ir ao corredor")
         .setCssClass("intObj-porta")
         .onClick( recepcaoIrCorredor )
-        .setVisibility( true )
+        .setVisibility( true ),
+        
+      new InteractiveObject("intObj-info", "Balão Informação")    
+      .setCssClass("intObj-info")
+      .setVisibility( true )
+      .setEnable( false )
+        
+        
     ]);
 
     function corredorIrSalaLeitos() {

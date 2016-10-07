@@ -157,9 +157,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       .setCssClass("intObj-vaso")
       .setVisibility( true )
       .setEnable( false );
+  
 
     lib.scenes.recepcao.registerInteractiveObject( balcao );
     lib.scenes.recepcao.registerInteractiveObject( vaso );
+  
     console.groupEnd();
 
     return lib;
