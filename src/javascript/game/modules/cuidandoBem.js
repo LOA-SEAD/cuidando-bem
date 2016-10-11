@@ -641,6 +641,7 @@ define([
         return;
       }
       if ( $.inArray( score, scoreList ) < 0 ) {
+         
         scoreList.push( score );
         Storage.addScore( game.getCurrentLevelId(), score );
       }

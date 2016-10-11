@@ -63,12 +63,14 @@ define([
       });
     }
 
+    
     function show( _scoreList, max ) {
       if ( !isOpen ) {
         $( modalSelector ).show();
 
         var actualScore = 0;
         for ( i = 0; i < _scoreList.length; i++ ) {
+            
           var scoreItem = _scoreList[ i ];
 
           var element = $( $( scoreItemHtml )[ 0 ] );

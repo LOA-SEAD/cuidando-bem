@@ -346,7 +346,7 @@ define(function() {
           level._sum += score.score;
         }
       }
-    }
+    } 
     maxScore += level._sum;
   }
   scores.max = maxScore;

@@ -127,6 +127,7 @@ define([], function() {
         newLevel.registerFlag( flags[ flag ].getClone() );
       }
 
+   
       newLevel.setMaxPoints( maxPoints );
       newLevel.setInitialScene( initialScene );
       newLevel.setCurrentSceneById( currentScene );
