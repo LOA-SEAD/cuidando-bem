@@ -516,7 +516,8 @@ define({
       // 1 Paciente
       "Boa tarde!",
       // 2 Jogador
-      "Sou da equipe de enfermagem do hospital e realizarei os cuidados esta tarde."
+      "Sou da equipe de enfermagem do hospital e realizarei os cuidados esta tarde.",
+       
     ],
     leitoPaciente: [
       // 0 Jogador
@@ -538,7 +539,10 @@ define({
       // 5 Jogador op 2
       "Vou começar a realizar os procedimentos!",
       // 6 Mentor - Resposta op 2
-      "Você pode fornecer mais informações à paciente."
+      "Você pode fornecer mais informações à paciente.",
+        // 7
+     "Sua glicemia está 100 mg/dl, está dentro do limite do valor, considerado para uma pessoa que têm diabetes."
+         
     ]
   },
 
@@ -1019,6 +1023,7 @@ define({
       erroFichaMedicacao: [
         "Parece que há algum equívoco na preenchimento da ficha de medicação. Verifique-a novamente antes de sair."
       ]
+        
     },
     descarte: {
       algodão: [

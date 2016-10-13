@@ -79,7 +79,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setText( Dialogs.recepcao[ 0 ] )
         .registerOption("", function() {
           core.flag("conversar_recepcionista", true );
+          core.setInteractiveObjectVisible("intObj-info02", false);
           core.openDialog( 1 );
+              
         }),
 
       // Dialog 1
@@ -94,9 +96,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setText( Dialogs.recepcao[ 2 ] )
         .registerOption("", function() {
           console.log("Encerrar o diálogo");
+          core.setInteractiveObjectVisible("intObj-info", true);    
           core.closeDialog( 3 );
           core.setInteractiveObjectVisible("io-ir_corredor_esquerda", true );
           core.setInteractiveObjectVisible("io-ir_corredor_direita", true );
+          
         })
     ]);
 
@@ -111,10 +115,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick( recepcaoIrCorredor )
         .setVisibility( true ),
         
-      new InteractiveObject("intObj-info", "Balão Informação")    
+      new InteractiveObject("intObj-info", "Balão Informacao")    
       .setCssClass("intObj-info")
+      .setVisibility( false )
+      .setEnable( false ),
+        
+        new InteractiveObject("intObj-info02", "Balão Informacao 2")    
+      .setCssClass("intObj-info02")
       .setVisibility( true )
-      .setEnable( false )
+      .setEnable( false ),
+        
+        
         
         
     ]);
@@ -152,7 +163,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           // second time at 'corredor'
           case 1:
             // core.setActionVisible("btn-ir_posto_enfermagem", true);
-            core.setInteractiveObjectVisible("io-ir_posto_enfermagem", true );
+            //core.setInteractiveObjectVisible("io-ir_posto_enfermagem", true );
             // core.setActionVisible("btn-ir_sala_leitos", false);
           //  core.setInteractiveObjectVisible("io-ir_sala_leitos", false );
             // core.setActionVisible("btn-conversar_mentor", false);
@@ -314,6 +325,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("intObj-bedroomToHallway")
         .onClick(function() {
           core.changeScene( 1 );
+            core.setInteractiveObjectVisible("io-ir_posto_enfermagem", true );
         })
         .setVisibility( visibility )
     ]);

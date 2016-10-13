@@ -920,6 +920,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.closeDialog();
         }),
         
+      // 4  
+      new Dialog( lib.characters.mentor )
+        .setText( Alertas.esqueceu.erroFichaMedicacao )
+        .registerOption("", function() {
+          core.closeDialog();
+        }),
+        
+        
+        
 
 
     ]);
@@ -952,9 +961,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           console.log("Action: Pegar bandeja");
           // Som
           Player.play( Player.audios.sfx.pegarObjeto );
-          core.flag("pegou_bandeja", true );
-          // core.flag("score_pegou_bandeja",  true );
-          core.setInteractiveObjectVisible("io-pegar_bandeja", false );
+            
+        if(core.flag("lavarMaosPosto") == true) {    
+            core.flag("pegou_bandeja", true );
+           core.setInteractiveObjectVisible("io-pegar_bandeja", false );  
+        }
+         else
+             core.openDialog(1);
+            
         })
         .setVisibility( true )
 
@@ -988,7 +1002,24 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.openModalScene("identificarMedicacao"); 
             
         })
-        .setVisibility( false )
+        .setVisibility( false ),
+        
+        
+      
+      new Action("btn-lavarMaos", "Lavar as mãos")
+        .setCssClass("action-lavarMaos")
+        .onClick(function() {
+            
+          // Som
+          Player.play( Player.audios.sfx.lavarMaos );
+            
+          core.flag("lavarMaosPosto", true);    
+            
+         
+        })
+        .setVisibility( true )
+        
+        
         
        
 
@@ -1303,6 +1334,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     level.registerFlag( new Flag("score_pulseira", false ) );
     level.registerFlag( new Flag("verificar_pulseira", false ) );
     level.registerFlag( new Flag("score_identificar_medicacao", false ) );
+    level.registerFlag( new Flag("lavarMaosPosto", false ) );
 
 
     level.setInitialScene( 0 );

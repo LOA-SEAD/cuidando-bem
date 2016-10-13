@@ -383,7 +383,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setText( Alertas.lavarMaos.tipo1 )
         .registerOption("", function() {
           core.closeDialog();
-        })
+        }),
+     
+        
     ]);
 
     alaFeminina.registerActions([
@@ -590,7 +592,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.closeDialog();
           Prontuario.open();
           core.openModalScene("Prontuario");
-        })
+        }),
+        
+           
+        // 18
+      new Dialog( lib.characters.mentor )
+        .setText( Dialogs.leitoPaciente[ 7 ] )
+        .registerOption("", function() {
+          core.closeDialog();
+        }),
     ]);
 
     leito.registerActions([
@@ -1214,6 +1224,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
     postoDeEnfermagem.registerDialogs([
       // Dialog 0 - Não pegou bandeja
+        
       new Dialog( lib.characters.mentor )
         .setText( Alertas.esqueceu.pegarBandeja )
         .registerOption("", function() {
@@ -1412,6 +1423,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
           core.closeModalScene("modalGlicosimetroComFita");
+            
+            core.openDialog(18);
+              
 
           core.setActionVisible("btn-realizar_teste_glicemia", false );
           core.setActionVisible("btn-verificar_teste_glicemia", true );
