@@ -87,7 +87,7 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
     $( inGotasAprox ).mask("000");
     $( inIni ).mask("00:00");
     $( inTer ).mask("00:00");
-    $( inTer ).mask("00:00");
+    $( inHorario ).mask("00:00");
   }
 
   function open( _state, levelId ) {
@@ -164,7 +164,7 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
       if ( inicio[ 0 ] != horas ) {
         return false;
       }
-      if ( inicio[ 1 ] != minutos ) {
+      if ( inicio[ 1 ] != minutos && (inicio[ 1 ] + 2) != minutos && (inicio[ 1 ] - 2) != minutos ) {
         return false;
       }
       // termino - Horario atual + duração
@@ -172,7 +172,7 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
       if ( termino[ 0 ] != (horas + duracao) % 24 ) {
         return false;
       }
-      if ( termino[ 1 ] != minutos ) {
+      if ( termino[ 1 ] != minutos && (termino[ 1 ] + 2) != minutos && (termino[ 1 ] - 2) != minutos ) {
         return false;
       }
       // volume - Informação passada por regExp  *
@@ -202,7 +202,7 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
       if ( horario[ 0 ] != horas ) {
         return false;
       }
-      if ( horario[ 1 ] != minutos ) {
+      if ( horario[ 1 ] != minutos && (horario[ 1 ] + 1) != minutos && (horario[ 1 ] - 1) != minutos ) {
         return false;
       }
     }
