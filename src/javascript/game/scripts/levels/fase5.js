@@ -895,7 +895,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             core.flag("score_preparar_medicacao", true );
           }
             
-            core.setInteractiveObjectVisible("btn-prepararMedicacao", false);
+            core.setActionVisible("btn-prepararMedicacao", false);
 
         })
         .setVisibility( false ),

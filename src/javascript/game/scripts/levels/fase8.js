@@ -985,9 +985,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             core.flag("pegou_tudo_posto", true );
           }
 
-            if(core.flag("score_identificar_medicacao") == false){
-                core.openDialog(3);
+            if(core.flag("score_identificar_medicacao") == false && core.flag("conferir_medicamento_correto") == false){
+               core.changeScene( 1 );
             }
+            else if(core.flag("score_identificar_medicacao") == false)
+                 core.openDialog(3);
             else
                 core.changeScene( 1 );
 
