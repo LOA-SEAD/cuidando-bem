@@ -496,13 +496,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .registerOption( Dialogs.leitoPaciente[ 4 ], function() {
           core.closeDialog();
           // core.setActionVisible("btn-falarPaciente", false );
-          core.setActionVisible("btn-realizar_teste_glicemia", true );
+          core.setActionVisible("btn-realizar_teste_glicemia", false );
+          core.setActionVisible("btn-utilizar_algodao", false );
           // core.setActionVisible("btn-descartar_agulha", true );
           // core.setActionVisible("btn-jogar_algodao", true );
           // core.setActionVisible("btn-materiaisCurativo", true );
           core.setActionVisible("btn-lavarMaos", true );
-          core.setActionVisible("btn-calcar_luvas_procedimento", false );
-          core.setActionVisible("btn-calcar_luvas_estereis", false );
+          core.setActionVisible("btn-calcar_luvas_procedimento", true );
+          core.setActionVisible("btn-calcar_luvas_estereis", true );
           core.setActionVisible("btn-fazer_curativo", false );
           core.setActionVisible("btn-identificarCurativo", false );
           core.setActionVisible("btn-erguer_grade", false );
@@ -651,6 +652,22 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.openModalScene("modalGlicosimetro");
 
 
+        })
+        .setVisibility( false ),
+        
+         new Action("btn-utilizar_algodao", "Utilizar Algodão")
+        .setCssClass("action-algodao_seco")
+        .onClick(function() {
+            
+            core.flag("utilizar_algodao",true);
+            core.setActionVisible("btn-utilizar_algodao",false);
+            
+            if(core.flag("utilizar_algodao") == false){
+                core.flag("utilizar_algodao", true);
+                core.registerScoreItem( Scores.utilizarAlgodao);
+            }
+
+          
         })
         .setVisibility( false ),
 
@@ -854,6 +871,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             if ( core.flag("score_luva_esteril") == false ) {
               core.flag("score_luva_esteril", true );
               core.registerScoreItem( Scores.calcarLuvaEsteril );
+              core.setActionVisible("btn-utilizar_algodao", true );    
+              core.setActionVisible("btn-realizar_teste_glicemia", true );    
+              core.setActionVisible("btn-calcar_luvas_estereis", false );    
+              core.setActionVisible("btn-calcar_luvas_procedimento", false );    
 
               // divide os botoes
               if ( core.flag("score_fez_teste_glicemia") == true && core.flag("descartar_algodao") == true && core.flag("score_selecionou_materiais_curativo") == true &&
@@ -1583,6 +1604,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     level.registerFlag( new Flag("score_algodao", false ) );
     level.registerFlag( new Flag("score_pulseira", false ) );
     level.registerFlag( new Flag("verificar_pulseira", false ) );
+    level.registerFlag( new Flag("utilizar_algodao", false ) );
 
 
     level.setInitialScene( 0 );

@@ -131,6 +131,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     ]);
 
     function corredorIrSalaLeitos() {
+        
+        if(core.flag("score_checar_pulseira") == false){
+            core.changeScene( 2 ); 
+        }
+        else if(core.flag("score_checar_pulseira") == true && core.flag("pegou_tudo_posto_enfermagem") == false){
+            core.openDialog(5   );
+        }
+        else
+            core.changeScene( 2 );
+        
+        
+     /*   
       if ( !flagsOn ) {
         console.log("Action: corredorIrSalaLeitos");
       } else {
@@ -140,7 +152,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         } else {
           console.log("Necessita ação: falar com mentor");
         }
-      }
+      }*/
+        
     }
 
     var corredor = lib.scenes.corredor.getClone()
@@ -254,6 +267,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.closeDialog( 4 );
           core.setInteractiveObjectVisible("io-ir_sala_leitos", true );
           core.setInteractiveObjectVisible("io-conversar_mentor", true );
+        }),
+        
+        // Dialog 5 - 
+        new Dialog( lib.characters.mentor )
+        .setText( Dialogs.corredor[ 7 ] )
+        .registerOption("", function() {
+          core.closeDialog( );
+          
         })
     ]);
 
@@ -849,6 +870,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             core.flag("relogio") ) {
 
             console.log("Btn ir corredor");
+            core.flag("pegou_tudo_posto_enfermagem", true);
             core.setActionVisible("btn-ir_corredor", true );
             core.openCommandBar();
           }
@@ -1155,6 +1177,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     level.registerFlag( new Flag("mediuPressao", false ) );
     level.registerFlag( new Flag("mediuFreqRespiratoria", false ) );
     level.registerFlag( new Flag("mediuBatimentosESaturacao", false ) );
+    level.registerFlag( new Flag("pegou_tudo_posto_enfermagem", false ) );
 
     level.setInitialScene( 0 );
 

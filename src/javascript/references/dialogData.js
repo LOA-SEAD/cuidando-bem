@@ -41,7 +41,9 @@ define({
       // 5 Mentor
       "Sempre aceite ajuda de um profissional mais experiente.",
       // 6 Mentor
-      "Agora me acompanhe, começaremos pela enfermaria masculina."
+      "Agora me acompanhe, começaremos pela enfermaria masculina.",
+      // 7 Mentor
+      "Você já pegou todos os equipamentos no posto de enfermagem?"
     ],
     leito: {
       perguntarNome: "Me desculpe, mas poderia repetir seu nome completo e sua data de nascimento?",

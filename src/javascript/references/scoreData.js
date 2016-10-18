@@ -179,7 +179,8 @@ define(function() {
       pegarSoro: new Score("Pegar soro fisiológico 0,9% (250 ml) aquecido", 50 ),
       pegarSeringa: new Score("Pegar seringa de 20 ml", 50 ),
       pegarAgulha: new Score("Pegar agulha 40X12", 50 ),
-      pegarTodosInstrumentos: new Score("Pegar todos os instrumentos", 350 )
+      pegarTodosInstrumentos: new Score("Pegar todos os instrumentos", 350 ),
+      utilizarAlgodao: new Score("Utilizar algodão seco", 50 )
     },
 
     fase7: {
