@@ -126,8 +126,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       .setEnable( false ),
         
         
-        
-        
     ]);
 
     function corredorIrSalaLeitos() {
@@ -136,7 +134,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             core.changeScene( 2 ); 
         }
         else if(core.flag("score_checar_pulseira") == true && core.flag("pegou_tudo_posto_enfermagem") == false){
-            core.openDialog(5   );
+            core.openDialog( 5 );
         }
         else
             core.changeScene( 2 );
@@ -338,6 +336,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       new InteractiveObject("io-ir_leito", "Ir ao leito")
         .setCssClass("intObj-ir_leito-tutorial")
         .onClick(function() {
+            core.setInteractiveObjectVisible("intObj-info03", false);
           core.changeScene( 3 );
         })
         .setVisibility( visibility ),
@@ -348,7 +347,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.changeScene( 1 );
             core.setInteractiveObjectVisible("io-ir_posto_enfermagem", true );
         })
-        .setVisibility( visibility )
+        .setVisibility( visibility ),
+        
+        new InteractiveObject("intObj-info03", "Balão Informacao 3")    
+      .setCssClass("intObj-info03")
+      .setVisibility( true )
+      .setEnable( false ),
+        
     ]);
 
     var leito = lib.scenes.leitos.joao.getClone()
