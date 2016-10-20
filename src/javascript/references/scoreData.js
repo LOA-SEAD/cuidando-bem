@@ -38,19 +38,21 @@ define(function() {
       falarComPaciente: new Score("Falar com Paciente", 50 ),
       verificarPulseira: new Score("Verificar Pulseira", 100 ),
       examinarPaciente: new Score("Examinar Paciente", 150 ),
+      lavarMaosAntesBandeja: new Score("Lavar as mãos antes de pegar bandeja", 50 ),
       pegarCoxim: new Score("Pegar Coxim", 50 ),
       mudarPosicaoCoxim: new Score("Mudar posição coxim", 150 ),
       lavarMaosDepois: new Score("Lavar as mãos após procedimento", 200 ),
       lerProntuario: new Score("Ler prontuário", 100 ),
-      anotarNoProntuario: new Score("Anotar no prontuário", 50 )
+      anotarNoProntuario: new Score("Anotar no prontuário", 250 )
     },
 
     fase3: {
-      lavaMaosAntes: new Score("Lavar maos antes de pegar o prontuário", 200 ),
+    //  lavaMaosAntes: new Score("Lavar maos antes de pegar o prontuário", 200 ),
       checarProntuario: new Score("Checar Prontuário", 150 ),
       pegarKitGlicemia: new Score("Pegar kit de glicemia", 50 ),
       pegarAlgodao: new Score("Pegar algodão seco", 50 ),
       pegarLuvas: new Score("Pegar luvas", 50 ),
+      lavarMaosAntesBandeja: new Score("Lavar as mãos antes de pegar bandeja", 50 ),
       pegarBandeja: new Score("Pegar bandeja", 50 ),
       lavarMaosAntesLeito: new Score("Lavar mãos antes de ir ao leito do paciente", 200 ),
       falarComPaciente: new Score("Conversar com paciente", 50 ),
@@ -167,6 +169,7 @@ define(function() {
       // selecionarMateriaisCurativo: new Score("Selecionar todos os materiais do curativo", 350 ),
       lavarMaosAntesLeito: new Score("Lavar as mãos antes de ir para o leito do paciente", 200 ),
       calcarLuvaEsteril: new Score("Calçar a luva estéril", 150 ),
+      calcarLuvaProcedimento: new Score("Calçar a luva de procedimento", 150 ),
       fazerCurativo: new Score("Fazer o curativo na paciente", 150 ),
       elevarGradeDaCama: new Score("Elevar a grade da cama", 350 ),
       anotarNoProntuario: new Score("Anotar no prontuário", 350 ),

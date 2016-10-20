@@ -188,7 +188,9 @@ define({
       // 11 Paciente
       "Carlos Esme Gouvêa, nasci em 01/12/1945.",
       // 12 Jogador
-      "Vou verificar sua pulseira e depois examiná-lo, Sr. Carlos. Com licença."
+      "Vou verificar sua pulseira e depois examiná-lo, Sr. Carlos. Com licença.",
+        //13
+        "Lave as mãos antes de tocar o paciente."
     ]
   },
 
@@ -968,6 +970,9 @@ define({
       luvasEstereis: [
         "Luvas estéreis são essenciais!"
       ],
+        luvasErradas2: [
+        "Tem certeza que esta é a luva correta para o momento?"
+      ],
       identificarCurativo: [
         "Todo curativo precisa ser identificado!"
       ],
@@ -1024,7 +1029,10 @@ define({
       ],
       erroFichaMedicacao: [
         "Parece que há algum equívoco na preenchimento da ficha de medicação. Verifique-a novamente antes de sair."
-      ]
+      ],
+       lavarMaosAntesBandeja: [
+         "Sempre lave as mãos antes de pegar a bandeja!"  
+       ],
         
     },
     descarte: {

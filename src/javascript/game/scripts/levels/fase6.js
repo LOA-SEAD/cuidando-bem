@@ -564,7 +564,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         }),
       // 13 - Calçar luvas de procedimento
       new Dialog( lib.characters.mentor )
-        .setText( Alertas.luvasErradas )
+        .setText( Alertas.esqueceu.luvasErradas2 )
         .registerOption("", function() {
           core.closeDialog();
         }),
@@ -753,7 +753,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         
         
          new Action("btn-descartar_luva", "Descartar luva")
-        .setCssClass("action-luvas_estereis")
+        .setCssClass("action-luvas_de_procedimento")
         .onClick(function() {
 
 
@@ -868,11 +868,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             Player.play( Player.audios.sfx.colocarLuvas );
 
             if ( core.flag("score_luvas_de_procedimento") == false ) {
-              // core.registerScoreItem( Scores.calcarLuvaProcedimento );
+               core.registerScoreItem( Scores.calcarLuvaProcedimento );
               core.flag("score_luvas_de_procedimento", true );
+              core.setActionVisible("btn-calcar_luvas_estereis", false );    
+              core.setActionVisible("btn-calcar_luvas_procedimento", false );    
             }
-            core.closeCommandBar();
-            core.openDialog( 13 );
+              
+              
+
 
           } else {
 
@@ -892,18 +895,35 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
 
           if ( core.flag("verificar_pulseira") == true ) {
+              
 
             console.log("Action: Calçar luvas estéreis");
+              
+            if(core.flag("descartar_agulha") && core.flag("score_luva_esteril") == false){
+                 core.flag("score_luva_esteril", true );
+              core.registerScoreItem( Scores.calcarLuvaEsteril ); 
+                core.setActionVisible("btn-calcar_luvas_estereis", false);
+            } 
+              else {
+                  core.closeCommandBar();
+            core.openDialog( 13 );
+              }
+              
             // Som
             Player.play( Player.audios.sfx.colocarLuvas );
 
-            if ( core.flag("score_luva_esteril") == false ) {
+           /* if ( core.flag("score_luva_esteril") == false ) {
               core.flag("score_luva_esteril", true );
               core.registerScoreItem( Scores.calcarLuvaEsteril );       
               core.setActionVisible("btn-calcar_luvas_estereis", false );    
               core.setActionVisible("btn-calcar_luvas_procedimento", false );    
-
-            }
+            }*/
+              
+              
+              
+                            
+            c
+              
           } else {
 
             if ( core.flag("score_pulseira") == false ) {
@@ -920,7 +940,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("action-algodao_seco")
         .onClick(function() {
             
-            if(core.flag("score_luva_esteril") == false){
+            if(core.flag("score_luvas_de_procedimento") == false){
                 core.openDialog(19);
             }
             else {
@@ -1048,6 +1068,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("action-lixo_comum")
         .onClick(function() {
             
+          
+            
+            if( (core.flag("descartar_luva") == true &&  core.flag("descartar_agulha") == false && core.flag("descartar_algodao") == false) || (core.flag("descartar_luva") == true &&  core.flag("descartar_agulha") == false && core.flag("descartar_algodao") == true) || (core.flag("descartar_luva") == true &&  core.flag("descartar_agulha") == true && core.flag("descartar_algodao") == false)   ) {
+         core.registerScoreItem(Scores.descartarLuva);        
+            }
+            
+            
      
 
           core.setActionVisible("btn-lixoComum", false );
@@ -1074,7 +1101,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             core.setActionVisible("btn-jogar_algodao", false );
             core.setActionVisible("btn-descartar_agulha", false );
             core.setActionVisible("btn-descartar_luva", false );
-            core.setActionVisible("btn-calcar_luvas_procedimento", true );
+            core.setActionVisible("btn-calcar_luvas_estereis", true );
          //   core.setActionVisible("btn-calcar_luvas_estereis", true );
             core.setActionVisible("btn-fazer_curativo", true );
               core.setActionVisible("btn-lavarMaos", true );
@@ -1156,6 +1183,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
             
            
+            
+               if( (core.flag("descartar_luva") == false &&  core.flag("descartar_agulha") == false && core.flag("descartar_algodao") == true) || (core.flag("descartar_luva") == false &&  core.flag("descartar_agulha") == true && core.flag("descartar_algodao") == true) || (core.flag("descartar_luva") == true &&  core.flag("descartar_agulha") == false && core.flag("descartar_algodao") == true)   ) 
+               {
+         core.registerScoreItem(Scores.jogarAlgodaoBandeja);        
+            }
+            
+           
 
 
           core.setActionVisible("btn-lixoComum", false );
@@ -1177,7 +1211,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             core.setActionVisible("btn-descartar_agulha", false );
             core.setActionVisible("btn-descartar_luva", false );
               
-            core.setActionVisible("btn-calcar_luvas_procedimento", true );
+            core.setActionVisible("btn-calcar_luvas_estereis", true );
          //   core.setActionVisible("btn-calcar_luvas_estereis", true );
             core.setActionVisible("btn-fazer_curativo", true );
               core.setActionVisible("btn-lavarMaos", true );
@@ -1253,7 +1287,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       new Action("btn-perfuroCortante", "Perfuro Cortante")
         .setCssClass("action-lixo_perfuro_cortante")
         .onClick(function() {
+            
+          
 
+            
+                  if(  (core.flag("descartar_luva") == false &&  core.flag("descartar_agulha") == true && core.flag("descartar_algodao") == false) || (core.flag("descartar_luva") == false &&  core.flag("descartar_agulha") == true && core.flag("descartar_algodao") == true) || (core.flag("descartar_luva") == false &&  core.flag("descartar_agulha") == true && core.flag("descartar_algodao") == true)   ) 
+               {
+         core.registerScoreItem(Scores.jogarAgulhaLixoCerto);        
+            }
+            
               
 
           core.setActionVisible("btn-lixoComum", false );
@@ -1276,7 +1318,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             core.setActionVisible("btn-descartar_agulha", false );
             core.setActionVisible("btn-descartar_luva", false );
               
-            core.setActionVisible("btn-calcar_luvas_procedimento", true );
+            core.setActionVisible("btn-calcar_luvas_estereis", true );
          //   core.setActionVisible("btn-calcar_luvas_estereis", true );
             core.setActionVisible("btn-fazer_curativo", true );
               core.setActionVisible("btn-lavarMaos", true );
