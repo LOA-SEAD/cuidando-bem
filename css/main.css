@@ -437,8 +437,7 @@ This file is part of Cuidando Bem.
 }
 .menuButton:active {
   border-bottom: 5px solid transparent;
-  -webkit-transform: translate(0px, 2px);
-          transform: translate(0px, 2px);
+  transform: translate(0px, 2px);
 }
 /*
 This file is part of Cuidando Bem.
@@ -682,12 +681,10 @@ This file is part of Cuidando Bem.
 }
 #pauseButton:hover,
 #pauseButton:focus {
-  -webkit-transform: scale(1.1, 1.1);
-          transform: scale(1.1, 1.1);
+  transform: scale(1.1, 1.1);
 }
 #pauseButton:active {
-  -webkit-transform: scale(1, 1);
-          transform: scale(1, 1);
+  transform: scale(1, 1);
   -webkit-filter: none;
           filter: none;
 }
@@ -758,8 +755,7 @@ This file is part of Cuidando Bem.
 }
 #pauseMenu #front .button:active {
   border-bottom: 5px solid transparent;
-  -webkit-transform: translate(0px, 2px);
-          transform: translate(0px, 2px);
+  transform: translate(0px, 2px);
 }
 /*
 This file is part of Cuidando Bem.
@@ -883,78 +879,67 @@ p.title {
   background-image: url(../images/misc/locker.png);
 }
 .l0 {
-  -webkit-transform: rotate(-89.81818182deg) translate(140%) rotate(89.81818182deg);
-          transform: rotate(-89.81818182deg) translate(140%) rotate(89.81818182deg);
+  transform: rotate(-89.81818182deg) translate(140%) rotate(89.81818182deg);
 }
 .l0 > .image {
   background-image: url(../images/modalScenes/pulseira.png);
 }
 .l1 {
-  -webkit-transform: rotate(-57.09090909deg) translate(140%) rotate(57.09090909deg);
-          transform: rotate(-57.09090909deg) translate(140%) rotate(57.09090909deg);
+  transform: rotate(-57.09090909deg) translate(140%) rotate(57.09090909deg);
 }
 .l1 > .image {
   background-image: url(../images/interactiveObjects/coxim.png);
 }
 .l2 {
-  -webkit-transform: rotate(-24.36363636deg) translate(140%) rotate(24.36363636deg);
-          transform: rotate(-24.36363636deg) translate(140%) rotate(24.36363636deg);
+  transform: rotate(-24.36363636deg) translate(140%) rotate(24.36363636deg);
 }
 .l2 > .image {
   background-image: url(../images/interactiveObjects/glicosimetro.png);
 }
 .l3 {
-  -webkit-transform: rotate(8.36363636deg) translate(140%) rotate(-8.36363636deg);
-          transform: rotate(8.36363636deg) translate(140%) rotate(-8.36363636deg);
+  transform: rotate(8.36363636deg) translate(140%) rotate(-8.36363636deg);
 }
 .l3 > .image {
   background-image: url(../images/interactiveObjects/placa_neutra.png);
 }
 .l4 {
-  -webkit-transform: rotate(41.09090909deg) translate(140%) rotate(-41.09090909deg);
-          transform: rotate(41.09090909deg) translate(140%) rotate(-41.09090909deg);
+  transform: rotate(41.09090909deg) translate(140%) rotate(-41.09090909deg);
 }
 .l4 > .image {
   background-image: url(../images/interactiveObjects/seringa_20_ml.png);
 }
 .l5 {
-  -webkit-transform: rotate(73.81818182deg) translate(140%) rotate(-73.81818182deg);
-          transform: rotate(73.81818182deg) translate(140%) rotate(-73.81818182deg);
+  transform: rotate(73.81818182deg) translate(140%) rotate(-73.81818182deg);
 }
 .l5 > .image {
   background-image: url(../images/interactiveObjects/gaze_esteril.png);
 }
 .l6 {
-  -webkit-transform: rotate(106.54545455deg) translate(140%) rotate(-106.54545455deg);
-          transform: rotate(106.54545455deg) translate(140%) rotate(-106.54545455deg);
+  transform: rotate(106.54545455deg) translate(140%) rotate(-106.54545455deg);
 }
 .l6 > .image {
   background-image: url(../images/interactiveObjects/equipo_de_infusao_de_dieta.png);
 }
 .l7 {
-  -webkit-transform: rotate(139.27272727deg) translate(140%) rotate(-139.27272727deg);
-          transform: rotate(139.27272727deg) translate(140%) rotate(-139.27272727deg);
+  transform: rotate(139.27272727deg) translate(140%) rotate(-139.27272727deg);
 }
 .l7 > .image {
   background-image: url(../images/interactiveObjects/clorpromazina_medicamento.png);
 }
 .l8 {
-  -webkit-transform: rotate(172deg) translate(140%) rotate(-172deg);
-          transform: rotate(172deg) translate(140%) rotate(-172deg);
+  transform: rotate(172deg) translate(140%) rotate(-172deg);
 }
 .l8 > .image {
   background-image: url(../images/interactiveObjects/carrinho_anestesico.png);
 }
 .l9 {
-  -webkit-transform: rotate(204.72727273deg) translate(140%) rotate(-204.72727273deg);
-          transform: rotate(204.72727273deg) translate(140%) rotate(-204.72727273deg);
+  transform: rotate(204.72727273deg) translate(140%) rotate(-204.72727273deg);
 }
 .l9 > .image {
   background-image: url(../images/interactiveObjects/soro_glicofisiologico_1000_ml.png);
 }
 .l10 {
-  -webkit-transform: rotate(237.45454545deg) translate(140%) rotate(-237.45454545deg);
-          transform: rotate(237.45454545deg) translate(140%) rotate(-237.45454545deg);
+  transform: rotate(237.45454545deg) translate(140%) rotate(-237.45454545deg);
 }
 .l10 > .image {
   background-image: url(../images/animation/04_contrato.png);
@@ -1502,8 +1487,7 @@ This file is part of Cuidando Bem.
 }
 #screen-vitoria.palco .corredor {
   opacity: 0.0;
-  -webkit-transform-origin: 50% 70%;
-          transform-origin: 50% 70%;
+  transform-origin: 50% 70%;
 }
 #screen-vitoria.palco .corredor .background {
   background-image: url(../images/animation/02_fundo.png);
@@ -1519,8 +1503,7 @@ This file is part of Cuidando Bem.
   position: absolute;
   bottom: 2.8%;
   left: 36%;
-  -webkit-transform-origin: left;
-          transform-origin: left;
+  transform-origin: left;
 }
 #screen-vitoria.palco .corredor .porta-fundo {
   background-color: black;
@@ -1758,19 +1741,11 @@ This file is part of Cuidando Bem.
   height: 12%;
   background-repeat: no-repeat;
   background-size: contain;
-  -webkit-animation: spin 1s ease-out 1s infinite;
-          animation: spin 1s ease-out 1s infinite;
-}
-@-webkit-keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
+  animation: spin 1s ease-out 1s infinite;
 }
 @keyframes spin {
   100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 /*
@@ -1825,10 +1800,8 @@ div[role="log"]:not(#accessible_log) {
   background-color: transparent;
   border: none;
   padding: 0;
-  -webkit-transform: scale(1.05, 1.05);
-          transform: scale(1.05, 1.05);
-  -webkit-transform-origin: center;
-          transform-origin: center;
+  transform: scale(1.05, 1.05);
+  transform-origin: center;
   -webkit-filter: drop-shadow(0 0 8px #1987B2);
           filter: drop-shadow(0 0 8px #1987B2);
 }
@@ -1881,7 +1854,7 @@ div[role="log"]:not(#accessible_log) {
   background-size: contain;
   background-repeat: no-repeat;
   bottom: 10%;
-  left: 30%;
+  left: 26%;
   width: 13%;
   height: 55%;
 }
@@ -2703,6 +2676,36 @@ div[role="log"]:not(#accessible_log) {
   height: 97%;
   z-index: 1;
 }
+.intObj-info {
+  background-image: url(../images/misc/balaoInfo02.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 18%;
+  height: 15%;
+  top: 16%;
+  left: 79%;
+  z-index: 2;
+}
+.intObj-info02 {
+  background-image: url(../images/misc/balaoInfo01.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 18%;
+  height: 15%;
+  top: 81%;
+  left: 75%;
+  z-index: 4;
+}
+.intObj-info03 {
+  background-image: url(../images/misc/balaoInfo03.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 17%;
+  height: 12%;
+  top: 39%;
+  left: 32%;
+  z-index: 2;
+}
 /*
 This file is part of Cuidando Bem.
     Cuidando Bem is free software: you can redistribute it and/or modify
@@ -2910,7 +2913,7 @@ This file is part of Cuidando Bem.
   background-image: url(../images/scenes/centroCirurgicoYuri.jpg);
 }
 .scene-hallway {
-  background-image: url(../images/scenes/corredor.jpg);
+  background-image: url(../images/scenes/corredor2.jpg);
 }
 .scene-infirmary {
   background-image: url('');
@@ -3047,6 +3050,16 @@ This file is part of Cuidando Bem.
   font-size: 3.5em;
   color: cyan;
 }
+.modalScene-tutorial {
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: url(../images/modalScenes/empty.png);
+  background-position: center;
+  background-size: 40%;
+  background-repeat: no-repeat;
+  font-family: "Digital7", monospace;
+  width: 100%;
+  height: 100%;
+}
 .modalScene-drawer {
   background-color: rgba(0, 0, 0, 0.7);
   background-image: url(../images/modalScenes/gaveta.png);
@@ -3175,6 +3188,16 @@ This file is part of Cuidando Bem.
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.7);
   background-image: url(../images/modalScenes/9_certos_da_medicacao.png);
+  background-position: center;
+  background-size: 27%;
+  background-repeat: no-repeat;
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.modalScene-medicamentosFase10 {
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: url(../images/modalScenes/medicamentosFase10.png);
   background-position: center;
   background-size: 27%;
   background-repeat: no-repeat;
@@ -3893,14 +3916,12 @@ This file is part of Cuidando Bem.
 }
 #equipo .plus:hover,
 #equipo .less:hover {
-  -webkit-transform: scale(1.05, 1.05);
-          transform: scale(1.05, 1.05);
+  transform: scale(1.05, 1.05);
   background-color: #D3F2F8;
 }
 #equipo .plus:active,
 #equipo .less:active {
-  -webkit-transform: scale(1, 1);
-          transform: scale(1, 1);
+  transform: scale(1, 1);
   background-color: #D3F2F8;
 }
 #equipo .plus {
@@ -4012,6 +4033,20 @@ This file is part of Cuidando Bem.
   bottom: 5%;
   border: none;
   background-color: transparent;
+}
+#dialog_tutorial {
+  position: absolute;
+  text-align: center;
+  right: 5%;
+  width: 17%;
+  height: 46%;
+  bottom: 10%;
+  border: none;
+  background-color: red;
+  background: url(../images/misc/balaoInfo01.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .dialog_reread {
   visibility: hidden;
@@ -4196,7 +4231,6 @@ This file is part of Cuidando Bem.
   width: 25px;
   height: 25px;
   box-shadow: 6px 5px 9px -9px black;
-  -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 .arrow.top:after {
@@ -4476,6 +4510,9 @@ This file is part of Cuidando Bem.
 .action-irCentroCirurgico {
   background-image: url(../images/actionButtons/irCentroCirurgico.jpg);
 }
+.action-medicamentosFase10 {
+  background-image: url(../images/actionButtons/medicamentosFase10.jpg);
+}
 /*
 This file is part of Cuidando Bem.
     Cuidando Bem is free software: you can redistribute it and/or modify
@@ -4623,7 +4660,6 @@ This file is part of Cuidando Bem.
 }
 #scoreList tr {
   width: 100%;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   height: 4rem;

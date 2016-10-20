@@ -15,4 +15,4 @@
  along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define([],function(){function n(t,r){var e,o=[];if("object"==typeof r)if(r instanceof Array)o=o.concat(r);else for(e in r)o=o.concat(n(t,r[e]));else o.push(r);return o}function t(){arguments[0];c++,o(),c==f&&(a=!1,e())}function r(r,i,u,s){if(a)throw new Error("Can't load two path objects at the same time");var h;a=!0,c=0,e=u,o=s;var l=n(r,i);l.forEach(function(n,t,e){e[t]=r+n}),f=l.length;for(h in l){var v=l[h],d=new Image;d.onload=t,d.src=v}return f}var e,o,a=!1,c=0,f=0;return{load:r}});
+define([],function(){function n(t,o){var r,e=[];if("object"==typeof o)if(o instanceof Array)e=e.concat(o);else for(r in o)e=e.concat(n(t,o[r]));else e.push(o);return e}function t(){arguments[0];c++,e(),c==f&&(a=!1,r())}function o(o,i,u,s){if(a)throw new Error("Can't load two path objects at the same time");var h;a=!0,c=0,r=u,e=s;var l=n(o,i);l.forEach(function(n,t,r){r[t]=o+n}),f=l.length;for(h in l){var v=l[h],d=new Image;d.onload=t,d.src=v}return f}var r,e,a=!1,c=0,f=0;return{load:o}});
