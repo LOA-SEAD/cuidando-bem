@@ -14,5 +14,98 @@
  You should have received a copy of the GNU General Public License
  along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
  */
+/**
+ *
+ * @name EndOfLevel
+ * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
+ */
+define([
+    "text!../html/end_of_level/endOfLevel.html",
+    "text!../html/end_of_level/scoreItemTemplate.html"
+  ],
+  function( html, scoreItemHtml ) {
 
-define(["text!../html/end_of_level/endOfLevel.html","text!../html/end_of_level/scoreItemTemplate.html"],function(e,t){function n(t){$(t).append(e),$(".goToMenu").click(function(){d=!1,r.changeScreen(6),h.playInLoop(h.audios.musics.menu)}),$(".playAgain").click(function(){var e=require("CuidandoBem");e.restartLevel()})}function o(e,n){if(!d){$(c).show();var o=0;for(i=0;i<e.length;i++){var l=e[i],r=$($(t)[0]),s=$(u,r),h=$(f,r);s.html(l.score),h.html(l.title),o+=l.score,$(a).append(r)}var m=Math.floor(o/n*100);$(".percent").text(m+"%"),$(".fill").css("width",m+"%"),d=!0}}function l(){$(s).empty(),$(c).hide(),d=!1}var r=require("Stage"),c="#endOfLevel",a="#scoreList",s="#scoreList_tbody",f=".title",u=".score",d=!1,h=require("Player");return{init:n,show:o,close:l}});
+// Attributes
+
+    var Stage = require("Stage");
+    var modalSelector = "#endOfLevel";
+    var scoreListSelector = "#scoreList";
+    var scoreListBodySelector = "#scoreList_tbody";
+
+    var titleSelector = ".title";
+    var scoreSelector = ".score";
+
+    var isOpen = false;
+
+    var Player = require("Player");
+// Methods
+    // Init
+    /**
+     * Description
+     * @method init
+     * @memberOf module:EndOfLevel
+     */
+    function init( selector ) {
+      $( selector ).append( html );
+
+      $(".goToMenu").click(function() {
+        isOpen = false;
+        Stage.changeScreen( 6 );
+        Player.playInLoop( Player.audios.musics.menu );
+      });
+
+      $(".playAgain").click(function() {
+        var core = require("CuidandoBem");
+
+        core.restartLevel();
+      });
+    }
+
+    
+    function show( _scoreList, max ) {
+      if ( !isOpen ) {
+        $( modalSelector ).show();
+
+        var actualScore = 0;
+        for ( i = 0; i < _scoreList.length; i++ ) {
+            
+          var scoreItem = _scoreList[ i ];
+
+          var element = $( $( scoreItemHtml )[ 0 ] );
+          var score = $( scoreSelector, element );
+          var title = $( titleSelector, element );
+
+          score.html( scoreItem.score );
+          title.html( scoreItem.title );
+
+          actualScore += scoreItem.score;
+
+          $( scoreListSelector ).append( element );
+        }
+        var percent = Math.floor( (actualScore / max) * 100 );
+
+        $(".percent").text( percent + "%");
+        $(".fill").css("width", percent + "%");
+
+        isOpen = true;
+      }
+    }
+
+    function close() {
+      $( scoreListBodySelector ).empty();
+      $( modalSelector ).hide();
+      isOpen = false;
+    }
+
+// Getters
+// Setters
+// Public Interface
+    return {
+      init: init,
+      show: show,
+      close: close
+    };
+
+  });

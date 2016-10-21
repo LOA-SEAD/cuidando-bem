@@ -14,5 +14,79 @@
  You should have received a copy of the GNU General Public License
  along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
  */
+/**
+ * This method adds all the events to the loadGame screen
+ *
+ * @name Screen_loadGame_Controller
+ * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
+ */
+define([ "Stage", "AccessibleNavigationMenus" ], function( Stage, Accessibility ) {
 
-define(["Stage","AccessibleNavigationMenus"],function(e,n){function t(){}function o(){}function a(e){r=e}function i(){f++;var e=Math.floor(f/r*100);$(".preloaderPercent").text(e+"%"),$(".preloaderFill").css("width",e+"%"),e>=100&&(c(),u=!1)}function l(e){c=e}var c,r=0,f=0,u=!0;return{load:t,unload:o,setTotalFiles:a,fileLoaded:i,setCallBack:l}});
+  // var Player = require("Player");
+  var totalFilesToLoad = 0;
+  var totalFilesLoaded = 0;
+
+  var preloading = true;
+  var loadEndCallback;
+
+  /**
+   * This method is called when the screen loadGame is loaded
+   *
+   * @method load
+   * @public
+   *
+   * @memberOf module:Screen_loadGame_Controller
+   */
+  function load() {
+  }
+
+  /**
+   * This method is called when the screen loadGame is unloaded
+   *
+   * @method unload
+   * @public
+   *
+   * @memberOf module:Screen_loadGame_Controller
+   */
+  function unload() {
+
+  }
+
+  function setTotalFiles( total ) {
+    totalFilesToLoad = total;
+  }
+
+  function fileLoaded() {
+    // if ( preloading ) {
+    totalFilesLoaded++;
+    console.log( totalFilesLoaded + "/" + totalFilesToLoad );
+
+    var percent = Math.floor( (totalFilesLoaded / totalFilesToLoad) * 100 );
+
+    $(".preloaderPercent").text( percent + "%");
+    $(".preloaderFill").css("width", percent + "%");
+
+    if ( percent >= 100 ) {
+      loadEndCallback();
+      preloading = false;
+    }
+    // }
+  }
+
+  function setCallBack( _callback ) {
+    loadEndCallback = _callback;
+  }
+
+  return {
+    load: load,
+    unload: unload,
+
+    setTotalFiles: setTotalFiles,
+    fileLoaded: fileLoaded,
+
+    setCallBack: setCallBack
+  };
+
+});

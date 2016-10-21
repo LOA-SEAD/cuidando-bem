@@ -14,5 +14,54 @@
  You should have received a copy of the GNU General Public License
  along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
  */
+/**
+ * This method adds all the events to the loadGame screen
+ *
+ * @name Screen_loadGame_Controller
+ * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
+ */
+define([ "Stage", "AccessibleNavigationMenus" ], function( Stage, Accessibility ) {
 
-define(["Stage","AccessibleNavigationMenus"],function(n,e){function c(){$(".menuButton").click(function(){a.play(a.audios.sfx.selecionarMenu)}),$(".backButton").click(function(){n.changeScreen(6)}),e.startAccessibleNavigationMenus()}function i(){}var a=require("Player");return{load:c,unload:i}});
+  var Player = require("Player");
+
+  /**
+   * This method is called when the screen loadGame is loaded
+   *
+   * @method load
+   * @public
+   *
+   * @memberOf module:Screen_loadGame_Controller
+   */
+  function load() {
+
+    $(".menuButton").click(function() {
+      Player.play( Player.audios.sfx.selecionarMenu );
+    });
+
+    $(".backButton").click(function() {
+      Stage.changeScreen( 6 );
+    });
+
+    Accessibility.startAccessibleNavigationMenus();
+  }
+
+  /**
+   * This method is called when the screen loadGame is unloaded
+   *
+   * @method unload
+   * @public
+   *
+   * @memberOf module:Screen_loadGame_Controller
+   */
+  function unload() {
+
+  }
+
+  return {
+    load: load,
+    unload: unload
+  };
+
+});

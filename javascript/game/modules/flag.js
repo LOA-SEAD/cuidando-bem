@@ -14,5 +14,103 @@
  You should have received a copy of the GNU General Public License
  along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
  */
+define([], function() {
+  /**
+   * @class
+   * @name Flag
+   * @param {string} _name
+   * @param {any} _value
+   * @return ObjectExpression
+   *
+   * @author Otho - Marcelo Lopes Lotufo
+   */
+  function Flag( _name, _value ) {
+    // Attributes
 
-define([],function(){function n(e,t){function u(){return new n(c,g)}function r(){return c}function f(){return a}function i(n){c=n}function o(n){a=n}var c=e,a=t,g=t;return{getClone:u,getName:r,getValue:f,setName:i,setValue:o}}return n});
+    /**
+     *
+     * @type {string}
+     * @private
+     *
+     * @memberOf Flag#
+     */
+    var name = _name;
+    /**
+     *
+     * @type {any}
+     * @private
+     *
+     * @memberOf Flag#
+     */
+    var value = _value;
+
+    var initialValue = _value;
+
+    // Methods
+
+    // Getters
+    function getClone() {
+      return new Flag( name, initialValue );
+    }
+
+    /**
+     * Description
+     * @method getName
+     * @return name
+     *
+     * @memberOf Flag#
+     */
+    function getName() {
+      return name;
+    }
+
+    /**
+     * Description
+     * @method getValue
+     * @return value
+     *
+     * @memberOf Flag#
+     */
+    function getValue() {
+      return value;
+    }
+
+    // Setters
+
+    /**
+     * Description
+     * @method setName
+     * @param {string} _name
+     *
+     * @memberOf Flag#
+     */
+    function setName( _name ) {
+      name = _name;
+    }
+
+    /**
+     * Description
+     * @method setValue
+     * @param {any} _value
+     *
+     * @memberOf Flag#
+     */
+    function setValue( _value ) {
+      value = _value;
+    }
+
+    // Public interface
+    return {
+      getClone: getClone,
+
+      getName: getName,
+      getValue: getValue,
+
+      setName: setName,
+      setValue: setValue
+    };
+
+  }
+
+  return Flag;
+});

@@ -894,9 +894,10 @@ var requirejs, require, define;
                                     err.requireType = this.map.isDefine ? 'define' : 'require';
                                     return onError((this.error = err));
                                 } else if (typeof console !== 'undefined' &&
- {
+                                           console.error) {
                                     // Log the error for debugging. If promises could be
                                     // used, this would be different, but making do.
+                                    console.error(err);
                                 } else {
                                     // Do not want to completely lose the error. While this
                                     // will mess up processing and lead to similar results

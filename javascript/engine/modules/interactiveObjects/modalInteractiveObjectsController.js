@@ -14,5 +14,292 @@
  You should have received a copy of the GNU General Public License
  along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
  */
+/**
+ *
+ * @name InteractiveObject
+ * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
+ */
+define([
+    "text!../html/interactiveObject/modalInteractiveObjects.html",
+    "text!../html/interactiveObject/interactiveObjectTemplate.html",
+    "IsMobile"
+  ],
+  function( html, interactiveObjectTemplate, isMobile ) {
+// Attributes
+    var divSelector = "#modalInteractiveObjects";
+    var interactiveObjectSelector = ".interactiveObject";
 
-define(["text!../html/interactiveObject/modalInteractiveObjects.html","text!../html/interactiveObject/interactiveObjectTemplate.html","IsMobile"],function(t,e,i){function n(e){$(e).append(t)}function a(t){var e;for(e=0;e<t.length;e++){var i=t[e];o(i)}}function c(t){l(),a(t)}function o(t){var i=$($(e)[0]);i.attr("title",t.getName()),i.attr("aria-label",t.getName()),i.attr("id",t.getId()),i.addClass(t.getCssClass()),i.focus(function(){$("<span>"+t.getName()+"</span><br>").appendTo("#accessible_log")}),i.tooltip({tooltipClass:"interactiveObject-ui-tooltip",show:{duration:200},position:{within:"#stage",of:"#stage",my:"center top",at:"center top+5%"}}),t.isEnabled()?b(i,t):(i.addClass("disabled"),i.tooltip("option","disabled",!0)),$(j).append(i),t.isVisible()||i.hide()}function l(){$(j).empty()}function s(t){$("#"+t.getId()).remove()}function r(t){var e="#"+t.getId(),i=$(e);b(i,t)}function d(t){var e="#"+t.getId(),i=$(e);i.removeClass("enabled"),i.addClass("disabled"),i.unbind("click"),i.tooltip("option","disabled",!0)}function b(t,e){t.click(e.getFunction()),t.removeClass("disabled"),t.addClass("enabled"),t.tooltip("option","disabled",!1)}function v(t){var e;for(e=0;e<t.length;e++){var i=t[e];r(i)}}function f(t){var e;for(e=0;e<t.length;e++){var i=t[e];d(i)}}function p(t){var e;for(e=0;e<t.length;e++){var i=t[e];i.isEnabled()?r(i):d(i)}}function u(t,e){var i="#"+t.getId();e?$(i).show():$(i).hide()}function I(){$(j).show()}function g(){$(j).hide()}var j="#modalInteractiveObjects";return{init:n,open:I,close:g,addInteractiveObject:o,addAllInteractiveObjects:a,changeToInteractiveObjects:c,removeAllInteractiveObjects:l,removeInteractiveObject:s,setInteractiveObjectVisible:u,enableInteractiveObject:r,disableInteractiveObject:d,enableAllInteractiveObjects:v,disableAllInteractiveObjects:f,updateAllInteractiveObjects:p}});
+// Methods
+    /**
+     * Description
+     * @method init
+     *
+     * @memberOf module:InteractiveObject
+     */
+    function init( selector ) {
+      $( selector ).append( html );
+    }
+
+    /**
+     * Description
+     * @method addAllInteractiveObjects
+     * @param {} _interactiveObjects
+     *
+     * @memberOf module:InteractiveObject
+     */
+    function addAllInteractiveObjects( _interactiveObjects ) {
+      console.group("Adding Interactive Objects:", true );
+
+      var i;
+      for ( i = 0; i < _interactiveObjects.length; i++ ) {
+        console.log("Adding interactive object #" + i + ": " + _interactiveObjects[ i ].getName() );
+        var interactiveObject = _interactiveObjects[ i ];
+        addInteractiveObject( interactiveObject );
+      }
+
+      console.groupEnd();
+    }
+
+    /**
+     * Description
+     * @method changeToInteractiveObjects
+     * @param {} _interactiveObjects
+     *
+     * @memberOf module:InteractiveObject
+     */
+    function changeToInteractiveObjects( _interactiveObjects ) {
+      removeAllInteractiveObjects();
+      addAllInteractiveObjects( _interactiveObjects );
+    }
+
+
+    /**
+     * Description
+     * @method addInteractiveObject
+     * @param {} _interactiveObject
+     *
+     * @memberOf module:InteractiveObject
+     */
+    function addInteractiveObject( _interactiveObject ) {
+      var element = $( $( interactiveObjectTemplate )[ 0 ] );
+
+      element.attr("title", _interactiveObject.getName() );
+      element.attr("aria-label", _interactiveObject.getName() );
+      element.attr("id", _interactiveObject.getId() );
+      element.addClass( _interactiveObject.getCssClass() );
+
+      element.focus(function() {
+        $("<span>" + _interactiveObject.getName() + "</span><br>").appendTo("#accessible_log");
+      });
+
+      element.tooltip({
+        // disabled: true,
+        tooltipClass: "interactiveObject-ui-tooltip",
+        show: {
+          duration: 200
+        },
+        position: {
+          within: "#stage",
+          of: "#stage",
+          my: "center top",
+          at: "center top+5%"
+        }
+      });
+      if ( _interactiveObject.isEnabled() ) {
+        addClickToElement( element, _interactiveObject );
+      } else {
+        element.addClass("disabled");
+        element.tooltip("option", "disabled", true );
+      }
+
+      $( divSelector ).append( element );
+      if ( !_interactiveObject.isVisible() ) {
+        element.hide();
+      }
+    }
+
+    /**
+     * Description
+     * @method removeAllInteractiveObjects
+     *
+     * @memberOf module:InteractiveObject
+     */
+    function removeAllInteractiveObjects() {
+      $( divSelector ).empty();
+    }
+
+    /**
+     * Description
+     * @method removeInteractiveObject
+     * @param {} _interactiveObject
+     *
+     * @memberOf module:InteractiveObject
+     */
+    function removeInteractiveObject( _interactiveObject ) {
+      $("#" + _interactiveObject.getId() ).remove();
+    }
+
+    /**
+     * Description
+     * @method activateInteractiveObject
+     * @param {} _interactiveObject
+     *
+     * @memberOf module:InteractiveObject
+     */
+    function enableInteractiveObject( _interactiveObject ) {
+      var selector = "#" + _interactiveObject.getId();
+      var element = $( selector );
+      addClickToElement( element, _interactiveObject );
+    }
+
+    /**
+     * Description
+     * @method deactivateInteractiveObject
+     * @param {} _interactiveObject
+     *
+     * @memberOf module:InteractiveObject
+     */
+    function disableInteractiveObject( _interactiveObject ) {
+      var selector = "#" + _interactiveObject.getId();
+      var element = $( selector );
+      element.removeClass("enabled");
+      element.addClass("disabled");
+      element.unbind("click");
+      element.tooltip("option", "disabled", true );
+
+    }
+
+    function addClickToElement( element, _interactiveObject ) {
+      // if ( !isMobile.isMobile() ) {
+      //   element.click({ iofunc: _interactiveObject.getFunction() }, function( event ) {
+      //     if ( $( this ).is(":focus") ) {
+      //       event.data.iofunc();
+      //     } else {
+      //       $( this ).tooltip("open");
+      //       $( this ).focus();
+      //     }
+      //   });
+      // } else {
+      element.click( _interactiveObject.getFunction() );
+      element.removeClass("disabled");
+      element.addClass("enabled");
+      element.tooltip("option", "disabled", false );
+    }
+
+    /**
+     * Description
+     * @method activateAllInteractiveObjects
+     * @param {} _interactiveObjects
+     *
+     * @memberOf module:InteractiveObject
+     */
+    function enableAllInteractiveObjects( _interactiveObjects ) {
+      console.group("Enabling interactiveObjects", true );
+      var i;
+
+      for ( i = 0; i < _interactiveObjects.length; i++ ) {
+        console.log("InteractiveObject to be enabled " + i + ": " + _interactiveObjects[ i ].getName() );
+        var action = _interactiveObjects[ i ];
+        enableInteractiveObject( action );
+      }
+      console.groupEnd();
+    }
+
+    /**
+     * Description
+     * @method deactivateAllInteractiveObjects
+     * @param {} _interactiveObjects
+     *
+     * @memberOf module:InteractiveObject
+     */
+    function disableAllInteractiveObjects( _interactiveObjects ) {
+      console.group("Disabling interactiveObjects", true );
+      var i;
+
+      for ( i = 0; i < _interactiveObjects.length; i++ ) {
+        console.log("InteractiveObject to be disabled " + i + ": " + _interactiveObjects[ i ].getName() );
+        var action = _interactiveObjects[ i ];
+        disableInteractiveObject( action );
+      }
+      console.groupEnd();
+    }
+
+    /**
+     * Description
+     * @method updateAllActionButtons
+     * @param {} _interactiveObjects
+     *
+     * @memberOf module:InteractiveObject
+     */
+    function updateAllInteractiveObjects( _interactiveObjects ) {
+      console.group("Updating interactiveObjects", true );
+      var i;
+
+      for ( i = 0; i < _interactiveObjects.length; i++ ) {
+        console.log("InteractiveObject to be updated " + i + ": " + _interactiveObjects[ i ].getName() );
+        var action = _interactiveObjects[ i ];
+        if ( action.isEnabled() ) {
+          enableInteractiveObject( action );
+        } else {
+          disableInteractiveObject( action );
+        }
+      }
+      console.groupEnd();
+    }
+
+// Getters
+
+// Setters
+    /**
+     * Description
+     * @method setInteractiveObjectVisible
+     * @param {} _interactiveObject
+     * @param {} _value
+     *
+     * @memberOf module:InteractiveObject
+     */
+    function setInteractiveObjectVisible( _interactiveObject, _value ) {
+      var selector = "#" + _interactiveObject.getId();
+
+      if ( _value ) {
+        $( selector ).show();
+      } else {
+        $( selector ).hide();
+      }
+    }
+
+    function open() {
+      $( divSelector ).show();
+    }
+
+    function close() {
+      $( divSelector ).hide();
+    }
+
+// Public Interface
+    return {
+      init: init,
+
+      open: open,
+      close: close,
+
+      addInteractiveObject: addInteractiveObject,
+      addAllInteractiveObjects: addAllInteractiveObjects,
+
+      changeToInteractiveObjects: changeToInteractiveObjects,
+
+      removeAllInteractiveObjects: removeAllInteractiveObjects,
+      removeInteractiveObject: removeInteractiveObject,
+
+      setInteractiveObjectVisible: setInteractiveObjectVisible,
+
+      enableInteractiveObject: enableInteractiveObject,
+      disableInteractiveObject: disableInteractiveObject,
+      enableAllInteractiveObjects: enableAllInteractiveObjects,
+      disableAllInteractiveObjects: disableAllInteractiveObjects,
+      updateAllInteractiveObjects: updateAllInteractiveObjects
+    };
+
+  });

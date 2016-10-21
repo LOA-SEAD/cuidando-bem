@@ -14,5 +14,57 @@
  You should have received a copy of the GNU General Public License
  along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
  */
+/*
 
-define([],function(){function e(e){s=e,a=0;var r;for(r=0;r<t.length;r++)require([n+t[r]],function(){f()})}function f(){a++,a>=t.length&&s()}var s,a,n="./game/scripts/levels/",t=["faseTeste","testeEndOfLevel","fase1","fase2","fase3","fase4","fase5","fase6","fase7","fase8","fase9","fase10"];return{load:e}});
+ This module register which files to load. Each of these files should contain a Level.
+
+ @author Otho - Marcelo Lopes Lotufo
+ */
+define(function() {
+  console.info("GameConfig - module loaded");
+  var generalPath = "./game/scripts/levels/";
+  var filePaths = [
+
+    "faseTeste",
+    "testeEndOfLevel",
+    "fase1",
+    "fase2",
+    "fase3",
+    "fase4",
+    "fase5",
+    "fase6",
+    "fase7",
+    "fase8",
+    "fase9",
+    "fase10"
+
+  ];
+
+  var cb;
+  var loaded;
+
+  function load( _callback ) {
+    cb = _callback;
+    loaded = 0;
+
+    var i;
+    for ( i = 0; i < filePaths.length; i++ ) {
+      console.log("\tRequiring Level module: ", filePaths[ i ] );
+      require([ generalPath + filePaths[ i ] ], function() {
+        hasFinished();
+      });
+    }
+  }
+
+  function hasFinished() {
+    loaded++;
+
+    if ( loaded >= filePaths.length ) {
+      cb();
+    }
+  }
+
+  return {
+    load: load
+  };
+});

@@ -14,5 +14,215 @@
  You should have received a copy of the GNU General Public License
  along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
  */
+define([], function() {
 
-define([],function(){function t(e){function n(t,e){this.text=t,this.actionFunction=e}function i(t){k[t].actionFunction()}function r(){var e=new t(h).setText(x).setRandomize(N).setSpeakerCssClass(h.getCssClass()).setSpeakerName(h.getName());for(opt in k)e.registerOption(k[opt].text,k[opt].actionFunction);return e}function s(){return k}function o(){return h.getName()}function u(){return h.getCssClass()}function a(){return x}function c(){return N}function f(t){return k[t].text}function g(t){return this}function p(t){return this}function C(t){return x=t,this}function l(t){return N=t,this}function m(t,e){var i=new n(t,e);return k.push(i),this}if(null!=e){var h=e;e.getName(),e.getCssClass()}var x="",k=[],N=!1;return{DialogOption:n,executeOption:i,getClone:r,getSpeakerName:o,getSpeakerCssClass:u,getText:a,getOptions:s,getOptionText:f,getRandomize:c,setSpeakerName:g,setSpeakerCssClass:p,setText:C,setRandomize:l,registerOption:m}}return t});
+  /**
+   * @class
+   * @name Dialog
+   * @param {Character} _speaker
+   * @return ObjectExpression
+   *
+   * @author Otho - Marcelo Lopes Lotufo
+   */
+  function Dialog( _speaker ) {
+
+
+    // Inner Class
+    /**
+     * Description
+     * @class Dialog.DialogOption
+     * @param {string} _text
+     * @param {function} _actionFunction
+     *
+     * @memberOf Dialog
+     */
+    function DialogOption( _text, _actionFunction ) {
+      this.text = _text;
+      this.actionFunction = _actionFunction;
+    }
+
+    // Attributes
+
+    if ( _speaker != null ) {
+      /**
+       * @type {string}
+       * @private
+       *
+       * @memberOf Dialog#
+       */
+      var speaker = _speaker;
+      var speakerName = _speaker.getName();
+      /**
+       * @type {string}
+       * @private
+       *
+       * @memberOf Dialog#
+       */
+      var speakerCssClass = _speaker.getCssClass();
+    }
+    /**
+     * @type {string}
+     * @private
+     *
+     * @memberOf Dialog#
+     */
+    var text = "";
+    /**
+     * @type {array}
+     * @private
+     *
+     * @memberOf Dialog#
+     */
+    var options = [];
+
+    var randomize = false;
+
+    // Methods
+
+    /**
+     * Description
+     *
+     * @method executeOption
+     * @param {int} _optionIndex
+     *
+     * @memberOf Dialog#
+     */
+    function executeOption( _optionIndex ) {
+      options[ _optionIndex ].actionFunction();
+    }
+
+    // Getters
+    function getClone() {
+      var dialogClone = new Dialog( speaker )
+        .setText( text )
+        .setRandomize( randomize )
+        .setSpeakerCssClass( speaker.getCssClass() )
+        .setSpeakerName( speaker.getName() );
+      // .setSpeakerName(speakerName);
+
+
+      for ( opt in options ) {
+        dialogClone.registerOption( options[ opt ].text, options[ opt ].actionFunction );
+      }
+
+      return dialogClone;
+    }
+
+    /**
+     * Description
+     * @method getOptions
+     * @return options
+     *
+     * @memberOf Dialog#
+     */
+    function getOptions() {
+      return options;
+    }
+
+    /**
+     * Description
+     * @method getSpeakerName
+     * @return speakerName
+     * @memberOf Dialog#
+     */
+    function getSpeakerName() {
+      return speaker.getName();
+    }
+
+    /**
+     * Description
+     * @method getSpeakerCssClass
+     * @return speakerCssClass
+     * @memberOf Dialog#
+     */
+    function getSpeakerCssClass() {
+      return speaker.getCssClass();
+    }
+
+    /**
+     * Description
+     * @method getText
+     * @return text
+     *
+     * @memberOf Dialog#
+     */
+    function getText() {
+      return text;
+    }
+
+    function getRandomize() {
+      return randomize;
+    }
+
+    /**
+     * Description
+     * @method getOptionText
+     * @param {int} _optionIndex
+     * @return MemberExpression
+     *
+     * @memberOf Dialog#
+     */
+    function getOptionText( _optionIndex ) {
+      return options[ _optionIndex ].text;
+    }
+
+    function setSpeakerName( _speakerName ) {
+      // speakerName = _speakerName;
+      return this;
+    }
+
+    function setSpeakerCssClass( _speakerCssClass ) {
+      // speakerCssClass = _speakerCssClass;
+      return this;
+    }
+
+    function setText( _text ) {
+      text = _text;
+      return this;
+    }
+
+    function setRandomize( _randomize ) {
+      randomize = _randomize;
+      return this;
+    }
+
+    // Setters
+    /**
+     * Description
+     * @method registerOption
+     * @param {DialogOption} _option
+     *
+     * @memberOf Dialog#
+     */
+    function registerOption( _text, _actionFunction ) {
+      var opt = new DialogOption( _text, _actionFunction );
+
+      options.push( opt );
+      return this;
+    }
+
+    // Public interface
+
+    return {
+      DialogOption: DialogOption,
+      executeOption: executeOption,
+
+      getClone: getClone,
+      getSpeakerName: getSpeakerName,
+      getSpeakerCssClass: getSpeakerCssClass,
+      getText: getText,
+      getOptions: getOptions,
+      getOptionText: getOptionText,
+      getRandomize: getRandomize,
+
+      setSpeakerName: setSpeakerName,
+      setSpeakerCssClass: setSpeakerCssClass,
+      setText: setText,
+      setRandomize: setRandomize,
+
+      registerOption: registerOption
+    };
+  }
+
+  return Dialog;
+});

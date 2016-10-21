@@ -14,5 +14,307 @@
  You should have received a copy of the GNU General Public License
  along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
  */
+define(function( require ) {
 
-define(["require","text!../html/freqRespiratoria/freqRespiratoria.html","Player"],function(t){function e(){this.x,this.y,this.frameTime,this.accumulator=0,this.frameTotal,this.frameCounter=0,this.cyclesPerMinute,this.img=[],this.hasToDraw=!1,this.width,this.height,this.srWidth,this.srHeight,this.update=function(){for(this.accumulator+=p.time;this.accumulator>=this.frameTime;)this.frameCounter++,this.frameCounter=this.frameCounter%this.frameTotal,this.hasToDraw=!0,this.accumulator-=this.frameTime},this.draw=function(t){if(this.hasToDraw){var e=t.getContext("2d"),i=(this.frameCounter*this.width,this.img[this.frameCounter]);e.drawImage(i,0,0,this.srWidth,this.srHeight,this.x,this.y,this.width,this.height)}}}function a(t){$(t).append(l);var e=$(d)[0];e.setAttribute("width",800),e.setAttribute("height",600)}function r(){g.stopAll(),$(d).show(),y.angle=-Math.PI/2,y.accumulator=0,T.frameCounter=0,p.accumulator=0,x=f.playing,p.last=(new Date).getTime(),c()}function o(){$(d).hide(),x=f.stopped,g.stop(),clearInterval(u),clearInterval(h)}function s(){for(T.update(),y.accumulator+=p.time;y.accumulator>=y.time;)y.angle+=2*Math.PI/1e3/60,y.accumulator-=y.time}function n(t){ctx=t.getContext("2d"),ctx.clearRect(0,0,800,600),T.draw(t),ctx.drawImage(y.img,0,0,350,600,601,135,200,330),ctx.beginPath(),ctx.moveTo(y.x,y.y-y.radius),ctx.lineTo(y.x,y.y-y.radius+y.line),ctx.moveTo(y.x,y.y+y.radius),ctx.lineTo(y.x,y.y+y.radius-y.line),ctx.moveTo(y.x-y.radius,y.y),ctx.lineTo(y.x-y.radius+y.line,y.y),ctx.moveTo(y.x+y.radius,y.y),ctx.lineTo(y.x+y.radius-y.line,y.y),ctx.lineWidth=2,ctx.strokeStyle="rgba(0,0,0,130)",ctx.stroke(),ctx.beginPath(),px=Math.cos(y.angle)*y.radius+y.x,py=Math.sin(y.angle)*y.radius+y.y,ctx.moveTo(y.x,y.y),ctx.lineTo(px,py),ctx.lineWidth=5,ctx.strokeStyle="rgba(0,0,0,255)",ctx.stroke()}function c(){for(p.now=(new Date).getTime(),p.passed=p.now-p.last,p.last=p.now,p.accumulator+=p.passed;p.accumulator>=p.time;)s(),p.accumulator-=p.time;n($(d)[0]),x==f.playing&&window.requestAnimationFrame(c)}function m(t){T.cyclesPerMinute=t,T.frameTime=6e4/T.cyclesPerMinute/T.frameTotal}var h,u,l=t("text!../html/freqRespiratoria/freqRespiratoria.html"),d="#freqRespiratoria",g=t("Player"),f={playing:0,stopped:1},x=f.stopped,p={last:void 0,passed:void 0,now:void 0,accumulator:0,time:void 0,rate:60},y={x:700,y:300,radius:60,angle:0,line:20,img:void 0,accumulator:0,time:1};p.time=1e3/p.rate;var T=new e;T.x=50,T.y=180,T.width=400,T.height=240,T.srWidth=1920,T.srHeight=1152,T.frameTotal=12,T.cyclesPerMinute=18,T.frameTime=6e4/T.cyclesPerMinute/T.frameTotal;var w=0;for(i=0;i<T.frameTotal;i++){T.img.push(new Image),T.img[i].onload=function(){w++};var v=T.img[i];i<10&&(i="0"+i),v.src="./images/modalScenes/01_"+i+".png"}return y.img=new Image,y.img.src="./images/modalScenes/relogioDigital.png",y.img.onLoad=function(){},{init:a,setFr:m,open:r,close:o}});
+  var html = require("text!../html/freqRespiratoria/freqRespiratoria.html");
+
+  var canvasSelector = "#freqRespiratoria";
+
+  var Player = require("Player");
+  var respiracao;
+  var bip;
+
+  var STATES = {
+    playing: 0,
+    stopped: 1
+  };
+
+  var state = STATES.stopped;
+
+  var tick = {
+    last: undefined,
+    passed: undefined,
+    now: undefined,
+    accumulator: 0,
+
+    time: undefined,
+
+    rate: 60
+  };
+
+  var clock = {
+    x: 700,
+    y: 300,
+    radius: 60,
+    angle: 0,
+    line: 20,
+    img: undefined,
+
+    accumulator: 0,
+    time: 1
+  };
+  tick.time = 1000 / tick.rate;
+
+  function Animation() {
+    this.x;
+    this.y;
+
+    this.frameTime;
+    this.accumulator = 0;
+    this.frameTotal;
+    this.frameCounter = 0;
+    this.cyclesPerMinute;
+
+    this.img = [];
+    this.hasToDraw = false;
+
+    this.width;
+    this.height;
+
+    this.srWidth;
+    this.srHeight;
+
+
+    this.update = function() {
+
+      this.accumulator += tick.time;
+
+      while ( this.accumulator >= this.frameTime ) {
+
+        this.frameCounter++;
+        this.frameCounter = this.frameCounter % this.frameTotal;
+        this.hasToDraw = true;
+
+        this.accumulator -= this.frameTime;
+      }
+    };
+
+    this.draw = function( canvas ) {
+      if ( this.hasToDraw ) {
+        var ctx = canvas.getContext("2d");
+
+        var fx = this.frameCounter * this.width;
+
+        var img = this.img[ this.frameCounter ];
+
+        ctx.drawImage( img, 0, 0, this.srWidth, this.srHeight, this.x, this.y, this.width, this.height );
+      }
+    };
+  }
+
+  var breathing = new Animation();
+  breathing.x = 50;
+  breathing.y = 180;
+  breathing.width = 400;
+  breathing.height = 240;
+  breathing.srWidth = 1920;
+  breathing.srHeight = 1152;
+  breathing.frameTotal = 12;
+  breathing.cyclesPerMinute = 18;
+  breathing.frameTime = 1000 * 60 / breathing.cyclesPerMinute / breathing.frameTotal;
+
+  var imgsLoaded = 0;
+  for ( i = 0; i < breathing.frameTotal; i++ ) {
+    breathing.img.push( new Image() );
+
+    breathing.img[ i ].onload = function() {
+      console.log("Image " + i + " loaded");
+      imgsLoaded++;
+      // if(imgsLoaded==coin.frameTotal){
+      // 	gameLoop();
+      // }
+    };
+
+    var img = breathing.img[ i ];
+
+    if ( i < 10 ) {
+      i = "0" + i;
+    }
+
+    img.src = "./images/modalScenes/01_" + i + ".png";
+  }
+
+  clock.img = new Image();
+
+  clock.img.src = "./images/modalScenes/relogioDigital.png";
+
+  clock.img.onLoad = function() {
+    console.log("Clock ('watch') image loaded");
+  };
+
+
+  function init( selector ) {
+    $( selector ).append( html );
+
+    var canvas = $( canvasSelector )[ 0 ];
+    canvas.setAttribute("width", 800 );
+    canvas.setAttribute("height", 600 );
+
+    console.info("FreqRespiratoria added to stage");
+  }
+
+  function respira() {
+
+    const HALF_TIME = ( 1000 * 60 / breathing.cyclesPerMinute ) / 2;
+
+    Player.play( Player.audios.sfx.inspirando );
+    var inspirou = true;
+    var expirou = false;
+
+    var count = 0;
+    respiracao = setInterval(function() {
+
+      if ( count == 0 ) {
+        count = 1;
+      } else if ( count == 1 ) {
+        count = 0;
+      }
+
+      if ( count == 0 && !inspirou ) {
+        Player.play( Player.audios.sfx.inspirando );
+        inspirou = true;
+        expirou = false;
+      }
+
+      if ( count == 1 && !expirou ) {
+        Player.play( Player.audios.sfx.expirando );
+        expirou = true;
+        inspirou = false;
+      }
+
+    }, HALF_TIME );
+  }
+
+  function open() {
+    // delay in seconds
+    const DELAY = 8;
+
+    Player.stopAll();
+    $( canvasSelector ).show();
+
+    clock.angle = -Math.PI / 2;
+    clock.accumulator = 0;
+
+    breathing.frameCounter = 0;
+
+    tick.accumulator = 0;
+
+    // AS SOLUÇÕES ACESSÍVEIS NÃO PODEM QUEBRAR O RESTO DO JOGO
+    // NÃO PODE TER ESSE DELAY TODA VEZ QUE ALGUÉM ABRIR ESSA TELA
+    // $("#accessible_log").empty();
+    // $("<span>A respiração começará em " + DELAY + " segundos. Conte quantas vezes o paciente respira em 1 minuto. A cada minuto um bip é emitido.</span><br>").appendTo("#accessible_log");
+    //
+    // setTimeout(function() {
+    //
+    //   if ( $( canvasSelector ).is(":visible") ) {
+    //
+    state = STATES.playing;
+    //
+    tick.last = new Date().getTime();
+    //
+    animationLoop();
+    //
+    //     Player.playInLoop( Player.audios.sfx.ticTac );
+    //
+    //     bip = setInterval(function() {
+    //       Player.play( Player.audios.sfx.bip );
+    //     }, 60000 );
+    //     respira();
+    //   }
+    //
+    // }, DELAY * 1000 );
+  }
+
+  function close() {
+    $( canvasSelector ).hide();
+    state = STATES.stopped;
+    Player.stop();
+    clearInterval( bip );
+    clearInterval( respiracao );
+  }
+
+
+  function update() {
+    breathing.update();
+
+    clock.accumulator += tick.time;
+    while ( clock.accumulator >= clock.time ) {
+      clock.angle += Math.PI * 2 / 1000 / 60;
+
+      clock.accumulator -= clock.time;
+    }
+  }
+
+  function draw( canvas ) {
+    ctx = canvas.getContext("2d");
+    ctx.clearRect( 0, 0, 800, 600 );
+
+    breathing.draw( canvas );
+
+    ctx.drawImage( clock.img, 0, 0, 350, 600, 601, 135, 200, 330 );
+
+    ctx.beginPath();
+    ctx.moveTo( clock.x, clock.y - clock.radius );
+    ctx.lineTo( clock.x, clock.y - clock.radius + clock.line );
+
+    ctx.moveTo( clock.x, clock.y + clock.radius );
+    ctx.lineTo( clock.x, clock.y + clock.radius - clock.line );
+
+    ctx.moveTo( clock.x - clock.radius, clock.y );
+    ctx.lineTo( clock.x - clock.radius + clock.line, clock.y );
+
+    ctx.moveTo( clock.x + clock.radius, clock.y );
+    ctx.lineTo( clock.x + clock.radius - clock.line, clock.y );
+
+    // ctx.arc(clock.x, clock.y, clock.radius, 0, Math.PI*2);
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "rgba(0,0,0,130)";
+    ctx.stroke();
+
+    ctx.beginPath();
+    px = Math.cos( clock.angle ) * clock.radius + clock.x;
+    py = Math.sin( clock.angle ) * clock.radius + clock.y;
+
+    ctx.moveTo( clock.x, clock.y );
+    ctx.lineTo( px, py );
+
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = "rgba(0,0,0,255)";
+    ctx.stroke();
+  }
+
+  function animationLoop() {
+    tick.now = new Date().getTime();
+    tick.passed = tick.now - tick.last;
+    tick.last = tick.now;
+
+    tick.accumulator += tick.passed;
+
+    while ( tick.accumulator >= tick.time ) {
+      update();
+
+      tick.accumulator -= tick.time;
+    }
+
+    draw( $( canvasSelector )[ 0 ] );
+
+    if ( state == STATES.playing ) {
+      window.requestAnimationFrame( animationLoop );
+    }
+  }
+
+  function setFr( _fr ) {
+
+    breathing.cyclesPerMinute = _fr;
+    breathing.frameTime = 1000 * 60 / breathing.cyclesPerMinute / breathing.frameTotal;
+
+  }
+
+  return {
+    init: init,
+    setFr: setFr,
+
+    open: open,
+    close: close
+  };
+});

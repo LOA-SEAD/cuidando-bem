@@ -14,5 +14,102 @@
  You should have received a copy of the GNU General Public License
  along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
  */
+define([], function() {
+  /**
+   * @module LevelsData
+   *
+   * @author Otho - Marcelo Lopes Lotufo
+   */
+// Attributes
+  /**
+   * This object stores all Level data for the game
+   * @private
+   * @type {object}
+   *
+   * @memberOf module:LevelsData
+   */
+  var levels = {};
+  /**
+   * This var stores the current level
+   * @private
+   * @type {(string|int)}
+   *
+   * @memberOf module:LevelsData
+   */
+  var currentLevel = 2;
 
-define([],function(){function e(e,n){null!=o[n],o[n]=e,f+=e.getMaxPoints()}function n(){return o[c]}function t(){return c}function r(){return f}function u(e){return o[e].getMaxPoints()}function i(e){c=e}var o={},c=0,f=0;return{registerLevel:e,getCurrentLevel:n,getCurrentLevelId:t,getMaxGameScore:r,getLevelMaxScore:u,setCurrentLevel:i}});
+  var maxGameScore = 0;
+
+// Methods
+  /**
+   * This function stores a level data in the levels object
+   * @method registerLevel
+   * @param {Level} _level
+   * @param _id
+   * @public
+   *
+   * @memberOf module:LevelsData
+   */
+  function registerLevel( _level, _id ) {
+    if ( levels[ _id ] != null ) {
+      console.warn("O id: " + _id + " já está em uso. O level anterior com esse mesmo id vai ser reescrito.");
+    }
+
+    levels[ _id ] = _level;
+
+    maxGameScore += _level.getMaxPoints();
+
+    // Log
+    console.log("\nAdding new Level:", _level.getName() );
+
+  }
+
+// Getters
+  /**
+   * @method getCurrentLevel
+   * @return {Level} MemberExpression
+   * @public
+   *
+   * @memberOf module:LevelsData
+   */
+  function getCurrentLevel() {
+    return levels[ currentLevel ];
+  }
+
+  function getCurrentLevelId() {
+    return currentLevel;
+  }
+
+  function getMaxGameScore() {
+    return maxGameScore;
+  }
+
+  function getLevelMaxScore( levelId ) {
+    return levels[ levelId ].getMaxPoints();
+  }
+
+// Setters
+  /**
+   * @method setCurrentLevel
+   * @param {(string|number)} _level
+   * @public
+   *
+   * @memberOf module:LevelsData
+   */
+  function setCurrentLevel( _level ) {
+    currentLevel = _level;
+  }
+
+// Public Interface
+  return {
+    registerLevel: registerLevel,
+
+    getCurrentLevel: getCurrentLevel,
+    getCurrentLevelId: getCurrentLevelId,
+
+    getMaxGameScore: getMaxGameScore,
+    getLevelMaxScore: getLevelMaxScore,
+
+    setCurrentLevel: setCurrentLevel
+  };
+});

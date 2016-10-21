@@ -14,5 +14,82 @@
  You should have received a copy of the GNU General Public License
  along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
  */
+/**
+ * This method adds all the events to the mainMenu screen
+ *
+ * @name Screen_mainMenu_Controller
+ * @module
+ *
+ * @author Otho - Marcelo Lopes Lotufo
+ */
+define([ "Stage", "AccessibleNavigationMenus" ], function( Stage, Accessibility ) {
 
-define(["Stage","AccessibleNavigationMenus"],function(n,e){function c(){a.playInLoop(a.audios.musics.menu),$(".menuButton").click(function(){a.play(a.audios.sfx.selecionarMenu)}),$("#initGame_btn").click(function(){a.play(a.audios.sfx.selecionarMenu),n.changeScreen(5)}),$("#conteudo_btn").click(function(){a.play(a.audios.sfx.selecionarMenu),n.changeScreen(7)}),$("#config_btn").click(function(){a.play(a.audios.sfx.selecionarMenu),n.changeScreen(4)}),$("#credits_btn").click(function(){a.play(a.audios.sfx.selecionarMenu),n.changeScreen(3)}),e.startAccessibleNavigationMenus()}function i(){}var a=require("Player");return{load:c,unload:i}});
+  var Player = require("Player");
+
+  /**
+   * This method is called when the screen mainMenu is loaded
+   *
+   * @method load
+   * @public
+   *
+   * @memberOf module:Screen_mainMenu_Controller
+   */
+  function load() {
+    Player.playInLoop( Player.audios.musics.menu );
+
+    console.log("Configuring main menu listeners");
+
+    $(".menuButton").click(function() {
+      Player.play( Player.audios.sfx.selecionarMenu );
+    });
+
+    // Iniciar Jogo
+    $("#initGame_btn").click(function() {
+      console.log( this );
+      Player.play( Player.audios.sfx.selecionarMenu );
+      Stage.changeScreen( 5 );
+    });
+
+    // Carregar Jogo
+    $("#conteudo_btn").click(function() {
+      console.log( this );
+      Player.play( Player.audios.sfx.selecionarMenu );
+      Stage.changeScreen( 7 );
+    });
+
+    // Configurações
+    $("#config_btn").click(function() {
+      console.log( this );
+      Player.play( Player.audios.sfx.selecionarMenu );
+      Stage.changeScreen( 4 );
+    });
+
+    // Créditos
+    $("#credits_btn").click(function() {
+      console.log( this );
+      Player.play( Player.audios.sfx.selecionarMenu );
+      Stage.changeScreen( 3 );
+    });
+
+    Accessibility.startAccessibleNavigationMenus();
+  }
+
+  /**
+   * This method is called when the screen mainMenu is unloaded
+   *
+   * @method unload
+   * @public
+   *
+   * @memberOf module:Screen_mainMenu_Controller
+   */
+  function unload() {
+    // $('.menuButton')
+
+  }
+
+  return {
+    load: load,
+    unload: unload
+  };
+
+});
