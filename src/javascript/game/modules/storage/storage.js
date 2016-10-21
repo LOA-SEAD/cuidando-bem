@@ -98,6 +98,12 @@ define([ "SimpleStorage" ], function( Storage ) {
         save = emptySlot.getClone();
         saves[ i ] = save;
       }
+
+      for ( j in save.levels ) {
+        if ( save.levels[ j ] === null ) {
+          save.levels[ j ] = undefined;
+        }
+      }
     }
     saveSlots();
 

@@ -66,7 +66,7 @@ module.exports = function( grunt ) {
                 "htmlmin:prod",
                 "cssmin:prod",
                 "replace:prod",
-                "requirejs:prod"
+                // "requirejs:prod"
             ]);
         }
     });
