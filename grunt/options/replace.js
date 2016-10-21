@@ -11,7 +11,10 @@ module.exports = {
     */
     prod: {
         // expand: true,
-        src: [ "<%= pkg.production %>" + "/javascript/**/*.js" ],
+        src: [ 
+                "<%= pkg.production %>" + "/javascript/**/*.js",
+                "!<%= pkg.production %>" + "/javascript/libs/*.js"
+        ],
         overwrite: true,
 
         // Replace console.(anything)
