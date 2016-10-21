@@ -14,49 +14,5 @@
  You should have received a copy of the GNU General Public License
  along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
  */
-/**
- *
- * @name Scene
- * @module
- *
- * @author Otho - Marcelo Lopes Lotufo
- */
-define([ "text!../html/scenes/scene.html" ], function( html ) {
 
-
-// Attributes
-// Methods
-  function init( selector ) {
-    $( selector ).append( html );
-  }
-
-  /**
-   * Description
-   * @method changeScene
-   * @param {} _newScene
-   * @memberOf module:Scene
-   */
-  function changeScene( _newScene ) {
-    setScene( _newScene );
-  }
-
-  /**
-   * Description
-   * @method setScene
-   * @param {} _scene
-   * @memberOf module:Scene
-   */
-  function setScene( _scene ) {
-    $("#backgroundScene").attr("class", _scene.getCssClass() );
-  }
-
-// Getters
-// Setters
-// Public Interface
-  return {
-    init: init,
-    changeScene: changeScene,
-    setScene: setScene
-  };
-
-});
+define(["text!../html/scenes/scene.html"],function(n){function e(e){$(e).append(n)}function t(n){c(n)}function c(n){$("#backgroundScene").attr("class",n.getCssClass())}return{init:e,changeScene:t,setScene:c}});

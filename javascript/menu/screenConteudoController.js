@@ -14,54 +14,5 @@
  You should have received a copy of the GNU General Public License
  along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
  */
-/**
- * This method adds all the events to the Conteudo screen
- *
- * @name Screen_conteudo_Controller
- * @module
- *
- * @author Otho - Marcelo Lopes Lotufo
- */
-define([ "Stage", "AccessibleNavigationMenus" ], function( Stage, Accessibility ) {
 
-  var Player = require("Player");
-
-  /**
-   * This method is called when the screen Conteudo is loaded
-   *
-   * @method load
-   * @public
-   *
-   * @memberOf module:Screen_conteudo_Controller
-   */
-  function load() {
-    // $('.menuButton').click(function(){
-    //     Player.play(Player.audios.sfx.selecionarMenu);
-    // });
-
-    $(".backButton").click(function() {
-      Player.play( Player.audios.sfx.selecionarMenu );
-      Stage.changeScreen( 0 );
-    });
-
-    Accessibility.startAccessibleNavigationMenus();
-  }
-
-  /**
-   * This method is called when the screen Conteudo is unloaded
-   *
-   * @method unload
-   * @public
-   *
-   * @memberOf module:Screen_conteudo_Controller
-   */
-  function unload() {
-
-  }
-
-  return {
-    load: load,
-    unload: unload
-  };
-
-});
+define(["Stage","AccessibleNavigationMenus"],function(n,e){function a(){$(".backButton").click(function(){c.play(c.audios.sfx.selecionarMenu),n.changeScreen(0)}),e.startAccessibleNavigationMenus()}function i(){}var c=require("Player");return{load:a,unload:i}});
