@@ -20,6 +20,7 @@ define(function() {
   var scores = {
     fase1: {
       identificarPaciente: new Score("Ver pulseira/identificação do paciente", 100 ),
+      lavarMaosAntesBandeja: new Score("Lavar as mãos antes de pegar os instrumentos", 100 ),
       pegarOximetro: new Score("Pegar oxímetro", 50 ),
       pegarAparelhoPressao: new Score("Pegar aparelho de pressão", 50 ),
       pegarTermometro: new Score("Pegar termômetro", 50 ),
@@ -38,7 +39,7 @@ define(function() {
       falarComPaciente: new Score("Falar com Paciente", 50 ),
       verificarPulseira: new Score("Verificar Pulseira", 100 ),
       examinarPaciente: new Score("Examinar Paciente", 150 ),
-      lavarMaosAntesBandeja: new Score("Lavar as mãos antes de pegar bandeja", 50 ),
+      lavarMaosAntesBandeja: new Score("Lavar as mãos antes de pegar os instrumentos", 100 ),
       pegarCoxim: new Score("Pegar Coxim", 50 ),
       mudarPosicaoCoxim: new Score("Mudar posição coxim", 150 ),
       lavarMaosDepois: new Score("Lavar as mãos após procedimento", 200 ),
@@ -52,8 +53,7 @@ define(function() {
       pegarKitGlicemia: new Score("Pegar kit de glicemia", 50 ),
       pegarAlgodao: new Score("Pegar algodão seco", 50 ),
       pegarLuvas: new Score("Pegar luvas", 50 ),
-      lavarMaosAntesBandeja: new Score("Lavar as mãos antes de pegar bandeja", 50 ),
-      pegarBandeja: new Score("Pegar bandeja", 50 ),
+      lavarMaosAntesBandeja: new Score("Lavar as mãos antes de pegar os instrumentos", 100 ),
       lavarMaosAntesLeito: new Score("Lavar mãos antes de ir ao leito do paciente", 200 ),
       falarComPaciente: new Score("Conversar com paciente", 50 ),
       verificarPulseira: new Score("Verificar Pulseira", 100 ),
@@ -106,7 +106,7 @@ define(function() {
 
       checarProntuario: new Score("Checar prontuário", 150 ),
       pegarPrescricaoMedica: new Score("Pegar prescrição médica", 250 ),
-      lavarMaos: new Score("Lavar as mãos antes de pegar os instrumentos", 200 ),
+      lavarMaos: new Score("Lavar as mãos antes de pegar os instrumentos", 100 ),
       checarPulseira: new Score("Verificar pulseira", 50 ),
       administrarMedicacao: new Score("Administrar medicamento", 250 ),
       gotejarSoroEquipo: new Score("Realizar gotejamento de soro no equipamento", 350 ),
@@ -158,7 +158,7 @@ define(function() {
 
       // ir ala masculina
       verProntuario: new Score("Ver Prontuário", 150 ),
-      lavarMaosPostoEnfermagem: new Score("Lavar mãos antes de pegar os instrumentos", 200 ),
+      lavarMaosPostoEnfermagem: new Score("Lavar mãos antes de pegar os instrumentos", 100 ),
       falarComPaciente: new Score("Conversar com paciente", 150 ),
       verificarPulseira: new Score("Verificar a pulseira", 100 ),
       // Falar com paciente 2
@@ -196,7 +196,7 @@ define(function() {
       // naoGotejarSoroEquipo: new Score("Errar 3 ou mais vezes o cálculo do gotejamento", -350 ),
       // irAoLeitoCorreto: new Score("Ir ao leito do paciente", 50 ),
 
-      lavarMaos1: new Score("Lavar as mãos no posto de enfermagem", 200 ),
+      lavarMaos1: new Score("Lavar mãos antes de pegar os instrumentos", 100 ),
       falarComPaciente: new Score("Falar com o paciente", 50 ),
       verificarPulseira: new Score("Verificar pulseira do paciente", 150 ),
       pegarSuporteSoro: new Score("Pegar Suporte de Soro", 50 ),
@@ -237,6 +237,7 @@ define(function() {
 
       falarComPaciente: new Score("Falar com a paciente", 150 ),
       lerProntuario: new Score("Ler o prontuário", 150 ),
+      lavarMaosAntesBandeja: new Score("Lavar mãos antes de pegar os instrumentos", 100 ),
       lavarMaos: new Score("Lavar as mãos antes de ir ao leito do paciente", 200 ),
       lavarMaos2: new Score("Lavar as mãos antes de fazer anotações no prontuário", 200 ),
       anotarProntuario: new Score("Anotar no Prontuário", 350 ),
@@ -278,7 +279,7 @@ define(function() {
       // naoColocarPlacaNeutra: new Score("Não colocar a placa neutra no momento correto", -350 ),
 
       verProntuario: new Score("Ver Prontuário", 150 ),
-      lavarMaosPostoEnfermagem: new Score("Lavar as mãos antes de pegar os instrumentos", 200 ),
+      lavarMaosPostoEnfermagem: new Score("Lavar as mãos antes de pegar os instrumentos", 100 ),
       verificarPulseira: new Score("Verificar a pulseira", 150 ),
       oferecerCopo: new Score("Oferecer copo com água para o paciente", 150 ),
       administrarMedicamento: new Score("Administrar o medicamento", 350 ),
@@ -316,7 +317,7 @@ define(function() {
       pegarSuporteSoro: new Score("Pegar suporte de soro", 50 ),
       administrarMedicamento: new Score("Administrar Medicamento", 150 ),
       gotejarSoroEquipo: new Score("Realizar gotejamento de soro no equipamento", 350 ),
-      lavarMaos1: new Score("Lavar as mãos no posto de enfermagem", 200 ),
+      lavarMaos1: new Score("Lavar as mãos antes de pegar os instrumentos", 100 ),
       anotarNoProntuario: new Score("Anotar no prontuário", 350 ),
       pegarFrascoSG: new Score("Pegar Frasco SG 5%", 50 ),
       pegarNACL: new Score("Pegar NaCL 20%", 50 ),

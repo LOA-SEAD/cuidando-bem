@@ -1022,20 +1022,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
     postoDeEnfermagem.registerActions([
         
-         new Action("btn-lavarMaos", "Lavar as mãos")
-        .setCssClass("action-lavarMaos")
-        .onClick(function() {
-        
-            if(core.flag("lavarMaosAntesBandeja") == false){
-                core.flag("lavarMaosAntesBandeja", true);
-                core.registerScoreItem( Scores.lavarMaosAntesBandeja );
-            }
-            
-            
-        })
-        .setVisibility( true ),
-        
-      new Action("btn-ir_corredor", "Ir ao corredor")
+        new Action("btn-ir_corredor", "Ir ao corredor")
         .setCssClass("action-ir_corredor")
         .onClick(function() {
           console.log("Action: ir_corredor");
@@ -1057,7 +1044,22 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             core.openDialog( 1 );
           }
         })
+        .setVisibility( false ),
+        
+         new Action("btn-lavarMaos", "Lavar as mãos")
+        .setCssClass("action-lavarMaos")
+        .onClick(function() {
+        
+            if(core.flag("lavarMaosAntesBandeja") == false){
+                core.flag("lavarMaosAntesBandeja", true);
+                core.registerScoreItem( Scores.lavarMaosAntesBandeja );
+            }
+            
+            
+        })
         .setVisibility( true )
+        
+      
     ]);
 
 
@@ -1093,10 +1095,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           // Som
           Player.play( Player.audios.sfx.pegarObjeto );
           core.flag("pegou_bandeja", true );
-          if ( !core.flag("score_pegou_bandeja") ) {
-            core.registerScoreItem( Scores.pegarBandeja );
-            core.flag("score_pegou_bandeja", true );
-          }
           core.setInteractiveObjectVisible("io-pegar_bandeja", false ); 
             }
         else {
@@ -1172,6 +1170,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 
                       core.setActionVisible("btn-ir_corredor", true );
                       core.flag("pegou_tudo_posto_enfermagem", true);
+                      core.setActionVisible("btn-ir_corredor", true);
                 
             }    
               

@@ -384,6 +384,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .registerOption("", function() {
           core.closeDialog();
         }),
+        
+        // 6
+         new Dialog( lib.characters.jogador )
+        .setText( Dialogs.alaFeminina[ 3 ] )
+        .registerOption("", function() {
+          core.closeDialog();
+        })
      
         
     ]);
@@ -1676,6 +1683,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           } else {
             core.closeModalScene("Prontuario");
             core.setInteractiveObjectVisible("io-ir_corredor", true );
+            core.openDialog( 6 );  
           }
         })
         .setVisibility( true )

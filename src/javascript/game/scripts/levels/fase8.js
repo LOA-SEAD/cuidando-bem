@@ -864,6 +864,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         if ( core.flag("ir_ala_feminina_primeira_vez") == false || core.flag("conferir_medicamento_correto") == false ) {
+            
+             core.setActionVisible("btn-ir_corredor", true);
 
           if ( core.flag("ir_postoEnfermagem_horaErrada") == false ) {
             // core.registerScoreItem( Scores.irFarmaciaHoraErrada );
@@ -872,6 +874,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
           core.setInteractiveObjectVisible("io-pegar_bandeja", false );
           core.setInteractiveObjectVisible("io-abrirGaveta", false );
+         
 
         } else {
           core.setInteractiveObjectVisible("io-pegar_bandeja", true );
@@ -962,12 +965,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           // Som
           Player.play( Player.audios.sfx.pegarObjeto );
             
-        if(core.flag("lavarMaosPosto") == true) {    
             core.flag("pegou_bandeja", true );
            core.setInteractiveObjectVisible("io-pegar_bandeja", false );  
-        }
-         else
-             core.openDialog(1);
+        
+     
             
         })
         .setVisibility( true )
@@ -994,7 +995,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.changeScene( 1 );
 
 
-        }),
+        })
+        .setVisibility( false ),
         
         new Action("btn-identificarMedicacao", "Identificar medicação")
         .setCssClass("action-fichaMedicacao")
@@ -1012,10 +1014,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("action-lavarMaos")
         .onClick(function() {
             
-          // Som
+               // Som
           Player.play( Player.audios.sfx.lavarMaos );
             
-          core.flag("lavarMaosPosto", true);    
+        if(core.flag("lavarMaosPosto") == false){
+    
+          core.flag("lavarMaosPosto", true); 
+          core.registerScoreItem( Scores.lavarMaosAntesBandeja );    
+              
+        }    
+            
+            
             
          
         })
@@ -1110,8 +1119,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.closeModalScene("Gaveta");
             
             
-          if(core.flag("score_pegar_agua_potavel") == true && core.flag("score_pegar_copo_descartavel") == true)
+          if(core.flag("score_pegar_agua_potavel") == true && core.flag("score_pegar_copo_descartavel") == true) {
+              
              core.setActionVisible("btn-identificarMedicacao", true);     
+             core.setActionVisible("btn-ir_corredor", true);     
+              
+          }
+              
+              
             
         })
         .setVisibility( true )

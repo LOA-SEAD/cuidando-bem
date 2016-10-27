@@ -813,26 +813,46 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("intObj-bandeja")
         .onClick(function() {
           console.log("Action: Pegar bandeja");
+           
+            
+        if (core.flag("lavarMaosAntesBandeja") == true) {   
+            
           // Som
           Player.play( Player.audios.sfx.pegarObjeto );
           core.flag("pegou_bandeja", true );
-          core.setInteractiveObjectVisible("io-pegar_bandeja", false );
+          core.setInteractiveObjectVisible("io-pegar_bandeja", false ); 
+        }
+            else{
+                core.openDialog( 1 );
+            }
+                
+            
+            
         })
         .setVisibility( true )
 
     ]);
 
     postoDeEnfermagem.registerDialogs([
+        
       // Dialog 0 - Não pegou bandeja
       new Dialog( lib.characters.mentor )
         .setText( Alertas.esqueceu.pegarBandeja )
         .registerOption("", function() {
           core.closeDialog();
-
-        })
+        }),  
+        
+        // Dialog 1 - Não lavou as maos
+      new Dialog( lib.characters.mentor )
+        .setText( Alertas.esqueceu.lavarMaosAntesBandeja )
+        .registerOption("", function() {
+          core.closeDialog();
+        }),
+        
     ]);
 
     postoDeEnfermagem.registerActions([
+        
       new Action("btn-ir_corredor", "Ir ao corredor")
         .setCssClass("action-ir_corredor")
         .onClick(function() {
@@ -840,7 +860,29 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.flag("passagem_corredor", 2 );
           core.changeScene( 1 );
         })
-        .setVisibility( visibility )
+        .setVisibility( visibility ),
+        
+           new Action("btn-lavarMaos", "Lavar as mãos")
+        .setCssClass("action-lavarMaos")
+        .onClick(function() {
+            
+          // Som
+          Player.play( Player.audios.sfx.lavarMaos );
+            
+        if(core.flag("lavarMaosAntesBandeja") == false){   
+            
+        core.flag("lavarMaosAntesBandeja", true);    
+        core.registerScoreItem( Scores.lavarMaosAntesBandeja );
+            
+        }
+            
+            
+            
+        })
+        .setVisibility( true ),
+        
+        
+        
     ]);
 
     var fimTutorial = lib.scenes.finalDeFase.getClone()
@@ -1183,6 +1225,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     level.registerFlag( new Flag("mediuFreqRespiratoria", false ) );
     level.registerFlag( new Flag("mediuBatimentosESaturacao", false ) );
     level.registerFlag( new Flag("pegou_tudo_posto_enfermagem", false ) );
+    level.registerFlag( new Flag("lavarMaosAntesBandeja", false ) );
+    level.registerFlag( new Flag("lavarMaosAntesBandeja", false ) );
 
     level.setInitialScene( 0 );
 

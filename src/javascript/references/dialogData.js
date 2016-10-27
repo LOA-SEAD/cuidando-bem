@@ -521,6 +521,8 @@ define({
       "Boa tarde!",
       // 2 Jogador
       "Sou da equipe de enfermagem do hospital e realizarei os cuidados esta tarde.",
+      // 3
+      "Parece que temos um procedimento para ser realizado, vou até o posto de enfermagem e já volto.",
        
     ],
     leitoPaciente: [

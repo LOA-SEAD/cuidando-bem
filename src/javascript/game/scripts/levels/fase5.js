@@ -245,11 +245,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       .onLoad(function() {
         console.log("Load scene: " + alaMasculina.getName() );
         core.setInteractiveObjectVisible("io-ir_corredor", true );
-        core.setActionVisible("btn-ler_prontuario", true );
+        
 
         // Só após ter ido no posto de enfermagem é que libera a ida ao leito do paciente
         if ( core.flag("score_falou_com_mentor") == false ) {
-          core.openDialog( 0 );
+          //core.openDialog( 0 );
+            ;
         } else {
           core.setActionVisible("btn-lavarMaos", true );
           core.setInteractiveObjectVisible("io-ir_leito", true );
@@ -297,7 +298,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           Prontuario.open("prescMedica");
           core.openModalScene("Prontuario");
         })
-        .setVisibility( true )
+        .setVisibility( false )
     ]);
 
     alaMasculina.registerDialogs([
@@ -374,12 +375,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       new InteractiveObject("io-falar_com_paciente", "Falar com o paciente")
         .setCssClass("intObj-ir_leito-fase4")
         .onClick(function() {
-
-          core.openDialog( 1 );
+            
+            
+            core.openDialog( 0 );
+          // core.openDialog( 1 );
           core.flag("falarComPaciente", true );
+            core.setActionVisible("btn-ler_prontuario", true );
 
         })
-        .setVisibility( false ),
+        .setVisibility( true ),
 
       new InteractiveObject("io-ir_corredor", "Ir ao Corredor")
         .setCssClass("intObj-bedroomToHallway")
@@ -1353,9 +1357,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           }
 
           core.closeModalScene("Prontuario");
-          if ( core.flag("score_viu_prontuario") == true && core.flag("score_gotejar_soro_equipo") == false && !core.flag("mostraPaciente") ) {
-            core.setInteractiveObjectVisible("io-falar_com_paciente", true );
-            core.flag("mostraPaciente", true );
+          if ( core.flag("score_viu_prontuario") == true && core.flag("score_gotejar_soro_equipo") == false) {
+           // core.setInteractiveObjectVisible("io-falar_com_paciente", true );
+           // core.flag("mostraPaciente", true );
+            core.openDialog( 1 );  
+              
           }
 
           if ( core.flag("score_anotou_prontuario") == false ) {
