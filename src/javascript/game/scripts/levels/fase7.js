@@ -1013,14 +1013,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             if ( core.flag("score_lavarMaos2") == false ) {
               // core.openDialog(19);
             } else {
-
+                
+                
+                      
               Prontuario.open();
               core.openModalScene("Prontuario");
 
-              if ( core.flag("score_anotar_prontuario") == false ) {
-                core.registerScoreItem( Scores.anotarNoProntuario );
-                core.flag("score_anotar_prontuario", true );
-              }
+             
             }
           } else {
 
@@ -1071,6 +1070,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             core.openDialog( 2 );
           } else {
             Prontuario.close();
+              
+            if ( core.flag("score_anotar_prontuario") == false ) {
+                   if ( Prontuario.isDataValid() ) {
+                core.registerScoreItem( Scores.anotarNoProntuario );
+                core.flag("score_anotar_prontuario", true );
+                   }
+              }
+              
             // core.setActionVisible("btn-fechar_prontuario", false );
             if ( core.flag("score_colocar_gotejamento") == true ) {
               core.unlockLevel( 8 );

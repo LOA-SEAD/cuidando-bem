@@ -780,19 +780,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("action-ler_prontuario")
         .onClick(function() {
 
-          if ( core.flag("score_lavar_maos_2") == false ) {
-            core.openDialog( 9 );
-          } else {
-
-            if ( core.flag("score_anotar_prontuario") == false ) {
-              core.registerScoreItem( Scores.anotarProntuario );
-              core.flag("score_anotar_prontuario", true );
-            }
 
             Prontuario.open();
             core.openModalScene("Prontuario");
 
-          }
+          
         })
         .setVisibility( false ),
 
@@ -1090,8 +1082,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
           console.log("Action: Fechar prontuario");
           Prontuario.close();
+            
+                    if ( core.flag("score_anotar_prontuario") == false ) {
+                          if ( Prontuario.isDataValid() ) {
+              core.registerScoreItem( Scores.anotarProntuario );
+              core.flag("score_anotar_prontuario", true );
+                          }
+            }    
+            
           // Já estava no momento de realizar os procedimentos, portanto pode terminar a fase
-          if ( core.flag("score_anotar_prontuario") == true ) {
+          if ( core.flag("score_ofereceu_copo") == true ) {
             core.unlockLevel( 9 );
             core.closeCommandBar();
             core.showEndOfLevel();

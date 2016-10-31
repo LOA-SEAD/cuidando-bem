@@ -1172,8 +1172,10 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.closeModalScene("Prontuario");
 
           if ( core.flag("score_anotar_prontuario") == false ) {
+                if ( Prontuario.isDataValid() ) {
             core.registerScoreItem( Scores.anotarNoProntuario );
             core.flag("score_anotar_prontuario", true );
+                }
           }
 
           if ( core.flag("verificar_oximetro_local_cirurgia") == true &&

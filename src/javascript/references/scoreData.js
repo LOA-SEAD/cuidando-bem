@@ -184,7 +184,8 @@ define(function() {
       pegarSeringa: new Score("Pegar seringa de 20 ml", 50 ),
       pegarAgulha: new Score("Pegar agulha 40X12", 50 ),
       pegarTodosInstrumentos: new Score("Pegar todos os instrumentos", 350 ),
-      utilizarAlgodao: new Score("Utilizar algodão seco", 50 )
+      utilizarAlgodao: new Score("Utilizar algodão seco", 50 ),
+      identificarMedicacao: new Score("Identificar Curativo", 350)
     },
 
     fase7: {

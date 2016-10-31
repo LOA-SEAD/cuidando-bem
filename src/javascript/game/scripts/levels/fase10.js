@@ -1338,10 +1338,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
               Prontuario.open();
               core.openModalScene("Prontuario");
 
-              if ( core.flag("score_anotar_prontuario") == false ) {
-                core.registerScoreItem( Scores.anotarNoProntuario );
-                core.flag("score_anotar_prontuario", true );
-              }
 
             }
           } else {
@@ -1390,8 +1386,19 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       new Action("btn-fechar_prontuario", "Fechar prontuário")
         .setCssClass("action-ler_prontuario")
         .onClick(function() {
+            
+            
+                         if ( core.flag("score_anotar_prontuario") == false ) {
+                   if ( Prontuario.isDataValid() ) {
+              core.registerScoreItem( Scores.anotarNoProntuario );
+              core.flag("score_anotar_prontuario", true );
+                   }
+            }
+            
+            
+            
 
-          if ( core.flag("score_anotar_prontuario") == true ) {
+          if ( core.flag("administrar_medicamento") == true ) {
             Prontuario.close();
             core.closeModalScene("Prontuario");
             core.setActionVisible("btn-pegar_suporte_soro", false );

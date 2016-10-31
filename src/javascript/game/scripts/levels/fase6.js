@@ -1057,11 +1057,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             }
             core.closeCommandBar();
             core.openDialog( 17 );
-          } else {
-            if ( core.flag("score_anotar_prontuario") == false ) {
-              core.registerScoreItem( Scores.anotarNoProntuario );
-              core.flag("score_anotar_prontuario", true );
-            }
+          }
+            else {
             Prontuario.open();
             core.openModalScene("Prontuario");
           }
@@ -1449,6 +1446,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           }
         })
         .setVisibility( true ),
+        
+        new Action("btn-identificarMedicacao", "Identificar medicação")
+        .setCssClass("action-fichaMedicacao")
+        .onClick(function() {
+            
+          Ficha.open("oral", 6 );
+          core.openModalScene("identificarMedicacao"); 
+            
+        })
+        .setVisibility( false ),
+        
 
       new Action("btn-ler_prontuario", "Ler prontuario")
         .setCssClass("action-ler_prontuario")
@@ -1674,6 +1682,14 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           console.log("Action: Fechar prontuario");
           Prontuario.close();
           // Já estava no momento de realizar os procedimentos, portanto pode terminar a fase
+            
+             if ( core.flag("score_anotar_prontuario") == false ) {
+                   if ( Prontuario.isDataValid() ) {
+              core.registerScoreItem( Scores.anotarNoProntuario );
+              core.flag("score_anotar_prontuario", true );
+                   }
+            }
+            
           if ( core.flag("score_falar_paciente") == true ) {
             core.unlockLevel( 7 );
             core.closeCommandBar();
@@ -1736,6 +1752,27 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         })
         .setVisibility( true )
     ]);
+    
+      fichaMedicacao = new Scene("identificarMedicacao", "Identificar Medicação"); 
+
+    fichaMedicacao.registerActions([
+      new Action("btn-fecharFicha", "Fechar ficha")
+        .setCssClass("action-fichaMedicacao")
+        .onClick(function() {
+
+          core.closeModalScene("identificarMedicacao");
+            
+          Ficha.close();
+          if ( Ficha.isDataValid() ) {
+             
+            if ( core.flag("score_identificar_medicacao") == false ) {
+              core.registerScoreItem( Scores.identificarMedicacao );
+              core.flag("score_identificar_medicacao", true );
+            }
+          }
+    
+        })
+    ]);
 
 
     // Register in level
@@ -1756,6 +1793,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     level.registerModalScene( prontuario );
     level.registerModalScene( glicosimetro );
     level.registerModalScene( glicosimetroComFita );
+    level.registerModalScene( fichaMedicacao );
 
     // level init script
     level.setSetupScript(function() {
@@ -1805,6 +1843,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       Prontuario.setSsvvRowData( 1, "", "130x80", "52", "18", "94", "36", true );
 
       Prontuario.setAnotacaoEnfermagemRowData("", "");
+        
+    // Ficha.setEnfermeiraRegexp( /^Feminina$/i );
+    // Ficha.setPacienteRegexp( /^Esther Fidelis$/i );
+    // Ficha.setLeitoRegexp( /0?2/ );
+        
     });
 
 
@@ -1868,6 +1911,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     level.registerFlag( new Flag("utilizar_algodao", false ) );
     level.registerFlag( new Flag("descartar_luva", false ) );
     level.registerFlag( new Flag("score_descartar_luva", false ) );
+    level.registerFlag( new Flag("score_identificar_medicacao", false ) );
 
 
     level.setInitialScene( 0 );

@@ -506,10 +506,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 core.flag("score_nao_administrou_medicamento", true );
               }
             }
-            if ( core.flag("score_anotar_prontuario") == false ) {
-              core.registerScoreItem( Scores.anotarProntuario );
-              core.flag("score_anotar_prontuario", true );
-            }
+           
             Prontuario.open();
             core.openModalScene("Prontuario");
           } else {
@@ -1131,8 +1128,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
           console.log("Action: Fechar prontuario");
           Prontuario.close();
+            
+             if ( core.flag("score_anotar_prontuario") == false ) {
+                   if ( Prontuario.isDataValid() ) {
+              core.registerScoreItem( Scores.anotarProntuario );
+              core.flag("score_anotar_prontuario", true );
+                   }
+            }
 
-          if ( core.flag("score_anotar_prontuario") == true && core.flag("score_anotar_prontuario_centro_cirurgico") == false ) {
+          if ( core.flag("score_administrou_medicamento") == true && core.flag("score_anotar_prontuario_centro_cirurgico") == false ) {
             Prontuario.close();
             core.closeModalScene("Prontuario");
             core.openDialog( 3 );

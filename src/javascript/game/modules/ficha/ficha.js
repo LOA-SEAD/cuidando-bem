@@ -100,10 +100,17 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
     if ( state === "soro") {
       $(".soro").show();
       $(".oral").hide();
+      $(".curativo").hide();
     } else if ( state === "oral") {
       $(".oral").show();
       $(".soro").hide();
-    } else {
+      $(".curativo").hide();
+    } else if( state === "curativo"){
+      $(".oral").hide();
+      $(".soro").hide();
+      $(".curativo").show();   
+    }
+      else {
       throw new Error("Estado da ficha não existe.");
     }
 
