@@ -954,6 +954,9 @@ define({
       objetoQualquer: [
         "Volte ao posto de enfermagem, você se esqueceu de alguns instrumentos."
       ],
+        objetoQualquer2: [
+        "Você está se esquecendo de algo. Volte e tente se lembrar."
+      ],
       elevarGrade: [
         // 0 - Paciente homem
         "Previna o paciente de futuras quedas! Pense e encontre a solução.",

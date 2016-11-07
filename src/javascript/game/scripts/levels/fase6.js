@@ -15,8 +15,8 @@
  along with Cuidando Bem.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData" ],
-  function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores ) {
+define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject", "Flag", "CuidandoBem", "Commons", "Pulseira", "Prontuario", "FreqRespiratoria", "ScoresData", "Ficha" ],
+  function( game, Scene, Action, Level, Dialog, InteractiveObject, Flag, core, lib, Pulseira, Prontuario, FreqRespiratoria, Scores, Ficha ) {
 
     var Dialogs = require("DialogsData").fase6;
     var Alertas = require("DialogsData").alertas;
@@ -320,16 +320,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       new InteractiveObject("io-ir_leito", "Ir ao leito")
         .setCssClass("intObj-ir_leito-tutorial")
         .onClick(function() {
-          if ( core.flag("pegou_todos_instrumentos") == false ) {
-            // Mentor corrige
-            core.openDialog( 4 );
-          } else {
+        
             if ( core.flag("score_lavar_maos_antes_leito") == true ) {
               core.changeScene( 3 );
             } else {
               core.openDialog( 5 );
             }
-          }
+          
         })
         .setVisibility( false ),
 
@@ -1415,23 +1412,18 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("action-ir_corredor")
         .onClick(function() {
           console.log("Action: ir_corredor");
-          if ( core.flag("score_pegou_kit_glicemia") == true &&
-            core.flag("score_pegou_algodao") == true &&
-            core.flag("score_pegou_luvas") == true &&
-            // core.flag("score_pegou_bandeja") == true &&
-            core.flag("score_pegou_luvas_estereis") == true &&
-            core.flag("score_pegou_gaze") == true &&
-            core.flag("score_pegou_fita_hipoalergenica") == true &&
-            core.flag("score_pegou_soro") == true &&
-            core.flag("score_pegou_seringa") == true &&
-            core.flag("score_pegou_agulha") == true ) {
-            // Libera o acesso ao leito da Esther
-            if ( core.flag("pegou_todos_instrumentos") == false ) {
-              core.registerScoreItem( Scores.pegarTodosInstrumentos );
-              core.flag("pegou_todos_instrumentos", true );
+            
+            if(core.flag("pegou_todos_instrumentos") == false){
+                core.openDialog( 2 );
             }
-          }
-          core.changeScene( 1 );
+            else if(core.flag("score_identificar_medicacao") == false) {
+                core.openDialog( 1 );
+            }
+            else {
+                core.changeScene( 1 );
+            }
+            
+          
         })
         .setVisibility( true ),
 
@@ -1451,7 +1443,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("action-fichaMedicacao")
         .onClick(function() {
             
-          Ficha.open("oral", 6 );
+          Ficha.open("curativo", 6 );
           core.openModalScene("identificarMedicacao"); 
             
         })
@@ -1515,7 +1507,20 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setText( Alertas.esqueceu.pegarBandeja )
         .registerOption("", function() {
           core.closeDialog();
-        })
+        }),
+        //1
+        new Dialog( lib.characters.mentor )
+        .setText( Alertas.esqueceu. erroFichaMedicacao )
+        .registerOption("", function() {
+          core.closeDialog();
+        }),
+        
+        // 2
+          new Dialog( lib.characters.mentor )
+        .setText( Alertas.esqueceu.objetoQualquer2 )
+        .registerOption("", function() {
+          core.closeDialog();
+        }),
     ]);
 
 
@@ -1531,6 +1536,25 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           Player.play( Player.audios.sfx.fecharGaveta );
           core.closeModalScene("Gaveta");
           core.openCommandBar();
+            
+            if ( core.flag("score_pegou_kit_glicemia") == true &&
+            core.flag("score_pegou_algodao") == true &&
+            core.flag("score_pegou_luvas") == true &&
+            // core.flag("score_pegou_bandeja") == true &&
+            core.flag("score_pegou_luvas_estereis") == true &&
+            core.flag("score_pegou_gaze") == true &&
+            core.flag("score_pegou_fita_hipoalergenica") == true &&
+            core.flag("score_pegou_soro") == true &&
+            core.flag("score_pegou_seringa") == true &&
+            core.flag("score_pegou_agulha") == true ) {
+            // Libera o acesso ao leito da Esther
+            if ( core.flag("pegou_todos_instrumentos") == false ) {
+              core.registerScoreItem( Scores.pegarTodosInstrumentos );
+              core.flag("pegou_todos_instrumentos", true );
+                core.setActionVisible("btn-identificarMedicacao", true);
+            }
+          }    
+            
         })
         .setVisibility( true )
     ]);
@@ -1770,6 +1794,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
               core.flag("score_identificar_medicacao", true );
             }
           }
+           
     
         })
     ]);
@@ -1844,9 +1869,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
       Prontuario.setAnotacaoEnfermagemRowData("", "");
         
-    // Ficha.setEnfermeiraRegexp( /^Feminina$/i );
-    // Ficha.setPacienteRegexp( /^Esther Fidelis$/i );
-    // Ficha.setLeitoRegexp( /0?2/ );
+     Ficha.setEnfermeiraRegexp( /^Feminina$/i );
+     Ficha.setPacienteRegexp( /^Esther Fidelis$/i );
+     Ficha.setLeitoRegexp( /0?2/ );
         
     });
 
