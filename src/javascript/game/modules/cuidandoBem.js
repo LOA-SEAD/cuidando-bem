@@ -230,8 +230,10 @@ define([
     }
 
     function restartLevel() {
+        
       console.info("Restarting current level");
 
+      closeModalScene(); 
       closeEndOfLevel();
       changeLevel( game.getCurrentLevel() );
       startLevel();
