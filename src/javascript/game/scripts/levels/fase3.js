@@ -247,9 +247,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         
 
         if ( core.flag("pegou_tudo_posto_enfermagem") == true ) {
-          /*core.setInteractiveObjectVisible("io-ir_leito", false );
-           // core.openDialog( 0 );
-           } else {*/
+          
           core.setInteractiveObjectVisible("io-ir_leito", true );
             core.setActionVisible("btn-lavarMaos", true);
           core.setInteractiveObjectVisible("io-falarPaciente", false );
@@ -259,7 +257,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           }
         }
         // Caso ele já tenha realizado os procedimentos, são habilitados os botões de descarte dos itens utilizados
-        if ( (core.flag("score_explicou_resultado") == true ) ) {
+        if ( (core.flag("score_explicou_resultado") == true ) && core.flag("score_elevou_grade_cama") == false ) {
 
           core.setActionVisible("btn-jogar_algodao_lixo", true );
           core.setActionVisible("btn-lavarMaos", false );
@@ -267,6 +265,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.setActionVisible("btn-elevar_grade_cama", true );
           core.setActionVisible("btn-ler_prontuario", false );
           core.setActionVisible("btn-anotarProntuario", false );
+          //core.setInteractiveObjectVisible("io-ir_corredor",false);
           core.openCommandBar();
         }
 

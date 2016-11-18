@@ -1166,7 +1166,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           }
 
           core.setActionVisible("btn-pegar_suporte_soro", true );
-          core.setActionVisible("btn-administrar_medicamente", true );
+          
           //      core.setActionVisible("btn-lavarMaos", true );
           //     core.setActionVisible("btn-anotar_prontuario", true );
 
@@ -1245,6 +1245,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.changeSceneCssClassTo("scene-bedChar10C");
           core.setActionVisible("btn-colocarSoro", false );
           core.setActionVisible("btn-realizar_gotejamento", true );
+            core.setActionVisible("btn-administrar_medicamente", true );
 
 
         })
@@ -1261,6 +1262,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
               core.flag("administrar_medicamento", true );
               core.registerScoreItem( Scores.administrarMedicamento );
             }
+              core.setActionVisible("btn-administrar_medicamente", false);
 
           } else {
 

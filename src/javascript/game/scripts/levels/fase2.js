@@ -297,12 +297,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       .setCssClass("scene-bedroom-level2a")
       .onLoad(function() {
         console.log("Entrando na sala de leitos");
-        if ( core.flag("colocou_coxim") ) {
+        if ( core.flag("colocou_coxim") && core.flag("ja_trocou_imagem") == false ) {
           core.setActionVisible("btn-ler_prontuario", true );
           core.setActionVisible("btn-lavarMaos", true );
-          core.changeSceneCssClassTo("scene-bedroom-level2b");
-          // ARRUMAR PARA PODER IR SEMPRE AO LEITO
-          core.setInteractiveObjectVisible("io-ir_leito", false );
+            
+            if(core.flag("ja_trocou_imagem") == false){
+                core.flag("ja_trocou_imagem", true);
+             core.changeSceneCssClassTo("scene-bedroom-level2b");
+            }
+   
+          
+          core.setInteractiveObjectVisible("io-ir_leito", true );
         }
         core.openCommandBar();
       })
@@ -1038,6 +1043,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     level.registerFlag( new Flag("lavarMaosAntesBandeja", false ) );
     level.registerFlag( new Flag("score_lavarMaosAntesBandeja", false ) );
     level.registerFlag( new Flag("score_lavarMaosAntesInspecao", false ) );
+    level.registerFlag( new Flag("ja_trocou_imagem", false ) );
 
     // Velho e inutilizado
     level.registerFlag( new Flag("score_falar_com_mentor", false ) );
