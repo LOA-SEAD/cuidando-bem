@@ -171,7 +171,11 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
       if ( inicio[ 0 ] != horas ) {
         return false;
       }
-      if ( inicio[ 1 ] != minutos && (inicio[ 1 ] + 2) != minutos && (inicio[ 1 ] - 2) != minutos ) {
+        debugger;
+        
+        if( (inicio[ 1 ] != minutos) && ((inicio[ 1 ] + 2) != minutos) && ((inicio[ 1 ] + 1) != minutos) && 
+          ((inicio[ 1 ] - 2) != minutos) && ((inicio[ 1 ] - 1) != minutos) )
+         {
         return false;
       }
       // termino - Horario atual + duração
@@ -179,7 +183,10 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
       if ( termino[ 0 ] != (horas + duracao) % 24 ) {
         return false;
       }
-      if ( termino[ 1 ] != minutos && (termino[ 1 ] + 2) != minutos && (termino[ 1 ] - 2) != minutos ) {
+     
+          if( (termino[ 1 ] != minutos) && (termino[ 1 ] + 2) != minutos && (termino[ 1 ] + 1) != minutos )
+           if( (termino[ 1 ] - 2) != minutos && (termino[ 1 ] - 1) != minutos )
+     {
         return false;
       }
       // volume - Informação passada por regExp  *

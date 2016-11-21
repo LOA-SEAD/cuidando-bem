@@ -271,6 +271,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         
 
       }
+        else if ( core.flag("conversar_paciente")  ){
+               core.changeScene( 2 );
+        }
     }
 
 
@@ -426,11 +429,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
           console.log("voltando para corredor");
 
-          if ( core.flag("pegar_prescricao_medica") == false ) {
-            core.openDialog( 5 );
-          } else {
             core.changeScene( 1 );
-          }
+          
 
         }),
 
