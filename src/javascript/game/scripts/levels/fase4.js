@@ -263,14 +263,12 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.changeScene( 3 );
         } else {
           if ( core.flag("ir_alaFeminina_horaErrada") == false ) {
-            // core.registerScoreItem( Scores.irAlaFemininaHoraErrada );
             core.flag("ir_alaFeminina_horaErrada", true );
           }
           core.changeScene( 8 );
         }
       } else {
         if ( core.flag("ir_alaFeminina_horaErrada") == false ) {
-          // core.registerScoreItem( Scores.irAlaFemininaHoraErrada );
           core.flag("ir_alaFeminina_horaErrada", true );
         }
         core.openDialog( 9 );
@@ -282,7 +280,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       console.log("Action: corredorIrFarmaciaHoraErrada");
       core.openDialog( 8 );
       if ( core.flag("ir_farmacia_horaErrada") == false ) {
-        // core.registerScoreItem( Scores.irFarmaciaHoraErrada );
         core.flag("ir_farmacia_horaErrada", true );
 
       }
@@ -293,7 +290,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       console.log("Action: corredorIrPostoEnfermagem");
       core.openDialog( 8 );
       if ( core.flag("ir_postoEnfermagem_horaErrada") == false ) {
-        // core.registerScoreItem( Scores.irPostoEnfermagemHoraErrada );
         core.flag("ir_postoEnfermagem_horaErrada", true );
       }
     }
@@ -356,6 +352,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       })
       .onUnload(function() {
         core.closeCommandBar();
+          
+            if ( core.flag("verificar_oximetro_local_cirurgia") == true &&
+            core.flag("colocar_placa_neutra") == true ) {
+            core.flag("fim_fase", true );
+          }
       });
 
 
@@ -491,7 +492,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           if ( core.flag("lavarMaos") == false ) {
             console.log("Action: lavarMaos");
             core.flag("lavarMaos", true );
-            // core.registerScoreItem( Scores.lavarMaosHoraErrada );
+         
             core.openDialog( 5 );
           }
         }),
@@ -596,7 +597,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
           if ( core.flag("lavar_maos2") == false ) {
             if ( core.flag("score_nao_lavou_maos") == false ) {
-              // core.registerScoreItem( Scores.naoLavarMaos );
               core.flag("score_nao_lavou_maos", true );
             }
             core.openDialog( 2 );
@@ -648,7 +648,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             if ( core.flag("score_pulseira") == false ) {
               core.flag("score_pulseira", true );
-              // core.registerScoreItem( Scores.naoVerificarPulseira );
             }
 
             core.openDialog( 7 );
@@ -677,7 +676,6 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
             if ( core.flag("score_pulseira") == false ) {
               core.flag("score_pulseira", true );
-              // core.registerScoreItem( Scores.naoVerificarPulseira );
             }
 
             core.openDialog( 7 );
@@ -1178,10 +1176,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
                 }
           }
 
-          if ( core.flag("verificar_oximetro_local_cirurgia") == true &&
-            core.flag("colocar_placa_neutra") == true ) {
-            core.flag("fim_fase", true );
-          }
+        
 
         })
         .setVisibility( true )
