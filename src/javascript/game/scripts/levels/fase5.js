@@ -60,6 +60,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     recepcao = lib.scenes.recepcao.getClone()
       .onLoad(function() {
         console.log("Load scene: " + recepcao.getName() );
+  
 
         if ( core.flag("conversar_recepcionista") == false ) {
           core.flag("conversar_recepcionista", true );
@@ -121,7 +122,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
     corredor = lib.scenes.corredor.getClone()
       .onLoad(function() {
-
+        
         core.openCommandBar();
         core.setActionVisible("btn-ir_recepcao", true );
 
@@ -925,7 +926,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       new Action("btn-identificarMedicacao", "Identificar medicação")
         .setCssClass("action-fichaMedicacao")
         .onClick(function() {
-          Ficha.open("soro", 5 );
+          Ficha.open("soro", 5, "01", "Masculina"  );
           core.openModalScene("identificarMedicacao");
         })
         .setVisibility( false ),
@@ -1439,7 +1440,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         })
     ]);
 
+
     fichaMedicacao = new Scene("identificarMedicacao", "Identificar Medicação");
+
 
     fichaMedicacao.registerActions([
       new Action("btn-fecharFicha", "Fechar ficha")

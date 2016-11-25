@@ -90,14 +90,34 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
     $( inHorario ).mask("00:00");
   }
 
-  function open( _state, levelId ) {
+  function open( _state, levelId, _leito, _enfermaria, _funcionario ) {
     if ( typeof _state === "undefined" || typeof _state === "undefined") {
       throw new Error("You must define a state to open ficha and the level");
     }
+      
+    /*   var inDataVal = $( inData ).val().split("/");
+      
+    inDataVal[ 0 ] == today.getDate() 
+    inDataVal[ 1 ] == today.getMonth() 
+    inDataVal[ 2 ] == today.getMonth() 
+ 
+    if ( inDataVal[ 2 ] != today.getYear() + 1900 ) {
+      return false;
+    }*/
 
     state = _state;
+    var _data = new Date();
+    var _dataFormatada = _data.getDate() + '/' + (_data.getMonth() + 1) + '/' + _data.getFullYear();
+    
+    _funcionario = Storage.getLoadedSlot().name;
+      
+      $( inLeito ).val(_leito);  
+      $( inEnfermaria ).val(_enfermaria);  
+      $( inData ).val(_dataFormatada);  
+      $( inFuncionario ).val(_funcionario);
+    
 
-    if ( state === "soro") {
+    if ( state === "soro") {  
       $(".soro").show();
       $(".oral").hide();
       $(".curativo").hide();
@@ -171,7 +191,6 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
       if ( inicio[ 0 ] != horas ) {
         return false;
       }
-        debugger;
         
         if( (inicio[ 1 ] != minutos) && ((inicio[ 1 ] + 2) != minutos) && ((inicio[ 1 ] + 1) != minutos) && 
           ((inicio[ 1 ] - 2) != minutos) && ((inicio[ 1 ] - 1) != minutos) )
@@ -231,7 +250,6 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
   function setPacienteRegexp( _pacienteRegexp ) {
     pacienteRegexp = _pacienteRegexp;
   }
-
   function setLeitoRegexp( _leitoRegexp ) {
     leitoRegexp = _leitoRegexp;
   }

@@ -994,7 +994,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("action-fichaMedicacao")
         .onClick(function() {
             
-          Ficha.open("oral", 8 );
+          Ficha.open("oral", 8, "01", "Feminina" );
           core.openModalScene("identificarMedicacao"); 
             
         })

@@ -431,7 +431,6 @@ define([
      * @memberOf module:CuidandoBem
      */
     function showEndOfLevel() {
-      // debugger;
       endOfLevel.show( scoreList, Level.getMaxPoints() );
     }
 

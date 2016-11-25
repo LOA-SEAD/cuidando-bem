@@ -80,6 +80,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .registerOption("", function() {
           core.flag("conversar_recepcionista", true );
           core.setInteractiveObjectVisible("intObj-info02", false);
+          core.setInteractiveObjectVisible("intObj-info04", true);
           core.openDialog( 1 );
               
         }),
@@ -88,6 +89,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       new Dialog( lib.characters.jogador )
         .setText("")
         .registerOption( Dialogs.recepcao[ 1 ], function() {
+            core.setInteractiveObjectVisible("intObj-info04", false);
           core.openDialog( 2 );
         }),
 
@@ -123,6 +125,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         new InteractiveObject("intObj-info02", "Balão Informacao 2")    
       .setCssClass("intObj-info02")
       .setVisibility( true )
+      .setEnable( false ),
+        
+         new InteractiveObject("intObj-info04", "Balão Informacao 3")    
+      .setCssClass("intObj-info04")
+      .setVisibility( false )
       .setEnable( false ),
         
         
