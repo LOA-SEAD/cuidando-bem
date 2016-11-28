@@ -188,26 +188,45 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
     if ( state === "soro") {
       // inicio - Horario atual
       var inicio = $( inIni ).val().split(":");
-      if ( inicio[ 0 ] != horas ) {
-        return false;
-      }
         
-        if( (inicio[ 1 ] != minutos) && ((inicio[ 1 ] + 2) != minutos) && ((inicio[ 1 ] + 1) != minutos) && 
-          ((inicio[ 1 ] - 2) != minutos) && ((inicio[ 1 ] - 1) != minutos) )
-         {
-        return false;
-      }
+        var horas = parseInt(inicio[ 0 ]);
+        var minutos = parseInt(inicio[ 1 ]);
+        
+  //    if ( inicio[ 0 ] != horas ) {
+   //     return false;
+   //   }
+        
+ //       if( (inicio[ 1 ] != minutos) && ((inicio[ 1 ] + 2) != minutos) && ((inicio[ 1 ] + 1) != minutos) && 
+ //         ((inicio[ 1 ] - 2) != minutos) && ((inicio[ 1 ] - 1) != minutos) )
+  //       {
+  //      return false;
+  //    }
+        
       // termino - Horario atual + duração
       var termino = $( inTer ).val().split(":");
-      if ( termino[ 0 ] != (horas + duracao) % 24 ) {
+        
+        var horasTotais = parseInt(termino[0]);
+        var minutosTotais = parseInt(termino[1]);
+      
+        if( horasTotais != (horas + duracao) % 24  ){
+            return false;
+        }
+        
+        if( minutosTotais != minutos ){
+            return false;
+        }
+        
+     /* if ( termino[ 0 ] != (horas + duracao) % 24 ) {
         return false;
-      }
+      }*/
      
-          if( (termino[ 1 ] != minutos) && (termino[ 1 ] + 2) != minutos && (termino[ 1 ] + 1) != minutos )
-           if( (termino[ 1 ] - 2) != minutos && (termino[ 1 ] - 1) != minutos )
-     {
-        return false;
-      }
+        //  if( (termino[ 1 ] != minutos) && (termino[ 1 ] + 2) != minutos && (termino[ 1 ] + 1) != minutos )
+        //   if( (termino[ 1 ] - 2) != minutos && (termino[ 1 ] - 1) != minutos )
+   //  {
+     //   return false;
+    //  }
+        
+        
       // volume - Informação passada por regExp  *
       var volume = $( inVolume1 ).val();
       if ( !volumeRegexp.test( volume ) ) {
@@ -232,12 +251,13 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
       // oral
       // horario - Horario atual
       var horario = $( inHorario ).val().split(":");
-      if ( horario[ 0 ] != horas ) {
-        return false;
-      }
-      if ( horario[ 1 ] != minutos && (horario[ 1 ] + 1) != minutos && (horario[ 1 ] - 1) != minutos ) {
-        return false;
-      }
+        
+  //    if ( horario[ 0 ] != horas ) {
+   //     return false;
+   //   }
+   //   if ( horario[ 1 ] != minutos && (horario[ 1 ] + 1) != minutos && (horario[ 1 ] - 1) != minutos ) {
+   //     return false;
+   //   }
     }
     return true;
   }
