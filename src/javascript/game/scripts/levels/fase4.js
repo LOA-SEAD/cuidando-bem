@@ -353,10 +353,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       .onUnload(function() {
         core.closeCommandBar();
           
-            if ( core.flag("verificar_oximetro_local_cirurgia") == true &&
-            core.flag("colocar_placa_neutra") == true ) {
-            core.flag("fim_fase", true );
-          }
+         
       });
 
 
@@ -816,6 +813,11 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
       })
       .onUnload(function() {
         console.log("Saindo do centro cirurgico");
+          
+             if ( core.flag("verificar_oximetro_local_cirurgia") == true &&
+            core.flag("colocar_placa_neutra") == true ) {
+            core.flag("fim_fase", true );
+          }
 
       });
 
