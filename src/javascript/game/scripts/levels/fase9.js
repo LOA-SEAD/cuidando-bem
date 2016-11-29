@@ -267,6 +267,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     ]);
 
     salaDeLeitos.registerActions([
+        
       new Action("btn-ler_prontuario", "Ler prontuario")
         .setCssClass("action-ler_prontuario")
         .onClick(function() {
@@ -737,7 +738,16 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.openModalScene("identificarMedicacao"); 
             
         })
-        .setVisibility( false )
+        .setVisibility( false ),
+        
+        new Action("btn-ler_prontuario", "Ler prontuario")
+        .setCssClass("action-ler_prontuario")
+        .onClick(function() {
+            
+          Prontuario.open();
+          core.openModalScene("Prontuario");
+        })
+        .setVisibility( true ),
         
     ]);
 

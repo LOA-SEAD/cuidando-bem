@@ -126,7 +126,7 @@ define({
       fala1: [
         // 0 Mentor
         "Bom dia! Seu segundo paciente tem 69 anos, está acamado e sabemos que isso é um fator de" +
-        " risco para o desenvolvimento de úlcera por pressão. A mudança de posição é essencial!",
+        " risco para o desenvolvimento de lesão por pressão. A mudança de posição é essencial!",
         // 1 Jogador
         "Bom dia, Alberto! Vou até a enfermaria conhecê-lo."
       ],

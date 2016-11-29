@@ -35,7 +35,7 @@ define([ "Stage", "levelsData", "AccessibleNavigationMenus" ], function( Stage, 
 
   var levelNames = [
     "1 - Identificação do Paciente",
-    "2 - Prevenção de úlcera por pressão",
+    "2 - Prevenção de lesão por pressão",
     "3 - Prevenção de quedas",
     "4 - Cirurgia segura",
     "5 - Medicação segura",
