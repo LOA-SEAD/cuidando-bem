@@ -298,8 +298,10 @@ define(function() {
       // mudarPosicaoPaciente: new Score("Mudar posição do paciente", 350 ),
       colocarPlacaNeutra: new Score("Colocar a placa neutra", 350 ),
       lavarMaosCentroCirurgico: new Score("Lavar as mãos após realizar os procedimentos", 200 ),
-      anotarProntuarioCentroCirurgico: new Score("Anotar no prontuário após realizar os procedimentos", 350 ),
-      identificarMedicacao: new Score("Identificar Medicação", 350 )
+      //anotarProntuarioCentroCirurgico: new Score("Anotar no prontuário após realizar os procedimentos", 350 ),
+      identificarMedicacao: new Score("Identificar Medicação", 350 ),
+      verificarOximetro: new Score("Verificar Oxímetro", 150 ),
+      
     },
 
     fase10: {

@@ -873,11 +873,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setCssClass("intObj-talkToCirculante")
         .onClick(function() {
 
-
-          core.openDialog( 0 );
-          core.setInteractiveObjectVisible("io-carrinho_anestesico", true );
-          core.setInteractiveObjectVisible("io-conversar_paciente_cc", true );
-          core.flag("conversar_circulante", true );
+                if(core.flag("score_testou_equipamentos") && core.flag("falarPacienteCC") == false){
+                    core.openDialog(20);
+                }
+                else if( core.flag("score_testou_equipamentos") && core.flag("falarPacienteCC") ) {
+                    core.disableInteractiveObject("io-conversar_circulante");
+                    }
+            else {
+                core.openDialog( 0 );
+                core.flag("conversar_circulante", true );
+            }
+        
 
         })
         .setVisibility( true ),
@@ -889,23 +895,34 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           Player.play( Player.audios.sfx.bip );
 
 
-          // PRECISA VERIFICAR SE O PACIENTE LAVOU AS MAOS COM TECNICA CIRURGICA??????
+          if(core.flag("score_lavar_maos_tecnica_cirurgica") == false){
+              core.openDialog(19);
+          }
+            else {
 
           if ( core.flag("score_testou_equipamentos") == false ) {
             core.registerScoreItem( Scores.testarEquipamentos );
             core.flag("score_testou_equipamentos", true );
+            core.setInteractiveObjectVisible("io-conversar_paciente_cc", true); 
+            core.setActionVisible("btn-lavar_maos_cirurgica", false);
+            core.setActionVisible("btn-lavarMaos2", false);
+            core.setActionVisible("btn-ir_corredor", false);
+            core.disableInteractiveObject("io-carrinho_anestesico");   
           }
+                
+                }
 
         })
-        .setVisibility( false ),
+        .setVisibility( false )
+        .setEnable(false),
 
 
       new InteractiveObject("io-conversar_paciente_cc", "Falar com o paciente")
         .setCssClass("intObj-talkToPacienteRegina")
         .onClick(function() {
-
-
+            
           core.openDialog( 3 );
+            
 
 
         })
@@ -923,24 +940,59 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           core.changeScene( 1 );
         })
         .setVisibility( true ),
-
-      new Action("btn-lavar_maos_cirurgia", "Lavar as mãos técnica cirúrgica")
-        .setCssClass("action-lavar_maos_escova")
+        
+        
+          new Action("btn-lavarMaos2", "Lavar as mãos")
+        .setCssClass("action-lavarMaos")
         .onClick(function() {
-          console.log("Action: Lavar as mãos técnica cirúrgica");
+         
           // Som
           Player.play( Player.audios.sfx.lavarMaos );
+
+              
+
+        })
+        .setVisibility( false ),
+        
+         new Action("btn-lavar_maos_cirurgica", "Anti-sepsia cirúrgica")
+        .setCssClass("action-lavar_maos_escova")
+        .onClick(function() {
+          // Som
+          Player.play( Player.audios.sfx.lavarMaos );
+            
           if ( core.flag("score_lavar_maos_tecnica_cirurgica") == false ) {
             core.registerScoreItem( Scores.lavarMaosTecnicaCirurgica );
             core.flag("score_lavar_maos_tecnica_cirurgica", true );
           }
+            
         })
-        .setVisibility( true ),
+        .setVisibility( false ),
+        
+        new Action("btn-verificar_oximetro", "Verificar Oxímetro")
+        .setCssClass("action-pegar_oximetro")
+        .onClick(function() {
+          console.log("Action: Verificando Paciente");
+          // Bip
+          Player.play( Player.audios.sfx.bipOximetro );
+            
+              core.openModalScene("modalOximetro");
+            
+            if(core.flag("verificar_oximetro") == false){
+             core.flag("verificar_oximetro", true );
+             core.registerScoreItem( Scores.verificarOximetro );
+                
+            }
+      
+
+        })
+        .setVisibility( false ),
 
       new Action("btn-colocar_placa", "Colocar placa neutra")
         .setCssClass("action-placa_neutra")
         .onClick(function() {
           console.log("Action: Colocar placa neutra");
+            
+            core.flag("colocar_placa_neutra",true);
 
 
           core.registerScoreItem( Scores.colocarPlacaNeutra );
@@ -949,7 +1001,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
 
 
         })
-        .setVisibility( true ),
+        .setVisibility( false ),
 
       new Action("btn-lavarMaos", "Lavar as mãos")
         .setCssClass("action-lavarMaos")
@@ -964,29 +1016,24 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
             core.flag("score_lavar_maos_centro_cirurgico", true );
           }
         })
-        .setVisibility( true ),
+        .setVisibility( false ),
 
       new Action("btn-anotarProntuario", "Anotar no prontuario")
         .setCssClass("action-anotar_prontuario")
         .onClick(function() {
           console.log("Action: Anotar prontuario");
-
-
-          if ( core.flag("score_lavar_maos_centro_cirurgico") == true ) {
+            
+              Prontuario.open();
+            core.openModalScene("Prontuario");
+            
 
             if ( core.flag("score_anotar_prontuario_centro_cirurgico") == false ) {
-              core.registerScoreItem( Scores.anotarProntuarioCentroCirurgico );
+             // core.registerScoreItem( Scores.anotarProntuarioCentroCirurgico );
               core.flag("score_anotar_prontuario_centro_cirurgico", true );
-            }
-            Prontuario.open();
-            core.openModalScene("Prontuario");
-
-          } else {
-            core.openDialog( 18 );
-          }
+          } 
 
         })
-        .setVisibility( true )
+        .setVisibility( false )
     ]);
 
     centroCirurgicoYuri.registerDialogs([
@@ -1011,7 +1058,15 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setText( Dialogs.centroCirurgico[ 3 ] )
         .registerOption("", function() {
           core.closeDialog();
-          core.closeCommandBar();
+         // core.closeCommandBar();
+        if(core.flag("score_testou_equipamentos") == false){  
+            core.setActionVisible("btn-lavar_maos_cirurgica", true);
+            core.setActionVisible("btn-lavarMaos2", true);
+            core.enableInteractiveObject("io-carrinho_anestesico");
+            core.setInteractiveObjectVisible("io-carrinho_anestesico", true );
+            } 
+          
+        
         }),
       // 3
       new Dialog( lib.characters.jogador )
@@ -1102,14 +1157,53 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setText( Dialogs.centroCirurgico[ 18 ] )
         .registerOption("", function() {
           core.closeDialog();
-          core.openCommandBar();
+          //core.openCommandBar();
+            
+            if(core.flag("falarPacienteCC") == false){
+                core.setActionVisible("btn-anotarProntuario", true);
+             core.setActionVisible("btn-colocar_placa", true);
+             core.setActionVisible("btn-lavarMaos", true);
+             core.setActionVisible("btn-ir_corredor", true);
+             core.setActionVisible("btn-verificar_oximetro", true);
+                core.flag("falarPacienteCC", true);
+                }
+            
         }),
       // 18
-      new Dialog( lib.characters.mentor )
+      new Dialog( lib.characters.circulante )
         .setText( Alertas.lavarMaos.tipo2 )
         .registerOption("", function() {
           core.closeDialog();
+        }),
+        
+        //19
+         new Dialog( lib.characters.circulante )
+        .setText( Alertas.esqueceu.objetoQualquer2 )
+        .registerOption("", function() {
+          core.closeDialog();
+        }),
+        
+        // 20 
+        new Dialog( lib.characters.circulante )
+        .setText( Alertas.esqueceu.falarPaciente )
+        .registerOption("", function() {
+          core.closeDialog();
+        }),
+    ]);
+    
+        var oximetro = new Scene("modalOximetro", "Oxímetro")
+      .setCssClass("modalScene-oximetro")
+      .setTemplate(
+        "<span class='oximetro-st-text'>96% Sat.O2</span>" + "<span class='oximetro-fc-text'>72 bpm</span>"
+      );
+
+    oximetro.registerActions([
+      new Action("btn-largar_oximetro", "Fechar Oxímetro")
+        .setCssClass("action-largar_oximetro")
+        .onClick(function() {
+          core.closeModalScene("modalOximetro");
         })
+        .setVisibility( true )
     ]);
 
 
@@ -1158,7 +1252,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           }
 
           // Já estava no momento de realizar os procedimentos, portanto pode terminar a fase
-          if ( core.flag("score_anotar_prontuario_centro_cirurgico") == true ) {
+          if ( core.flag("score_anotar_prontuario_centro_cirurgico") && core.flag("colocar_placa_neutra") ) {
             core.unlockLevel( 10 );
             core.closeCommandBar();
             core.showEndOfLevel();
@@ -1291,7 +1385,8 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     level.registerModalScene( prontuario );
     level.registerModalScene( midazolam );
     level.registerModalScene( gaveta );
-    level.registerModalScene( fichaMedicacao );
+    level.registerModalScene( fichaMedicacao ); 
+    level.registerModalScene( oximetro ); 
 
 
     level.setSetupScript(function() {
@@ -1407,6 +1502,9 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
     level.registerFlag( new Flag("score_pulseira", false ) );
     level.registerFlag( new Flag("verificar_pulseira", false ) );
     level.registerFlag( new Flag("score_identificar_medicacao", false ) );
+    level.registerFlag( new Flag("falarPacienteCC", false ) );
+    level.registerFlag( new Flag("verificar_oximetro", false ) );
+    level.registerFlag( new Flag("colocar_placa_neutra", false ) );
 
 
     level.setInitialScene( 0 );
