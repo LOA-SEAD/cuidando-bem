@@ -9,7 +9,7 @@
     "tests",
     "libs"
   ],
-  "version": "1.9.1",
+  "version": "1.9.2",
   "dependencies": {
     "jquery": "~2.1.3",
     "requirejs-text": "~2.0.13",
