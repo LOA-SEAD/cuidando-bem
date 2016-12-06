@@ -112,7 +112,7 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
     $( inGotasAprox ).mask("000");
     $( inIni ).mask(Hourmask,pattern);
     $( inTer ).mask(Hourmask,pattern);
-    $( inHorario ).mask("00:00");
+    $( inHorario ).mask(Hourmask,pattern);
   }
 
   function open( _state, levelId, _leito, _enfermaria, _funcionario ) {
@@ -166,6 +166,7 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
     // Geral
     // data - Verificar em relação ao dia mes e ano atual
    
+      debugger;
 
        var flag = true;
    
@@ -185,6 +186,10 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
       
    
     var paciente = $( inPaciente ).val();
+      
+      if( $( inPaciente ).val() == '' ){
+          flag = false;
+      }
       
     if ( !pacienteRegexp.test( paciente ) && $( inPaciente ).val() != '' ) {
 
@@ -216,11 +221,22 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
       var termino = $( inTer ).val().split(":");
         var horasTotais = parseInt(termino[0]);
         var minutosTotais = parseInt(termino[1]);
-     debugger;
-        if( horasTotais != (horas + duracao) || minutosTotais != minutos  ){
+        
+         if( $( inIni ).val() == '' && $( inTer ).val() == '' ){
+          flag = false;
+      }
+        
+        if( horasTotais != (horas + duracao) % 24 || minutosTotais != minutos   ){
+            
+            if( $( inIni ).val() == '' && $( inTer ).val() == '' ){
+                 $( inTer ).css("color", "black");
+                 $( inIni ).css("color", "black");
+            } else {
+                
              $( inTer ).css("color", "red");
              $( inIni ).css("color", "red");
             flag = false;
+            }
             
         } else {
               $( inTer ).css("color", "black");
@@ -232,7 +248,12 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
         
       // volume - Informação passada por regExp  *
       var volume = $( inVolume1 ).val();
-      if ( !volumeRegexp.test( volume ) ) {
+        
+         if( $( inVolume1 ).val() == '' ){
+          flag = false;
+      }
+        
+      if ( !volumeRegexp.test( volume ) && $( inVolume1 ).val() != '' && $( inVolume2 ).val() != '' ) {
          $( inVolume1 ).css("color", "red");
          $( inVolume2 ).css("color", "red");
         flag = false;
@@ -243,7 +264,12 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
       }
       // duracao - Informação passada por regExp  *
       var duracaoIn = $( inDuracao ).val();
-      if ( duracao != duracaoIn ) {
+        
+          if( $( inDuracao ).val() == '' ){
+          flag = false;
+      }
+        
+      if ( duracao != duracaoIn && $( inDuracao ).val() != ''  ) {
               $( inDuracao ).css("color", "red");
         flag = false;
           
@@ -252,7 +278,12 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
       }
       // gts - Informação passada por regExp  *
       var gotas = $( inGotas ).val();
-      if ( !gotasRegexp.test( gotas ) ) {
+        
+           if( $( inGotas ).val() == '' ){
+          flag = false;
+      }
+        
+      if ( !gotasRegexp.test( gotas ) && $( inGotas ).val() != '' ) {
           $( inGotas ).css("color", "red");
         flag = false;
           
@@ -261,7 +292,12 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
       }
       // gts Aproximado - Informação passada por regExp  *
       var gotasAprox = $( inGotasAprox ).val();
-      if ( !gotasAproxRegexp.test( gotasAprox ) ) {
+        
+          if( $( inGotasAprox ).val() == '' ){
+          flag = false;
+      }
+        
+      if ( !gotasAproxRegexp.test( gotasAprox )  && $( inGotasAprox ).val() != '' ) {
            $( inGotasAprox ).css("color", "red");
         flag = false;
           
@@ -273,6 +309,12 @@ define([ "text!../html/ficha/ficha.html" ], function( html ) {
       // horario - Horario atual
       var horario = $( inHorario ).val().split(":");
         
+           if( $( inHorario ).val() == '' ){
+          flag = false;
+      } 
+        else {
+            flag = true;
+        }
  
     }
     return flag;

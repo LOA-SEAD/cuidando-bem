@@ -1451,6 +1451,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
           console.log("Action: Fechar ficha");
           core.closeModalScene("identificarMedicacao");
           Ficha.close();
+            debugger;
           if ( Ficha.isDataValid() ) {
             if ( core.flag("score_identificar_medicacao") == false ) {
               core.registerScoreItem( Scores.identificarMedicacao );

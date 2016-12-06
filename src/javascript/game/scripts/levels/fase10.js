@@ -870,6 +870,17 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         })
         .setVisibility( false ),
         
+              new Action("btn-ler_prontuario", "Ler prontuario")
+        .setCssClass("action-ler_prontuario")
+        .onClick(function() {
+            
+          Prontuario.open();
+          core.openModalScene("Prontuario");
+
+
+        })
+        .setVisibility( true ),
+        
         
         new Action("btn-prepararMedicacao", "Preparar medicação")
         .setCssClass("action-preparar_medicacao")
