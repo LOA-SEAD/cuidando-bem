@@ -751,7 +751,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         })
         .setVisibility( visibility ),
 
-      new Action("btn-ler_prontuario", "Ler prontuario")
+      new Action("btn-ler_prontuario", "Anotar no prontuario")
         .setCssClass("action-ler_prontuario")
         .onClick(function() {
           console.log("Action: ler prontuario");
@@ -763,7 +763,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
               }
             }
 
-            Prontuario.open();
+            Prontuario.open("sinaisVitais");
             core.openModalScene("Prontuario");
           } else {
             Prontuario.close();

@@ -370,43 +370,13 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .onClick(function() {
           // Som
           Player.play( Player.audios.sfx.lavarMaos );
-            
-         /* if ( !core.flag("lavarMaos") ) {
-            console.log("Action: lavarMaos");
-            core.flag("lavarMaos", true );
-              }*/
-
-           /* if ( !core.flag("score_lavar_maos_antes_exame") ) {
-              core.registerScoreItem( Scores.lavarMaosAntes );
-              core.flag("score_lavar_maos_antes_exame", true );
-            }*/
-            // core.setInteractiveObjectVisible("io-ir_leito", true);
-         /* } else if ( !core.flag("lavar_maos2") && core.flag("examinar_paciente") ) {
-            console.log("Action: lavar_maos2");
-            core.flag("lavar_maos2", true );*/
+     
               
             if(core.flag("lavar_maos3") == false) {
                 core.flag("lavar_maos3", true);
                 core.registerScoreItem( Scores.lavarMaosDepois );
             }  
 
-           /* if ( !core.flag("score_lavar_maos_depois_exame") ) {
-              core.registerScoreItem( Scores.lavarMaosDepois );
-              core.flag("score_lavar_maos_depois_exame", true );
-            }*/
-              
-            // core.setActionVisible("ir_corredor", true);
-         /*     
-           else if ( !core.flag("lavar_maos3") && core.flag("colocou_coxim") ) {
-            console.log("Action: lavar_maos3");
-            core.flag("lavar_maos3", true );
-
-            if ( !core.flag("score_lavar_maos_prontuario") ) {
-              // core.registerScoreItem( Scores.lavarMaosProntuario );
-              core.flag("score_lavar_maos_prontuario", true );
-            }
-          }*/
-            
         })
         .setVisibility( false ),
         

@@ -1336,7 +1336,7 @@ define([ "levelsData", "Scene", "Action", "Level", "Dialog", "InteractiveObject"
         .setVisibility( false ),
 
 
-      new Action("btn-anotar_prontuario", "Anotar prontuario")
+      new Action("btn-anotar_prontuario", "Anotar no prontuario")
         .setCssClass("action-anotar_prontuario")
         .onClick(function() {
 
